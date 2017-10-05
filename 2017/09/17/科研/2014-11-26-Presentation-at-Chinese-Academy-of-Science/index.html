@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>我的报告 Decentralized Privacy-Preserving Low-Rank Matrix Completion | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="###我的报告
+####Section 0: Introduce MyselfPage 1
+
+Good afternoon everyone! My name is Anya Lin. I’m a second-year master candidate from University of Sci">
+  
+  <meta name="keywords" content="报告总结">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="我的报告 Decentralized Privacy-Preserving Low-Rank Matrix Completion"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-11-26-Presentation-at-Chinese-Academy-of-Science/">2017-09-17</a></time>
+      
+      
+  
+    <h1 class="title">我的报告 Decentralized Privacy-Preserving Low-Rank Matrix Completion</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        
+    </div>
+
+      
+        <p><img src="/public/img/posts/s1.png" alt="1"></p>
+<p>###我的报告</p>
+<p>####Section 0: Introduce Myself<br>Page 1</p>
+<ul>
+<li>Good afternoon everyone! My name is Anya Lin. I’m a second-year master candidate from University of Science and Technology of China. It’s my great pleasure to introduce to you the Decentralized Privacy-Preserving Low-Rank Matrix Completion. It’s a joint work with my supervisor, Prof. Ling from USTC.</li>
+<li>Before I start, I want to express my thanks to Prof. Ling for his patient instructions and help over the last a few months.</li>
+</ul>
+<p>Page 2</p>
+<ul>
+<li>Here’s the outline of my presentation.</li>
+<li>First is the introduction.</li>
+<li>And then the centralized matrix completion problem.</li>
+<li>We develop a decentralized algorithm in section 3, and our algorithm is derived from a centralized algorithm as I will talk about in section 2.</li>
+<li>Next, I will introduce the main result of the topology-dependent privacy preservation.</li>
+<li>At last, it’s the conclusion.</li>
+</ul>
+<p>####Section 1: Introduction<br>Page 3</p>
+<ul>
+<li>OK， let’s go into the introduction.</li>
+</ul>
+<p>Page 4</p>
+<ul>
+<li>I’d like to begin with the concept of matrix completion. So what is matrix completion? As we can see in this picture, we have an incomplete matrix, whose entries are known only for a subset of the whole matrix. And the rank of the matrix is very small compared with the size of the matrix.</li>
+<li>The goal of the matrix completion is to recover all these unknown entries of of the matrix, as the right-side picture shows. Here, Z is the recovery of W.</li>
+</ul>
+<p>Page 5</p>
+<ul>
+<li>There’s many applications of such a problem. Like image processing, recommendation system and so on. Here are 2 examples. The first one is a problem of image processing. The left picture has a lot of noises, or say, only a part of the original picture is known. By using the fact that the original picture is usually low-rank, we can matrix completion to denoise the picture and get a clear version of high quality as the right picture shows.</li>
+<li>The second example is more close to our lives. It’s related to a recommendation system. As you can see, it’s a webpage of Douban Movie. A user sees a movie, such as Interstella, and then scores it on the website. Here we can imagine a huge matrix with rows representing users and columns the movies. This matrix is incomplete and it’s low-rank. Once this matrix is completed, the website can recommend new movies to users.</li>
+</ul>
+<p>Page 6</p>
+<ul>
+<li>Now, here comes a privacy concern. First what is privacy? Privacy is the values one considers private. In the example we mentioned just now, the users’ scores of the movies are privacy, because one may not want others to know what movies he has seen or likes. Also, the entries of the matrix could be medical records of patients, or selling data of merchants. These data are considered as privacy.</li>
+<li>Obviously, no one wants the leakage of his privacy.</li>
+<li>However, in reality there may exist a malicious agent, a bad guy. For some reasons you have to give your private data to it, but you don’t know wether you can trust it or not.</li>
+<li>In this situation, we need privacy-preservation. Privacy-preservation is the ability to prevent a malicious agent from obtaining or reconstructing the private data.</li>
+</ul>
+<p>####Section 2: Centralized Matrix Completion Problem<br>Page 7</p>
+<ul>
+<li>Now let’s go into the centralized matrix completion problem.</li>
+</ul>
+<p>Page 8</p>
+<ul>
+<li>When we are faced with a low-rank matrix completion problem, the intuitive thought would be to minimize the rank of the matrix, but this is a nonconvex problem. </li>
+<li>Therefore, we insteadly minimize the nuclear-norm the the matrix, since nuclear-norm is the approximation of the rank and it’s convex.</li>
+<li>Another approach is if the rank of matrix is known to be r as a prior theoreticallyor empirically, we can get the matrix factorization formulation. This approach is advantageous over the nuclear-norm approach since the latter one needs sigular value decomposition, which is computationally expensive and even intractable in decentralized computing.</li>
+<li>A centralized algorithm called LMaFit to solve this is as the following steps shows.</li>
+<li>We have to keep in mind that our algorithm is derived from LMaFit.</li>
+</ul>
+<p>####Section 3: Decentralized Matrix Completion Problem<br>Page 9</p>
+<ul>
+<li>After the centralized problem, let’s go into the decentralized one.</li>
+</ul>
+<p>Page 10</p>
+<ul>
+<li>In decentralized computing, we have a network composed of L agents.</li>
+<li>There is an undirected edge between two agents if they can communicate with each other through one hop.</li>
+<li>The goal of all the agents in such a network is to collaboratively complete a low-rank matrix in a decentralized fashion.</li>
+</ul>
+<p>Page 11</p>
+<ul>
+<li>To be specific, we segment the whole data matrix W into groups of columns. And do the same to Y and Z. Each agent i in the network holds the corresponding Zi, Yi and entries of Wi. </li>
+<li>However, X cannot be segmented and distributed to agents because the update of X contains the summation of ZiYi’ over all agents. So we let each agent i holds a local copy X(i) of X.</li>
+<li>After doing this, we get a naive decentralized implementation of LMaFit. At iteration k, each agent i does the following steps respectively.</li>
+<li>Notice that the update of X requires information aggregation of all agents. So here is the challenge: informationaggregationofallagentsisimpossible in real decentralized network unless every agent is connected to all the other agents. </li>
+<li>How to deal with this challenge?</li>
+</ul>
+<p>Page 12</p>
+<ul>
+<li>The answer is dynamic average consensus. Recall that each agent i holds a local copy X(i) of X. If we can make sure that X(i) equals to X for all i, the challenge is solved. </li>
+<li>To do this, we choose c to be 1/L and the update of X becomes the average consensus problem, as we can see in equation (8), X(i) is the average of all the ZiYi’.</li>
+<li>At iteration k,we formulate the average consensus problem as equation (9). The constraint means that instead of letting all the X(i) to be identical we choose to let each X(i) equals to it neighboring X(j).</li>
+<li>A key observation is that exact average consensus at every iteration is not necessary. We use EXTRA to do inexact dynamic average consensus, which saves the computational cost.</li>
+</ul>
+<p>Page 13</p>
+<ul>
+<li>Our decentralized algorithm called D-LMaFit is developed as below.</li>
+<li>Step 1 is the initialization.</li>
+<li>Step 2, use EXTRA to do the inexact average consensus problem.</li>
+<li>Step 3, update Y and X respectively. </li>
+</ul>
+<p>Page 14</p>
+<ul>
+<li>The performance of D-LMaFit is shown in these two pictures. (Explain what these pictures indicate to the audience)</li>
+</ul>
+<p>####Section 4: Topology-Dependent Privacy Preservation<br>Page 15</p>
+<ul>
+<li>Now let’s go into the section of the topology-dependent privacy preservation.</li>
+</ul>
+<p>Page 16</p>
+<ul>
+<li>First compare decentralized algorithm with centralized one.</li>
+<li>Centralized algorithm needs a fusion center to collect global data. What if the fusion center is a malicious agent?</li>
+<li>Oops TT, you’ll lose all your privacy.</li>
+<li>How about the decentralzied algorithm? One important advantage of decentralized algortihm over a centralized is there’s no global data collection, each agent observes part of the raw data and communicates with its neighboring agent(s). It seems safer.</li>
+<li>But things aren’t so lucky in reality. Because the communication of X(i) among the network may lead to information leakage.</li>
+</ul>
+<p>Page 17</p>
+<ul>
+<li>How does this happen? Suppose in a network as this picture shows, we have a malicious agent M, and M attempts to recover the local data matrices of some other agents through information exchange.</li>
+<li>M is interested in recovering the local data Wi, or equivalently Yi or Zi of a set of agents i∈I.</li>
+<li>When the iteration k is large enough, X(i) will be identical. So if a malicious agent M somehow knows other agents’ Yi, it can recover the data Zi of agent i by doing X(M)Yi.</li>
+<li>So our concern is, is there any possibility that the malicious agent M can somehow obtain Yi of agent i, and thus get Zi, which is private.</li>
+</ul>
+<p>Page 18</p>
+<ul>
+<li>Before going to details, consider two simple topologies.</li>
+<li>(Explain the two topologies)</li>
+<li>Under what conditions can not a malicious agent M reconstruct the sensitive information of P and Q ?</li>
+</ul>
+<p>Page 19</p>
+<ul>
+<li>Recall the update of X.</li>
+<li>If you could just take a look at the equation, you can find that if the topology is as in the left picture, M can reconstruct ZiYi’ and it may be able to solve Yi so that gets the privacy of P and Q.</li>
+<li>But if the topology is as shown in the right picture. M cannot get the private data of P and Q. Why?</li>
+<li>(Explain with the equation)</li>
+<li>M can solve a series of linear inverse problems and calculate the values of ZiYi’, as what we have said just now.</li>
+</ul>
+<p>Page 20</p>
+<ul>
+<li>Now we get a naive conclusion.</li>
+</ul>
+<p>Page 21</p>
+<ul>
+<li>So the privacy-preserving problem boils down to the linear inverse problem. First we define some variables as this.</li>
+<li>And further we define A and B.</li>
+<li>Using these definition,the update of X can be represented by (14).</li>
+</ul>
+<p>Page 22</p>
+<ul>
+<li>Rewrite this as a linear time-invariant systems we get (15). In this system, QI selects those row blocks in Q belonging to the agents in I, and BI selects the corresponding columns in B. QIC and BIC selects the other corresponding row blocks and columns which do not belong to the agents in I.</li>
+<li>Our analysis uses the concept of z-transfer matrix of (15). The concept is from modern control theory.</li>
+<li>Obviously, rank(T)=rank(TI TIC), since the latter matrix is just a column rearrangement of the former one. </li>
+<li>Now we are ready to develop our theorem.</li>
+</ul>
+<p>Page 23</p>
+<ul>
+<li>Check the proof of the suffienciency of our theorem, it’s rather straightforward.</li>
+<li>If this condition is satisfired, then M has full knowledge of all the X(i).</li>
+<li>So M can solve a series of linear inverse problems.</li>
+</ul>
+<p>Page 24</p>
+<ul>
+<li>The proof of necessity is a little bit complicated. Here’s the only the simplified version of the proof.</li>
+<li>First we show that to determine a unique sequence of Q􏰇 from V􏰇 , we must have (18).</li>
+<li>Suppose (18) doesn’t hold, then there exists at least one column of TI that is linearly dependent on the other columns of T. Then there exists a Q with that column nonzero, and satisfies TQ=0. This corresponds to a nonzero input in I, but the output V is zero for all time. Thus this nonzero input cannot be recovered. This contradicts with the hypothesis. So (18) must hold.</li>
+<li>(Explain these items)</li>
+</ul>
+<p>Page 25</p>
+<ul>
+<li>(Explain these items)</li>
+</ul>
+<p>####Section 5: Conclusion<br>Page 26</p>
+<ul>
+<li>I’d like to quickly go over the main point of today’s topic.</li>
+</ul>
+<p>Page 27</p>
+<ul>
+<li>First, we propose a decentralized privacy-preserving algorithm, D-LMaFit, to solve the matrix completion problem.</li>
+<li>We solve dynamic average consensus subproblem inexactly.</li>
+<li>We prove the topology-dependent privacy-preserving theorem. It provides a guideline of designing a privacy-preserving network.</li>
+</ul>
+<p>Page 28</p>
+<ul>
+<li>Still we’ve got work to do in the future. (Read items)</li>
+</ul>
+<p>Page 29</p>
+<ul>
+<li>I guess that’s it. Thank you all very much for listening. Now if you have any question, please feel free to ask me.</li>
+</ul>
+<p>###故事<br>这学期我在中科院数学与系统科学研究院(AMSS)访问。第一次参与这边的讨论班时，我就被惊到了：学生做报告也全程英文，不愧是<a href="http://lsec.cc.ac.cn/~yyx/chinese/indexc.htm" target="_blank" rel="external">袁亚湘</a>老师的学生。于是，11月25日，我也在这儿完成了自己第一次的英文学术报告。</p>
+<ol>
+<li>报告前3天，我问盛镇醴师兄他们报告前会不会排练，师兄说：“肯定要啊！上次去葡萄牙开会，<a href="http://www.se.cuhk.edu.hk/people/sqma.html" target="_blank" rel="external">马士谦</a>师兄已经讲得那么好了，都还又自己私下练习了5、6遍。师兄真的可以做到每句话精确到几秒钟！”太荔枝了有木有TT。</li>
+<li>于是我也练习了。果然只有努力了内心才会踏实。在当天的报告中，我不仅不紧张，还在瞅到台下一堆人的专注神情时，心里突然弹幕全开：“哇，这感觉好爽。”</li>
+</ol>
+<p>在记录报告之前，插播一段回忆：<br>大三暑假，我参加<a href="http://china.ican-contest.org/index.html" target="_blank" rel="external">中国大学生物联网创新创业大赛</a>，正式比赛前一天系里组织答辩练习，我们组讲得一塌糊涂。那一晚，我和向国菲师兄在实验室通宵改幻灯片，准备发言稿，然后一句一句地练习。中途师兄压力太大又累得不行溜出去躲着抽了根烟，回来被我发现了教育了一顿，嗅觉就是这么灵敏没办法。直到凌晨4点，终于觉得还算满意了，两人躺椅子上睡了会儿，当然我被蚊子咬安逸了。早晨7点，寝室开门，两人各自回去洗澡调整状态。9点，开始比赛。不知道为什么突然想起这个，太，美好了。尽管当时觉得真苦逼。</p>
+<p>###资料<br>【1】<a href="http://www.zhihu.com/question/24544386/answer/30237316" target="_blank" rel="external">有哪些高级的英语表达技巧，让人一听就很地道？</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/科研/">科研</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Math-Optimization/">Math Optimization</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/09/17/科研/2014-08-22-Average-Consensus/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/09/17/科研/2014-11-09-What-is-NP-Hard/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

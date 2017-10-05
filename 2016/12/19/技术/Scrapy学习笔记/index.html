@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>scrapy 入门学习 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="scrapy入门学习">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="scrapy 入门学习"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-12-18T16:00:00.000Z"><a href="/2016/12/19/技术/Scrapy学习笔记/">2016-12-19</a></time>
+      
+      
+  
+    <h1 class="title">scrapy 入门学习</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy学习笔记"><span class="toc-text">Scrapy学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、安装scrapy"><span class="toc-text">1、安装scrapy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、初步使用"><span class="toc-text">2、初步使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、命令行工具scrapy"><span class="toc-text">2.1、命令行工具scrapy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、基本流程"><span class="toc-text">2.2、基本流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、如何解析网页"><span class="toc-text">3、如何解析网页</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1、xpath"><span class="toc-text">3.1、xpath</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2、css"><span class="toc-text">3.2、css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3、re"><span class="toc-text">3.3、re</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4、extract"><span class="toc-text">3.4、extract</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、多级页面的爬取"><span class="toc-text">4、多级页面的爬取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1、爬取前分析"><span class="toc-text">4.1、爬取前分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2、代码示例"><span class="toc-text">4.2、代码示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、Scrapy框架解读"><span class="toc-text">5、Scrapy框架解读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1、整体框架"><span class="toc-text">5.1、整体框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2、主要对象"><span class="toc-text">5.2、主要对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、下载图片和文件"><span class="toc-text">6、下载图片和文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1、激活Media-pipeline"><span class="toc-text">6.1、激活Media pipeline</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2、items中定义"><span class="toc-text">6.2、items中定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3、spiders编写"><span class="toc-text">6.3、spiders编写</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、设置headers"><span class="toc-text">7、设置headers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1、设置默认headers"><span class="toc-text">7.1、设置默认headers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2、为每个download-分配随机UA和代理"><span class="toc-text">7.2、为每个download 分配随机UA和代理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、登陆Post和Cookie"><span class="toc-text">8、登陆Post和Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1、POST表单登陆豆瓣"><span class="toc-text">8.1、POST表单登陆豆瓣</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2、使用Cookie登陆豆瓣"><span class="toc-text">8.2、使用Cookie登陆豆瓣</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、JS-、XHR分析"><span class="toc-text">9、JS 、XHR分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10、Scrapy-Redis分布式爬虫"><span class="toc-text">10、Scrapy Redis分布式爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-1、安装redis"><span class="toc-text">10.1、安装redis</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11、记录一些error"><span class="toc-text">11、记录一些error</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#11-1、url相关"><span class="toc-text">11.1、url相关</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <h2 id="Scrapy学习笔记"><a href="#Scrapy学习笔记" class="headerlink" title="Scrapy学习笔记"></a>Scrapy学习笔记</h2><h3 id="1、安装scrapy"><a href="#1、安装scrapy" class="headerlink" title="1、安装scrapy"></a>1、安装scrapy</h3><ul>
+<li><p>windows下安装</p>
+<p>如果按照网上的方法自行安装scrapy，会出现各种错误，折腾很长时间。这里安装Anaconda2程序，会自带scrapy；如果默认没带的话，打开Anaconda Prompt，执行命令：<br><code>conda list</code><br><code>conda install scrapy</code><br>安装完后，使用scrapy时如果提示openssl错误，去下载对应的<a href="http://slproweb.com/products/Win32OpenSSL.html" title="openssl下载" target="_blank" rel="external">openssl</a>，安装即可。</p>
+</li>
+<li><p>Linux下安装</p>
+<p>比较简单，<br><code># apt-get install python-dev</code><br><code># pip install scrapy</code></p>
+</li>
+</ul>
+<h3 id="2、初步使用"><a href="#2、初步使用" class="headerlink" title="2、初步使用"></a>2、初步使用</h3><h4 id="2-1、命令行工具scrapy"><a href="#2-1、命令行工具scrapy" class="headerlink" title="2.1、命令行工具scrapy"></a>2.1、命令行工具<code>scrapy</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># scrapy startproject my_spider		# 创建scrapy项目</span></div><div class="line">.目录结构</div><div class="line">├── scrapy.cfg		<span class="comment"># 项目配置文件</span></div><div class="line">└── my_spider		<span class="comment"># 项目python模块, 之后将在此加入代码</span></div><div class="line">    ├── __init__.py</div><div class="line">    ├── items.py 	</div><div class="line">    ├── pipelines.py</div><div class="line">    ├── settings.py</div><div class="line">    └── spiders 		<span class="comment"># 放置spider的目录</span></div><div class="line">        └── __init__.py</div><div class="line"><span class="comment"># cd my_spider</span></div><div class="line"><span class="comment"># scrapy genspider [-t template] &lt;name&gt;  &lt;domain&gt;  	# 使用模板生成spider文件，位于spiders文件夹下,默认使用basic模板</span></div><div class="line"><span class="comment"># scrapy genspider -l	 列出所有模板</span></div><div class="line"><span class="comment"># scrapy genspider -d basic   查看basic模板</span></div><div class="line"><span class="comment"># scrapy list 		列出所有的爬虫</span></div><div class="line"><span class="comment"># scrapy 			显示scrapy可用的命令</span></div><div class="line"><span class="comment"># scrapy &lt;command&gt; -h  查看command命令的详细信息</span></div><div class="line"><span class="comment"># scrapy version -v</span></div><div class="line">	Scrapy    : <span class="number">1.1</span><span class="number">.1</span></div><div class="line">	lxml      : <span class="number">3.6</span><span class="number">.0</span><span class="number">.0</span></div><div class="line">	libxml2   : <span class="number">2.9</span><span class="number">.3</span></div><div class="line">	Twisted   : <span class="number">16.5</span><span class="number">.0</span></div><div class="line">	...</div><div class="line"><span class="comment"># scrapy bench       运行基准测试,可以测试scrapy是否正常</span></div><div class="line"><span class="comment"># scrapy runspider  spider_file.py</span></div></pre></td></tr></table></figure>
+<h4 id="2-2、基本流程"><a href="#2-2、基本流程" class="headerlink" title="2.2、基本流程"></a>2.2、基本流程</h4><ul>
+<li><p>startproject和genspider</p>
+</li>
+<li><p>首先分析要抓取的目标网站，在items.py中定义要抓取的数据对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DmozItem</span><span class="params">(scrapy.Item)</span>:</span></div><div class="line">  title = scrapy.Field()</div><div class="line">  link = scrapy.Field()</div><div class="line">  desc = scrapy.Field()</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>  <span class="comment"># ？如果想初始化某些字段</span></div><div class="line">      scrapy.Item.__init__(self)</div><div class="line">      self.title = <span class="string">''</span></div><div class="line">    </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span>  <span class="comment"># ？默认控制台会输出所有的数据，包括抓取的页面源码</span></div><div class="line">      <span class="keyword">return</span> <span class="string">'crawling %s'</span> % self.title</div></pre></td></tr></table></figure>
+</li>
+<li><p>编写spider，解析网页(xpath/css/re)，提取数据到item对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> tutorial.items <span class="keyword">import</span> DmozItem</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DmozSpider</span><span class="params">(scrapy.spider.Spider)</span>:</span></div><div class="line">    name = <span class="string">"dmoz"</span>    <span class="comment">#唯一标识，启动spider时即指定该名称</span></div><div class="line">    allowed_domains = [<span class="string">"dmoz.org"</span>]</div><div class="line">    start_urls = [  </div><div class="line">       <span class="string">"http://www.dmoz.org/Computers/Programming/Languages/Python/Books/"</span>,</div><div class="line">    <span class="string">"http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"</span></div><div class="line">    ]  <span class="comment"># 包含了Spider在启动时进行爬取的url列表。 因此，第一个被获取到的页面将是其中之一。 后续的URL则从初始的URL获取到的数据中提取。</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="keyword">for</span> sel <span class="keyword">in</span> response.xpath(<span class="string">'//ul/li'</span>): <span class="comment"># 使用response.selector的css或xpath解析网页</span></div><div class="line">            item = DmozItem()  <span class="comment"># 类字典对象 </span></div><div class="line">            item[<span class="string">'title'</span>] = sel.xpath(<span class="string">'a/text()'</span>).extract()</div><div class="line">            item[<span class="string">'link'</span>] = sel.xpath(<span class="string">'a/@href'</span>).extract()</div><div class="line">            item[<span class="string">'desc'</span>] = sel.xpath(<span class="string">'text()'</span>).extract()</div><div class="line">            <span class="keyword">yield</span> item  <span class="comment">## 返回item数据对象</span></div><div class="line">     <span class="string">'''</span></div><div class="line"><span class="string">     每个初始URL完成下载后生成的 Response 对象将会作为唯一的参数传递给parse()函数。 该方法负责解析返回的数据(response data)，提取数据(生成item)以及生成需要进一步处理的URL的 Request 对象。</span></div><div class="line"><span class="string">     '''</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>保存数据</p>
+<p>  在执行<code>scrapy crawl</code> 命令时加入-o xxx.csv参数可以将item保存到csv文件中。也可在settings中设置FEED_URI和FEED_FORMAT</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">FEED_URI = <span class="string">'file:///tmp/export.csv'</span></div><div class="line">FEED_FORMAT = <span class="string">'CSV'</span></div></pre></td></tr></table></figure>
+<p>  将spider爬取到的item进一步处理并存储到数据库，需要在pipelines.py中实现自己的pipeline对象。</p>
+<ul>
+<li>process_item(item, spider)   # 数据经过pipeline时，都要调用该方法，最后返回一个item。</li>
+<li>open_spider(spider)  #当spider被开启时，这个方法被调用。</li>
+<li><p>close_spider(spider) #当spider被关闭时，这个方法被调用，可以再爬虫关闭后进行相应的数据处理。</p>
+<p>下面是存储数据到mongodb的一个实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GushiciPipeline</span><span class="params">(object)</span>:</span></div><div class="line">    </div><div class="line">    collection_name = <span class="string">'gushi'</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, mongo_uri, mongo_db)</span>:</span></div><div class="line">        self.mongo_uri = mongo_uri</div><div class="line">        self.mongo_db = mongo_db</div><div class="line">    </div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler)</span>:</span></div><div class="line">        <span class="keyword">return</span> cls(</div><div class="line">            mongo_uri=crawler.settings.get(<span class="string">'MONGO_URI'</span>),</div><div class="line">            mongo_db=crawler.settings.get(<span class="string">"MONGO_DATABASE"</span>, <span class="string">"items"</span>)</div><div class="line">            )  <span class="comment"># 在settings.py中定义 MONGO_URI = 'mongodb://localhost:27017' MONGO_DATABASE = 'test2'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self, spider)</span>:</span></div><div class="line">        self.client = pymongo.MongoClient(self.mongo_uri)</div><div class="line">        self.db = self.client[self.mongo_db]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self, spider)</span>:</span></div><div class="line">        self.client.close()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        self.db[self.collection_name].insert(dict(item))</div><div class="line">        <span class="keyword">return</span> item</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>​        最后在settings.py中添加我们定义的pipeline：<code>ITEM_PIPELINES = {&#39;blog_crawl.pipelines.SQLiteStorePipeline&#39;: 1}</code> 1为优先级，越小级别越高</p>
+<ul>
+<li><p>执行爬虫任务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> scrapy list    查看所有的spider</span></div><div class="line"><span class="meta">#</span><span class="bash"> scrapy crawl dmoz [-o xxx.csv|json|xml]   执行dmoz爬虫,-o指定结果输出到文件</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>通过python调用cmd命令执行爬虫</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># main.py 根目录下</span></div><div class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</div><div class="line">cmdline.execute(<span class="string">"scrapy crawl mindjet_muban"</span>.split())</div></pre></td></tr></table></figure>
+<p>这样方便用ide调试</p>
+<h3 id="3、如何解析网页"><a href="#3、如何解析网页" class="headerlink" title="3、如何解析网页"></a>3、如何解析网页</h3></li>
+</ul>
+<blockquote>
+<p>scrapy.Selector有四个基本的方法：</p>
+<p>xpath()：参数是xpath表达式</p>
+<p>css()：输入css表达式</p>
+<p>extract()：序列化该节点为unicode字符串并返回list列表；</p>
+<p>re()：输入正则表达式，返回unicode字符串list列表；注意 正则效率低，可读性差</p>
+<p>这四个方法返回的都是包含所有匹配节点的list列表，可嵌套使用css和xpath</p>
+</blockquote>
+<h4 id="3-1、xpath"><a href="#3-1、xpath" class="headerlink" title="3.1、xpath"></a>3.1、xpath</h4><p><a href="http://www.w3school.com.cn/xpath/index.asp" target="_blank" rel="external">xpath w3school</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/html/head/title: 选择HTML文档中 &lt;head&gt; 标签内的 &lt;title&gt; 元素</div><div class="line">/html/head/title/text(): 选择上面提到的 &lt;title&gt; 元素的文字</div><div class="line">//td: 选择所有的 &lt;td&gt; 元素</div><div class="line">//div[@class=<span class="string">"mine"</span>]: 选择所有具有 class=<span class="string">"mine"</span> 属性的 div 元素</div><div class="line">/x 是选取子节点x，//x 是递归选取全部的x</div><div class="line">.//x 从当前节点开始匹配，@是选择属性</div><div class="line">----- 路径表达式 -----</div><div class="line">/div/p[1]				#选择第一个p元素</div><div class="line">/div/p[last()]			#选择最后一个p元素</div><div class="line">/div/p[last()-2]		#选择倒数第三个p元素</div><div class="line">/div/p[position()&lt;3]	#选择前2个元素</div><div class="line">/div/p[x&gt;35.00]/name	#选择x属性大于35.00的p元素下的name元素</div><div class="line">/div/p[x&gt;35.00]/@aaa	#匹配所有属性aaa的值</div><div class="line">/div[@class]			#选择含有class属性的div</div><div class="line">//div[@class="wp-pagenavi"]/a[not(@title)]       #不含title属性的a标签</div><div class="line">/div[@class='lang']		#选择class值为lang的div</div><div class="line">/node()					#根元素下所有的节点（包括文本节点，注释节点等）</div><div class="line">/text()					#查找文档根节点下的所有文本节点</div><div class="line">----- 通配符 -----</div><div class="line">*						#匹配任意元素</div><div class="line">@*						#匹配任意属性</div><div class="line">exp1 | exp2				#返回2个表达式匹配结果的合集</div></pre></td></tr></table></figure>
+<h4 id="3-2、css"><a href="#3-2、css" class="headerlink" title="3.2、css"></a>3.2、css</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.con1					#选择class为con1的全部标签</div><div class="line">div.con1				#选择class为con1的全部div标签</div><div class="line">div p					#递归选择div下的全部p标签</div><div class="line">div &gt; p					#选择div的全部子标签p</div><div class="line">a::text					#选择a标签的文本</div><div class="line">img::attr(href)			#选择img标签的href属性的值</div></pre></td></tr></table></figure>
+<h4 id="3-3、re"><a href="#3-3、re" class="headerlink" title="3.3、re"></a>3.3、re</h4><p>返回unicode字符串的list，该对象无法继续使用css或xpath</p>
+<h4 id="3-4、extract"><a href="#3-4、extract" class="headerlink" title="3.4、extract"></a>3.4、extract</h4><p><code>response.xpath(&quot;//div[@class=&#39;son5&#39;]/p/a&quot;).css(&quot;::attr(href)&quot;).extract()[0]</code></p>
+<p>该语句执行后得到的结果是字符串‘/view_12390.aspx’</p>
+<h3 id="4、多级页面的爬取"><a href="#4、多级页面的爬取" class="headerlink" title="4、多级页面的爬取"></a>4、多级页面的爬取</h3><blockquote>
+<p>主要是spider中的回调函数，下面分析爬古诗词网站为例，爬取诗文的标题、作者、朝代、url、原文，翻译注释</p>
+</blockquote>
+<h4 id="4-1、爬取前分析"><a href="#4-1、爬取前分析" class="headerlink" title="4.1、爬取前分析"></a>4.1、爬取前分析</h4><ul>
+<li><p>[a] start_url：<a href="http://so.gushiwen.org/type.aspx" target="_blank" rel="external">http://so.gushiwen.org/type.aspx</a> </p>
+</li>
+<li><p>[b] 不同朝代的诗文列表url：<a href="http://so.gushiwen.org/type.aspx?p=1&amp;c=先秦" target="_blank" rel="external">http://so.gushiwen.org/type.aspx?p=1&amp;c=先秦</a> ，参数p是页码，c是朝代，一共12个朝代，页码最多的有200页</p>
+</li>
+<li><p>[c] 诗文url：<a href="http://so.gushiwen.org/view_1.aspx" target="_blank" rel="external">http://so.gushiwen.org/view_1.aspx</a></p>
+</li>
+<li><p>[d] 翻译和注释url：<a href="http://so.gushiwen.org/fanyi_1.aspx" target="_blank" rel="external">http://so.gushiwen.org/fanyi_1.aspx</a></p>
+</li>
+<li><p>最后，abcd是递进关系，我们需要的item在bcd中都能找到一部分信息。注意b有很多页要抓，思路是“下一页”url。</p>
+<p><img src="http://ww3.sinaimg.cn/large/af9df239gw1faxbjsqr23j20i70i9dhu.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/af9df239gw1faxbkvhggsj20qp0l6762.jpg" alt=""></p>
+</li>
+</ul>
+<h4 id="4-2、代码示例"><a href="#4-2、代码示例" class="headerlink" title="4.2、代码示例"></a>4.2、代码示例</h4><blockquote>
+<p>basic爬虫继承scrapy.Spider, crawl爬虫继承scrapy.CrawlSpider</p>
+</blockquote>
+<ul>
+<li><p>基于basic模板的爬虫</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> gushici.items <span class="keyword">import</span> GushiciItem</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TangsiSpider</span><span class="params">(scrapy.Spider)</span>:</span></div><div class="line">    name = <span class="string">"tangsi"</span></div><div class="line">    allowed_domains = [<span class="string">"gushiwen.org"</span>]</div><div class="line">    start_urls = (</div><div class="line">        <span class="string">'http://so.gushiwen.org/type.aspx'</span>,</div><div class="line">    )</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="comment"># 获取不同朝代诗词的列表入口,利用meta字典传参到下一个回调函数，并调用get_lists函数</span></div><div class="line">        destinies = response.css(<span class="string">"div.cont&gt;a"</span>)</div><div class="line">        <span class="keyword">for</span> destiny <span class="keyword">in</span> destinies:</div><div class="line">            <span class="comment"># item = GushiciItem()</span></div><div class="line">            <span class="comment"># item['destiny'] = destiny.css("::text").extract()</span></div><div class="line">            url = destiny.css(<span class="string">"::attr(href)"</span>).extract()[<span class="number">0</span>]</div><div class="line">            destiny_url = response.urljoin(url)  <span class="comment"># 此处是分类列表的url</span></div><div class="line">            <span class="comment"># item['url'] = full_url</span></div><div class="line">            destiny_text = destiny.css(<span class="string">"::text"</span>).extract()[<span class="number">0</span>]</div><div class="line">            <span class="keyword">yield</span> scrapy.Request(destiny_url, meta=&#123;<span class="string">"destiny"</span>: destiny_text&#125;, callback=self.get_lists)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_lists</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="comment"># 爬当前页的所有诗词的url，title，作者，并进入下一级调爬诗文内容；爬到“下一页”url后交给get_lists处理</span></div><div class="line">        destiny = response.meta[<span class="string">'destiny'</span>]</div><div class="line">        divs = response.css(<span class="string">"div.sons"</span>)</div><div class="line">        <span class="keyword">for</span> div <span class="keyword">in</span> divs:</div><div class="line">            title = div.css(<span class="string">'p &gt; a[target]::text'</span>).extract()[<span class="number">0</span>]</div><div class="line">            full_url = response.urljoin(div.css(<span class="string">'p &gt; a[target]::attr(href)'</span>).extract()[<span class="number">0</span>])</div><div class="line">            author = div.xpath(<span class="string">"p[2]/text()"</span>).extract()[<span class="number">0</span>]</div><div class="line">            <span class="comment"># score = response.re(u'(\d+\.\d+)')[0]</span></div><div class="line">            <span class="keyword">yield</span> scrapy.Request(full_url, meta=&#123;<span class="string">'title'</span>: title, <span class="string">'url'</span>: full_url, <span class="string">'author'</span>: author,</div><div class="line">                                                 <span class="string">'destiny'</span>: destiny&#125;, callback=self.get_contents)</div><div class="line">        <span class="comment"># 递归爬下一页的诗词url，入口是网页中的下一页标签url</span></div><div class="line">        next_urls = response.xpath(<span class="string">'//a[@style="width:60px;"]'</span>).css(<span class="string">"::attr(href)"</span>).extract()</div><div class="line">        <span class="keyword">for</span> next_url <span class="keyword">in</span> next_urls:</div><div class="line">            next_page = response.urljoin(next_url)</div><div class="line">            <span class="keyword">yield</span> scrapy.Request(next_page, meta=&#123;<span class="string">"destiny"</span>: destiny&#125;, callback=self.get_lists)</div><div class="line"></div><div class="line">    <span class="comment"># 获取诗词的评分，文本，翻译页的url，接收父级页面解析出来的标题，作者，朝代，创建item</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_contents</span><span class="params">(self, response)</span>:</span></div><div class="line">        item = GushiciItem()</div><div class="line">        item[<span class="string">'title'</span>] = response.meta[<span class="string">'title'</span>]</div><div class="line">        item[<span class="string">'url'</span>] = response.meta[<span class="string">'url'</span>]</div><div class="line">        item[<span class="string">'destiny'</span>] = response.meta[<span class="string">'destiny'</span>]</div><div class="line">        item[<span class="string">'author'</span>] = response.meta[<span class="string">'author'</span>]</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            item[<span class="string">'score'</span>] = response.xpath(<span class="string">'//div[@class="pingfen"]//div[@class="line1"]/span/text()'</span>).extract()[<span class="number">0</span>]</div><div class="line">        <span class="keyword">except</span> Exception:</div><div class="line">            item[<span class="string">'score'</span>] = <span class="string">u'评分不足10人'</span></div><div class="line">        ps = response.xpath(<span class="string">"//div[@class='son2']/p"</span>)</div><div class="line">        text = <span class="string">""</span></div><div class="line">        <span class="keyword">if</span> len(ps) &gt; <span class="number">3</span>:</div><div class="line">            <span class="keyword">for</span> p <span class="keyword">in</span> ps[<span class="number">3</span>:]:</div><div class="line">                text += <span class="string">''</span>.join(p.css(<span class="string">"::text"</span>).extract()) + <span class="string">'\n'</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            text += <span class="string">''</span>.join(response.xpath(<span class="string">"//div[@class='son2']/text()"</span>).extract()).replace(<span class="string">'\n'</span>, <span class="string">''</span>)</div><div class="line">        item[<span class="string">'text'</span>] = text</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            fanyi_url = response.xpath(<span class="string">"//div[@class='son5']/p/a"</span>).css(<span class="string">"::attr(href)"</span>).extract()[<span class="number">0</span>]</div><div class="line">            fanyi_url = response.urljoin(fanyi_url)</div><div class="line">            <span class="keyword">yield</span> scrapy.Request(fanyi_url, callback=self.get_fanyi, meta=&#123;<span class="string">'item'</span>: item&#125;)</div><div class="line">        <span class="keyword">except</span> Exception:</div><div class="line">            item[<span class="string">'translate'</span>] = <span class="string">''</span></div><div class="line">            <span class="keyword">yield</span> item</div><div class="line"></div><div class="line">    <span class="comment"># 获取翻译文本</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_fanyi</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="comment"># 前面是利用meta字典传递已抓到的内容，这里是将item对象装入meta传递</span></div><div class="line">        item = response.meta[<span class="string">'item'</span>]</div><div class="line">        ps = response.xpath(<span class="string">'//div[@class="shangxicont"]/p'</span>)</div><div class="line">        fanyi = <span class="string">''</span></div><div class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> ps[:<span class="number">-1</span>]:</div><div class="line">            fanyi += <span class="string">''</span>.join(p.css(<span class="string">"::text"</span>).extract()) + <span class="string">'\n'</span></div><div class="line">        item[<span class="string">'translate'</span>] = fanyi</div><div class="line">        <span class="keyword">yield</span> item</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​     网站没有反扒措施，但这个爬虫最终抓到7795条文章，像宋词至少有1万+，但在该分类下200页后的内容就是空的，也就是说web只给我们提供了200页的宋词。</p>
+<ul>
+<li><p>基于crawl模板的爬虫</p>
+<p>crawl类的爬虫更强大一点，Rule方法可以根据正则匹配所有满足条件的url，并调用相应回调函数处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</div><div class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider, Rule</div><div class="line"><span class="keyword">from</span> gushici.items <span class="keyword">import</span> GushiciItem</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SongciSpider</span><span class="params">(CrawlSpider)</span>:</span></div><div class="line">    name = <span class="string">'songci'</span></div><div class="line">    allowed_domains = [<span class="string">'so.gushiwen.org'</span>]</div><div class="line">    start_urls = [<span class="string">'http://so.gushiwen.org/type.aspx'</span>]</div><div class="line"></div><div class="line">    rules = (</div><div class="line">        <span class="comment"># 这是分类页的url，全部加入到抓取列表中</span></div><div class="line">        Rule(LinkExtractor(allow=<span class="string">r"http://so\.gushiwen\.org/type\.aspx\?p=\d+&amp;c=.+?"</span>)),</div><div class="line">        <span class="comment"># 这是诗文详情页url，全部调用parse_item解析</span></div><div class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://so\.gushiwen\.org/view_\d+\.aspx'</span>), callback=<span class="string">'parse_item'</span>, follow=<span class="keyword">True</span>),</div><div class="line">    )</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_item</span><span class="params">(self, response)</span>:</span></div><div class="line">        item = GushiciItem()</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            item[<span class="string">'title'</span>] = response.xpath(<span class="string">'//h1/text()'</span>).extract()[<span class="number">0</span>]</div><div class="line">            item[<span class="string">'url'</span>] = response.url</div><div class="line">            item[<span class="string">'destiny'</span>] = response.xpath(<span class="string">'//div[@class="son2"]/p[1]//text()'</span>).extract()[<span class="number">-1</span>]</div><div class="line">            item[<span class="string">'author'</span>] = response.xpath(<span class="string">'//div[@class="son2"]/p[2]//text()'</span>).extract()[<span class="number">-1</span>]</div><div class="line">        <span class="keyword">except</span> Exception:</div><div class="line">            <span class="keyword">pass</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            item[<span class="string">'score'</span>] = response.xpath(<span class="string">'//div[@class="pingfen"]//div[@class="line1"]/span/text()'</span>).extract()[<span class="number">0</span>]</div><div class="line">        <span class="keyword">except</span> Exception:</div><div class="line">            item[<span class="string">'score'</span>] = <span class="string">u'评分不足10人'</span></div><div class="line">        ps = response.xpath(<span class="string">"//div[@class='son2']/p"</span>)</div><div class="line">        text = <span class="string">""</span></div><div class="line">        <span class="keyword">if</span> len(ps) &gt; <span class="number">3</span>:</div><div class="line">            <span class="keyword">for</span> p <span class="keyword">in</span> ps[<span class="number">3</span>:]:</div><div class="line">                text += <span class="string">''</span>.join(p.css(<span class="string">"::text"</span>).extract()) + <span class="string">'\n'</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            text += <span class="string">''</span>.join(response.xpath(<span class="string">"//div[@class='son2']/text()"</span>).extract()).replace(<span class="string">'\n'</span>, <span class="string">''</span>)</div><div class="line">        item[<span class="string">'text'</span>] = text</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            fanyi_url = response.xpath(<span class="string">"//div[@class='son5']/p/a"</span>).css(<span class="string">"::attr(href)"</span>).extract()[<span class="number">0</span>]</div><div class="line">            fanyi_url = response.urljoin(fanyi_url)</div><div class="line">            <span class="keyword">yield</span> scrapy.Request(fanyi_url, callback=self.get_fanyi, meta=&#123;<span class="string">'item'</span>: item&#125;)</div><div class="line">        <span class="keyword">except</span> Exception:</div><div class="line">            item[<span class="string">'translate'</span>] = <span class="string">''</span></div><div class="line">            <span class="keyword">yield</span> item</div><div class="line"></div><div class="line">    <span class="comment"># 获取翻译文本</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_fanyi</span><span class="params">(self, response)</span>:</span></div><div class="line">        item = response.meta[<span class="string">'item'</span>]</div><div class="line">        ps = response.xpath(<span class="string">'//div[@class="shangxicont"]/p'</span>)</div><div class="line">        fanyi = <span class="string">''</span></div><div class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> ps[:<span class="number">-1</span>]:</div><div class="line">            fanyi += <span class="string">''</span>.join(p.css(<span class="string">"::text"</span>).extract()) + <span class="string">'\n'</span></div><div class="line">        item[<span class="string">'translate'</span>] = fanyi</div><div class="line">        <span class="keyword">yield</span> item</div></pre></td></tr></table></figure>
+<p>basic爬虫是循环查找下一页的url来抓取，这里crawl爬虫我们直接用正则匹配列表页url和诗文详情页url，另外“标题文本朝代作者”也都改为在详情页获取了，“翻译”仍需从下一级网页获取。crawl爬了8700条数据，我在settings设置了download_delay为0.5秒，爬取效果是100秒约90条数据，一共用了2h48m。</p>
+</li>
+<li><p>pipelines的Dropitem</p>
+<p>我先把basic抓到的放入mongodb了，再用crawl爬虫时，我改写了pipelines，如果item在数据库中，就丢弃，否则存入monggodb，避免数据重复。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> scrapy.exceptions <span class="keyword">import</span> DropItem</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        data = self.db[self.collection_name].find(&#123;&#125;, &#123;<span class="string">'_id'</span>: <span class="number">0</span>, <span class="string">'url'</span>: <span class="number">1</span>&#125;)</div><div class="line">        url_finished = set(x[<span class="string">'url'</span>] <span class="keyword">for</span> x <span class="keyword">in</span> data)  <span class="comment"># 获取已爬url的集合</span></div><div class="line">        <span class="keyword">if</span> item[<span class="string">'url'</span>] <span class="keyword">in</span> url_finished:</div><div class="line">            <span class="keyword">raise</span> DropItem(<span class="string">"%s has been crawled!"</span> % item)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.db[self.collection_name].insert(dict(item))</div><div class="line">            <span class="keyword">return</span> item</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="5、Scrapy框架解读"><a href="#5、Scrapy框架解读" class="headerlink" title="5、Scrapy框架解读"></a>5、Scrapy框架解读</h3><blockquote>
+<p>Scrapy基于Twisted异步网络库处理网络通信</p>
+</blockquote>
+<h4 id="5-1、整体框架"><a href="#5-1、整体框架" class="headerlink" title="5.1、整体框架"></a>5.1、整体框架</h4><p><img src="http://jason-images.qiniudn.com/@/python/scrapy/intro/scrapy_backbone.png" alt=""></p>
+<p>各组件及功能：</p>
+<ul>
+<li><p>Scrapy Engine: 用来处理整个系统的数据流处理, 触发事务(框架核心)</p>
+</li>
+<li><p>Scheduler: 调度器，接收引擎发过来的Request, 压入队列中, 由引擎调度，将Request发送给Downloader。 可以理解为要爬取URL的优先队列, 由它来决定下一个要抓取的网址是什么, 同时去除重复的网址</p>
+</li>
+<li><p>Downloader: 根据Scheduler给出的Request，去下载网页内容, 并将网页内容返回给Spiders解析。Scrapy下载器是基于twisted的异步模型，因此网页下载的结果并不是有序的。</p>
+</li>
+<li><p>Spiders: 爬虫有2个作用：从网页中提取自己需要的信息实体(Item)，并将item发送到item pipeline进行后续处理；从中网页提取出进一步爬取的URL,并发送给Scheduler。</p>
+</li>
+<li><p>Pipeline: 负责处理爬虫从网页中抽取的实体：数据清洗(整理、查重、验证有效性)、数据保存等。</p>
+</li>
+<li><p>Downloader Middlewares: 位于Scrapy引擎和下载器之间的中间件，主要是处理Scrapy引擎与下载器之间的请求及响应。可以在此处设置请求的代理、cookie？</p>
+</li>
+<li><p>Spider Middlewares: 介于Scrapy引擎和爬虫之间的框架，主要工作是处理蜘蛛的响应输入和请求输出。</p>
+</li>
+<li><p>Scheduler Middewares: 介于Scrapy引擎和调度之间的中间件，从Scrapy引擎发送到调度的请求和响应。</p>
+<p>​</p>
+</li>
+</ul>
+<h4 id="5-2、主要对象"><a href="#5-2、主要对象" class="headerlink" title="5.2、主要对象"></a>5.2、主要对象</h4><ul>
+<li><p>Spider</p>
+</li>
+<li><p>Selector</p>
+</li>
+<li><p>Items &amp; Item Pipeline &amp; Feed exports</p>
+</li>
+<li><p>Requests</p>
+</li>
+<li><p>Responses</p>
+</li>
+<li><p>Logging</p>
+<p> 日志模块，使用python内置的logging模块，<code>logging.log(logging.WARNING, &quot;This is a warning&quot;)</code>,可以在setting中配置logging属性。</p>
+<p> 同时Spider对象含有logger对象，spider内也可使用<code>self.logger.info(&#39;msg&#39;)</code> <code>self.logger.warning(&#39;msg&#39;)</code></p>
+</li>
+<li><p>statscollectors</p>
+</li>
+<li><p>MailSender</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> scrapy.mail <span class="keyword">import</span> MailSender</div><div class="line"><span class="keyword">from</span> xxx <span class="keyword">import</span> settings</div><div class="line"><span class="comment">#------ spider文件，在spider对象close时发邮件，重写close方法</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self, spider, reason)</span>:</span></div><div class="line">        mailer = MailSender.from_settings(settings)</div><div class="line">        mailer.send(to=[<span class="string">'xx@xx.com'</span>], subject=<span class="string">u'爬虫结束'</span>, body=<span class="string">'test!'</span>+str(reason))</div><div class="line"><span class="comment">#-----settings文件</span></div><div class="line"><span class="comment"># 下面是在settings文件中配置邮件服务器</span></div><div class="line"><span class="comment"># 发送邮件</span></div><div class="line">MAIL_FROM = <span class="string">'xxx@xxx.com'</span>  <span class="comment">#邮件中的from</span></div><div class="line">MAIL_HOST = <span class="string">'smtp.xxx.com'</span>  <span class="comment">#邮件服务器地址，端口</span></div><div class="line">MAIL_PORT = <span class="number">25</span></div><div class="line">MAIL_USER = <span class="string">'登录名'</span></div><div class="line">MAIL_PASS = <span class="string">'密码'</span></div><div class="line">MAIL_TLS = <span class="keyword">False</span>   <span class="comment"># 默认邮件服务器不开启TLS SSL安全连接</span></div><div class="line">MAIL_SSL = <span class="keyword">False</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6、下载图片和文件"><a href="#6、下载图片和文件" class="headerlink" title="6、下载图片和文件"></a>6、下载图片和文件</h3><h4 id="6-1、激活Media-pipeline"><a href="#6-1、激活Media-pipeline" class="headerlink" title="6.1、激活Media pipeline"></a>6.1、激活Media pipeline</h4><p>在settings中设置如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启用pipeline</span></div><div class="line">ITEM_PIPELINES = &#123;<span class="string">'scrapy.pipelines.images.ImagesPipeline'</span>: <span class="number">1</span>,</div><div class="line">  <span class="string">'scrapy.pipelines.files.FilesPipeline'</span>: <span class="number">1</span>&#125;</div><div class="line"><span class="comment"># 1.2版默认存放在./full，路径是相对.cfg配置文件</span></div><div class="line"><span class="comment"># 即使指定存储位置，也会在该目录下生成full子文件夹</span></div><div class="line">IMAGES_STORE = <span class="string">'/path/to/valid/dir'</span></div><div class="line"><span class="comment"># 定义图片url的item域</span></div><div class="line">IMAGES_URLS_FIELD = <span class="string">'field_name_for_your_images_urls'</span></div><div class="line"><span class="comment"># 定义图片下载结果存放的item域</span></div><div class="line">IMAGES_RESULT_FIELD = <span class="string">'field_name_for_your_processed_images'</span></div><div class="line"><span class="comment"># 文件和图片定义类似</span></div><div class="line">FILES_STORE = <span class="string">'/path/to/valid/dir'</span></div><div class="line">FILES_URLS_FIELD = <span class="string">'field_name_for_your_files_urls'</span></div><div class="line">FILES_RESULT_FIELD = <span class="string">'field_name_for_your_processed_files'</span></div></pre></td></tr></table></figure>
+<h4 id="6-2、items中定义"><a href="#6-2、items中定义" class="headerlink" title="6.2、items中定义"></a>6.2、items中定义</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scrapy</div><div class="line">image_url = scrapy.Field()</div><div class="line">download_success = scrapy.Field()</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：image_url 的接收对象是image url的列表。</p>
+<p>download_success:包含字典的列表，由ImagePipeline自动填充，包含image的url，本地存储位置，文件校验值：</p>
+<p><code>[{&#39;url&#39;: &#39;http://img.tupianzj.com/uploads/allimg/161226/9-161226154443.jpg&#39;, &#39;path&#39;: &#39;full/46ae5ec4f4c0905e48a41d569abe8e1aaa832f29.jpg&#39;, &#39;checksum&#39;: &#39;c35693197b1217ac8cafd7f7f318ef33&#39;}]</code></p>
+<h4 id="6-3、spiders编写"><a href="#6-3、spiders编写" class="headerlink" title="6.3、spiders编写"></a>6.3、spiders编写</h4><blockquote>
+<p>只需要给item[‘image_url’]传url的列表，并将item返回</p>
+</blockquote>
+<p>这是爬<a href="http://www.tupianzj.com/gaoxiao/biaoqing" target="_blank" rel="external">图片之家</a>QQ表情图的一个例子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</div><div class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider, Rule</div><div class="line"><span class="keyword">from</span> gaoxiao_pic.items <span class="keyword">import</span> GaoxiaoPicItem</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FunPicSpider</span><span class="params">(CrawlSpider)</span>:</span></div><div class="line">    name = <span class="string">'fun_pic'</span></div><div class="line">    allowed_domains = [<span class="string">'tupianzj.com'</span>]</div><div class="line">    start_urls = [<span class="string">'http://www.tupianzj.com/gaoxiao/biaoqing/'</span>, ]</div><div class="line"></div><div class="line">    rules = (</div><div class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://www\.tupianzj\.com/gaoxiao/gx/biaoqing\.html'</span>)),</div><div class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://www\.tupianzj\.com/gaoxiao/biaoqing/list[_\d]+\.html'</span>)),</div><div class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://img\.tupianzj\.com/uploads/allimg/\d+/.+\.(?:gif|jpg|png|bmp)'</span>),</div><div class="line">             callback=<span class="string">'parse_item'</span>),</div><div class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://www\.tupianzj\.com/gaoxiao/biaoqing/\d+/[_\d]+.html'</span>),</div><div class="line">             callback=<span class="string">'parse_item'</span>, follow=<span class="keyword">True</span>),</div><div class="line">    )</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_item</span><span class="params">(self, response)</span>:</span></div><div class="line">        i = GaoxiaoPicItem()</div><div class="line">        <span class="keyword">if</span> str(response.url).split(<span class="string">'.'</span>)[<span class="number">-1</span>].lower() <span class="keyword">in</span> [<span class="string">'jpg'</span>, <span class="string">'gif'</span>, <span class="string">'png'</span>, <span class="string">'jpeg'</span>, <span class="string">'bmp'</span>]:</div><div class="line">            i[<span class="string">'image_url'</span>] = [response.url]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                url = response.xpath(<span class="string">"//div[@id='bigpic']/a/img/@src"</span>).extract()[<span class="number">0</span>]</div><div class="line">                i[<span class="string">'image_url'</span>] = [response.urljoin(url)]  <span class="comment"># 这里每个页面只有一张图片,</span></div><div class="line">                <span class="keyword">print</span> i[<span class="string">'image_url'</span>]</div><div class="line">            <span class="keyword">except</span> Exception, e:</div><div class="line">                <span class="keyword">print</span> e.message</div><div class="line">        <span class="keyword">return</span> i</div></pre></td></tr></table></figure>
+<p>items.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GaoxiaoPicItem</span><span class="params">(scrapy.Item)</span>:</span></div><div class="line">    image_url = scrapy.Field()</div><div class="line">    download_success = scrapy.Field()</div></pre></td></tr></table></figure>
+<p>settings.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启用pipeline</span></div><div class="line">ITEM_PIPELINES = &#123;<span class="string">'scrapy.pipelines.images.ImagesPipeline'</span>: <span class="number">1</span>,</div><div class="line">                  <span class="comment"># 'scrapy.pipelines.files.FilesPipeline': 1</span></div><div class="line">                  &#125;</div><div class="line"><span class="comment"># 定义图片存储位置（必须）</span></div><div class="line">IMAGES_STORE = <span class="string">'.'</span></div><div class="line"><span class="comment"># 定义图片url的item域</span></div><div class="line">IMAGES_URLS_FIELD = <span class="string">'image_url'</span></div><div class="line"><span class="comment"># 存储下载结果</span></div><div class="line">IMAGES_RESULT_FIELD = <span class="string">'download_success'</span></div></pre></td></tr></table></figure>
+<h3 id="7、设置headers"><a href="#7、设置headers" class="headerlink" title="7、设置headers"></a>7、设置headers</h3><h4 id="7-1、设置默认headers"><a href="#7-1、设置默认headers" class="headerlink" title="7.1、设置默认headers"></a>7.1、设置默认headers</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># settings中可以设置浏览器默认headers，</span></div><div class="line">DEFAULT_REQUEST_HEADERS = &#123;</div><div class="line"></div><div class="line">    <span class="string">'accept'</span>: <span class="string">'image/webp,/;q=0.8'</span>,</div><div class="line"></div><div class="line">    <span class="string">'accept-language'</span>: <span class="string">'zh-CN,zh;q=0.8'</span>,</div><div class="line"></div><div class="line">    <span class="string">'referer'</span>: <span class="string">'https://www.baidu.com/'</span>,</div><div class="line"></div><div class="line">    <span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36'</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="7-2、为每个download-分配随机UA和代理"><a href="#7-2、为每个download-分配随机UA和代理" class="headerlink" title="7.2、为每个download 分配随机UA和代理"></a>7.2、为每个download 分配随机UA和代理</h4><ul>
+<li><p>UA</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># --------------settings.py--------------------</span></div><div class="line">DOWNLOADER_MIDDLEWARES = &#123;</div><div class="line">    <span class="string">'xxx.middlewares.RandomUserAgentMiddleware'</span>: <span class="number">400</span>,</div><div class="line">      <span class="string">'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware'</span>: <span class="keyword">None</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># ------创建middlewares.py ----------------------</span></div><div class="line"><span class="keyword">import</span> faker</div><div class="line">f = faker.Factory().create()</div><div class="line"><span class="comment"># user_agent = f.user_agent() # 随机生成的浏览器UA，都次调用返回结果都不同</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RandomUserAgentMiddleware</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(self, request, spider)</span>:</span></div><div class="line">        request.headers.setdefault(<span class="string">'User-Agent'</span>, f.user_agent())</div><div class="line">        <span class="comment">#log.msg('&gt;&gt;&gt;&gt; UA %s'%request.headers)</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>代理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -------------------settings.py--------</span></div><div class="line"><span class="comment"># 启用代理</span></div><div class="line">DOWNLOADER_MIDDLEWARES = &#123;</div><div class="line">    <span class="string">'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware'</span>: <span class="number">110</span>,</div><div class="line">    <span class="string">'xxx.middlewares.ProxyMiddleware'</span>: <span class="number">100</span>,</div><div class="line">&#125;</div><div class="line"><span class="comment"># 在setting中写死了代理列表，实际环境在需要代理时可以从数据库代理池获取</span></div><div class="line">PROXY_LIST = [</div><div class="line">	&#123;<span class="string">'ip_port'</span>: <span class="string">'111.11.228.75:80'</span>, <span class="string">'user_pass'</span>: <span class="string">''</span>&#125;,</div><div class="line">	&#123;<span class="string">'ip_port'</span>: <span class="string">'120.198.243.22:80'</span>, <span class="string">'user_pass'</span>: <span class="string">''</span>&#125;,</div><div class="line">	&#123;<span class="string">'ip_port'</span>: <span class="string">'111.8.60.9:8123'</span>, <span class="string">'user_pass'</span>: <span class="string">''</span>&#125;,</div><div class="line">	&#123;<span class="string">'ip_port'</span>: <span class="string">'101.71.27.120:80'</span>, <span class="string">'user_pass'</span>: <span class="string">''</span>&#125;,</div><div class="line">	&#123;<span class="string">'ip_port'</span>: <span class="string">'122.96.59.104:80'</span>, <span class="string">'user_pass'</span>: <span class="string">''</span>&#125;,</div><div class="line">	&#123;<span class="string">'ip_port'</span>: <span class="string">'122.224.249.122:8088'</span>, <span class="string">'user_pass'</span>: <span class="string">''</span>&#125;,</div><div class="line">]</div><div class="line"></div><div class="line"><span class="comment"># -----创建middlewares.py, 配置代理-----------------</span></div><div class="line"><span class="keyword">from</span> xxx.settings <span class="keyword">import</span> PROXY_LIST</div><div class="line"><span class="keyword">import</span> random</div><div class="line"><span class="keyword">import</span> base64</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyMiddleware</span><span class="params">(object)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(self, request, spider)</span>:</span></div><div class="line">		proxy = random.choice(PROXIES_LIST)</div><div class="line">		<span class="keyword">if</span> proxy[<span class="string">'user_pass'</span>] <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">			request.meta[<span class="string">'proxy'</span>] = <span class="string">"http://%s"</span> % proxy[<span class="string">'ip_port'</span>]</div><div class="line">			encoded_user_pass = base64.encodestring(proxy[<span class="string">'user_pass'</span>])</div><div class="line">			request.headers[<span class="string">'Proxy-Authorization'</span>] = <span class="string">'Basic '</span> + encoded_user_pass</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			request.meta[<span class="string">'proxy'</span>] = <span class="string">"http://%s"</span> % proxy[<span class="string">'ip_port'</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="8、登陆Post和Cookie"><a href="#8、登陆Post和Cookie" class="headerlink" title="8、登陆Post和Cookie"></a>8、登陆Post和Cookie</h3><h4 id="8-1、POST表单登陆豆瓣"><a href="#8-1、POST表单登陆豆瓣" class="headerlink" title="8.1、POST表单登陆豆瓣"></a>8.1、POST表单登陆豆瓣</h4><p>登陆页面有验证码比无验证时post表单提交的数据多了captcha-id和captcha-solution。有验证码时下载图片，手动输入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</div><div class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider, Rule</div><div class="line"><span class="keyword">from</span> scrapy.http <span class="keyword">import</span> Request, FormRequest, HtmlResponse</div><div class="line"><span class="keyword">from</span> douban.items <span class="keyword">import</span> DoubanItem</div><div class="line"><span class="keyword">import</span> faker, requests, os</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubanSpiderSpider</span><span class="params">(CrawlSpider)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_requests_to_follow</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="string">"""重写加入cookiejar的更新"""</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(response, HtmlResponse):</div><div class="line">            <span class="keyword">return</span></div><div class="line">        seen = set()</div><div class="line">        <span class="keyword">for</span> n, rule <span class="keyword">in</span> enumerate(self._rules):</div><div class="line">            links = [l <span class="keyword">for</span> l <span class="keyword">in</span> rule.link_extractor.extract_links(response) <span class="keyword">if</span> l <span class="keyword">not</span> <span class="keyword">in</span> seen]</div><div class="line">            <span class="keyword">if</span> links <span class="keyword">and</span> rule.process_links:</div><div class="line">                links = rule.process_links(links)</div><div class="line">            <span class="keyword">for</span> link <span class="keyword">in</span> links:</div><div class="line">                seen.add(link)</div><div class="line">                r = Request(url=link.url, callback=self._response_downloaded)</div><div class="line">                <span class="comment"># 下面这句是我重写的</span></div><div class="line">                r.meta.update(rule=n, link_text=link.text, cookiejar=response.meta[<span class="string">'cookiejar'</span>])</div><div class="line">                <span class="keyword">yield</span> rule.process_request(r)</div><div class="line"></div><div class="line">    name = <span class="string">'douban_spider'</span></div><div class="line">    allowed_domains = [<span class="string">'douban.com'</span>]</div><div class="line">    start_urls = [<span class="string">'https://www.douban.com/'</span>]</div><div class="line"></div><div class="line">    rules = (</div><div class="line">        Rule(LinkExtractor(allow=<span class="string">r'Items/'</span>), callback=<span class="string">'parse_item'</span>, follow=<span class="keyword">True</span>),</div><div class="line">    )</div><div class="line">    f = faker.Factory().create()</div><div class="line">    user_agent = f.user_agent() <span class="comment"># 随机生成的浏览器UA，都次调用返回结果都不同</span></div><div class="line">    headers = &#123;<span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'</span>,</div><div class="line">               <span class="string">'Cache-Control'</span>: <span class="string">'max-age=0'</span>,</div><div class="line">               <span class="string">'Referer'</span>: <span class="string">'https://www.douban.com'</span>,</div><div class="line">               <span class="string">'User-Agent'</span>: user_agent,</div><div class="line">        <span class="comment"># 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36',</span></div><div class="line">               <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate, sdch, br'</span>,</div><div class="line">               <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.8'</span>,</div><div class="line">               <span class="string">'Host'</span>: <span class="string">'accounts.douban.com'</span>,</div><div class="line">               <span class="string">'Connection'</span>: <span class="string">'keep-alive'</span></div><div class="line">               &#125;</div><div class="line">    your_email = <span class="string">'1XXX'</span></div><div class="line">    your_password = <span class="string">'XXXX'</span></div><div class="line">    postdata = &#123;<span class="string">'source'</span>: <span class="string">'None'</span>,</div><div class="line">                <span class="string">'redir'</span>: <span class="string">'https://www.douban.com/'</span>,</div><div class="line">                <span class="string">'form_email'</span>: your_email,</div><div class="line">                <span class="string">'form_password'</span>: your_password,</div><div class="line">                <span class="comment"># 'captcha-solution': vcode,</span></div><div class="line">                <span class="comment"># 'captcha-id': captcha,</span></div><div class="line">                <span class="string">'login'</span>: <span class="string">'登录'</span></div><div class="line">                &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="comment"># 访问登录页面</span></div><div class="line">        <span class="comment"># Scrapy通过使用meta['cookiejar']来支持单spider追踪多cookie session。默认情况下其使用一个cookie jar(session)，不过可以传递一个标示符来使用多个。如meta=&#123;'cookiejar': 1&#125;这句，后面那个1就是标示符。</span></div><div class="line">        <span class="keyword">return</span> [Request(url=<span class="string">'https://www.douban.com/accounts/login'</span>, headers=self.headers,</div><div class="line">                        meta=&#123;<span class="string">'cookiejar'</span>: <span class="number">1</span>&#125;, callback=self.post_login)]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post_login</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'Preparing login===='</span>, response.url</div><div class="line">        <span class="comment"># 如果登陆要验证码，则post数据中加入验证码的id和值</span></div><div class="line">        <span class="keyword">if</span> response.body.find(<span class="string">'captcha_image'</span>) &gt; <span class="number">0</span>:</div><div class="line">            captcha_url = response.xpath(<span class="string">'//img[@id="captcha_image"]/@src'</span>).extract()[<span class="number">0</span>]</div><div class="line">            <span class="keyword">print</span> <span class="string">u'验证码的URL：%s'</span> % captcha_url</div><div class="line">            <span class="keyword">with</span> open(<span class="string">'v.jpg'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">                f.write(requests.get(captcha_url, verify=<span class="keyword">False</span>).content)</div><div class="line">            <span class="keyword">with</span> open(<span class="string">'v.jpg'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</div><div class="line">                image = Image.open(f)</div><div class="line">                image.show()</div><div class="line">            self.postdata[<span class="string">'captcha-solution'</span>] = raw_input(<span class="string">'请输入图片验证码:\n'</span>)</div><div class="line">            os.remove(<span class="string">'v.jpg'</span>)</div><div class="line">            self.postdata[<span class="string">'captcha-id'</span>] = response.xpath(<span class="string">'//input[@name="captcha-id"]/@value'</span>).extract()[<span class="number">0</span>]</div><div class="line">            <span class="keyword">print</span> self.postdata</div><div class="line">        <span class="keyword">return</span> [FormRequest.from_response(response,</div><div class="line">                                          headers=self.headers,</div><div class="line">                                          meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;,</div><div class="line">                                          formdata=self.postdata,</div><div class="line">                                          callback=self.after_login,</div><div class="line">                                          )]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">after_login</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="comment"># 登陆之后,访问的网页内容应该会包含用户信息</span></div><div class="line">        self.headers[<span class="string">'Host'</span>] = <span class="string">'www.douban.com'</span></div><div class="line">        <span class="keyword">print</span> response.body</div><div class="line">        <span class="keyword">with</span> open(<span class="string">'a.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(response.body)</div><div class="line">        item = DoubanItem()</div><div class="line">        item[<span class="string">'main_page'</span>] = response.body</div><div class="line">        <span class="keyword">return</span> Request(<span class="string">'https://www.douban.com/doumail/'</span>, headers=self.headers,</div><div class="line">                       meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>], <span class="string">'item'</span>: item&#125;,</div><div class="line">                       callback=self.openfile)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">openfile</span><span class="params">(self, response)</span>:</span></div><div class="line">        item[<span class="string">'doumail_page'</span>] = response.body</div><div class="line">        <span class="keyword">return</span> item</div></pre></td></tr></table></figure>
+<h4 id="8-2、使用Cookie登陆豆瓣"><a href="#8-2、使用Cookie登陆豆瓣" class="headerlink" title="8.2、使用Cookie登陆豆瓣"></a>8.2、使用Cookie登陆豆瓣</h4><p>使用浏览器或requests模拟登陆，然后将cookie传进scrapy的spider。</p>
+<p>由于每次从浏览器复制出来的cookies或headers都是字符串形式，手工改成字典太累了，写个小程序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 从chrome浏览器的Request Header中，点击view source，然后复制header字符串</span></div><div class="line">headers_str = <span class="string">'''Host: www.douban.com</span></div><div class="line"><span class="string">Connection: keep-alive</span></div><div class="line"><span class="string">Cache-Control: max-age=0</span></div><div class="line"><span class="string">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span></div><div class="line"><span class="string">Upgrade-Insecure-Requests: 1</span></div><div class="line"><span class="string">User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36</span></div><div class="line"><span class="string">Referer: https://www.douban.com/people/108243932/</span></div><div class="line"><span class="string">Accept-Encoding: gzip, deflate, sdch, br</span></div><div class="line"><span class="string">Accept-Language: zh-CN,zh;q=0.8</span></div><div class="line"><span class="string">Cookie: viewed="1770782"; bid=SrGB-eJRKEE; gr_user_id=a37ff9ef-33cc-4de7-971b-c161f747a77b; ll="118254"; ps=y; dbcl2="108243932:kVKKGRcAZVg"; _ga=GA1.2.1495924407.1465701053; ck=LRet; _pk_ref.100001.8cb4=%5B%22%22%2C%22%22%2C1483063011%2C%22https%3A%2F%2Faccounts.douban.com%2Fregister%22%5D; __utmt=1; ap=1; push_noty_num=0; push_doumail_num=0; _pk_id.100001.8cb4=438cca0c1cd12666.1482926660.4.1483063910.1483060769.; _pk_ses.100001.8cb4=*; __utma=30149280.1495924407.1465701053.1483060678.1483063011.6; __utmb=30149280.24.9.1483063909873; __utmc=30149280; __utmz=30149280.1483021458.4.3.utmcsr=accounts.douban.com|utmccn=(referral)|utmcmd=referral|utmcct=/register; __utmv=30149280.10824; _vwo_uuid_v2=02A1FB5802A3379A6C48F734CB328D35|33e02434e1d90a57e4c63094703cde0f'''</span></div><div class="line">headers = &#123;&#125;</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> headers_str.split(<span class="string">'\n'</span>):</div><div class="line">    j = i.replace(<span class="string">': '</span>, <span class="string">':'</span>, <span class="number">1</span>).split(<span class="string">':'</span>, <span class="number">1</span>)</div><div class="line">    headers[j[<span class="number">0</span>]] = j[<span class="number">1</span>]</div><div class="line"><span class="keyword">if</span> <span class="string">'Cookie'</span> <span class="keyword">in</span> headers:</div><div class="line">    cookies_str = headers[<span class="string">'Cookie'</span>]</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="comment"># 把cookie字符串从浏览器copy进来</span></div><div class="line">    cookies_str = <span class="string">''' '''</span></div><div class="line">cookies = &#123;&#125;</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> cookies_str.split(<span class="string">';'</span>):</div><div class="line">    q = i.split(<span class="string">'='</span>)</div><div class="line">    key = q[<span class="number">0</span>].replace(<span class="string">' '</span>, <span class="string">''</span>, <span class="number">1</span>)</div><div class="line">    value = q[<span class="number">1</span>].replace(<span class="string">' '</span>, <span class="string">''</span>, <span class="number">1</span>)</div><div class="line">    cookies[key] = value</div><div class="line"><span class="comment"># print cookies</span></div><div class="line"><span class="keyword">print</span> headers.pop(<span class="string">'Cookie'</span>)</div><div class="line"><span class="keyword">print</span> headers</div></pre></td></tr></table></figure>
+<p>使用cookie登陆豆瓣：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</div><div class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider, Rule</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubanCookieSpider</span><span class="params">(CrawlSpider)</span>:</span></div><div class="line">    name = <span class="string">'douban_cookie'</span></div><div class="line">    allowed_domains = [<span class="string">'douban.com'</span>]</div><div class="line">    start_urls = [<span class="string">'https://www.douban.com/mine/'</span>,</div><div class="line">                  <span class="string">'https://www.douban.com/doumail/'</span>,</div><div class="line">                  <span class="string">'https://www.douban.com/people/108243932/'</span>,</div><div class="line">                  <span class="string">'https://www.douban.com/mine/orders/'</span></div><div class="line">                  ]</div><div class="line">    cookies = &#123;<span class="string">'ck'</span>: <span class="string">'LRet'</span>, <span class="string">'ps'</span>: <span class="string">'y'</span>, <span class="string">'__utmz'</span>: <span class="string">'30149280.1483021458.4.3.utmcsr'</span>, <span class="string">'__utmv'</span>: <span class="string">'30149280.10824'</span>,</div><div class="line">     <span class="string">'push_doumail_num'</span>: <span class="string">'0'</span>, <span class="string">'__utmt'</span>: <span class="string">'1'</span>, <span class="string">'bid'</span>: <span class="string">'SrGB-eJRKEE'</span>, <span class="string">'push_noty_num'</span>: <span class="string">'0'</span>,</div><div class="line">     <span class="string">'_ga'</span>: <span class="string">'GA1.2.1495924407.1465701053'</span>,</div><div class="line">     <span class="string">'_pk_ref.100001.8cb4'</span>: <span class="string">'%5B%22%22%2C%22%22%2C1483063011%2C%22https%3A%2F%2Faccounts.douban.com%2Fregister%22%5D'</span>,</div><div class="line">     <span class="string">'_vwo_uuid_v2'</span>: <span class="string">'02A1FB5802A3379A6C48F734CB328D35|33e02434e1d90a57e4c63094703cde0f'</span>, <span class="string">'ap'</span>: <span class="string">'1'</span>,</div><div class="line">     <span class="string">'dbcl2'</span>: <span class="string">'"108243932:kVKKGRcAZVg"'</span>, <span class="string">'_pk_id.100001.8cb4'</span>: <span class="string">'438cca0c1cd12666.1482926660.4.1483063910.1483060769.'</span>,</div><div class="line">     <span class="string">'_pk_ses.100001.8cb4'</span>: <span class="string">'*'</span>, <span class="string">'gr_user_id'</span>: <span class="string">'a37ff9ef-33cc-4de7-971b-c161f747a77b'</span>,</div><div class="line">     <span class="string">'__utma'</span>: <span class="string">'30149280.1495924407.1465701053.1483060678.1483063011.6'</span>, <span class="string">'__utmb'</span>: <span class="string">'30149280.24.9.1483063909873'</span>,</div><div class="line">     <span class="string">'__utmc'</span>: <span class="string">'30149280'</span>, <span class="string">'ll'</span>: <span class="string">'"118254"'</span>, <span class="string">'viewed'</span>: <span class="string">'"1770782"'</span>&#125;</div><div class="line">    headers = &#123;<span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.8'</span>, <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate, sdch, br'</span>, <span class="string">'Connection'</span>: <span class="string">'keep-alive'</span>,</div><div class="line">                 <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'</span>,</div><div class="line">                <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36'</span>,</div><div class="line">                 <span class="string">'Host'</span>: <span class="string">'www.douban.com'</span>,</div><div class="line">               	<span class="string">'Referer'</span>: <span class="string">'https://www.douban.com/'</span>, <span class="string">'Cache-Control'</span>: <span class="string">'max-age=0'</span>,</div><div class="line">                 <span class="string">'Upgrade-Insecure-Requests'</span>: <span class="string">'1'</span>&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> [scrapy.Request(<span class="string">'https://www.douban.com/'</span>, headers=self.headers, cookies=self.cookies, meta=&#123;<span class="string">'cookiejar'</span>: <span class="number">1</span>&#125;, callback=self.after_set_cookie)]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">after_set_cookie</span><span class="params">(self, response)</span>:</span></div><div class="line">        req = []</div><div class="line">        self.headers[<span class="string">'Referer'</span>] = response.url</div><div class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> self.start_urls:</div><div class="line">            req.append(scrapy.Request(url=url, headers=self.headers, meta=&#123;<span class="string">'cookiejar'</span>: response.meta[<span class="string">'cookiejar'</span>]&#125;, callback=self.parse_item))</div><div class="line">        <span class="keyword">return</span> req</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_item</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="keyword">print</span> response.url</div><div class="line">        filename = response.url.split(<span class="string">'/'</span>)[<span class="number">-2</span>] + <span class="string">'.html'</span></div><div class="line">        <span class="keyword">with</span> open(filename, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(response.body)  <span class="comment"># 保存的网页中应该有登陆账号后的个人信息</span></div></pre></td></tr></table></figure>
+<h3 id="9、JS-、XHR分析"><a href="#9、JS-、XHR分析" class="headerlink" title="9、JS 、XHR分析"></a>9、JS 、XHR分析</h3><blockquote>
+<p>主要是分析js请求的url。挖个坑，暂时不打算填。</p>
+<p>不好解决的话，还是用selenium + phantomjs吧</p>
+</blockquote>
+<h3 id="10、Scrapy-Redis分布式爬虫"><a href="#10、Scrapy-Redis分布式爬虫" class="headerlink" title="10、Scrapy Redis分布式爬虫"></a>10、Scrapy Redis分布式爬虫</h3><h4 id="10-1、安装redis"><a href="#10-1、安装redis" class="headerlink" title="10.1、安装redis"></a>10.1、安装redis</h4><ul>
+<li>windows</li>
+</ul>
+<p>下载地址：<a href="https://github.com/rgl/redis/downloads" target="_blank" rel="external">https://github.com/rgl/redis/downloads</a></p>
+<p>安装完成后，</p>
+<p>运行redis服务器的命令：安装目录下的redis-server.exe</p>
+<p>运行redis客户端的命令：安装目录下的redis-cli.exe</p>
+<ul>
+<li>Linux</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash">sudo apt-get install redis-server</span></div><div class="line"><span class="meta">#</span><span class="bash"> 启动 Redis</span></div><div class="line"><span class="meta">$</span><span class="bash"> redis-server &amp;</span></div><div class="line"><span class="meta">#</span><span class="bash"> 或者</span></div><div class="line"><span class="meta">$</span><span class="bash"> service redis-server start</span></div><div class="line"><span class="meta">#</span><span class="bash"> 查看 redis 是否启动？</span></div><div class="line"><span class="meta">$</span><span class="bash"> redis-cli</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> vi /etc/redis/redis.conf</span></div><div class="line"><span class="meta">#</span><span class="bash">注释<span class="built_in">bind</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="built_in">bind</span> 127.0.0.1</span></div><div class="line"><span class="meta">#</span><span class="bash"> 如果要设置密码，取消注释requirepass</span></div><div class="line">requirepass mypasswd</div></pre></td></tr></table></figure>
+<p>修改配置文件后，要重启服务生效。有密码的连接方式，<code>redis-cli -a mypasswd -h 172.16.28.24 -p 6379</code></p>
+<p>还是单开一篇笔记来写吧！</p>
+<h3 id="11、记录一些error"><a href="#11、记录一些error" class="headerlink" title="11、记录一些error"></a>11、记录一些error</h3><h4 id="11-1、url相关"><a href="#11-1、url相关" class="headerlink" title="11.1、url相关"></a>11.1、url相关</h4><ul>
+<li>ValueError: Missing scheme in request url: h</li>
+</ul>
+<p>这种问题一般是url出错了，要以http开头，如果是从网页解析的url，可以用 <code>response.urljoin(relative_url)</code> 生成绝对路径。</p>
+<p>如果在下载图片中出错，是因为image_field必须是图片url的列表，只存了一个url字符串的话，scrapy遍历url时取出的第一个对象是http url的第一个字符h，故报错h是非法url。</p>
+<p>太坑了，花了半个小时才发现原因。</p>
+<ul>
+<li>注意twisted库的版本，在conda中先装twisted再装scrapy</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/scrapy/">scrapy</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/爬虫/">爬虫</a>, <a href="/tags/Scrapy/">Scrapy</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/02/10/技术/use-ipython-noteboke/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2016/12/14/技术/linux-snmp-server/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

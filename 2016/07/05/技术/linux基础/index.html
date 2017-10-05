@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux基础学习笔记 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="Table of Contents  generated with DocToc
+
+Linux简介
+系统安装与grub引导
+登陆系统
+常用命令
+
+
+用户管理
+用户和用户组
+账号管理和用户切换
+
+
+文件管理
+文件和目录管理和权限
+文件查找
+文件压缩解压
+
+
+文件系统
+磁盘分区，文件系统的挂载和卸载
+l">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Linux基础学习笔记"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-04T16:00:00.000Z"><a href="/2016/07/05/技术/linux基础/">2016-07-05</a></time>
+      
+      
+  
+    <h1 class="title">Linux基础学习笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux简介"><span class="toc-text">Linux简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统安装与grub引导"><span class="toc-text">系统安装与grub引导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登陆系统"><span class="toc-text">登陆系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看命令帮助文档"><span class="toc-text">查看命令帮助文档</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-text">用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户和用户组"><span class="toc-text">用户和用户组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#账号管理和用户切换"><span class="toc-text">账号管理和用户切换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-text">文件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件和目录管理和权限"><span class="toc-text">文件和目录管理和权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件查找"><span class="toc-text">文件查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件压缩解压"><span class="toc-text">文件压缩解压</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件系统"><span class="toc-text">文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘分区，文件系统的挂载和卸载"><span class="toc-text">磁盘分区，文件系统的挂载和卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux逻辑卷"><span class="toc-text">linux逻辑卷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硬链接和软链接"><span class="toc-text">硬链接和软链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符处理"><span class="toc-text">字符处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#管道和grep"><span class="toc-text">管道和grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sort排序和uniq去重"><span class="toc-text">sort排序和uniq去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cut、tr、paste、split"><span class="toc-text">cut、tr、paste、split</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络管理"><span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络配置和dns配置"><span class="toc-text">网络配置和dns配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络测试"><span class="toc-text">网络测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理"><span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看进程"><span class="toc-text">查看进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杀死进程"><span class="toc-text">杀死进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询进程打开的文件"><span class="toc-text">查询进程打开的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程优先级调整：nice、renice"><span class="toc-text">进程优先级调整：nice、renice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译、安装软件"><span class="toc-text">编译、安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装包管理器"><span class="toc-text">安装包管理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译安装"><span class="toc-text">编译安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行定时任务"><span class="toc-text">执行定时任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式与sed、awk"><span class="toc-text">正则表达式与sed、awk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi和vim"><span class="toc-text">vi和vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell编程"><span class="toc-text">shell编程</span></a></li></ol>
+    </div>
+
+      
+        <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#linux%E7%AE%80%E4%BB%8B">Linux简介</a><ul>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8Egrub%E5%BC%95%E5%AF%BC">系统安装与grub引导</a></li>
+<li><a href="#%E7%99%BB%E9%99%86%E7%B3%BB%E7%BB%9F">登陆系统</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a></li>
+</ul>
+</li>
+<li><a href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86">用户管理</a><ul>
+<li><a href="#%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84">用户和用户组</a></li>
+<li><a href="#%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86%E5%92%8C%E7%94%A8%E6%88%B7%E5%88%87%E6%8D%A2">账号管理和用户切换</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86">文件管理</a><ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E5%92%8C%E6%9D%83%E9%99%90">文件和目录管理和权限</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE">文件查找</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B">文件压缩解压</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a><ul>
+<li><a href="#%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%82%E8%BD%BD%E5%92%8C%E5%8D%B8%E8%BD%BD">磁盘分区，文件系统的挂载和卸载</a></li>
+<li><a href="#linux%E9%80%BB%E8%BE%91%E5%8D%B7">linux逻辑卷</a></li>
+<li><a href="#%E7%A1%AC%E9%93%BE%E6%8E%A5%E5%92%8C%E8%BD%AF%E9%93%BE%E6%8E%A5">硬链接和软链接</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86">字符处理</a><ul>
+<li><a href="#%E7%AE%A1%E9%81%93%E5%92%8Cgrep">管道和grep</a></li>
+<li><a href="#sort%E6%8E%92%E5%BA%8F%E5%92%8Cuniq%E5%8E%BB%E9%87%8D">sort排序和uniq去重</a></li>
+<li><a href="#cuttrpastesplit">cut、tr、paste、split</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86">网络管理</a><ul>
+<li><a href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E5%92%8Cdns%E9%85%8D%E7%BD%AE">网络配置和dns配置</a></li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E6%B5%8B%E8%AF%95">网络测试</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86">进程管理</a><ul>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B">查看进程</a></li>
+<li><a href="#%E6%9D%80%E6%AD%BB%E8%BF%9B%E7%A8%8B">杀死进程</a></li>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6">查询进程打开的文件</a></li>
+<li><a href="#%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E6%95%B4nicerenice">进程优先级调整：nice、renice</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6">编译、安装软件</a><ul>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8">安装包管理器</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">编译安装</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%A7%E8%A1%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">执行定时任务</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Esedawk">正则表达式与sed、awk</a></li>
+<li><a href="#vi%E5%92%8Cvim">vi和vim</a></li>
+<li><a href="#shell%E7%BC%96%E7%A8%8B">shell编程</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><h3 id="系统安装与grub引导"><a href="#系统安装与grub引导" class="headerlink" title="系统安装与grub引导"></a>系统安装与grub引导</h3><ul>
+<li>系统运行级别6级，<br>0：关机；1：单用户模式，进行系统维护；2：多用户，无网络连接；3：完全多用户模式，默认不用图形化；4：保留；5：窗口模式，多用户；6：重启。</li>
+<li>安装linux</li>
+<li>grub系统引导</li>
+</ul>
+<h3 id="登陆系统"><a href="#登陆系统" class="headerlink" title="登陆系统"></a>登陆系统</h3><p>有图形登陆、终端登陆、远程终端登陆。</p>
+<ul>
+<li>linux默认提供6个终端，使用<code>ctrl + alt + F1~F6</code>切换。</li>
+<li>使用<code>ctrl + alt + F7</code>切回桌面图形登陆。</li>
+<li>在字符终端中使用<code>startx</code>可以启动图形桌面。</li>
+<li>终端用户退出登陆<code>exit</code>.</li>
+</ul>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li>ls</li>
+<li>pwd</li>
+<li>cd </li>
+<li>cat</li>
+<li>ps</li>
+<li>ifconfig</li>
+<li>netstat -ano<h3 id="查看命令帮助文档"><a href="#查看命令帮助文档" class="headerlink" title="查看命令帮助文档"></a>查看命令帮助文档</h3></li>
+<li>man 和 info<br>在查看结果中 使用 /keyword进行关键字搜索，n向下查找，N向上查找。空格向下翻页，pageup/pagedown翻页，q退出查看。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ man -f reboot 	man -f 查看命令位于哪些man文件里</div><div class="line">$ man 2 reboot    	查看2号文档里的reboot命令</div><div class="line">$ info ls			获取ls命令的说明文档</div></pre></td></tr></table></figure>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="用户和用户组"><a href="#用户和用户组" class="headerlink" title="用户和用户组"></a>用户和用户组</h3><ul>
+<li>UID<br>UID为0的是root超级用户，1~500是系统用户，500以后是普通用户。</li>
+<li>GID<br>一个用户可以属于多个组</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ id 		查看自己的uid</div><div class="line">$ group		查看自己的gid</div><div class="line">$ whoami	查看用户自己的信息</div><div class="line">$ who 		查看当前已登录的用户信息</div><div class="line">$ w			查看更详细的用户信息</div></pre></td></tr></table></figure>
+<p><code>/etc/passwd</code> <code>/etc/shadow</code>两个文件记录了用户的用户名和密码。</p>
+<h3 id="账号管理和用户切换"><a href="#账号管理和用户切换" class="headerlink" title="账号管理和用户切换"></a>账号管理和用户切换</h3><ul>
+<li><p>增加删除用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># useradd -u 555  - g group1 -d /home/john -s /bin/bash  john	指定uid，加入的组，家目录，shell路径，组必须是已经存在的</div><div class="line"># useradd -G group1,group2 john		-G加入一系列的组</div><div class="line"># userdel john		删除了john用户，从shadow中清除记录，用户文件还在</div><div class="line"># userdel -r john  	删除john的home目录和邮件</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改密码和删除密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># passwd			不加参数则是修改当前用户的密码</div><div class="line"># passwd user1		修改user1的密码，新建的用户必须修改密码后才能登陆</div><div class="line"># passwd -d user1   删除密码，即密码为空</div><div class="line"># passwd -l	user1	禁用user1的密码，实际在shadow文件的记录前加了`!`</div><div class="line"># passwd -u user1	解锁账号</div><div class="line"># usermod -L user1  </div><div class="line"># usermod -U user1	原理同上</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改用户<br><code># usermod</code></p>
+</li>
+<li><p>增加删除组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># groupadd  group1	新增group1</div><div class="line"># groupdel  group1  删除用户组，如果组内有用户，则删除失败</div></pre></td></tr></table></figure>
+</li>
+<li><p>切换用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ su 			直接切换到root用户，当前用户环境不变，工作目录，shell等</div><div class="line"># exit			退出root，切回普通用户</div><div class="line">$ su -			切换到root用户，同时使用root用户环境</div><div class="line"># su - john		切换为john用户，root切换为任何user无需密码，</div><div class="line">				普通user相互切换要知道user密码</div><div class="line">$ sudo  command		普通用户以root身份执行某条命令，输入自己的密码即可</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>用户能否使用sudo命令，在<code>/etc/sudoers</code>中配置。使用<code>visudo</code>命令进行配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># User privilege specification</div><div class="line">root	ALL=(ALL:ALL) ALL</div><div class="line">john	ALL=(ALL:ALL) ALL</div><div class="line">luna    ALL=(ALL:ALL) NOPASSWD:/sbin/shutdown</div><div class="line"># 在此处添加，允许john 从任何地方登陆后，执行任何人的，任何命令,对应3个all</div><div class="line"># 允许luna 不用输密码即可执行 sudo shutdown 命令。</div><div class="line"># Members of the admin group may gain root privileges</div><div class="line">%admin ALL=(ALL) ALL</div><div class="line"># 允许admin组的所有成员，......执行sudo</div></pre></td></tr></table></figure></p>
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><h3 id="文件和目录管理和权限"><a href="#文件和目录管理和权限" class="headerlink" title="文件和目录管理和权限"></a>文件和目录管理和权限</h3><ul>
+<li><p>目录结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">/</div><div class="line">├── bin			常见用户指令</div><div class="line">├── boot		内核和启动文件</div><div class="line">├── cdrom		光驱挂载位置</div><div class="line">├── dev			设备文件</div><div class="line">├── etc			系统和服务配置</div><div class="line">├── home		用户主目录</div><div class="line">├── lib			系统函数库</div><div class="line">├── lib64</div><div class="line">├── lost+found	ext3 文件系统用于磁盘检查</div><div class="line">├── media		挂载u盘等临时文件系统</div><div class="line">├── mnt			系统加载文件系统的挂载点</div><div class="line">├── opt			第三方软件安装目录</div><div class="line">├── root		root用户主目录</div><div class="line">├── sbin		系统管理命令</div><div class="line">├── tmp			临时文件存放目录</div><div class="line">├── usr			存放和用户直接相关的文件</div><div class="line">├── var</div></pre></td></tr></table></figure>
+</li>
+<li><p>路径和特殊目录<br>绝对路径，从<code>/</code>根路径开始，比如<code>/root/abc</code>;<br>当前路径，<code>pwd</code>命令可以查看。shell命令执行默认基于当前路径；<br>特殊目录<code>.</code>和<code>..</code>，分别表示当前目录和当前目录的父目录。<br>相对路径，从当前路径开始计算,通常配合<code>.</code>和<code>..</code>使用。</p>
+</li>
+<li><p>文件操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">### 文件创建</div><div class="line">$ touch a.txt  touch一个已存在的文件，会更新其时间戳属性</div><div class="line">$ vi a.txt</div><div class="line">$ echo &apos;XXX&apos; &gt; a.txt</div><div class="line">### 删除文件</div><div class="line">$ rm -f a.txt  	直接删除，不用确认</div><div class="line">### 复制、移动文件</div><div class="line">$ cp a.txt  /home/test/</div><div class="line">$ cp a.txt  /path/to/b.txt  	可以实现重命名</div><div class="line">$ mv a.txt  /path/to/filename</div><div class="line">$ mv a.txt  /path/to/</div><div class="line">### 文件查看</div><div class="line">$ cat readme.txt</div><div class="line">$ cat -n readme.txt		查看文件时显示行号</div><div class="line">$ head readme.txt		默认显示前10行内容</div><div class="line">$ head -n 20 readme.txt 查看前20行内容</div><div class="line">$ tail readme.txt		查看最后10行内容，-n 指定显示的行数目</div><div class="line">$ tail -f error.log     文件不断写入时，可以动态查看文件末尾的内容</div><div class="line">### 改变属主</div><div class="line"># chown john a.txt		改变a的所有者为john用户</div><div class="line"># chown :john a.txt     改变a的所有组为john组</div><div class="line"># chown -R john:john dir_a	递归改变dir_a下所有文件的所有组为john，所有者为john</div><div class="line"># chgrp -R john dir_b 		递归改变所有组</div></pre></td></tr></table></figure>
+</li>
+<li><p>目录操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd /home/				进入到指定目录</div><div class="line">$ mkdir dir_a			创建目录</div><div class="line">$ rm -rf dir_a			删除目录及其包含的全部内容，无需确认</div></pre></td></tr></table></figure>
+</li>
+<li><p>权限和属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># ls -al</div><div class="line">总用量 1712</div><div class="line">drwx------ 27 root root    4096 10月 31 12:54 .</div><div class="line">-rw-------  1 root root   16213 10月 30 22:25 .bash_history</div><div class="line">#第一个字符的含义：d目录，-普通文件，l链接文件，b块文件，</div><div class="line">   				c字符文件，s socket文件，p管道文件</div><div class="line">#接下来的3组 X 3个字符，表示文件所有者，文件所有组和其他用户对该文件的权限</div><div class="line"># rwx为可读、可写、可执行，-表示不拥有该位置的权限 </div><div class="line"># 第二列的数字为连接数，文件为1，目录为其包含的目录数（包括特殊目录.和..）</div><div class="line"># 第三四列 为文件的所有人和所有组</div><div class="line"># 第五列文件大写，第六列文件最近修改时间</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>文件隐藏属性a和i<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># lsattr run_dedicated_servers.sh </div><div class="line">-------------e-- run_dedicated_servers.sh</div><div class="line">## 有13个短横，</div><div class="line"># chattr +a  a.ttx		append,a属性的文件即使root也不能删除，可以追加的方式写文件</div><div class="line"># chattr +i  b.txt      i属性确保文件无法删除写入和改名，常用于关键配置文件</div><div class="line"># man chattr			查看更多</div></pre></td></tr></table></figure></p>
+<p>文件特殊属性SUID/SGID/Sticky<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># ll /usr/bin/passwd </div><div class="line">-rwsr-xr-x 1 root root 54256 3月  29  2016 /usr/bin/passwd*</div><div class="line">### 原本的执行权限x变成了s，表示其他用户可以以文件的所有者身份来执行该文件</div><div class="line">### SGID与SUID类似，都只能用于可执行文件</div><div class="line"># chmod u+s ‘可执行文件’		设置SUID</div><div class="line"># chmod g+s ‘可执行文件’		设置SGID，用的较少</div><div class="line">### Sticky属性用于目录</div><div class="line"># ll -d /tmp</div><div class="line">drwxrwxrwt 26 root root 4096 10月 31 14:24 /tmp/</div><div class="line">### 最后一个t表示，任何人都能在此创建修改文件，但只有owner和root可以删除文件。</div><div class="line"># chmod o+t ‘目录’		添加t属性</div></pre></td></tr></table></figure></p>
+<p>默认权限和umask，用户或系统创建的文件有默认的权限设置，root和普通用户创建文件，权限为644，root的目录为755，普通用户的为775.</p>
+<h3 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h3><ul>
+<li>find<br><code>find PATH -name FILENAME</code></li>
+<li>locate<br>locate查找依赖一个数据库，因此使用之前一般先执行<code>updatedb</code>。</li>
+<li>which/whereis 查找可执行文件<br><code>which command</code>可以找到命令所在位置，which在path路径中查找。whereis同时给出相关man文件。</li>
+</ul>
+<h3 id="文件压缩解压"><a href="#文件压缩解压" class="headerlink" title="文件压缩解压"></a>文件压缩解压</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># gzip a.txt		压缩成gz格式压缩包</div><div class="line"># gunzip a.txt.gz 	解压</div><div class="line"># tar -zcvf a.tar.gz  /home/a	创建压缩文件</div><div class="line">### 参数z，使用gzip压缩；参数c，创建压缩文件；参数f，使用文件名；参数v，详情模式；</div><div class="line"># tar -zxvf a.tar.gz -C /tmp     	-C 指定解压到的目录</div><div class="line"># bzip2 -z  a		压缩得到bz2格式的压缩包</div><div class="line"># bzip2 -d  a.bz2   解压文件</div></pre></td></tr></table></figure>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="磁盘分区，文件系统的挂载和卸载"><a href="#磁盘分区，文件系统的挂载和卸载" class="headerlink" title="磁盘分区，文件系统的挂载和卸载"></a>磁盘分区，文件系统的挂载和卸载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># fdisk -l 				查看磁盘设备和分区</div><div class="line"># mount DEVICE MOUNT_POINT		将设备挂载到指定位置</div><div class="line">### 设备自动挂载，在/etc/fstab中配置</div><div class="line"># df -h					查看磁盘使用情况</div></pre></td></tr></table></figure>
+<h3 id="linux逻辑卷"><a href="#linux逻辑卷" class="headerlink" title="linux逻辑卷"></a>linux逻辑卷</h3><h3 id="硬链接和软链接"><a href="#硬链接和软链接" class="headerlink" title="硬链接和软链接"></a>硬链接和软链接</h3><p>硬链接：多个文件名指向同一个文件的inode索引节点，使得一个文件拥有多个合法的路径。<br>删除一个硬链接不会影响其他的硬链接和文件本身。<br>目录无法创建硬链接，不同文件系统/分区之间不能建立硬链接。<br><code>ln &#39;源文件&#39; &#39;新建硬链接文件&#39;</code><br>软连接：包含指向另一个文件的路径，类似windows的快捷方式。<br><code>ln -s &#39;源文件&#39; &#39;新建软连接&#39;</code></p>
+<h2 id="字符处理"><a href="#字符处理" class="headerlink" title="字符处理"></a>字符处理</h2><h3 id="管道和grep"><a href="#管道和grep" class="headerlink" title="管道和grep"></a>管道和grep</h3><p>管道连接符<code>command1 | command2</code>，将command1的输出作为command2的输入。<br>grep文本搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cat a.txt | grep &apos;name&apos; 		打印含有name的行</div><div class="line">$ grep [-ivnc] &apos;search_str&apos; CONTENT/FILE</div><div class="line">### i忽略大小写，v反向选择，n同时输出行号，c统计匹配的行数</div></pre></td></tr></table></figure></p>
+<h3 id="sort排序和uniq去重"><a href="#sort排序和uniq去重" class="headerlink" title="sort排序和uniq去重"></a>sort排序和uniq去重</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">### sort参数，-t指定分割符，k排序的列，n以数字排序，默认是字符排序，r反向排序，即降序</div><div class="line"># sort -t &apos;:&apos; -k 3 -n /etc/passwd </div><div class="line">daemon:*:1:1:daemon:/usr/sbin:/usr/sbin/nologin</div><div class="line">bin:*:2:2:bin:/bin:/usr/sbin/nologin</div><div class="line">sys:*:3:3:sys:/dev:/usr/sbin/nologin</div><div class="line">sync:*:4:65534:sync:/bin:/bin/sync</div><div class="line">games:*:5:60:games:/usr/games:/usr/sbin/nologin</div><div class="line">man:*:6:12:man:/var/cache/man:/usr/sbin/nologin</div><div class="line">lp:*:7:7:lp:/var/spool/lpd:/usr/sbin/nologin</div><div class="line">### uniq只能去除连续重复的行，因此一般配合sort使用</div><div class="line"># uniq -ic CONTENT 		忽略大小写，输出该行重复的次数</div></pre></td></tr></table></figure>
+<h3 id="cut、tr、paste、split"><a href="#cut、tr、paste、split" class="headerlink" title="cut、tr、paste、split"></a>cut、tr、paste、split</h3><h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><h3 id="网络配置和dns配置"><a href="#网络配置和dns配置" class="headerlink" title="网络配置和dns配置"></a>网络配置和dns配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$ ifconfig 			查看网卡信息</div><div class="line">eth0    Link encap:以太网  硬件地址 f4:8e:38:b8:1e:fd  </div><div class="line">          inet 地址:172.16.27.118  广播:172.16.27.255  掩码:255.255.252.0</div><div class="line">          inet6 地址: fe80::ec5d:eb79:5e03:112/64 Scope:Link</div><div class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  跃点数:1</div><div class="line">          接收数据包:1002 错误:0 丢弃:3 过载:0 帧数:0</div><div class="line">          发送数据包:147 错误:0 丢弃:0 过载:0 载波:0</div><div class="line">          碰撞:0 发送队列长度:1000 </div><div class="line">          接收字节:107932 (107.9 KB)  发送字节:18302 (18.3 KB)</div><div class="line">eth1	***</div><div class="line">lo		***</div><div class="line">wlan	***</div><div class="line">$ ifconfig eth0		查看指定网卡</div><div class="line">### 	ifconfig动态修改网卡的配置，重启后失效</div><div class="line"># ifconfig eth0	 192.168.159.130  netmask 255.255.255.0</div><div class="line"># ifconfig eth0  192.168.159.130/24		指定eth0的ip和子网</div><div class="line"># ifconfig eth0  down		停用网卡</div><div class="line"># ifconfig eth0  up			启用网卡</div><div class="line"># ifdown/ifup  eth0			效果同上</div><div class="line"># route add/del default gw 192.168.8.1 修改网关</div></pre></td></tr></table></figure>
+<p>修改网卡配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/etc/network/interfaces文件默认的内容如下： </div><div class="line">auto lo </div><div class="line">iface lo inet loopback </div><div class="line">在后面添加内容 </div><div class="line">1、获取动态配置： </div><div class="line">auto eth0 </div><div class="line">iface eth0 inet dhcp </div><div class="line">2、获取静态配置： </div><div class="line">auto eth0 </div><div class="line">iface eth0 inet static </div><div class="line">address 192.168.0.1 </div><div class="line">netmask 255.255.255.0 </div><div class="line">gateway 192.168.0.1 </div><div class="line">重启networking服务</div></pre></td></tr></table></figure></p>
+<p>修改DNS配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">永久修改网卡DNS</div><div class="line">sudo –i</div><div class="line">cd /etc/resolvconf/resolv.conf.d</div><div class="line">vim base</div><div class="line">添加如下内容</div><div class="line">nameserver 8.8.8.8</div><div class="line">nameserver 8.8.4.4</div></pre></td></tr></table></figure></p>
+<h3 id="网络测试"><a href="#网络测试" class="headerlink" title="网络测试"></a>网络测试</h3><ul>
+<li>ping<br>发icmp echo请求，判断主机是否可达</li>
+<li>host<br>host命令查询DNS记录</li>
+<li>traceroute<br>追溯数据包所经过的路由</li>
+<li>网络故障排查<br>1、ping 127.0.0.1 判断网卡工作是否正常，tcp/ip协议栈出问题<br>2、ping 本机ip    判断本地设备驱动/物理端口<br>3、ping 同网段其他主机 看交换机是否正常<br>4、ping 网关ip<br>5、ping 公网ip ，本地路由，nat<br>6、ping 公网域名   dns设置是否正确</li>
+</ul>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ps aux 		显示所有包含其他使用者的有效进程</div><div class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</div><div class="line">root         1  0.0  0.1 119732  5812 ?        Ss   16:49   0:01 /sbin/init splash</div><div class="line">root         2  0.0  0.0      0     0 ?        S    16:49   0:00 [kthreadd]</div><div class="line"># top			查看结果是实时动态变化的</div><div class="line"># 按下O，大写的，进入排序过滤器，然后</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#### 先查看要杀死进程的PID</div><div class="line"># ps -ef | grep &apos;ssh&apos;</div><div class="line">root       975     1  0 16:49 ?        00:00:00 /usr/sbin/sshd -D</div><div class="line">root      3291   975  0 16:50 ?        00:00:00 sshd: root@pts/8</div><div class="line">root      4873  3782  0 20:05 pts/8    00:00:00 grep --color=auto ssh</div><div class="line"># pidof sshd</div><div class="line">3291 975</div><div class="line"># kill 3291			停止pid = 3291的进程</div><div class="line"># kill -1 pid       1重启，9强制退出，15正常退出（默认）</div><div class="line"># killall sshd 		停止进程，跟进程名</div></pre></td></tr></table></figure>
+<h3 id="查询进程打开的文件"><a href="#查询进程打开的文件" class="headerlink" title="查询进程打开的文件"></a>查询进程打开的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># lsof -i:22		查询打开22端口的进程</div><div class="line">COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</div><div class="line">sshd     975 root    3u  IPv4  19938      0t0  TCP *:ssh (LISTEN)</div><div class="line">sshd     975 root    4u  IPv6  19940      0t0  TCP *:ssh (LISTEN)</div><div class="line"></div><div class="line"># lsof -c sshd		显示COMMAND中包含指定字符串的进程所打开的全部文件</div><div class="line">COMMAND  PID USER   FD   TYPE             DEVICE SIZE/OFF     NODE NAME</div><div class="line">sshd     975 root  cwd    DIR                8,2     4096        2 /</div><div class="line">sshd     975 root  rtd    DIR                8,2     4096        2 /</div><div class="line">sshd     975 root  txt    REG                8,2   799216 12328642 /usr/sbin/</div><div class="line"># lsof FILENAME		显示所有打开FILENAME文件的进程</div></pre></td></tr></table></figure>
+<h3 id="进程优先级调整：nice、renice"><a href="#进程优先级调整：nice、renice" class="headerlink" title="进程优先级调整：nice、renice"></a>进程优先级调整：nice、renice</h3><p>使用top时，可以看到进程的NI、PR字段。<br>NI表示进程优先级，取值-20~19，默认为0。普通用户可以设置进程NI值0~19.<br>PR是动态优先级，系统进程调用采取的’动态优先级‘调度算法。<br>最终程序的优先级是NI+PR，定义和修改进程优先级<code>nice</code>和<code>renice</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># top</div><div class="line">PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND</div><div class="line"> 1 root      20   0  119732   5812   3904 S   0.0  0.1   0:01.58 systemd</div><div class="line"># nice -n -12 ./job.sh		设定程序运行时的优先级为-12</div><div class="line"># renice -10 -p 5555 		将优先级调整为-10</div></pre></td></tr></table></figure></p>
+<h2 id="编译、安装软件"><a href="#编译、安装软件" class="headerlink" title="编译、安装软件"></a>编译、安装软件</h2><h3 id="安装包管理器"><a href="#安装包管理器" class="headerlink" title="安装包管理器"></a>安装包管理器</h3><h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><h2 id="执行定时任务"><a href="#执行定时任务" class="headerlink" title="执行定时任务"></a>执行定时任务</h2><ul>
+<li>at</li>
+<li>crontab</li>
+<li>screen</li>
+</ul>
+<h2 id="正则表达式与sed、awk"><a href="#正则表达式与sed、awk" class="headerlink" title="正则表达式与sed、awk"></a>正则表达式与sed、awk</h2><h2 id="vi和vim"><a href="#vi和vim" class="headerlink" title="vi和vim"></a>vi和vim</h2><p>单独讲</p>
+<h2 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h2><p>单独讲</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/linux/">linux</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2016/07/06/技术/study-of-python-3/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2016/07/04/技术/study-of-python-2/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

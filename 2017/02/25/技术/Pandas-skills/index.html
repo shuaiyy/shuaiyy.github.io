@@ -1,0 +1,963 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Pandas学习笔记 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="Pandas数据结构基本功能汇总和计算描述统计处理缺失数据层次化索引其他123from pandas import DataFrame, Seriesimport pandas as pdimport numpy as np
+Series12345678910# series类似一维数组，由一组数据">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Pandas学习笔记"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-02-24T16:00:00.000Z"><a href="/2017/02/25/技术/Pandas-skills/">2017-02-25</a></time>
+      
+      
+  
+    <h1 class="title">Pandas学习笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Pandas数据结构"><span class="toc-text">Pandas数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本功能"><span class="toc-text">基本功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#汇总和计算描述统计"><span class="toc-text">汇总和计算描述统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理缺失数据"><span class="toc-text">处理缺失数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#层次化索引"><span class="toc-text">层次化索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Series"><span class="toc-text">Series</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DataFrame"><span class="toc-text">DataFrame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可以用于构造DataFrame的数据"><span class="toc-text">可以用于构造DataFrame的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引对象"><span class="toc-text">索引对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引、选取和过滤"><span class="toc-text">索引、选取和过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算数运算和数据对齐"><span class="toc-text">算数运算和数据对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数应用和映射"><span class="toc-text">函数应用和映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序和排名"><span class="toc-text">排序和排名</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <h1 id="Pandas数据结构"><a href="#Pandas数据结构" class="headerlink" title="Pandas数据结构"></a>Pandas数据结构</h1><h3 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h3><h3 id="汇总和计算描述统计"><a href="#汇总和计算描述统计" class="headerlink" title="汇总和计算描述统计"></a>汇总和计算描述统计</h3><h3 id="处理缺失数据"><a href="#处理缺失数据" class="headerlink" title="处理缺失数据"></a>处理缺失数据</h3><h3 id="层次化索引"><a href="#层次化索引" class="headerlink" title="层次化索引"></a>层次化索引</h3><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame, Series</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure>
+<h3 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># series类似一维数组，由一组数据和数据的标签（索引）组成</span></div><div class="line">s = Series([<span class="number">11</span>, <span class="number">32</span>, <span class="number">-223</span>, <span class="number">114</span>])</div><div class="line"><span class="keyword">print</span> s</div><div class="line"><span class="keyword">print</span> s.index</div><div class="line"><span class="keyword">print</span> s.values</div><div class="line"><span class="comment"># 索引可以直接赋值修改</span></div><div class="line">s.index = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</div><div class="line"><span class="keyword">print</span> s</div><div class="line">s2 = Series([<span class="number">11</span>, <span class="number">32</span>, <span class="number">-223</span>, <span class="number">114</span>], index=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>])</div><div class="line"><span class="keyword">print</span> s2[<span class="string">'a'</span>], <span class="string">'\n'</span>, s2[[<span class="string">'a'</span>, <span class="string">'d'</span>]]</div></pre></td></tr></table></figure>
+<pre><code>0     11
+1     32
+2   -223
+3    114
+dtype: int64
+RangeIndex(start=0, stop=4, step=1)
+[  11   32 -223  114]
+a     11
+b     32
+c   -223
+d    114
+dtype: int64
+11 
+a     11
+d    114
+dtype: int64
+</code></pre><p><strong>Numpy数组运算的结果会保留索引和值之间的链接</strong></p>
+<p>根据布尔型数组进行过滤，标量乘法，数学函数等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> s2 &gt; <span class="number">11</span>  <span class="comment">## 得到布尔型数组</span></div><div class="line"><span class="keyword">print</span> s2[s2 &gt; <span class="number">11</span>] <span class="comment">## 根据布尔型数组筛选对应为true的元素</span></div><div class="line"></div><div class="line"><span class="comment">## 可以将series理解为定长字典，因为是key-value的对应关系，series也可以由字典对象创建</span></div><div class="line">d = &#123;<span class="string">'Alice'</span>: <span class="number">98</span>, <span class="string">'Bob'</span>: <span class="number">87</span>, <span class="string">'Cc'</span>: <span class="number">67</span>&#125;</div><div class="line">score1 = Series(d)</div><div class="line"><span class="keyword">print</span> score1</div><div class="line"><span class="keyword">print</span> <span class="string">'Alice'</span> <span class="keyword">in</span> score1</div><div class="line"><span class="comment">## 同时传入字典和index索引</span></div><div class="line">student = [<span class="string">'Alice'</span>, <span class="string">'Cc'</span>, <span class="string">'Sam'</span>, <span class="string">'Wandou'</span>]</div><div class="line">score2 = Series(d, index=student) <span class="comment"># 会根据index查找字典中相应的数据，找不到的对应index的值为NaN，表示缺失或非数字</span></div><div class="line"><span class="keyword">print</span> score2</div><div class="line"><span class="keyword">print</span> score2.isnull()</div><div class="line"><span class="keyword">print</span> score2.notnull()</div></pre></td></tr></table></figure>
+<pre><code>a    False
+b     True
+c    False
+d     True
+dtype: bool
+b     32
+d    114
+dtype: int64
+Alice    98
+Bob      87
+Cc       67
+dtype: int64
+True
+Alice     98.0
+Cc        67.0
+Sam        NaN
+Wandou     NaN
+dtype: float64
+Alice     False
+Cc        False
+Sam        True
+Wandou     True
+dtype: bool
+Alice      True
+Cc         True
+Sam       False
+Wandou    False
+dtype: bool
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 在算术运算中，会自动对其不同索引的数据</span></div><div class="line"><span class="keyword">print</span> score1, score2</div><div class="line"><span class="keyword">print</span> score1 + score2 </div><div class="line"></div><div class="line"><span class="comment">## 索引和数据都有一个name属性</span></div><div class="line">score2.name = <span class="string">'score'</span></div><div class="line">score2.index.name = <span class="string">'name'</span></div><div class="line"><span class="keyword">print</span> score2</div></pre></td></tr></table></figure>
+<pre><code>Alice    98
+Bob      87
+Cc       67
+dtype: int64 Alice     98.0
+Cc        67.0
+Sam        NaN
+Wandou     NaN
+dtype: float64
+Alice     196.0
+Bob         NaN
+Cc        134.0
+Sam         NaN
+Wandou      NaN
+dtype: float64
+name
+Alice     98.0
+Cc        67.0
+Sam        NaN
+Wandou     NaN
+Name: score, dtype: float64
+</code></pre><h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3><p>dataframe是一种表格型的数据结构，含有一组有序的列，每列的数值类型可以不同。<br>dataframe既有行索引，又有列索引，可以看做Series组成的字典。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 构建DataFrame，传入等长的列表或Numpy数组</span></div><div class="line">province = [<span class="string">'Beijing'</span>, <span class="string">'Shandong'</span>, <span class="string">'Shanghai'</span>, <span class="string">'Hubei'</span>, <span class="string">'Hunan'</span>]</div><div class="line">area = [<span class="number">50</span>, <span class="number">156</span>, <span class="number">300</span>, <span class="number">250</span>, <span class="number">260</span>]</div><div class="line">pop = [<span class="number">5000</span>, <span class="number">16000</span>, <span class="number">9000</span>, <span class="number">10000</span>, <span class="number">8000</span>]</div><div class="line">data = &#123;<span class="string">'province'</span>: province, <span class="string">'people'</span>: pop, <span class="string">'area'</span>: area&#125;</div><div class="line">frame1 = DataFrame(data)</div><div class="line"><span class="keyword">print</span> frame1</div><div class="line"><span class="comment"># 指定列的排列顺序</span></div><div class="line">frame2 = DataFrame(data, columns=[<span class="string">'province'</span>, <span class="string">'area'</span>, <span class="string">'people'</span>])</div><div class="line"><span class="keyword">print</span> frame2</div><div class="line"><span class="comment"># 加入自定义索引</span></div><div class="line">frame3 = DataFrame(data, columns=[<span class="string">'province'</span>, <span class="string">'area'</span>, <span class="string">'people'</span>], index=data[<span class="string">'province'</span>])</div><div class="line"><span class="keyword">print</span> frame3</div><div class="line"><span class="comment"># 获取列</span></div><div class="line"><span class="keyword">print</span> frame3[<span class="string">'area'</span>]</div><div class="line"><span class="keyword">print</span> frame3.area</div><div class="line"><span class="comment"># 获取行</span></div><div class="line"><span class="keyword">print</span> frame3.ix[<span class="string">'Shandong'</span>]</div><div class="line"><span class="comment"># 添加一列或修改一列，</span></div><div class="line">frame3[<span class="string">'GDP_Unit'</span>] = <span class="string">'亿元'</span>  <span class="comment"># 一列所有数据都改为该值</span></div><div class="line">frame3[<span class="string">'GDP'</span>] = [<span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>,  <span class="number">180</span>, <span class="number">190</span>] </div><div class="line"><span class="keyword">print</span> frame3</div><div class="line">frame3.GDP = Series(&#123;<span class="string">'Beijing'</span>: <span class="number">0</span>, <span class="string">'Shandong'</span>: <span class="number">-1</span>, <span class="string">'Shanghai'</span>: <span class="number">2</span>, <span class="string">'hah'</span>: <span class="number">90</span>&#125;)</div><div class="line"><span class="keyword">print</span> frame3</div><div class="line"><span class="comment"># 如果值是列表，要等长。</span></div><div class="line"><span class="comment"># 如果是Series，则严格按照Series的索引赋值该列，series中无相应index的，frame中该值改为Na</span></div></pre></td></tr></table></figure>
+<pre><code>   area  people  province
+0    50    5000   Beijing
+1   156   16000  Shandong
+2   300    9000  Shanghai
+3   250   10000     Hubei
+4   260    8000     Hunan
+   province  area  people
+0   Beijing    50    5000
+1  Shandong   156   16000
+2  Shanghai   300    9000
+3     Hubei   250   10000
+4     Hunan   260    8000
+          province  area  people
+Beijing    Beijing    50    5000
+Shandong  Shandong   156   16000
+Shanghai  Shanghai   300    9000
+Hubei        Hubei   250   10000
+Hunan        Hunan   260    8000
+Beijing      50
+Shandong    156
+Shanghai    300
+Hubei       250
+Hunan       260
+Name: area, dtype: int64
+Beijing      50
+Shandong    156
+Shanghai    300
+Hubei       250
+Hunan       260
+Name: area, dtype: int64
+province    Shandong
+area             156
+people         16000
+Name: Shandong, dtype: object
+          province  area  people GDP_Unit  GDP
+Beijing    Beijing    50    5000       亿元  150
+Shandong  Shandong   156   16000       亿元  160
+Shanghai  Shanghai   300    9000       亿元  170
+Hubei        Hubei   250   10000       亿元  180
+Hunan        Hunan   260    8000       亿元  190
+          province  area  people GDP_Unit  GDP
+Beijing    Beijing    50    5000       亿元  0.0
+Shandong  Shandong   156   16000       亿元 -1.0
+Shanghai  Shanghai   300    9000       亿元  2.0
+Hubei        Hubei   250   10000       亿元  NaN
+Hunan        Hunan   260    8000       亿元  NaN
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">frame3.GDP.isnull()</div></pre></td></tr></table></figure>
+<pre><code>Beijing     False
+Shandong    False
+Shanghai    False
+Hubei        True
+Hunan        True
+Name: GDP, dtype: bool
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 删除一列</span></div><div class="line"><span class="keyword">del</span> frame3[<span class="string">'GDP'</span>]</div><div class="line"><span class="keyword">print</span> frame3.columns</div></pre></td></tr></table></figure>
+<pre><code>Index([u&apos;province&apos;, u&apos;area&apos;, u&apos;people&apos;, u&apos;GDP_Unit&apos;], dtype=&apos;object&apos;)
+</code></pre><p>​    </p>
+<p><strong>使用嵌套字典创建dataframe</strong></p>
+<p>外层的字典key作为列索引，内层的字典key作为行索引。<br>frame可以转置。内层的字典key会被合并、排序最终成为行索引，显示指定了index的除外</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">data = &#123;<span class="string">'province'</span>: &#123;<span class="string">'Shandong'</span>: <span class="string">'Shangdong'</span>, <span class="string">'Beijing'</span>: <span class="string">'Beijing'</span>, <span class="string">'Hubei'</span>: <span class="string">'Hubei'</span>&#125;,</div><div class="line">        <span class="string">'GDP'</span>: &#123;<span class="string">'Shanghai'</span>: <span class="number">15000</span>, <span class="string">'Shandong'</span>: <span class="number">20000</span>, <span class="string">'Hubei'</span>: <span class="number">7000</span>&#125;,</div><div class="line">        <span class="string">'people'</span>: &#123;<span class="string">'Shandong'</span>: <span class="number">100000</span>, <span class="string">'Hubei'</span>: <span class="number">20000</span>&#125;</div><div class="line">       &#125;</div><div class="line">frame = DataFrame(data)  <span class="comment">## 缺省的值设为NaN</span></div><div class="line"><span class="keyword">print</span> frame</div><div class="line">frame = DataFrame(data, index=[<span class="string">'Guangzhou'</span>, <span class="string">'Beijing'</span>, <span class="string">'Shanghai'</span>, <span class="string">'Shandong'</span>])</div><div class="line"><span class="keyword">print</span> frame</div><div class="line"><span class="keyword">print</span> frame.T</div></pre></td></tr></table></figure>
+<pre><code>              GDP    people   province
+Beijing       NaN       NaN    Beijing
+Hubei      7000.0   20000.0      Hubei
+Shandong  20000.0  100000.0  Shangdong
+Shanghai  15000.0       NaN        NaN
+               GDP    people   province
+Guangzhou      NaN       NaN        NaN
+Beijing        NaN       NaN    Beijing
+Shanghai   15000.0       NaN        NaN
+Shandong   20000.0  100000.0  Shangdong
+         Guangzhou  Beijing Shanghai   Shandong
+GDP            NaN      NaN    15000      20000
+people         NaN      NaN      NaN     100000
+province       NaN  Beijing      NaN  Shangdong
+</code></pre><h3 id="可以用于构造DataFrame的数据"><a href="#可以用于构造DataFrame的数据" class="headerlink" title="可以用于构造DataFrame的数据"></a>可以用于构造DataFrame的数据</h3><ul>
+<li>二维ndarray</li>
+<li>值为数组，列表或元组的字典， 每个数据序列必须等长，作为dataframe的一列</li>
+<li>值为Series的字典， 每个series成为frame的一列，如果没有指定index索引，则series内的索引会成为行索引</li>
+<li>嵌套字典</li>
+<li>。。。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">frame3.values  <span class="comment">## frame的values是ndarray， ndarray的数据类型会选择能兼容各列数据的类型</span></div></pre></td></tr></table></figure>
+<pre><code>array([[&apos;Beijing&apos;, 50L, 5000L, &apos;\xe4\xba\xbf\xe5\x85\x83&apos;],
+       [&apos;Shandong&apos;, 156L, 16000L, &apos;\xe4\xba\xbf\xe5\x85\x83&apos;],
+       [&apos;Shanghai&apos;, 300L, 9000L, &apos;\xe4\xba\xbf\xe5\x85\x83&apos;],
+       [&apos;Hubei&apos;, 250L, 10000L, &apos;\xe4\xba\xbf\xe5\x85\x83&apos;],
+       [&apos;Hunan&apos;, 260L, 8000L, &apos;\xe4\xba\xbf\xe5\x85\x83&apos;]], dtype=object)
+</code></pre><h3 id="索引对象"><a href="#索引对象" class="headerlink" title="索引对象"></a>索引对象</h3><p>Index对象的值是不能不被修改的<br>包含的方法有</p>
+<ul>
+<li>append 连接一个index对象</li>
+<li>diff 计算差集，并得到一个index</li>
+<li>intersect 计算交集</li>
+<li>union 计算并集</li>
+<li>isin 计算index各值是否在给定的集合内，返回一个布尔型数组</li>
+<li>delete 删除索引i处的元素，并得到新的index</li>
+<li>drop</li>
+<li>insert</li>
+<li>is_monotonic 是否单调</li>
+<li>is_unique  是否有重复值</li>
+<li>unique  计算index中唯一值得数组</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 重新索引对象, 生成新的series或frame</span></div><div class="line"><span class="keyword">print</span> s.index</div><div class="line">q = s.reindex([<span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>]) </div><div class="line"><span class="comment"># 另外一个可选参数，fill_value=0设置默认值或method='填充方法'，ffill、pad向前填充，bfill或backfill向后填充</span></div><div class="line"><span class="keyword">print</span> q</div><div class="line">p = frame3.reindex(index=[], columns=[], method=<span class="string">'ffill'</span>) <span class="comment"># 可以同时重新index和column，值填充只能按行应用</span></div></pre></td></tr></table></figure>
+<pre><code>Index([u&apos;a&apos;, u&apos;b&apos;, u&apos;c&apos;, u&apos;d&apos;], dtype=&apos;object&apos;)
+e      NaN
+d    114.0
+c   -223.0
+b     32.0
+a     11.0
+dtype: float64
+</code></pre><h3 id="索引、选取和过滤"><a href="#索引、选取和过滤" class="headerlink" title="索引、选取和过滤"></a>索引、选取和过滤</h3><ul>
+<li>行列索引</li>
+<li>布尔型dataframe索引</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> frame3[<span class="string">'area'</span>]</div><div class="line"><span class="keyword">print</span> frame3[:<span class="number">4</span>]  <span class="comment"># 选取的列</span></div><div class="line"><span class="keyword">print</span> frame3[frame3[<span class="string">'area'</span>] &gt; <span class="number">160</span>]  <span class="comment"># 根据布尔型选取</span></div><div class="line">frame3.ix[:<span class="number">2</span>, [<span class="string">'area'</span>, <span class="string">'people'</span>]] <span class="comment"># 同时选取行和列</span></div></pre></td></tr></table></figure>
+<pre><code>Beijing      50
+Shandong    156
+Shanghai    300
+Hubei       250
+Hunan       260
+Name: area, dtype: int64
+          province  area  people GDP_Unit
+Beijing    Beijing    50    5000       亿元
+Shandong  Shandong   156   16000       亿元
+Shanghai  Shanghai   300    9000       亿元
+Hubei        Hubei   250   10000       亿元
+          province  area  people GDP_Unit
+Shanghai  Shanghai   300    9000       亿元
+Hubei        Hubei   250   10000       亿元
+Hunan        Hunan   260    8000       亿元
+</code></pre><div><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>area</th><br>      <th>people</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>Beijing</th><br>      <td>50</td><br>      <td>5000</td><br>    </tr><br>    <tr><br>      <th>Shandong</th><br>      <td>156</td><br>      <td>16000</td><br>    </tr><br>  </tbody><br></table><br></div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> frame3.iloc[<span class="number">1</span>,:<span class="number">2</span>] <span class="comment"># 根据位置整数选取</span></div><div class="line"><span class="keyword">print</span> frame3.loc[:, [<span class="string">'area'</span>, <span class="string">'people'</span>]] <span class="comment"># 同时根据行列lable选取</span></div></pre></td></tr></table></figure>
+<pre><code>province    Shandong
+area             156
+Name: Shandong, dtype: object
+          area  people
+Beijing     50    5000
+Shandong   156   16000
+Shanghai   300    9000
+Hubei      250   10000
+Hunan      260    8000
+</code></pre><h3 id="算数运算和数据对齐"><a href="#算数运算和数据对齐" class="headerlink" title="算数运算和数据对齐"></a>算数运算和数据对齐</h3><p>计算是在两个对象索引的并集上运算，相同索引的值进行运算，不重叠的索引处引入NaN值。缺省值NaN在运算中会传播。<br>在运算add、sub、div、mul中传入参数fill_value=0可以指定一个填充值。<br>DataFrame和Series进行运算时，会产生广播。</p>
+<h3 id="函数应用和映射"><a href="#函数应用和映射" class="headerlink" title="函数应用和映射"></a>函数应用和映射</h3><p>Numpy的元素级函数可用于操作Pandas对象</p>
+<ul>
+<li>np.abs(frame) 和其他函数</li>
+<li>frame.apply(funcs)</li>
+<li>frame.applymap(funcs)</li>
+<li>series.map()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">frame = DataFrame(np.random.randn(<span class="number">4</span>, <span class="number">3</span>), columns=list(<span class="string">'abc'</span>), index=range(<span class="number">1</span>, <span class="number">5</span>))</div><div class="line">frame2 = np.abs(frame)</div><div class="line"><span class="keyword">print</span> frame</div><div class="line"><span class="keyword">print</span> frame2</div><div class="line">f1 = <span class="keyword">lambda</span> x: x.max()</div><div class="line"><span class="keyword">print</span> frame.apply(f1)   <span class="comment"># 将函数应用到frame的列</span></div><div class="line"><span class="keyword">print</span> frame.max() <span class="comment">## 很多统计函数已被实现，没必要用apply</span></div><div class="line"><span class="keyword">print</span> frame.apply(f1, axis=<span class="number">1</span>)  <span class="comment"># 将函数应用于frame的行</span></div><div class="line"><span class="comment">## apply的函数除了返回值外，也可返回多个值组成的series，frame</span></div><div class="line">f2 = <span class="keyword">lambda</span> x: Series([x.min(), x.max()], index=[<span class="string">'min'</span>, <span class="string">'max'</span>])</div><div class="line"><span class="keyword">print</span> frame.apply(f2)</div><div class="line"><span class="comment">## 如果要在元素级上应用函数，frame使用applymap(),series使用map()</span></div><div class="line">f3 = <span class="keyword">lambda</span> x: <span class="string">'%.2f'</span> %x</div><div class="line"><span class="keyword">print</span> frame.applymap(f3)</div><div class="line"><span class="keyword">print</span> frame.a.map(f3)</div></pre></td></tr></table></figure>
+<pre><code>          a         b         c
+1  0.811815  0.501822  0.225176
+2  0.171434 -1.446678  0.148284
+3 -0.187686 -1.017413  1.145296
+4 -0.596069 -0.376504 -0.298326
+          a         b         c
+1  0.811815  0.501822  0.225176
+2  0.171434  1.446678  0.148284
+3  0.187686  1.017413  1.145296
+4  0.596069  0.376504  0.298326
+a    0.811815
+b    0.501822
+c    1.145296
+dtype: float64
+a    0.811815
+b    0.501822
+c    1.145296
+dtype: float64
+1    0.811815
+2    0.171434
+3    1.145296
+4   -0.298326
+dtype: float64
+            a         b         c
+min -0.596069 -1.446678 -0.298326
+max  0.811815  0.501822  1.145296
+       a      b      c
+1   0.81   0.50   0.23
+2   0.17  -1.45   0.15
+3  -0.19  -1.02   1.15
+4  -0.60  -0.38  -0.30
+1     0.81
+2     0.17
+3    -0.19
+4    -0.60
+Name: a, dtype: object
+</code></pre><h3 id="排序和排名"><a href="#排序和排名" class="headerlink" title="排序和排名"></a>排序和排名</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">s = Series(range(<span class="number">5</span>), index=list(<span class="string">'qwert'</span>))</div><div class="line"><span class="keyword">print</span> s.sort_index(ascending=<span class="keyword">False</span>)</div><div class="line"><span class="keyword">print</span> s.sort_values(ascending=<span class="keyword">False</span>)  <span class="comment"># 缺省值会排序放到最后</span></div><div class="line"><span class="keyword">print</span> frame.sort_index(axis=<span class="number">1</span>, ascending=<span class="keyword">False</span>)</div><div class="line"><span class="keyword">print</span> frame.sort_values(<span class="string">'a'</span>)</div><div class="line"><span class="keyword">print</span> frame.rank(method=<span class="string">'first'</span>)</div></pre></td></tr></table></figure>
+<pre><code>w    1
+t    4
+r    3
+q    0
+e    2
+dtype: int64
+t    4
+r    3
+e    2
+w    1
+q    0
+dtype: int64
+          c         b         a
+1  0.225176  0.501822  0.811815
+2  0.148284 -1.446678  0.171434
+3  1.145296 -1.017413 -0.187686
+4 -0.298326 -0.376504 -0.596069
+          a         b         c
+4 -0.596069 -0.376504 -0.298326
+3 -0.187686 -1.017413  1.145296
+2  0.171434 -1.446678  0.148284
+1  0.811815  0.501822  0.225176
+     a    b    c
+1  4.0  4.0  3.0
+2  3.0  1.0  2.0
+3  2.0  2.0  4.0
+4  1.0  3.0  1.0
+</code></pre><p><strong>Index索引可以是重复的</strong></p>
+<p>选取了重复index的数据，返回的时series，非重复的直接返回其值<br>frame的index也是可以重复的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s = Series(range(<span class="number">5</span>), index=list(<span class="string">'qaqaz'</span>))</div><div class="line"><span class="keyword">print</span> s.a</div><div class="line"><span class="keyword">print</span> s.z</div></pre></td></tr></table></figure>
+<pre><code>a    1
+a    3
+dtype: int64
+4
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/pandas/">pandas</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Python/">Python</a>, <a href="/tags/Pandas/">Pandas</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/02/26/技术/use-matplotlib/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/02/16/技术/scrapy-image-download/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

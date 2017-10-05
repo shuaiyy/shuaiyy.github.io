@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Scrapy_redis源码阅读 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="scapy-redis 源码阅读connection.py
+创建redis连接实例
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Scrapy_redis源码阅读"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-02-28T16:00:00.000Z"><a href="/2017/03/01/技术/scapy-redis源码阅读/">2017-03-01</a></time>
+      
+      
+  
+    <h1 class="title">Scrapy_redis源码阅读</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#scapy-redis-源码阅读"><span class="toc-text">scapy-redis 源码阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#connection-py"><span class="toc-text">connection.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dupefilter-py"><span class="toc-text">dupefilter.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#picklecompat-py"><span class="toc-text">picklecompat.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pipelines-py"><span class="toc-text">pipelines.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue-py"><span class="toc-text">Queue.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scheduler-py"><span class="toc-text">scheduler.py</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spiders-py"><span class="toc-text">spiders.py</span></a></li></ol></li></ol>
+    </div>
+
+      
+        <h2 id="scapy-redis-源码阅读"><a href="#scapy-redis-源码阅读" class="headerlink" title="scapy-redis 源码阅读"></a>scapy-redis 源码阅读</h2><h3 id="connection-py"><a href="#connection-py" class="headerlink" title="connection.py"></a>connection.py</h3><blockquote>
+<p>创建redis连接实例</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> six</div><div class="line"><span class="keyword">from</span> scrapy.utils.misc <span class="keyword">import</span> load_object  <span class="comment">#  加载对象</span></div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> defaults</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Shortcut maps 'setting name' -&gt; 'parmater name'.</span></div><div class="line">SETTINGS_PARAMS_MAP = &#123;</div><div class="line">    <span class="string">'REDIS_URL'</span>: <span class="string">'url'</span>,</div><div class="line">    <span class="string">'REDIS_HOST'</span>: <span class="string">'host'</span>,</div><div class="line">    <span class="string">'REDIS_PORT'</span>: <span class="string">'port'</span>,</div><div class="line">    <span class="string">'REDIS_ENCODING'</span>: <span class="string">'encoding'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_redis_from_settings</span><span class="params">(settings)</span>:</span></div><div class="line">    <span class="string">"""Returns a redis client instance from given Scrapy settings object.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    This function uses ``get_client`` to instantiate the client and uses</span></div><div class="line"><span class="string">    ``defaults.REDIS_PARAMS`` global as defaults values for the parameters. You</span></div><div class="line"><span class="string">    can override them using the ``REDIS_PARAMS`` setting.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Parameters</span></div><div class="line"><span class="string">    ----------</span></div><div class="line"><span class="string">    settings : Settings</span></div><div class="line"><span class="string">        A scrapy settings object. See the supported settings below.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Returns</span></div><div class="line"><span class="string">    -------</span></div><div class="line"><span class="string">    server</span></div><div class="line"><span class="string">        Redis client instance.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Other Parameters</span></div><div class="line"><span class="string">    ----------------</span></div><div class="line"><span class="string">    REDIS_URL : str, optional</span></div><div class="line"><span class="string">        Server connection URL.</span></div><div class="line"><span class="string">    REDIS_HOST : str, optional</span></div><div class="line"><span class="string">        Server host.</span></div><div class="line"><span class="string">    REDIS_PORT : str, optional</span></div><div class="line"><span class="string">        Server port.</span></div><div class="line"><span class="string">    REDIS_ENCODING : str, optional</span></div><div class="line"><span class="string">        Data encoding.</span></div><div class="line"><span class="string">    REDIS_PARAMS : dict, optional</span></div><div class="line"><span class="string">        Additional client parameters.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="comment">#  获取Redis的设置参数</span></div><div class="line">    params = defaults.REDIS_PARAMS.copy()</div><div class="line">    params.update(settings.getdict(<span class="string">'REDIS_PARAMS'</span>))</div><div class="line">    <span class="keyword">for</span> source, dest <span class="keyword">in</span> SETTINGS_PARAMS_MAP.items():</div><div class="line">        val = settings.get(source)</div><div class="line">        <span class="keyword">if</span> val:</div><div class="line">            params[dest] = val</div><div class="line"></div><div class="line">    <span class="comment"># ``redis_cls``是redis类的路径</span></div><div class="line">    <span class="keyword">if</span> isinstance(params.get(<span class="string">'redis_cls'</span>), six.string_types):</div><div class="line">        params[<span class="string">'redis_cls'</span>] = load_object(params[<span class="string">'redis_cls'</span>])  <span class="comment"># 通过'redis_cls'得到redis对象，如果if为False，get_redis函数中会加载默认的redis类StrictRedis</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> get_redis(**params)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Backwards compatible alias.</span></div><div class="line">from_settings = get_redis_from_settings</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_redis</span><span class="params">(**kwargs)</span>:</span></div><div class="line">    <span class="string">"""Returns a redis client instance.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Parameters</span></div><div class="line"><span class="string">    ----------</span></div><div class="line"><span class="string">    redis_cls : class, optional</span></div><div class="line"><span class="string">        Defaults to ``redis.StrictRedis``.</span></div><div class="line"><span class="string">    url : str, optional</span></div><div class="line"><span class="string">        If given, ``redis_cls.from_url`` is used to instantiate the class.</span></div><div class="line"><span class="string">    **kwargs</span></div><div class="line"><span class="string">        Extra parameters to be passed to the ``redis_cls`` class.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Returns</span></div><div class="line"><span class="string">    -------</span></div><div class="line"><span class="string">    server</span></div><div class="line"><span class="string">        Redis client instance.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    """</span></div><div class="line">    redis_cls = kwargs.pop(<span class="string">'redis_cls'</span>, defaults.REDIS_CLS)  <span class="comment"># defaults.REDIS_CLS 默认值redis.StrictRedis</span></div><div class="line">    url = kwargs.pop(<span class="string">'url'</span>, <span class="keyword">None</span>)</div><div class="line">    <span class="keyword">if</span> url:</div><div class="line">        <span class="keyword">return</span> redis_cls.from_url(url, **kwargs) <span class="comment"># url不为None，则通过url创建一个Redis连接客户端实例</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> redis_cls(**kwargs)</div></pre></td></tr></table></figure>
+<h3 id="dupefilter-py"><a href="#dupefilter-py" class="headerlink" title="dupefilter.py"></a>dupefilter.py</h3><blockquote>
+<p>实现去重机制</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> logging</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="keyword">from</span> scrapy.dupefilters <span class="keyword">import</span> BaseDupeFilter</div><div class="line"><span class="keyword">from</span> scrapy.utils.request <span class="keyword">import</span> request_fingerprint  <span class="comment"># 计算url的指纹</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> defaults</div><div class="line"><span class="keyword">from</span> .connection <span class="keyword">import</span> get_redis_from_settings</div><div class="line"></div><div class="line"></div><div class="line">logger = logging.getLogger(__name__)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># <span class="doctag">TODO:</span> Rename class to RedisDupeFilter.</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RFPDupeFilter</span><span class="params">(BaseDupeFilter)</span>:</span></div><div class="line">    <span class="string">"""Redis-based request duplicates filter.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    This class can also be used with default Scrapy's scheduler.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    logger = logger</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, server, key, debug=False)</span>:</span></div><div class="line">        <span class="string">"""Initialize the duplicates filter.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Parameters</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        server : redis.StrictRedis</span></div><div class="line"><span class="string">            The redis server instance.</span></div><div class="line"><span class="string">        key : str</span></div><div class="line"><span class="string">            Redis key Where to store fingerprints.</span></div><div class="line"><span class="string">        debug : bool, optional</span></div><div class="line"><span class="string">            Whether to log filtered requests.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">        self.server = server</div><div class="line">        self.key = key</div><div class="line">        self.debug = debug</div><div class="line">        self.logdupes = <span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_settings</span><span class="params">(cls, settings)</span>:</span></div><div class="line">        <span class="string">"""Returns an instance from given settings.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        This uses by default the key ``dupefilter:&lt;timestamp&gt;``. When using the</span></div><div class="line"><span class="string">        ``scrapy_redis.scheduler.Scheduler`` class, this method is not used as</span></div><div class="line"><span class="string">        it needs to pass the spider name in the key.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Parameters</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        settings : scrapy.settings.Settings</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Returns</span></div><div class="line"><span class="string">        -------</span></div><div class="line"><span class="string">        RFPDupeFilter</span></div><div class="line"><span class="string">            A RFPDupeFilter instance.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">        server = get_redis_from_settings(settings)</div><div class="line">        <span class="comment"># <span class="doctag">XXX:</span> This creates one-time key. needed to support to use this</span></div><div class="line">        <span class="comment"># class as standalone dupefilter with scrapy's default scheduler</span></div><div class="line">        <span class="comment"># if scrapy passes spider on open() method this wouldn't be needed</span></div><div class="line">        <span class="comment"># <span class="doctag">TODO:</span> Use SCRAPY_JOB env as default and fallback to timestamp.</span></div><div class="line">        key = defaults.DUPEFILTER_KEY % &#123;<span class="string">'timestamp'</span>: int(time.time())&#125;</div><div class="line">        debug = settings.getbool(<span class="string">'DUPEFILTER_DEBUG'</span>)</div><div class="line">        <span class="keyword">return</span> cls(server, key=key, debug=debug)</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler)</span>:</span></div><div class="line">        <span class="string">"""Returns instance from crawler.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Parameters</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        crawler : scrapy.crawler.Crawler</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Returns</span></div><div class="line"><span class="string">        -------</span></div><div class="line"><span class="string">        RFPDupeFilter</span></div><div class="line"><span class="string">            Instance of RFPDupeFilter.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">return</span> cls.from_settings(crawler.settings)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">request_seen</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        去重判断</span></div><div class="line"><span class="string">        如果request已经请求过了，则返回false</span></div><div class="line"><span class="string">        """</span></div><div class="line">        fp = self.request_fingerprint(request)</div><div class="line">        <span class="comment"># This returns the number of values added, zero if already exists.</span></div><div class="line">        <span class="comment"># redis客户端的sadd操作，即向集合里添加元素</span></div><div class="line">        added = self.server.sadd(self.key, fp)</div><div class="line">        <span class="keyword">return</span> added == <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">request_fingerprint</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="keyword">return</span> request_fingerprint(request)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self, reason=<span class="string">''</span>)</span>:</span></div><div class="line">        <span class="string">"""Delete data on close. Called by Scrapy's scheduler.</span></div><div class="line"><span class="string">        退出时清除URL指纹数据</span></div><div class="line"><span class="string">        Parameters</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        reason : str, optional</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">        self.clear()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clear</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Clears fingerprints data."""</span></div><div class="line">        self.server.delete(self.key)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(self, request, spider)</span>:</span></div><div class="line">        <span class="string">"""Logs given request.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Parameters</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        request : scrapy.http.Request</span></div><div class="line"><span class="string">        spider : scrapy.spiders.Spider</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> self.debug:</div><div class="line">            msg = <span class="string">"Filtered duplicate request: %(request)s"</span></div><div class="line">            self.logger.debug(msg, &#123;<span class="string">'request'</span>: request&#125;, extra=&#123;<span class="string">'spider'</span>: spider&#125;)</div><div class="line">        <span class="keyword">elif</span> self.logdupes:</div><div class="line">            msg = (<span class="string">"Filtered duplicate request %(request)s"</span></div><div class="line">                   <span class="string">" - no more duplicates will be shown"</span></div><div class="line">                   <span class="string">" (see DUPEFILTER_DEBUG to show all duplicates)"</span>)</div><div class="line">            self.logger.debug(msg, &#123;<span class="string">'request'</span>: request&#125;, extra=&#123;<span class="string">'spider'</span>: spider&#125;)</div><div class="line">            self.logdupes = <span class="keyword">False</span></div></pre></td></tr></table></figure>
+<h3 id="picklecompat-py"><a href="#picklecompat-py" class="headerlink" title="picklecompat.py"></a>picklecompat.py</h3><blockquote>
+<p>实现序列化， 参考<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00138683221577998e407bb309542d9b6a68d9276bc3dbe000" target="_blank" rel="external">廖雪峰-序列化</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="string">"""A pickle wrapper module with protocol=-1 by default.</span></div><div class="line"><span class="string">redis数据格式有整数和字符串，其他的Python复杂的数据类型需要序列化成字符串后存入redis</span></div><div class="line"><span class="string">把变量从内存中变成可存储或传输的过程称之为序列化，</span></div><div class="line"><span class="string">"""</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle  <span class="comment"># PY2</span></div><div class="line"><span class="keyword">except</span> ImportError:</div><div class="line">    <span class="keyword">import</span> pickle</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loads</span><span class="params">(s)</span>:</span></div><div class="line">    <span class="keyword">return</span> pickle.loads(s)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dumps</span><span class="params">(obj)</span>:</span></div><div class="line">    <span class="keyword">return</span> pickle.dumps(obj, protocol=<span class="number">-1</span>)</div></pre></td></tr></table></figure>
+<h3 id="pipelines-py"><a href="#pipelines-py" class="headerlink" title="pipelines.py"></a>pipelines.py</h3><p>&gt;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> scrapy.utils.misc <span class="keyword">import</span> load_object</div><div class="line"><span class="keyword">from</span> scrapy.utils.serialize <span class="keyword">import</span> ScrapyJSONEncoder</div><div class="line"><span class="keyword">from</span> twisted.internet.threads <span class="keyword">import</span> deferToThread</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> connection, defaults</div><div class="line"></div><div class="line"></div><div class="line">default_serialize = ScrapyJSONEncoder().encode</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedisPipeline</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""Pushes serialized item into a redis list/queue</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Settings</span></div><div class="line"><span class="string">    --------</span></div><div class="line"><span class="string">    REDIS_ITEMS_KEY : str</span></div><div class="line"><span class="string">        Redis key where to store items.</span></div><div class="line"><span class="string">    REDIS_ITEMS_SERIALIZER : str</span></div><div class="line"><span class="string">        Object path to serializer function.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, server,</span></span></div><div class="line"><span class="function"><span class="params">                 key=defaults.PIPELINE_KEY,</span></span></div><div class="line"><span class="function"><span class="params">                 serialize_func=default_serialize)</span>:</span></div><div class="line">        <span class="string">"""Initialize pipeline.</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        server : StrictRedis,Redis client instance.</span></div><div class="line"><span class="string">        key : str,Redis key where to store items.</span></div><div class="line"><span class="string">        serialize_func : callable,Items serializer function.</span></div><div class="line"><span class="string">        """</span></div><div class="line">        self.server = server</div><div class="line">        self.key = key  <span class="comment"># defaults.PIPELINE_KEY = '%(spider)s:items',不同的爬虫用不同的key</span></div><div class="line">        self.serialize = serialize_func</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_settings</span><span class="params">(cls, settings)</span>:</span></div><div class="line">        params = &#123;</div><div class="line">            <span class="string">'server'</span>: connection.from_settings(settings),</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> settings.get(<span class="string">'REDIS_ITEMS_KEY'</span>):</div><div class="line">            params[<span class="string">'key'</span>] = settings[<span class="string">'REDIS_ITEMS_KEY'</span>]</div><div class="line">        <span class="keyword">if</span> settings.get(<span class="string">'REDIS_ITEMS_SERIALIZER'</span>):</div><div class="line">            params[<span class="string">'serialize_func'</span>] = load_object(</div><div class="line">                settings[<span class="string">'REDIS_ITEMS_SERIALIZER'</span>]</div><div class="line">            )</div><div class="line"></div><div class="line">        <span class="keyword">return</span> cls(**params)</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler)</span>:</span></div><div class="line">        <span class="keyword">return</span> cls.from_settings(crawler.settings)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        <span class="keyword">return</span> deferToThread(self._process_item, item, spider)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_process_item</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        key = self.item_key(item, spider)</div><div class="line">        data = self.serialize(item)</div><div class="line">        self.server.rpush(key, data)</div><div class="line">        <span class="keyword">return</span> item</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">item_key</span><span class="params">(self, item, spider)</span>:</span></div><div class="line">        <span class="string">"""Returns redis key based on given spider.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Override this function to use a different key depending on the item</span></div><div class="line"><span class="string">        and/or spider.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">return</span> self.key % &#123;<span class="string">'spider'</span>: spider.name&#125;</div></pre></td></tr></table></figure>
+<h3 id="Queue-py"><a href="#Queue-py" class="headerlink" title="Queue.py"></a>Queue.py</h3><blockquote>
+<p>实现消息队列</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> scrapy.utils.reqser <span class="keyword">import</span> request_to_dict, request_from_dict</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> picklecompat</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""Per-spider base queue class"""</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, server, spider, key, serializer=None)</span>:</span></div><div class="line">        <span class="string">"""Initialize per-spider redis queue.</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        server : StrictRedis,Redis client instance.</span></div><div class="line"><span class="string">        spider : Spider,Scrapy spider instance.</span></div><div class="line"><span class="string">        key: str, Redis key where to put and get messages.</span></div><div class="line"><span class="string">        serializer : object, Serializer object with ``loads`` and ``dumps`` methods.</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> serializer <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            <span class="comment"># Backward compatibility.</span></div><div class="line">            <span class="comment"># <span class="doctag">TODO:</span> deprecate pickle.</span></div><div class="line">            serializer = picklecompat</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hasattr(serializer, <span class="string">'loads'</span>):</div><div class="line">            <span class="keyword">raise</span> TypeError(<span class="string">"serializer does not implement 'loads' function: %r"</span></div><div class="line">                            % serializer)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hasattr(serializer, <span class="string">'dumps'</span>):</div><div class="line">            <span class="keyword">raise</span> TypeError(<span class="string">"serializer '%s' does not implement 'dumps' function: %r"</span></div><div class="line">                            % serializer)</div><div class="line"></div><div class="line">        self.server = server</div><div class="line">        self.spider = spider</div><div class="line">        self.key = key % &#123;<span class="string">'spider'</span>: spider.name&#125;</div><div class="line">        self.serializer = serializer</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_encode_request</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="string">"""Encode a request object"""</span></div><div class="line">        obj = request_to_dict(request, self.spider)</div><div class="line">        <span class="keyword">return</span> self.serializer.dumps(obj)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_decode_request</span><span class="params">(self, encoded_request)</span>:</span></div><div class="line">        <span class="string">"""Decode an request previously encoded"""</span></div><div class="line">        obj = self.serializer.loads(encoded_request)</div><div class="line">        <span class="keyword">return</span> request_from_dict(obj, self.spider)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Return the length of the queue"""</span></div><div class="line">        <span class="keyword">raise</span> NotImplementedError</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="string">"""Push a request"""</span></div><div class="line">        <span class="keyword">raise</span> NotImplementedError</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self, timeout=<span class="number">0</span>)</span>:</span></div><div class="line">        <span class="string">"""Pop a request"""</span></div><div class="line">        <span class="keyword">raise</span> NotImplementedError</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clear</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Clear queue/stack"""</span></div><div class="line">        self.server.delete(self.key)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FifoQueue</span><span class="params">(Base)</span>:</span></div><div class="line">    <span class="string">"""Per-spider FIFO queue"""</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Return the length of the queue"""</span></div><div class="line">        <span class="keyword">return</span> self.server.llen(self.key)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="string">"""Push a request"""</span></div><div class="line">        self.server.lpush(self.key, self._encode_request(request))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self, timeout=<span class="number">0</span>)</span>:</span></div><div class="line">        <span class="string">"""Pop a request"""</span></div><div class="line">        <span class="keyword">if</span> timeout &gt; <span class="number">0</span>:</div><div class="line">            data = self.server.brpop(self.key, timeout)</div><div class="line">            <span class="keyword">if</span> isinstance(data, tuple):</div><div class="line">                data = data[<span class="number">1</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            data = self.server.rpop(self.key)</div><div class="line">        <span class="keyword">if</span> data:</div><div class="line">            <span class="keyword">return</span> self._decode_request(data)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PriorityQueue</span><span class="params">(Base)</span>:</span></div><div class="line">    <span class="string">"""Per-spider priority queue abstraction using redis' sorted set"""</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Return the length of the queue"""</span></div><div class="line">        <span class="keyword">return</span> self.server.zcard(self.key)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="string">"""Push a request"""</span></div><div class="line">        data = self._encode_request(request)</div><div class="line">        score = -request.priority</div><div class="line">        <span class="comment"># We don't use zadd method as the order of arguments change depending on</span></div><div class="line">        <span class="comment"># whether the class is Redis or StrictRedis, and the option of using</span></div><div class="line">        <span class="comment"># kwargs only accepts strings, not bytes.</span></div><div class="line">        self.server.execute_command(<span class="string">'ZADD'</span>, self.key, score, data)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self, timeout=<span class="number">0</span>)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        Pop a request</span></div><div class="line"><span class="string">        timeout not support in this queue class</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="comment"># use atomic range/remove using multi/exec</span></div><div class="line">        pipe = self.server.pipeline()</div><div class="line">        pipe.multi()</div><div class="line">        pipe.zrange(self.key, <span class="number">0</span>, <span class="number">0</span>).zremrangebyrank(self.key, <span class="number">0</span>, <span class="number">0</span>)</div><div class="line">        results, count = pipe.execute()</div><div class="line">        <span class="keyword">if</span> results:</div><div class="line">            <span class="keyword">return</span> self._decode_request(results[<span class="number">0</span>])</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LifoQueue</span><span class="params">(Base)</span>:</span></div><div class="line">    <span class="string">"""Per-spider LIFO queue."""</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Return the length of the stack"""</span></div><div class="line">        <span class="keyword">return</span> self.server.llen(self.key)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="string">"""Push a request"""</span></div><div class="line">        self.server.lpush(self.key, self._encode_request(request))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self, timeout=<span class="number">0</span>)</span>:</span></div><div class="line">        <span class="string">"""Pop a request"""</span></div><div class="line">        <span class="keyword">if</span> timeout &gt; <span class="number">0</span>:</div><div class="line">            data = self.server.blpop(self.key, timeout)</div><div class="line">            <span class="keyword">if</span> isinstance(data, tuple):</div><div class="line">                data = data[<span class="number">1</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            data = self.server.lpop(self.key)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> data:</div><div class="line">            <span class="keyword">return</span> self._decode_request(data)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># <span class="doctag">TODO:</span> Deprecate the use of these names.</span></div><div class="line">SpiderQueue = FifoQueue  <span class="comment"># 先进先出</span></div><div class="line">SpiderStack = LifoQueue  <span class="comment"># 后进先出</span></div><div class="line">SpiderPriorityQueue = PriorityQueue  <span class="comment"># 优先级队列</span></div></pre></td></tr></table></figure>
+<h3 id="scheduler-py"><a href="#scheduler-py" class="headerlink" title="scheduler.py"></a>scheduler.py</h3><blockquote>
+<p>调度，对request查重，为spider分配request任务。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> importlib</div><div class="line"><span class="keyword">import</span> six</div><div class="line"><span class="keyword">from</span> scrapy.utils.misc <span class="keyword">import</span> load_object</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> connection, defaults</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># <span class="doctag">TODO:</span> add SCRAPY_JOB support.</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Scheduler</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""Redis-based scheduler</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Settings</span></div><div class="line"><span class="string">    --------</span></div><div class="line"><span class="string">    SCHEDULER_PERSIST : bool (default: False)</span></div><div class="line"><span class="string">        Whether to persist or clear redis queue.</span></div><div class="line"><span class="string">    SCHEDULER_FLUSH_ON_START : bool (default: False)</span></div><div class="line"><span class="string">        Whether to flush redis queue on start.</span></div><div class="line"><span class="string">    SCHEDULER_IDLE_BEFORE_CLOSE : int (default: 0)</span></div><div class="line"><span class="string">        How many seconds to wait before closing if no message is received.</span></div><div class="line"><span class="string">    SCHEDULER_QUEUE_KEY : str</span></div><div class="line"><span class="string">        Scheduler redis key.</span></div><div class="line"><span class="string">    SCHEDULER_QUEUE_CLASS : str</span></div><div class="line"><span class="string">        Scheduler queue class.</span></div><div class="line"><span class="string">    SCHEDULER_DUPEFILTER_KEY : str</span></div><div class="line"><span class="string">        Scheduler dupefilter redis key.</span></div><div class="line"><span class="string">    SCHEDULER_DUPEFILTER_CLASS : str</span></div><div class="line"><span class="string">        Scheduler dupefilter class.</span></div><div class="line"><span class="string">    SCHEDULER_SERIALIZER : str</span></div><div class="line"><span class="string">        Scheduler serializer.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, server,</span></span></div><div class="line"><span class="function"><span class="params">                 persist=False,</span></span></div><div class="line"><span class="function"><span class="params">                 flush_on_start=False,</span></span></div><div class="line"><span class="function"><span class="params">                 queue_key=defaults.SCHEDULER_QUEUE_KEY,</span></span></div><div class="line"><span class="function"><span class="params">                 queue_cls=defaults.SCHEDULER_QUEUE_CLASS,</span></span></div><div class="line"><span class="function"><span class="params">                 dupefilter_key=defaults.SCHEDULER_DUPEFILTER_KEY,</span></span></div><div class="line"><span class="function"><span class="params">                 dupefilter_cls=defaults.SCHEDULER_DUPEFILTER_CLASS,</span></span></div><div class="line"><span class="function"><span class="params">                 idle_before_close=<span class="number">0</span>,</span></span></div><div class="line"><span class="function"><span class="params">                 serializer=None)</span>:</span></div><div class="line">        <span class="string">"""Initialize scheduler.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Parameters</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        server : Redis</span></div><div class="line"><span class="string">            The redis server instance.</span></div><div class="line"><span class="string">        persist : bool</span></div><div class="line"><span class="string">            Whether to flush requests when closing. Default is False.</span></div><div class="line"><span class="string">        flush_on_start : bool</span></div><div class="line"><span class="string">            Whether to flush requests on start. Default is False.</span></div><div class="line"><span class="string">        queue_key : str</span></div><div class="line"><span class="string">            Requests queue key.</span></div><div class="line"><span class="string">        queue_cls : str</span></div><div class="line"><span class="string">            Importable path to the queue class.</span></div><div class="line"><span class="string">        dupefilter_key : str</span></div><div class="line"><span class="string">            Duplicates filter key.</span></div><div class="line"><span class="string">        dupefilter_cls : str</span></div><div class="line"><span class="string">            Importable path to the dupefilter class.</span></div><div class="line"><span class="string">        idle_before_close : int</span></div><div class="line"><span class="string">            Timeout before giving up.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> idle_before_close &lt; <span class="number">0</span>:</div><div class="line">            <span class="keyword">raise</span> TypeError(<span class="string">"idle_before_close cannot be negative"</span>)</div><div class="line"></div><div class="line">        self.server = server</div><div class="line">        self.persist = persist</div><div class="line">        self.flush_on_start = flush_on_start</div><div class="line">        self.queue_key = queue_key</div><div class="line">        self.queue_cls = queue_cls</div><div class="line">        self.dupefilter_cls = dupefilter_cls</div><div class="line">        self.dupefilter_key = dupefilter_key</div><div class="line">        self.idle_before_close = idle_before_close</div><div class="line">        self.serializer = serializer</div><div class="line">        self.stats = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> len(self.queue)</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_settings</span><span class="params">(cls, settings)</span>:</span></div><div class="line">        kwargs = &#123;</div><div class="line">            <span class="string">'persist'</span>: settings.getbool(<span class="string">'SCHEDULER_PERSIST'</span>),</div><div class="line">            <span class="string">'flush_on_start'</span>: settings.getbool(<span class="string">'SCHEDULER_FLUSH_ON_START'</span>),</div><div class="line">            <span class="string">'idle_before_close'</span>: settings.getint(<span class="string">'SCHEDULER_IDLE_BEFORE_CLOSE'</span>),</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment"># If these values are missing, it means we want to use the defaults.</span></div><div class="line">        optional = &#123;</div><div class="line">            <span class="comment"># <span class="doctag">TODO:</span> Use custom prefixes for this settings to note that are</span></div><div class="line">            <span class="comment"># specific to scrapy-redis.</span></div><div class="line">            <span class="string">'queue_key'</span>: <span class="string">'SCHEDULER_QUEUE_KEY'</span>,</div><div class="line">            <span class="string">'queue_cls'</span>: <span class="string">'SCHEDULER_QUEUE_CLASS'</span>,</div><div class="line">            <span class="string">'dupefilter_key'</span>: <span class="string">'SCHEDULER_DUPEFILTER_KEY'</span>,</div><div class="line">            <span class="comment"># We use the default setting name to keep compatibility.</span></div><div class="line">            <span class="string">'dupefilter_cls'</span>: <span class="string">'DUPEFILTER_CLASS'</span>,</div><div class="line">            <span class="string">'serializer'</span>: <span class="string">'SCHEDULER_SERIALIZER'</span>,</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> name, setting_name <span class="keyword">in</span> optional.items():</div><div class="line">            val = settings.get(setting_name)</div><div class="line">            <span class="keyword">if</span> val:</div><div class="line">                kwargs[name] = val</div><div class="line"></div><div class="line">        <span class="comment"># Support serializer as a path to a module.</span></div><div class="line">        <span class="keyword">if</span> isinstance(kwargs.get(<span class="string">'serializer'</span>), six.string_types):</div><div class="line">            kwargs[<span class="string">'serializer'</span>] = importlib.import_module(kwargs[<span class="string">'serializer'</span>])</div><div class="line"></div><div class="line">        server = connection.from_settings(settings)</div><div class="line">        <span class="comment"># Ensure the connection is working.</span></div><div class="line">        server.ping()</div><div class="line"></div><div class="line">        <span class="keyword">return</span> cls(server=server, **kwargs)</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler)</span>:</span></div><div class="line">        instance = cls.from_settings(crawler.settings)</div><div class="line">        <span class="comment"># <span class="doctag">FIXME:</span> for now, stats are only supported from this constructor</span></div><div class="line">        instance.stats = crawler.stats</div><div class="line">        <span class="keyword">return</span> instance</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open</span><span class="params">(self, spider)</span>:</span></div><div class="line">        self.spider = spider</div><div class="line"></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="comment"># 根据对象名字创建一个对象</span></div><div class="line">            self.queue = load_object(self.queue_cls)(</div><div class="line">                server=self.server,</div><div class="line">                spider=spider,</div><div class="line">                key=self.queue_key % &#123;<span class="string">'spider'</span>: spider.name&#125;,</div><div class="line">                serializer=self.serializer,</div><div class="line">            )</div><div class="line">        <span class="keyword">except</span> TypeError <span class="keyword">as</span> e:</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"Failed to instantiate queue class '%s': %s"</span>,</div><div class="line">                             self.queue_cls, e)</div><div class="line"></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self.df = load_object(self.dupefilter_cls)(</div><div class="line">                server=self.server,</div><div class="line">                key=self.dupefilter_key % &#123;<span class="string">'spider'</span>: spider.name&#125;,</div><div class="line">                debug=spider.settings.getbool(<span class="string">'DUPEFILTER_DEBUG'</span>),</div><div class="line">            )</div><div class="line">        <span class="keyword">except</span> TypeError <span class="keyword">as</span> e:</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"Failed to instantiate dupefilter class '%s': %s"</span>,</div><div class="line">                             self.dupefilter_cls, e)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> self.flush_on_start:</div><div class="line">            self.flush()</div><div class="line">        <span class="comment"># notice if there are requests already in the queue to resume the crawl</span></div><div class="line">        <span class="keyword">if</span> len(self.queue):</div><div class="line">            spider.log(<span class="string">"Resuming crawl (%d requests scheduled)"</span> % len(self.queue))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self, reason)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.persist:</div><div class="line">            self.flush()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">flush</span><span class="params">(self)</span>:</span></div><div class="line">        self.df.clear()</div><div class="line">        self.queue.clear()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enqueue_request</span><span class="params">(self, request)</span>:</span></div><div class="line">        <span class="comment"># 如果需要检测去重，且检测到有重复，返回False</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> request.dont_filter <span class="keyword">and</span> self.df.request_seen(request):</div><div class="line">            self.df.log(request, self.spider)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> self.stats:</div><div class="line">            self.stats.inc_value(<span class="string">'scheduler/enqueued/redis'</span>, spider=self.spider)</div><div class="line">        <span class="comment"># 将request入队，返回True</span></div><div class="line">        self.queue.push(request)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_request</span><span class="params">(self)</span>:</span></div><div class="line">        block_pop_timeout = self.idle_before_close</div><div class="line">        <span class="comment"># 分发request</span></div><div class="line">        request = self.queue.pop(block_pop_timeout)</div><div class="line">        <span class="keyword">if</span> request <span class="keyword">and</span> self.stats:</div><div class="line">            self.stats.inc_value(<span class="string">'scheduler/dequeued/redis'</span>, spider=self.spider)</div><div class="line">        <span class="keyword">return</span> request</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">has_pending_requests</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> len(self) &gt; <span class="number">0</span></div></pre></td></tr></table></figure>
+<h3 id="spiders-py"><a href="#spiders-py" class="headerlink" title="spiders.py"></a>spiders.py</h3><blockquote>
+<p>爬虫类，</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> signals</div><div class="line"><span class="keyword">from</span> scrapy.exceptions <span class="keyword">import</span> DontCloseSpider</div><div class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> Spider, CrawlSpider</div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> connection, defaults</div><div class="line"><span class="keyword">from</span> .utils <span class="keyword">import</span> bytes_to_str</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Mixin 混合类型，利用多重继承来简洁的实现组合模式</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedisMixin</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""Mixin class to implement reading urls from a redis queue."""</span></div><div class="line">    redis_key = <span class="keyword">None</span></div><div class="line">    redis_batch_size = <span class="keyword">None</span></div><div class="line">    redis_encoding = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="comment"># Redis client placeholder.</span></div><div class="line">    server = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Returns a batch of start requests from redis."""</span></div><div class="line">        <span class="keyword">return</span> self.next_requests()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setup_redis</span><span class="params">(self, crawler=None)</span>:</span></div><div class="line">        <span class="string">"""Setup redis connection and idle signal.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        This should be called after the spider has set its crawler object.</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="keyword">if</span> self.server <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">return</span></div><div class="line"></div><div class="line">        <span class="keyword">if</span> crawler <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            <span class="comment"># We allow optional crawler argument to keep backwards</span></div><div class="line">            <span class="comment"># compatibility.</span></div><div class="line">            <span class="comment"># <span class="doctag">XXX:</span> Raise a deprecation warning.</span></div><div class="line">            crawler = getattr(self, <span class="string">'crawler'</span>, <span class="keyword">None</span>)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> crawler <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"crawler is required"</span>)</div><div class="line"></div><div class="line">        settings = crawler.settings</div><div class="line"></div><div class="line">        <span class="keyword">if</span> self.redis_key <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self.redis_key = settings.get(</div><div class="line">                <span class="string">'REDIS_START_URLS_KEY'</span>, defaults.START_URLS_KEY,</div><div class="line">            )</div><div class="line"></div><div class="line">        self.redis_key = self.redis_key % &#123;<span class="string">'name'</span>: self.name&#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.redis_key.strip():</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"redis_key must not be empty"</span>)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> self.redis_batch_size <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            <span class="comment"># <span class="doctag">TODO:</span> Deprecate this setting (REDIS_START_URLS_BATCH_SIZE).</span></div><div class="line">            self.redis_batch_size = settings.getint(</div><div class="line">                <span class="string">'REDIS_START_URLS_BATCH_SIZE'</span>,</div><div class="line">                settings.getint(<span class="string">'CONCURRENT_REQUESTS'</span>),</div><div class="line">            )</div><div class="line"></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self.redis_batch_size = int(self.redis_batch_size)</div><div class="line">        <span class="keyword">except</span> (TypeError, ValueError):</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"redis_batch_size must be an integer"</span>)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> self.redis_encoding <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self.redis_encoding = settings.get(<span class="string">'REDIS_ENCODING'</span>, defaults.REDIS_ENCODING)</div><div class="line"></div><div class="line">        self.logger.info(<span class="string">"Reading start URLs from redis key '%(redis_key)s' "</span></div><div class="line">                         <span class="string">"(batch size: %(redis_batch_size)s, encoding: %(redis_encoding)s"</span>,</div><div class="line">                         self.__dict__)</div><div class="line"></div><div class="line">        self.server = connection.from_settings(crawler.settings)</div><div class="line">        <span class="comment"># The idle signal is called when the spider has no requests left,</span></div><div class="line">        <span class="comment"># that's when we will schedule new requests from redis queue</span></div><div class="line">        crawler.signals.connect(self.spider_idle, signal=signals.spider_idle)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_requests</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Returns a request to be scheduled or none."""</span></div><div class="line">        use_set = self.settings.getbool(<span class="string">'REDIS_START_URLS_AS_SET'</span>, defaults.START_URLS_AS_SET)</div><div class="line">        fetch_one = self.server.spop <span class="keyword">if</span> use_set <span class="keyword">else</span> self.server.lpop</div><div class="line">        <span class="comment"># <span class="doctag">XXX:</span> Do we need to use a timeout here?</span></div><div class="line">        found = <span class="number">0</span></div><div class="line">        <span class="comment"># <span class="doctag">TODO:</span> Use redis pipeline execution.</span></div><div class="line">        <span class="keyword">while</span> found &lt; self.redis_batch_size:</div><div class="line">            data = fetch_one(self.redis_key) <span class="comment"># 取出一条数据</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                <span class="comment"># Queue empty.</span></div><div class="line">                <span class="keyword">break</span></div><div class="line">            req = self.make_request_from_data(data)</div><div class="line">            <span class="keyword">if</span> req:</div><div class="line">                <span class="keyword">yield</span> req</div><div class="line">                found += <span class="number">1</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                self.logger.debug(<span class="string">"Request not made from data: %r"</span>, data)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> found:</div><div class="line">            self.logger.debug(<span class="string">"Read %s requests from '%s'"</span>, found, self.redis_key)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make_request_from_data</span><span class="params">(self, data)</span>:</span></div><div class="line">        <span class="string">"""Returns a Request instance from data coming from Redis.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        By default, ``data`` is an encoded URL. You can override this method to</span></div><div class="line"><span class="string">        provide your own message decoding.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        Parameters</span></div><div class="line"><span class="string">        ----------</span></div><div class="line"><span class="string">        data : bytes</span></div><div class="line"><span class="string">            Message from redis.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">        url = bytes_to_str(data, self.redis_encoding)</div><div class="line">        <span class="keyword">return</span> self.make_requests_from_url(url)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">schedule_next_requests</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Schedules a request if available"""</span></div><div class="line">        <span class="comment"># <span class="doctag">TODO:</span> While there is capacity, schedule a batch of redis requests.</span></div><div class="line">        <span class="keyword">for</span> req <span class="keyword">in</span> self.next_requests():</div><div class="line">            self.crawler.engine.crawl(req, spider=self)</div><div class="line">    </div><div class="line">    <span class="comment">#  当爬虫空闲时</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">spider_idle</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""Schedules a request if available, otherwise waits."""</span></div><div class="line">        <span class="comment"># <span class="doctag">XXX:</span> Handle a sentinel to close the spider.</span></div><div class="line">        self.schedule_next_requests()</div><div class="line">        <span class="keyword">raise</span> DontCloseSpider</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedisSpider</span><span class="params">(RedisMixin, Spider)</span>:</span></div><div class="line">    <span class="string">"""Spider that reads urls from redis queue when idle.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Attributes</span></div><div class="line"><span class="string">    ----------</span></div><div class="line"><span class="string">    redis_key : str (default: REDIS_START_URLS_KEY)</span></div><div class="line"><span class="string">        Redis key where to fetch start URLs from..</span></div><div class="line"><span class="string">    redis_batch_size : int (default: CONCURRENT_REQUESTS)</span></div><div class="line"><span class="string">        Number of messages to fetch from redis on each attempt.</span></div><div class="line"><span class="string">    redis_encoding : str (default: REDIS_ENCODING)</span></div><div class="line"><span class="string">        Encoding to use when decoding messages from redis queue.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Settings</span></div><div class="line"><span class="string">    --------</span></div><div class="line"><span class="string">    REDIS_START_URLS_KEY : str (default: "&lt;spider.name&gt;:start_urls")</span></div><div class="line"><span class="string">        Default Redis key where to fetch start URLs from..</span></div><div class="line"><span class="string">    REDIS_START_URLS_BATCH_SIZE : int (deprecated by CONCURRENT_REQUESTS)</span></div><div class="line"><span class="string">        Default number of messages to fetch from redis on each attempt.</span></div><div class="line"><span class="string">    REDIS_START_URLS_AS_SET : bool (default: False)</span></div><div class="line"><span class="string">        Use SET operations to retrieve messages from the redis queue. If False,</span></div><div class="line"><span class="string">        the messages are retrieve using the LPOP command.</span></div><div class="line"><span class="string">    REDIS_ENCODING : str (default: "utf-8")</span></div><div class="line"><span class="string">        Default encoding to use when decoding messages from redis queue.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(self, crawler, *args, **kwargs)</span>:</span></div><div class="line">        obj = super(RedisSpider, self).from_crawler(crawler, *args, **kwargs)</div><div class="line">        obj.setup_redis(crawler)</div><div class="line">        <span class="keyword">return</span> obj</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedisCrawlSpider</span><span class="params">(RedisMixin, CrawlSpider)</span>:</span></div><div class="line">    <span class="string">"""Spider that reads urls from redis queue when idle.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Attributes</span></div><div class="line"><span class="string">    ----------</span></div><div class="line"><span class="string">    redis_key : str (default: REDIS_START_URLS_KEY)</span></div><div class="line"><span class="string">        Redis key where to fetch start URLs from..</span></div><div class="line"><span class="string">    redis_batch_size : int (default: CONCURRENT_REQUESTS)</span></div><div class="line"><span class="string">        Number of messages to fetch from redis on each attempt.</span></div><div class="line"><span class="string">    redis_encoding : str (default: REDIS_ENCODING)</span></div><div class="line"><span class="string">        Encoding to use when decoding messages from redis queue.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Settings</span></div><div class="line"><span class="string">    --------</span></div><div class="line"><span class="string">    REDIS_START_URLS_KEY : str (default: "&lt;spider.name&gt;:start_urls")</span></div><div class="line"><span class="string">        Default Redis key where to fetch start URLs from..</span></div><div class="line"><span class="string">    REDIS_START_URLS_BATCH_SIZE : int (deprecated by CONCURRENT_REQUESTS)</span></div><div class="line"><span class="string">        Default number of messages to fetch from redis on each attempt.</span></div><div class="line"><span class="string">    REDIS_START_URLS_AS_SET : bool (default: True)</span></div><div class="line"><span class="string">        Use SET operations to retrieve messages from the redis queue.</span></div><div class="line"><span class="string">    REDIS_ENCODING : str (default: "utf-8")</span></div><div class="line"><span class="string">        Default encoding to use when decoding messages from redis queue.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(self, crawler, *args, **kwargs)</span>:</span></div><div class="line">        obj = super(RedisCrawlSpider, self).from_crawler(crawler, *args, **kwargs)</div><div class="line">        obj.setup_redis(crawler)</div><div class="line">        <span class="keyword">return</span> obj</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/scrapy/">scrapy</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Scrapy/">Scrapy</a>, <a href="/tags/Redis/">Redis</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/03/02/技术/scrapy-redis分布式爬虫入门/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/03/01/技术/redis学习笔记/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

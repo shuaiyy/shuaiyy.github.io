@@ -1,0 +1,1326 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SNMP调研 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="SNMP的发展应用调研报告第1章 SNMP基础概述1.1、SNMP简介简单网络管理协议（SNMP），由一组网络管理的标准组成，包含一个应用层协议（application layer protocol）、数据库模型（database schema）和一组资源对象。该协议能够支持网络管理系统，用以监测连">
+  
+  <meta name="keywords" content="SNMP">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="SNMP调研"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2016-07-04-Survey-of-SNMP-protocol/">2017-09-17</a></time>
+      
+      
+  
+    <h1 class="title">SNMP调研</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SNMP的发展应用调研报告"><span class="toc-text">SNMP的发展应用调研报告</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-SNMP基础概述"><span class="toc-text">第1章 SNMP基础概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、SNMP简介"><span class="toc-text">1.1、SNMP简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、协议发展历史"><span class="toc-text">1.2、协议发展历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、SNMP相关术语速查"><span class="toc-text">1.3、SNMP相关术语速查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-SNMP-分析"><span class="toc-text">第2章 SNMP 分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、SNMP-结构模型"><span class="toc-text">2.1、SNMP 结构模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、ASN-1、BER、SMI、MIB、PDU的关系"><span class="toc-text">2.2、ASN.1、BER、SMI、MIB、PDU的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3、SNMP报文格式"><span class="toc-text">2.3、SNMP报文格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-SNMP-API"><span class="toc-text">第3章 SNMP API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1、SNMP4J-JAVA"><span class="toc-text">3.1、SNMP4J (JAVA)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2、SNMP-C"><span class="toc-text">3.2、SNMP++ (C++)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3、Net-SNMP-Linux"><span class="toc-text">3.3、Net-SNMP (Linux)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4、WebNMS-for-Android"><span class="toc-text">3.4、WebNMS for Android</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5、SnmpSharpNet"><span class="toc-text">3.5、SnmpSharpNet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6、pySNMP"><span class="toc-text">3.6、pySNMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7、SNMP-Agent-相关开发库"><span class="toc-text">3.7、SNMP Agent 相关开发库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-1、Agent"><span class="toc-text">3.7.1、Agent++</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-2、AgentX"><span class="toc-text">3.7.2、AgentX++</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-3、SmartSNMP-agent"><span class="toc-text">3.7.3、SmartSNMP agent</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-Net-SNMP编译与开发"><span class="toc-text">第4章 Net-SNMP编译与开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1、搭建SNMP服务环境"><span class="toc-text">4.1、搭建SNMP服务环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2、编译、安装Net-SNMP"><span class="toc-text">4.2、编译、安装Net-SNMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3、测试与使用net-snmp"><span class="toc-text">4.3、测试与使用net-snmp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4、修改SNMP配置文件"><span class="toc-text">4.4、修改SNMP配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5、常用的SNMP-监控-OID"><span class="toc-text">4.5、常用的SNMP 监控 OID</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第5章、开源网络管理系统-NMS"><span class="toc-text">第5章、开源网络管理系统(NMS)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1、Zenoss-Core"><span class="toc-text">5.1、Zenoss Core</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2、OpenNMS"><span class="toc-text">5.2、OpenNMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3、NetXMS"><span class="toc-text">5.3、NetXMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4、Catci"><span class="toc-text">5.4、Catci</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5、Nagios"><span class="toc-text">5.5、Nagios</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6、Zabbix"><span class="toc-text">5.6、Zabbix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-7、Prometheus"><span class="toc-text">5.7、Prometheus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-8、open-falcon"><span class="toc-text">5.8、open-falcon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-9、小结"><span class="toc-text">5.9、小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第6章、Zabbix部署和应用"><span class="toc-text">第6章、Zabbix部署和应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1、安装Zabbix服务"><span class="toc-text">6.1、安装Zabbix服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2、安装Zabbix-Agent"><span class="toc-text">6.2、安装Zabbix Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3、Zabbix配置与监控"><span class="toc-text">6.3、Zabbix配置与监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4、Zabbix-SNMP监控"><span class="toc-text">6.4、Zabbix SNMP监控</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7章、FreeSwitch的SNMP模块"><span class="toc-text">第7章、FreeSwitch的SNMP模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1、编译mod-SNMP模块"><span class="toc-text">7.1、编译mod_SNMP模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2、配置SNMP-agentx"><span class="toc-text">7.2、配置SNMP agentx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3、freeswitch-MIB和OID"><span class="toc-text">7.3、freeswitch MIB和OID</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录-参考文章"><span class="toc-text">附录 参考文章</span></a></li></ol></li></ol>
+    </div>
+
+      
+        <h1 id="SNMP的发展应用调研报告"><a href="#SNMP的发展应用调研报告" class="headerlink" title="SNMP的发展应用调研报告"></a>SNMP的发展应用调研报告</h1><h2 id="第1章-SNMP基础概述"><a href="#第1章-SNMP基础概述" class="headerlink" title="第1章 SNMP基础概述"></a>第1章 SNMP基础概述</h2><h3 id="1-1、SNMP简介"><a href="#1-1、SNMP简介" class="headerlink" title="1.1、SNMP简介"></a>1.1、SNMP简介</h3><p>简单网络管理协议（SNMP），由一组网络管理的标准组成，包含一个应用层协议（application layer protocol）、数据库模型（database schema）和一组资源对象。该协议能够支持网络管理系统，用以监测连接到网络上的设备是否有任何引起管理上关注的情况。<br>SNMP是internet协议簇的一部分,目标是管理互联网Internet上众多厂家生产的软硬件平台。</p>
+<p>SNMP产生背景：<br>网络的迅速发展和普及使得以下几个问题日益突出：</p>
+<ul>
+<li>网络规模逐渐增大，网络设备数量成级数增加，网络管理员很难及时监控所有设备、发现并修复故障；</li>
+<li>网络设备很可能种类不同、生产厂家不同、型号不同，如果为每种网络设备都提供一套独立的管理接口和协议，将使网络管理越来越困难。<br>为解决以上两个问题，一套覆盖服务、协议和管理信息库的标准——SNMP孕育而生。</li>
+</ul>
+<p>SNMP网络包含3个组件：</p>
+<ul>
+<li>被管理的设备<br>每一个被管理的设备自身都在维护一个管理信息库(MIB),用来收集存储管理信息。</li>
+<li>SNMP代理（Agent）<br>运行在被管理的设备上的网络管理软件模块，能将MIB中的信息转换成为SNMP协议兼容的格式并发给NMS，同时SNMP Agent使用UPD协议在161端口上接收的NMS请求。。</li>
+<li>网络管理系统（NMS）<br>NMS实现监控设备的功能，为网络管理提供相应的处理程序和存储资源。SNMP manager可以使用任意端口向Agent发出请求。SNMP Manager使用162端口接收请求。</li>
+</ul>
+<p>SNMP工作原理：通常由一个系统管理一个或多个设备或系统，被管理的系统上运行SNMP代理，并通过SNMP协议对管理系统报告信息，管理系统可以通过SNMP协议询问设备信息，发送配置更新或设备控制请求。所有的信息元数据都以管理信息库(MIBs)的方式描述。</p>
+<p>SNMP工作模型如下图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/af9df239gw1f5nwbn5zdgj206404owep.jpg" alt="SNMP应用模型图"></p>
+<h3 id="1-2、协议发展历史"><a href="#1-2、协议发展历史" class="headerlink" title="1.2、协议发展历史"></a>1.2、协议发展历史</h3><pre><code>&gt; 目前SNMP的最新标准是IETF在2004年通过 RFC 3411–RFC 3418确定的SNMPv3，V3之前的版本在Internet Standard 标准中被废止。
+</code></pre><ul>
+<li>1989年—— SNMPv1</li>
+<li>1991年—— RMON(Remote Network Monitoring 远程网络监视)，它扩充了SNMP的功能，包括对LAN的管理及对依附于这些网络的设备的管理。RMON 没有修改和增加SNMPv1，只是增加了SNMP监视子网的能力。</li>
+<li>1993年—— SNMPv2(SNMPv1的升级版)</li>
+<li>1995年—— SNMPv2正式版，其中规定了如何在基于OSI的网络中使用SNMP</li>
+<li>1995年—— RMON扩展为RMON2</li>
+<li>1998年—— SNMPv3，一系列文档定义了SNMP的安全性，并定义了将来改进的总体结构，SNMPv3可以和SNMPv2、SNMPv1一起使用。</li>
+</ul>
+<p>　　目前广泛应用的协议版本是SNMPv2c和SNMPv3</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/16-7-4/21236217.jpg" alt="SNMP发展历程"><br>　　　　　　　　　　　　　　　　　　图：SNMP发展历程</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/16-7-4/57684050.jpg" alt="SNMP版本改进"><br>　　　　　　　　　　　　　　　　　　图：SNMP版本改进</p>
+<h3 id="1-3、SNMP相关术语速查"><a href="#1-3、SNMP相关术语速查" class="headerlink" title="1.3、SNMP相关术语速查"></a>1.3、SNMP相关术语速查</h3><ul>
+<li><p><strong>SNMP</strong>：Simple Network Management Protocol(简单网络管理协议)，是一个标准的用于管理基于IP网络上设备的协议。</p>
+</li>
+<li><p><strong>MIB</strong>：Management Information Base(管理信息库)，定义代理进程中所有可被查询和修改的参数。</p>
+</li>
+<li><p><strong>OID</strong>：对象标识符，是SNMP代理提供的具有唯一标识的键值，记录在MIB中。MIB 提供数字化OID到可读文本的映射。MIB的数据是树状结构，可以使用<a href="http://sourceforge.net/projects/snmpb/" target="_blank" rel="external">snmpB</a>之类的工具进行查询、搜索存储在MIB中的被管理对象。设备厂商可以向IEEE在MIB库申请注册一个分支结点，其下的每个叶子结点对应该设备厂商的实现的功能对象OID。</p>
+<pre><code>比如，CloudStack使用的MIB分支是：1.3.6.1.4.1.18060.15 ，其中.1.3.6.4表示该OID是以.iso.org.dod.internet.private开头的，可以从MIB根结点进行完全验证，其后的.1是表示企业，18060 是分配给apache的企业代码，15是分配给CloudStack项目的根代码，所有CloudStack的SNMP OID代码都在1.3.6.1.4.1.18060.15 分支下。
+</code></pre></li>
+<li><p><strong>SMI</strong>：Structure of Management Information(管理信息结构)，SMI定义了SNMP中使用到的ASN.1类型、语法，并定义了SNMP中使用到的类型、宏、符号等。SMI用于后续协议的描述和MIB的定义。每个版本的SNMP都可能定义自己的SMI。</p>
+</li>
+<li><p><strong>ASN.1</strong>：Abstract Syntax Notation One(抽象语法定义)。用于定义语法的正式语言，在SNMP中定义SNMP的协议数据单元PDU和管理对象MIB的格式。SNMP只使用了ASN.1中的一部分，而且使用ASN.1的语言特性定义了一些自定义类型和类型宏 ，这些组成了SMI。</p>
+</li>
+<li><p><strong>PDU</strong>： Protocol Data Unit(协议数据单元)，它是网络中传送的数据包。每一种SNMP操作，物理上都对应一个PDU。</p>
+</li>
+<li><p><strong>NMS</strong>： Network Management System，网络管理系统，又名网络管理站，简称“管理站”。它是SNMP的总控机，提供统一的用户界面访问支持SNMP的设备，一般提供UI界面，并有统计、分析等功能，是网管系统的总控制台。NMS是网络管理操作的发起者。</p>
+</li>
+<li><p><strong>Agent</strong>： 是SNMP的访问代理，简称“代理”，为设备提供SNMP能力，负责设备与NMS的通信。</p>
+</li>
+<li><p><strong>Proxy</strong>： 代理服务器，对实现不同协议的设备进行协议转换，使非IP协议的设备也能被管理。</p>
+</li>
+<li><p><strong>Trap</strong>： 是由设备主动发出的报警数据，用于提示重要的状态的改变。</p>
+</li>
+<li><p><strong>BER</strong>： Basic Encoding Rule，基本编码规格。描述如何将ASN.1类型的值编码为字符串的方法。它是ASN.1标准的一部分。BER编码将数据分成TLV三部分，T为Tag的缩写，是类型标识；L为Length的缩写，标识类型的长度；V为Value的缩写，标识数据内容。按照TLV的顺序对数据进行编码，生成字节流。SNMP使用BER将SNMP的操作请求和应答编码后进行传输，并用于接收端进行解码。</p>
+</li>
+</ul>
+<h2 id="第2章-SNMP-分析"><a href="#第2章-SNMP-分析" class="headerlink" title="第2章 SNMP 分析"></a>第2章 SNMP 分析</h2><h3 id="2-1、SNMP-结构模型"><a href="#2-1、SNMP-结构模型" class="headerlink" title="2.1、SNMP 结构模型"></a>2.1、SNMP 结构模型</h3><ul>
+<li><p>SNMP基于TCP/IP协议工作，对网络中支持SNMP协议的设备进行管理。因此管理员可以使用统一的操作进行管理设备，而不必理会设备是什么类型、是哪个厂家生产的。如下图，<br><img src="http://ww3.sinaimg.cn/large/af9df239gw1f5npeo5mq3j20jd0ceq3l.jpg" alt="设备-管理模型图"></p>
+</li>
+<li><p>SNMP支持的网络管理操作，如下图：　　</p>
+</li>
+</ul>
+<p>　　<img src="http://ww3.sinaimg.cn/large/af9df239gw1f5npka42a0j20dt09r3yu.jpg" alt=""></p>
+<ul>
+<li><p>Get：读取网络设备的状态信息(设备的配置、参数、状态等)。</p>
+</li>
+<li><p>Set：远程配置设备参数。</p>
+<ul>
+<li>Trap：设备主动汇报重要状态信息。</li>
+</ul>
+<p>在具体实现上，SNMP为管理员提供了一个网管平台(NMS)，又称为管理站，负责网管命令的发出、数据存储、及数据分析。被监管的设备上运行一个SNMP代理(Agent))，代理实现设备与管理站的SNMP通信。如下图，<br><img src="http://ww2.sinaimg.cn/large/af9df239gw1f5nq01s90yj20ic0duwfq.jpg" alt=""></p>
+</li>
+</ul>
+<p>管理站与代理端通过MIB进行接口统一，MIB定义了设备中的被管理对象。管理站和代理都实现了相应的MIB对象，使得双方可以识别对方的数据，实现通信。管理站向代理申请MIB中定义的数据，代理识别后，将管理设备提供的相关状态或参数等数据转换为MIB定义的格式，应答给管理站，完成一次管理操作。</p>
+<p>网络上的许多设备，路由器、交换机等，都可以通过添加一个SNMP网管模块而增加网管功能。服务器可以通过运行一个网管进程实现。其他服务级的产品也可以通过网管模块实现网络管理，如Oracle、WebLogic都有SNMP进程，运行后就可以通过管理站对这些系统级服务进行管理。</p>
+<p> 根据管理者和被管理的设备在网络管理操作中的不同职责，SNMP定义了3种角色。如下图，<br><img src="http://ww1.sinaimg.cn/large/af9df239gw1f5nq2mauvyj20cs08j0t1.jpg" alt=""></p>
+<p>网络管理系统：又称管理站、NMS。是系统的控制台，向管理员提供界面以获取与改变设备的配置、信息、状态、操作等信息。管理站与Agent进行通信，执行相应的Set和Get操作，并接收代理发过来的警报(Trap)。</p>
+<p>代理：Agent是网络管理的代理人，负责管理站和设备SNMP操作的传递。介于管理站和设备之间，与管理站通信并相应管理站的请求，从设备获取相应的数据，或对设备进行相应的设置，来响应管理站的请求。代理也需要具有根据设备的相应状态使用MIB中定义的Trap向管理站发送报告的能力。</p>
+<p>代理服务器：Proxy是一种特殊的代理，在不能直接使用SNMP协议的地方，如：异种网络、不同版本的SNMP代理等情况，Proxy代替相关设备向管理站提供一种外观，为设备代理SNMP协议的实现。Proxy做了异种网络或不同版本代理和相应SNMP数据请求的转换工作。如下图，<br><img src="http://ww2.sinaimg.cn/large/af9df239gw1f5nq4fkeslj20ir0avmy0.jpg" alt=""></p>
+<h3 id="2-2、ASN-1、BER、SMI、MIB、PDU的关系"><a href="#2-2、ASN-1、BER、SMI、MIB、PDU的关系" class="headerlink" title="2.2、ASN.1、BER、SMI、MIB、PDU的关系"></a>2.2、ASN.1、BER、SMI、MIB、PDU的关系</h3><p><img src="http://ww2.sinaimg.cn/large/af9df239gw1f5nq6c1bnmj20fa0aymxu.jpg" alt=""></p>
+<ul>
+<li><p>ASN.1：高级的数据描述语言。描述数据的类型、结构、组织、及编码方法。包括符号和语法两部分。SNMP使用ASN.1描述PDU和管理学对象信息库MIB。</p>
+</li>
+<li><p>BER：ASN.1的基本编码规则。描述具体的ASN.1对象如何编码为比特流在网络上传输。SNMP使用BER作为编码方案，数据首先先经过BER编码，再经由传输层协议(一边是UDP)发往接收方。接收方在SNMP端口上收到PDU后，经过BER解码后，得到具体的SNMP操作数据。</p>
+</li>
+<li><p>SMI：是SNMP的描述方法。规定了使用ASN.1子类型、符号。ASN.1功能强大，但SNMP只用到了其中很小一部分，对于这一部分内容的描述，限定了范围，即为SMI。SMI规定了使用到的ASN.1类型、宏、符号等。SMI是ASN.1的一个子集和超集。</p>
+</li>
+<li><p>MIB：是SNMP中使用到的管理信息库。定义了数据格式、类型、顺序、意义等，使用SMI中定义的类型和ASN.1中的基本类型对对象进行描述，是一个使用SMI描述的管理信息库。每一类关心的事件都有一组MIB，比如网络接口有一颗MIB树，TCP有一颗MIB树，UDP也有一颗MIB树。</p>
+</li>
+<li><p>PDU：是SNMP的协议数据单元。PDU是基本的通信格式，使用ASN.1描述，使用BER编码，通过传输层协议传送。</p>
+</li>
+</ul>
+<blockquote>
+<p>SNMP协议更多细节参考 <strong><a href="http://www.faqs.org/rfcs/rfc1157.html" target="_blank" rel="external">RFC文档</a></strong></p>
+</blockquote>
+<h3 id="2-3、SNMP报文格式"><a href="#2-3、SNMP报文格式" class="headerlink" title="2.3、SNMP报文格式"></a>2.3、SNMP报文格式</h3><p>SNMP请求/响应报文</p>
+<p>简单网络管理协议允许网络管理工作站软件与被管理设备中的代理进行通信。这种通信可以包括来自管理工作站的询问消息、来自代理的应答消息或者来自代理给管理工作站的自陷消息。<br>SNMPv1实现起来很简单，其包含5个请求/响应原语：</p>
+<ul>
+<li>get-request</li>
+<li>set-request</li>
+<li>get-next-request</li>
+<li>get-response</li>
+<li>trap</li>
+</ul>
+<p><strong>报文格式</strong>　　</p>
+<p>| IP首部 | UDP首部 | 版本 | 共同体 |  PDU类型（0－3） | 请求标识 |  差错状态（0－5） | 差错索引 | 名称 |  值 | 名称 |  值 |  … |　　</p>
+<p>|  PDU类型4 |  企业 |  代理地址 |  Trap类型（0－6） |  特定代码 |  时间戳 |  名称 |  值 |  … |　　</p>
+<p>|  PDU类型 |  名称 |　　<br>|  0 |  Get-request |　　<br>|  1 |  Get-next-request |　　<br>|  2 |  Get-response |　　<br>|  3 |  Set-request |　　<br>|  4 |  Trap |　　　　　　</p>
+<h2 id="第3章-SNMP-API"><a href="#第3章-SNMP-API" class="headerlink" title="第3章 SNMP API"></a>第3章 SNMP API</h2><h3 id="3-1、SNMP4J-JAVA"><a href="#3-1、SNMP4J-JAVA" class="headerlink" title="3.1、SNMP4J (JAVA)"></a>3.1、SNMP4J (JAVA)</h3><p>　SNMP4J是一个用Java来实现SNMP(简单网络管理协议)协议的开源项目.它支持以命令行的形式进行管理与响应。SNMP4J是纯面向对象设计与SNMP++(用C++实现SNMPv1/v2c/v3)相类似。</p>
+<p>　　SNMP4J API 提供以下下特性：</p>
+<ul>
+<li>支持MD5和SHA验证，DES，3DES,AES128、AES192和AES256加密的SNMPv3。</li>
+<li>支持MPv1,MPv2C和MPv3，带执行的可阻塞的信息处理模块。</li>
+<li>全部PDU格式。</li>
+<li>可阻塞的传输拓扑。支持UPD、TCP、TLS 。</li>
+<li>可阻塞的超时模块。</li>
+<li>同步和异步请求。</li>
+<li>命令发生器以及命令应答器的支持。</li>
+<li>基于Apache license的开源免费。</li>
+<li>JAVA 1.4.1或更高版本(2.0或更高版本需要jdk1.6及以上的支持)。</li>
+<li>基于LOG4J记录日志。</li>
+<li>使用GETBULK实现Row-based的有效的异步表格获取。</li>
+<li><p>支持多线程。</p>
+<p>参考链接：</p>
+</li>
+</ul>
+<ul>
+<li><a href="http://www.agentpp.com/" target="_blank" rel="external">AGENT++ snmp.software - SNMP Tools and Libraries for Developers</a></li>
+<li><a href="http://www.snmp4j.org/" target="_blank" rel="external">SNMP4J - Free Open Source SNMP API for Java</a></li>
+</ul>
+<h3 id="3-2、SNMP-C"><a href="#3-2、SNMP-C" class="headerlink" title="3.2、SNMP++ (C++)"></a>3.2、SNMP++ (C++)</h3><p>SNMP++是一个用C++来实现SNMP(简单网络管理协议)协议的开源项目，支持SNMPv3。</p>
+<ul>
+<li><a href="http://www.agentpp.com/" target="_blank" rel="external">官网:AGENT++ snmp.software - SNMP Tools and Libraries for Developers</a></li>
+</ul>
+<h3 id="3-3、Net-SNMP-Linux"><a href="#3-3、Net-SNMP-Linux" class="headerlink" title="3.3、Net-SNMP (Linux)"></a>3.3、Net-SNMP (Linux)</h3><p>Net-snmp是一个开源的SNMP项目。最新版本为：5.7.2。net-snmp支持snmpv1、snmpv2、snmpv3，支持基于IPv4和IPv6的SNMP应用程序。</p>
+<ul>
+<li><p>Net-snmp提供完整的API用于SNMP应用程序开发，包括C和Perl的API 。</p>
+</li>
+<li><p>一个功能强大且可扩展的SNMP代理：snmpd开发者可以开发动态模块扩展snmpd，net-snmp内置扩展子代理与主代理的通信协议。</p>
+</li>
+<li><p>提供众多命令行工具检查和使用SNMP协议</p>
+</li>
+<li><p>一个图形化的MIB浏览工具</p>
+</li>
+<li><p>一个Trap接收进程，用于接收和显示Trap，并将Trap记录到日志文件中。</p>
+<pre><code>[Net-SNMP的官网](http://www.net-snmp.org/download.html)
+</code></pre></li>
+</ul>
+<h3 id="3-4、WebNMS-for-Android"><a href="#3-4、WebNMS-for-Android" class="headerlink" title="3.4、WebNMS for Android"></a>3.4、WebNMS for Android</h3><p>直接使用SNMP4J进行Android开发可能会出现问题，WebNMS for Android 具有以下特点：</p>
+<ul>
+<li><strong>Simple</strong>: Add our AdventnetSnmp.jar to your android project and start developing the application.</li>
+<li><strong>Multi-lingual support</strong>: Complete support for SNMPv1, SNMPv2c and SNMPv3.</li>
+<li><strong>SNMPv3 security</strong>: Support for HMAC-SHA-96, HMAC-MD5-96, CBC-DES, CBC-3DES, CFB-AES-128, CFB-AES-192, CFB-AES-256 bit encryption.</li>
+<li><strong>MIB Loading</strong>: Option to load MIB definitions from a pre-compiled file or a Serialized file to boost the performance.</li>
+<li><strong>IPv6 (Internet Protocol Version 6) support</strong>: Provides connectivity with IPv6 and IPv4 based devices.</li>
+<li><strong>SNMP Broadcasting</strong>: Broadcasts snmp packets across the network to auto-discover snmp devices in the network.</li>
+<li><strong>a lightweight Java library </strong>:provides off-the-shelf components for trap and table handling along with basic SNMP operations, such as SNMP GET, SNMP GETNEXT, SNMP GETBULK, and SNMP SET.</li>
+</ul>
+<ul>
+<li><a href="https://www.webnms.com/snmpapi-android/index.html" target="_blank" rel="external">官网:WebNMS SNMP API Android Edition - Java SNMP API/ SNMP Stack/ SNMP Library for Android Platform</a></li>
+</ul>
+<h3 id="3-5、SnmpSharpNet"><a href="#3-5、SnmpSharpNet" class="headerlink" title="3.5、SnmpSharpNet"></a>3.5、SnmpSharpNet</h3><ul>
+<li>SNMP Library for C#</li>
+<li><a href="http://www.snmpsharpnet.com/" target="_blank" rel="external">参考 SnmpSharpNet | SNMP Library for C#</a></li>
+</ul>
+<h3 id="3-6、pySNMP"><a href="#3-6、pySNMP" class="headerlink" title="3.6、pySNMP"></a>3.6、pySNMP</h3><p>pySNMP 是纯 Python 实现的 SNMP v1/v2c/v3</p>
+<ul>
+<li>Complete SNMPv1/v2c and SNMPv3 engine support</li>
+<li>Can act Manager and/or Agent role</li>
+<li>Manager and Agent side MIB support</li>
+<li>Asynchronous operations support</li>
+<li>Pure-Python implementation</li>
+<li>Runs on Python 2.4 through 3.2</li>
+<li>py2exe and .egg friendly</li>
+<li>Twisted binding</li>
+<li><a href="https://sourceforge.net/projects/pysnmp/" target="_blank" rel="external">参考SNMP library for Python download | SourceForge.net</a></li>
+</ul>
+<h3 id="3-7、SNMP-Agent-相关开发库"><a href="#3-7、SNMP-Agent-相关开发库" class="headerlink" title="3.7、SNMP Agent 相关开发库"></a>3.7、SNMP Agent 相关开发库</h3><h4 id="3-7-1、Agent"><a href="#3-7-1、Agent" class="headerlink" title="3.7.1、Agent++"></a>3.7.1、Agent++</h4><ul>
+<li>基于SNMP++实现的一个C++框架，用于SNMP代理的开发。</li>
+<li>AGENT++ 支持 Linux, Solaris, HPUX, AIX, and Windows XP, 7, and 8 (VS 2010-2015)，需要 SNMP++ version 3.x 及以上. 由于AGENT++ 是 ANSI C++ 兼容的, 理论上也可以运行在其他平台包括嵌入式系统。</li>
+<li><a href="http://www.agentpp.com/api/cpp/agent_pp.html" target="_blank" rel="external">参考AGENT++ API</a></li>
+</ul>
+<h4 id="3-7-2、AgentX"><a href="#3-7-2、AgentX" class="headerlink" title="3.7.2、AgentX++"></a>3.7.2、AgentX++</h4><p>  AgentX协议允许独立自治的sub-agent设备与网关上的master agent设备进行通信。</p>
+<ul>
+<li>AgentX++ 在Agent++的基础上实现了完整的AgentX协议支持。<br> <img src="http://ww1.sinaimg.cn/large/af9df239gw1f5nxolc7xmj209f06zq32.jpg" alt=""></li>
+<li>支持平台：Linux, Mac OS X, Solaris, cygwin, and Windows XP/7/8 (only TCP).</li>
+<li><a href="http://www.agentpp.com/api/cpp/agentx_pp.html" target="_blank" rel="external">参考：AgentX++ API</a></li>
+</ul>
+<h4 id="3-7-3、SmartSNMP-agent"><a href="#3-7-3、SmartSNMP-agent" class="headerlink" title="3.7.3、SmartSNMP agent"></a>3.7.3、SmartSNMP agent</h4><ul>
+<li><p>SmartSNMP是一个小巧的、易配置的网络管理代理，支持SNMPv1/v2c/v3以及AgentX协议。它使用C99和Lua5.1写成。支持PC平台包括Linux和BSD，嵌入式平台如OpenWRT。</p>
+</li>
+<li><p>支持SNMPv1/v2c/v3，使用Lua写私有mib</p>
+</li>
+<li><p><a href="http://www.fullstackengineer.net/zh/project/smartsnmp-zh" target="_blank" rel="external">参考：FSEN :: SmartSNMP</a></p>
+</li>
+<li>SmithSNMP –SmartSNMP的独立分支版本，项目地址：<a href="https://github.com/begeekmyfriend/smithsnmp" target="_blank" rel="external">github</a></li>
+</ul>
+<h2 id="第4章-Net-SNMP编译与开发"><a href="#第4章-Net-SNMP编译与开发" class="headerlink" title="第4章 Net-SNMP编译与开发"></a>第4章 Net-SNMP编译与开发</h2><p>实验环境: linux-debian 8,net-SNMP 5.3</p>
+<h3 id="4-1、搭建SNMP服务环境"><a href="#4-1、搭建SNMP服务环境" class="headerlink" title="4.1、搭建SNMP服务环境"></a>4.1、搭建SNMP服务环境</h3><ul>
+<li>安装snmp</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install snmp snmpd</div></pre></td></tr></table></figure>
+<ul>
+<li>安装mib库</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install snmp-mibs-downloader</div></pre></td></tr></table></figure>
+<p><a href="https://wiki.debian.org/SNMP" target="_blank" rel="external">参考debian-wiki-snmp</a></p>
+<ul>
+<li>查看默认配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /etc/snmp/snmpd.conf </div><div class="line">cat /etc/snmp/snmp.conf</div></pre></td></tr></table></figure>
+<ul>
+<li><p>启动SNMP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># service snmpd start</div><div class="line"># snmpd -C -c /etc/snmp/myconfig.conf  ###-C不适用默认配置文件 -c指定自定义配置文件</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-2、编译、安装Net-SNMP"><a href="#4-2、编译、安装Net-SNMP" class="headerlink" title="4.2、编译、安装Net-SNMP"></a>4.2、编译、安装Net-SNMP</h3><ul>
+<li><a href="http://www.net-snmp.org/download.html" target="_blank" rel="external">源码下载地址</a></li>
+<li>编译</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  解压源码:# tar -zxvf net-snmp-5.7.3.tar.gz </div><div class="line">查看编译配置: ./configure --help</div><div class="line">开始编译： ./configure </div><div class="line">	      make</div><div class="line">		  make install</div></pre></td></tr></table></figure>
+<p>如果编译报错lperl，使用 <code>apt-get install libperl-dev</code></p>
+<ul>
+<li>net-snmp提供的命令工具</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">root@kali:~<span class="comment"># snmp</span></div><div class="line">snmp-bridge-mib  snmp-check       snmpget          snmpset          snmptrap</div><div class="line">snmpbulkget      snmpconf         snmpgetnext      snmpstatus       snmptrapd</div><div class="line">snmpbulkwalk     snmpd            snmpinform       snmptable        snmpusm</div><div class="line">snmpc            snmpdelta        snmpkey          snmptest         snmpvacm</div><div class="line">snmpcheck        snmpdf           snmpnetstat      snmptranslate    snmpwalk</div></pre></td></tr></table></figure>
+<ul>
+<li><p>snmpget 模拟snmp的GetRequest操作的工具。用来获取一个或几个管理信息。用来读取管理信息的内容。</p>
+</li>
+<li><p>snmpgetnext 模拟snmp的GetNextRequest操作的工具。用来获取一个管理信息实例的下一个可用实例数据。一般用来遍历SNMP中的表格数据。</p>
+</li>
+<li><p>snmpset 模拟snmp的SetRequest操作的工具。用来设置可以写的管理信息。一般用来配置设备或对设备执行操作。</p>
+</li>
+<li><p>snmpbulkget 模拟snmp的GetBulkRequest操作的工具。用来获取大块的数据。一般在大量读取大块数据时使用，以提高带宽利用率，并且比使用snmpget、snmpgetnext及snmpwalk有更强的容错能力，代理会返回尽可能多的数据，比其它命令更有保证。</p>
+</li>
+<li><p>snmpwalk 利用GetNextRequest对给定的管理树进行遍历的工具。一般用来对表格类型管理信息进行遍历。</p>
+</li>
+<li><p>snmptrap 模拟trap的工具。用来发送模拟trap。一般用来测试管理站安装和配置是否正确，或者用来验证开发的Trap接收程序是否可以正常工作。</p>
+</li>
+<li><p>snmptrapd 接收并显示trap的工具。一般在代理的开发过程中，接收代理发来的Trap，并将PDU细节打印出来，也来测试Trap发送功能是否正常。</p>
+</li>
+<li><p>snmpinform 模拟发送InformRequest的工具。跟snmptrap类似，用来发送模拟的带应答的Trap，以测试管理站或自己开发的接收程序。</p>
+</li>
+<li><p>snmptable 使用GetNextRequest 和 GetBulkRequest操作读取表信息，以列表形式显示的工具。</p>
+</li>
+<li><p>snmpstatus 从SNMP实体读取几个重要的管理信息以确定设备状态的工具。用来简单测定设备状态。</p>
+</li>
+<li><p>snmpbulkwalk 利用GetBulkRequest实现对给定管理树进行遍历的工具。对表格类型的管理信息进行遍历读取。</p>
+</li>
+<li><p>snmpdelta 用来监视Integer类型的管理对象，会及时报告值改变情况的工具。用于监测一个设备或开发中的代理。</p>
+</li>
+<li><p>snmptest 是一个复杂的工具，可以监测和管理一个网络实体的信息，通过SNMP请求操作与管理实体通信。</p>
+</li>
+<li><p>snmptranslate 将对象名字和标识符相互转换的工具。用于数据格式的对象标识和可读式字符串的数据名称的转换。类似于域名与IP地址的关系。</p>
+</li>
+<li><p>snmpusm SNMPv3 USM配置工具。用于SNMPv3的用户管理。</p>
+</li>
+<li><p>snmpvacm 为一个网络实体创建和维护SNMPv3的基于视图访问控制参数的工具。用于维护SNMPv3的视图访问控制。</p>
+</li>
+<li><p>snmpconf 生成snmpd配置文件的工具。用于生成snmpd的各种配置文件，用作模板，以生成用户级配置文件。</p>
+</li>
+<li><p>snmpd Net-snmp开发的主代理程序，包括众多标准MIB的实现。还可以使用子代理对其进行扩展，是一个功能强大的SNMP代理。Linux、Unix和Windows系统运行snmpd后，直接具备了SNMP协议支持，可以被管理站管理。许多商业化的Linux中使用snmpd作为系统的SNMP代理。</p>
+</li>
+<li><p>snmpdf 通过SNMP访问并显示网络实体磁盘利用情况的工具。用来监测网络实体的磁盘。</p>
+</li>
+</ul>
+<h3 id="4-3、测试与使用net-snmp"><a href="#4-3、测试与使用net-snmp" class="headerlink" title="4.3、测试与使用net-snmp"></a>4.3、测试与使用net-snmp</h3><ul>
+<li><p>测试：<br>首先在<code>snmp.conf</code>中注释掉默认的mibs。<br>测试net-snmp是否安装成功,从代理中读取一个管理对象验证代理是否正常运行。读取MIB库中的RFC1213-&gt;system-&gt;sysDescr 对象，该对象表示设备的描述信息。使用net-snmp提供的snmp工具读取，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@kali:/mnt/hgfs/VMshare# snmpget -v 2c -c public localhost sysDescr.0</div><div class="line">SNMPv2-MIB::sysDescr.0 = STRING: Linux kali 4.3.0-kali1-amd64 #1 SMP Debian 4.3.3-7kali2 (2016-01-27) x86_64</div></pre></td></tr></table></figure>
+<p>得到了系统详细信息，说明net-snmp安装成功。</p>
+<blockquote>
+<p>ps. 如果出现如下错误： <code>sysDescr: Unknown Object Identifier (Sub-id not found: (top) -&gt; sysDescr)</code> 这个是因为你缺少snmp所需的mib库，如下安装使用安装最新的mibs库 <code># sudo sudo apt-get install snmp-mibs-downloader</code> 然后再测试，你还有可能会出错，那是因为snmp配置的mibs不是想要的，你只需要如下操作<code># sudo &gt; /etc/snmp/snmp.conf</code>把snmp文件清空，或注释掉mibs那行！</p>
+</blockquote>
+</li>
+<li><p>net-SNMP用例</p>
+<ul>
+<li><p>查询到主机CPU空闲率为99%</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@kali:/etc/snmp# snmpwalk -v 2c -c public localhost 1.3.6.1.4.1.2021.11.11.0</div><div class="line">UCD-SNMP-MIB::ssCpuIdle.0 = INTEGER: 99</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>详细命令</p>
+<ul>
+<li>(1).snmpget命令</li>
+</ul>
+<blockquote>
+<p>snmpget [OPTIONS] AGENT OID [OID]…<br>选项：<br>-v 1|2c|3  指定SNMP版本<br>-c COMMUNITY  指定community string<br>-m MIB[:…]  指定MIB文件</p>
+</blockquote>
+<p>snmpget 不同于 snmpwalk ，必须在命令行给出 <object>.<instance> 的格式，不能只给出 object。<br>案例，snmpget -v 2c -c public localhost system.sysDescr.0 #获取设备的描述信息。</instance></object></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@kali:~# snmpget -v 2c -c public localhost system.sysDescr.0</div><div class="line">SNMPv2-MIB::sysDescr.0 = STRING: Linux kali 4.3.0-kali1-amd64 #1 SMP Debian 4.3.3-7kali2 (2016-01-27) x86_64</div></pre></td></tr></table></figure>
+<ul>
+<li>(2).snmpwalk/snmpbulkwalk 命令</li>
+</ul>
+<blockquote>
+<p>snmpwalk/snmpbulkwalk [OPTIONS] AGENT [OID]<br>选项：<br>-v 1|2c|3  指定SNMP版本<br>-c COMMUNITY  指定community string<br>-m MIB[:…]  指定MIB文件<br>snmpbulkwalk命令： 获取snmp服务器的mib-2各种资讯，snmpbulkwalk用于通过SNMPv2 的SNMP GET BULK请求命令与其它网络实体通信，只能用于snmpv2,速度快于snmpwalk<br>案例，snmpbulkwalk -v 2c -c public 127.0.0.1 .1.3.6.1.2.1.1 #获取mib-2的system的数据。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">root@kali:~# snmpbulkwalk -v 2c -c public 127.0.0.1 .1.3.6.1.2.1.1</div><div class="line">SNMPv2-MIB::sysDescr.0 = STRING: Linux kali 4.3.0-kali1-amd64 #1 SMP Debian 4.3.3-7kali2 (2016-01-27) x86_64</div><div class="line">SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10</div><div class="line">DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (5833280) 16:12:12.80</div><div class="line">SNMPv2-MIB::sysContact.0 = STRING: Me &lt;me@example.org&gt;</div><div class="line">SNMPv2-MIB::sysName.0 = STRING: kali</div><div class="line">SNMPv2-MIB::sysLocation.0 = STRING: Sitting on the Dock of the Bay</div><div class="line">SNMPv2-MIB::sysServices.0 = INTEGER: 72</div><div class="line">SNMPv2-MIB::sysORLastChange.0 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORID.1 = OID: SNMP-MPD-MIB::snmpMPDCompliance</div><div class="line">SNMPv2-MIB::sysORID.2 = OID: SNMP-USER-BASED-SM-MIB::usmMIBCompliance</div><div class="line">SNMPv2-MIB::sysORID.3 = OID: SNMP-FRAMEWORK-MIB::snmpFrameworkMIBCompliance</div><div class="line">SNMPv2-MIB::sysORID.4 = OID: SNMPv2-MIB::snmpMIB</div><div class="line">SNMPv2-MIB::sysORID.5 = OID: SNMP-VIEW-BASED-ACM-MIB::vacmBasicGroup</div><div class="line">SNMPv2-MIB::sysORID.6 = OID: TCP-MIB::tcpMIB</div><div class="line">SNMPv2-MIB::sysORID.7 = OID: IP-MIB::ip</div><div class="line">SNMPv2-MIB::sysORID.8 = OID: UDP-MIB::udpMIB</div><div class="line">SNMPv2-MIB::sysORID.9 = OID: SNMP-NOTIFICATION-MIB::snmpNotifyFullCompliance</div><div class="line">SNMPv2-MIB::sysORID.10 = OID: NOTIFICATION-LOG-MIB::notificationLogMIB</div><div class="line">SNMPv2-MIB::sysORDescr.1 = STRING: The MIB for Message Processing and Dispatching.</div><div class="line">SNMPv2-MIB::sysORDescr.2 = STRING: The management information definitions for the SNMP User-based Security Model.</div><div class="line">SNMPv2-MIB::sysORDescr.3 = STRING: The SNMP Management Architecture MIB.</div><div class="line">SNMPv2-MIB::sysORDescr.4 = STRING: The MIB module for SNMPv2 entities</div><div class="line">SNMPv2-MIB::sysORDescr.5 = STRING: View-based Access Control Model for SNMP.</div><div class="line">SNMPv2-MIB::sysORDescr.6 = STRING: The MIB module for managing TCP implementations</div><div class="line">SNMPv2-MIB::sysORDescr.7 = STRING: The MIB module for managing IP and ICMP implementations</div><div class="line">SNMPv2-MIB::sysORDescr.8 = STRING: The MIB module for managing UDP implementations</div><div class="line">SNMPv2-MIB::sysORDescr.9 = STRING: The MIB modules for managing SNMP Notification, plus filtering.</div><div class="line">SNMPv2-MIB::sysORDescr.10 = STRING: The MIB module for logging SNMP Notifications.</div><div class="line">SNMPv2-MIB::sysORUpTime.1 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.2 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.3 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.4 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.5 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.6 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.7 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.8 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.9 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.10 = Timeticks: (1) 0:00:00.01</div></pre></td></tr></table></figure>
+<ul>
+<li>(3).snmpwalk命令<br>获取snmp服务器的HOST-RESOURCES的各种资讯。<br>案例，snmpwalk -v 2c -c public localhost system #这条指令用于查看本机系统信息。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">root@kali:~# snmpwalk -v 2c -c public localhost system </div><div class="line">SNMPv2-MIB::sysDescr.0 = STRING: Linux kali 4.3.0-kali1-amd64 #1 SMP Debian 4.3.3-7kali2 (2016-01-27) x86_64</div><div class="line">SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10</div><div class="line">DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (5844056) 16:14:00.56</div><div class="line">SNMPv2-MIB::sysContact.0 = STRING: Me &lt;me@example.org&gt;</div><div class="line">SNMPv2-MIB::sysName.0 = STRING: kali</div><div class="line">SNMPv2-MIB::sysLocation.0 = STRING: Sitting on the Dock of the Bay</div><div class="line">SNMPv2-MIB::sysServices.0 = INTEGER: 72</div><div class="line">SNMPv2-MIB::sysORLastChange.0 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORID.1 = OID: SNMP-MPD-MIB::snmpMPDCompliance</div><div class="line">SNMPv2-MIB::sysORID.2 = OID: SNMP-USER-BASED-SM-MIB::usmMIBCompliance</div><div class="line">SNMPv2-MIB::sysORID.3 = OID: SNMP-FRAMEWORK-MIB::snmpFrameworkMIBCompliance</div><div class="line">SNMPv2-MIB::sysORID.4 = OID: SNMPv2-MIB::snmpMIB</div><div class="line">SNMPv2-MIB::sysORID.5 = OID: SNMP-VIEW-BASED-ACM-MIB::vacmBasicGroup</div><div class="line">SNMPv2-MIB::sysORID.6 = OID: TCP-MIB::tcpMIB</div><div class="line">SNMPv2-MIB::sysORID.7 = OID: IP-MIB::ip</div><div class="line">SNMPv2-MIB::sysORID.8 = OID: UDP-MIB::udpMIB</div><div class="line">SNMPv2-MIB::sysORID.9 = OID: SNMP-NOTIFICATION-MIB::snmpNotifyFullCompliance</div><div class="line">SNMPv2-MIB::sysORID.10 = OID: NOTIFICATION-LOG-MIB::notificationLogMIB</div><div class="line">SNMPv2-MIB::sysORDescr.1 = STRING: The MIB for Message Processing and Dispatching.</div><div class="line">SNMPv2-MIB::sysORDescr.2 = STRING: The management information definitions for the SNMP User-based Security Model.</div><div class="line">SNMPv2-MIB::sysORDescr.3 = STRING: The SNMP Management Architecture MIB.</div><div class="line">SNMPv2-MIB::sysORDescr.4 = STRING: The MIB module for SNMPv2 entities</div><div class="line">SNMPv2-MIB::sysORDescr.5 = STRING: View-based Access Control Model for SNMP.</div><div class="line">SNMPv2-MIB::sysORDescr.6 = STRING: The MIB module for managing TCP implementations</div><div class="line">SNMPv2-MIB::sysORDescr.7 = STRING: The MIB module for managing IP and ICMP implementations</div><div class="line">SNMPv2-MIB::sysORDescr.8 = STRING: The MIB module for managing UDP implementations</div><div class="line">SNMPv2-MIB::sysORDescr.9 = STRING: The MIB modules for managing SNMP Notification, plus filtering.</div><div class="line">SNMPv2-MIB::sysORDescr.10 = STRING: The MIB module for logging SNMP Notifications.</div><div class="line">SNMPv2-MIB::sysORUpTime.1 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.2 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.3 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.4 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.5 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.6 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.7 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.8 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.9 = Timeticks: (1) 0:00:00.01</div><div class="line">SNMPv2-MIB::sysORUpTime.10 = Timeticks: (1) 0:00:00.01</div></pre></td></tr></table></figure>
+<ul>
+<li>(4).snmpdelta命令<br>监控网卡流量等信息， 指定共同体为public，协议为snmpv1，以表格的方式输出结果,显示时间戳。<br>下面是实时监控第一块网卡的流量，#监控IF-MIB::ifInUcastPkts(输入流量)，IF-MIB::ifOutUcastPkts(输出流量)，如监控本地的第二块网卡instance为2：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">root@kali:~# snmpdelta -c public -v 1 -Cs -CT 127.0.0.1 IF-MIB::ifInUcastPkts.2 IF-MIB::ifOutUcastPkts.1</div><div class="line">127.0.0.1	IF-MIB::ifInUcastPkts.2	IF-MIB::ifOutUcastPkts.1</div><div class="line">[08:23:16 7/13]	5.00	2.00</div><div class="line">[08:23:17 7/13]	0.00	0.00</div><div class="line">[08:23:18 7/13]	0.00	0.00</div><div class="line">[08:23:19 7/13]	3.00	6.00</div><div class="line">[08:23:20 7/13]	0.00	0.00</div><div class="line">[08:23:21 7/13]	0.00	0.00</div><div class="line">[08:23:22 7/13]	3.00	6.00</div><div class="line">^C</div></pre></td></tr></table></figure>
+<p>监控网卡丢包情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">root@kali:~# snmpdelta -c public -v 1 -Cs -CT 127.0.0.1 ifInDiscards.1</div><div class="line">127.0.0.1	IF-MIB::ifInDiscards.1</div><div class="line">[08:34:16 7/13]	0.00</div><div class="line">[08:34:17 7/13]	0.00</div><div class="line">[08:34:18 7/13]	0.00</div><div class="line">[08:34:19 7/13]	0.00</div><div class="line">[08:34:20 7/13]	0.00</div><div class="line">[08:34:21 7/13]	0.00</div><div class="line">[08:34:22 7/13]	0.00</div><div class="line">[08:34:23 7/13]	0.00</div><div class="line">[08:34:24 7/13]	0.00</div><div class="line">^C</div></pre></td></tr></table></figure>
+<ul>
+<li>(5).snmpnetstat命令<br>查看snmp服务器的端口连接信息， 协议为snmp 2c。<br>案例，</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">root@kali:~# snmpnetstat -v 2c -c public -Can -Cp tcp 127.0.0.1 </div><div class="line">Active Internet (tcp) Connections</div><div class="line">Proto Local Address               Remote Address                    State   PID</div><div class="line">tcp4  192.168.233.128.22          192.168.233.1.64939         ESTABLISHED     0</div><div class="line">Listening Internet (tcp) Connections</div><div class="line">Proto Local Address                 PID</div><div class="line">tcp4  *.22                            0</div><div class="line">tcp6  [[XXX - inet6 addr.22           0</div></pre></td></tr></table></figure>
+<ul>
+<li>(6).snmptranslate 命令<ul>
+<li>在MIB OID 在数字和文字名称之间进行转换。<br>示例：snmptranslate -On -IR HOST-RESOURCES-MIB::hrSystem #用snmptranslate把symbol 格式的HOST-RESOURCES-MIB::hrSystem 转换为 numberic 格式的oid,用-On(输出数字格式的oid),使用 -IR(允许“随机”访问 MIB)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@kali:~# snmptranslate -On -IR HOST-RESOURCES-MIB::hrSystem</div><div class="line">.1.3.6.1.2.1.25.1</div></pre></td></tr></table></figure>
+<ul>
+<li>snmptranslate -Onf -IR HOST-RESOURCES-MIB::hrSystem #用snmptranslate把symbol 格式的HOST-RESOURCES-MIB::hrSystem 转换为symbol 格式的 oid,用-Onf(输出符号格式的oid)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@kali:~# snmptranslate -Onf -IR HOST-RESOURCES-MIB::hrSystem</div><div class="line">.iso.org.dod.internet.mgmt.mib-2.host.hrSystem</div></pre></td></tr></table></figure>
+<ul>
+<li><p>snmptranslate -Tp iso.org.dod.internet.mgmt.mib-2 #用snmptranslate打印从指定OID(.1.3.6.1.2.1)开始一直到该OID(.1.3.6.1.2.1)所属的 MIB 子树末端的树型结构信息</p>
+</li>
+<li><p>snmptranslate -Ta #用snmptranslate导出所有已经加载的 MIB 的数据，每个对象一行</p>
+</li>
+<li><p>snmptranslate -Tl #用snmptranslate导出所有已经加载的 MIB 的对象，并且输出完整的 oid 路径</p>
+</li>
+<li><p>snmptranslate -To #用snmptranslate导出已经加载的所有 MIB 的数字格式的 oid ，不含值和类型，仅仅有 oid 而已</p>
+</li>
+<li><p>snmptranslate -Ts #用snmptranslate只输出文字格式的 OID 名称而已</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-4、修改SNMP配置文件"><a href="#4-4、修改SNMP配置文件" class="headerlink" title="4.4、修改SNMP配置文件"></a>4.4、修改SNMP配置文件</h3><ul>
+<li>example.conf模板<br>将net-snmp源码中的example.conf复制到/etc/snmp/ 目录下，并改名为snmpd.conf，先备份原有的snmpd.conf文件 </li>
+<li><p>配置允许网络访问<br>　找到【AGENT BEHAVIOUR】，注释掉<code>agentAddress udp:127.0.0.1：161</code>,添加一行<code>agentAddress udp:161</code>。</p>
+</li>
+<li><p>选择SNMPv2C协议版本</p>
+</li>
+</ul>
+<p>　　找到【ACTIVE MONITORING】，注释掉<code>trapsink     localhost public</code>，添加<code>trap2sink     localhost public</code></p>
+<ul>
+<li>设置访问权限</li>
+</ul>
+<p>　　找到【ACCESS CONTROL】,注释掉<code>rocommunity public  default    -V systemonly</code>，添加<code>rocommunity public  default</code>,允许所有访问请求。</p>
+<ul>
+<li>开启防火墙 UDP161端口<br>查看防火墙配置：<code>iptables –L –n</code>,添加一条规则记录：<code>iptables -I INPUT -p udp --dport 161 -j ACCEPT</code>，保存规则使防火墙生效<code>iptables-save</code>(debian linux),ubuntu下的保存iptables命令<code>iptables -save</code>。</li>
+<li>在Windows下访问MIBs<br>使用工具snmpB，输入远程主机的ip地址，使用如下：<br><img src="http://ww1.sinaimg.cn/large/af9df239gw1f5rarqsb91j20qz0il76i.jpg" alt="snmpB用法"> <pre><code>图：查看Memory大小
+</code></pre><img src="http://ww1.sinaimg.cn/large/af9df239gw1f5rarx8vs3j21020gb40w.jpg" alt="snmpB用法"><pre><code>图：查看系统版本详情
+</code></pre></li>
+</ul>
+<h3 id="4-5、常用的SNMP-监控-OID"><a href="#4-5、常用的SNMP-监控-OID" class="headerlink" title="4.5、常用的SNMP 监控 OID"></a>4.5、常用的SNMP 监控 OID</h3><ul>
+<li>系统信息<pre><code>![系统信息](http://ww2.sinaimg.cn/large/af9df239jw1f5si8iqsrmj20h60cyaba.jpg)
+</code></pre></li>
+<li>网络接口<pre><code>![网络接口](http://ww3.sinaimg.cn/large/af9df239jw1f5sid6wbk4j20d70ed75i.jpg)
+</code></pre><ul>
+<li>CPU及负载<br><img src="http://ww1.sinaimg.cn/large/af9df239gw1f5siez19moj20dg0gf3zo.jpg" alt="CPU及负载"></li>
+<li>内存及磁盘<br><img src="http://ww1.sinaimg.cn/large/af9df239gw1f5sifd7v5tj20d20gggn4.jpg" alt="内存及磁盘"></li>
+<li>System Group<br>sysDescr 1.3.6.1.2.1.1.1<br>sysObjectID 1.3.6.1.2.1.1.2<br>sysUpTime 1.3.6.1.2.1.1.3<br>sysContact 1.3.6.1.2.1.1.4<br>sysName 1.3.6.1.2.1.1.5<br>sysLocation 1.3.6.1.2.1.1.6<br>sysServices 1.3.6.1.2.1.1.7</li>
+<li>Interfaces Group<br>ifNumber 1.3.6.1.2.1.2.1<br>ifTable 1.3.6.1.2.1.2.2<br>ifEntry 1.3.6.1.2.1.2.2.1<br>ifIndex 1.3.6.1.2.1.2.2.1.1<br>ifDescr 1.3.6.1.2.1.2.2.1.2<br>ifType 1.3.6.1.2.1.2.2.1.3<br>ifMtu 1.3.6.1.2.1.2.2.1.4<br>ifSpeed 1.3.6.1.2.1.2.2.1.5<br>ifPhysAddress 1.3.6.1.2.1.2.2.1.6<br>ifAdminStatus 1.3.6.1.2.1.2.2.1.7<br>ifOperStatus 1.3.6.1.2.1.2.2.1.8<br>ifLastChange 1.3.6.1.2.1.2.2.1.9<br>ifInOctets 1.3.6.1.2.1.2.2.1.10<br>ifInUcastPkts 1.3.6.1.2.1.2.2.1.11<br>ifInNUcastPkts 1.3.6.1.2.1.2.2.1.12<br>ifInDiscards 1.3.6.1.2.1.2.2.1.13<br>ifInErrors 1.3.6.1.2.1.2.2.1.14<br>ifInUnknownProtos 1.3.6.1.2.1.2.2.1.15<br>ifOutOctets 1.3.6.1.2.1.2.2.1.16<br>ifOutUcastPkts 1.3.6.1.2.1.2.2.1.17<br>ifOutNUcastPkts 1.3.6.1.2.1.2.2.1.18<br>ifOutDiscards 1.3.6.1.2.1.2.2.1.19<br>ifOutErrors 1.3.6.1.2.1.2.2.1.20<br>ifOutQLen 1.3.6.1.2.1.2.2.1.21<br>ifSpecific 1.3.6.1.2.1.2.2.1.22</li>
+<li>IP Group<br>ipForwarding 1.3.6.1.2.1.4.1<br>ipDefaultTTL 1.3.6.1.2.1.4.2<br>ipInReceives 1.3.6.1.2.1.4.3<br>ipInHdrErrors 1.3.6.1.2.1.4.4<br>ipInAddrErrors 1.3.6.1.2.1.4.5<br>ipForwDatagrams 1.3.6.1.2.1.4.6<br>ipInUnknownProtos 1.3.6.1.2.1.4.7<br>ipInDiscards 1.3.6.1.2.1.4.8<br>ipInDelivers 1.3.6.1.2.1.4.9<br>ipOutRequests 1.3.6.1.2.1.4.10<br>ipOutDiscards 1.3.6.1.2.1.4.11<br>ipOutNoRoutes 1.3.6.1.2.1.4.12<br>ipReasmTimeout 1.3.6.1.2.1.4.13<br>ipReasmReqds 1.3.6.1.2.1.4.14<br>ipReasmOKs 1.3.6.1.2.1.4.15<br>ipReasmFails 1.3.6.1.2.1.4.16<br>ipFragsOKs 1.3.6.1.2.1.4.17<br>ipFragsFails 1.3.6.1.2.1.4.18<br>ipFragCreates 1.3.6.1.2.1.4.19<br>ipAddrTable 1.3.6.1.2.1.4.20<br>ipAddrEntry 1.3.6.1.2.1.4.20.1<br>ipAdEntAddr 1.3.6.1.2.1.4.20.1.1<br>ipAdEntIfIndex 1.3.6.1.2.1.4.20.1.2<br>ipAdEntNetMask 1.3.6.1.2.1.4.20.1.3<br>ipAdEntBcastAddr 1.3.6.1.2.1.4.20.1.4<br>ipAdEntReasmMaxSize 1.3.6.1.2.1.4.20.1.5</li>
+<li>ICMP Group<br>icmpInMsgs 1.3.6.1.2.1.5.1<br>icmpInErrors 1.3.6.1.2.1.5.2<br>icmpInDestUnreachs 1.3.6.1.2.1.5.3<br>icmpInTimeExcds 1.3.6.1.2.1.5.4<br>icmpInParmProbs 1.3.6.1.2.1.5.5<br>icmpInSrcQuenchs 1.3.6.1.2.1.5.6<br>icmpInRedirects 1.3.6.1.2.1.5.7<br>icmpInEchos 1.3.6.1.2.1.5.8<br>icmpInEchoReps 1.3.6.1.2.1.5.9<br>icmpInTimestamps 1.3.6.1.2.1.5.10<br>icmpInTimestampReps 1.3.6.1.2.1.5.11<br>icmpInAddrMasks 1.3.6.1.2.1.5.12<br>icmpInAddrMaskReps 1.3.6.1.2.1.5.13<br>icmpOutMsgs 1.3.6.1.2.1.5.14<br>icmpOutErrors 1.3.6.1.2.1.5.15<br>icmpOutDestUnreachs 1.3.6.1.2.1.5.16<br>icmpOutTimeExcds 1.3.6.1.2.1.5.17<br>icmpOutParmProbs 1.3.6.1.2.1.5.18<br>icmpOutSrcQuenchs 1.3.6.1.2.1.5.19<br>icmpOutRedirects 1.3.6.1.2.1.5.20<br>icmpOutEchos 1.3.6.1.2.1.5.21<br>icmpOutEchoReps 1.3.6.1.2.1.5.22<br>icmpOutTimestamps 1.3.6.1.2.1.5.23<br>icmpOutTimestampReps 1.3.6.1.2.1.5.24<br>icmpOutAddrMasks 1.3.6.1.2.1.5.25<br>icmpOutAddrMaskReps 1.3.6.1.2.1.5.26</li>
+<li>TCP Group<br>tcpRtoAlgorithm 1.3.6.1.2.1.6.1<br>tcpRtoMin 1.3.6.1.2.1.6.2<br>tcpRtoMax 1.3.6.1.2.1.6.3<br>tcpMaxConn 1.3.6.1.2.1.6.4<br>tcpActiveOpens 1.3.6.1.2.1.6.5<br>tcpPassiveOpens 1.3.6.1.2.1.6.6<br>tcpAttemptFails 1.3.6.1.2.1.6.7<br>tcpEstabResets 1.3.6.1.2.1.6.8<br>tcpCurrEstab 1.3.6.1.2.1.6.9<br>tcpInSegs 1.3.6.1.2.1.6.10<br>tcpOutSegs 1.3.6.1.2.1.6.11<br>tcpRetransSegs 1.3.6.1.2.1.6.12<br>tcpConnTable 1.3.6.1.2.1.6.13<br>tcpConnEntry 1.3.6.1.2.1.6.13.1<br>tcpConnState 1.3.6.1.2.1.6.13.1.1<br>tcpConnLocalAddress 1.3.6.1.2.1.6.13.1.2<br>tcpConnLocalPort 1.3.6.1.2.1.6.13.1.3<br>tcpConnRemAddress 1.3.6.1.2.1.6.13.1.4<br>tcpConnRemPort 1.3.6.1.2.1.6.13.1.5<br>tcpInErrs 1.3.6.1.2.1.6.14<br>tcpOutRsts 1.3.6.1.2.1.6.15</li>
+<li>UDP Group<br>udpInDatagrams 1.3.6.1.2.1.7.1<br>udpNoPorts 1.3.6.1.2.1.7.2<br>udpInErrors 1.3.6.1.2.1.7.3<br>udpOutDatagrams 1.3.6.1.2.1.7.4<br>udpTable 1.3.6.1.2.1.7.5<br>udpEntry 1.3.6.1.2.1.7.5.1<br>udpLocalAddress 1.3.6.1.2.1.7.5.1.1<br>udpLocalPort 1.3.6.1.2.1.7.5.1.2</li>
+<li>SNMP Group<br>snmpInPkts 1.3.6.1.2.1.11.1<br>snmpOutPkts 1.3.6.1.2.1.11.2<br>snmpInBadVersions 1.3.6.1.2.1.11.3<br>snmpInBadCommunityNames 1.3.6.1.2.1.11.4<br>snmpInBadCommunityUses 1.3.6.1.2.1.11.5<br>snmpInASNParseErrs 1.3.6.1.2.1.11.6<br>NOT USED 1.3.6.1.2.1.11.7<br>snmpInTooBigs 1.3.6.1.2.1.11.8<br>snmpInNoSuchNames 1.3.6.1.2.1.11.9<br>snmpInBadValues 1.3.6.1.2.1.11.10<br>snmpInReadOnlys 1.3.6.1.2.1.11.11<br>snmpInGenErrs 1.3.6.1.2.1.11.12<br>snmpInTotalReqVars 1.3.6.1.2.1.11.13<br>snmpInTotalSetVars 1.3.6.1.2.1.11.14<br>snmpInGetRequests 1.3.6.1.2.1.11.15<br>snmpInGetNexts 1.3.6.1.2.1.11.16<br>snmpInSetRequests 1.3.6.1.2.1.11.17<br>snmpInGetResponses 1.3.6.1.2.1.11.18<br>snmpInTraps 1.3.6.1.2.1.11.19<br>snmpOutTooBigs 1.3.6.1.2.1.11.20<br>snmpOutNoSuchNames 1.3.6.1.2.1.11.21<br>snmpOutBadValues 1.3.6.1.2.1.11.22<br>NOT USED 1.3.6.1.2.1.11.23<br>snmpOutGenErrs 1.3.6.1.2.1.11.24<br>snmpOutGetRequests 1.3.6.1.2.1.11.25<br>snmpOutGetNexts 1.3.6.1.2.1.11.26<br>snmpOutSetRequests 1.3.6.1.2.1.11.27<br>snmpOutGetResponses 1.3.6.1.2.1.11.28<br>snmpOutTraps 1.3.6.1.2.1.11.29<br>snmpEnableAuthenTraps 1.3.6.1.2.1.11.30 </li>
+</ul>
+</li>
+</ul>
+<h2 id="第5章、开源网络管理系统-NMS"><a href="#第5章、开源网络管理系统-NMS" class="headerlink" title="第5章、开源网络管理系统(NMS)"></a>第5章、开源网络管理系统(NMS)</h2><blockquote>
+<p>目前已有上百种开源网络管理软件系统，支持SNMP，及WMI、SMTP、ssh等通用型协议，可以提供管理、性能监控以及报警，分析报告等功能。本章主要分析4款人气高，社区活跃的开源NMS：<br>Zenoss core、Nagios Core、OpenNMS、NetXMS。</p>
+</blockquote>
+<h3 id="5-1、Zenoss-Core"><a href="#5-1、Zenoss-Core" class="headerlink" title="5.1、Zenoss Core"></a>5.1、Zenoss Core</h3><ul>
+<li>特点<ul>
+<li>管理界面专业、直观</li>
+<li>支持200+设备数量管理</li>
+<li>Zenpack插件丰富</li>
+<li>自动识别设备，并创建配置模型</li>
+<li>Web管理界面</li>
+<li>强大的报告功能</li>
+</ul>
+</li>
+<li>不足<ul>
+<li>开源版相比商业版功能较弱</li>
+<li>需要极高的硬件资源</li>
+<li>官方版仅支持RHEL、cent os，社区也支持Debian和Ubuntu</li>
+</ul>
+</li>
+<li>参考<ul>
+<li><a href="http://www.zenoss.org/" target="_blank" rel="external">Zenoss Core官网</a></li>
+<li><a href="https://www.zenoss.com/resources/documentation?field_zsd_core_value_selective=Core&amp;field_product_value_selective=All&amp;field_version_sort_tid_selective=56&amp;mkt_tok=eyJpIjoiWVRZeE56WmxPV1poTmpVMyIsInQiOiJ4RGwrNG13OTM2ZWJCY2FJUHRoU1ZlaU03QWQwSlQ0TzRucHIzREF1WDY0eWFzbDl5eGp2OFl2a3FPakNRTVJrdEZFVEJzdlRFcjNrelBXREhaQnVPYVBuM3B6K0NxelRSZDNvMkwzQ2NlYz0ifQ%3D%3D" target="_blank" rel="external">官方文档</a></li>
+<li><a href="http://wiki.zenoss.org/Install_Zenoss?mkt_tok=eyJpIjoiWm1JME1EUmxOR0kyTURobCIsInQiOiJwUDZjanpqRnl5S01RcllqYkVnbWtlRTJVRzhlNEtUS2pUa2V6XC94Y2JIaksxcDBcL3dpcit4T2Y3U3BUdGhwRTU2TDdQYXhaMWk4WmVJeEsxR011SWluUzJuWFwvV0NUaDdoQXpzcWhjNklwZz0ifQ%3D%3D" target="_blank" rel="external">官方Wiki</a></li>
+<li><a href="http://sourceforge.net/projects/zenoss/files/latest/download?source=files" target="_blank" rel="external">带有zenoss的VMware镜像下载</a> </li>
+</ul>
+</li>
+</ul>
+<h3 id="5-2、OpenNMS"><a href="#5-2、OpenNMS" class="headerlink" title="5.2、OpenNMS"></a>5.2、OpenNMS</h3><ul>
+<li>特点<ul>
+<li>基于Java的跨平台</li>
+<li>网络自动识别</li>
+<li>自动配置、自动识别服务</li>
+<li>有15000+的SNMP trap插件</li>
+<li>多种通知推送方式</li>
+<li>可与Asterisk电话平台交互</li>
+<li>支持报告和web管理界面</li>
+</ul>
+</li>
+<li>不足<ul>
+<li>需要完整的JDK</li>
+<li>需要PostgreSQL数据库</li>
+</ul>
+</li>
+<li>参考<ul>
+<li><a href="http://www.opennms.org/en" target="_blank" rel="external">OpenNMS官网</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="5-3、NetXMS"><a href="#5-3、NetXMS" class="headerlink" title="5.3、NetXMS"></a>5.3、NetXMS</h3><ul>
+<li>特点  <ul>
+<li>原生跨平台</li>
+<li>支持多种SQL数据库</li>
+<li>支持管理Android设备</li>
+<li>支持报警短信、邮件</li>
+<li>支持报告</li>
+<li>自动发现网络</li>
+</ul>
+</li>
+<li>不足<ul>
+<li>配置较为复杂</li>
+</ul>
+</li>
+<li>参考<ul>
+<li><a href="http://www.netxms.org/download/" target="_blank" rel="external">NetXMS — Download</a></li>
+<li><a href="https://wiki.netxms.org/wiki/Main_Page" target="_blank" rel="external">官方wiki</a></li>
+<li><a href="http://www.netxms.org/documentation/" target="_blank" rel="external">配置和用户手册</a><h3 id="5-4、Catci"><a href="#5-4、Catci" class="headerlink" title="5.4、Catci"></a>5.4、Catci</h3></li>
+</ul>
+</li>
+<li>特点<ul>
+<li>强大的画图功能</li>
+<li>依赖snmp流量监测网络</li>
+</ul>
+</li>
+<li>不足<ul>
+<li>更适合端口流量监控</li>
+</ul>
+</li>
+<li>参考<ul>
+<li><a href="http://www.cacti.net/" target="_blank" rel="external">Catci官网</a>   </li>
+</ul>
+</li>
+</ul>
+<h3 id="5-5、Nagios"><a href="#5-5、Nagios" class="headerlink" title="5.5、Nagios"></a>5.5、Nagios</h3><ul>
+<li>特点<ul>
+<li>配置简单</li>
+<li>支持自动发现、通知报告</li>
+</ul>
+</li>
+<li>不足<ul>
+<li>免费版仅提供开源监控引擎</li>
+<li>仅支持linux</li>
+<li>不带web引擎，需要专门的web服务器来提供web管理界面</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-6、Zabbix"><a href="#5-6、Zabbix" class="headerlink" title="5.6、Zabbix"></a>5.6、Zabbix</h3><ul>
+<li>特点<ul>
+<li>安装配置简单</li>
+<li>支持多语言</li>
+<li>开源</li>
+<li>自动发现服务器与设备</li>
+<li>分布式监视和web集中管理</li>
+<li>可以无agent进行监视</li>
+<li>email通知 </li>
+</ul>
+</li>
+<li>主要功能<ul>
+<li>CPU负荷</li>
+<li>内存使用</li>
+<li>磁盘使用</li>
+<li>网络状况</li>
+<li>端口监视</li>
+<li>日志监视</li>
+</ul>
+</li>
+<li>参考<ul>
+<li><a href="http://www.zabbix.com/" target="_blank" rel="external">Zabbix官网</a></li>
+<li><a href="http://blog.chinaunix.net/uid-25266990-id-3380929.html" target="_blank" rel="external">详解zabbix安装部署（Server端篇）-鸟哥のlinux-ChinaUnix博客</a></li>
+<li><a href="https://github.com/open-falcon" target="_blank" rel="external">Open-Falcon 小米科技的类似Zabbix的开源监控项目</a> </li>
+<li>open-falcon/open-falcon: open-falcon primary repository，all-in-one<br><a href="https://github.com/open-falcon/open-falcon" target="_blank" rel="external">https://github.com/open-falcon/open-falcon</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="5-7、Prometheus"><a href="#5-7、Prometheus" class="headerlink" title="5.7、Prometheus"></a>5.7、Prometheus</h3><ul>
+<li>开源网络监控系统</li>
+<li>go语言开发</li>
+<li>高维度数据模型</li>
+<li>自定义查询语言</li>
+<li>可视化数据展示</li>
+<li>高效的存储策略</li>
+<li>易于运维</li>
+<li>提供各种客户端开发库</li>
+<li>警告和报警</li>
+<li>数据导出</li>
+<li>官网：<a href="https://prometheus.io/" target="_blank" rel="external">https://prometheus.io/</a></li>
+</ul>
+<h3 id="5-8、open-falcon"><a href="#5-8、open-falcon" class="headerlink" title="5.8、open-falcon"></a>5.8、open-falcon</h3><ul>
+<li>小米科技的开源监控项目</li>
+<li>go语言开发</li>
+<li>高效并发分布式</li>
+<li>在国内广泛应用</li>
+</ul>
+<h3 id="5-9、小结"><a href="#5-9、小结" class="headerlink" title="5.9、小结"></a>5.9、小结</h3><p>目前国内IT企业广泛应用的主流监控系统，商业付费的有：</p>
+<blockquote>
+<ul>
+<li><a href="http://www.solarwinds.cn/" target="_blank" rel="external"><strong>solarwinds</strong></a></li>
+<li><a href="http://www.jiankongbao.com/" target="_blank" rel="external"><strong>监控宝</strong></a></li>
+<li>阿里云、腾讯云，Amazon，VMware等云平台附带的监控系统，用于监控云主机，服务器；</li>
+</ul>
+</blockquote>
+<p>开源监控系统主要有：</p>
+<blockquote>
+<ul>
+<li><strong>Catci</strong>，监控分析端口流量。</li>
+<li><strong>Nagios</strong>，在Zabbix出现之前，和Catci一样被各类企业广泛应用</li>
+<li><strong>Zabbix</strong>,开源监控方案的第一选择，分布式，自动化监控预警、快速部署优势明显，超大型大型网络会有性能瓶颈。58同城曾为其贡献过插件Zatree，小米科技早期也用的它。</li>
+<li><strong>open-falcon</strong>,基于go语言，并发高效，支持分布；由小米科技维护的开源监控解决方案。小米科技，金山，百度，腾讯，阿里，美团等大量国内IT企业使用，可管理机器设备1W+；</li>
+<li><strong>prometheus</strong>，新出的开源项目，因为是基于go语言，在性能表现更出色，主要用于Docker监控与云监控，于2016年7月发布1.0版本。 </li>
+</ul>
+</blockquote>
+<p> 综上，Zabbix是最佳选择。我会在下一章节进行实验，尝试部署、应用Zabbix，用来监控网络中的主机和设备。</p>
+<h2 id="第6章、Zabbix部署和应用"><a href="#第6章、Zabbix部署和应用" class="headerlink" title="第6章、Zabbix部署和应用"></a>第6章、Zabbix部署和应用</h2><h3 id="6-1、安装Zabbix服务"><a href="#6-1、安装Zabbix服务" class="headerlink" title="6.1、安装Zabbix服务"></a>6.1、安装Zabbix服务</h3><ul>
+<li>安装web环境<ul>
+<li>zabbix通过web提供管理界面，需要LAMP或LNMP环境</li>
+</ul>
+</li>
+<li>设置zabbix数据库<ul>
+<li>使用mysql，要给Zabbix用户授予向相应的权限</li>
+</ul>
+</li>
+<li>安装zabbix服务端<ul>
+<li>安装zabbix服务，并导入数据库表 </li>
+<li>添加配置文件并修改对应的zabbix数据库密码</li>
+<li>修改Agentd配置文件</li>
+<li>配置web前端</li>
+</ul>
+</li>
+<li>进入zabbix前端进一步配置<ul>
+<li>访问<a href="http://zabbixIP/zabbix，配置数据库连接，生成登录界面" target="_blank" rel="external">http://zabbixIP/zabbix，配置数据库连接，生成登录界面</a></li>
+</ul>
+</li>
+<li><p>启动服务</p>
+<ul>
+<li>service zabbix_server start</li>
+<li><p>设置开机启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vi /etc/rc.d/rc.local,添加：</div><div class="line">/usr/local/zabbix/sbin/zabbix_server start</div><div class="line">/usr/local/zabbix/sbin/zabbix_agentd start</div></pre></td></tr></table></figure>
+<p>通过浏览器访问zabbix服务 <img src="http://ww3.sinaimg.cn/large/af9df239gw1f63lvxo0y7j211y0hntb5.jpg" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>使用zabbix集成应用系统</p>
+<ul>
+<li>zabbix安装配置过程较为复杂繁琐，耗费时间</li>
+<li>我使用了官方提供的Zabbix Appliance，集成了zabbix 3.0的 Ubuntu 14.04 64位系统镜像</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-2、安装Zabbix-Agent"><a href="#6-2、安装Zabbix-Agent" class="headerlink" title="6.2、安装Zabbix Agent"></a>6.2、安装Zabbix Agent</h3><blockquote>
+<p>zabbix agent 主要负责收集其监控主机的硬件信息和服务信息，zabbix server 也可以不用agent，使用SNMP，WMI，ICMP ping，端口扫描等收集信息。</p>
+</blockquote>
+<h3 id="6-3、Zabbix配置与监控"><a href="#6-3、Zabbix配置与监控" class="headerlink" title="6.3、Zabbix配置与监控"></a>6.3、Zabbix配置与监控</h3><ul>
+<li>添加主机</li>
+<li>自动发现</li>
+<li>配置监控模板</li>
+<li>预警邮件通知</li>
+</ul>
+<h3 id="6-4、Zabbix-SNMP监控"><a href="#6-4、Zabbix-SNMP监控" class="headerlink" title="6.4、Zabbix SNMP监控"></a>6.4、Zabbix SNMP监控</h3><ul>
+<li>添加SNMP接口的主机</li>
+<li>确定要监控的SNMP OID或字符串<ul>
+<li><a href="http://www.ttlsa.com/monitor/snmp-oid/" target="_blank" rel="external">SNMP OID列表 监控需要用到的OID</a> </li>
+</ul>
+</li>
+<li><p>创建监控项item</p>
+</li>
+<li><p>监控磁盘获取的SNMP信息<br><img src="http://ww2.sinaimg.cn/large/af9df239jw1f665g40ljij211y0hndjp.jpg" alt=""></p>
+</li>
+</ul>
+<h2 id="第7章、FreeSwitch的SNMP模块"><a href="#第7章、FreeSwitch的SNMP模块" class="headerlink" title="第7章、FreeSwitch的SNMP模块"></a>第7章、FreeSwitch的SNMP模块</h2><h3 id="7-1、编译mod-SNMP模块"><a href="#7-1、编译mod-SNMP模块" class="headerlink" title="7.1、编译mod_SNMP模块"></a>7.1、编译mod_SNMP模块</h3><ul>
+<li><p>编译所需依赖包</p>
+<ul>
+<li><code>net-snmp-devel</code> or <code>net-snmp-dev</code></li>
+<li><code>openssl-devel</code> or <code>openssl-dev</code></li>
+</ul>
+</li>
+<li><p>freeswitch默认不编译mod_snmp</p>
+<ul>
+<li>在源码目录modules.conf配置要编译的模块，取消对mod_SNMP的注释</li>
+<li>然后编译安装freeswitch时会自动编译mod_snmp</li>
+<li>在/usr/local/freeswitch/conf/autoload_configs/modules.conf.xml文件中指定启动自动加载此模块。 </li>
+</ul>
+</li>
+<li>单独编译模块<ul>
+<li>如果已安装fs，则可以用make install-mod_XX进行编译</li>
+<li><code>make install-mod_snmp</code></li>
+</ul>
+</li>
+<li>在fs中加载mod_snmp<ul>
+<li>进入fs终端后，<code>load mod_snmp</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="7-2、配置SNMP-agentx"><a href="#7-2、配置SNMP-agentx" class="headerlink" title="7.2、配置SNMP agentx"></a>7.2、配置SNMP agentx</h3><ul>
+<li>mod_snmp是使用net-snmp的agentX开发的snmp子代理程序</li>
+<li>mod_snmp需要注册到系统的SNMP主代理上，接收主代理提出的请求并返回结果。</li>
+<li>主代理可以通过mod_snmp请求相应的OID，获取FS的状态，而无需在fs终端或fs_cli前端使用freeswitch命令 <code>status</code></li>
+<li>运行fs的系统中需要安装net-snmp和<code>snmp-mibs-downloader</code>，且snmpd作为主代理运行。</li>
+<li><p>修改snmpd.conf配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">vi /etc/snmp/snmpd.conf</div><div class="line"># 添加以下内容，为freeswitch用户连接snmpd提供权限</div><div class="line">#  agentXPerms  SOCKPERMS [DIRPERMS [USER|UID [GROUP|GID]]]</div><div class="line">agentXPerms     0755 0755 freeswitch daemon</div><div class="line"></div><div class="line">#其他要修改的地方参考前文，主要是snmp远程访问，view访问MIB的范围限制</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="7-3、freeswitch-MIB和OID"><a href="#7-3、freeswitch-MIB和OID" class="headerlink" title="7.3、freeswitch MIB和OID"></a>7.3、freeswitch MIB和OID</h3><ul>
+<li>OID节点<code>.1.3.6.1.4.1.27880</code>是fs注册的，整个fs OID tree参考<a href="https://freeswitch.org/confluence/display/FREESWITCH/FreeSWITCH+OID" target="_blank" rel="external">FreeSWITCH OID</a></li>
+<li>walk整个OID tree<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">snmpwalk.exe -v 1 -c public 192.168.233.129 .1.3.6.1.4.1.27880</div><div class="line">SNMPv2-SMI::enterprises.27880.1.1.1.0 = Hex-STRING: C0 58 DA 7C 5A 7F 00 00 00 00 00 00 00 00 00 00</div><div class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</div><div class="line">00 00 00 00 00 00 00 00 00 00 00</div><div class="line">SNMPv2-SMI::enterprises.27880.1.1.2.0 = STRING: &quot;efc3110f-e4ec-4cb7-8295-7d60bf8f3c29&quot;</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.1.0 = Timeticks: (1595704) 4:25:57.04</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.2.0 = Counter32: 0</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.3.0 = Gauge32: 0</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.4.0 = Gauge32: 1000</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.5.0 = Gauge32: 0</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.6.0 = Gauge32: 0</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.7.0 = Gauge32: 30</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.8.0 = Gauge32: 0</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.9.0 = Gauge32: 0</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.10.0 = Gauge32: 0</div><div class="line">SNMPv2-SMI::enterprises.27880.1.2.11.0 = Gauge32: 0</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>.1 to .1000: reserved for core </li>
+<li>.1: core      <ul>
+<li>.1.1: identity<ul>
+<li><em>.1.3.6.1.4.1.27880.1.1.1</em>: FreeSWITCH version string (eg. “1.0.head (git-0cf1d54 2011-01-19 16-36-04 -0500)”)</li>
+<li><em>.1.3.6.1.4.1.27880.1.1.2</em>: Core UUID as a string</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>.2: systemStats</p>
+<ul>
+<li><em>.1.3.6.1.4.1.27880.1.2.1</em>: FreeSWITCH uptime as SNMP TimerTicks (hundredths of seconds)</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.2</em>: Number of sessions since FreeSWITCH was started</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.3</em>: Currently active sessions</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.4</em>: Maximum allowed sessions</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.5</em>: Currently active calls</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.6</em>:Current sessions per second</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.7</em>: Maximum allowed sessions per second</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.8</em>: Peak sessions per second</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.9</em>: Peak sessions per second Last Five Minutes</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.10</em>: Peak sessions</li>
+<li><em>.1.3.6.1.4.1.27880.1.2.11</em>: Peak sessions Last Five Minutes</li>
+</ul>
+</li>
+<li>.1000:mod_snmp<ul>
+<li><em>.1.3.6.1.4.1.27880.1000</em>: mod_snmp</li>
+</ul>
+</li>
+<li>.1001-2000:reserved for modules</li>
+<li><em>.1.3.6.1.4.1.27880.1001</em>: mod_sofia</li>
+<li><em>.1.3.6.1.4.1.27880.1002</em>: mod_skinny<ul>
+<li><em>.1.3.6.1.4.1.27880.1002.1</em>: Skinny LDAP schema</li>
+</ul>
+</li>
+</ul>
+<h2 id="附录-参考文章"><a href="#附录-参考文章" class="headerlink" title="附录 参考文章"></a>附录 参考文章</h2><p><a href="http://freeloda.blog.51cto.com/2033581/1306743/" target="_blank" rel="external">1、 SNMP 原理与实战详解 - 51CTO</a><br><a href="https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol#cite_note-14" target="_blank" rel="external">2、Simple Network Management Protocol - Wikipedia</a><br><a href="http://blog.sina.com.cn/s/blog_4502d59c0101fcy2.html" target="_blank" rel="external">3、SNMP介绍，OID及MIB库–新浪博客</a><br><a href="http://blog.csdn.net/jonbb/article/details/51353621" target="_blank" rel="external">4、SNMP4J介绍 - jonbb的博客-CSDN.NET</a><br><a href="http://os.51cto.com/art/201307/402538_3.htm" target="_blank" rel="external">5、四大开源网络管理工具详解 - 51CTO.COM</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/科研/">科研</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/SNMP/">SNMP</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/09/17/科研/2014-09-11-Matlab-tips/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/09/17/科研/2015-09-12-Intuition-of-Eigen-Value/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

@@ -1,0 +1,815 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>redis学习笔记 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="redis学习笔记no sql：redis，mongodb，Memcached
+redis：Remote Directory Server，远程字典服务器。
+键值数据类型支持：
+●字符串String类型
+set、get、getset。。。 
+●散列Hash类型
+类似python的字典
+hset、hg">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="redis学习笔记"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-02-28T16:00:00.000Z"><a href="/2017/03/01/技术/redis学习笔记/">2017-03-01</a></time>
+      
+      
+  
+    <h1 class="title">redis学习笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis学习笔记"><span class="toc-text">redis学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、下载安装"><span class="toc-text">1、下载安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、客户端命令行"><span class="toc-text">2、客户端命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、命令返回消息类型："><span class="toc-text">2.1、命令返回消息类型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、常用命令"><span class="toc-text">2.2、常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3、使用python-redis-py连接Redis"><span class="toc-text">2.3、使用python redis-py连接Redis</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、事务"><span class="toc-text">3、事务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、缓存和Redis生存时间"><span class="toc-text">4、缓存和Redis生存时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、消息队列"><span class="toc-text">5、消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1、生产者-消费者模式"><span class="toc-text">5.1、生产者-消费者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2、发布-订阅模式"><span class="toc-text">5.2、发布-订阅模式</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <h2 id="redis学习笔记"><a href="#redis学习笔记" class="headerlink" title="redis学习笔记"></a>redis学习笔记</h2><p>no sql：redis，mongodb，Memcached</p>
+<p>redis：Remote Directory Server，远程字典服务器。</p>
+<p>键值数据类型支持：</p>
+<p>●字符串String类型</p>
+<p>set、get、getset。。。 </p>
+<p>●散列Hash类型</p>
+<p>类似python的字典</p>
+<p>hset、hget、hdel、hgetall、hkeys、hvals</p>
+<p>●列表List类型</p>
+<p>lpush、rpush、lpop、rpop、llen</p>
+<p>●集合Set类型</p>
+<p>sadd、smembers、srem、spop、sdiff(差集)、sinter(交集)、sunion(并集)、scard(长度)、</p>
+<p>●有序集合Zset类型</p>
+<p> <code>ZADD key [NX|XX][CH] [INCR] score member [score member ...]</code></p>
+<p>zscore、zcard、zrank、</p>
+<p>一个键最多存储512MB</p>
+<p><a href="redis.io">官网</a></p>
+<h3 id="1、下载安装"><a href="#1、下载安装" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p>linux下安装<code>apt-get install redis-server</code>,启动<code>service redis-server start</code></p>
+<ul>
+<li><p>redis-server ：服务器</p>
+</li>
+<li><p>redis-benchmark：性能测试工具</p>
+</li>
+<li><p>redis-cli：命令行客户端</p>
+</li>
+<li><p>redis-check-dump：RDB文件检测工具</p>
+</li>
+<li><p>redis-check-aof：AOF文件修复工具</p>
+<p>启动命令</p>
+<p><code>redis-server redis.windows.conf</code></p>
+<p><strong>设置Redis服务</strong></p>
+<p>由于上面虽然启动了redis，但是只要一关闭cmd窗口，redis就会消失。所以要把redis设置成windows下的服务。</p>
+<p><code>redis-server --service-install redis.windows-service.conf --loglevel verbose</code></p>
+<p>卸载服务：redis-server –service-uninstall</p>
+<p>开启服务：redis-server –service-start</p>
+<p>停止服务：redis-server –service-stop</p>
+<p>测试：</p>
+<p><code>redis-cli -h 127.0.0.1 -p 6379</code></p>
+</li>
+<li><p>参数配置</p>
+<ul>
+<li><p>启动参数</p>
+<p><code>redis-server redis.windows.conf</code> –port xxx –loglevel  notice</p>
+</li>
+<li><p>命令行客户端中动态修改</p>
+<p>127.0.0.1:6379&gt; CONFIG get loglevel<br>1) “loglevel”<br>2) “notice”<br>127.0.0.1:6379&gt; CONFIG GET port<br>1) “port”<br>2) “6379”<br>127.0.0.1:6379&gt; CONFIG SET loglevel warning<br>OK<br>127.0.0.1:6379&gt; CONFIG GET loglevel<br>1) “loglevel”<br>2) “warning”</p>
+</li>
+<li><p>配置文件redis.conf</p>
+<p>port 6379 默认端口</p>
+<p>bind 127.0.0.1，默认绑定的主机地址</p>
+<p>timeout 0，当客户端闲置多久之后关闭连接，0代表没有启动这个选项</p>
+<p>loglevel notice，日志的记录级别</p>
+<p># debug：很详细的信息，适合开发和测试</p>
+<p># verbose ：包含很多不太有用的信息</p>
+<p># notice ：比较适合生产环境</p>
+<p># warning ：警告信息</p>
+<p>logfile stdout代表日志的记录方式，默认为标准输出</p>
+<p>databases 16代表默认数据库的数量16个,默认的数据库编号从0开始，<code>select 1</code> 选择数据库1</p>
+<p>save 300 10  –300秒内将10个更改同步到磁盘</p>
+<p>save  900  1</p>
+<p>dbfilename dump.rdb，指定本地数据库文件名，默认为dump.rdb</p>
+<p>dir ./,指定本地数据库的存放目录，默认是当前目录</p>
+<p>requirepass password  设置认证</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、客户端命令行"><a href="#2、客户端命令行" class="headerlink" title="2、客户端命令行"></a>2、客户端命令行</h3><h4 id="2-1、命令返回消息类型："><a href="#2-1、命令返回消息类型：" class="headerlink" title="2.1、命令返回消息类型："></a>2.1、命令返回消息类型：</h4><ul>
+<li><p>状态信息</p>
+<p>  127.0.0.1:6379&gt; set test “test_value”<br>  OK<br>  127.0.0.1:6379&gt; ping<br>  PONG</p>
+</li>
+<li><p>错误回复</p>
+<p>  127.0.0.1:6379&gt; xx<br>  (error) ERR unknown command ‘xx’</p>
+</li>
+<li><p>整数</p>
+<p>  127.0.0.1:6379&gt; DBSIZE<br>  (integer) 1</p>
+</li>
+<li><p>字符串</p>
+<p>  127.0.0.1:6379&gt; get a<br>  “1”<br>  127.0.0.1:6379&gt; get test<br>  “test_value”</p>
+<p>  127.0.0.1:6379&gt; get aa<br>  (nil)</p>
+<p>  nil表示空的结果</p>
+</li>
+<li><p>多行字符串</p>
+<p>  127.0.0.1:6379&gt; keys *<br>  1) “b”<br>  2) “test”<br>  3) “a”</p>
+</li>
+</ul>
+<h4 id="2-2、常用命令"><a href="#2-2、常用命令" class="headerlink" title="2.2、常用命令"></a>2.2、常用命令</h4><p>‘redis-cli -h 127.0.0.1 -p 6379 -a passwd’</p>
+<p>select 0  选择0号数据库</p>
+<p>exit quit 断开连接</p>
+<p>shutdown 同时关闭服务器</p>
+<p>参考文档<a href="http://doc.redisfans.com/" target="_blank" rel="external">http://doc.redisfans.com/</a></p>
+<h4 id="2-3、使用python-redis-py连接Redis"><a href="#2-3、使用python-redis-py连接Redis" class="headerlink" title="2.3、使用python redis-py连接Redis"></a>2.3、使用python redis-py连接Redis</h4><p><code>pip install redis</code></p>
+<p>redis-py没有实现select</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">r = redis.Redis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, db=<span class="number">0</span>, password=<span class="keyword">None</span>)</div><div class="line"><span class="keyword">print</span> r.set(<span class="string">'a'</span>, <span class="string">'a_value'</span>, ex=<span class="keyword">None</span>, px=<span class="keyword">None</span>, nx=<span class="keyword">False</span>, xx=<span class="keyword">False</span>)</div><div class="line"><span class="keyword">print</span> r.get(<span class="string">'a'</span>)</div><div class="line"><span class="keyword">print</span> r.config_get(<span class="string">'loglevel'</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-27/41317582-file_1490600179965_2c28.png" alt=""></p>
+<p>使用pipeline提高执行效率</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">r = redis.Redis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, db=<span class="number">1</span>)</div><div class="line">p = r.pipeline()</div><div class="line">p.set(<span class="string">'k1'</span>, <span class="string">'v1'</span>)</div><div class="line">p.set(<span class="string">'qqq'</span>, <span class="number">2</span>)</div><div class="line">p.incr(<span class="string">'num1'</span>)</div><div class="line">p.execute()</div><div class="line"><span class="keyword">print</span> r.keys(<span class="string">'*'</span>)</div></pre></td></tr></table></figure>
+<h3 id="3、事务"><a href="#3、事务" class="headerlink" title="3、事务"></a>3、事务</h3><p>事务可以理解为一些列操作的集合，或一个过程。要么成功（全部执行），要么失败（全部都不被执行）。</p>
+<ul>
+<li><p>开启事务</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-27/46233754-file_1490582676167_60fe.png" alt=""></p>
+<p>EXEC 执行事务</p>
+</li>
+<li><p>事务的执行</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-27/17320131-file_1490582766396_24af.png" alt=""></p>
+</li>
+<li><p>监视key</p>
+<p>WATCH counter1 counter2</p>
+<p>如果在执行事务之前key如果被其它命令改动，事务就被打断了，不会执行。</p>
+<p>UNWATCH:取消WATCH命令对所有key的监视</p>
+</li>
+</ul>
+<ul>
+<li><p>取消事务</p>
+<p>DISCARD</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-27/41588717-file_1490582930256_52d.png" alt=""></p>
+</li>
+<li><p>错误处理</p>
+<ul>
+<li><p>语法错误</p>
+<p>错误的语法不会被添加到队列中，自然也不会被执行。</p>
+</li>
+<li><p>运行出错</p>
+<p>事务中QUEUED的语句，在运行中出错，其他的命令也会成功执行。Redis事务不支持回滚。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4、缓存和Redis生存时间"><a href="#4、缓存和Redis生存时间" class="headerlink" title="4、缓存和Redis生存时间"></a>4、缓存和Redis生存时间</h3><p>redis的键值可以设置生存时间，到期后自动删除。</p>
+<p>EXPIRE（设置过期的秒数）/EXPIREAT（在指定的时间戳进行删除）</p>
+<p>PEXPIRE（设置过期的微秒数）/PEXPIREAT（在指定的时间戳进行删除）</p>
+<p>PERSIST（永不过期，持久化）</p>
+<p>TTL    （得到某个键的生存时间）</p>
+<p>PTTL   （得到某个键的生存时间）</p>
+<p>将近期访问过得数据保存到redis中。如果数据不在Redis中，再去数据库中取。</p>
+<p>如果大量的使用这种缓存键而且生存时间设置的过长，Redis会占用大量内存。</p>
+<p>如果缓存键的生存时间设置太短的话，可能会导致缓存的命中率过低，内存利用率低。</p>
+<h3 id="5、消息队列"><a href="#5、消息队列" class="headerlink" title="5、消息队列"></a>5、消息队列</h3><h4 id="5-1、生产者-消费者模式"><a href="#5-1、生产者-消费者模式" class="headerlink" title="5.1、生产者-消费者模式"></a>5.1、生产者-消费者模式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding: utf-8</span></div><div class="line"><span class="keyword">import</span> redis</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Task</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.rcon = redis.Redis(db=<span class="number">5</span>)</div><div class="line">        self.queue = <span class="string">'task:prodcons:queue'</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_task</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            task = self.rcon.blpop(self.queue, <span class="number">0</span>)[<span class="number">1</span>]  <span class="comment"># blpop阻塞式的pop</span></div><div class="line">            <span class="keyword">print</span> <span class="string">'Task: %s'</span> % task</div><div class="line"></div><div class="line"></div><div class="line">Task().process_task()</div><div class="line"><span class="comment">#  向'task:prodcons:queue'里lpush数据后，会有数据打印出来</span></div></pre></td></tr></table></figure>
+<h4 id="5-2、发布-订阅模式"><a href="#5-2、发布-订阅模式" class="headerlink" title="5.2、发布-订阅模式"></a>5.2、发布-订阅模式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding: utf-8</span></div><div class="line"><span class="keyword">import</span> redis</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Task</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.rcon = redis.Redis(db=<span class="number">5</span>)</div><div class="line">        self.ps = self.rcon.pubsub()</div><div class="line">        self.ps.subscribe(<span class="string">'task:pubsub:channel'</span>)  <span class="comment"># 订阅频道</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_task</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> self.ps.listen():  <span class="comment"># 是个生成器</span></div><div class="line">            <span class="keyword">if</span> i[<span class="string">'type'</span>] == <span class="string">'message'</span>:</div><div class="line">                <span class="keyword">print</span> <span class="string">'Task: %s'</span> % i[<span class="string">'data'</span>]</div><div class="line"></div><div class="line"></div><div class="line">Task().process_task()</div><div class="line"><span class="comment">#  向'task:pubsub:channel'里publish数据后，每个订阅该频道的程序都会会打印打印相同的消息出来</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/redis/">redis</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Redis/">Redis</a>, <a href="/tags/数据库/">数据库</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/03/01/技术/scapy-redis源码阅读/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/02/28/技术/numpy-liner-skills/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

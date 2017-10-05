@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>爬虫笔记(基于python2) | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="基于python2.7
+
+urllib2库的用法基础用法
+urlopen方法打开网页
+
+传入3个参数，data和timeout不是必须的；返回网页的源码可用read方法读出。
+123response = urlopen(url,data,timeout)content = response.read">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="爬虫笔记(基于python2)"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-08-08T16:00:00.000Z"><a href="/2016/08/09/技术/python2爬虫笔记/">2016-08-09</a></time>
+      
+      
+  
+    <h1 class="title">爬虫笔记(基于python2)</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#urllib2库的用法"><span class="toc-text">urllib2库的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基础用法"><span class="toc-text">基础用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高级用法"><span class="toc-text">高级用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cookie保持登陆"><span class="toc-text">cookie保持登陆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URLError异常处理"><span class="toc-text">URLError异常处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式-和-bs4"><span class="toc-text">正则表达式 和 bs4</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正则表达式"><span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用匹配"><span class="toc-text">常用匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BeautifulSoup"><span class="toc-text">BeautifulSoup</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Requests库的用法"><span class="toc-text">Requests库的用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xpath语法与lxml库"><span class="toc-text">xpath语法与lxml库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#xpath语法"><span class="toc-text">xpath语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lxml用法"><span class="toc-text">lxml用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PhantomJS的用法"><span class="toc-text">PhantomJS的用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Selenium的用法"><span class="toc-text">Selenium的用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PyQuery的用法"><span class="toc-text">PyQuery的用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PySpider框架"><span class="toc-text">PySpider框架</span></a></li></ol>
+    </div>
+
+      
+        <blockquote>
+<p>基于python2.7</p>
+</blockquote>
+<h3 id="urllib2库的用法"><a href="#urllib2库的用法" class="headerlink" title="urllib2库的用法"></a>urllib2库的用法</h3><h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><ul>
+<li>urlopen方法打开网页</li>
+</ul>
+<p>传入3个参数，data和timeout不是必须的；返回网页的源码可用read方法读出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">response = urlopen(url,data,timeout)</div><div class="line">content = response.read()</div></pre></td></tr></table></figure>
+<p>urlopen()本质上接收一个request对象，返回response对象。<br>构建request对象：request = urllib2.Request(url, data=None, headers={}, origin_req_host=None, unverifiable=False)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import urllib2</div><div class="line"></div><div class="line">request = urllib2.Request(&quot;http://www.baidu.com&quot;)</div><div class="line">response = urllib2.urlopen(request)</div><div class="line">print response.read()</div></pre></td></tr></table></figure>
+<ul>
+<li>post方式请求数据</li>
+</ul>
+<p>post提交的数据不会在网址中显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import urllib</div><div class="line">import urllib2</div><div class="line"></div><div class="line">values = &#123;&quot;username&quot;:&quot;xxxx@qq.com&quot;,&quot;password&quot;:&quot;XXXX&quot;&#125;</div><div class="line">data = urllib.urlencode(values) </div><div class="line">url = &quot;https://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn&quot;</div><div class="line">request = urllib2.Request(url,data)</div><div class="line">response = urllib2.urlopen(request)</div><div class="line">print response.read()</div></pre></td></tr></table></figure>
+<ul>
+<li>get方式请求数据</li>
+</ul>
+<p>get方式提高的数据直接包含在网址当中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">import urllib</div><div class="line">import urllib2</div><div class="line"></div><div class="line">values=&#123;&#125;</div><div class="line">values[&apos;username&apos;] = &quot;1016903103@qq.com&quot;</div><div class="line">values[&apos;password&apos;]=&quot;XXXX&quot;</div><div class="line">data = urllib.urlencode(values) </div><div class="line">url = &quot;http://passport.csdn.net/account/login&quot;</div><div class="line">   ### 数据拼接到url中</div><div class="line">geturl = url + &quot;?&quot;+data </div><div class="line">request = urllib2.Request(geturl)</div><div class="line">response = urllib2.urlopen(request)</div><div class="line">print response.read()</div></pre></td></tr></table></figure>
+<h4 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h4><blockquote>
+<p>下面来说一说urllib2中的两个重要概念：Openers和Handlers。<br>1.Openers：<br>当你获取一个URL你使用一个opener(一个urllib2.OpenerDirector的实例)。<br>正常情况下，我们使用默认opener：通过urlopen。<br>但你能够创建个性的openers。<br>2.Handles：<br>Openers使用处理器handlers，所有的“繁重”工作由handlers处理。<br>每个handlers知道如何通过特定协议打开URLs，或者如何处理URL打开时的各个方面。<br>例如HTTP重定向或者HTTP cookies</p>
+</blockquote>
+<ul>
+<li><p>headers属性模拟浏览器身份</p>
+<p>User-Agent : 通常会通过该值来判断是否是浏览器发出的请求<br>Content-Type : 在使用 REST 接口时，服务器会检查该值，用来确定 HTTP Body 中的内容该怎样解析。<br>application/xml ： 在 XML RPC，如 RESTful/SOAP 调用时使用<br>application/json ： 在 JSON RPC 调用时使用<br>application/x-www-form-urlencoded ： 浏览器提交 Web 表单时使用<br>在使用服务器提供的 RESTful 或 SOAP 服务时， Content-Type 设置错误会导致服务器拒绝服务<br>referer：有些网站会检测该值是否为自身，防盗链。</p>
+</li>
+</ul>
+<p>在构建request对象时设置headers</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">headers = &#123; &apos;User-Agent&apos; : &apos;Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)&apos;  ,</div><div class="line">                        &apos;Referer&apos;:&apos;http://www.zhihu.com/articles&apos; &#125;</div><div class="line">request = urllib2.Request(url, data, headers)  </div><div class="line">response = urllib2.urlopen(request)  </div><div class="line">page = response.read()</div></pre></td></tr></table></figure>
+<p>用自建的opener()中addheaders属性加入headers参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">user_agents = [</div><div class="line">          &apos;Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11&apos;,</div><div class="line">          &apos;Opera/9.25 (Windows NT 5.1; U; en)&apos;,</div><div class="line">          &apos;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)&apos;,</div><div class="line">          &apos;Mozilla/5.0 (compatible; Konqueror/3.5; Linux) KHTML/3.5.5 (like Gecko) (Kubuntu)&apos;,</div><div class="line">          &apos;Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.12) Gecko/20070731 Ubuntu/dapper-security Firefox/1.5.0.12&apos;,</div><div class="line">          &apos;Lynx/2.8.5rel.1 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/1.2.9&apos;,</div><div class="line">          &quot;Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.7 (KHTML, like Gecko) Ubuntu/11.04 Chromium/16.0.912.77 Chrome/16.0.912.77 Safari/535.7&quot;,</div><div class="line">          &quot;Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:10.0) Gecko/20100101 Firefox/10.0 &quot;,</div><div class="line"></div><div class="line">      ] </div><div class="line">      agent = random.choice(user_agents)</div><div class="line">      </div><div class="line">      opener.addheaders = [(&quot;User-agent&quot;,agent),(&quot;Accept&quot;,&quot;*/*&quot;),(&apos;Referer&apos;,&apos;http://www.google.com&apos;)]</div></pre></td></tr></table></figure>
+<ul>
+<li>Proxy代理设置</li>
+</ul>
+<p>在创建opner时传入Proxy handler ，urllib2.build_opener(proxy_handler)<br>或在一个opener实例中调用opener.add_handler(proxy_handler)方法传入</p>
+<p>创建proxy handler对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxy_handler = urllib2.ProxyHandler(&#123;&quot;http&quot; : &apos;http://some-proxy.com:8080&apos;&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>超时设置timeout</li>
+</ul>
+<p>可以设置等待多少秒无响应即为超时，在urlopen(url,data,timeout=10)中设置</p>
+<ul>
+<li>http的put和delete方法</li>
+</ul>
+<p>http协议有6种请求数据的方法，除了最常用get和post，还有head，put，delete，options；<br>PUT：这个方法比较少见。HTML表单也不支持这个。本质上来讲， PUT和POST极为相似，都是向服务器发送数据，但它们之间有一个重要区别，PUT通常指定了资源的存放位置，而POST则没有，POST的数据存放位置由服务器自己决定。<br>DELETE：删除某一个资源。基本上这个也很少见，不过还是有一些地方比如amazon的S3云服务里面就用的这个方法来删除资源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 在创建request对象时指定put或delete方法</div><div class="line">request = urllib2.Request(url,data,headers=&#123;&#125;)</div><div class="line">request.get_method = lambda: &apos;PUT&apos; # or &apos;DELETE&apos;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用DebugLog</li>
+</ul>
+<p>该功能可以将收发包的内容打印出来，不常用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">httpHandler = urllib2.HTTPHandler(debuglevel=1)</div><div class="line">httpsHandler = urllib2.HTTPSHandler(debuglevel=1)</div><div class="line">opener = urllib2.build_opener(httpHandler, httpsHandler)</div></pre></td></tr></table></figure>
+<h4 id="cookie保持登陆"><a href="#cookie保持登陆" class="headerlink" title="cookie保持登陆"></a>cookie保持登陆</h4><p>在opener中绑定处理cookie对象的handler，即可捕获cookie并在后续的请求中使用。</p>
+<blockquote>
+<p>cookielib模块</p>
+<p>cookielib模块提供可存储的cookie对象，配合urllib2使用。cookielib提供的主要对象有CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar。</p>
+</blockquote>
+<ul>
+<li>保存cookie到变量中，使用cookiejar()对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">import urllib2</div><div class="line">import cookielib</div><div class="line"></div><div class="line">cookie = cookielib.CookieJar()</div><div class="line">cookie_handler = urllib2.HTTPCookieProcessor(cookiejar=cookie)</div><div class="line">opener = urllib2.build_opener(cookie_handler)</div><div class="line">opener.open(url) </div><div class="line"># ...</div><div class="line">for item in cookie :</div><div class="line">    print item.name + item.value</div></pre></td></tr></table></figure>
+<ul>
+<li>保存cookie到文件中，</li>
+</ul>
+<p>使用FileCookieJar()对象及其子类 MozillaCookieJar和LWPCookiejar。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import urllib2</div><div class="line">import cookielib</div><div class="line"></div><div class="line">cookie_file = &apos;cookie.txt&apos;</div><div class="line">cookie_jar=cookielib.MozillaCookieJar(filename=cookie_file)</div><div class="line">cookie_handler = urllib2.HTTPCookieProcessor(cookiejar=cookie_jar)</div><div class="line">opener = urllib2.build_opener(cookie_handler)</div><div class="line">opener.open(&apos;http:\\www.baidu.com&apos;)</div><div class="line">cookie_jar.save(ignore_discard=True, ignore_expires=True) # 即使将废弃的cookie也保存，覆盖cookie文件内容</div></pre></td></tr></table></figure>
+<ul>
+<li>从文件中加载cookie</li>
+</ul>
+<p>cookiejar对象的load方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import urllib2</div><div class="line">import cookielib</div><div class="line"></div><div class="line">cookie_file = &apos;cookie.txt&apos;</div><div class="line">cookie_jar=cookielib.MozillaCookieJar()</div><div class="line">### load()方法</div><div class="line">cookie_jar.load(filename=cookie_file, ignore_discard=True, ignore_expires=True)</div><div class="line">cookie_handler = urllib2.HTTPCookieProcessor(cookiejar=cookie_jar)</div><div class="line">opener = urllib2.build_opener(cookie_handler)</div><div class="line">resp=opener.open(&apos;http:\\www.baidu.com&apos;)</div><div class="line">print resp.read()</div></pre></td></tr></table></figure>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><blockquote>
+<p>登陆小说网站 166zw.com</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">import urllib2</div><div class="line">import urllib</div><div class="line">import cookielib</div><div class="line"></div><div class="line">########################################################################</div><div class="line">class Browser(object):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    创建一个有cookie和headers的opener对象,带有异常处理</div><div class="line">    &quot;&quot;&quot;</div><div class="line"></div><div class="line">    #----------------------------------------------------------------------</div><div class="line">    def __init__(self):</div><div class="line">        &quot;&quot;&quot;Constructor&quot;&quot;&quot;</div><div class="line">        cookie_handler = urllib2.HTTPCookieProcessor(cookiejar=cookielib.CookieJar(</div><div class="line">                                                                                  ))</div><div class="line">        self.opener = urllib2.build_opener(cookie_handler)</div><div class="line">        self.opener.addheaders = [(&quot;User-agent&quot;,    &apos;Opera/9.25 (Windows NT 5.1; U; en)&apos;,</div><div class="line">),(&quot;Accept&quot;,&quot;*/*&quot;),(&apos;Referer&apos;,&apos;http://www.google.com&apos;)]</div><div class="line">        </div><div class="line">    </div><div class="line">    def openurl(self,url,data=None,timeout=10):</div><div class="line">        try:</div><div class="line">            response = self.opener.open(url,data,timeout)</div><div class="line">        except urllib2.URLError, e:</div><div class="line">            print e.code,&apos;\n&apos;,e.reason</div><div class="line">        return response</div><div class="line">    </div><div class="line">    </div><div class="line">postData=urllib.urlencode(&#123;&apos;username&apos;:&apos;wocaonima&apos;,\</div><div class="line">                           &apos;password&apos;:&apos;******&apos;,\</div><div class="line">                           &apos;usecookie&apos;:&apos;1&apos;,\</div><div class="line">                           &apos;submit.x&apos;:&apos;25&apos;,\</div><div class="line">                           &apos;submit.y&apos;:&apos;5&apos;,\</div><div class="line">                           &apos;action&apos;:&apos;login&apos;&#125;)</div><div class="line">loginUrl=r&apos;http://www.166zw.com/loginframe.php&apos;</div><div class="line"></div><div class="line">html=Browser().openurl(loginUrl,postData)</div><div class="line">print html.code,html.msg,html.info</div><div class="line">content= html.read()</div><div class="line">print content  ### 打印的页面含有用户名信息，表明登陆成功</div></pre></td></tr></table></figure>
+<h4 id="URLError异常处理"><a href="#URLError异常处理" class="headerlink" title="URLError异常处理"></a>URLError异常处理</h4><ul>
+<li>http协议状态码 </li>
+</ul>
+<p>服务器返回的响应请求，包含一个状态码。urllib2.HTTPError可以捕获</p>
+<blockquote>
+<p>100：继续  客户端应当继续发送请求。客户端应当继续发送请求的剩余部分，或者如果请求已经完成，忽略这个响应。<br>101： 转换协议  在发送完这个响应最后的空行后，服务器将会切换到在Upgrade 消息头中定义的那些协议。只有在切换新的协议更有好处的时候才应该采取类似措施。<br>102：继续处理   由WebDAV（RFC 2518）扩展的状态码，代表处理将被继续执行。<br>200：请求成功      处理方式：获得响应的内容，进行处理<br>201：请求完成，结果是创建了新资源。新创建资源的URI可在响应的实体中得到    处理方式：爬虫中不会遇到<br>202：请求被接受，但处理尚未完成    处理方式：阻塞等待<br>204：服务器端已经实现了请求，但是没有返回新的信 息。如果客户是用户代理，则无须为此更新自身的文档视图。    处理方式：丢弃<br>300：该状态码不被HTTP/1.0的应用程序直接使用， 只是作为3XX类型回应的默认解释。存在多个可用的被请求资源。    处理方式：若程序中能够处理，则进行进一步处理，如果程序中不能处理，则丢弃<br>301：请求到的资源都会分配一个永久的URL，这样就可以在将来通过该URL来访问此资源    处理方式：重定向到分配的URL<br>302：请求到的资源在一个不同的URL处临时保存     处理方式：重定向到临时的URL<br>304：请求的资源未更新     处理方式：丢弃<br>400：非法请求     处理方式：丢弃<br>401：未授权     处理方式：丢弃<br>403：禁止     处理方式：丢弃<br>404：没有找到     处理方式：丢弃<br>500：服务器内部错误  服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。一般来说，这个问题都会在服务器端的源代码出现错误时出现。<br>501：服务器无法识别  服务器不支持当前请求所需要的某个功能。当服务器无法识别请求的方法，并且无法支持其对任何资源的请求。<br>502：错误网关  作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。<br>503：服务出错   由于临时的服务器维护或者过载，服务器当前无法处理请求。这个状况是临时的，并且将在一段时间以后恢复。</p>
+</blockquote>
+<ul>
+<li>URLError </li>
+</ul>
+<p>HTTPError是URLError的子类,所以try… except…时应先捕获子类，子类捕获不到再捕获父类错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import urllib2</div><div class="line"></div><div class="line">req = urllib2.Request(&apos;http://blog.csdn.net/cqcre&apos;)</div><div class="line">try:</div><div class="line">    urllib2.urlopen(req)</div><div class="line">except urllib2.HTTPError, e:</div><div class="line">    print e.code</div><div class="line">except urllib2.URLError, e:</div><div class="line">    print e.reason</div><div class="line">else:</div><div class="line">    print &quot;OK&quot;</div></pre></td></tr></table></figure>
+<p>直接捕获一个URLError，如果含有code和reason属性，则说明是一个HTTPError。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import urllib2</div><div class="line"></div><div class="line">req = urllib2.Request(&apos;http://blog.csdn.net/cqcre&apos;)</div><div class="line">try:</div><div class="line">    urllib2.urlopen(req)</div><div class="line">except urllib2.URLError, e:</div><div class="line">    if hasattr(e,&quot;code&quot;):</div><div class="line">        print e.code,e.reason </div><div class="line">    else:</div><div class="line">        print e</div><div class="line">else: </div><div class="line">    print ok</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="正则表达式-和-bs4"><a href="#正则表达式-和-bs4" class="headerlink" title="正则表达式 和 bs4"></a>正则表达式 和 bs4</h3><h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><blockquote>
+<p>正则表达式用来匹配符合特定规则的字符串，类似于数学表达式是一种逻辑公式，实现对字符串的过滤匹配。</p>
+</blockquote>
+<ul>
+<li>正则表达式的语法规则</li>
+</ul>
+<p><img src="http://ww2.sinaimg.cn/large/af9df239jw1f76t5gaxbaj20m71brx03.jpg" alt=""></p>
+<ul>
+<li>贪婪模式和转义字符</li>
+</ul>
+<p>python默认使用贪婪模式匹配查找字符串，即总是尝试匹配尽可能多的字符，非贪婪模式则相反。举例：模式ab<em> 在<code>abbbc</code>字符串中将匹配到3个b，即<code>abbb</code>;非贪婪模式ab</em>? 在<code>abbbc</code>字符串中将匹配到0个b，即<code>a</code>;</p>
+<p>转义字符为<code>\</code>，很多编程语言也用<code>\</code>做转义字符，那么编程语言里的正则表达式想要匹配“\”就得使用4个‘\’,即“\\”。先在编程语言环境中转义得到“\”,然后提供给正则表达式。<br>好在python有原生字符串的表示方法，即不转义任何’\’,而将其作为字符’\’,比如 print r’\s\%\‘ 执行后得到的结果就是 \s\%\ 。</p>
+<ul>
+<li>re模块</li>
+</ul>
+<blockquote>
+<p>re模块提供正则表达式引擎</p>
+</blockquote>
+<p>pattern 是re 匹配模式的对象，由正则表达式字符串预编译得到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import re</div><div class="line">pattern = re.compile(r&apos;\d&apos;)</div></pre></td></tr></table></figure>
+<p>re主要的方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#返回pattern对象,该对象包含match，findall等方法</div><div class="line">p = re.compile(string[,flag])  </div><div class="line">#以下为匹配所用函数，也可传入pattern字符串，re会先执行compile编译正则表达式字符串生成pattern对象</div><div class="line">re.match(pattern, string[, flags])</div><div class="line">re.search(pattern, string[, flags])</div><div class="line">re.split(pattern, string[, maxsplit])</div><div class="line">re.findall(pattern, string[, flags])</div><div class="line">re.finditer(pattern, string[, flags])</div><div class="line">re.sub(pattern, repl, string[, count])</div><div class="line">re.subn(pattern, repl, string[, count])</div></pre></td></tr></table></figure>
+<p>flag参数可选值如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">• re.I(全拼：IGNORECASE): 忽略大小写（括号内是完整写法，下同）</div><div class="line">• re.M(全拼：MULTILINE): 多行模式，改变&apos;^&apos;和&apos;$&apos;的行为（参见上图）</div><div class="line">• re.S(全拼：DOTALL): 点任意匹配模式，改变&apos;.&apos;的行为</div><div class="line">• re.L(全拼：LOCALE): 使预定字符类 \w \W \b \B \s \S 取决于当前区域设定</div><div class="line">• re.U(全拼：UNICODE): 使预定字符类 \w \W \b \B \s \S \d \D 取决于unicode定义的字符属性</div><div class="line">• re.X(全拼：VERBOSE): 详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释。</div></pre></td></tr></table></figure>
+<ul>
+<li><p>re方法</p>
+<ul>
+<li><p>re.match(pattern,string,flag)<br>match返回第一次匹配成功的结果（match对象）或None。注意match是从字符串开头的第一个字符开始匹配。<code>hello</code>模式match 字符串<code>say hello</code>就会失败返回None。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> import re</div><div class="line"># 匹配如下内容：单词+空格+单词+任意字符</div><div class="line">m = re.match(r&apos;(\w+) (\w+)(?P&lt;sign&gt;.*)&apos;, &apos;hello world!&apos;)</div><div class="line">print &quot;m.string:&quot;, m.string</div><div class="line">print &quot;m.re:&quot;, m.re</div><div class="line">print &quot;m.pos:&quot;, m.pos</div><div class="line">print &quot;m.endpos:&quot;, m.endpos</div><div class="line">print &quot;m.lastindex:&quot;, m.lastindex</div><div class="line">print &quot;m.lastgroup:&quot;, m.lastgroup</div><div class="line">print &quot;m.group():&quot;, m.group() # 默认返回group(0),即整个匹配结果，group(n)可以输出第n个元组匹配的结果。</div><div class="line">print &quot;m.group(1,2):&quot;, m.group(1, 2)</div><div class="line">print &quot;m.groups():&quot;, m.groups()</div><div class="line">print &quot;m.groupdict():&quot;, m.groupdict()</div><div class="line">print &quot;m.start(2):&quot;, m.start(2)</div><div class="line">print &quot;m.end(2):&quot;, m.end(2)</div><div class="line">print &quot;m.span(2):&quot;, m.span(2)</div><div class="line">print r&quot;m.expand(r&apos;\g \g\g&apos;):&quot;, m.expand(r&apos;\2 \1\3&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>re.search(pattern, string[, flags])<br>search()同match()方法相似，区别是match()仅从字符串的开头匹配，如果0位置失败，则匹配以失败结束。search同match有相同的属性和方法。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">    #导入re模块</div><div class="line">  import re</div><div class="line"># 将正则表达式编译成Pattern对象</div><div class="line">pattern = re.compile(r&apos;world&apos;)</div><div class="line"># 使用search()查找匹配的子串，不存在能匹配的子串时将返回None</div><div class="line"># 这个例子中使用match()无法成功匹配</div><div class="line">res = re.search(pattern,&apos;hello world!&apos;)</div><div class="line">if res:</div><div class="line">    # 使用Match获得分组信息</div><div class="line">    print res.group()</div><div class="line">### 输出 ###</div><div class="line"># world</div></pre></td></tr></table></figure>
+</li>
+<li><p>re.split(pattern, string[, maxsplit])</p>
+<p>  按照能够匹配的子串将string分割后返回列表。maxsplit用于指定最大分割次数，不指定将全部分割。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  import re</div><div class="line">  pattern = re.compile(r&apos;\d+&apos;)</div><div class="line">  print re.split(pattern,&apos;one1two2three3four4&apos;)</div><div class="line">  </div><div class="line">### 输出 ###</div><div class="line"># [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;, &apos;four&apos;, &apos;&apos;]</div></pre></td></tr></table></figure>
+<ul>
+<li><p>re.findall(pattern, string[, flags])</p>
+<p>搜索string，以列表形式返回全部能匹配的子串</p>
+</li>
+<li><p>re.finditer(pattern, string[, flags])</p>
+<p>搜索string，返回一个顺序访问每一个匹配结果（Match对象）的迭代器.迭代器使用for进行遍历。</p>
+</li>
+<li>re.sub(pattern, repl, string[, count])</li>
+</ul>
+<p>使用repl替换string中每一个匹配的子串后返回替换后的字符串。<br>当repl是一个字符串时，可以使用\id或\g、\g引用分组，但不能使用编号0。<br>当repl是一个方法时，这个方法应当只接受一个参数（Match对象），并返回一个字符串用于替换（返回的字符串中不能再引用分组）。<br>count用于指定最多替换次数，不指定时全部替换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import re</div><div class="line"></div><div class="line">pattern = re.compile(r&apos;(\w+) (\w+)&apos;)</div><div class="line">s = &apos;i say, hello world!&apos;</div><div class="line"></div><div class="line">print re.sub(pattern,r&apos;\2 \1&apos;, s)</div><div class="line"></div><div class="line">def func(m):</div><div class="line">    return m.group(1).title() + &apos; &apos; + m.group(2).title()</div><div class="line"></div><div class="line">print re.sub(pattern,func, s)</div><div class="line"></div><div class="line">### output ###</div><div class="line"># say i, world hello!</div><div class="line"># I Say, Hello World!</div></pre></td></tr></table></figure>
+</li>
+<li><p>re.subn(pattern, repl, string[, count])</p>
+<p>  返回 (sub(repl, string[, count]), 替换次数)。</p>
+</li>
+<li><p>使用pattern对象调用上述方法则不必传入pattern对象</p>
+</li>
+</ul>
+<h4 id="常用匹配"><a href="#常用匹配" class="headerlink" title="常用匹配"></a>常用匹配</h4><ul>
+<li>ip</li>
+<li>文件后缀</li>
+</ul>
+<p><code>r&#39;http://img\.tupianzj\.com/uploads/allimg/\d+/.+\.(?:gif|jpg|png|bmp)&#39;</code></p>
+<h4 id="BeautifulSoup"><a href="#BeautifulSoup" class="headerlink" title="BeautifulSoup"></a>BeautifulSoup</h4><blockquote>
+<p>BeautifulSoup是python的一个第三方库，用于解析网页并从中提取数据。</p>
+</blockquote>
+<ul>
+<li>安装 </li>
+</ul>
+<p><code>pip install beautifulsoup4</code>,或去官网下载安装包。<br>  BeautifulSoup使用Python标准库中默认的HTML解析器，想要使用其他可选的第三方html解析器需要提前安装好。 lxml或html5lib。lxml解析器更强大速度更快。html5lib是纯python实现的，解析方式与浏览器相同。</p>
+<p><code>pip install lxml</code>  和  <code>pip install html5lib</code></p>
+<p>windows下直接pip安装lxml失败，可以先<code>pip install wheel</code> ,然后去<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml" target="_blank" rel="external">Python Extension Packages for Windows - Christoph Gohlke</a>上下载对应系统的安装包，然后<code>pip install c:\lxml-3.6.4-cp27-cp27m-win_amd64.whl</code><br>其他pip无法直接安装的模块也可用这种方法。</p>
+<ul>
+<li>官方文档</li>
+</ul>
+<p><a href="http://beautifulsoup.readthedocs.io/zh_CN/latest/" target="_blank" rel="external">Beautiful Soup 4.4.0 文档 — beautifulsoup 4.4.0 文档</a></p>
+<ul>
+<li><p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from bs4 import BeautifulSoup</div><div class="line">import urllib2</div><div class="line"></div><div class="line">URL = r&quot;http://www.baidu.com&quot;</div><div class="line">content = urllib2.urlopen(URL).read()</div><div class="line">bsobj = BeautifulSoup(content) #传入html格式的字符串</div><div class="line">print bsobj.prettify() #打印出html文档树，格式化输出</div></pre></td></tr></table></figure>
+<p>bs将html文档转换为树形结构，每个节点都是一个对象，对象分为4种：Tag，NavigableString，BeautifulSoup，Comment。</p>
+<ul>
+<li><p>Tag</p>
+<p> 即HTML中的标签，由<code>&lt;&gt;</code> <code>&lt;/&gt;</code>闭合。比如<title> News Today</title><br> 获取标签方法如下，找不到返回None，这种方法只能查找符合条件的第一个标签。tag常用的属性有name，attrs，string。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">print bsobj.title</div><div class="line"># &lt;title&gt;百度一下，你就知道&lt;/title&gt;</div><div class="line">print bsobj.title.string</div><div class="line">#  百度一下，你就知道</div><div class="line">print bsobj.div.attrs</div><div class="line"># &#123;&apos;id&apos;: &apos;wrapper&apos;&#125;  输出的是标签的属性</div><div class="line">print bsobj.div.name</div><div class="line"># div  标签的名字为对象本身的名字，bsobj对象的名字为`[document]`</div><div class="line">#获取某个属性的值</div><div class="line">print bsobj.div[&apos;id&apos;]</div><div class="line">wrapper</div><div class="line">print bsobj.div.get(&apos;id&apos;)</div><div class="line">wrapper</div></pre></td></tr></table></figure>
+</li>
+<li><p>NavgableString</p>
+<p> 可以遍历的字符串，即标签闭合的内容：<code>print bsobj.title.string  #输出  百度一下，你就知道</code></p>
+</li>
+<li><p>BeautifulSoup</p>
+<p>BeautifulSoup对象表示一个文档的全部内容，也可以当做tag对象，只不过是包含很多子tag的特殊的tag</p>
+</li>
+<li><p>Comment</p>
+<p> Comment 对象是一个特殊类型的 NavigableString 对象，但是使用ob.string输出的内容仍然不包括注释符号。<br>  有必要时可进行类型判断</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> if type(soup.a.string)==bs4.element.Comment:</div><div class="line">print soup.a.string</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>遍历文档树</p>
+<ul>
+<li><p>tag.contens 属性</p>
+<p>bsobj.tag.contents 可以将tag的子节点以列表的形式输出。</p>
+</li>
+<li><p>tag.children 属性</p>
+<p>bsobj.tag.children 是一个子节点的list生成器，可以用for循环遍历</p>
+</li>
+<li><p>tag.descendants 属性</p>
+<p>bsobj.tag.descendants 是tag的子孙节点的list生成器，用for遍历。而contents和children只包含孩子节点（一级子节点），不包含孩子的孩子及后续孙子节点。</p>
+</li>
+<li><p>tag.string 属性，节点内容</p>
+<p>如果tag只含有唯一的一个子tag，那么tag.string输出的是子tag的内容，不含子tag，则直接输出tag的内容；如果有多个子tag，则输出none。</p>
+</li>
+<li><p>tag.strings 和 tag.stripped_strings 获取多个内容</p>
+<p>都需要用for循环遍历，.stripped_strings去除了多余空白内容。</p>
+</li>
+<li><p>tag.parent 属性 父节点</p>
+</li>
+<li><p>tag.parents 属性 全部父辈节点</p>
+<p>通过递归得到tag全部的父辈节点，用for循环遍历</p>
+</li>
+<li><p>tag.next_sibling 和 tag.previous_sibling 兄弟节点</p>
+<p>获取与tag同一级的节点，.next_sibling 属性获取了该节点的下一个兄弟节点，.previous_sibling 则与之相反，如果节点不存在，则返回 None<br>注意：实际文档中的tag的 .next_sibling 和 .previous_sibling 属性通常是字符串或空白，因为空白或者换行也可以被视作一个节点，所以得到的结果可能是空白或者换行</p>
+</li>
+<li>.next_siblings  .previous_siblings 属性 全部兄弟节点</li>
+<li><p>.next_element  .previous_element 属性 </p>
+<p>tag节点的前后节点，与兄弟节点不同，前后节点没有层级关系，可以是父子也可以是兄弟节点。</p>
+</li>
+<li>.next_elements  .previous_elements 属性</li>
+</ul>
+</li>
+<li><p>搜索文档树</p>
+<ul>
+<li><p>bsobj.find_all(name=None, attrs={}, recursive=True, text=None, limit=None)<br>搜索当前tag的所有子tag，返回符合条件的结果  </p>
+<ul>
+<li><p>name 参数<br> 查找所有名字满足name条件的tag。<br> 1&gt;如果传入字符串，则搜索完全匹配该字符串的tag : <name></name>标签;<br> 2&gt; 传正则表达式，搜索名字匹配正则的tag标签<br> 3&gt; 传入name列表，返回所有与列表元素匹配的tag<br> 4&gt; 传True，返回全部的任意tag，除字符串节点。<br> 5&gt; 传方法，该方法只接收一个参数，根据判断条件返回True 或False。find_all()返回的是满足True的全部节点</p>
+</li>
+<li><p>attrs 和 keyword 参数</p>
+<p>attrs={‘id’:’123’,’color’:’red’},attrs接收一个字典，用来搜索含有指定属性的tag。<br>也可以指定关键字参数，如 id=’today’,class_=’no<em>style’,注意class是python保留字，所以bs使用class</em>来做区别。注意 html5中的类似 <code>data-*</code>的参数不能用作关键字搜索，会报错。</p>
+</li>
+<li><p>text参数</p>
+<p>可以匹配文档中的字符串内容，与name参数的可选值一样，接收 字符串，正则表达式，列表，True</p>
+</li>
+<li><p>limit参数</p>
+<p>limit = n ，限制返回的数量为n，即找到n个节点就停止。</p>
+</li>
+<li><p>recursive参数</p>
+<p>递归参数默认为true，即搜索子孙节点。如果只搜索子节点怎改为false。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>find( name , attrs , recursive , text , **kwargs )<br>它与 find_all() 方法唯一的区别是 find_all() 方法的返回结果是值包含一个元素的列表,而 find() 方法直接返回结果</li>
+<li>find_parents() 和 find_parent()<br>find_all() 和 find() 只搜索当前节点的所有子节点,孙子节点等. find_parents() 和 find_parent() 用来搜索当前节点的父辈节点,搜索方法与普通tag的搜索方法相同,搜索文档搜索文档包含的内容</li>
+<li>find_next_siblings()  find_next_sibling()<br>迭代对象为tag.next_siblings ，对tag 的所有后面解析的兄弟 tag 节点进行迭代, find_next_siblings() 方法返回所有符合条件的后面的兄弟节点,find_next_sibling() 只返回符合条件的后面的第一个tag节点</li>
+<li>find_previous_siblings()   和  find_previous_sibling()<br>迭代对象为.previous_siblings ，对当前 tag 的前面解析的兄弟 tag 节点进行迭代, find_previous_siblings() 方法返回所有符合条件的前面的兄弟节点, find_previous_sibling() 方法返回第一个符合条件的前面的兄弟节点</li>
+<li>find_all_next()  find_next()<br>迭代对象为tag.next_elements，find_all_next() 方法返回所有符合条件的节点, find_next() 方法返回第一个符合条件的节点</li>
+<li>find_all_previous() 和 find_previous()<br>迭代对象为.previous_elements,find_all_previous() 方法返回所有符合条件的节点, find_previous()方法返回第一个符合条件的节点</li>
+</ul>
+<h3 id="Requests库的用法"><a href="#Requests库的用法" class="headerlink" title="Requests库的用法"></a>Requests库的用法</h3><blockquote>
+<p>Requests是第三方库，比urllib库更高级、抽象。也就是说使用更方便。</p>
+</blockquote>
+<p><a href="http://docs.python-requests.org/en/master/" target="_blank" rel="external">文档 Requests: HTTP for Humans — Requests 2.11.1 documentation</a></p>
+<p>安装 <code>pip install requests</code></p>
+<ul>
+<li><p>初次相见<br><code>html= requests.get(url)</code>,返回的是<class 'requests.models.response'="">对象，具有以下属性或方法：’apparent_encoding’, ‘close’, ‘connection’, ‘content’, ‘cookies’, ‘elapsed’, ‘encoding’, ‘headers’, ‘history’, ‘is_permanent_redirect’, ‘is_redirect’, ‘iter_content’, ‘iter_lines’,<br>‘json()’：解析json格式内容,<br>‘links’, ‘ok’, ‘raise_for_status’,<br>‘raw’：获得原始套接字,要在初始的请求中设置stream=True<br>‘reason’, ‘request’, ‘status_code’ ：http响应状态码,<br>‘text’:直接输出内容,<br>‘url’</class></p>
+</li>
+<li><p>基本http请求</p>
+<blockquote>
+<p>requests实现了http的6种请求，get、post、delete、put、options、head。</p>
+</blockquote>
+</li>
+<li><p>GET请求方式<br><code>requests.get(url, params=None)</code>,参数传入字典，比如{‘k1’:’v1’ , ‘k2’:’v2’}，则请求url自动编码为<code>url?k1=v1&amp;k2=v2</code><br>在请求中添加headers，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import requests</div><div class="line"></div><div class="line">payload = &#123;&apos;key1&apos;: &apos;value1&apos;, &apos;key2&apos;: &apos;value2&apos;&#125;</div><div class="line">headers = &#123;&apos;content-type&apos;: &apos;application/json&apos;&#125;</div><div class="line">r = requests.get(&quot;http://httpbin.org/get&quot;, params=payload, headers=headers)</div><div class="line">print r.url</div></pre></td></tr></table></figure>
+</li>
+<li><p>post请求</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line">post_data =&#123;<span class="string">'key1'</span>: <span class="string">'value1'</span>, <span class="string">'key2'</span>: <span class="string">'value2'</span>&#125; </div><div class="line">res = requests.post(url, data=post_data, json=<span class="keyword">None</span>)</div><div class="line"><span class="comment"># 如果提交的信息不是表单形式，而是json格式的数据，可用json.dumps()把表单数据序列化,或使用json参数</span></div><div class="line">res = requests.post(url, data=json.dumps(post_data), json=<span class="keyword">None</span>)</div><div class="line">res = requests.post(url, data=<span class="keyword">None</span>, json=post_data)</div><div class="line"><span class="comment"># 以上2者等效</span></div><div class="line"><span class="comment"># 支持流式上传数据，只需传入一个file-like对象,不用file.read()加载内容至内存</span></div><div class="line"><span class="keyword">with</span> open(<span class="string">'test.file'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> f :</div><div class="line">    res = requests.post(url, data=f)</div></pre></td></tr></table></figure>
+</li>
+<li><p>Cookies</p>
+</li>
+</ul>
+<p>如果服务器返回的响应包含cookie，则我们得到的response对象就会保存该cookie，可以利用.cookies属性查看。<br>使用cookie发送请求时只需在get/post方法中指定cookies参数<br>要想使用cookie保持登陆，则需要一个session会话对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看cookies</span></div><div class="line"><span class="keyword">import</span> requests</div><div class="line">url1 = <span class="string">'http://xxx.com'</span></div><div class="line">r = requests.get(url1)</div><div class="line"><span class="keyword">print</span> r.cookies</div><div class="line"><span class="comment"># 构造cookies并用来发送请求</span></div><div class="line">url2 = <span class="string">'http://ooo.com'</span></div><div class="line">cookies = &#123;<span class="string">'id'</span>:<span class="string">'1234'</span>&#125;</div><div class="line">r = requests.get(url2，cookies=cookies)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>超时设置 timeout<br>在get/post方法中传入timeout参数，仅对连接建立有效，与返回response全部数据的时间无关。</p>
+</li>
+<li><p>会话对象 session</p>
+</li>
+</ul>
+<p>每次直接调用requests.get/post方法都相当与建立了一个新的请求会话，相当于用不同的浏览器发起请求。因而无法使用cookie保持登陆状态。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">s = requests.session()</div><div class="line">s.headers.update(&#123;(&quot;User-agent&quot;,&quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11)  Gecko/20071127 Firefox/2.0.0.11&quot;),(&quot;Accept&quot;,&quot;*/*&quot;),(&apos;Referer&apos;,&apos;http://www.google.com &apos;)&#125;) </div><div class="line"># 此处设置的headers是全局变量，post/get方法传入的headers参数的同名变量会覆盖此处headers的变量，不使用某个参数可将其值设为None。</div><div class="line"># 不同名的参数会一块加入到请求的headers中生效.</div><div class="line">res = s.get(url)</div><div class="line"># 通过会话发起请求</div></pre></td></tr></table></figure>
+<ul>
+<li>SSL证书验证<br>Requests可以为HTTPS请求验证SSL证书，就像web浏览器一样。要想检查某个主机的SSL证书，你可以在get/post方法中使用 verify 参数，默认为True，是检查的。<br>如直接requests.get(‘<a href="https://www.12306.cn&#39;),就会出现证书无效的错误：requests.exceptions.SSLError" target="_blank" rel="external">https://www.12306.cn&#39;),就会出现证书无效的错误：requests.exceptions.SSLError</a>: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:590)。<pre><code>使用requests.get(url=&apos;https://www.12306.cn&apos;,verify=False)取消证书检查。
+</code></pre></li>
+<li><p>代理<br>在post/get方法中传入参数proxies：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proxies = &#123;</div><div class="line">  &quot;https&quot;: &quot;http://41.118.132.69:4433&quot;</div><div class="line">&#125;</div><div class="line">r = requests.post(&quot;http://httpbin.org/post&quot;, proxies=proxies)</div></pre></td></tr></table></figure>
+<p>也可以设置环境变量HTTP_PROXY和HTTPS_PROXY来配置代理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export HTTP_PROXY=&quot;http://10.10.1.10:3128&quot;</div><div class="line">export HTTPS_PROXY=&quot;http://10.10.1.10:1080&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p><a href="http://docs.python-requests.org/en/master/api/" target="_blank" rel="external">参考：官方API文档</a></p>
+</li>
+</ul>
+<h3 id="xpath语法与lxml库"><a href="#xpath语法与lxml库" class="headerlink" title="xpath语法与lxml库"></a>xpath语法与lxml库</h3><blockquote>
+<p>lxml解析库使用xpath语法，beautifulSoup的内部实现是RE<br><a href="http://www.w3school.com.cn/xpath/index.asp" target="_blank" rel="external">xpath语法参考</a><br><a href="http://lxml.de/index.html" target="_blank" rel="external">lxml官方文档 - Processing XML and HTML with Python</a></p>
+</blockquote>
+<h4 id="xpath语法"><a href="#xpath语法" class="headerlink" title="xpath语法"></a>xpath语法</h4><blockquote>
+<p>XPath 是一门在 XML 文档中查找信息的语言。XPath 可用来在 XML 文档中对元素和属性进行遍历。XPath 是 W3C XSLT 标准的主要元素，并且 XQuery 和 XPointer 都构建于 XPath 表达之上。</p>
+</blockquote>
+<p>xpath使用路径表达在xml中选取节点。<br>节点的逻辑关系有：父节点Parent、先辈节点Ancestor、子节点Children、后代节点Descendant、兄弟/同胞节点sibling。</p>
+<p>路径表达式：<code>nodename</code>: 选择nodename节点的所有子节点,<code>/</code>:从根路径选取,绝对路径，<code>//</code>:从当前路径下选取全部,不考虑位置，相对路径，<code>.</code>:选取当前节点,<code>..</code>:选取当前节点的父节点,<code>@</code>:选取属性. </p>
+<p>谓语：用来查找某个特定的节点或者包含某个特定的值的节点。谓语嵌在方括号[]中。</p>
+<p>| 路径表达式 |    结果   |<br>| /bookstore/book[1] | 选取属于 bookstore 子元素的第一个 book 元素。 |<br>| /bookstore/book[last()] | 选取属于 bookstore 子元素的最后一个 book 元素。 |<br>| /bookstore/book[last()-1] | 选取属于 bookstore 子元素的倒数第二个 book 元素。 |<br>| /bookstore/book[position()<3] |="" 选取最前面的两个属于="" bookstore="" 元素的子元素的="" book="" 元素。="" title[@lang]="" 选取所有拥有名为="" lang="" 的属性的="" title="" title[@lang="’eng’]" 选取所有="" 元素，且这些元素拥有值为="" eng="" 的="" 属性。="" book[price="">35.00] | 选取 bookstore 元素的所有 book 元素，且其中的 price 元素的值须大于 35.00。 |<br>| /bookstore/book[price&gt;35.00]/title | 选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。 |</3]></p>
+<p>选取未知节点： <code>*</code>:匹配任何节点; <code>@*</code>:匹配任何属性的节点; <code>node()</code>:匹配任何类型的节点;</p>
+<p>选取多个路径：<code>|</code>运算符，<code>//book/title | //book/price</code></p>
+<p>xpath表达式运算符<br><code>|</code>:找到满足2个路径表达式之一的节点集合；<br><code>+</code>:加法<br><code>-</code>:减法<br><code>*</code>:乘法<br><code>div</code>:除法，取整 ; <code>mod</code>:取余数<br><code>=</code>:等于，比较，相等返回true，否则返回false<br><code>！=</code>:不等于，比较<br><code>&lt;</code>:小于 ； <code>&lt;=</code>:小于或等于<br><code>&gt;</code>:大于 ； <code>&gt;=</code>:大于或等于<br><code>or</code>: 或，连接2个布尔表达式，有一个为真返回true<br><code>and</code>: 与，都为真才返回true</p>
+<h4 id="lxml用法"><a href="#lxml用法" class="headerlink" title="lxml用法"></a>lxml用法</h4><h3 id="PhantomJS的用法"><a href="#PhantomJS的用法" class="headerlink" title="PhantomJS的用法"></a>PhantomJS的用法</h3><h3 id="Selenium的用法"><a href="#Selenium的用法" class="headerlink" title="Selenium的用法"></a>Selenium的用法</h3><h3 id="PyQuery的用法"><a href="#PyQuery的用法" class="headerlink" title="PyQuery的用法"></a>PyQuery的用法</h3><hr>
+<h3 id="PySpider框架"><a href="#PySpider框架" class="headerlink" title="PySpider框架"></a>PySpider框架</h3>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/python-爬虫/">python 爬虫</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Python/">Python</a>, <a href="/tags/爬虫/">爬虫</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2016/08/10/技术/PhantomJS + Selenium实现登陆网站签到/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2016/08/07/技术/python编程技巧/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

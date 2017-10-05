@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Django 学习笔记(二) | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="Django 学习笔记">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Django 学习笔记(二)"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-08-15T16:00:00.000Z"><a href="/2016/08/16/技术/Django学习笔记2/">2016-08-16</a></time>
+      
+      
+  
+    <h1 class="title">Django 学习笔记(二)</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Django进阶"><span class="toc-text">Django进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、用户信息扩展"><span class="toc-text">1、用户信息扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1、使用profile扩展"><span class="toc-text">1.1、使用profile扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2、继承AbstractUser"><span class="toc-text">1.2、继承AbstractUser</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、自定义认证"><span class="toc-text">2、自定义认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、自定义认证方式"><span class="toc-text">2.1、自定义认证方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、session保持"><span class="toc-text">2.2、session保持</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、权限设计和使用"><span class="toc-text">3、权限设计和使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1、用户注册"><span class="toc-text">3.1、用户注册</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、自定义模板库"><span class="toc-text">4、自定义模板库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、自定义标签"><span class="toc-text">5、自定义标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、自定义过滤器"><span class="toc-text">6、自定义过滤器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、model的定义和同步，增删改"><span class="toc-text">7、model的定义和同步，增删改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、django单表查询和多表查询"><span class="toc-text">8、django单表查询和多表查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、聚合查询"><span class="toc-text">9、聚合查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10、ORM无法满足查询需求时，直接使用SQL语句查询"><span class="toc-text">10、ORM无法满足查询需求时，直接使用SQL语句查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-1、raw"><span class="toc-text">10.1、raw()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2、cursor"><span class="toc-text">10.2、cursor()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11、querysets和惰性机制"><span class="toc-text">11、querysets和惰性机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12、自定义manager管理器"><span class="toc-text">12、自定义manager管理器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#新增manager方法"><span class="toc-text">新增manager方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#改变原有的querySet方法"><span class="toc-text">改变原有的querySet方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13、Form表单"><span class="toc-text">13、Form表单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#django开发实践技巧："><span class="toc-text">django开发实践技巧：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、从setting-py中读取配置信息为全局使用"><span class="toc-text">1、从setting.py中读取配置信息为全局使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、数据库模型设计技巧"><span class="toc-text">2、数据库模型设计技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、模板设计"><span class="toc-text">3、模板设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-、导航栏数据获取"><span class="toc-text">4 、导航栏数据获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、其他"><span class="toc-text">5、其他</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
+<ul>
+<li><a href="#django%E8%BF%9B%E9%98%B6">Django进阶</a><ul>
+<li><a href="#1%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%89%A9%E5%B1%95">1、用户信息扩展</a><ul>
+<li><a href="#11%E4%BD%BF%E7%94%A8profile%E6%89%A9%E5%B1%95">1.1、使用profile扩展</a></li>
+<li><a href="#12%E7%BB%A7%E6%89%BFabstractuser">1.2、继承AbstractUser</a></li>
+</ul>
+</li>
+<li><a href="#2%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81">2、自定义认证</a><ul>
+<li><a href="#21%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81%E6%96%B9%E5%BC%8F">2.1、自定义认证方式</a></li>
+<li><a href="#22session%E4%BF%9D%E6%8C%81">2.2、session保持</a></li>
+</ul>
+</li>
+<li><a href="#3%E6%9D%83%E9%99%90%E8%AE%BE%E8%AE%A1%E5%92%8C%E4%BD%BF%E7%94%A8">3、权限设计和使用</a><ul>
+<li><a href="#31%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C">3.1、用户注册</a></li>
+</ul>
+</li>
+<li><a href="#4%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF%E5%BA%93">4、自定义模板库</a></li>
+<li><a href="#5%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE">5、自定义标签</a></li>
+<li><a href="#6%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%87%E6%BB%A4%E5%99%A8">6、自定义过滤器</a></li>
+<li><a href="#7model%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%90%8C%E6%AD%A5%E5%A2%9E%E5%88%A0%E6%94%B9">7、model的定义和同步，增删改</a></li>
+<li><a href="#8django%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2%E5%92%8C%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2">8、django单表查询和多表查询</a></li>
+<li><a href="#9%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2">9、聚合查询</a></li>
+<li><a href="#10orm%E6%97%A0%E6%B3%95%E6%BB%A1%E8%B6%B3%E6%9F%A5%E8%AF%A2%E9%9C%80%E6%B1%82%E6%97%B6%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8sql%E8%AF%AD%E5%8F%A5%E6%9F%A5%E8%AF%A2">10、ORM无法满足查询需求时，直接使用SQL语句查询</a><ul>
+<li><a href="#101raw">10.1、raw()</a></li>
+<li><a href="#102cursor">10.2、cursor()</a></li>
+</ul>
+</li>
+<li><a href="#11querysets%E5%92%8C%E6%83%B0%E6%80%A7%E6%9C%BA%E5%88%B6">11、querysets和惰性机制</a></li>
+<li><a href="#12%E8%87%AA%E5%AE%9A%E4%B9%89manager%E7%AE%A1%E7%90%86%E5%99%A8">12、自定义manager管理器</a><ul>
+<li><a href="#%E6%96%B0%E5%A2%9Emanager%E6%96%B9%E6%B3%95">新增manager方法</a></li>
+<li><a href="#%E6%94%B9%E5%8F%98%E5%8E%9F%E6%9C%89%E7%9A%84queryset%E6%96%B9%E6%B3%95">改变原有的querySet方法</a></li>
+</ul>
+</li>
+<li><a href="#13form%E8%A1%A8%E5%8D%95">13、Form表单</a><ul>
+<li><a href="#django%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%E6%8A%80%E5%B7%A7">django开发实践技巧：</a></li>
+</ul>
+</li>
+<li><a href="#1%E4%BB%8Esettingpy%E4%B8%AD%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E4%B8%BA%E5%85%A8%E5%B1%80%E4%BD%BF%E7%94%A8">1、从setting.py中读取配置信息为全局使用</a></li>
+<li><a href="#2%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7">2、数据库模型设计技巧</a></li>
+<li><a href="#%E6%A8%A1%E6%9D%BF%E8%AE%BE%E8%AE%A1">模板设计</a></li>
+<li><a href="#%E5%AF%BC%E8%88%AA%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96">导航数据获取</a></li>
+<li><a href="#"></a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h1 id="Django进阶"><a href="#Django进阶" class="headerlink" title="Django进阶"></a>Django进阶</h1><h3 id="1、用户信息扩展"><a href="#1、用户信息扩展" class="headerlink" title="1、用户信息扩展"></a>1、用户信息扩展</h3><h4 id="1-1、使用profile扩展"><a href="#1-1、使用profile扩展" class="headerlink" title="1.1、使用profile扩展"></a>1.1、使用profile扩展</h4><p>在models定义一个profile表，使用外键关联</p>
+<h4 id="1-2、继承AbstractUser"><a href="#1-2、继承AbstractUser" class="headerlink" title="1.2、继承AbstractUser"></a>1.2、继承AbstractUser</h4><p>在models创建继承AbstractUser的User类，为其增加新的字段，比如QQ号，手机号。在setting里设置字段 <code>AUTH_USER_MODEL = &#39;blog.User&#39;</code><br>在admin注册自己的User。</p>
+<h3 id="2、自定义认证"><a href="#2、自定义认证" class="headerlink" title="2、自定义认证"></a>2、自定义认证</h3><h4 id="2-1、自定义认证方式"><a href="#2-1、自定义认证方式" class="headerlink" title="2.1、自定义认证方式"></a>2.1、自定义认证方式</h4><h4 id="2-2、session保持"><a href="#2-2、session保持" class="headerlink" title="2.2、session保持"></a>2.2、session保持</h4><h3 id="3、权限设计和使用"><a href="#3、权限设计和使用" class="headerlink" title="3、权限设计和使用"></a>3、权限设计和使用</h3><h4 id="3-1、用户注册"><a href="#3-1、用户注册" class="headerlink" title="3.1、用户注册"></a>3.1、用户注册</h4><h3 id="4、自定义模板库"><a href="#4、自定义模板库" class="headerlink" title="4、自定义模板库"></a>4、自定义模板库</h3><p>base文件和base.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">\&#123;\% block head_css \%\&#125;</div><div class="line">  <span class="tag">&lt;<span class="name">继承扩展此处部分</span>&gt;</span></div><div class="line">\&#123;\% endblock \%\&#125;</div><div class="line">\&#123;\% block head_css \%\&#125;</div><div class="line">  <span class="tag">&lt;<span class="name">继承扩展此处部分</span>&gt;</span></div><div class="line">\&#123;\% endblock \%\&#125;</div></pre></td></tr></table></figure>
+<p>模板文件中引用base.html,重载里面需要定制的block，其他的继承base里默认的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\&#123;\% extend "base/base.html" \%\&#125;</div><div class="line">\&#123;\% block container \%\&#125;</div><div class="line">实现部分</div><div class="line">\&#123;\% endblock \%\&#125;</div></pre></td></tr></table></figure>
+<h3 id="5、自定义标签"><a href="#5、自定义标签" class="headerlink" title="5、自定义标签"></a>5、自定义标签</h3><p>在app目录下建立templatetags文件夹，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django <span class="keyword">import</span> template</div><div class="line"></div><div class="line">register = template.Library()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UpperNode</span><span class="params">(template.Node)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,nodelist)</span>:</span></div><div class="line">        self.nodelist = nodelist</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">render</span><span class="params">(self,context)</span>:</span></div><div class="line">        content = self.nodelist.render(context)</div><div class="line">        <span class="keyword">return</span> content.lower()</div><div class="line"></div><div class="line"><span class="meta">@register.tag</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">upper</span><span class="params">(parse,token)</span>:</span></div><div class="line">    nodelist = parse.parse(<span class="string">"endupper"</span>)</div><div class="line">	parse.delete_first_token()</div><div class="line">    <span class="keyword">return</span> UpperNode(nodelist)</div></pre></td></tr></table></figure>
+<p>在模板中加载使用自定义标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\&#123;\% load upper \%\&#125;</div><div class="line">  \&#123;\% upper \%\&#125;</div><div class="line">     upper标签将作用于此块的内容</div><div class="line">  \&#123;\% endupper \%\&#125;</div></pre></td></tr></table></figure>
+<h3 id="6、自定义过滤器"><a href="#6、自定义过滤器" class="headerlink" title="6、自定义过滤器"></a>6、自定义过滤器</h3><p>在templatetags下创建 assets.py,实现区分开发环境的assets资源定位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django <span class="keyword">import</span> template</div><div class="line"></div><div class="line">register = template.Library()</div><div class="line"><span class="keyword">from</span> blog.settings <span class="keyword">import</span> is_Debug</div><div class="line"><span class="meta">@register.filter</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">assets</span><span class="params">(value)</span>:</span></div><div class="line">    <span class="keyword">if</span> is_debug:</div><div class="line">        <span class="keyword">return</span> <span class="string">'/static/'</span>+value</div><div class="line">    <span class="keyword">return</span> <span class="string">'/static/assets/'</span> +value</div></pre></td></tr></table></figure>
+<p>在模板中使用过滤器：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;% raw %&#125;</div><div class="line">&#123;% load assets %&#125;</div><div class="line"> <span class="tag">&lt;<span class="name">link</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;'1.css' | assets&#125;&#125;"</span>/&gt;</span></div><div class="line">&#123;% endraw %&#125;</div></pre></td></tr></table></figure>
+<h3 id="7、model的定义和同步，增删改"><a href="#7、model的定义和同步，增删改" class="headerlink" title="7、model的定义和同步，增删改"></a>7、model的定义和同步，增删改</h3><p>在models.py中导入django.db 的models,<br>数据类定义：<br>在models.py中定义一个评论类<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">review</span><span class="params">(models.Model)</span>:</span></div><div class="line">    user = models.ForeignKey(User)</div><div class="line">    new = models.</div><div class="line">    content = models.TextField</div><div class="line">    creat_time =  models.DateTimeField()</div><div class="line">    is_dele = models.BoolenField(default = <span class="number">0</span>)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">         <span class="keyword">return</span> self.content</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        permission = ()</div></pre></td></tr></table></figure></p>
+<p>同步数据库:</p>
+<p>增加数据：在视图views中导入数据类，比如user类，然后创建user对象的实例，然后调用save方法。<br>修改：先get实例，然后赋值修改，最后save</p>
+<p>删除： 1、修改is_dele标志字段  2、删除数据实例，先获取实例。然后调用delete()方法</p>
+<h3 id="8、django单表查询和多表查询"><a href="#8、django单表查询和多表查询" class="headerlink" title="8、django单表查询和多表查询"></a>8、django单表查询和多表查询</h3><p>ORM查询<br><img src="http://ww4.sinaimg.cn/large/af9df239gw1f8idjx7ki9j20h50bnt97.jpg" alt=""></p>
+<p>多表查询用到外键</p>
+<h3 id="9、聚合查询"><a href="#9、聚合查询" class="headerlink" title="9、聚合查询"></a>9、聚合查询</h3><p>Q协助查询，实现与或非。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> Q</div><div class="line">res_list = news.objects.filter(Q(title = <span class="string">'today'</span>)|Q(body = <span class="string">'new'</span>))</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww3.sinaimg.cn/large/af9df239gw1f8ijt5ig9pj20k707ct94.jpg" alt=""></p>
+<h3 id="10、ORM无法满足查询需求时，直接使用SQL语句查询"><a href="#10、ORM无法满足查询需求时，直接使用SQL语句查询" class="headerlink" title="10、ORM无法满足查询需求时，直接使用SQL语句查询"></a>10、ORM无法满足查询需求时，直接使用SQL语句查询</h3><h4 id="10-1、raw"><a href="#10-1、raw" class="headerlink" title="10.1、raw()"></a>10.1、raw()</h4><p> XXX.objects.raw(‘SQL 语句’)，但raw的SQL语句里，必须包含主键；对复杂语句支持不好</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">res_list = user.objects.raw(<span class="string">'select * from blog_user where id = 1 or sex = "女" '</span>)</div></pre></td></tr></table></figure>
+<h4 id="10-2、cursor"><a href="#10-2、cursor" class="headerlink" title="10.2、cursor()"></a>10.2、cursor()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> connection,transaction</div><div class="line">cursor = connection.cursor()</div><div class="line">sql = <span class="string">'select * from user'</span></div><div class="line">cursor.execute(sql)</div><div class="line">res_list = cursor.fetchall() <span class="comment">#每条记录是一个元组</span></div></pre></td></tr></table></figure>
+<h3 id="11、querysets和惰性机制"><a href="#11、querysets和惰性机制" class="headerlink" title="11、querysets和惰性机制"></a>11、querysets和惰性机制</h3><p>querysets查询结果集，可以遍历，也可以继续执行查询筛选，<br><code>res_list = news.objects.filter(Q(title = &#39;today&#39;)|Q(body = &#39;new&#39;))</code></p>
+<p>惰性机制：只有querysets被使用到，其数据查询才被执行，并返回结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">res_list = news.objects.filter(Q(title = <span class="string">'today'</span>)|Q(body = <span class="string">'new'</span>)) </div><div class="line">res_list.order_by(<span class="string">'age'</span>)</div><div class="line"></div><div class="line">res_dict = res_list.value(<span class="string">'id'</span>,<span class="string">'name'</span>)</div></pre></td></tr></table></figure>
+<h3 id="12、自定义manager管理器"><a href="#12、自定义manager管理器" class="headerlink" title="12、自定义manager管理器"></a>12、自定义manager管理器</h3><p>当ORM的方法无法满足我们的需求时，</p>
+<h4 id="新增manager方法"><a href="#新增manager方法" class="headerlink" title="新增manager方法"></a>新增manager方法</h4><p>类似<code>article.objects.all()</code>就是一个manager，用来获取数据的方法，我们可以定义自己的manager，<br>在models.py中新建类，继承models.Manager，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PollManager</span><span class="params">(models.Manager)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">with_counts</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">from</span> django.db <span class="keyword">import</span> connection</div><div class="line">        <span class="keyword">with</span> connection.cursor() <span class="keyword">as</span> cursor:</div><div class="line">            cursor.execute(<span class="string">""" SELECT p.id, p.question,p.poll_date, COUNT(*) FROM polls_opinionpoll p, polls_response r WHERE p.id = r.poll_id GROUP BY p.id, p.question, p.poll_date ORDER BY p.poll_date DESC"""</span>)</div><div class="line">        result_list = []</div><div class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> cursor.fetchall():</div><div class="line">            p = self.model(id=row[<span class="number">0</span>], question=row[<span class="number">1</span>],poll_date=row[<span class="number">2</span>])</div><div class="line">            p.num_responses = row[<span class="number">3</span>]</div><div class="line">            result_list.append(p)</div><div class="line">        <span class="keyword">return</span> result_list</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OpinionPoll</span><span class="params">(models.Model)</span>:</span></div><div class="line">    question = models.CharField(max_length=<span class="number">200</span>)</div><div class="line">    poll_date = models.DateField()</div><div class="line">    objects = PollManager()</div></pre></td></tr></table></figure>
+<p>然后就可以使用<code>OpinionPoll.objects.with_count()</code>方法</p>
+<h4 id="改变原有的querySet方法"><a href="#改变原有的querySet方法" class="headerlink" title="改变原有的querySet方法"></a>改变原有的querySet方法</h4><p>覆盖重写原有方法。</p>
+<h3 id="13、Form表单"><a href="#13、Form表单" class="headerlink" title="13、Form表单"></a>13、Form表单</h3><p>在views.py中定义form类：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django <span class="keyword">import</span> forms</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginForm</span><span class="params">(forms.Form)</span></span></div><div class="line">    email = forms.CharField(label = 'email',max_length =100)</div><div class="line">    pwd = forms.CharField(label =<span class="string">'password'</span>,widget = forms.PasswordInput)</div><div class="line"><span class="comment">#添加验证</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clean_email</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clean</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> len(self.cleaned_data[<span class="string">"email"</span>].split(<span class="string">'@'</span>))&lt;<span class="number">2</span>:</div><div class="line">            <span class="keyword">raise</span> forms.ValidationError(<span class="string">'email is wrong!'</span>)</div><div class="line">         <span class="keyword">return</span> email</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="django开发实践技巧："><a href="#django开发实践技巧：" class="headerlink" title="django开发实践技巧："></a>django开发实践技巧：</h2><h3 id="1、从setting-py中读取配置信息为全局使用"><a href="#1、从setting-py中读取配置信息为全局使用" class="headerlink" title="1、从setting.py中读取配置信息为全局使用"></a>1、从setting.py中读取配置信息为全局使用</h3><p>settings中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#网站的基本信息配置</span></div><div class="line">SITE_URL = <span class="string">'http://localhost:8000/'</span></div><div class="line">SITE_NAME = <span class="string">'个人博客'</span></div><div class="line">SITE_DESC = <span class="string">'专注Python开发，欢迎和大家交流'</span></div><div class="line">WEIBO = <span class="string">'http://weibo.com/holdhiitfitness/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1'</span></div><div class="line">WEIBO_TENCENT = <span class="string">'http://weibo.com/holdhiitfitness/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1'</span></div><div class="line">PRO_RSS = <span class="string">'http://www.abroadrecommend.com'</span></div><div class="line">PRO_EMAIL = <span class="string">'johnson_hugh@163.com'</span></div><div class="line"><span class="comment"># 在templates中配置处理器</span></div><div class="line">TEMPLATES = [</div><div class="line">    &#123;</div><div class="line">        <span class="string">'BACKEND'</span>: <span class="string">'django.template.backends.django.DjangoTemplates'</span>,</div><div class="line">        <span class="string">'DIRS'</span>: [</div><div class="line">            os.path.join(BASE_DIR,<span class="string">'templates'</span>),</div><div class="line">        ],</div><div class="line">        <span class="string">'APP_DIRS'</span>: <span class="keyword">True</span>,</div><div class="line">        <span class="string">'OPTIONS'</span>: &#123;</div><div class="line">            <span class="string">'context_processors'</span>: [</div><div class="line">                <span class="string">'django.template.context_processors.debug'</span>,</div><div class="line">                <span class="string">'django.template.context_processors.request'</span>,</div><div class="line">                <span class="string">'django.contrib.auth.context_processors.auth'</span>,</div><div class="line">                <span class="string">'django.contrib.messages.context_processors.messages'</span>,</div><div class="line">                <span class="string">'blog.views.global_setting'</span> <span class="comment"># 注意此处</span></div><div class="line">            ],</div><div class="line">        &#125;,</div><div class="line">    &#125;,</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>在 views中定义templates处理器的方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">globe_setting</span><span class="params">(request)</span>:</span></div><div class="line">    <span class="keyword">return</span> &#123;<span class="string">'SITE_URL'</span>:settings.SITE_URL,</div><div class="line">            <span class="string">'SITE_NAME'</span>:settings.SITE_NAME</div><div class="line">             &#125;</div></pre></td></tr></table></figure></p>
+<p>在模板文件中，可直接引用变量<code>{{SITE_URL}} </code></p>
+<h3 id="2、数据库模型设计技巧"><a href="#2、数据库模型设计技巧" class="headerlink" title="2、数据库模型设计技巧"></a>2、数据库模型设计技巧</h3><p>使用工具 PowerDesign、ERWin、Visio、Navicat Data MOdeler</p>
+<ul>
+<li><p>分析可能存在的数据库表</p>
+</li>
+<li><p>分析可能会有的数据列，以及对应的数据类型和约束。</p>
+</li>
+<li><p>设计数据模型图</p>
+<p>在modles.py中定义模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tag</span><span class="params">(models.Model)</span>:</span></div><div class="line">    name = models.CharField(max_length =<span class="number">30</span>,verbose_name =<span class="string">'标签名称'</span>)</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span> <span class="comment"># 在admin管理界面可以看到</span></div><div class="line">        verbose_name = <span class="string">'标签'</span></div><div class="line">        verbose_name_plural = verbose_name</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__unicode__</span><span class="params">(self)</span>:</span> <span class="comment">#print 对象时的输出</span></div><div class="line">        <span class="keyword">return</span> self.name</div><div class="line"><span class="comment"># 自定义User model</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(AbstactUser)</span>:</span></div><div class="line">    avatar = models.ImageField(upload_to =<span class="string">'url'</span>,default =<span class="string">'avatar/default.png'</span>,max_length =<span class="number">200</span>,)</div><div class="line">    QQ = models.CharField()</div></pre></td></tr></table></figure>
+<p>自定义user model需要在setting中添加参数：<code>AUTH_USER_MODEL= &#39;blog.User&#39;</code><br>，可以继承abstactUser，或关联外键扩展。</p>
+<p>mysql配置</p>
+<p>settings:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">DATABASES = &#123;</div><div class="line">    <span class="string">'default'</span>: &#123;</div><div class="line">        <span class="comment">#配置别忘了用逗号，否则不被识别为元组</span></div><div class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</div><div class="line">        <span class="string">'NAME'</span>: <span class="string">'blogdb'</span>,</div><div class="line">        <span class="comment">#开发环境可用，生产环境不要用</span></div><div class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</div><div class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'123456'</span>,</div><div class="line">        <span class="string">'HOST'</span>: <span class="string">''</span>,</div><div class="line">        <span class="string">'PORT'</span>:  <span class="string">''</span>,<span class="comment">#默认3306</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在mysql中创建blogdb数据库，utf-8编码。</p>
+<p>富文本编辑框：<br>使用kindeditor，下载kindeditor，解压文件放到/static/js/kindeditor 下面。<br>定义媒体文件 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Media</span>：</span></div><div class="line">     js = ('/static/js/kindeditor-4.10/kindeditor-min.js',</div><div class="line">           <span class="string">'/static/js/kindeditor-4.10/lang/zh-CN.js'</span>,</div><div class="line">           <span class="string">'/static/js/kindeditor-4.10/config.js'</span>,)</div></pre></td></tr></table></figure>
+<p>注意新建配置文件config.js，参考官方文档：<br>K.create(‘#id’),#id 是对应html页面中需要富文本编辑器的网页元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">KindEditor.ready(<span class="function"><span class="keyword">function</span>(<span class="params">K</span>) </span>&#123;</div><div class="line">                K.create(<span class="string">'textarea[name=content]'</span>,&#123;</div><div class="line">                    width:<span class="string">'800px'</span>,</div><div class="line">                    height:<span class="string">'200px'</span>,</div><div class="line">                    <span class="comment">//配置上传地址，这个地址在url.py中已经配置好了，要和它对应</span></div><div class="line">                    uploadJson: <span class="string">'/admin/upload/kindeditor'</span>,</div><div class="line">                &#125;);</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>需要自己定义文件上传接口。<br>配置: 根目录下创建uploads，在settings中配置MEDIA_URL和MEDIA_ROOT</p>
+</li>
+<li><p>配置文件上传</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#上传图片设置</span></div><div class="line">MEDIA_URL = <span class="string">'/uploads/'</span></div><div class="line">MEDIA_ROOT = os.path.join(BASE_DIR,<span class="string">'uploads'</span>)</div></pre></td></tr></table></figure>
+<p>路由设置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#配置用于处理图片上传的url映射</span></div><div class="line">url(<span class="string">r"^uploads/(?P&lt;path&gt;.*)$"</span>, \</div><div class="line">                        <span class="comment">#django.views.static.serve专门用于处理静态文件</span></div><div class="line">     <span class="string">"django.views.static.serve"</span>, \</div><div class="line">                        <span class="comment">#这里用到了settings中配置好的路径MEDIA_ROOT</span></div><div class="line">     &#123;<span class="string">"document_root"</span>: settings.MEDIA_ROOT,&#125;),</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置富文本编辑器的文件上传</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> blog.upload <span class="keyword">import</span> upload_image</div><div class="line"></div><div class="line"><span class="comment">#用于映射富文本编辑器的图片上传</span></div><div class="line">url(<span class="string">r'^admin/upload/(?P&lt;dir_name&gt;[^/]+)$'</span>, upload_image,\</div><div class="line">        name=<span class="string">'upload_image'</span>),</div></pre></td></tr></table></figure>
+<p>自己实现上传处理函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</div><div class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> uuid</div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> datetime <span class="keyword">as</span> dt</div><div class="line"></div><div class="line"><span class="comment">#这个装饰器用于不再进行表单验证提交</span></div><div class="line"><span class="meta">@csrf_exempt</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">upload_image</span><span class="params">(request, dir_name)</span>:</span></div><div class="line">    <span class="comment">##################</span></div><div class="line">    <span class="comment"># 这是kindeditor想要的格式</span></div><div class="line">    <span class="comment">#  kindeditor图片上传返回数据格式说明：</span></div><div class="line">    <span class="comment"># &#123;"error": 1, "message": "出错信息"&#125;</span></div><div class="line">    <span class="comment"># &#123;"error": 0, "url": "图片地址"&#125;</span></div><div class="line">    <span class="comment">##################</span></div><div class="line">    result = &#123;<span class="string">"error"</span>: <span class="number">1</span>, <span class="string">"message"</span>: <span class="string">"上传出错"</span>&#125;</div><div class="line">    <span class="comment">#imgFile来自于富文本编辑器查看源码之后找到的它定义的文件名字</span></div><div class="line">    files = request.FILES.get(<span class="string">"imgFile"</span>, <span class="keyword">None</span>)</div><div class="line">    <span class="keyword">if</span> files:</div><div class="line">        result =image_upload(files, dir_name)</div><div class="line">    <span class="keyword">return</span> HttpResponse(json.dumps(result), content_type=<span class="string">"application/json"</span>)</div><div class="line"></div><div class="line"><span class="comment">#目录创建</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">upload_generation_dir</span><span class="params">(dir_name)</span>:</span></div><div class="line">    today = dt.datetime.today()</div><div class="line">    dir_name = dir_name + <span class="string">'/%d/%d/'</span> %(today.year,today.month)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(settings.MEDIA_ROOT + dir_name):</div><div class="line">        os.makedirs(settings.MEDIA_ROOT + dir_name)</div><div class="line">    <span class="keyword">return</span> dir_name</div><div class="line"></div><div class="line"><span class="comment"># 图片上传</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">image_upload</span><span class="params">(files, dir_name)</span>:</span></div><div class="line">    <span class="comment">#允许上传文件类型</span></div><div class="line">    allow_suffix =[<span class="string">'jpg'</span>, <span class="string">'png'</span>, <span class="string">'jpeg'</span>, <span class="string">'gif'</span>, <span class="string">'bmp'</span>]</div><div class="line">    file_suffix = files.name.split(<span class="string">"."</span>)[<span class="number">-1</span>]</div><div class="line">    <span class="keyword">if</span> file_suffix <span class="keyword">not</span> <span class="keyword">in</span> allow_suffix:</div><div class="line">        <span class="keyword">return</span> &#123;<span class="string">"error"</span>: <span class="number">1</span>, <span class="string">"message"</span>: <span class="string">"图片格式不正确"</span>&#125;</div><div class="line">    relative_path_file = upload_generation_dir(dir_name)</div><div class="line">    path=os.path.join(settings.MEDIA_ROOT, relative_path_file)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path): <span class="comment">#如果目录不存在创建目录</span></div><div class="line">        os.makedirs(path)</div><div class="line">    file_name=str(uuid.uuid1())+<span class="string">"."</span>+file_suffix</div><div class="line">    path_file=os.path.join(path, file_name)</div><div class="line">    file_url = settings.MEDIA_URL + relative_path_file + file_name</div><div class="line">    <span class="comment">#写入操作，二进制形式，最终完成上传，真正保存图片</span></div><div class="line">    open(path_file, <span class="string">'wb'</span>).write(files.file.read())</div><div class="line">    <span class="keyword">return</span> &#123;<span class="string">"error"</span>: <span class="number">0</span>, <span class="string">"url"</span>: file_url&#125;</div></pre></td></tr></table></figure>
+<p>配置好路由，在kindeditor的config js中配置上传路径：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">KindEditor.ready(<span class="function"><span class="keyword">function</span>(<span class="params">K</span>) </span>&#123;</div><div class="line">                K.create(<span class="string">'textarea[name=content]'</span>,&#123;</div><div class="line">                    width:<span class="string">'800px'</span>,</div><div class="line">                    height:<span class="string">'200px'</span>,</div><div class="line">                    <span class="comment">//配置上传地址，这个地址在url.py中已经配置好了，要和它对应</span></div><div class="line">                    uploadJson: <span class="string">'/admin/upload/kindeditor'</span>,</div><div class="line">                &#125;);</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="3、模板设计"><a href="#3、模板设计" class="headerlink" title="3、模板设计"></a>3、模板设计</h3><p>base.html保留不变的内容，变化的部分以<code>\{\% block XXX \%\} \{\% endblock \%\}</code>代替，<br>子模板继承 <code>base.html</code>,<code>\{\% extends &#39;base.html&#39;}</code>,然后重写<code>\{\% block XXX \%\} \{\% endblock \%\}</code>，在{\% block XXX \%} 中间添加变化的内容 {\% endblock \%}。<br>也可将变化的部分单独放入一个文件中，使用 <code>\{\% include &#39;XXX.html&#39; \%\}</code></p>
+<h3 id="4-、导航栏数据获取"><a href="#4-、导航栏数据获取" class="headerlink" title="4 、导航栏数据获取"></a>4 、导航栏数据获取</h3><p>假如以category模型设计导航栏，先获取对象列表，传递变量给模板，然后在模板中展示<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># views 中</span></div><div class="line"><span class="keyword">from</span> models <span class="keyword">import</span> *</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">index</span><span class="params">(request)</span>：</span></div><div class="line">     ca_list = category.objects.all()</div><div class="line">     <span class="keyword">return</span> render(request,<span class="string">'base.html'</span>,&#123;<span class="string">'ca_list'</span>:ca_list&#125;)</div></pre></td></tr></table></figure></p>
+<p>在模板中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;% raw %&#125;</div><div class="line">&#123;% for ca in ca_list %&#125;</div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">herf</span> =<span class="string">''</span>&gt;</span>&#123;&#123;ca.name&#125;&#125; <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">&#123;% endfor %&#125;</div><div class="line">&#123;% endraw %&#125;</div></pre></td></tr></table></figure>
+<h3 id="5、其他"><a href="#5、其他" class="headerlink" title="5、其他"></a>5、其他</h3><ul>
+<li><p>locals() 将所有变量封装传递进模板，<br><code>render(&#39;index.html&#39;,locals())</code></p>
+</li>
+<li><p>代码重构：使用模板处理器，<br>上面的global_setting的例子，将每个视图都用到的模板变量数据定义到模板处理器中。</p>
+</li>
+<li><p>聚合查询</p>
+<p>annotate</p>
+</li>
+<li><p>异常捕获</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> ：</div><div class="line">    get_article()</div><div class="line"><span class="keyword">except</span> Artical.NotExist:</div><div class="line">    xxx</div></pre></td></tr></table></figure>
+</li>
+<li><p>标签过滤器</p>
+<p><code> {{update_date|date:'Y-m-d'}}</code><br>safe 不转义变量文本里的html便签，确定变量安全的可以用该过滤器。</p>
+</li>
+<li><p>csrf表单验证</p>
+<p>模板页面表单处需要 <code>\{\% csrf_token \%\}</code>,防止跨站提交的安全手段。</p>
+<p>不使用csrf(不推荐)，post方法使用csrf_exmp装饰器。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/django/">django</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Django/">Django</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2016/08/19/技术/Django模板语法/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2016/08/13/技术/django学习笔记1/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><section>
+Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
