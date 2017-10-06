@@ -21,7 +21,7 @@
     <meta property="og:image" content=""/>
   
   <link href="/favicon.ico" rel="icon" type="image/x-ico">
-  <link rel="alternate" href="http://zipperary.com/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -578,154 +578,6 @@
 <p>###Conjugate Gradient<br>是介于最速下降法和牛顿法之间的一个方法，它仅需要利用一阶导数信息，但克服了最速下降法收敛慢的缺点，又避免了牛顿法需要存储和计算Hession并求逆的缺点。它是解决大型线性方程组最有用的方法之一，也是解决大型非线性最优化最有效的算法之一。</p>
 <p>###Newton<br>见<a href="http://painterlin.com/2015/03/23/Newton-QuasiNewton-Method.html" target="_blank" rel="external">牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</a></p>
 <p>###Quasi Newton<br>见<a href="http://painterlin.com/2015/03/23/Newton-QuasiNewton-Method.html" target="_blank" rel="external">牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">2017-09-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">阿里巴巴大数据竞赛回顾与总结</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开放数据"><span class="toc-text">开放数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第一赛季"><span class="toc-text">第一赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二赛季"><span class="toc-text">第二赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
-    </div>
-
-      
-        <p>8个月前，苏宇师兄问我对<a href="http://102.alibaba.com/competition/addDiscovery/index.htm" target="_blank" rel="external">阿里巴巴大数据竞赛</a>感兴趣吗。正好我选修了<a href="http://staff.ustc.edu.cn/~cheneh/" target="_blank" rel="external">陈恩红</a>老师的《机器学习与数据挖掘》，很好奇这门课在实际中的应用；身为淘宝用户，也好奇我是如何被推荐的。于是和师兄一起参加比赛，加上计算机学院的刘惠民同学，我们组成了名叫<code>Rosemary</code>三人团队。这次大赛总共有7276支队伍参赛，我们止步于第二赛季。第一赛季排名56；第二赛季排名68。</p>
-<h3 id="开放数据"><a href="#开放数据" class="headerlink" title="开放数据"></a>开放数据</h3><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>字段</th><br>      <th>字段说明</th><br>      <th>提取说明</th><br>   </tr><br>   <tr><br>      <td>user_id</td><br>      <td>用户标记</td><br>      <td>抽样、字段加密</td><br>   </tr><br>   <tr><br>      <td>Time</td><br>      <td>行为时间</td><br>      <td>精度到天级别、隐藏年份</td><br>   </tr><br>   <tr><br>      <td>action_type</td><br>      <td>用户对品牌的行为类型</td><br>      <td>包括点击（0）、购买（1）、加入购物车（2）、收藏（3）四种行为 </td><br>  </tr><br>   <tr><br>      <td>brand_id</td><br>      <td>品牌数字ID</td><br>      <td>抽样、字段加密</td><br>   </tr><br></table><br>### 比赛任务<br>根据用户4个月在天猫的行为日志，建立用户的品牌偏好，并预测他们在将来一个月内对品牌下商品的购买行为。<br><br>### 评估指标<br>大赛最终的比赛成绩排名以F1得分为准。<br><br>准确率：<img src="http://latex.codecogs.com/gif.latex?Precision=\frac{\sum_i^N&space;hitBrands_i}{\sum_i^N&space;pBrands_i}" title="Precision=\frac{\sum_i^N hitBrands_i}{\sum_i^N pBrands_i}"><br><br>召回率：<img src="http://latex.codecogs.com/gif.latex?Recall=\frac{\sum_i^M&space;hitBrands_i}{\sum_i^M&space;bBrands_i}" title="Recall=\frac{\sum_i^M hitBrands_i}{\sum_i^M bBrands_i}"><br><br>F1-Score：<img src="http://latex.codecogs.com/gif.latex?F_1=\frac{2\times&space;P\times&space;R}{P&plus;R}" title="F_1=\frac{2\times P\times R}{P+R}"><br><br>其中，<br><br>- N 为参赛队预测的用户数；M 为实际产生成交的用户数量<br>- pBrandsi为对用户i 预测他(她)会购买的品牌列表个数；bBrandsi为用户i 真实购买的品牌个数<br>- hitBrandsi对用户i预测的品牌列表与用户i真实购买的品牌交集的个数<br><br>### 解读<code>准确率</code>、<code>召回率</code>和<code>F1-Score</code><br>准确率就是正确预测数目比上预测总数目。召回率就是正确预测数目比上真实总数目。F1-Score是准确率和召回率的调和平均。理论上，准确率与召回率并没有必然的联系；但在实际中，这二者往往此消彼长、相互制约。有研究表明，在不牺牲准确率的情况下，获得一个高召回率是很难的。在赛题环境下举个栗子：<br><br><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>我们预测出</th><br>      <th>会有3个人买东西，A买品牌a，B买品牌b，C买P品牌c</th><br>   </tr><br>   <tr><br>      <td>真实情况是</td><br>      <td>有4个人买了东西，这4个人分别是A，B，C，D，其中A买a和b，B买b，C买b和c，D买a。</td><br>   </tr><br></table>
-
-<p>按照我们的预测，准确率达到了100%，而召回率仅为50%。由此可见，想取得一个较好的F1-Score成绩，需要保证预测的数据尽量hit之外，还要保证预测的数据能够覆盖尽量多的真实数据。具体到比赛中，就需要很好地确定每个被预测的用户可能会买多少个品牌。</p>
-<p>通过对这三个评判标准的分析，我们初步确定了第一赛季所用的策略。</p>
-<h3 id="第一赛季"><a href="#第一赛季" class="headerlink" title="第一赛季"></a>第一赛季</h3><p>大致的方案是：</p>
-<ol>
-<li>加权对用户4种行为次数求和，得到简单的用户ID（行）与品牌ID（列）的<code>兴趣度</code>（值）矩阵。</li>
-<li>统计前4个月平均每个月有多少用户购买超过2个品牌的东西，记为B。</li>
-<li>根据用户前4个月的购买行为，按照<code>购买力</code>划分用户购买等级。直白解释就是你以前在天猫上平均每个月买了多少次，我就假设你下个月还会买这么多次。</li>
-<li>第一次切分兴趣度矩阵，保留前B行矩阵。</li>
-<li>对每个用户对不同品牌的兴趣度由高到低排序，再根据每个用户的购买力确定对该用户保留前n列的兴趣数据，并预测他会买这n个数据对应的品牌。</li>
-</ol>
-<p>当然，在最初的模型建立起来之后，我们还陆续加了一些规则，比如在<code>时间节截止点</code>(最后N天，N可以根据自己的理解取值)的单独分析。另外，调参数真就是一项体力活。</p>
-<p><img src="/public/img/posts/s1.jpg" alt="1"></p>
-<h3 id="第二赛季"><a href="#第二赛季" class="headerlink" title="第二赛季"></a>第二赛季</h3><p>（好困，需要去睡觉Zzz···）细节未完待续</p>
-<p><img src="/public/img/posts/score0.png" alt="2"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-09-11-Matlab-tips/">2017-09-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/17/科研/2014-09-11-Matlab-tips/">Matlab科研小贴士</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clear"><span class="toc-text">Clear</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Random-Seed"><span class="toc-text">Random Seed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NaN"><span class="toc-text">NaN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SaveAs"><span class="toc-text">SaveAs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#矩阵规范化"><span class="toc-text">矩阵规范化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装CVX"><span class="toc-text">安装CVX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分段运行程序"><span class="toc-text">%%分段运行程序</span></a></li></ol>
-    </div>
-
-      
-        <p>使用MATLAB运行算法程序时，可能遇到各种各样的报错。比如，为了保护隐私数据，我在分布式矩阵补全算法中加入随机矩阵之后，某项变量在运行几百步之后会出现NaN报错。我只根据算法顺序去分析问题出现的可能原因，并修改程序。感觉并没有很好地利用MATLAB的强大功能去锁定症结所在。幸运的是，<a href="http://home.ustc.edu.cn/~shiwei00/index.html" target="_blank" rel="external">施伟</a>大师兄当时和我在一起，他非常热心地帮我分析问题，教我以后遇到类似状况应该怎么去分析与思考。和大师兄讨论了半小时，感觉自己收获不少。</p>
-<p>这篇文章会陆续记录下自己使用MATLAB的体会，以及解决问题的一些技巧。</p>
-<h3 id="Clear"><a href="#Clear" class="headerlink" title="Clear"></a>Clear</h3><p>运行一段代码前通常需要将工作空间里的已有数据清除掉。只需要在编辑有实际意义的代码之前写下如下代码：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">clc; clear; close all;</div></pre></td></tr></table></figure>
-<h3 id="Random-Seed"><a href="#Random-Seed" class="headerlink" title="Random Seed"></a>Random Seed</h3><p>为了保证程序在相同环境下运行以便测试某一个或几个改变对于算法的影响，在使用各种random命令时，需要设定固定种子。这样就不会因为每次随机产生的序列不同而影响程序运行结果。设置随机种子的代码如下：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">%% random seed</span></div><div class="line"><span class="comment">%seed=round(5000*rand);       % use this line if you set a random seed</span></div><div class="line">seed=<span class="number">3302</span>;    <span class="comment">% use this line if you set a fixed seed. 3302 can be replaced by other numbers.</span></div><div class="line">fprintf(<span class="string">'Seed = %d\n'</span>,seed);  <span class="comment">% print the current seed </span></div><div class="line"><span class="keyword">if</span> exist(<span class="string">'RandStream'</span>,<span class="string">'file'</span>)</div><div class="line">   RandStream.setGlobalStream(RandStream(<span class="string">'mt19937ar'</span>,<span class="string">'seed'</span>,seed));</div><div class="line"><span class="keyword">else</span></div><div class="line">   <span class="built_in">rand</span>(<span class="string">'state'</span>,seed); </div><div class="line">   <span class="built_in">randn</span>(<span class="string">'state'</span>,seed^<span class="number">2</span>);</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p>NaN是Not a Number的缩写。当某变量显示NaN时，表示该变量是不明确的数值结果。比如0/0、inf/inf等运算会出现NaN报错。遇到这种情况，首先判断NaN出现在哪一步：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">isnan</span>(norres)    <span class="comment">%括号里是变量名。判断norres是否为NaN，若是，则在该步暂停程序。</span></div><div class="line">    keyboard;</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>再在命令窗里单独查看与该变量有关的其他变量，从而排除正常变量，获知究竟是哪个或哪几个变量出了问题，变为无穷大或无穷小。再检查与这些变量有关的算法。</p>
-<h3 id="SaveAs"><a href="#SaveAs" class="headerlink" title="SaveAs"></a>SaveAs</h3><p>若需要比较各参数对算法性能的影响，通常是在程序中修改参数运行，得到算法收敛精度与迭代次数的曲线图。再根据曲线图反向思考修改哪些参数有效。这个过程需要保存产生的大量图片。可以使用<code>hold on</code>命令将所有虚线画在同一张图上，也可以使用<code>saveas</code>将所有图片自动保存。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">%% plot</span></div><div class="line">figure(<span class="number">1</span>)</div><div class="line">semilogy(<span class="number">1</span>:iter,y_axis(<span class="number">1</span>:iter),<span class="string">'b-'</span>);  <span class="comment">%b：蓝色。－：线段形状</span></div><div class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>);</div><div class="line">grid on;</div><div class="line">xlabel(<span class="string">'\fontsize&#123;12&#125;\it Iteration'</span>); ylabel(<span class="string">'\fontsize&#123;12&#125;\it Normalized residual'</span>);</div><div class="line">legend(<span class="string">'\fontsize&#123;12&#125;\it text'</span>);       <span class="comment">%text：这条蓝色代表什么</span></div><div class="line">hold on</div><div class="line">saveas(gcf,<span class="string">'filename'</span>,<span class="string">'fig'</span>)           <span class="comment">%filename：将图片保存为这个名字。fig：保存为fig格式</span></div></pre></td></tr></table></figure>
-<p>保存变量数据的命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">save(&apos;filename&apos;)</div><div class="line">save(&apos;filename&apos;,&apos;variables&apos;)</div></pre></td></tr></table></figure>
-<p>注意，在使用<code>hold on</code>命令时，应该保留上次程序运行后产生的各种数据。即不能在程序中写类似与<code>clear all</code>之类的清除语句，否则上次曲线图也将被删除。</p>
-<h3 id="矩阵规范化"><a href="#矩阵规范化" class="headerlink" title="矩阵规范化"></a>矩阵规范化</h3><p>已知满秩矩阵A，进行下面操作使其所有奇异值均为1。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[u s v]=svd(A);</div><div class="line">A=u*v';</div></pre></td></tr></table></figure>
-<h3 id="安装CVX"><a href="#安装CVX" class="headerlink" title="安装CVX"></a>安装CVX</h3><ol>
-<li>将cvx压缩包解压</li>
-<li>将cvx文件夹拷贝至如D:\MATLAB Programs\Compressed Sensing目录下</li>
-<li>在Current Folder窗口中打开cvx文件夹</li>
-<li>在Command Window中输入cvx_setup</li>
-<li>在MATLAB的File菜单下的set path把此路径加上。</li>
-<li>把路径加进去后在file→Preferences→General的Toolbox Path Caching里点击update Toolbox Path Cache更新一下</li>
-<li>完成</li>
-</ol>
-<h3 id="分段运行程序"><a href="#分段运行程序" class="headerlink" title="%%分段运行程序"></a>%%分段运行程序</h3><ol>
-<li>选中%%分段</li>
-<li>右键选择<code>evaluate current section</code></li>
-</ol>
 
       
     </div>
@@ -1537,66 +1389,11 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-08-31-Papers-about-average-consensus/">2017-09-17</a></time>
+        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2015-03-23-Newton-QuasiNewton-Method/">2017-09-17</a></time>
       
       
   
-    <h1 class="title"><a href="/2017/09/17/科研/2014-08-31-Papers-about-average-consensus/">动态一致平均问题算法-EXTRA和DAC</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#EXTRA"><span class="toc-text">EXTRA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DAC"><span class="toc-text">DAC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点比较"><span class="toc-text">优缺点比较</span></a></li></ol>
-    </div>
-
-      
-        <h3 id="EXTRA"><a href="#EXTRA" class="headerlink" title="EXTRA"></a>EXTRA</h3><p><a href="http://www.codecogs.com/eqnedit.php?latex=x_{(i)}^1=\sum_{j&space;=&space;1}^Nw_{ij}x_{(j)}^0-\alpha&space;\nabla&space;f_i(x_{(i)}^0)\\&space;\\&space;\\&space;x_{(i)}^{k&plus;2}=x_{(i)}^{k&plus;1}&plus;\sum_{j=1}^Nw_{ij}x_{(j)}^{k&plus;1}-\sum_{j=1}^N\tilde{w}_{ij}x_{(j)}^k-\alpha[\nabla&space;f_i(x_{(i)}^{k&plus;1})-\nabla&space;f_i(x_{(i)}^{k})]" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x_{(i)}^1=\sum_{j&space;=&space;1}^Nw_{ij}x_{(j)}^0-\alpha&space;\nabla&space;f_i(x_{(i)}^0)\\&space;\\&space;\\&space;x_{(i)}^{k&plus;2}=x_{(i)}^{k&plus;1}&plus;\sum_{j=1}^Nw_{ij}x_{(j)}^{k&plus;1}-\sum_{j=1}^N\tilde{w}_{ij}x_{(j)}^k-\alpha[\nabla&space;f_i(x_{(i)}^{k&plus;1})-\nabla&space;f_i(x_{(i)}^{k})]" title="x_{(i)}^1=\sum_{j = 1}^Nw_{ij}x_{(j)}^0-\alpha \nabla f_i(x_{(i)}^0)\\ \\ \\ x_{(i)}^{k+2}=x_{(i)}^{k+1}+\sum_{j=1}^Nw_{ij}x_{(j)}^{k+1}-\sum_{j=1}^N\tilde{w}_{ij}x_{(j)}^k-\alpha[\nabla f_i(x_{(i)}^{k+1})-\nabla f_i(x_{(i)}^{k})]"></a></p>
-<h3 id="DAC"><a href="#DAC" class="headerlink" title="DAC"></a>DAC</h3><p><a href="http://www.codecogs.com/eqnedit.php?latex=x_i(t&plus;1)=x_i(t)&plus;\sum_{j&space;\neq&space;i}a_{ij}(t)(x_i(t)-x_i(t))&plus;r_i(t)-r_i(t-1)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x_i(t&plus;1)=x_i(t)&plus;\sum_{j&space;\neq&space;i}a_{ij}(t)(x_j(t)-x_i(t))&plus;r_i(t)-r_i(t-1)" title="x_i(t+1)=x_i(t)+\sum_{j \neq i}a_{ij}(t)(x_i(t)-x_i(t))+r_i(t)-r_i(t-1)"></a></p>
-<h3 id="优缺点比较"><a href="#优缺点比较" class="headerlink" title="优缺点比较"></a>优缺点比较</h3><p>其中，DAC最大的缺点在于第一次迭代时对于r(-1)时刻的依赖，在实际仿真中，如果需要对动态输入求一致平均，往往并不能获取输入在-1时刻的值。导致在矩阵补全问题中，DAC做不精确的动态一致平均的子问题效果并不好。</p>
-<p>而EXTRA却有很好的效果。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-08-22-Average-Consensus/">2017-09-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2017/09/17/科研/2014-08-22-Average-Consensus/">对于一致平均问题的理解</a></h1>
+    <h1 class="title"><a href="/2017/09/17/科研/2015-03-23-Newton-QuasiNewton-Method/">牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</a></h1>
   
 
     </header>
@@ -1608,36 +1405,42 @@
     </div>
 
       
-        <p>最近几个月在研究分布式低秩矩阵补全的问题，参考文章<a href="http://painterlin.com/2014/07/25/matrix-completion.html" target="_blank" rel="external">《低秩矩阵补全》</a>。</p>
-<p>低秩矩阵补全问题的各类算法中，很关键的一个子问题叫做一致平均问题(Average Consensus)，而上一篇文章并没有对这个问题进行说明。那么，什么叫做“一致平均”呢？</p>
-<p>###问题阐释：</p>
-<div>考虑一个有<img src="http://latex.codecogs.com/gif.latex?L" title="L">个节点的网络，每个节点上存储一个关于自己的数值信息，叫做初值。一致平均问题就是使所有节点在算法停止的时候收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均。<br></div>
-
-<div>在分布式算法中，通常会存在这样一个变量<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">，它作为公有信息在网络中传递，每个节点储存自己的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}" title="\mathbf{X}_{(i)}">。在总算法的每一次迭代中，每个节点<img src="http://latex.codecogs.com/gif.latex?i" title="i">接收自己邻居节点传递过来的公有信息，然后与自己的私有信息共同计算出新的公有信息，并传给自己的邻居。我们需要保证每个节点上的公有信息<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}=\mathbf{X}_{(j)}" title="\mathbf{X}_{(i)}=\mathbf{X}_{(j)}">，使分布的算法以某种方式交流合作，以便获得最优解。这就是分布式算法中的一致平均问题。</div>
-
-<p>###问题分类：<br>根据节点上的数值信息是否随时间变化，又把一致平均问题分为：</p>
-<ul>
-<li>静态一致平均 (Static average consensus)</li>
-<li>动态一致平均 (Dynamic average consensus)</li>
-</ul>
-<div><br>顾名思义，静态一致平均指节点上的初值不会发生变化，只需要保证最后每个节点都收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均值即可；而动态一致平均则是，节点上的数值不断发生变化，即<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}" title="\mathbf{X}_{(i)}">在<img src="http://latex.codecogs.com/gif.latex?t" title="t">时刻的值并不一定与0时刻的值（初值）相同，我们使用不断变化的公有信息（因为公有信息不断在被更新），仍需要保证最后每个节点都收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均。相比于静态一致平均，动态一致平均问题更为棘手。<br></div>
-
-<p>###求解方法分类：<br>在文章《低秩矩阵补全》的最后，提供一种求解方法的分类概念，将方法分为：</p>
-<ul>
-<li>精确一致平均 (Exact average consensus)</li>
-<li>不精确一致平均 (Inexact average consensus)</li>
-</ul>
-<p>这又是什么意思呢？</p>
-<div><br>在解决分布式低秩矩阵补全问题的时候，我们将算法分解两个子问题不断求解，一是交替极小化(Alternating minimization)得到每个节点的新的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Y}" title="\mathbf{Y}">；二是在网络中对<img src="http://latex.codecogs.com/gif.latex?L" title="L">个节点的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">求一致平均。对于第二个子问题，在每一次算法总的迭代中，都去求解精确的一致平均显然能够解决问题，但是因为一致平均也需要一定次数的迭代才能被解除，如果在总算法的每一次迭代中都去求精确的一致平均，则相当耗费计算资源，增加了算法的时间复杂度。<br></div>
-
-<p>很自然地，我们会想到，既然一致平均只是矩阵补全的一个子问题，我们是不是可以通过某种松弛，来降低算法的时间复杂度并节省计算资源，同时仍旧保证总算法的收敛呢。这样，就提出了不精确的一致平均。</p>
-<div><br>不精确一致平均，就是在每一次求解一致平均子问题时，只迭代一次或者若干次，而不是迭代所有<img src="http://latex.codecogs.com/gif.latex?N" title="N">次（<img src="http://latex.codecogs.com/gif.latex?N" title="N">可以很大），使每个节点<code>近似</code>的达到它们初值的均值。<br></div>
-
-<p>###精确一致平均与不精确一致平均优缺点比较:</p>
-<ul>
-<li>精确(Exact)求解：理论上容易证明，但计算代价通常比inexact方法高</li>
-<li>不精确(Inexact)求解：理论分析上不好证明，除此之外具有exact不具有的所有优点，比如算法时间复杂度低，节省计算资源等等。</li>
-</ul>
+        <p>最近做LBFGS的并行，顺便把牛顿法、拟牛顿法顺理一下。</p>
+<p>拟牛顿法是求解非线性优化问题最有效的方法之一。考虑无约束的极小化问题<a href="http://www.codecogs.com/eqnedit.php?latex=\min\limits_x&space;f(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\min\limits_x&space;f(x)" title="\min\limits_x f(x)"></a>，假设<a href="http://www.codecogs.com/eqnedit.php?latex=f(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?f(x)" title="f(x)"></a>为凸函数，且二阶连续可导。</p>
+<p>###原始牛顿法<br>基本思想：在现有极小点估计值的附近对f(x)进行二阶泰勒展开，进而找到下一个极小点的估计值</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=x_{k&plus;1}=x_{k}-(H_k)^{-1}g_{k},&space;k=0,1,\cdots" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x_{k&plus;1}=x_{k}-(H_k)^{-1}g_{k},&space;k=0,1,\cdots" title="x_{k+1}=x_{k}-(H_k)^{-1}g_{k}, k=0,1,\cdots"></a></p>
+<p>牛顿法具有二次收敛性，但当目标函数非二次型时，牛顿法不能保证函数稳定地下降（缺点）。</p>
+<p>###阻尼牛顿法<br>每次迭代前需要沿迭代方向<a href="http://www.codecogs.com/eqnedit.php?latex=d_k=-(H_k)^{-1}g_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?d_k=-(H_k)^{-1}g_k" title="d_k=-(H_k)^{-1}g_k"></a>做线搜索，寻求最优的步长因子<a href="http://www.codecogs.com/eqnedit.php?latex=\lambda_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\lambda_k" title="\lambda_k"></a>，即</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=\lambda_k&space;=&space;\arg\min\limits_{\lambda}&space;f(x_k&plus;\lambda&space;d_k)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\lambda_k&space;=&space;\arg\min\limits_{\lambda}&space;f(x_k&plus;\lambda&space;d_k)" title="\lambda_k = \arg\min\limits_{\lambda} f(x_k+\lambda d_k)"></a></p>
+<p>###拟牛顿法<br>基本思想：不使用二阶偏导数而构造出可以近似Hession或Hession的逆的正定对称阵，在“拟牛顿”的条件下优化目标函数。</p>
+<p>先推导拟牛顿条件：在<a href="http://www.codecogs.com/eqnedit.php?latex=x_{k&plus;1}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x_{k&plus;1}" title="x_{k+1}"></a>附近对<a href="http://www.codecogs.com/eqnedit.php?latex=f(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?f(x)" title="f(x)"></a>做泰勒展开，取二阶近似项</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=f(x)=f(x_{k&plus;1})&plus;\nabla&space;f(x_{k&plus;1})(x-x_{k&plus;1})&plus;\frac{1}{2}(x-x_{k&plus;1})^T\nabla^2&space;f(x_{k&plus;1})(x-x_{k&plus;1})" target="_blank"><img src="http://latex.codecogs.com/gif.latex?f(x)=f(x_{k&plus;1})&plus;\nabla&space;f(x_{k&plus;1})(x-x_{k&plus;1})&plus;\frac{1}{2}(x-x_{k&plus;1})^T\nabla^2&space;f(x_{k&plus;1})(x-x_{k&plus;1})" title="f(x)=f(x_{k+1})+\nabla f(x_{k+1})(x-x_{k+1})+\frac{1}{2}(x-x_{k+1})^T\nabla^2 f(x_{k+1})(x-x_{k+1})"></a><br>推出</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=\nabla&space;f(x)\approx&space;\nabla&space;f(x_{k&plus;1})&plus;H_{k&plus;1}(x-x_{k&plus;1})" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\nabla&space;f(x)\approx&space;\nabla&space;f(x_{k&plus;1})&plus;H_{k&plus;1}(x-x_{k&plus;1})" title="\nabla f(x)\approx \nabla f(x_{k+1})+H_{k+1}(x-x_{k+1})"></a><br>取<a href="http://www.codecogs.com/eqnedit.php?latex=x=x_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x=x_k" title="x=x_k"></a>，推出</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=g_{k&plus;1}-g_{k}\approx&space;H_{k&plus;1}(x_{k&plus;1}-x_k)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?g_{k&plus;1}-g_{k}\approx&space;H_{k&plus;1}(x_{k&plus;1}-x_k)" title="g_{k+1}-g_{k}\approx H_{k+1}(x_{k+1}-x_k)"></a></p>
+<p>引入记号 <a href="http://www.codecogs.com/eqnedit.php?latex=s_k=x_{k&plus;1}-x_{k},&space;y_k=g_{k&plus;1}-g_{k}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?s_k=x_{k&plus;1}-x_{k},&space;y_k=g_{k&plus;1}-g_{k}" title="s_k=x_{k+1}-x_{k}, y_k=g_{k+1}-g_{k}"></a>， 推出</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=y_k=H_{k&plus;1}s_k&space;,&space;s_k=H^{-1}_{k&plus;1}y_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?y_k=H_{k&plus;1}s_k&space;,&space;s_k=H^{-1}_{k&plus;1}y_k" title="y_k=H_{k+1}s_k , s_k=H^{-1}_{k+1}y_k"></a>(<code>拟牛顿条件</code>)</p>
+<p>它迭代过程中的hession矩阵做约束，因此，对hession对近似的<a href="http://www.codecogs.com/eqnedit.php?latex=B_{k&plus;1}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?B_{k&plus;1}" title="B_{k+1}"></a>，以及对hession的逆做近似的<a href="http://www.codecogs.com/eqnedit.php?latex=D_{k&plus;1}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?D_{k&plus;1}" title="D_{k+1}"></a>，可以将</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=y_{k}=B_{k&plus;1}s_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?y_{k}=B_{k&plus;1}s_k" title="y_{k}=B_{k+1}s_k"></a> 或 <a href="http://www.codecogs.com/eqnedit.php?latex=s_{k}=D_{k&plus;1}y_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?s_{k}=D_{k&plus;1}y_k" title="s_{k}=D_{k+1}y_k"></a> 作为指导。</p>
+<p>####DFP算法（Davidon–Fletcher–Powell formula）</p>
+<p>核心：通过迭代的方法，对hession的逆做近似。迭代格式为</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=D_{k&plus;1}=D_k&plus;\Delta&space;D_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?D_{k&plus;1}=D_k&plus;\Delta&space;D_k" title="D_{k+1}=D_k+\Delta D_k"></a>（通常<a href="http://www.codecogs.com/eqnedit.php?latex=D_0=I" target="_blank"><img src="http://latex.codecogs.com/gif.latex?D_0=I" title="D_0=I"></a>）</p>
+<p>猜想<a href="http://www.codecogs.com/eqnedit.php?latex=\Delta&space;D_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\Delta&space;D_k" title="\Delta D_k"></a>待定为<a href="http://www.codecogs.com/eqnedit.php?latex=\Delta&space;D_k=\alpha&space;\mathbf{u}&space;\mathbf{u}^{\mathrm{T}}&plus;\beta\mathbf{v}\mathbf{v}^{\mathrm{T}}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\Delta&space;D_k=\alpha&space;\mathbf{u}&space;\mathbf{u}^{\mathrm{T}}&plus;\beta\mathbf{v}\mathbf{v}^{\mathrm{T}}" title="\Delta D_k=\alpha \mathbf{u} \mathbf{u}^{\mathrm{T}}+\beta\mathbf{v}\mathbf{v}^{\mathrm{T}}"></a>（具有对称性）</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=\Rightarrow&space;s_k=D_ky_k&plus;\alpha\mathbf{u}\mathbf{u}^{\mathrm{T}}y_k&plus;\beta\mathbf{v}\mathbf{v}^{\mathrm{T}}y_k=D_ky_k&plus;(\alpha\mathbf{u}^{\mathrm{T}}y_k)\mathbf{u}&plus;(\beta\mathbf{v}^{\mathrm{T}}y_k)\mathbf{v}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\Rightarrow&space;s_k=D_ky_k&plus;\alpha\mathbf{u}\mathbf{u}^{\mathrm{T}}y_k&plus;\beta\mathbf{v}\mathbf{v}^{\mathrm{T}}y_k=D_ky_k&plus;(\alpha\mathbf{u}^{\mathrm{T}}y_k)\mathbf{u}&plus;(\beta\mathbf{v}^{\mathrm{T}}y_k)\mathbf{v}" title="\Rightarrow s_k=D_ky_k+\alpha\mathbf{u}\mathbf{u}^{\mathrm{T}}y_k+\beta\mathbf{v}\mathbf{v}^{\mathrm{T}}y_k=D_ky_k+(\alpha\mathbf{u}^{\mathrm{T}}y_k)\mathbf{u}+(\beta\mathbf{v}^{\mathrm{T}}y_k)\mathbf{v}"></a></p>
+<p>括号中是数值，将其分别简单赋值为1，-1，即</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=\alpha=\frac{1}{\mathbf{u}^{\mathrm{T}}y_k},\beta=-\frac{1}{\mathbf{v}^{\mathrm{T}}y_k}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\alpha=\frac{1}{\mathbf{u}^{\mathrm{T}}y_k},\beta=-\frac{1}{\mathbf{v}^{\mathrm{T}}y_k}" title="\alpha=\frac{1}{\mathbf{u}^{\mathrm{T}}y_k},\beta=-\frac{1}{\mathbf{v}^{\mathrm{T}}y_k}"></a></p>
+<p>其中向量u,v仍有待确定，由上面</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=\Rightarrow&space;\mathbf{u}-\mathbf{v}=s_k-D_ky_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\Rightarrow&space;\mathbf{u}-\mathbf{v}=s_k-D_ky_k" title="\Rightarrow \mathbf{u}-\mathbf{v}=s_k-D_ky_k"></a>（要此式成立，不妨直接取<a href="http://www.codecogs.com/eqnedit.php?latex=\mathbf{u}=s_k,\mathbf{v}=D_ky_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\mathbf{u}=s_k,\mathbf{v}=D_ky_k" title="\mathbf{u}=s_k,\mathbf{v}=D_ky_k"></a>）</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=\Rightarrow&space;\alpha=\frac{1}{s^{\mathrm{T}}_ky_k},\beta=-\frac{1}{y^{\mathrm{T}}_kD_ky_k}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\Rightarrow&space;\alpha=\frac{1}{s^{\mathrm{T}}_ky_k},\beta=-\frac{1}{y^{\mathrm{T}}_kD_ky_k}" title="\Rightarrow \alpha=\frac{1}{s^{\mathrm{T}}_ky_k},\beta=-\frac{1}{y^{\mathrm{T}}_kD_ky_k}"></a></p>
+<p>至此，校正矩阵<a href="http://www.codecogs.com/eqnedit.php?latex=\Delta&space;D_k" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\Delta&space;D_k" title="\Delta D_k"></a>就已经构造出来了</p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=\Rightarrow&space;\Delta&space;D_k=\frac{s_ks_k^{\mathrm{T}}}{s_k^{\mathrm{T}}y_k}-\frac{D_ky_ky_k^{\mathrm{T}}D_k}{y_k^{\mathrm{T}}D_ky_k}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\Rightarrow&space;\Delta&space;D_k=\frac{s_ks_k^{\mathrm{T}}}{s_k^{\mathrm{T}}y_k}-\frac{D_ky_ky_k^{\mathrm{T}}D_k}{y_k^{\mathrm{T}}D_ky_k}" title="\Rightarrow \Delta D_k=\frac{s_ks_k^{\mathrm{T}}}{s_k^{\mathrm{T}}y_k}-\frac{D_ky_ky_k^{\mathrm{T}}D_k}{y_k^{\mathrm{T}}D_ky_k}"></a></p>
+<p>####BFGS算法（Broyden–Fletcher–Goldfarb–Shanno algorithm）<br>核心公式的推导过程与DFP完全类似，只是互换了其中s{k}和y{k}的位置。BFGS直接逼近Hession矩阵B_k。(公式敲起来太累了，请自行推导)</p>
+<p>####LBFGS算法(limited-memory BFGS)<br>不再存储完整的D_k，而是存储计算过程中的向量序列{s}，{y}。当需要矩阵D_k时，利用向量序列的计算来代替。并且，向量序列也不是全部存储，而是固定存最新的m个。</p>
+<p>若要实现并行，需要同时在x与梯度（影响y的计算）那儿求一致平均。</p>
+<p>###资料</p>
+<p>【1】<a href="http://en.wikipedia.org/wiki/Davidon%E2%80%93Fletcher%E2%80%93Powell_formula" target="_blank" rel="external">DFP算法</a></p>
+<p>【2】<a href="http://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm" target="_blank" rel="external">BFGS算法</a></p>
+<p>【3】<a href="http://en.wikipedia.org/wiki/Limited-memory_BFGS" target="_blank" rel="external">LBFGS算法</a></p>
+<p>【4】<a href="http://papers.nips.cc/paper/5333-large-scale-l-bfgs-using-mapreduce.pdf" target="_blank" rel="external">Large-scale L-BFGS using MapReduce</a></p>
 
       
     </div>
@@ -1883,6 +1686,247 @@
 
 
 
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">2017-09-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">阿里巴巴大数据竞赛回顾与总结</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开放数据"><span class="toc-text">开放数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第一赛季"><span class="toc-text">第一赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二赛季"><span class="toc-text">第二赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+      
+        <p>8个月前，苏宇师兄问我对<a href="http://102.alibaba.com/competition/addDiscovery/index.htm" target="_blank" rel="external">阿里巴巴大数据竞赛</a>感兴趣吗。正好我选修了<a href="http://staff.ustc.edu.cn/~cheneh/" target="_blank" rel="external">陈恩红</a>老师的《机器学习与数据挖掘》，很好奇这门课在实际中的应用；身为淘宝用户，也好奇我是如何被推荐的。于是和师兄一起参加比赛，加上计算机学院的刘惠民同学，我们组成了名叫<code>Rosemary</code>三人团队。这次大赛总共有7276支队伍参赛，我们止步于第二赛季。第一赛季排名56；第二赛季排名68。</p>
+<h3 id="开放数据"><a href="#开放数据" class="headerlink" title="开放数据"></a>开放数据</h3><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>字段</th><br>      <th>字段说明</th><br>      <th>提取说明</th><br>   </tr><br>   <tr><br>      <td>user_id</td><br>      <td>用户标记</td><br>      <td>抽样、字段加密</td><br>   </tr><br>   <tr><br>      <td>Time</td><br>      <td>行为时间</td><br>      <td>精度到天级别、隐藏年份</td><br>   </tr><br>   <tr><br>      <td>action_type</td><br>      <td>用户对品牌的行为类型</td><br>      <td>包括点击（0）、购买（1）、加入购物车（2）、收藏（3）四种行为 </td><br>  </tr><br>   <tr><br>      <td>brand_id</td><br>      <td>品牌数字ID</td><br>      <td>抽样、字段加密</td><br>   </tr><br></table><br>### 比赛任务<br>根据用户4个月在天猫的行为日志，建立用户的品牌偏好，并预测他们在将来一个月内对品牌下商品的购买行为。<br><br>### 评估指标<br>大赛最终的比赛成绩排名以F1得分为准。<br><br>准确率：<img src="http://latex.codecogs.com/gif.latex?Precision=\frac{\sum_i^N&space;hitBrands_i}{\sum_i^N&space;pBrands_i}" title="Precision=\frac{\sum_i^N hitBrands_i}{\sum_i^N pBrands_i}"><br><br>召回率：<img src="http://latex.codecogs.com/gif.latex?Recall=\frac{\sum_i^M&space;hitBrands_i}{\sum_i^M&space;bBrands_i}" title="Recall=\frac{\sum_i^M hitBrands_i}{\sum_i^M bBrands_i}"><br><br>F1-Score：<img src="http://latex.codecogs.com/gif.latex?F_1=\frac{2\times&space;P\times&space;R}{P&plus;R}" title="F_1=\frac{2\times P\times R}{P+R}"><br><br>其中，<br><br>- N 为参赛队预测的用户数；M 为实际产生成交的用户数量<br>- pBrandsi为对用户i 预测他(她)会购买的品牌列表个数；bBrandsi为用户i 真实购买的品牌个数<br>- hitBrandsi对用户i预测的品牌列表与用户i真实购买的品牌交集的个数<br><br>### 解读<code>准确率</code>、<code>召回率</code>和<code>F1-Score</code><br>准确率就是正确预测数目比上预测总数目。召回率就是正确预测数目比上真实总数目。F1-Score是准确率和召回率的调和平均。理论上，准确率与召回率并没有必然的联系；但在实际中，这二者往往此消彼长、相互制约。有研究表明，在不牺牲准确率的情况下，获得一个高召回率是很难的。在赛题环境下举个栗子：<br><br><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>我们预测出</th><br>      <th>会有3个人买东西，A买品牌a，B买品牌b，C买P品牌c</th><br>   </tr><br>   <tr><br>      <td>真实情况是</td><br>      <td>有4个人买了东西，这4个人分别是A，B，C，D，其中A买a和b，B买b，C买b和c，D买a。</td><br>   </tr><br></table>
+
+<p>按照我们的预测，准确率达到了100%，而召回率仅为50%。由此可见，想取得一个较好的F1-Score成绩，需要保证预测的数据尽量hit之外，还要保证预测的数据能够覆盖尽量多的真实数据。具体到比赛中，就需要很好地确定每个被预测的用户可能会买多少个品牌。</p>
+<p>通过对这三个评判标准的分析，我们初步确定了第一赛季所用的策略。</p>
+<h3 id="第一赛季"><a href="#第一赛季" class="headerlink" title="第一赛季"></a>第一赛季</h3><p>大致的方案是：</p>
+<ol>
+<li>加权对用户4种行为次数求和，得到简单的用户ID（行）与品牌ID（列）的<code>兴趣度</code>（值）矩阵。</li>
+<li>统计前4个月平均每个月有多少用户购买超过2个品牌的东西，记为B。</li>
+<li>根据用户前4个月的购买行为，按照<code>购买力</code>划分用户购买等级。直白解释就是你以前在天猫上平均每个月买了多少次，我就假设你下个月还会买这么多次。</li>
+<li>第一次切分兴趣度矩阵，保留前B行矩阵。</li>
+<li>对每个用户对不同品牌的兴趣度由高到低排序，再根据每个用户的购买力确定对该用户保留前n列的兴趣数据，并预测他会买这n个数据对应的品牌。</li>
+</ol>
+<p>当然，在最初的模型建立起来之后，我们还陆续加了一些规则，比如在<code>时间节截止点</code>(最后N天，N可以根据自己的理解取值)的单独分析。另外，调参数真就是一项体力活。</p>
+<p><img src="/public/img/posts/s1.jpg" alt="1"></p>
+<h3 id="第二赛季"><a href="#第二赛季" class="headerlink" title="第二赛季"></a>第二赛季</h3><p>（好困，需要去睡觉Zzz···）细节未完待续</p>
+<p><img src="/public/img/posts/score0.png" alt="2"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-11-09-What-is-NP-Hard/">2017-09-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/17/科研/2014-11-09-What-is-NP-Hard/">什么是 P, NP, NP-complete, NP-hard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        
+    </div>
+
+      
+        <p>###相关概念<br>NP-hard（non-deterministic polynomial-time hard）</p>
+<ol>
+<li>P：能在多项式时间内解决</li>
+<li>NP：不能在多项式时间内解决或不确定能不能在多项式时间内解决，但一旦你找到一个解，只需要多项式时间去验证这个解是正确的</li>
+<li>NP-hard：如果一个问题是NP-hard，意味着可以将任意NP问题化约到这个问题。如果可以解这个问题，那么可以轻松地解任意NP问题。</li>
+<li>NPC：NP完全问题，所有NP问题在多项式时间内都能化约（Reducibility）到某一NP问题，这一NP问题就是NPC问题，即解决了此NPC问题，所有NP问题也都解决了。</li>
+</ol>
+<p>###资料原文<br>These refer to how long it takes a program to run.  Problems in class P can be solved with algorithms that run in <strong>polynomial time</strong>.</p>
+<p>Say you have an algorithm that finds the smallest integer in an array.  One way to do this is by iterating over all the integers of the array and keeping track of the smallest number you’ve seen up to that point.  Every time you look at an element, you compare it to the current minimum, and if it’s smaller, you update the minimum.</p>
+<p>How long does this take?  Let’s say there are n elements in the array.  For every element the algorithm has to perform a constant number of operations.  Therefore we can say that the algorithm runs in O(n) time, or that the runtime is a linear function of how many elements are in the array.  So this algorithm runs in <strong>linear time</strong>.</p>
+<p>You can also have algorithms that run in <strong>quadratic time</strong> (O(n^2)), <strong>exponential time</strong> (O(2^n)), or even <strong>logarithmic time</strong> (O(log n)).  Binary search (on a balanced tree) runs in logarithmic time because the height of the binary search tree is a logarithmic function of the number of elements in the tree.</p>
+<p>If the running time is some polynomial function of the size of the input, for instance if the algorithm runs in linear time or quadratic time or cubic time, then we say the algorithm runs in <strong>polynomial time</strong> and the problem it solves is in class <strong>P</strong>.</p>
+<p>###<strong>NP</strong><br>Now there are a lot of programs that don’t (necessarily) run in polynomial time on a regular computer, but do run in polynomial time on a nondeterministic Turing machine.  These programs solve problems in <strong>NP</strong>, which stands for <strong>nondeterministic polynomial time</strong>.  A nondeterministic Turing machine can do everything a regular computer can and more. This means all problems in P are also in NP.</p>
+<p>An equivalent way to define NP is by pointing to the problems that can be verified in polynomial time.  This means there is not necessarily a polynomial-time way to find a solution, but once you have a solution it only takes polynomial time to verify that it is correct.</p>
+<p>Some people think P = NP, which means any problem that can be verified in polynomial time can also be solved in polynomial time and vice versa.  If they could prove this, it would revolutionize computer science because people would be able to construct faster algorithms for a lot of important problems.</p>
+<p>###<strong>NP-hard</strong><br>What does NP-hard mean?  A lot of times you can solve a problem by reducing it to a different problem.  I can reduce Problem B to Problem A if, given a solution to Problem A, I can easily construct a solution to Problem B.  (In this case, “easily” means “in polynomial time.”)</p>
+<p>If a problem is <strong>NP-hard</strong>, this means I can reduce any problem in NP to that problem.  This means if I can solve that problem, I can easily solve any problem in NP.  If we could solve an NP-hard problem in polynomial time, this would prove P = NP.</p>
+<p>###<strong>NP-complete</strong><br>A problem is <strong>NP-complete</strong> if the problem is both</p>
+<ul>
+<li>NP-hard, and</li>
+<li>in NP.</li>
+</ul>
+<p>###参考资料<br>【1】<a href="http://www.quora.com/What-are-P-NP-NP-complete-and-NP-hard" target="_blank" rel="external">What are P, NP, NP-complete, and NP-hard?</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2015-02-04-Group-Meeting/">2017-09-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/17/科研/2015-02-04-Group-Meeting/">大数据机器学习初探---南大李武军</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        
+    </div>
+
+      
+        <p>每周的组会大概会持续2小时。如果是主讲，就需要花更多的时间去准备报告内容。之前，组会开完我就不管了，缺乏总结思考。而这样子的话实质上意义就不大了，没有内化为自己的知识，也没有什么critical thinking。从现在开始，记录每一次组会的思考。</p>
+<p>常言道：亡羊补牢，为时未晚。T.T</p>
+<p>###Outline</p>
+<ul>
+<li>Learning to Hash</li>
+<li>Distributed Learning</li>
+<li>Stochastic Learning</li>
+</ul>
+<p>有一个形象的比喻是这样说的，大数据是金矿，云计算是采矿技术，大数据机器学习是冶金技术。</p>
+<p>大数据机器学习面临的挑战，一是存储，而是计算速度，三是网络。</p>
+<p>哈希学习，在内存、硬盘、cpu、通信上有优势；<br>分布式学习在内存、硬盘、cpu上有优势，但会增加通信成本；随机学习在内存、硬盘、cpu方面有优势。</p>
+<p>###Learning to Hash<br>主讲人：大师兄</p>
+<p>最近邻搜索在大数据背景下，会出现维数灾难，存储成本也高，查询速度也慢。解决方法之一是保相似性哈希，可以降低维数并减少存储成本。通常用海明距离（hamming distance）来表征哈希值之间的差异。哈希方案也具有较快的查询速度，通常具有常数或者次线性的搜索时间复杂度；即使是穷举搜索也可以被接受，因为海明距离计算起来是很快的。</p>
+<p>哈希函数学习的两个阶段：</p>
+<ol>
+<li>Projection Stage（dimension reduction）</li>
+<li>Quantization Stage</li>
+</ol>
+<p>贡献：</p>
+<ul>
+<li>Isotropic Hash</li>
+</ul>
+<p>思想：学习一个正交阵（幻灯片21页），其目的是让大于某一阈值的feature的重要程度是一样的。</p>
+<ul>
+<li>Supervised Hashing with Latent Factor Models</li>
+<li>Supervised Multimodal Hashing with SCM</li>
+<li>Multiple-Bit Quantization</li>
+</ul>
+<p>###Distributed Learning<br>主讲人：我</p>
+<p>主要内容：</p>
+<ol>
+<li>文章：Coupled Group Lasso for Web-Scale CTR Prediction</li>
+<li>文章：Distributed Power-Law Graph Computing</li>
+</ol>
+<p>####文章1<br>为了解决在线广告的CTR（click through rate）预测，即当某广告展示给某用户时，它被该用户点击的概率，通常的方法是LR（logistic regression），即逻辑回归。但LR的一个短板是，因其是线性的，所以无法将用户与广告之间某些微妙的非线性关系纳入。注意LR中，正则项若为2范数平方，称为标准逻辑回归；正则项若为1范数，问题通常被叫做Lasso。所以需要一种新的方法。</p>
+<p>这里的贡献是：</p>
+<ol>
+<li>CGL的似然定义中，可以纳入用户与广告之间的某些非线性关系的考量。</li>
+<li>正则项改为参数的2-1范数，目的是是用户特征向量参数W、广告特征向量参数V中更多的行为0，行为0说明该行对应的feature没作用，即达到删除冗余feature的作用。</li>
+</ol>
+<p>分布式实现。这个算法具有较好的扩展性，一个master，若干slave，类似于并行计算，从而实现分布式。</p>
+<p>####文章2<br>GP（graph partitioning）图分割的方法有两种：边分割；点分割。点分割在分布式计算中的通信成本会比图分割小，原因在于在不同的machine上，点分割只需保留点的copy，而边分割需要同时保留点与边的copy。</p>
+<p>切割degree大的点，即邻居多的点可以降低通信成本。</p>
+<p>###Stochastic Learning<br>主讲人：浩锋</p>
+<p>思想：在需要用到所有节点上的信息时，通信代价往往很大，这时可以随机的选取某一个节点上的信息（比如梯度）作为替代品。</p>
+<p>###资料<br>【1】<a href="http://cs.nju.edu.cn/lwj/slides/BigLearning.pdf" target="_blank" rel="external">幻灯片</a></p>
+<p>【2】<a href="http://jmlr.csail.mit.edu/proceedings/papers/v32/yan14.pdf" target="_blank" rel="external">Coupled Group Lasso for<br>Web-Scale CTR Prediction in Display Advertising</a></p>
+<p>【3】<a href="http://papers.nips.cc/paper/5396-distributed-power-law-graph-computing-theoretical-and-empirical-analysis.pdf" target="_blank" rel="external">Distributed Power-law Graph Computing:<br>Theoretical and Empirical Analysis</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
 
 <nav id="pagination">
   
@@ -2101,7 +2145,7 @@
 <ul class="entry">
 <li>博主：帅羊羊</li>
 <li>现状：武大CS在读研究生</li>
-<li>Theme: <a href="https://github.com/zippera/lightum">Lightum</a>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
 <!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
 <li>QQ 号：2Ol896963</li>
 <li>博客: 记录个人生活学习的点滴</li>
@@ -2136,7 +2180,7 @@
     <div class="clearfix"></div>
   </div>
   <footer id="footer" class="inner"><section>
-Theme of <a href="https://github.com/zippera/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">zippera</a> 
+Theme of <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
 </section>
 <div class="clearfix"></div>
 </footer>
