@@ -30,6 +30,30 @@
   <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
   
   
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
 </head>
 
 
@@ -797,6 +821,89 @@
       
         <div class="icon"></div>
 		
+          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-08-22-Average-Consensus/">2017-09-17</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/09/17/科研/2014-08-22-Average-Consensus/">对于一致平均问题的理解</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        
+    </div>
+
+      
+        <p>最近几个月在研究分布式低秩矩阵补全的问题，参考文章<a href="http://painterlin.com/2014/07/25/matrix-completion.html" target="_blank" rel="external">《低秩矩阵补全》</a>。</p>
+<p>低秩矩阵补全问题的各类算法中，很关键的一个子问题叫做一致平均问题(Average Consensus)，而上一篇文章并没有对这个问题进行说明。那么，什么叫做“一致平均”呢？</p>
+<p>###问题阐释：</p>
+<div>考虑一个有<img src="http://latex.codecogs.com/gif.latex?L" title="L">个节点的网络，每个节点上存储一个关于自己的数值信息，叫做初值。一致平均问题就是使所有节点在算法停止的时候收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均。<br></div>
+
+<div>在分布式算法中，通常会存在这样一个变量<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">，它作为公有信息在网络中传递，每个节点储存自己的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}" title="\mathbf{X}_{(i)}">。在总算法的每一次迭代中，每个节点<img src="http://latex.codecogs.com/gif.latex?i" title="i">接收自己邻居节点传递过来的公有信息，然后与自己的私有信息共同计算出新的公有信息，并传给自己的邻居。我们需要保证每个节点上的公有信息<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}=\mathbf{X}_{(j)}" title="\mathbf{X}_{(i)}=\mathbf{X}_{(j)}">，使分布的算法以某种方式交流合作，以便获得最优解。这就是分布式算法中的一致平均问题。</div>
+
+<p>###问题分类：<br>根据节点上的数值信息是否随时间变化，又把一致平均问题分为：</p>
+<ul>
+<li>静态一致平均 (Static average consensus)</li>
+<li>动态一致平均 (Dynamic average consensus)</li>
+</ul>
+<div><br>顾名思义，静态一致平均指节点上的初值不会发生变化，只需要保证最后每个节点都收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均值即可；而动态一致平均则是，节点上的数值不断发生变化，即<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}" title="\mathbf{X}_{(i)}">在<img src="http://latex.codecogs.com/gif.latex?t" title="t">时刻的值并不一定与0时刻的值（初值）相同，我们使用不断变化的公有信息（因为公有信息不断在被更新），仍需要保证最后每个节点都收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均。相比于静态一致平均，动态一致平均问题更为棘手。<br></div>
+
+<p>###求解方法分类：<br>在文章《低秩矩阵补全》的最后，提供一种求解方法的分类概念，将方法分为：</p>
+<ul>
+<li>精确一致平均 (Exact average consensus)</li>
+<li>不精确一致平均 (Inexact average consensus)</li>
+</ul>
+<p>这又是什么意思呢？</p>
+<div><br>在解决分布式低秩矩阵补全问题的时候，我们将算法分解两个子问题不断求解，一是交替极小化(Alternating minimization)得到每个节点的新的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Y}" title="\mathbf{Y}">；二是在网络中对<img src="http://latex.codecogs.com/gif.latex?L" title="L">个节点的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">求一致平均。对于第二个子问题，在每一次算法总的迭代中，都去求解精确的一致平均显然能够解决问题，但是因为一致平均也需要一定次数的迭代才能被解除，如果在总算法的每一次迭代中都去求精确的一致平均，则相当耗费计算资源，增加了算法的时间复杂度。<br></div>
+
+<p>很自然地，我们会想到，既然一致平均只是矩阵补全的一个子问题，我们是不是可以通过某种松弛，来降低算法的时间复杂度并节省计算资源，同时仍旧保证总算法的收敛呢。这样，就提出了不精确的一致平均。</p>
+<div><br>不精确一致平均，就是在每一次求解一致平均子问题时，只迭代一次或者若干次，而不是迭代所有<img src="http://latex.codecogs.com/gif.latex?N" title="N">次（<img src="http://latex.codecogs.com/gif.latex?N" title="N">可以很大），使每个节点<code>近似</code>的达到它们初值的均值。<br></div>
+
+<p>###精确一致平均与不精确一致平均优缺点比较:</p>
+<ul>
+<li>精确(Exact)求解：理论上容易证明，但计算代价通常比inexact方法高</li>
+<li>不精确(Inexact)求解：理论分析上不好证明，除此之外具有exact不具有的所有优点，比如算法时间复杂度低，节省计算资源等等。</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
           <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2016-07-04-Survey-of-SNMP-protocol/">2017-09-17</a></time>
         
 	  
@@ -1509,12 +1616,12 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-08-22-Average-Consensus/">2017-09-17</a></time>
+          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2015-09-12-Intuition-of-Eigen-Value/">2017-09-17</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/09/17/科研/2014-08-22-Average-Consensus/">对于一致平均问题的理解</a></h1>
+    <h1 class="title"><a href="/2017/09/17/科研/2015-09-12-Intuition-of-Eigen-Value/">从二次型最优化问题中理解矩阵特征值的意义</a></h1>
   
 
     </header>
@@ -1526,36 +1633,21 @@
     </div>
 
       
-        <p>最近几个月在研究分布式低秩矩阵补全的问题，参考文章<a href="http://painterlin.com/2014/07/25/matrix-completion.html" target="_blank" rel="external">《低秩矩阵补全》</a>。</p>
-<p>低秩矩阵补全问题的各类算法中，很关键的一个子问题叫做一致平均问题(Average Consensus)，而上一篇文章并没有对这个问题进行说明。那么，什么叫做“一致平均”呢？</p>
-<p>###问题阐释：</p>
-<div>考虑一个有<img src="http://latex.codecogs.com/gif.latex?L" title="L">个节点的网络，每个节点上存储一个关于自己的数值信息，叫做初值。一致平均问题就是使所有节点在算法停止的时候收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均。<br></div>
-
-<div>在分布式算法中，通常会存在这样一个变量<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">，它作为公有信息在网络中传递，每个节点储存自己的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}" title="\mathbf{X}_{(i)}">。在总算法的每一次迭代中，每个节点<img src="http://latex.codecogs.com/gif.latex?i" title="i">接收自己邻居节点传递过来的公有信息，然后与自己的私有信息共同计算出新的公有信息，并传给自己的邻居。我们需要保证每个节点上的公有信息<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}=\mathbf{X}_{(j)}" title="\mathbf{X}_{(i)}=\mathbf{X}_{(j)}">，使分布的算法以某种方式交流合作，以便获得最优解。这就是分布式算法中的一致平均问题。</div>
-
-<p>###问题分类：<br>根据节点上的数值信息是否随时间变化，又把一致平均问题分为：</p>
-<ul>
-<li>静态一致平均 (Static average consensus)</li>
-<li>动态一致平均 (Dynamic average consensus)</li>
-</ul>
-<div><br>顾名思义，静态一致平均指节点上的初值不会发生变化，只需要保证最后每个节点都收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均值即可；而动态一致平均则是，节点上的数值不断发生变化，即<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}" title="\mathbf{X}_{(i)}">在<img src="http://latex.codecogs.com/gif.latex?t" title="t">时刻的值并不一定与0时刻的值（初值）相同，我们使用不断变化的公有信息（因为公有信息不断在被更新），仍需要保证最后每个节点都收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均。相比于静态一致平均，动态一致平均问题更为棘手。<br></div>
-
-<p>###求解方法分类：<br>在文章《低秩矩阵补全》的最后，提供一种求解方法的分类概念，将方法分为：</p>
-<ul>
-<li>精确一致平均 (Exact average consensus)</li>
-<li>不精确一致平均 (Inexact average consensus)</li>
-</ul>
-<p>这又是什么意思呢？</p>
-<div><br>在解决分布式低秩矩阵补全问题的时候，我们将算法分解两个子问题不断求解，一是交替极小化(Alternating minimization)得到每个节点的新的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Y}" title="\mathbf{Y}">；二是在网络中对<img src="http://latex.codecogs.com/gif.latex?L" title="L">个节点的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">求一致平均。对于第二个子问题，在每一次算法总的迭代中，都去求解精确的一致平均显然能够解决问题，但是因为一致平均也需要一定次数的迭代才能被解除，如果在总算法的每一次迭代中都去求精确的一致平均，则相当耗费计算资源，增加了算法的时间复杂度。<br></div>
-
-<p>很自然地，我们会想到，既然一致平均只是矩阵补全的一个子问题，我们是不是可以通过某种松弛，来降低算法的时间复杂度并节省计算资源，同时仍旧保证总算法的收敛呢。这样，就提出了不精确的一致平均。</p>
-<div><br>不精确一致平均，就是在每一次求解一致平均子问题时，只迭代一次或者若干次，而不是迭代所有<img src="http://latex.codecogs.com/gif.latex?N" title="N">次（<img src="http://latex.codecogs.com/gif.latex?N" title="N">可以很大），使每个节点<code>近似</code>的达到它们初值的均值。<br></div>
-
-<p>###精确一致平均与不精确一致平均优缺点比较:</p>
-<ul>
-<li>精确(Exact)求解：理论上容易证明，但计算代价通常比inexact方法高</li>
-<li>不精确(Inexact)求解：理论分析上不好证明，除此之外具有exact不具有的所有优点，比如算法时间复杂度低，节省计算资源等等。</li>
-</ul>
+        <p>###惯例开场故事<br>在某次从实验室去往食堂的路上，曾发生这样一段对话：</p>
+<p>『大师兄，为什么你对算法的理解总是那么透彻呢？为什么我很难看出它背后的思想？』</p>
+<p>『因为你去理解一个算法的时候，不能只是看懂它的形，还要去思考它的神啊~』</p>
+<p>这就是我天分不够当不了科学家的佐证吧T。T</p>
+<p>###从二次型最优化来理解<br>最小化二次型目标函数<a href="http://www.codecogs.com/eqnedit.php?latex=f(x)=x^TAx" target="_blank"><img src="http://latex.codecogs.com/gif.latex?f(x)=x^TAx" title="f(x)=x^TAx"></a>，其中A为已知的实对称二阶矩阵，<a href="http://www.codecogs.com/eqnedit.php?latex=A=[1,0.5;0.5,1]" target="_blank"><img src="http://latex.codecogs.com/gif.latex?A=[1,0.5;0.5,1]" title="A=[1,0.5;0.5,1]"></a>，<a href="http://www.codecogs.com/eqnedit.php?latex=x=[x_1,x_2]^{\textrm{T}}&space;\in&space;\textcal{R}^2" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x=[x_1,x_2]^{\textrm{T}}&space;\in&space;\textcal{R}^2" title="x=[x_1,x_2]^{\textrm{T}} \in \textcal{R}^2"></a>.这个问题的求解很简单，这里以此为例来说明该问题与矩阵特征值的关系。</p>
+<p>首先，可以得到目标函数的网格图与等高线图如下。</p>
+<p><img src="/public/img/posts/mesh_of_f.png" alt="1"><br><img src="/public/img/posts/contour_of_f.png" alt="2"></p>
+<p>对矩阵A进行特征分解可以得到其特征向量为[-0.7071, 0.7071], [0.7071, 0.7071]，对应的特征值分别是0.5, 1.5.</p>
+<p>观察函数的等高线图可以知道，等高线最密集的地方，函数值变化最快，而这个函数值变化最快的方向归一化后就是[0.7071, 0.7071]，这恰好是矩阵的一个特征向量。同样地，可以观察，等高线最稀疏的地方，函数值变化最慢，变化方向则是矩阵的另一个特征向量。可以看出，<code>矩阵特征值的大小与函数值的变化快慢有关</code>，较大特征值所对应的特征向量方向上函数值的变化较快，较小特征值所对应的特征向量方向上函数值的变化较慢。</p>
+<p>进一步，对于实对称矩阵，我们总是可以对其进行相似变化，得到一个以该矩阵特征值为对角线元素的对角阵。<a href="http://www.codecogs.com/eqnedit.php?latex=P^{-1}AP=B" target="_blank"><img src="http://latex.codecogs.com/gif.latex?P^{-1}AP=B" title="P^{-1}AP=B"></a>，其中，P为正交矩阵，有性质P的逆等于P的转置。把目标函数改写为<a href="http://www.codecogs.com/eqnedit.php?latex=f(x)=x^{\textrm{T}}PBP^{\textrm{T}}x" target="_blank"><img src="http://latex.codecogs.com/gif.latex?f(x)=x^{\textrm{T}}PBP^{\textrm{T}}x" title="f(x)=x^{\textrm{T}}PBP^{\textrm{T}}x"></a>，其中<a href="http://www.codecogs.com/eqnedit.php?latex=B=[0.5,&space;0;&space;0,&space;1.5]" target="_blank"><img src="http://latex.codecogs.com/gif.latex?B=[0.5,&space;0;&space;0,&space;1.5]" title="B=[0.5, 0; 0, 1.5]"></a>. 相似变换的作用可以理解为将等高线图进行旋转，于是得到下面经过旋转后的等高线图。</p>
+<p><img src="/public/img/posts/contour_of_f_B.png" alt="3"></p>
+<p>在这张图上说明矩阵特征值的意义。当函数值取1时所对应的椭圆等高线的长轴长度为<a href="http://www.codecogs.com/eqnedit.php?latex=\frac{1}{\sqrt{0.5}}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\frac{1}{\sqrt{0.5}}" title="\frac{1}{\sqrt{0.5}}"></a>， 即由矩阵特征值0.5决定。同理，该椭圆短轴长度为<a href="http://www.codecogs.com/eqnedit.php?latex=\frac{1}{\sqrt{1.5}}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\frac{1}{\sqrt{1.5}}" title="\frac{1}{\sqrt{1.5}}"></a>，由矩阵特征值1.5决定。</p>
+<p>二阶矩阵的理解较为直观。高阶矩阵的道理是一样的。</p>
+<p>###资料</p>
+<p>【1】<a href="http://www.zhihu.com/question/21874816/answer/19592526" target="_blank" rel="external">如何理解矩阵特征值</a></p>
 
       
     </div>
@@ -1681,12 +1773,12 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-11-10-Basic-Algorithms-of-Convex-Opt/">2017-09-17</a></time>
+          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-09-11-Matlab-tips/">2017-09-17</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/09/17/科研/2014-11-10-Basic-Algorithms-of-Convex-Opt/">凸优化的一些基础算法</a></h1>
+    <h1 class="title"><a href="/2017/09/17/科研/2014-09-11-Matlab-tips/">Matlab科研小贴士</a></h1>
   
 
     </header>
@@ -1694,89 +1786,40 @@
          
         
     <div id="toc">
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clear"><span class="toc-text">Clear</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Random-Seed"><span class="toc-text">Random Seed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NaN"><span class="toc-text">NaN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SaveAs"><span class="toc-text">SaveAs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#矩阵规范化"><span class="toc-text">矩阵规范化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装CVX"><span class="toc-text">安装CVX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分段运行程序"><span class="toc-text">%%分段运行程序</span></a></li></ol>
     </div>
 
       
-        <p>本文假设读者对凸优化有基本了解，主要归纳一些基础算法，以便查阅。</p>
-<p><a href="http://www.codecogs.com/eqnedit.php?latex=\min&space;f(x)&space;\triangleq&space;g(x)&plus;h(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\min&space;f(x)&space;\triangleq&space;g(x)&plus;h(x)" title="\min f(x) \triangleq g(x)+h(x)"></a></p>
-<p>其中，f，g，h都是凸函数，g是光滑项，h是非光滑项。</p>
-<p>###Gradient Descent<br><a href="http://www.codecogs.com/eqnedit.php?latex=x^&plus;=x-\alpha\nabla&space;f(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x^&plus;=x-\alpha\nabla&space;f(x)" title="x^+=x-\alpha\nabla f(x)"></a></p>
-<p>###Proximal Gradient<br><a href="http://www.codecogs.com/eqnedit.php?latex=x^&plus;=prox_{\alpha&space;h}(x-\alpha&space;\nabla&space;g(x))=&space;\arg\min_u&space;h(u)&plus;\frac{1}{2\alpha}||u-x&plus;\alpha&space;\nabla&space;g(x)||" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x^&plus;=prox_{\alpha&space;h}(x-\alpha&space;\nabla&space;g(x))=&space;\arg\min_u&space;h(u)&plus;\frac{1}{2\alpha}||u-x&plus;\alpha&space;\nabla&space;g(x)||" title="x^+=prox_{\alpha h}(x-\alpha \nabla g(x))= \arg\min_u h(u)+\frac{1}{2\alpha}||u-x+\alpha \nabla g(x)||"></a></p>
-<p>###Conjugate Gradient<br>是介于最速下降法和牛顿法之间的一个方法，它仅需要利用一阶导数信息，但克服了最速下降法收敛慢的缺点，又避免了牛顿法需要存储和计算Hession并求逆的缺点。它是解决大型线性方程组最有用的方法之一，也是解决大型非线性最优化最有效的算法之一。</p>
-<p>###Newton<br>见<a href="http://painterlin.com/2015/03/23/Newton-QuasiNewton-Method.html" target="_blank" rel="external">牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</a></p>
-<p>###Quasi Newton<br>见<a href="http://painterlin.com/2015/03/23/Newton-QuasiNewton-Method.html" target="_blank" rel="external">牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">2017-09-17</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">阿里巴巴大数据竞赛回顾与总结</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开放数据"><span class="toc-text">开放数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第一赛季"><span class="toc-text">第一赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二赛季"><span class="toc-text">第二赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
-    </div>
-
-      
-        <p>8个月前，苏宇师兄问我对<a href="http://102.alibaba.com/competition/addDiscovery/index.htm" target="_blank" rel="external">阿里巴巴大数据竞赛</a>感兴趣吗。正好我选修了<a href="http://staff.ustc.edu.cn/~cheneh/" target="_blank" rel="external">陈恩红</a>老师的《机器学习与数据挖掘》，很好奇这门课在实际中的应用；身为淘宝用户，也好奇我是如何被推荐的。于是和师兄一起参加比赛，加上计算机学院的刘惠民同学，我们组成了名叫<code>Rosemary</code>三人团队。这次大赛总共有7276支队伍参赛，我们止步于第二赛季。第一赛季排名56；第二赛季排名68。</p>
-<h3 id="开放数据"><a href="#开放数据" class="headerlink" title="开放数据"></a>开放数据</h3><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>字段</th><br>      <th>字段说明</th><br>      <th>提取说明</th><br>   </tr><br>   <tr><br>      <td>user_id</td><br>      <td>用户标记</td><br>      <td>抽样、字段加密</td><br>   </tr><br>   <tr><br>      <td>Time</td><br>      <td>行为时间</td><br>      <td>精度到天级别、隐藏年份</td><br>   </tr><br>   <tr><br>      <td>action_type</td><br>      <td>用户对品牌的行为类型</td><br>      <td>包括点击（0）、购买（1）、加入购物车（2）、收藏（3）四种行为 </td><br>  </tr><br>   <tr><br>      <td>brand_id</td><br>      <td>品牌数字ID</td><br>      <td>抽样、字段加密</td><br>   </tr><br></table><br>### 比赛任务<br>根据用户4个月在天猫的行为日志，建立用户的品牌偏好，并预测他们在将来一个月内对品牌下商品的购买行为。<br><br>### 评估指标<br>大赛最终的比赛成绩排名以F1得分为准。<br><br>准确率：<img src="http://latex.codecogs.com/gif.latex?Precision=\frac{\sum_i^N&space;hitBrands_i}{\sum_i^N&space;pBrands_i}" title="Precision=\frac{\sum_i^N hitBrands_i}{\sum_i^N pBrands_i}"><br><br>召回率：<img src="http://latex.codecogs.com/gif.latex?Recall=\frac{\sum_i^M&space;hitBrands_i}{\sum_i^M&space;bBrands_i}" title="Recall=\frac{\sum_i^M hitBrands_i}{\sum_i^M bBrands_i}"><br><br>F1-Score：<img src="http://latex.codecogs.com/gif.latex?F_1=\frac{2\times&space;P\times&space;R}{P&plus;R}" title="F_1=\frac{2\times P\times R}{P+R}"><br><br>其中，<br><br>- N 为参赛队预测的用户数；M 为实际产生成交的用户数量<br>- pBrandsi为对用户i 预测他(她)会购买的品牌列表个数；bBrandsi为用户i 真实购买的品牌个数<br>- hitBrandsi对用户i预测的品牌列表与用户i真实购买的品牌交集的个数<br><br>### 解读<code>准确率</code>、<code>召回率</code>和<code>F1-Score</code><br>准确率就是正确预测数目比上预测总数目。召回率就是正确预测数目比上真实总数目。F1-Score是准确率和召回率的调和平均。理论上，准确率与召回率并没有必然的联系；但在实际中，这二者往往此消彼长、相互制约。有研究表明，在不牺牲准确率的情况下，获得一个高召回率是很难的。在赛题环境下举个栗子：<br><br><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>我们预测出</th><br>      <th>会有3个人买东西，A买品牌a，B买品牌b，C买P品牌c</th><br>   </tr><br>   <tr><br>      <td>真实情况是</td><br>      <td>有4个人买了东西，这4个人分别是A，B，C，D，其中A买a和b，B买b，C买b和c，D买a。</td><br>   </tr><br></table>
-
-<p>按照我们的预测，准确率达到了100%，而召回率仅为50%。由此可见，想取得一个较好的F1-Score成绩，需要保证预测的数据尽量hit之外，还要保证预测的数据能够覆盖尽量多的真实数据。具体到比赛中，就需要很好地确定每个被预测的用户可能会买多少个品牌。</p>
-<p>通过对这三个评判标准的分析，我们初步确定了第一赛季所用的策略。</p>
-<h3 id="第一赛季"><a href="#第一赛季" class="headerlink" title="第一赛季"></a>第一赛季</h3><p>大致的方案是：</p>
-<ol>
-<li>加权对用户4种行为次数求和，得到简单的用户ID（行）与品牌ID（列）的<code>兴趣度</code>（值）矩阵。</li>
-<li>统计前4个月平均每个月有多少用户购买超过2个品牌的东西，记为B。</li>
-<li>根据用户前4个月的购买行为，按照<code>购买力</code>划分用户购买等级。直白解释就是你以前在天猫上平均每个月买了多少次，我就假设你下个月还会买这么多次。</li>
-<li>第一次切分兴趣度矩阵，保留前B行矩阵。</li>
-<li>对每个用户对不同品牌的兴趣度由高到低排序，再根据每个用户的购买力确定对该用户保留前n列的兴趣数据，并预测他会买这n个数据对应的品牌。</li>
+        <p>使用MATLAB运行算法程序时，可能遇到各种各样的报错。比如，为了保护隐私数据，我在分布式矩阵补全算法中加入随机矩阵之后，某项变量在运行几百步之后会出现NaN报错。我只根据算法顺序去分析问题出现的可能原因，并修改程序。感觉并没有很好地利用MATLAB的强大功能去锁定症结所在。幸运的是，<a href="http://home.ustc.edu.cn/~shiwei00/index.html" target="_blank" rel="external">施伟</a>大师兄当时和我在一起，他非常热心地帮我分析问题，教我以后遇到类似状况应该怎么去分析与思考。和大师兄讨论了半小时，感觉自己收获不少。</p>
+<p>这篇文章会陆续记录下自己使用MATLAB的体会，以及解决问题的一些技巧。</p>
+<h3 id="Clear"><a href="#Clear" class="headerlink" title="Clear"></a>Clear</h3><p>运行一段代码前通常需要将工作空间里的已有数据清除掉。只需要在编辑有实际意义的代码之前写下如下代码：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">clc; clear; close all;</div></pre></td></tr></table></figure>
+<h3 id="Random-Seed"><a href="#Random-Seed" class="headerlink" title="Random Seed"></a>Random Seed</h3><p>为了保证程序在相同环境下运行以便测试某一个或几个改变对于算法的影响，在使用各种random命令时，需要设定固定种子。这样就不会因为每次随机产生的序列不同而影响程序运行结果。设置随机种子的代码如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">%% random seed</span></div><div class="line"><span class="comment">%seed=round(5000*rand);       % use this line if you set a random seed</span></div><div class="line">seed=<span class="number">3302</span>;    <span class="comment">% use this line if you set a fixed seed. 3302 can be replaced by other numbers.</span></div><div class="line">fprintf(<span class="string">'Seed = %d\n'</span>,seed);  <span class="comment">% print the current seed </span></div><div class="line"><span class="keyword">if</span> exist(<span class="string">'RandStream'</span>,<span class="string">'file'</span>)</div><div class="line">   RandStream.setGlobalStream(RandStream(<span class="string">'mt19937ar'</span>,<span class="string">'seed'</span>,seed));</div><div class="line"><span class="keyword">else</span></div><div class="line">   <span class="built_in">rand</span>(<span class="string">'state'</span>,seed); </div><div class="line">   <span class="built_in">randn</span>(<span class="string">'state'</span>,seed^<span class="number">2</span>);</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p>NaN是Not a Number的缩写。当某变量显示NaN时，表示该变量是不明确的数值结果。比如0/0、inf/inf等运算会出现NaN报错。遇到这种情况，首先判断NaN出现在哪一步：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">isnan</span>(norres)    <span class="comment">%括号里是变量名。判断norres是否为NaN，若是，则在该步暂停程序。</span></div><div class="line">    keyboard;</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>再在命令窗里单独查看与该变量有关的其他变量，从而排除正常变量，获知究竟是哪个或哪几个变量出了问题，变为无穷大或无穷小。再检查与这些变量有关的算法。</p>
+<h3 id="SaveAs"><a href="#SaveAs" class="headerlink" title="SaveAs"></a>SaveAs</h3><p>若需要比较各参数对算法性能的影响，通常是在程序中修改参数运行，得到算法收敛精度与迭代次数的曲线图。再根据曲线图反向思考修改哪些参数有效。这个过程需要保存产生的大量图片。可以使用<code>hold on</code>命令将所有虚线画在同一张图上，也可以使用<code>saveas</code>将所有图片自动保存。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">%% plot</span></div><div class="line">figure(<span class="number">1</span>)</div><div class="line">semilogy(<span class="number">1</span>:iter,y_axis(<span class="number">1</span>:iter),<span class="string">'b-'</span>);  <span class="comment">%b：蓝色。－：线段形状</span></div><div class="line">set(gca,<span class="string">'fontsize'</span>,<span class="number">12</span>);</div><div class="line">grid on;</div><div class="line">xlabel(<span class="string">'\fontsize&#123;12&#125;\it Iteration'</span>); ylabel(<span class="string">'\fontsize&#123;12&#125;\it Normalized residual'</span>);</div><div class="line">legend(<span class="string">'\fontsize&#123;12&#125;\it text'</span>);       <span class="comment">%text：这条蓝色代表什么</span></div><div class="line">hold on</div><div class="line">saveas(gcf,<span class="string">'filename'</span>,<span class="string">'fig'</span>)           <span class="comment">%filename：将图片保存为这个名字。fig：保存为fig格式</span></div></pre></td></tr></table></figure>
+<p>保存变量数据的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">save(&apos;filename&apos;)</div><div class="line">save(&apos;filename&apos;,&apos;variables&apos;)</div></pre></td></tr></table></figure>
+<p>注意，在使用<code>hold on</code>命令时，应该保留上次程序运行后产生的各种数据。即不能在程序中写类似与<code>clear all</code>之类的清除语句，否则上次曲线图也将被删除。</p>
+<h3 id="矩阵规范化"><a href="#矩阵规范化" class="headerlink" title="矩阵规范化"></a>矩阵规范化</h3><p>已知满秩矩阵A，进行下面操作使其所有奇异值均为1。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[u s v]=svd(A);</div><div class="line">A=u*v';</div></pre></td></tr></table></figure>
+<h3 id="安装CVX"><a href="#安装CVX" class="headerlink" title="安装CVX"></a>安装CVX</h3><ol>
+<li>将cvx压缩包解压</li>
+<li>将cvx文件夹拷贝至如D:\MATLAB Programs\Compressed Sensing目录下</li>
+<li>在Current Folder窗口中打开cvx文件夹</li>
+<li>在Command Window中输入cvx_setup</li>
+<li>在MATLAB的File菜单下的set path把此路径加上。</li>
+<li>把路径加进去后在file→Preferences→General的Toolbox Path Caching里点击update Toolbox Path Cache更新一下</li>
+<li>完成</li>
 </ol>
-<p>当然，在最初的模型建立起来之后，我们还陆续加了一些规则，比如在<code>时间节截止点</code>(最后N天，N可以根据自己的理解取值)的单独分析。另外，调参数真就是一项体力活。</p>
-<p><img src="/public/img/posts/s1.jpg" alt="1"></p>
-<h3 id="第二赛季"><a href="#第二赛季" class="headerlink" title="第二赛季"></a>第二赛季</h3><p>（好困，需要去睡觉Zzz···）细节未完待续</p>
-<p><img src="/public/img/posts/score0.png" alt="2"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+<h3 id="分段运行程序"><a href="#分段运行程序" class="headerlink" title="%%分段运行程序"></a>%%分段运行程序</h3><ol>
+<li>选中%%分段</li>
+<li>右键选择<code>evaluate current section</code></li>
+</ol>
+
       
     </div>
     <footer>
@@ -1888,12 +1931,12 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2015-02-04-Group-Meeting/">2017-09-17</a></time>
+          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">2017-09-17</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/09/17/科研/2015-02-04-Group-Meeting/">大数据机器学习初探---南大李武军</a></h1>
+    <h1 class="title"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">阿里巴巴大数据竞赛回顾与总结</a></h1>
   
 
     </header>
@@ -1901,59 +1944,28 @@
          
         
     <div id="toc">
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开放数据"><span class="toc-text">开放数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第一赛季"><span class="toc-text">第一赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二赛季"><span class="toc-text">第二赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
     </div>
 
       
-        <p>每周的组会大概会持续2小时。如果是主讲，就需要花更多的时间去准备报告内容。之前，组会开完我就不管了，缺乏总结思考。而这样子的话实质上意义就不大了，没有内化为自己的知识，也没有什么critical thinking。从现在开始，记录每一次组会的思考。</p>
-<p>常言道：亡羊补牢，为时未晚。T.T</p>
-<p>###Outline</p>
-<ul>
-<li>Learning to Hash</li>
-<li>Distributed Learning</li>
-<li>Stochastic Learning</li>
-</ul>
-<p>有一个形象的比喻是这样说的，大数据是金矿，云计算是采矿技术，大数据机器学习是冶金技术。</p>
-<p>大数据机器学习面临的挑战，一是存储，而是计算速度，三是网络。</p>
-<p>哈希学习，在内存、硬盘、cpu、通信上有优势；<br>分布式学习在内存、硬盘、cpu上有优势，但会增加通信成本；随机学习在内存、硬盘、cpu方面有优势。</p>
-<p>###Learning to Hash<br>主讲人：大师兄</p>
-<p>最近邻搜索在大数据背景下，会出现维数灾难，存储成本也高，查询速度也慢。解决方法之一是保相似性哈希，可以降低维数并减少存储成本。通常用海明距离（hamming distance）来表征哈希值之间的差异。哈希方案也具有较快的查询速度，通常具有常数或者次线性的搜索时间复杂度；即使是穷举搜索也可以被接受，因为海明距离计算起来是很快的。</p>
-<p>哈希函数学习的两个阶段：</p>
-<ol>
-<li>Projection Stage（dimension reduction）</li>
-<li>Quantization Stage</li>
-</ol>
-<p>贡献：</p>
-<ul>
-<li>Isotropic Hash</li>
-</ul>
-<p>思想：学习一个正交阵（幻灯片21页），其目的是让大于某一阈值的feature的重要程度是一样的。</p>
-<ul>
-<li>Supervised Hashing with Latent Factor Models</li>
-<li>Supervised Multimodal Hashing with SCM</li>
-<li>Multiple-Bit Quantization</li>
-</ul>
-<p>###Distributed Learning<br>主讲人：我</p>
-<p>主要内容：</p>
-<ol>
-<li>文章：Coupled Group Lasso for Web-Scale CTR Prediction</li>
-<li>文章：Distributed Power-Law Graph Computing</li>
-</ol>
-<p>####文章1<br>为了解决在线广告的CTR（click through rate）预测，即当某广告展示给某用户时，它被该用户点击的概率，通常的方法是LR（logistic regression），即逻辑回归。但LR的一个短板是，因其是线性的，所以无法将用户与广告之间某些微妙的非线性关系纳入。注意LR中，正则项若为2范数平方，称为标准逻辑回归；正则项若为1范数，问题通常被叫做Lasso。所以需要一种新的方法。</p>
-<p>这里的贡献是：</p>
-<ol>
-<li>CGL的似然定义中，可以纳入用户与广告之间的某些非线性关系的考量。</li>
-<li>正则项改为参数的2-1范数，目的是是用户特征向量参数W、广告特征向量参数V中更多的行为0，行为0说明该行对应的feature没作用，即达到删除冗余feature的作用。</li>
-</ol>
-<p>分布式实现。这个算法具有较好的扩展性，一个master，若干slave，类似于并行计算，从而实现分布式。</p>
-<p>####文章2<br>GP（graph partitioning）图分割的方法有两种：边分割；点分割。点分割在分布式计算中的通信成本会比图分割小，原因在于在不同的machine上，点分割只需保留点的copy，而边分割需要同时保留点与边的copy。</p>
-<p>切割degree大的点，即邻居多的点可以降低通信成本。</p>
-<p>###Stochastic Learning<br>主讲人：浩锋</p>
-<p>思想：在需要用到所有节点上的信息时，通信代价往往很大，这时可以随机的选取某一个节点上的信息（比如梯度）作为替代品。</p>
-<p>###资料<br>【1】<a href="http://cs.nju.edu.cn/lwj/slides/BigLearning.pdf" target="_blank" rel="external">幻灯片</a></p>
-<p>【2】<a href="http://jmlr.csail.mit.edu/proceedings/papers/v32/yan14.pdf" target="_blank" rel="external">Coupled Group Lasso for<br>Web-Scale CTR Prediction in Display Advertising</a></p>
-<p>【3】<a href="http://papers.nips.cc/paper/5396-distributed-power-law-graph-computing-theoretical-and-empirical-analysis.pdf" target="_blank" rel="external">Distributed Power-law Graph Computing:<br>Theoretical and Empirical Analysis</a></p>
+        <p>8个月前，苏宇师兄问我对<a href="http://102.alibaba.com/competition/addDiscovery/index.htm" target="_blank" rel="external">阿里巴巴大数据竞赛</a>感兴趣吗。正好我选修了<a href="http://staff.ustc.edu.cn/~cheneh/" target="_blank" rel="external">陈恩红</a>老师的《机器学习与数据挖掘》，很好奇这门课在实际中的应用；身为淘宝用户，也好奇我是如何被推荐的。于是和师兄一起参加比赛，加上计算机学院的刘惠民同学，我们组成了名叫<code>Rosemary</code>三人团队。这次大赛总共有7276支队伍参赛，我们止步于第二赛季。第一赛季排名56；第二赛季排名68。</p>
+<h3 id="开放数据"><a href="#开放数据" class="headerlink" title="开放数据"></a>开放数据</h3><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>字段</th><br>      <th>字段说明</th><br>      <th>提取说明</th><br>   </tr><br>   <tr><br>      <td>user_id</td><br>      <td>用户标记</td><br>      <td>抽样、字段加密</td><br>   </tr><br>   <tr><br>      <td>Time</td><br>      <td>行为时间</td><br>      <td>精度到天级别、隐藏年份</td><br>   </tr><br>   <tr><br>      <td>action_type</td><br>      <td>用户对品牌的行为类型</td><br>      <td>包括点击（0）、购买（1）、加入购物车（2）、收藏（3）四种行为 </td><br>  </tr><br>   <tr><br>      <td>brand_id</td><br>      <td>品牌数字ID</td><br>      <td>抽样、字段加密</td><br>   </tr><br></table><br>### 比赛任务<br>根据用户4个月在天猫的行为日志，建立用户的品牌偏好，并预测他们在将来一个月内对品牌下商品的购买行为。<br><br>### 评估指标<br>大赛最终的比赛成绩排名以F1得分为准。<br><br>准确率：<img src="http://latex.codecogs.com/gif.latex?Precision=\frac{\sum_i^N&space;hitBrands_i}{\sum_i^N&space;pBrands_i}" title="Precision=\frac{\sum_i^N hitBrands_i}{\sum_i^N pBrands_i}"><br><br>召回率：<img src="http://latex.codecogs.com/gif.latex?Recall=\frac{\sum_i^M&space;hitBrands_i}{\sum_i^M&space;bBrands_i}" title="Recall=\frac{\sum_i^M hitBrands_i}{\sum_i^M bBrands_i}"><br><br>F1-Score：<img src="http://latex.codecogs.com/gif.latex?F_1=\frac{2\times&space;P\times&space;R}{P&plus;R}" title="F_1=\frac{2\times P\times R}{P+R}"><br><br>其中，<br><br>- N 为参赛队预测的用户数；M 为实际产生成交的用户数量<br>- pBrandsi为对用户i 预测他(她)会购买的品牌列表个数；bBrandsi为用户i 真实购买的品牌个数<br>- hitBrandsi对用户i预测的品牌列表与用户i真实购买的品牌交集的个数<br><br>### 解读<code>准确率</code>、<code>召回率</code>和<code>F1-Score</code><br>准确率就是正确预测数目比上预测总数目。召回率就是正确预测数目比上真实总数目。F1-Score是准确率和召回率的调和平均。理论上，准确率与召回率并没有必然的联系；但在实际中，这二者往往此消彼长、相互制约。有研究表明，在不牺牲准确率的情况下，获得一个高召回率是很难的。在赛题环境下举个栗子：<br><br><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>我们预测出</th><br>      <th>会有3个人买东西，A买品牌a，B买品牌b，C买P品牌c</th><br>   </tr><br>   <tr><br>      <td>真实情况是</td><br>      <td>有4个人买了东西，这4个人分别是A，B，C，D，其中A买a和b，B买b，C买b和c，D买a。</td><br>   </tr><br></table>
 
+<p>按照我们的预测，准确率达到了100%，而召回率仅为50%。由此可见，想取得一个较好的F1-Score成绩，需要保证预测的数据尽量hit之外，还要保证预测的数据能够覆盖尽量多的真实数据。具体到比赛中，就需要很好地确定每个被预测的用户可能会买多少个品牌。</p>
+<p>通过对这三个评判标准的分析，我们初步确定了第一赛季所用的策略。</p>
+<h3 id="第一赛季"><a href="#第一赛季" class="headerlink" title="第一赛季"></a>第一赛季</h3><p>大致的方案是：</p>
+<ol>
+<li>加权对用户4种行为次数求和，得到简单的用户ID（行）与品牌ID（列）的<code>兴趣度</code>（值）矩阵。</li>
+<li>统计前4个月平均每个月有多少用户购买超过2个品牌的东西，记为B。</li>
+<li>根据用户前4个月的购买行为，按照<code>购买力</code>划分用户购买等级。直白解释就是你以前在天猫上平均每个月买了多少次，我就假设你下个月还会买这么多次。</li>
+<li>第一次切分兴趣度矩阵，保留前B行矩阵。</li>
+<li>对每个用户对不同品牌的兴趣度由高到低排序，再根据每个用户的购买力确定对该用户保留前n列的兴趣数据，并预测他会买这n个数据对应的品牌。</li>
+</ol>
+<p>当然，在最初的模型建立起来之后，我们还陆续加了一些规则，比如在<code>时间节截止点</code>(最后N天，N可以根据自己的理解取值)的单独分析。另外，调参数真就是一项体力活。</p>
+<p><img src="/public/img/posts/s1.jpg" alt="1"></p>
+<h3 id="第二赛季"><a href="#第二赛季" class="headerlink" title="第二赛季"></a>第二赛季</h3><p>（好困，需要去睡觉Zzz···）细节未完待续</p>
+<p><img src="/public/img/posts/score0.png" alt="2"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
       
     </div>
     <footer>
