@@ -8,6 +8,8 @@
   <title>第 2 页 | 帅羊羊的博客</title>
   
   <meta name="google-site-verification" content="hLu-CnRbqpthWxa76MJ-vpnGr7yMChNtTW6KA0pRMQo" />  
+  <meta name="baidu-site-verification" content="SOcrumVYOq" />  
+  
   
   <meta name="author" content="Shuai yy">
   
@@ -49,10 +51,10 @@
       <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
 	  
     
-      <li><a href="/books"><i class="fa fa-book"></i>Books</a></li>
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
 	  
     
-      <li><a href="/movies"><i class="fa fa-movie"></i>Movies</a></li>
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
 	  
     
 	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
@@ -530,6 +532,89 @@
 
       
         
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-08-22-Average-Consensus/">2017-09-17</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/09/17/科研/2014-08-22-Average-Consensus/">对于一致平均问题的理解</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        
+    </div>
+
+      
+        <p>最近几个月在研究分布式低秩矩阵补全的问题，参考文章<a href="http://painterlin.com/2014/07/25/matrix-completion.html" target="_blank" rel="external">《低秩矩阵补全》</a>。</p>
+<p>低秩矩阵补全问题的各类算法中，很关键的一个子问题叫做一致平均问题(Average Consensus)，而上一篇文章并没有对这个问题进行说明。那么，什么叫做“一致平均”呢？</p>
+<p>###问题阐释：</p>
+<div>考虑一个有<img src="http://latex.codecogs.com/gif.latex?L" title="L">个节点的网络，每个节点上存储一个关于自己的数值信息，叫做初值。一致平均问题就是使所有节点在算法停止的时候收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均。<br></div>
+
+<div>在分布式算法中，通常会存在这样一个变量<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">，它作为公有信息在网络中传递，每个节点储存自己的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}" title="\mathbf{X}_{(i)}">。在总算法的每一次迭代中，每个节点<img src="http://latex.codecogs.com/gif.latex?i" title="i">接收自己邻居节点传递过来的公有信息，然后与自己的私有信息共同计算出新的公有信息，并传给自己的邻居。我们需要保证每个节点上的公有信息<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}=\mathbf{X}_{(j)}" title="\mathbf{X}_{(i)}=\mathbf{X}_{(j)}">，使分布的算法以某种方式交流合作，以便获得最优解。这就是分布式算法中的一致平均问题。</div>
+
+<p>###问题分类：<br>根据节点上的数值信息是否随时间变化，又把一致平均问题分为：</p>
+<ul>
+<li>静态一致平均 (Static average consensus)</li>
+<li>动态一致平均 (Dynamic average consensus)</li>
+</ul>
+<div><br>顾名思义，静态一致平均指节点上的初值不会发生变化，只需要保证最后每个节点都收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均值即可；而动态一致平均则是，节点上的数值不断发生变化，即<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}" title="\mathbf{X}_{(i)}">在<img src="http://latex.codecogs.com/gif.latex?t" title="t">时刻的值并不一定与0时刻的值（初值）相同，我们使用不断变化的公有信息（因为公有信息不断在被更新），仍需要保证最后每个节点都收敛到<img src="http://latex.codecogs.com/gif.latex?L" title="L">个初值的平均。相比于静态一致平均，动态一致平均问题更为棘手。<br></div>
+
+<p>###求解方法分类：<br>在文章《低秩矩阵补全》的最后，提供一种求解方法的分类概念，将方法分为：</p>
+<ul>
+<li>精确一致平均 (Exact average consensus)</li>
+<li>不精确一致平均 (Inexact average consensus)</li>
+</ul>
+<p>这又是什么意思呢？</p>
+<div><br>在解决分布式低秩矩阵补全问题的时候，我们将算法分解两个子问题不断求解，一是交替极小化(Alternating minimization)得到每个节点的新的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Y}" title="\mathbf{Y}">；二是在网络中对<img src="http://latex.codecogs.com/gif.latex?L" title="L">个节点的<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">求一致平均。对于第二个子问题，在每一次算法总的迭代中，都去求解精确的一致平均显然能够解决问题，但是因为一致平均也需要一定次数的迭代才能被解除，如果在总算法的每一次迭代中都去求精确的一致平均，则相当耗费计算资源，增加了算法的时间复杂度。<br></div>
+
+<p>很自然地，我们会想到，既然一致平均只是矩阵补全的一个子问题，我们是不是可以通过某种松弛，来降低算法的时间复杂度并节省计算资源，同时仍旧保证总算法的收敛呢。这样，就提出了不精确的一致平均。</p>
+<div><br>不精确一致平均，就是在每一次求解一致平均子问题时，只迭代一次或者若干次，而不是迭代所有<img src="http://latex.codecogs.com/gif.latex?N" title="N">次（<img src="http://latex.codecogs.com/gif.latex?N" title="N">可以很大），使每个节点<code>近似</code>的达到它们初值的均值。<br></div>
+
+<p>###精确一致平均与不精确一致平均优缺点比较:</p>
+<ul>
+<li>精确(Exact)求解：理论上容易证明，但计算代价通常比inexact方法高</li>
+<li>不精确(Inexact)求解：理论分析上不好证明，除此之外具有exact不具有的所有优点，比如算法时间复杂度低，节省计算资源等等。</li>
+</ul>
+
       
     </div>
     <footer>
@@ -1883,76 +1968,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">2017-09-17</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/">阿里巴巴大数据竞赛回顾与总结</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开放数据"><span class="toc-text">开放数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第一赛季"><span class="toc-text">第一赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二赛季"><span class="toc-text">第二赛季</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
-    </div>
-
-      
-        <p>8个月前，苏宇师兄问我对<a href="http://102.alibaba.com/competition/addDiscovery/index.htm" target="_blank" rel="external">阿里巴巴大数据竞赛</a>感兴趣吗。正好我选修了<a href="http://staff.ustc.edu.cn/~cheneh/" target="_blank" rel="external">陈恩红</a>老师的《机器学习与数据挖掘》，很好奇这门课在实际中的应用；身为淘宝用户，也好奇我是如何被推荐的。于是和师兄一起参加比赛，加上计算机学院的刘惠民同学，我们组成了名叫<code>Rosemary</code>三人团队。这次大赛总共有7276支队伍参赛，我们止步于第二赛季。第一赛季排名56；第二赛季排名68。</p>
-<h3 id="开放数据"><a href="#开放数据" class="headerlink" title="开放数据"></a>开放数据</h3><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>字段</th><br>      <th>字段说明</th><br>      <th>提取说明</th><br>   </tr><br>   <tr><br>      <td>user_id</td><br>      <td>用户标记</td><br>      <td>抽样、字段加密</td><br>   </tr><br>   <tr><br>      <td>Time</td><br>      <td>行为时间</td><br>      <td>精度到天级别、隐藏年份</td><br>   </tr><br>   <tr><br>      <td>action_type</td><br>      <td>用户对品牌的行为类型</td><br>      <td>包括点击（0）、购买（1）、加入购物车（2）、收藏（3）四种行为 </td><br>  </tr><br>   <tr><br>      <td>brand_id</td><br>      <td>品牌数字ID</td><br>      <td>抽样、字段加密</td><br>   </tr><br></table><br>### 比赛任务<br>根据用户4个月在天猫的行为日志，建立用户的品牌偏好，并预测他们在将来一个月内对品牌下商品的购买行为。<br><br>### 评估指标<br>大赛最终的比赛成绩排名以F1得分为准。<br><br>准确率：<img src="http://latex.codecogs.com/gif.latex?Precision=\frac{\sum_i^N&space;hitBrands_i}{\sum_i^N&space;pBrands_i}" title="Precision=\frac{\sum_i^N hitBrands_i}{\sum_i^N pBrands_i}"><br><br>召回率：<img src="http://latex.codecogs.com/gif.latex?Recall=\frac{\sum_i^M&space;hitBrands_i}{\sum_i^M&space;bBrands_i}" title="Recall=\frac{\sum_i^M hitBrands_i}{\sum_i^M bBrands_i}"><br><br>F1-Score：<img src="http://latex.codecogs.com/gif.latex?F_1=\frac{2\times&space;P\times&space;R}{P&plus;R}" title="F_1=\frac{2\times P\times R}{P+R}"><br><br>其中，<br><br>- N 为参赛队预测的用户数；M 为实际产生成交的用户数量<br>- pBrandsi为对用户i 预测他(她)会购买的品牌列表个数；bBrandsi为用户i 真实购买的品牌个数<br>- hitBrandsi对用户i预测的品牌列表与用户i真实购买的品牌交集的个数<br><br>### 解读<code>准确率</code>、<code>召回率</code>和<code>F1-Score</code><br>准确率就是正确预测数目比上预测总数目。召回率就是正确预测数目比上真实总数目。F1-Score是准确率和召回率的调和平均。理论上，准确率与召回率并没有必然的联系；但在实际中，这二者往往此消彼长、相互制约。有研究表明，在不牺牲准确率的情况下，获得一个高召回率是很难的。在赛题环境下举个栗子：<br><br><table class="table table-bordered table-striped table-condensed"><br>   <tr><br>     <th>我们预测出</th><br>      <th>会有3个人买东西，A买品牌a，B买品牌b，C买P品牌c</th><br>   </tr><br>   <tr><br>      <td>真实情况是</td><br>      <td>有4个人买了东西，这4个人分别是A，B，C，D，其中A买a和b，B买b，C买b和c，D买a。</td><br>   </tr><br></table>
-
-<p>按照我们的预测，准确率达到了100%，而召回率仅为50%。由此可见，想取得一个较好的F1-Score成绩，需要保证预测的数据尽量hit之外，还要保证预测的数据能够覆盖尽量多的真实数据。具体到比赛中，就需要很好地确定每个被预测的用户可能会买多少个品牌。</p>
-<p>通过对这三个评判标准的分析，我们初步确定了第一赛季所用的策略。</p>
-<h3 id="第一赛季"><a href="#第一赛季" class="headerlink" title="第一赛季"></a>第一赛季</h3><p>大致的方案是：</p>
-<ol>
-<li>加权对用户4种行为次数求和，得到简单的用户ID（行）与品牌ID（列）的<code>兴趣度</code>（值）矩阵。</li>
-<li>统计前4个月平均每个月有多少用户购买超过2个品牌的东西，记为B。</li>
-<li>根据用户前4个月的购买行为，按照<code>购买力</code>划分用户购买等级。直白解释就是你以前在天猫上平均每个月买了多少次，我就假设你下个月还会买这么多次。</li>
-<li>第一次切分兴趣度矩阵，保留前B行矩阵。</li>
-<li>对每个用户对不同品牌的兴趣度由高到低排序，再根据每个用户的购买力确定对该用户保留前n列的兴趣数据，并预测他会买这n个数据对应的品牌。</li>
-</ol>
-<p>当然，在最初的模型建立起来之后，我们还陆续加了一些规则，比如在<code>时间节截止点</code>(最后N天，N可以根据自己的理解取值)的单独分析。另外，调参数真就是一项体力活。</p>
-<p><img src="/public/img/posts/s1.jpg" alt="1"></p>
-<h3 id="第二赛季"><a href="#第二赛季" class="headerlink" title="第二赛季"></a>第二赛季</h3><p>（好困，需要去睡觉Zzz···）细节未完待续</p>
-<p><img src="/public/img/posts/score0.png" alt="2"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -2190,6 +2205,85 @@
 <li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>2</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>1</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>2</small></li>
+  
+    <li><a href="/tags/LaTeX-Mac/">LaTeX Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>2</small></li>
+  
+    <li><a href="/tags/Math-Optimization/">Math Optimization</a><small>3</small></li>
+  
+    <li><a href="/tags/Math-Optimization-MachineLearning/">Math Optimization MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb-数据库/">Mongodb 数据库</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>4</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>18</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/SNMP/">SNMP</a><small>1</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>4</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
+  
+    <li><a href="/tags/明信片/">明信片</a><small>2</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>5</small></li>
+  
+    <li><a href="/tags/随感/">随感</a><small>1</small></li>
+  
+  </ul>
+</div>
+
 
   <div class="widget tag">
   <h3 class="title">日历云</h3>
