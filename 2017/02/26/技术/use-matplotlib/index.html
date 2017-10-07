@@ -16,7 +16,8 @@ pandas中绘图函数
 1%pylab
 Using matplotlib backend: Qt5Agg
 Populating the interactive namespace from numpy and matplotlib
-123impo">
+123import matplotlib.pyplot as pltimport numpy as npimport pandas as pd
+1%matplotlib inline">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -35,17 +36,41 @@ Populating the interactive namespace from numpy and matplotlib
   <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
   
   
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
 })();
 </script>
 
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
 
+
+
+
+
+  
+    
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-107525911-1']);
@@ -289,6 +314,7 @@ var _hmt = _hmt || [];
 Populating the interactive namespace from numpy and matplotlib
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%matplotlib inline</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="Figure-和Subplot"><a href="#Figure-和Subplot" class="headerlink" title="Figure 和Subplot"></a>Figure 和Subplot</h4><p>创建一个figure后，还需要在上面添加子图，然后调用子图的绘图方法绘图。<br>直接使用plot绘图，图像绘制在最后一次选定的子图</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> randn</div><div class="line">fig = plt.figure()</div><div class="line">sp1 = fig.add_subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>)  <span class="comment"># 2*2布局的第一个子图</span></div><div class="line">sp1.plot(randn(<span class="number">50</span>).cumsum(), <span class="string">'k--'</span>)  <span class="comment"># k--黑色虚线图</span></div><div class="line"></div><div class="line">sp2 = fig.add_subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)</div><div class="line">sp2.hist(randn(<span class="number">100</span>), bins=<span class="number">20</span>, color=<span class="string">'k'</span>, alpha=<span class="number">0.3</span>) <span class="comment">## 直方图，20个箱子</span></div><div class="line"></div><div class="line">sp3 = fig.add_subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</div><div class="line">sp3.scatter(np.arange(<span class="number">30</span>), np.arange(<span class="number">30</span>) + randn(<span class="number">30</span>) * <span class="number">3</span>, color = <span class="string">'b'</span>)</div><div class="line"><span class="comment"># sp4 = fig.add_subplot(2, 2, 4)</span></div></pre></td></tr></table></figure>
 <p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/32548773-file_1489305673034_6cf8.png" alt="png"></p>
@@ -663,7 +689,7 @@ window.onload = function(){
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">2</span></li></ul> 
 </div>
  
 
@@ -699,45 +725,43 @@ window.onload = function(){
   
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
-    <li><a href="/tags/Enjoy/">Enjoy</a><small>2</small></li>
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
   
     <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
   
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
-    <li><a href="/tags/Html/">Html</a><small>1</small></li>
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/LaTeX/">LaTeX</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
   
-    <li><a href="/tags/LaTeX-Mac/">LaTeX Mac</a><small>1</small></li>
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
   
-    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
     <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
-    <li><a href="/tags/Math/">Math</a><small>2</small></li>
-  
-    <li><a href="/tags/Math-Optimization/">Math Optimization</a><small>3</small></li>
-  
-    <li><a href="/tags/Math-Optimization-MachineLearning/">Math Optimization MachineLearning</a><small>1</small></li>
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
   
     <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
-    <li><a href="/tags/Mongodb-数据库/">Mongodb 数据库</a><small>1</small></li>
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
   
-    <li><a href="/tags/Optimization/">Optimization</a><small>4</small></li>
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
     <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
   
@@ -745,27 +769,37 @@ window.onload = function(){
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>18</small></li>
+    <li><a href="/tags/Python/">Python</a><small>19</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
-    <li><a href="/tags/SNMP/">SNMP</a><small>1</small></li>
-  
-    <li><a href="/tags/Scrapy/">Scrapy</a><small>4</small></li>
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
   
     <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
+    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+  
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
   
-    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
-    <li><a href="/tags/明信片/">明信片</a><small>2</small></li>
+    <li><a href="/tags/git/">git</a><small>1</small></li>
   
-    <li><a href="/tags/爬虫/">爬虫</a><small>5</small></li>
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
   
-    <li><a href="/tags/随感/">随感</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
   
   </ul>
 </div>
@@ -779,13 +813,14 @@ window.onload = function(){
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
     <div class="clearfix"></div>
   </div>
-  <footer id="footer" class="inner"><section>
+  <footer id="footer" class="inner">
+<section>
 <div class="copyright">
 		
 		  

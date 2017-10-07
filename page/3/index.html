@@ -30,17 +30,41 @@
   <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
   
   
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
 })();
 </script>
 
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
 
+
+
+
+
+  
+    
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-107525911-1']);
@@ -259,76 +283,34 @@ var _hmt = _hmt || [];
       
         <div class="icon"></div>
 		
-          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2015-02-04-Group-Meeting/">2017-09-17</a></time>
+          <time datetime="2017-09-01T16:00:00.000Z"><a href="/2017/09/02/技术/screen 连接出错/">2017-09-02</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/09/17/科研/2015-02-04-Group-Meeting/">大数据机器学习初探---南大李武军</a></h1>
+    <h1 class="title"><a href="/2017/09/02/技术/screen 连接出错/">screen Cannot open your terminal</a></h1>
   
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        
-    </div>
-
       
-        <p>每周的组会大概会持续2小时。如果是主讲，就需要花更多的时间去准备报告内容。之前，组会开完我就不管了，缺乏总结思考。而这样子的话实质上意义就不大了，没有内化为自己的知识，也没有什么critical thinking。从现在开始，记录每一次组会的思考。</p>
-<p>常言道：亡羊补牢，为时未晚。T.T</p>
-<p>###Outline</p>
-<ul>
-<li>Learning to Hash</li>
-<li>Distributed Learning</li>
-<li>Stochastic Learning</li>
-</ul>
-<p>有一个形象的比喻是这样说的，大数据是金矿，云计算是采矿技术，大数据机器学习是冶金技术。</p>
-<p>大数据机器学习面临的挑战，一是存储，而是计算速度，三是网络。</p>
-<p>哈希学习，在内存、硬盘、cpu、通信上有优势；<br>分布式学习在内存、硬盘、cpu上有优势，但会增加通信成本；随机学习在内存、硬盘、cpu方面有优势。</p>
-<p>###Learning to Hash<br>主讲人：大师兄</p>
-<p>最近邻搜索在大数据背景下，会出现维数灾难，存储成本也高，查询速度也慢。解决方法之一是保相似性哈希，可以降低维数并减少存储成本。通常用海明距离（hamming distance）来表征哈希值之间的差异。哈希方案也具有较快的查询速度，通常具有常数或者次线性的搜索时间复杂度；即使是穷举搜索也可以被接受，因为海明距离计算起来是很快的。</p>
-<p>哈希函数学习的两个阶段：</p>
-<ol>
-<li>Projection Stage（dimension reduction）</li>
-<li>Quantization Stage</li>
-</ol>
-<p>贡献：</p>
-<ul>
-<li>Isotropic Hash</li>
-</ul>
-<p>思想：学习一个正交阵（幻灯片21页），其目的是让大于某一阈值的feature的重要程度是一样的。</p>
-<ul>
-<li>Supervised Hashing with Latent Factor Models</li>
-<li>Supervised Multimodal Hashing with SCM</li>
-<li>Multiple-Bit Quantization</li>
-</ul>
-<p>###Distributed Learning<br>主讲人：我</p>
-<p>主要内容：</p>
-<ol>
-<li>文章：Coupled Group Lasso for Web-Scale CTR Prediction</li>
-<li>文章：Distributed Power-Law Graph Computing</li>
-</ol>
-<p>####文章1<br>为了解决在线广告的CTR（click through rate）预测，即当某广告展示给某用户时，它被该用户点击的概率，通常的方法是LR（logistic regression），即逻辑回归。但LR的一个短板是，因其是线性的，所以无法将用户与广告之间某些微妙的非线性关系纳入。注意LR中，正则项若为2范数平方，称为标准逻辑回归；正则项若为1范数，问题通常被叫做Lasso。所以需要一种新的方法。</p>
-<p>这里的贡献是：</p>
-<ol>
-<li>CGL的似然定义中，可以纳入用户与广告之间的某些非线性关系的考量。</li>
-<li>正则项改为参数的2-1范数，目的是是用户特征向量参数W、广告特征向量参数V中更多的行为0，行为0说明该行对应的feature没作用，即达到删除冗余feature的作用。</li>
-</ol>
-<p>分布式实现。这个算法具有较好的扩展性，一个master，若干slave，类似于并行计算，从而实现分布式。</p>
-<p>####文章2<br>GP（graph partitioning）图分割的方法有两种：边分割；点分割。点分割在分布式计算中的通信成本会比图分割小，原因在于在不同的machine上，点分割只需保留点的copy，而边分割需要同时保留点与边的copy。</p>
-<p>切割degree大的点，即邻居多的点可以降低通信成本。</p>
-<p>###Stochastic Learning<br>主讲人：浩锋</p>
-<p>思想：在需要用到所有节点上的信息时，通信代价往往很大，这时可以随机的选取某一个节点上的信息（比如梯度）作为替代品。</p>
-<p>###资料<br>【1】<a href="http://cs.nju.edu.cn/lwj/slides/BigLearning.pdf" target="_blank" rel="external">幻灯片</a></p>
-<p>【2】<a href="http://jmlr.csail.mit.edu/proceedings/papers/v32/yan14.pdf" target="_blank" rel="external">Coupled Group Lasso for<br>Web-Scale CTR Prediction in Display Advertising</a></p>
-<p>【3】<a href="http://papers.nips.cc/paper/5396-distributed-power-law-graph-computing-theoretical-and-empirical-analysis.pdf" target="_blank" rel="external">Distributed Power-law Graph Computing:<br>Theoretical and Empirical Analysis</a></p>
-
+        <blockquote>
+<p>解决screen Cannot open your terminal ‘/dev/pts/1’问题</p>
+</blockquote>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述:"></a>问题描述:</h2><p>   userA首先登录系统，使用screen开启了一个session，然后detach这个窗口。</p>
+<p>   userB然后登录系统，通过su - userA 变成userA，然后使用screen -r 恢复之前detached窗口，这时系统报如下错误:</p>
+<p>   Cannot open your terminal ‘/dev/pts/1’ - please check.</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法:"></a>解决方法:</h2><p>  userB在 su - userA以后，执行如下命令即可:</p>
+<p> <code>script /dev/null</code></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/09/02/技术/screen 连接出错/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -360,36 +342,29 @@ var _hmt = _hmt || [];
       
         <div class="icon"></div>
 		
-          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-11-10-Basic-Algorithms-of-Convex-Opt/">2017-09-17</a></time>
+          <time datetime="2017-08-31T16:00:00.000Z"><a href="/2017/09/01/技术/web开发基础/">2017-09-01</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/09/17/科研/2014-11-10-Basic-Algorithms-of-Convex-Opt/">凸优化的一些基础算法</a></h1>
+    <h1 class="title"><a href="/2017/09/01/技术/web开发基础/">web开发基础</a></h1>
   
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        
-    </div>
-
       
-        <p>本文假设读者对凸优化有基本了解，主要归纳一些基础算法，以便查阅。</p>
-<p><a href="http://www.codecogs.com/eqnedit.php?latex=\min&space;f(x)&space;\triangleq&space;g(x)&plus;h(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\min&space;f(x)&space;\triangleq&space;g(x)&plus;h(x)" title="\min f(x) \triangleq g(x)+h(x)"></a></p>
-<p>其中，f，g，h都是凸函数，g是光滑项，h是非光滑项。</p>
-<p>###Gradient Descent<br><a href="http://www.codecogs.com/eqnedit.php?latex=x^&plus;=x-\alpha\nabla&space;f(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x^&plus;=x-\alpha\nabla&space;f(x)" title="x^+=x-\alpha\nabla f(x)"></a></p>
-<p>###Proximal Gradient<br><a href="http://www.codecogs.com/eqnedit.php?latex=x^&plus;=prox_{\alpha&space;h}(x-\alpha&space;\nabla&space;g(x))=&space;\arg\min_u&space;h(u)&plus;\frac{1}{2\alpha}||u-x&plus;\alpha&space;\nabla&space;g(x)||" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x^&plus;=prox_{\alpha&space;h}(x-\alpha&space;\nabla&space;g(x))=&space;\arg\min_u&space;h(u)&plus;\frac{1}{2\alpha}||u-x&plus;\alpha&space;\nabla&space;g(x)||" title="x^+=prox_{\alpha h}(x-\alpha \nabla g(x))= \arg\min_u h(u)+\frac{1}{2\alpha}||u-x+\alpha \nabla g(x)||"></a></p>
-<p>###Conjugate Gradient<br>是介于最速下降法和牛顿法之间的一个方法，它仅需要利用一阶导数信息，但克服了最速下降法收敛慢的缺点，又避免了牛顿法需要存储和计算Hession并求逆的缺点。它是解决大型线性方程组最有用的方法之一，也是解决大型非线性最优化最有效的算法之一。</p>
-<p>###Newton<br>见<a href="http://painterlin.com/2015/03/23/Newton-QuasiNewton-Method.html" target="_blank" rel="external">牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</a></p>
-<p>###Quasi Newton<br>见<a href="http://painterlin.com/2015/03/23/Newton-QuasiNewton-Method.html" target="_blank" rel="external">牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</a></p>
-
+        <p>python web开发基础</p>
+<h1 id="Web开发概述"><a href="#Web开发概述" class="headerlink" title="Web开发概述"></a>Web开发概述</h1><h2 id="CS和BS架构"><a href="#CS和BS架构" class="headerlink" title="CS和BS架构"></a>CS和BS架构</h2><p>QQ客户端属于C/S架构。</p>
+<p>b/s浏览器服务器架构，不需要安装/升级客户端，只要浏览器，可以跨平台。</p>
+<h2 id="动态-静态网站"><a href="#动态-静态网站" class="headerlink" title="动态/静态网站"></a>动态/静态网站</h2><p>区别：数据全部来自html还是有从数据库获取加工。</p>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/09/01/技术/web开发基础/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -421,188 +396,26 @@ var _hmt = _hmt || [];
       
         <div class="icon"></div>
 		
-          <time datetime="2017-09-17T08:45:30.910Z"><a href="/2017/09/17/科研/2014-08-31-Papers-about-average-consensus/">2017-09-17</a></time>
+          <time datetime="2017-08-29T16:00:00.000Z"><a href="/2017/08/30/技术/flask基础入门/">2017-08-30</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/09/17/科研/2014-08-31-Papers-about-average-consensus/">动态一致平均问题算法-EXTRA和DAC</a></h1>
+    <h1 class="title"><a href="/2017/08/30/技术/flask基础入门/">Flask基础 hello world</a></h1>
   
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#EXTRA"><span class="toc-text">EXTRA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DAC"><span class="toc-text">DAC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点比较"><span class="toc-text">优缺点比较</span></a></li></ol>
-    </div>
-
       
-        <h3 id="EXTRA"><a href="#EXTRA" class="headerlink" title="EXTRA"></a>EXTRA</h3><p><a href="http://www.codecogs.com/eqnedit.php?latex=x_{(i)}^1=\sum_{j&space;=&space;1}^Nw_{ij}x_{(j)}^0-\alpha&space;\nabla&space;f_i(x_{(i)}^0)\\&space;\\&space;\\&space;x_{(i)}^{k&plus;2}=x_{(i)}^{k&plus;1}&plus;\sum_{j=1}^Nw_{ij}x_{(j)}^{k&plus;1}-\sum_{j=1}^N\tilde{w}_{ij}x_{(j)}^k-\alpha[\nabla&space;f_i(x_{(i)}^{k&plus;1})-\nabla&space;f_i(x_{(i)}^{k})]" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x_{(i)}^1=\sum_{j&space;=&space;1}^Nw_{ij}x_{(j)}^0-\alpha&space;\nabla&space;f_i(x_{(i)}^0)\\&space;\\&space;\\&space;x_{(i)}^{k&plus;2}=x_{(i)}^{k&plus;1}&plus;\sum_{j=1}^Nw_{ij}x_{(j)}^{k&plus;1}-\sum_{j=1}^N\tilde{w}_{ij}x_{(j)}^k-\alpha[\nabla&space;f_i(x_{(i)}^{k&plus;1})-\nabla&space;f_i(x_{(i)}^{k})]" title="x_{(i)}^1=\sum_{j = 1}^Nw_{ij}x_{(j)}^0-\alpha \nabla f_i(x_{(i)}^0)\\ \\ \\ x_{(i)}^{k+2}=x_{(i)}^{k+1}+\sum_{j=1}^Nw_{ij}x_{(j)}^{k+1}-\sum_{j=1}^N\tilde{w}_{ij}x_{(j)}^k-\alpha[\nabla f_i(x_{(i)}^{k+1})-\nabla f_i(x_{(i)}^{k})]"></a></p>
-<h3 id="DAC"><a href="#DAC" class="headerlink" title="DAC"></a>DAC</h3><p><a href="http://www.codecogs.com/eqnedit.php?latex=x_i(t&plus;1)=x_i(t)&plus;\sum_{j&space;\neq&space;i}a_{ij}(t)(x_i(t)-x_i(t))&plus;r_i(t)-r_i(t-1)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x_i(t&plus;1)=x_i(t)&plus;\sum_{j&space;\neq&space;i}a_{ij}(t)(x_j(t)-x_i(t))&plus;r_i(t)-r_i(t-1)" title="x_i(t+1)=x_i(t)+\sum_{j \neq i}a_{ij}(t)(x_i(t)-x_i(t))+r_i(t)-r_i(t-1)"></a></p>
-<h3 id="优缺点比较"><a href="#优缺点比较" class="headerlink" title="优缺点比较"></a>优缺点比较</h3><p>其中，DAC最大的缺点在于第一次迭代时对于r(-1)时刻的依赖，在实际仿真中，如果需要对动态输入求一致平均，往往并不能获取输入在-1时刻的值。导致在矩阵补全问题中，DAC做不精确的动态一致平均的子问题效果并不好。</p>
-<p>而EXTRA却有很好的效果。</p>
-
+        <h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@app.route('/')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'Hello World!'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    app.run()</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-17T08:45:30.894Z"><a href="/2017/09/17/科研/2014-07-25-matrix-completion/">2017-09-17</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/17/科研/2014-07-25-matrix-completion/">低秩矩阵补全</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        
-    </div>
-
-      
-        <p>###问题描述:</p>
-<div>如果有这样一个矩阵<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}"></div>
-
-<ul>
-<li>矩阵中有部分元素缺失</li><li>矩阵的秩<img src="http://latex.codecogs.com/gif.latex?rank(\mathbf{W})" title="rank(\mathbf{W})">相较于矩阵维数来说很小，并作为先验已知</li>
-
-
-
-</ul>
-<p>我们希望恢复那些缺失的元素，这个问题就是低秩矩阵补全问题。      </p>
-<p>###思考过程:</p>
-<ul>
-<li>需要恢复一个低秩矩阵</li><li>直接想法是极小化矩阵的秩<img src="http://latex.codecogs.com/gif.latex?\min&space;rank(\mathbf{W})" title="\min rank(\mathbf{W})"></li><br><li>但是<img src="http://latex.codecogs.com/gif.latex?\min&space;rank(\mathbf{W})" title="\min rank(\mathbf{W})">的优化问题非凸，不好求解</li><br><li>核范数<img src="http://latex.codecogs.com/gif.latex?\left&space;\|&space;\mathbf{W}\right&space;\|_{*}" title="\left \| \mathbf{W}\right \|_{*}">是秩的凸近似，所以想到<img src="http://latex.codecogs.com/gif.latex?\min&space;\left&space;\|&space;\mathbf{W}\right&space;\|_{*}" title="\min \left \| \mathbf{W}\right \|_{*}"></li>
-
-
-</ul>
-<p>###极小化核范数的集中式算法:</p>
-<div>求解<img src="http://latex.codecogs.com/gif.latex?\min&space;\left&space;\|&space;\mathbf{W}\right&space;\|_{*}" title="\min \left \| \mathbf{W}\right \|_{*}">的集中式算法有很多，比如：</div>
-
-<ul>
-<li>singular value thresholding algorithm</li>
-<li>fixed-point shrinkage algorithm</li>
-<li>proximal gradient algorithm</li>
-<li>ADMM</li>
-</ul>
-<p>但如果矩阵规模和秩增大，以上算法的计算代价也增大，因为它们都需要求解奇异值分解(SVD)。SVD中求伪逆的步骤运算量大，很耗费资源。因此需要想更好的方法，避免极小化核范数。</p>
-<p>###极小化分解矩阵之积的集中式方法:</p>
-<p><div>将问题写为<img src="http://latex.codecogs.com/gif.latex?\min&space;\left&space;\|&space;\mathbf{Z}-\mathbf{X}\mathbf{Y}\right&space;\|_{F}" title="\min \left \| \mathbf{Z}-\mathbf{X}\mathbf{Y}\right \|_{F}">，其中<img src="http://latex.codecogs.com/gif.latex?\mathbf{Z}" title="\mathbf{Z}">是对<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}">的估计，在元素没有缺失的位置上<img src="http://latex.codecogs.com/gif.latex?\mathbf{Z}" title="\mathbf{Z}">和<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}">的元素相同，<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Y}" title="\mathbf{Y}">是对<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}">的乘法分解。介绍两种求解该问题的方法：</div></p>
-<ul>
-<li>nonlinear Gauss-Seidel method</li>
-<li>nonlinear SOR(Successive Over-Relaxation)-like scheme:LMaFit</li>
-</ul>
-<p>其中SOR方法是GS方法的拓展，区别仅在于SOR方法中对于<strong>X</strong>的更新加了权重，并对权值进行更新。</p>
-<p>###去中心式算法:</p>
-<p><div>当矩阵规模大到一定程度时，集中式算法在计算能力上要求过高，普通计算机也许无法计算。这时，我们需要在由许多普通计算机作为节点组成的网络中运算，这需要实现去中心式计算。去中心式计算式很容易实现的，将<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Z}" title="\mathbf{Z}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Y}" title="\mathbf{Y}">分别切块放在每个节点上，将<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">作为公共信息在网络各个邻居节点间交换，优化问题形式不变，但需要加上<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}=\mathbf{X}_{(j)}" title="\mathbf{X}_{(i)}=\mathbf{X}_{(j)}">的约束。而这样一个约束就引出了另一个子问题：一致平均(average consensus)问题。</div></p>
-<p>关于一致平均问题的介绍请看：</p>
-<ul>
-<li><a href="http://painterlin.com/2014/08/22/Average-Consensus.html" target="_blank" rel="external">《对于一致平均问题的理解》</a></li>
-<li><a href="http://painterlin.com/2014/08/31/Papers-about-average-consensus.html" target="_blank" rel="external">《动态一致平均问题的4篇论文》</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-17T08:45:30.894Z"><a href="/2017/09/17/科研/2014-07-27-norms-of-vector-and-matrix/">2017-09-17</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/17/科研/2014-07-27-norms-of-vector-and-matrix/">各类范数</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        
-    </div>
-
-      
-        <p>###向量范数<br><img src="/public/img/posts/vector_norms.JPG" alt="vector_norms"></p>
-<p>###矩阵范数<br><img src="/public/img/posts/matrix_norms.JPG" alt="matrix_norms"></p>
-<p>###矩阵乘积的迹<br><img src="/public/img/posts/trace.JPG" alt="trace"></p>
-<p>###特殊范数</p>
-<ul>
-<li>矩阵W的L2-1范数：<br><img src="/public/img/posts/2_1norm.png" alt="2_1norm"></li>
-</ul>
-<p>###TV范数<br>||L(x)||_1。 其中L是差分算子，x是某种数字信号，在一维情况下，如下所示：</p>
-<p>||L(x)||_1 = |x2-x1| + |x3-x2| + |x4-x3| + ……</p>
-<p>加TV范数的目的是为了使求得的去噪信号仍然具有分段连续的性质。因为差值的1范数说明差值稀疏，从而说明求得的信号分段连续。</p>
-
-      
-    </div>
-    <footer>
-      
+          <div class="alignleft">
+            <a href="/2017/08/30/技术/flask基础入门/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -644,30 +457,18 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#requirements-txt的作用"><span class="toc-text">requirements.txt的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查找python项目依赖并生成requirements-txt"><span class="toc-text">查找python项目依赖并生成requirements.txt</span></a></li></ol>
-    </div>
-
       
         <h3 id="requirements-txt的作用"><a href="#requirements-txt的作用" class="headerlink" title="requirements.txt的作用"></a>requirements.txt的作用</h3><p>在很多Python项目中都包含一个requirements.txt文件，里面写的是一些包的名称和版本信息。</p>
 <p>描述运行这个项目所需要的环境，包括一些库。</p>
 <p>可以使用<code>pip install -r requirements.txt</code>安装这些库。</p>
-<h3 id="查找python项目依赖并生成requirements-txt"><a href="#查找python项目依赖并生成requirements-txt" class="headerlink" title="查找python项目依赖并生成requirements.txt"></a>查找python项目依赖并生成requirements.txt</h3><ul>
-<li><p>将整个python环境的依赖包list出来，</p>
-<p><code>pip freeze &gt; requirements.txt</code></p>
-</li>
-<li><p>list某个项目用到的依赖包,使用工具pipreqs ，但有的时候结果会有偏差(源码分析的不准确)</p>
-<p><code>pip install pipreqs</code></p>
-<p><code>pipreqs ./</code></p>
-</li>
-</ul>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/05/03/技术/Python-pip-requirement/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -709,12 +510,6 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Java部分"><span class="toc-text">1、Java部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、Python部分"><span class="toc-text">2、Python部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、机器学习"><span class="toc-text">3、机器学习</span></a></li></ol>
-    </div>
-
       
         <blockquote>
 <p>今天参加了一个实习生招聘的笔试，准备的不充分，错的惨不忍睹。整理一下遇到的题目。</p>
@@ -729,107 +524,14 @@ var _hmt = _hmt || [];
 <li><p>通过子类创建对象来用对象名调用子类中的静态变量和静态方法，除非是父类没有的静态变量和静态方法，会显示其子类的静态变量和静态方法。否则，最后显示一定是从父类哪里引用来的静态变量和静态方法。</p>
 </li>
 </ol>
-<p><img src="http://i1.piimg.com/567571/b0d17cd4aadfd6f3.png" alt=""></p>
-<p><img src="http://i2.muimg.com/567571/0209cc264f8d4a42.png" alt=""></p>
-<p><img src="http://i4.buimg.com/567571/3a8a5454ac34308f.png" alt=""></p>
-<p><img src="http://i2.muimg.com/567571/abfaaa03127d63dc.png" alt=""></p>
-<ul>
-<li><p>考察Java String变量的比较及值比较</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//"=="操作符:用于基本数据类型的比较,判断引用是否指向同一内存块</span></div><div class="line"><span class="comment">//如果String缓冲池内不存在与其指定值相同的String对象，那么此时虚拟机将为此创建新的String对象，并存放在String缓冲池内。</span></div><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span>  </span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> java.lang.Exception</span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		String s1 = <span class="string">"helloworld"</span>;</div><div class="line">		String s2 = <span class="string">"hello"</span> + <span class="string">"world"</span>;</div><div class="line">	    String s0 = <span class="string">"helloworld"</span>;</div><div class="line">	    String s3 = <span class="keyword">new</span> String(<span class="string">"helloworld"</span>);</div><div class="line">		System.out.println(s1==s0);  <span class="comment">// true</span></div><div class="line">		System.out.println(s2==s0);  <span class="comment">// true</span></div><div class="line">		System.out.println(s1==s2);  <span class="comment">// true</span></div><div class="line">		System.out.println(s1.equals(s0)); <span class="comment">// true</span></div><div class="line">		System.out.println(s1.equals(s3)); <span class="comment">// true</span></div><div class="line">		System.out.println(s1==s3);  <span class="comment">//false</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//如果String缓冲池内存在与其指定值相同的String对象，那么此时虚拟机将不为此创建新的String对象，而直接返回已存在的String对象的引用。</span></div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>简单的算法，一个32位整数的数组，返回有序排列的2个相邻元素之差的最大值。整数是32位的，时间复杂度o(n)有加分。<a href="https://oj.leetcode.com/problems/maximum-gap/" target="_blank" rel="external">LeetCode</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 写了个最蠢的方法，冒泡排序，然后遍历数组，求最大的差值。时间复杂度在排序，o(n^2);</span></div><div class="line"><span class="comment">// 数据结构书里只记得o(n*logn)的排序算法，快速排序，插入排序，堆排序，选择排序o(n^2);</span></div><div class="line"><span class="comment">// 在整数取值范围有限的情况下，计数排序、基数排序和桶排序可以实现空间复杂度O(k),时间复杂度O(n)的排序</span></div><div class="line"><span class="comment">/* 思路：使用桶排序的原理，但桶的取值设为n-1，而不是整数的取值范围。桶内数据无序，桶间，用后一个桶的min 减去 前一个桶的max即可。</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MaxGap</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumGap</span><span class="params">(<span class="keyword">int</span>[] num)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">int</span> maxGap = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="comment">// edge case</span></div><div class="line">        <span class="keyword">if</span> (num.length &lt; <span class="number">2</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">return</span> maxGap;</div><div class="line">        &#125;</div><div class="line">      </div><div class="line">        <span class="comment">// get maximum and minimum</span></div><div class="line">        <span class="keyword">int</span> min = num[<span class="number">0</span>];</div><div class="line">        <span class="keyword">int</span> max = num[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length; i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (num[i] &lt; min)</div><div class="line">                min = num[i];</div><div class="line">            <span class="keyword">if</span> (num[i] &gt; max)</div><div class="line">                max = num[i];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// divide into identical gaps</span></div><div class="line">        Gap[] gaps = <span class="keyword">new</span> Gap[num.length - <span class="number">1</span>];</div><div class="line">        <span class="keyword">boolean</span>[] Engaged = <span class="keyword">new</span> <span class="keyword">boolean</span>[num.length - <span class="number">1</span>];</div><div class="line">        <span class="keyword">double</span> gap = (<span class="keyword">double</span>) (max - min) / (<span class="keyword">double</span>) (num.length - <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gaps.length; i++)</div><div class="line">            Engaged[Math.min((<span class="keyword">int</span>) Math.floor((<span class="keyword">double</span>) (num[i] - min) / gap), gaps.length - <span class="number">1</span>)] = <span class="keyword">true</span>;</div><div class="line"></div><div class="line">        <span class="comment">// assign maximum and minimum for each gap</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gaps.length; i++)</div><div class="line">            gaps[i] = <span class="keyword">new</span> Gap();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length; i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">int</span> index = (<span class="keyword">int</span>) Math.floor((<span class="keyword">double</span>) (num[i] - min) / gap);</div><div class="line">            index = Math.min(index, gaps.length - <span class="number">1</span>);</div><div class="line"></div><div class="line">            <span class="comment">// lower bound</span></div><div class="line">            <span class="keyword">if</span> (gaps[index].low == -<span class="number">1</span>)</div><div class="line">                gaps[index].low = num[i];</div><div class="line">            <span class="keyword">else</span></div><div class="line">                gaps[index].low = Math.min(gaps[index].low, num[i]);</div><div class="line"></div><div class="line">            <span class="comment">// upper bound</span></div><div class="line">            <span class="keyword">if</span> (gaps[index].high == -<span class="number">1</span>)</div><div class="line">                gaps[index].high = num[i];</div><div class="line">            <span class="keyword">else</span></div><div class="line">                gaps[index].high = Math.max(gaps[index].high, num[i]);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// find maximum gap</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gaps.length; i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (Engaged[i])</div><div class="line">            &#123;</div><div class="line">                <span class="comment">// check its inner gap</span></div><div class="line">                maxGap = Math.max(gaps[i].high - gaps[i].low, maxGap);</div><div class="line"></div><div class="line">                <span class="comment">// lower all the way</span></div><div class="line">                <span class="keyword">int</span> j = i;</div><div class="line">                <span class="keyword">while</span> (--j &gt;= <span class="number">0</span>)</div><div class="line">                &#123;</div><div class="line">                    <span class="keyword">if</span> (Engaged[j])</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (j &gt;= <span class="number">0</span>)</div><div class="line">                    maxGap = Math.max(gaps[i].low - gaps[j].high, maxGap);</div><div class="line"></div><div class="line">                <span class="comment">// upper all the way</span></div><div class="line">                j = i;</div><div class="line">                <span class="keyword">while</span> (++j &lt; num.length - <span class="number">2</span>)</div><div class="line">                &#123;</div><div class="line">                    <span class="keyword">if</span> (Engaged[j])</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (j &lt; gaps.length)</div><div class="line">                    maxGap = Math.max(gaps[j].low - gaps[i].high, maxGap);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> maxGap;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Gap</span></span></div><div class="line"><span class="class">    </span>&#123;</div><div class="line">        <span class="keyword">int</span> low;</div><div class="line">        <span class="keyword">int</span> high;</div><div class="line">        <span class="keyword">boolean</span> hasItem;</div><div class="line"></div><div class="line">        Gap()</div><div class="line">        &#123;</div><div class="line">            low = -<span class="number">1</span>;</div><div class="line">            high = -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Gap(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</div><div class="line">        &#123;</div><div class="line">            low = x;</div><div class="line">            high = y;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] num = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>&#125;;</div><div class="line">        System.out.println((<span class="keyword">new</span> MaxGap()).maximumGap(num));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ul>
-<h3 id="2、Python部分"><a href="#2、Python部分" class="headerlink" title="2、Python部分"></a>2、Python部分</h3><ul>
-<li><p>下列不能创建字典的语句是 <code>dict1 = {[1,2,3]: &#39;use&#39;}</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">a = &#123;[<span class="number">1</span>,<span class="number">2</span> ,<span class="number">3</span>]: <span class="string">"user"</span>&#125;</div><div class="line">Traceback (most recent call last):</div><div class="line">  Python Shell, prompt <span class="number">6</span>, line <span class="number">1</span></div><div class="line">TypeError: unhashable type: <span class="string">'list'</span></div><div class="line"></div><div class="line">a = &#123;<span class="number">4</span>:<span class="number">5</span>&#125;        </div><div class="line">a = &#123;&#125;</div><div class="line">a = &#123;(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>): <span class="string">'use'</span>&#125;</div><div class="line"><span class="keyword">print</span> a</div><div class="line">&#123;(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>): <span class="string">'use'</span>&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>Numpy数组的切片操作</p>
-</li>
-</ul>
-<h3 id="3、机器学习"><a href="#3、机器学习" class="headerlink" title="3、机器学习"></a>3、机器学习</h3><ul>
-<li><p>研究发现，买尿布的顾客中80%的也会同时购买啤酒，这属于数据挖掘的哪种问题？关联规则。</p>
-</li>
-<li><p>为了防止过拟合可以采取的<a href="http://blog.csdn.net/heyongluoyao8/article/details/49429629" target="_blank" rel="external">方法</a>，正则化，early stopping，数据集扩增，Dropout(神经网络)。</p>
-</li>
-<li><p>分类和回归的区别，应用场景，常见的算法</p>
-<p>分类和回归的区别在于输出变量的类型。</p>
-<p>定量输出称为回归，或者说是连续变量预测；预测明天的气温是多少度，这是一个回归任务；<br>定性输出称为分类，或者说是离散变量预测。预测明天是阴、晴还是雨，就是一个分类任务。</p>
-<p>常见算法？好像很多算法思想都既能用于回归，也能用于分类。分类和回归应该有内在联系，</p>
-<p><strong>标记一下，以后深入学习后补充</strong></p>
-<p><img src="http://i4.buimg.com/567571/25582df73feeb3a8.jpg" alt=""></p>
-</li>
-<li><p>逻辑回归中的常用激励函数</p>
-<p>记得神经网络里有sigmod函数做激励函数，逻辑回归？</p>
-<p>logistic回归<strong>此处留疑，后面再补充</strong></p>
-</li>
-<li><p>描述你熟悉的神经网络和它们的特征</p>
-<p>重要的人工神经网络算法包括：感知器神经网络（Perceptron Neural Network）, 反向传递（Back Propagation）， Hopfield网络，自组织映射（Self-Organizing Map, SOM）。学习矢量量化（Learning Vector Quantization， LVQ） </p>
-<p><strong>都不熟悉，先去看书了:cry:</strong></p>
-<p>​</p>
-</li>
-</ul>
-
       
     </div>
     <footer>
       
         
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="book">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-03-10T16:00:00.000Z"><a href="/2017/03/11/阅读/Book-List-2017-Q1/">2017-03-11</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/03/11/阅读/Book-List-2017-Q1/">2017年Q1阅读书单</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        
-    </div>
-
-      
-        
-      
-    </div>
-    <footer>
-      
+          <div class="alignleft">
+            <a href="/2017/04/13/技术/dolphin-exam/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -871,142 +573,19 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#scrapy-redis-分布式爬虫"><span class="toc-text">scrapy-redis 分布式爬虫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装和配置"><span class="toc-text">安装和配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#作用和特点"><span class="toc-text">作用和特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初步使用"><span class="toc-text">初步使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#settings参数"><span class="toc-text">settings参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#scrapy-redis使用方法"><span class="toc-text">scrapy-redis使用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式爬取"><span class="toc-text">分布式爬取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接运行多个爬虫"><span class="toc-text">直接运行多个爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#利用docker部署爬虫"><span class="toc-text">利用docker部署爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导出redis中的items"><span class="toc-text">导出redis中的items</span></a></li></ol></li></ol></li></ol></li></ol>
-    </div>
-
       
         <h1 id="scrapy-redis-分布式爬虫"><a href="#scrapy-redis-分布式爬虫" class="headerlink" title="scrapy-redis 分布式爬虫"></a>scrapy-redis 分布式爬虫</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h4 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h4><ul>
 <li>安装redis数据库 </li>
 <li><code>pip install scrapy redis-py scrapy-redis</code></li>
 </ul>
-<h4 id="作用和特点"><a href="#作用和特点" class="headerlink" title="作用和特点"></a>作用和特点</h4><blockquote>
-<p>scrapy-redis是为Scrapy提供redis支持以实现分布式爬虫的组件</p>
-</blockquote>
-<ul>
-<li>多个爬虫共享一个redis队列（分配request）</li>
-<li>分布式的post处理。将爬到的items也放入redis队列，因而可以实现items的分布式处理。</li>
-</ul>
-<p>scrapy-redis仅仅为scrapy提供了部分基于redis的组件，可以查看源码。</p>
-<ul>
-<li>pipeline</li>
-<li>scheluder</li>
-<li>redis队列替换原有的scrapy队列</li>
-<li>过滤器 Duplication</li>
-</ul>
-<h3 id="初步使用"><a href="#初步使用" class="headerlink" title="初步使用"></a>初步使用</h3><h4 id="settings参数"><a href="#settings参数" class="headerlink" title="settings参数"></a><strong>settings参数</strong></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Enables scheduling storing requests queue in redis.</span></div><div class="line">SCHEDULER = <span class="string">"scrapy_redis.scheduler.Scheduler"</span></div><div class="line"></div><div class="line"><span class="comment"># Ensure all spiders share same duplicates filter through redis.</span></div><div class="line">DUPEFILTER_CLASS = <span class="string">"scrapy_redis.dupefilter.RFPDupeFilter"</span></div><div class="line"></div><div class="line"><span class="comment"># Don't cleanup redis queues, allows to pause/resume crawls.</span></div><div class="line">SCHEDULER_PERSIST = <span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="comment"># Schedule requests using a priority queue. (default)</span></div><div class="line">SCHEDULER_QUEUE_CLASS = <span class="string">'scrapy_redis.queue.PriorityQueue'</span></div><div class="line"><span class="comment"># Alternative queues.</span></div><div class="line"><span class="comment">#SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.FifoQueue'</span></div><div class="line"><span class="comment">#SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.LifoQueue'</span></div><div class="line"></div><div class="line"><span class="comment"># Max idle time to prevent the spider from being closed when distributed crawling.</span></div><div class="line"><span class="comment"># This only works if queue class is SpiderQueue or SpiderStack,</span></div><div class="line"><span class="comment"># and may also block the same time when your spider start at the first time (because the queue is empty).</span></div><div class="line"><span class="comment">#SCHEDULER_IDLE_BEFORE_CLOSE = 10</span></div><div class="line"></div><div class="line"><span class="comment"># Store scraped item in redis for post-processing.</span></div><div class="line">ITEM_PIPELINES = &#123;</div><div class="line">    <span class="string">'scrapy_redis.pipelines.RedisPipeline'</span>: <span class="number">300</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Specify the host and port to use when connecting to Redis (optional).</span></div><div class="line"><span class="comment">#REDIS_HOST = 'localhost'</span></div><div class="line"><span class="comment">#REDIS_PORT = 6379</span></div><div class="line"></div><div class="line"><span class="comment"># Specify the full Redis URL for connecting (optional).</span></div><div class="line"><span class="comment"># If set, this takes precedence over the REDIS_HOST and REDIS_PORT settings.</span></div><div class="line">REDIS_URL = <span class="string">'redis://user:pass@hostname:9001'</span></div><div class="line"></div><div class="line"><span class="comment"># Use other encoding than utf-8 for redis.默认utf-8</span></div><div class="line">REDIS_ENCODING = <span class="string">'latin1'</span></div></pre></td></tr></table></figure>
-<h4 id="scrapy-redis使用方法"><a href="#scrapy-redis使用方法" class="headerlink" title="scrapy-redis使用方法"></a>scrapy-redis使用方法</h4><ul>
-<li><p>首先用scrapy实现一个爬虫，然后在替换其中的组件为scrapy-redis</p>
-<p>setting里修改：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># setting.py</span></div><div class="line">BOT_NAME = <span class="string">'moko1'</span></div><div class="line"></div><div class="line">SPIDER_MODULES = [<span class="string">'moko1.spiders'</span>]</div><div class="line">NEWSPIDER_MODULE = <span class="string">'moko1.spiders'</span></div><div class="line"></div><div class="line"><span class="comment"># 使用scrapy-redis的去重和调度器组件</span></div><div class="line">DUPEFILTER_CLASS = <span class="string">"scrapy_redis.dupefilter.RFPDupeFilter"</span></div><div class="line">SCHEDULER = <span class="string">"scrapy_redis.scheduler.Scheduler"</span></div><div class="line">SCHEDULER_PERSIST = <span class="keyword">True</span></div><div class="line"></div><div class="line">ITEM_PIPELINES = &#123;</div><div class="line"><span class="comment"># 会将items放入redis队列中</span></div><div class="line"><span class="string">'scrapy_redis.pipelines.RedisPipeline'</span>: <span class="number">400</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>spiders里修改：</p>
-<p><strong>spider类</strong>从scrapy_redis.spiders导入，有RedisSpider和RedisCrawlSpider，对应scrapy原来的Spider和CrawlSpider。</p>
-<p><strong>start_urls</strong>改为从redis中某个key获取，因此redis_key = ‘moko_spider:start_urls’，然后向该key push数据。</p>
-<p>直接给出start_urls也是可行的，但是不太符合redis队列及分布式的逻辑，而且不能手动动态添加。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</div><div class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> Rule</div><div class="line"><span class="keyword">from</span> ..items <span class="keyword">import</span>  Moko1Item</div><div class="line"><span class="keyword">from</span> scrapy_redis.spiders <span class="keyword">import</span> RedisCrawlSpider</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MokoSpiderSpider</span><span class="params">(RedisCrawlSpider)</span>:</span> <span class="comment"># 修改此处</span></div><div class="line">    name = <span class="string">'moko_spider'</span></div><div class="line">    allowed_domains = [<span class="string">'moko.cc'</span>]</div><div class="line">    start_urls = [<span class="string">'http://www.moko.cc/moko/post/1.html'</span>]  <span class="comment"># 修改此处</span></div><div class="line">    <span class="comment"># redis_key = 'moko_spider:start_urls'</span></div><div class="line">  </div><div class="line">    rules = (</div><div class="line">        Rule(LinkExtractor(allow=<span class="string">r'http://www\.moko\.cc/post/\d+\.html'</span>), callback=<span class="string">'parse_item'</span>, follow=<span class="keyword">True</span>),</div><div class="line">    )</div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_item</span><span class="params">(self, response)</span>:</span></div><div class="line">        item = Moko1Item()</div><div class="line">        item[<span class="string">'name'</span>] = response.css(<span class="string">"#workNickName::text"</span>).extract()[<span class="number">0</span>]</div><div class="line">        <span class="keyword">return</span> item</div></pre></td></tr></table></figure>
-</li>
-<li><p>确保redis数据库运行，清空数据库<code>flushdb</code>, “moko_spider:dupefilter”保存了我上次执行时已经爬取过的url信息。再次执行会被过滤掉，scrapy的去重机制。</p>
-</li>
-<li><p>然后启动scrapy爬虫，然后向redis_key = ‘moko_spider:start_urls’中push数据，在redis-cli客户端中执行<code>lpush moko_spider:start_urls https://moko.cc/1.html</code></p>
-</li>
-<li><p>如果启用了scrapy_redis.pipelines.RedisPipeline，items会存储在moko_spider:items中。可以将items不断的pop出来，并进行其他处理，如存储等。(感觉这种活应该交给一个pipeline干)</p>
-</li>
-</ul>
-<h3 id="分布式爬取"><a href="#分布式爬取" class="headerlink" title="分布式爬取"></a>分布式爬取</h3><h4 id="直接运行多个爬虫"><a href="#直接运行多个爬虫" class="headerlink" title="直接运行多个爬虫"></a>直接运行多个爬虫</h4><blockquote>
-<p>上面的单个爬虫默认从localhost的Redis数据库中存取request和爬到的items，</p>
-<p>而实现分布式爬虫只需要为爬虫指定Redis数据库的网络位置，所有的爬虫都去redis队列里存取。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># settings.py</span></div><div class="line">REDIS_URL = <span class="string">'redis://user:mima@localhost:6379'</span> </div><div class="line"><span class="comment"># 或者不带密码的</span></div><div class="line">REDIS_HOST = <span class="string">'localhost'</span></div><div class="line">REDIS_PORT = <span class="number">6379</span></div></pre></td></tr></table></figure>
-<ul>
-<li><p>配置redis允许远程访问</p>
-<p>修改配置文件/etc/redis.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># bind 127.0.0.1</div><div class="line">requirepass mima  # 设置密码</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>关于<strong>主从模式</strong></p>
-<p>分布式架构一般分为主从模式和P2P模式。有的人认为scrapy-redis中安装有redis数据库的节点就是master，错的！</p>
-<p>scrapy-redis中的每只爬虫都是平级的，没有主从之分。每只爬虫都是主动请求任务，执行任务，爬到的数据也可以提交给redis。redis的request队列为空时，爬虫处于饥饿状态。</p>
-<p>scrapy-redis仅仅是把scrapy原来得本地队列放入redis数据库中，从通信和数据传输的角度来看，redis像是一个master，而实际上redis对爬虫没做任何控制和操作，只是被动的为它们提供数据。</p>
-</li>
-</ul>
-<h4 id="利用docker部署爬虫"><a href="#利用docker部署爬虫" class="headerlink" title="利用docker部署爬虫"></a>利用docker部署爬虫</h4><ul>
-<li><p>创建一个docker镜像并配置scrapy环境，这样下次就能恢复环境直接使用了</p>
-<ul>
-<li>首先在daocloud申请一台胶囊主机，然后ssh登录上去，配置scrapy环境</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 使用ubuntu的docker镜像</span></div><div class="line">docker run -it  daocloud.io/ubuntu:14.04 /bin/bash</div><div class="line">apt-get update </div><div class="line">apt-get install lrzsz</div><div class="line">apt-get install python2.7 python-pip python-dev</div><div class="line">apt-get install libxml2-dev libxslt-dev  python-lxml # 安装lxml</div><div class="line">apt-get install build-essential libssl-dev  libffi-dev</div><div class="line">pip install  six --upgrade</div><div class="line">python -m pip install pyparsing appdirs</div><div class="line">pip install  cryptography</div><div class="line">pip install pymongo redis twisted scrapy scrapy-redis</div><div class="line">exit # 退出docker，记住id，docker id root@ea0d832b19bb</div></pre></td></tr></table></figure>
-<ul>
-<li>打包上传镜像</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 打包镜像，docker容器的id ea0d832b19bb</span></div><div class="line">~$ docker commit -m "ubuntu with scrapy_redis" -a "author——info" ea0d832b19bb scrapy-redis</div><div class="line">sha256:53a605ccc92ab29bba70f9f026c002a9c4afa43fb9b14a9819d5859f51b0d586</div><div class="line">~$ docker images # 查看镜像</div><div class="line"><span class="meta">#</span><span class="bash"> 为镜像打上tag</span></div><div class="line">docker tag scrapy-redis syy2358/scrapy-redis:latest</div><div class="line"><span class="meta">#</span><span class="bash"> 上传至dockerhub托管</span></div><div class="line">docker login # 先注册并登录dockerhub，创建一个托管仓库scrapy-redis</div><div class="line">docker push syy2358/scrapy-redis:lastest # 将镜像上传至dockerhub</div><div class="line"><span class="meta">#</span><span class="bash"> 胶囊主机只有2小时，hub上传速度又慢，只好打包镜像文件下载到我的电脑上。</span></div><div class="line">docker save ea0d832b19bb &gt; /home/ubuntu/scrapy-redis.tar</div><div class="line"><span class="meta">#</span><span class="bash"> 可以在有docker的电脑上恢复该容器，</span></div><div class="line">docker load &lt; scrapy-redis.tar</div><div class="line"><span class="meta">#</span><span class="bash"> 或者直接拉dockerhub/daocloud上的镜像用就行了</span></div><div class="line">docker pull syy2358/scrapy-redis</div><div class="line">docker run -it xx.xx</div><div class="line"><span class="meta">#</span><span class="bash"> 导出 <span class="built_in">export</span> 和save的区别- 导入 import</span></div><div class="line"><span class="meta">#</span><span class="bash"> save保存了容器的运行状态，支持回滚，但是数据较大。</span></div></pre></td></tr></table></figure>
-<ul>
-<li><p>​<strong>自己配置环境各种报错，主要是下载链接超时，用daocloud就很顺利  </strong></p>
-<blockquote>
-<p>首先自己编译docker镜像容易遇到各种错误，而且dockerhub的镜像push、pull的速度巨慢，估计是被墙了，所以决定改用daocloud在线编译发布镜像，编译和pull的速度都很快。</p>
-</blockquote>
-<p>镜像制作过程：</p>
-<ol>
-<li>在自己 GitHub 创建新的 repository 。</li>
-<li>将爬虫的代码，包含<code>Dockerfile</code> push 到自己刚创建的 repository。</li>
-<li>到 <code>https://dashboard.daocloud.io/build-flows/new</code> ，项目名称 <code>scrapy</code>，选择自己刚在 GitHub 创建的 repository同步代码，开始创建，选择<code>分支：master</code>，手动执行。如果失败，可以先看下流程定义里的构建阶段，修改任务，选择云端Dockerfile。</li>
-<li>到 <code>https://dashboard.daocloud.io/packages</code> 选择 <code>scrapy</code>，设置 -&gt; 镜像访问控制 -&gt; 公开,设置tag为latest。</li>
-<li><code>https://dashboard.daocloud.io/packages/</code>选择scrapy后，版本 -&gt; latest 。然后可以部署到已经接入的docker或者云测试环境(右上角打开控制台，能进入web版的终端，在里面执行scrapy crawl spider即可)。</li>
-<li>或者在自己的docker环境下，使用<code>docker run -it daocloud.io/blue_whale/scrapy</code>,然后就能看到爬虫在运行了</li>
-</ol>
-</li>
-<li><p>镜像地址</p>
-<p><code>daocloud.io/blue_whale/scrapy</code> : daocloud上的，速度很快</p>
-<p><code>syy2358/scrapy-redis</code>: dockerhub上的，巨慢</p>
-<p>​</p>
-</li>
-</ul>
-</li>
-<li><p>运行爬虫</p>
-<ol>
-<li><p>上传源码，并从Dockerfile build镜像，然后运行爬虫</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 项目结构</span></div><div class="line">.</div><div class="line">├── docker-compose.yml</div><div class="line">├── Dockerfile</div><div class="line">├── moko1</div><div class="line">│   ├── __init__.py</div><div class="line">│   ├── items.py</div><div class="line">│   ├── pipelines.py</div><div class="line">│   ├── settings.py</div><div class="line">│   └── spiders</div><div class="line">│       ├── __init__.py</div><div class="line">│       ├── moko_spider.py</div><div class="line">├── requirements.txt</div><div class="line">└── scrapy.cfg</div><div class="line"></div><div class="line">---------------------------</div><div class="line"></div><div class="line"><span class="comment"># docker-compose.yml</span></div><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  spider:</div><div class="line">    build: .</div><div class="line">    volumes:</div><div class="line">     - .:/code</div><div class="line"></div><div class="line">------------------------</div><div class="line"></div><div class="line"><span class="comment"># Dockerfile</span></div><div class="line">FROM syy2358/scrapy-redis</div><div class="line">ENV PATH /usr/local/bin:$PATH</div><div class="line">ADD . /code</div><div class="line">WORKDIR /code</div><div class="line">RUN pip install -r requirements.txt</div><div class="line"><span class="comment"># COPY spiders.py /usr/local/lib/python3.5/site-packages/scrapy_redis</span></div><div class="line">CMD scrapy crawl moko_spider</div></pre></td></tr></table></figure>
-<p>我的redis服务器是在腾讯云上的，没有使用docker。</p>
-<p>如果redis在docker中运行的话，需要在<code>docker-compose.yml</code>中定义redis的container，将spider和redis link起来，同时redis需要映射端口6379，这样不同的container之间才能相互通信。</p>
-<p>使用docker-compose创建container</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pip install docker-compose</div><div class="line"> rz -E  # 上传爬虫源码</div><div class="line"> docker-compose up #从 docker-compose.yml 中创建 `container`</div><div class="line"> docker-compose scale spider=4 #将 spider 这一个服务扩展到4个container</div><div class="line"><span class="meta"> #</span><span class="bash"> 会有4个scrapy爬虫运行，处于饥饿状态，因为刚开始start_urls为空，直到我们pushurl去feed爬虫，爬虫才会开始抓取工作。</span></div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
-</li>
-</ul>
-<ol>
-<li><p>方法二，使用已经build好的docker镜像(爬虫代码也已经copy进去了)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">docker run -it daocloud.io/blue_whale/scrapy</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 或者</span></span></div><div class="line">docker run -it syy2358/scrapy-redis</div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">## Ctrl+P+Q 将当前container放入后台，回到docker界面</span></span></div><div class="line">docker ps -a ## 查看正在运行的container</div><div class="line">docker attach  id  # 连接入正在执行的container</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<ul>
-<li><p>退出attach的docker container</p>
-<p>用1执行爬虫时真惨，attach上container退不出去，scrapy不停地输出log内容，按啥键都不好使，只好退出ssh重连T.T，重连后发现原来的container仍在运行中。</p>
-<p>正常attach上一个container，可以Ctrl+P+Q退出再后台执行，或exit终止运行并退出container。</p>
-<p>使用<a href="http://lib.csdn.net/base/docker" target="_blank" rel="external">Docker</a> attach命名进入docker容器后：</p>
-<p>【场景一】如果要正常退出不关闭容器，请按Ctrl+P+Q进行退出容器。</p>
-<p>【场景二】如果使用exit退出，那么在退出容器后会关闭容器，如下图所示。</p>
-</li>
-<li><p>总结</p>
-<p>只需要配置一次scrapy的docker运行环境，上传代码，然后将container打包成镜像，就可以在任何有docker的地方pull下镜像运行。</p>
-<p>docker挺有意思的，项目部署非常方便，不过我这个新手对docker只是一知半解。</p>
-</li>
-</ul>
-<h4 id="导出redis中的items"><a href="#导出redis中的items" class="headerlink" title="导出redis中的items"></a>导出redis中的items</h4><ul>
-<li><p>linux下使用redis-dump <code>redis-dump -u 127.0.0.1:6379 &gt; db_full.json</code></p>
-</li>
-<li><p>将数据导入mongodb中</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> redis</div><div class="line"><span class="keyword">import</span> pymongo</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    r = redis.Redis(host=<span class="string">'192.168.1.112'</span>,port=<span class="number">6379</span>,db=<span class="number">0</span>)</div><div class="line">    client = pymongo.MongoClient(host=<span class="string">'localhost'</span>, port=<span class="number">27017</span>)</div><div class="line">    db = client[<span class="string">'dmoz'</span>]</div><div class="line">    sheet = db[<span class="string">'sheet'</span>]</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        <span class="comment"># 将队列里的数据逐条pop出来，并插入mongodb中</span></div><div class="line">        <span class="comment"># process queue as FIFO, change `blpop` to `brpop` to process as LIFO</span></div><div class="line">        source, data = r.blpop([<span class="string">"dmoz:items"</span>])</div><div class="line">        item = json.loads(data)</div><div class="line">        sheet.insert(item)</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">u"Processing: %(name)s &lt;%(link)s&gt;"</span> % item</div><div class="line">        <span class="keyword">except</span> KeyError:</div><div class="line">            <span class="keyword">print</span> <span class="string">u"Error procesing: %r"</span> % item</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ul>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/02/技术/scrapy-redis分布式爬虫入门/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -1048,12 +627,6 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis学习笔记"><span class="toc-text">redis学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、下载安装"><span class="toc-text">1、下载安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、客户端命令行"><span class="toc-text">2、客户端命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、命令返回消息类型："><span class="toc-text">2.1、命令返回消息类型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、常用命令"><span class="toc-text">2.2、常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3、使用python-redis-py连接Redis"><span class="toc-text">2.3、使用python redis-py连接Redis</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、事务"><span class="toc-text">3、事务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、缓存和Redis生存时间"><span class="toc-text">4、缓存和Redis生存时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、消息队列"><span class="toc-text">5、消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1、生产者-消费者模式"><span class="toc-text">5.1、生产者-消费者模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2、发布-订阅模式"><span class="toc-text">5.2、发布-订阅模式</span></a></li></ol></li></ol></li></ol>
-    </div>
-
       
         <h2 id="redis学习笔记"><a href="#redis学习笔记" class="headerlink" title="redis学习笔记"></a>redis学习笔记</h2><p>no sql：redis，mongodb，Memcached</p>
 <p>redis：Remote Directory Server，远程字典服务器。</p>
@@ -1071,136 +644,187 @@ var _hmt = _hmt || [];
 <p> <code>ZADD key [NX|XX][CH] [INCR] score member [score member ...]</code></p>
 <p>zscore、zcard、zrank、</p>
 <p>一个键最多存储512MB</p>
-<p><a href="redis.io">官网</a></p>
-<h3 id="1、下载安装"><a href="#1、下载安装" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p>linux下安装<code>apt-get install redis-server</code>,启动<code>service redis-server start</code></p>
-<ul>
-<li><p>redis-server ：服务器</p>
-</li>
-<li><p>redis-benchmark：性能测试工具</p>
-</li>
-<li><p>redis-cli：命令行客户端</p>
-</li>
-<li><p>redis-check-dump：RDB文件检测工具</p>
-</li>
-<li><p>redis-check-aof：AOF文件修复工具</p>
-<p>启动命令</p>
-<p><code>redis-server redis.windows.conf</code></p>
-<p><strong>设置Redis服务</strong></p>
-<p>由于上面虽然启动了redis，但是只要一关闭cmd窗口，redis就会消失。所以要把redis设置成windows下的服务。</p>
-<p><code>redis-server --service-install redis.windows-service.conf --loglevel verbose</code></p>
-<p>卸载服务：redis-server –service-uninstall</p>
-<p>开启服务：redis-server –service-start</p>
-<p>停止服务：redis-server –service-stop</p>
-<p>测试：</p>
-<p><code>redis-cli -h 127.0.0.1 -p 6379</code></p>
-</li>
-<li><p>参数配置</p>
-<ul>
-<li><p>启动参数</p>
-<p><code>redis-server redis.windows.conf</code> –port xxx –loglevel  notice</p>
-</li>
-<li><p>命令行客户端中动态修改</p>
-<p>127.0.0.1:6379&gt; CONFIG get loglevel<br>1) “loglevel”<br>2) “notice”<br>127.0.0.1:6379&gt; CONFIG GET port<br>1) “port”<br>2) “6379”<br>127.0.0.1:6379&gt; CONFIG SET loglevel warning<br>OK<br>127.0.0.1:6379&gt; CONFIG GET loglevel<br>1) “loglevel”<br>2) “warning”</p>
-</li>
-<li><p>配置文件redis.conf</p>
-<p>port 6379 默认端口</p>
-<p>bind 127.0.0.1，默认绑定的主机地址</p>
-<p>timeout 0，当客户端闲置多久之后关闭连接，0代表没有启动这个选项</p>
-<p>loglevel notice，日志的记录级别</p>
-<p># debug：很详细的信息，适合开发和测试</p>
-<p># verbose ：包含很多不太有用的信息</p>
-<p># notice ：比较适合生产环境</p>
-<p># warning ：警告信息</p>
-<p>logfile stdout代表日志的记录方式，默认为标准输出</p>
-<p>databases 16代表默认数据库的数量16个,默认的数据库编号从0开始，<code>select 1</code> 选择数据库1</p>
-<p>save 300 10  –300秒内将10个更改同步到磁盘</p>
-<p>save  900  1</p>
-<p>dbfilename dump.rdb，指定本地数据库文件名，默认为dump.rdb</p>
-<p>dir ./,指定本地数据库的存放目录，默认是当前目录</p>
-<p>requirepass password  设置认证</p>
-<p>​</p>
-<p>​</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2、客户端命令行"><a href="#2、客户端命令行" class="headerlink" title="2、客户端命令行"></a>2、客户端命令行</h3><h4 id="2-1、命令返回消息类型："><a href="#2-1、命令返回消息类型：" class="headerlink" title="2.1、命令返回消息类型："></a>2.1、命令返回消息类型：</h4><ul>
-<li><p>状态信息</p>
-<p>  127.0.0.1:6379&gt; set test “test_value”<br>  OK<br>  127.0.0.1:6379&gt; ping<br>  PONG</p>
-</li>
-<li><p>错误回复</p>
-<p>  127.0.0.1:6379&gt; xx<br>  (error) ERR unknown command ‘xx’</p>
-</li>
-<li><p>整数</p>
-<p>  127.0.0.1:6379&gt; DBSIZE<br>  (integer) 1</p>
-</li>
-<li><p>字符串</p>
-<p>  127.0.0.1:6379&gt; get a<br>  “1”<br>  127.0.0.1:6379&gt; get test<br>  “test_value”</p>
-<p>  127.0.0.1:6379&gt; get aa<br>  (nil)</p>
-<p>  nil表示空的结果</p>
-</li>
-<li><p>多行字符串</p>
-<p>  127.0.0.1:6379&gt; keys *<br>  1) “b”<br>  2) “test”<br>  3) “a”</p>
-</li>
-</ul>
-<h4 id="2-2、常用命令"><a href="#2-2、常用命令" class="headerlink" title="2.2、常用命令"></a>2.2、常用命令</h4><p>‘redis-cli -h 127.0.0.1 -p 6379 -a passwd’</p>
-<p>select 0  选择0号数据库</p>
-<p>exit quit 断开连接</p>
-<p>shutdown 同时关闭服务器</p>
-<p>参考文档<a href="http://doc.redisfans.com/" target="_blank" rel="external">http://doc.redisfans.com/</a></p>
-<h4 id="2-3、使用python-redis-py连接Redis"><a href="#2-3、使用python-redis-py连接Redis" class="headerlink" title="2.3、使用python redis-py连接Redis"></a>2.3、使用python redis-py连接Redis</h4><p><code>pip install redis</code></p>
-<p>redis-py没有实现select</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">r = redis.Redis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, db=<span class="number">0</span>, password=<span class="keyword">None</span>)</div><div class="line"><span class="keyword">print</span> r.set(<span class="string">'a'</span>, <span class="string">'a_value'</span>, ex=<span class="keyword">None</span>, px=<span class="keyword">None</span>, nx=<span class="keyword">False</span>, xx=<span class="keyword">False</span>)</div><div class="line"><span class="keyword">print</span> r.get(<span class="string">'a'</span>)</div><div class="line"><span class="keyword">print</span> r.config_get(<span class="string">'loglevel'</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-27/41317582-file_1490600179965_2c28.png" alt=""></p>
-<p>使用pipeline提高执行效率</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">r = redis.Redis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, db=<span class="number">1</span>)</div><div class="line">p = r.pipeline()</div><div class="line">p.set(<span class="string">'k1'</span>, <span class="string">'v1'</span>)</div><div class="line">p.set(<span class="string">'qqq'</span>, <span class="number">2</span>)</div><div class="line">p.incr(<span class="string">'num1'</span>)</div><div class="line">p.execute()</div><div class="line"><span class="keyword">print</span> r.keys(<span class="string">'*'</span>)</div></pre></td></tr></table></figure>
-<h3 id="3、事务"><a href="#3、事务" class="headerlink" title="3、事务"></a>3、事务</h3><p>事务可以理解为一些列操作的集合，或一个过程。要么成功（全部执行），要么失败（全部都不被执行）。</p>
-<ul>
-<li><p>开启事务</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-27/46233754-file_1490582676167_60fe.png" alt=""></p>
-<p>EXEC 执行事务</p>
-</li>
-<li><p>事务的执行</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-27/17320131-file_1490582766396_24af.png" alt=""></p>
-</li>
-<li><p>监视key</p>
-<p>WATCH counter1 counter2</p>
-<p>如果在执行事务之前key如果被其它命令改动，事务就被打断了，不会执行。</p>
-<p>UNWATCH:取消WATCH命令对所有key的监视</p>
-</li>
-</ul>
-<ul>
-<li><p>取消事务</p>
-<p>DISCARD</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-27/41588717-file_1490582930256_52d.png" alt=""></p>
-</li>
-<li><p>错误处理</p>
-<ul>
-<li><p>语法错误</p>
-<p>错误的语法不会被添加到队列中，自然也不会被执行。</p>
-</li>
-<li><p>运行出错</p>
-<p>事务中QUEUED的语句，在运行中出错，其他的命令也会成功执行。Redis事务不支持回滚。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="4、缓存和Redis生存时间"><a href="#4、缓存和Redis生存时间" class="headerlink" title="4、缓存和Redis生存时间"></a>4、缓存和Redis生存时间</h3><p>redis的键值可以设置生存时间，到期后自动删除。</p>
-<p>EXPIRE（设置过期的秒数）/EXPIREAT（在指定的时间戳进行删除）</p>
-<p>PEXPIRE（设置过期的微秒数）/PEXPIREAT（在指定的时间戳进行删除）</p>
-<p>PERSIST（永不过期，持久化）</p>
-<p>TTL    （得到某个键的生存时间）</p>
-<p>PTTL   （得到某个键的生存时间）</p>
-<p>将近期访问过得数据保存到redis中。如果数据不在Redis中，再去数据库中取。</p>
-<p>如果大量的使用这种缓存键而且生存时间设置的过长，Redis会占用大量内存。</p>
-<p>如果缓存键的生存时间设置太短的话，可能会导致缓存的命中率过低，内存利用率低。</p>
-<h3 id="5、消息队列"><a href="#5、消息队列" class="headerlink" title="5、消息队列"></a>5、消息队列</h3><h4 id="5-1、生产者-消费者模式"><a href="#5-1、生产者-消费者模式" class="headerlink" title="5.1、生产者-消费者模式"></a>5.1、生产者-消费者模式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding: utf-8</span></div><div class="line"><span class="keyword">import</span> redis</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Task</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.rcon = redis.Redis(db=<span class="number">5</span>)</div><div class="line">        self.queue = <span class="string">'task:prodcons:queue'</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_task</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            task = self.rcon.blpop(self.queue, <span class="number">0</span>)[<span class="number">1</span>]  <span class="comment"># blpop阻塞式的pop</span></div><div class="line">            <span class="keyword">print</span> <span class="string">'Task: %s'</span> % task</div><div class="line"></div><div class="line"></div><div class="line">Task().process_task()</div><div class="line"><span class="comment">#  向'task:prodcons:queue'里lpush数据后，会有数据打印出来</span></div></pre></td></tr></table></figure>
-<h4 id="5-2、发布-订阅模式"><a href="#5-2、发布-订阅模式" class="headerlink" title="5.2、发布-订阅模式"></a>5.2、发布-订阅模式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding: utf-8</span></div><div class="line"><span class="keyword">import</span> redis</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Task</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.rcon = redis.Redis(db=<span class="number">5</span>)</div><div class="line">        self.ps = self.rcon.pubsub()</div><div class="line">        self.ps.subscribe(<span class="string">'task:pubsub:channel'</span>)  <span class="comment"># 订阅频道</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_task</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> self.ps.listen():  <span class="comment"># 是个生成器</span></div><div class="line">            <span class="keyword">if</span> i[<span class="string">'type'</span>] == <span class="string">'message'</span>:</div><div class="line">                <span class="keyword">print</span> <span class="string">'Task: %s'</span> % i[<span class="string">'data'</span>]</div><div class="line"></div><div class="line"></div><div class="line">Task().process_task()</div><div class="line"><span class="comment">#  向'task:pubsub:channel'里publish数据后，每个订阅该频道的程序都会会打印打印相同的消息出来</span></div></pre></td></tr></table></figure>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2017/03/01/技术/redis学习笔记/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-02-28T16:00:00.000Z"><a href="/2017/03/01/技术/scapy-redis源码阅读/">2017-03-01</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/03/01/技术/scapy-redis源码阅读/">Scrapy_redis源码阅读</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="scapy-redis-源码阅读"><a href="#scapy-redis-源码阅读" class="headerlink" title="scapy-redis 源码阅读"></a>scapy-redis 源码阅读</h2><h3 id="connection-py"><a href="#connection-py" class="headerlink" title="connection.py"></a>connection.py</h3><blockquote>
+<p>创建redis连接实例</p>
+</blockquote>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/03/01/技术/scapy-redis源码阅读/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-02-27T16:00:00.000Z"><a href="/2017/02/28/技术/numpy-liner-skills/">2017-02-28</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/02/28/技术/numpy-liner-skills/">Numpy线性运算</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h2><blockquote>
+<p>解方程组</p>
+</blockquote>
+<ul>
+<li>Numpy和Scipy模块</li>
+<li>Numpy进行简单的描述性统计计算</li>
+<li>Numpy进行线性代数运算</li>
+<li>Numpy计算特征值和特征向量</li>
+<li>Numpy随机数</li>
+<li>创建掩码式Numpy数组</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/02/28/技术/numpy-liner-skills/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-02-25T16:00:00.000Z"><a href="/2017/02/26/技术/use-matplotlib/">2017-02-26</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/02/26/技术/use-matplotlib/">Matplotlib笔记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="matplotlib"><a href="#matplotlib" class="headerlink" title="matplotlib"></a>matplotlib</h3><ul>
+<li>matplotlib API</li>
+<li>pandas中绘图函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%pylab</div></pre></td></tr></table></figure>
+<pre><code>Using matplotlib backend: Qt5Agg
+Populating the interactive namespace from numpy and matplotlib
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%matplotlib inline</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/02/26/技术/use-matplotlib/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -1422,7 +1046,7 @@ var _hmt = _hmt || [];
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">2</span></li></ul> 
 </div>
  
 
@@ -1458,45 +1082,43 @@ var _hmt = _hmt || [];
   
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
-    <li><a href="/tags/Enjoy/">Enjoy</a><small>2</small></li>
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
   
     <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
   
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
-    <li><a href="/tags/Html/">Html</a><small>1</small></li>
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/LaTeX/">LaTeX</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
   
-    <li><a href="/tags/LaTeX-Mac/">LaTeX Mac</a><small>1</small></li>
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
   
-    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
     <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
-    <li><a href="/tags/Math/">Math</a><small>2</small></li>
-  
-    <li><a href="/tags/Math-Optimization/">Math Optimization</a><small>3</small></li>
-  
-    <li><a href="/tags/Math-Optimization-MachineLearning/">Math Optimization MachineLearning</a><small>1</small></li>
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
   
     <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
-    <li><a href="/tags/Mongodb-数据库/">Mongodb 数据库</a><small>1</small></li>
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
   
-    <li><a href="/tags/Optimization/">Optimization</a><small>4</small></li>
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
     <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
   
@@ -1504,27 +1126,37 @@ var _hmt = _hmt || [];
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>18</small></li>
+    <li><a href="/tags/Python/">Python</a><small>19</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
-    <li><a href="/tags/SNMP/">SNMP</a><small>1</small></li>
-  
-    <li><a href="/tags/Scrapy/">Scrapy</a><small>4</small></li>
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
   
     <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
+    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+  
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
   
-    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
-    <li><a href="/tags/明信片/">明信片</a><small>2</small></li>
+    <li><a href="/tags/git/">git</a><small>1</small></li>
   
-    <li><a href="/tags/爬虫/">爬虫</a><small>5</small></li>
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
   
-    <li><a href="/tags/随感/">随感</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
   
   </ul>
 </div>
@@ -1538,13 +1170,14 @@ var _hmt = _hmt || [];
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
     <div class="clearfix"></div>
   </div>
-  <footer id="footer" class="inner"><section>
+  <footer id="footer" class="inner">
+<section>
 <div class="copyright">
 		
 		  

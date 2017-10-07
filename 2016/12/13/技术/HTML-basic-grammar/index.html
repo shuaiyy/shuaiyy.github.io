@@ -28,17 +28,41 @@
   <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
   
   
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
 })();
 </script>
 
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
 
+
+
+
+
+  
+    
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-107525911-1']);
@@ -292,6 +316,7 @@ var _hmt = _hmt || [];
 <p><img src="http://ww1.sinaimg.cn/large/af9df239gw1fap52sfmasj20k00f1wff.jpg" alt="HTML字符字体"></p>
 </li>
 </ul>
+<a id="more"></a>
 <h3 id="HTML基本结构"><a href="#HTML基本结构" class="headerlink" title="HTML基本结构"></a>HTML基本结构</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--html标签是文档开始和结束的标志--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--HTML文件头标记，用来包含文件的基本信息，比如网页的标题、关键字，在 可以放&lt;title&gt;&lt;/title&gt;、&lt;meta&gt;&lt;/meta&gt;、&lt;style&gt;&lt;/style&gt;等等标记--&gt;</span></div><div class="line">    <span class="comment">&lt;!--注意:在&lt;head&gt;&lt;/head&gt;标记内的内容不会在浏览器中显示--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--&lt;meta&gt; 元素可提供有关某个 HTML 元素的元信息 (meta-information)，比如描述、针对搜索引擎的关键词以及刷新频率。--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>这是网页的标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--网页的“主题”，显示在浏览器的标题栏，网页的标题不能太长，要短小精悍，能具体反应页面的内容，&lt;title&gt;&lt;/title&gt;标记中不能包含其他标记--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--HTML文档的主体标记--&gt;</span></div><div class="line"><span class="comment">&lt;!--功能：&lt;body&gt;...&lt;/body&gt;是网页的主体部分，在此标记之间可以包含如&lt;p&gt;&lt;/p&gt;、&lt;h1&gt;&lt;/h1&gt;、&lt;br&gt;、&lt;hr&gt;等等标记，这些内容组成了我们所看见的网页--&gt;</span></div><div class="line"><span class="comment">&lt;!--body的属性有：背景颜色 bgcolor="red",文本颜色text="green",链接颜色 link="blue"，--&gt;</span></div><div class="line"><span class="comment">&lt;!--              已访问过链接的颜色vlink="yellow",正在被点击连接的颜色 alink="red"--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="格式标记"><a href="#格式标记" class="headerlink" title="格式标记"></a>格式标记</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;br&gt;  		            强制换行，后面的内容会显示在下一行</div><div class="line">&lt;p&gt;...&lt;/p&gt;  	        段落标记</div><div class="line">&lt;center&gt;...&lt;/center&gt;	居中对齐标记：让段落或者是文字相对于父标记居中显示</div><div class="line">&lt;pre&gt;...&lt;/pre&gt;			预格式化标记：保留预先编排好的格式</div><div class="line">&lt;li&gt;第一个&lt;/li&gt;		  列表项目,默认无序</div><div class="line">&lt;ul&gt;...&lt;/ul&gt;			声明无序列表，内嵌套&lt;li&gt;</div><div class="line">&lt;ol&gt;...&lt;/ol&gt;		声明列表有序内嵌套&lt;li&gt;,属性type=&quot;[1|A|a|I|i]&quot; value=&quot;序列起始值&quot;</div><div class="line">&lt;dl&gt; &lt;dt&gt; &lt;dd&gt;		定义性列表，对列表条目进行简短的说明</div><div class="line">&lt;hr&gt;				水平分割线</div><div class="line">&lt;div&gt;...&lt;/div&gt;		 分区显示/层标记，可以多层嵌套，用来编排一大段HTML代码</div></pre></td></tr></table></figure>
 <h3 id="文本标记"><a href="#文本标记" class="headerlink" title="文本标记"></a>文本标记</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;...&lt;/h1&gt; h1~6				1级标题文本最大，6级标题文本最小</div><div class="line">&lt;font size=&apos;3&apos; color=&apos;green&apos; face=&quot;微软雅黑&quot;&gt;有字体格式的文字&lt;/font&gt;</div><div class="line">&lt;b&gt;粗体字&lt;/b&gt;</div><div class="line">&lt;i&gt;斜体字&lt;/i&gt;</div><div class="line">&lt;sub&gt;下标字体&lt;/sub&gt;</div><div class="line">&lt;sup&gt;上标字体&lt;/sup&gt;</div><div class="line">&lt;tt&gt;打印机字体&lt;/tt&gt;</div><div class="line">&lt;cite&gt;引用方式的字体，通常是斜体&lt;/cite&gt;</div><div class="line">&lt;em&gt;强调字体，通常是斜体&lt;/em&gt;</div><div class="line">&lt;strong&gt;强调字体，通常是粗体&lt;/strong&gt;</div><div class="line">&lt;small&gt;小型字体&lt;/small&gt;</div><div class="line">&lt;big&gt;大型字体&lt;/big&gt;</div><div class="line">&lt;u&gt;带下划线的字&lt;/u&gt;</div></pre></td></tr></table></figure>
@@ -622,7 +647,7 @@ window.onload = function(){
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">2</span></li></ul> 
 </div>
  
 
@@ -658,45 +683,43 @@ window.onload = function(){
   
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
-    <li><a href="/tags/Enjoy/">Enjoy</a><small>2</small></li>
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
   
     <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
   
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
-    <li><a href="/tags/Html/">Html</a><small>1</small></li>
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/LaTeX/">LaTeX</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
   
-    <li><a href="/tags/LaTeX-Mac/">LaTeX Mac</a><small>1</small></li>
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
   
-    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
     <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
-    <li><a href="/tags/Math/">Math</a><small>2</small></li>
-  
-    <li><a href="/tags/Math-Optimization/">Math Optimization</a><small>3</small></li>
-  
-    <li><a href="/tags/Math-Optimization-MachineLearning/">Math Optimization MachineLearning</a><small>1</small></li>
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
   
     <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
-    <li><a href="/tags/Mongodb-数据库/">Mongodb 数据库</a><small>1</small></li>
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
   
-    <li><a href="/tags/Optimization/">Optimization</a><small>4</small></li>
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
     <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
   
@@ -704,27 +727,37 @@ window.onload = function(){
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>18</small></li>
+    <li><a href="/tags/Python/">Python</a><small>19</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
-    <li><a href="/tags/SNMP/">SNMP</a><small>1</small></li>
-  
-    <li><a href="/tags/Scrapy/">Scrapy</a><small>4</small></li>
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
   
     <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
+    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+  
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
   
-    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
-    <li><a href="/tags/明信片/">明信片</a><small>2</small></li>
+    <li><a href="/tags/git/">git</a><small>1</small></li>
   
-    <li><a href="/tags/爬虫/">爬虫</a><small>5</small></li>
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
   
-    <li><a href="/tags/随感/">随感</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
   
   </ul>
 </div>
@@ -738,13 +771,14 @@ window.onload = function(){
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
     <div class="clearfix"></div>
   </div>
-  <footer id="footer" class="inner"><section>
+  <footer id="footer" class="inner">
+<section>
 <div class="copyright">
 		
 		  

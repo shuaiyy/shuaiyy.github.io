@@ -1,0 +1,1096 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python web 数据库连接 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="Python数据库连接数据库基础数据库概念">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="python web 数据库连接"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-09-04T16:00:00.000Z"><a href="/2017/09/05/技术/Python数据库连接/">2017-09-05</a></time>
+        
+	  
+      
+  
+    <h1 class="title">python web 数据库连接</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python数据库连接"><span class="toc-text">Python数据库连接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库基础"><span class="toc-text">数据库基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库概念"><span class="toc-text">数据库概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库分类"><span class="toc-text">数据库分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装数据库及管理工具"><span class="toc-text">安装数据库及管理工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库查询语言SQL"><span class="toc-text">数据库查询语言SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python进行SQL操作"><span class="toc-text">python进行SQL操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql"><span class="toc-text">Mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mongodb-操作"><span class="toc-text">Mongodb 操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flask中使用数据库"><span class="toc-text">Flask中使用数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ORM-对象关系映射"><span class="toc-text">ORM 对象关系映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ORM概念"><span class="toc-text">ORM概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQLAlchemy"><span class="toc-text">SQLAlchemy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flask-SQLAlchemy"><span class="toc-text">Flask-SQLAlchemy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORM使用示例"><span class="toc-text">ORM使用示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现一个留言板"><span class="toc-text">实现一个留言板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flask应用的外部脚本"><span class="toc-text">Flask应用的外部脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQLlite3操作"><span class="toc-text">SQLlite3操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql操作"><span class="toc-text">Mysql操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql-ORM使用"><span class="toc-text">Mysql ORM使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库配置"><span class="toc-text">数据库配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建db对象"><span class="toc-text">创建db对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义Model"><span class="toc-text">定义Model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model相关操作"><span class="toc-text">Model相关操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mobgodb-ORM使用"><span class="toc-text">Mobgodb ORM使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库配置-1"><span class="toc-text">数据库配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建db对象-1"><span class="toc-text">创建db对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义Document对象"><span class="toc-text">定义Document对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model相关操作-1"><span class="toc-text">Model相关操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件驱动-触发器"><span class="toc-text">事件驱动 触发器</span></a></li></ol></li></ol>
+    </div>
+
+      
+        <h1 id="Python数据库连接"><a href="#Python数据库连接" class="headerlink" title="Python数据库连接"></a>Python数据库连接</h1><h2 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h2><h3 id="数据库概念"><a href="#数据库概念" class="headerlink" title="数据库概念"></a>数据库概念</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/bmDdB9HC7F.png?imageslim" alt="mark"></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/Dj8eFefeaG.png?imageslim" alt="mark"></p>
+<a id="more"></a>
+<h3 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h3><p><strong>SQL和NoSQL</strong></p>
+<ul>
+<li>SQL<ul>
+<li>SQLite 单文件，小型数据库</li>
+<li>MySQL 开源，性能优异，使用广泛</li>
+<li>PostgreSQL 开源，性能优异，使用广泛</li>
+<li>Oracle</li>
+<li>Microsoft SQL Server</li>
+</ul>
+</li>
+<li>NoSQL<ul>
+<li>MongoDB 性能好</li>
+<li>neo4j  </li>
+<li>elasticsearch  索引搜索功能强大</li>
+<li>InfluxDB</li>
+<li>BigTable</li>
+<li>LevelDB</li>
+</ul>
+</li>
+</ul>
+<p><strong>单机 分布式</strong></p>
+<ul>
+<li>单机：Mysql和PostgreSQL常用于单机</li>
+<li>分布式：Apache HIVE 和 cloudera IMPALA</li>
+</ul>
+<p><strong>文件型和内存性</strong></p>
+<ul>
+<li><p>文件型，数据放在磁盘，索引放在内存</p>
+<p>MySQL、MongoDB</p>
+</li>
+<li><p>内存性：数据存放在内存，多用于缓存系统</p>
+<p>Redis(支持复杂数据类型)、Memcached</p>
+</li>
+</ul>
+<p><strong>批处理和交互式</strong></p>
+<ul>
+<li><p>批处理：将SQL分解成MR(map &amp;&amp; reduce)</p>
+<p>Apache Hive</p>
+</li>
+<li><p>交互式：分级之后查询汇总</p>
+<p>cloudera IMPALA、Apache Hbase、Amazon DynamoDB</p>
+</li>
+</ul>
+<p><strong><em>AWS</em></strong></p>
+<p>Amazon web services，亚马逊云服务，提供了免运维的数据库服务，支持MySQL、PostgreSQL、Oracle、SQL Server，注册后有个免费一年的套餐。</p>
+<h3 id="安装数据库及管理工具"><a href="#安装数据库及管理工具" class="headerlink" title="安装数据库及管理工具"></a>安装数据库及管理工具</h3><ul>
+<li>mysql server</li>
+</ul>
+<p><strong>管理工具</strong></p>
+<ul>
+<li>Navicat</li>
+<li>RoboMongo</li>
+<li>RedisDesktop</li>
+<li>​</li>
+</ul>
+<h2 id="数据库查询语言SQL"><a href="#数据库查询语言SQL" class="headerlink" title="数据库查询语言SQL"></a>数据库查询语言SQL</h2><blockquote>
+<p>不同数据库之间的SQL语句不完全相同</p>
+</blockquote>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/9A7KfdiEmd.png?imageslim" alt="mark"></p>
+<p>增删查改</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/6kHb0a3HCf.png?imageslim" alt="mark"></p>
+<h2 id="python进行SQL操作"><a href="#python进行SQL操作" class="headerlink" title="python进行SQL操作"></a>python进行SQL操作</h2><h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h3><p><code>pip install mysql-python</code></p>
+<ul>
+<li>建立数据库连接</li>
+<li>连接也可以使用URI，<code>mysql:\\user:passs@host:port/db_name</code></li>
+<li>创建游标</li>
+<li>通过游标执行SQl语句</li>
+<li>执行插入、删除、修改后，需要提交到数据库以保持数据一致性</li>
+<li>最后关闭数据库</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> MySQLdb</div><div class="line"></div><div class="line"><span class="comment"># connect to db</span></div><div class="line">conn = MySQLdb.connect(<span class="string">"db_host"</span>,<span class="string">"user"</span>,<span class="string">"passwd"</span>,<span class="string">"db_name"</span>)</div><div class="line"></div><div class="line"><span class="comment"># create cursor</span></div><div class="line">cur = conn.cursor()</div><div class="line"></div><div class="line"><span class="comment"># sql </span></div><div class="line">sql =<span class="string">"select * from student"</span></div><div class="line">insert_sql=<span class="string">"insert into student (name) values ('%s')"</span> %(<span class="string">'xxx'</span>)</div><div class="line"><span class="comment"># execute</span></div><div class="line"></div><div class="line">cur.execute(insert_sql)</div><div class="line">conn.commit() <span class="comment"># 执行插入、提交</span></div><div class="line"></div><div class="line"><span class="comment"># 执行查询，并遍历查询结果</span></div><div class="line"><span class="comment"># get the result</span></div><div class="line">cur.execute(sql)</div><div class="line">result=cur.fetchall()</div><div class="line"></div><div class="line"><span class="keyword">for</span> row <span class="keyword">in</span> result:</div><div class="line">	<span class="keyword">print</span> row[<span class="number">0</span>]</div><div class="line">	<span class="keyword">print</span> row[<span class="number">1</span>]</div><div class="line"><span class="comment"># 关闭数据库</span></div><div class="line">conn.close()</div></pre></td></tr></table></figure>
+<h3 id="Mongodb-操作"><a href="#Mongodb-操作" class="headerlink" title="Mongodb 操作"></a>Mongodb 操作</h3><ul>
+<li>使用pymongo</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pymongo</div><div class="line"></div><div class="line"><span class="comment"># 建立连接</span></div><div class="line">client = pymongo.MongoClient(host=<span class="string">'127.0.0.1'</span>, port=<span class="string">'27017'</span>)</div><div class="line"><span class="comment"># 选择数据库</span></div><div class="line">db = client[<span class="string">'test'</span>]</div><div class="line"><span class="comment"># 选着collection</span></div><div class="line">user_collection = db[<span class="string">'user'</span>]</div><div class="line"><span class="comment"># 向collection插入一条文档</span></div><div class="line">user_collection.insert(&#123;<span class="string">'id'</span>: <span class="string">'1'</span>, <span class="string">'name'</span>: <span class="string">'Lisa'</span>&#125;)</div><div class="line"><span class="comment"># 文档查找</span></div><div class="line">all_user = user_collection.find()</div></pre></td></tr></table></figure>
+<h2 id="Flask中使用数据库"><a href="#Flask中使用数据库" class="headerlink" title="Flask中使用数据库"></a>Flask中使用数据库</h2><ul>
+<li><p>首先创建表</p>
+<p>字段：id, user, password,</p>
+</li>
+<li><p>使用单独的py文件定义全部sql操作。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># db.py</span></div><div class="line"><span class="keyword">import</span> MySQLdb</div><div class="line"></div><div class="line">conn = MySQLdb.connect(<span class="string">"localhost"</span>,<span class="string">"root"</span>,<span class="string">""</span>,<span class="string">"test"</span>)</div><div class="line">cur = conn.cursor()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(username,password)</span>:</span></div><div class="line">	sql = <span class="string">"insert into user (username,password) values ('%s','%s')"</span> %(username,password)</div><div class="line">	cur.execute(sql)</div><div class="line">	conn.commit()</div><div class="line">	conn.close()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">isExisted</span><span class="params">(username,password)</span>:</span></div><div class="line">	sql=<span class="string">"select * from user where username ='%s' and password ='%s'"</span> %(username,password)</div><div class="line">	cur.execute(sql)</div><div class="line">	result = cur.fetchall()</div><div class="line">	 <span class="keyword">return</span> <span class="keyword">True</span> <span class="keyword">if</span> result <span class="keyword">else</span> <span class="keyword">False</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>视图函数中使用SQL操作</p>
+<p>注册用户时，新建用户插入数据库表中</p>
+<p>用户登陆时，检查登陆信息是否正确</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> db <span class="keyword">import</span> *</div><div class="line"><span class="meta">@app.route("/register",methods=['GET','POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">()</span>:</span></div><div class="line">	myForm=LoginForm(request.form)</div><div class="line">	<span class="keyword">if</span> request.method==<span class="string">'POST'</span>:</div><div class="line">		insert(myForm.username.data,myForm.password.data)</div><div class="line">		<span class="keyword">return</span> redirect(<span class="string">"http://www.jikexueyuan.com"</span>)</div><div class="line">	<span class="keyword">return</span> render_template(<span class="string">'index.html'</span>,form=myForm)</div><div class="line"></div><div class="line">  </div><div class="line"><span class="meta">@app.route("/login",methods=['GET','POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">()</span>:</span></div><div class="line">	myForm=LoginForm(request.form)</div><div class="line">	<span class="keyword">if</span> request.method ==<span class="string">'POST'</span>:</div><div class="line">		<span class="keyword">if</span> (isExisted(myForm.username.data,myForm.password.data)):</div><div class="line">			<span class="keyword">return</span> redirect(<span class="string">"http://www.jikexueyuan.com"</span>)</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			<span class="keyword">return</span> <span class="string">"Login Failed"</span></div><div class="line">	<span class="keyword">return</span> render_template(<span class="string">'index.html'</span>,form=myForm)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="ORM-对象关系映射"><a href="#ORM-对象关系映射" class="headerlink" title="ORM 对象关系映射"></a>ORM 对象关系映射</h2><h3 id="ORM概念"><a href="#ORM概念" class="headerlink" title="ORM概念"></a>ORM概念</h3><p>数据库和对象之间的桥梁</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/5CC1ABeL64.png?imageslim" alt="mark"></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/97JkblFdL5.png?imageslim" alt="mark"></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170925/IEhKcAC0m0.png?imageslim" alt="mark"></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/9lD7CFe02L.png?imageslim" alt="mark"></p>
+<h3 id="SQLAlchemy"><a href="#SQLAlchemy" class="headerlink" title="SQLAlchemy"></a>SQLAlchemy</h3><ul>
+<li>著名的Python ORM框架</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170925/llfCi8kkA6.png?imageslim" alt="mark"></p>
+<ul>
+<li>建立连接和创建表</li>
+<li>创建有外键关联的表对象</li>
+<li>插入和查询数据</li>
+<li>高级查询 与或逻辑，多表查询，多级查询</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"><span class="keyword">import</span> sqlalchemy</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, DateTime, TEXT</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line"><span class="comment"># 创建数据库连接引擎, echo显示执行的sql</span></div><div class="line">engine = create_engine(<span class="string">'sqlite:///test.db'</span>, echo=<span class="keyword">False</span>)</div><div class="line"><span class="comment"># 创建数据库会话，用于事务提交</span></div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line">session = Session()</div><div class="line"></div><div class="line"><span class="comment"># 声明基类</span></div><div class="line">Base = declarative_base()</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    passwd = Column(Integer)</div><div class="line">    name = Column(String, default=<span class="string">'Noname'</span>)</div><div class="line">    full_name = Column(String(<span class="number">50</span>))</div><div class="line">    create_time = Column(DateTime, default= datetime.now)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">       <span class="keyword">return</span> str(self.id) + <span class="string">"  &lt;User(name='%s', fullname='%s')&gt;"</span> % (</div><div class="line">                            self.name, self.full_name)</div><div class="line"></div><div class="line"><span class="comment"># 包含外键的对象</span></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</div><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship, backref</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'addresses'</span></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    email_address = Column(String, nullable=<span class="keyword">False</span>)</div><div class="line">    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</div><div class="line">    user = relationship(<span class="string">"User"</span>, backref=backref(<span class="string">'addresses'</span>, order_by=id))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;Address(email_address='%s')&gt;"</span> % self.email_address</div><div class="line"></div><div class="line"><span class="comment"># 创建数据库表</span></div><div class="line">Base.metadata.create_all(engine)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    u = User(name=<span class="string">'sqwe'</span>, full_name=<span class="string">'aassd'</span>, passwd=<span class="number">1</span>)</div><div class="line">    <span class="comment"># 保存一条数据并提交</span></div><div class="line">    session.add(User(name=<span class="string">'sqwe'</span>, full_name=<span class="string">'aassd'</span>, passwd=<span class="number">1</span>))</div><div class="line">    session.commit()</div><div class="line">    <span class="comment"># 保存多条数据并提交</span></div><div class="line">    session.add_all([</div><div class="line">        User(name=<span class="string">'wendy1'</span>, full_name=<span class="string">'aassd1'</span>, passwd=<span class="number">1</span>),</div><div class="line">        User(name=<span class="string">'jack'</span>, full_name=<span class="string">'aassd2'</span>, passwd=<span class="number">1</span>),</div><div class="line">        User(name=<span class="string">'wendy3'</span>, full_name=<span class="string">'aassd3'</span>, passwd=<span class="number">1</span>),</div><div class="line">        User(name=<span class="string">'jack4'</span>, full_name=<span class="string">'aassd4'</span>, passwd=<span class="number">1</span>),</div><div class="line">                     ])</div><div class="line">    session.commit()</div><div class="line"></div><div class="line">    <span class="comment"># 查询操作，SELECT * FROM users WHERE name="ed" LIMIT 1;</span></div><div class="line">    <span class="keyword">print</span> session.query(User).filter_by(name=<span class="string">'sqwe2'</span>).first()</div><div class="line"></div><div class="line">    <span class="comment"># 所有的User对象的list</span></div><div class="line">    print(session.query(User).all())</div><div class="line">    <span class="comment"># 按id排序，降序</span></div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> session.query(User).order_by(-User.id):</div><div class="line">        print(row)</div><div class="line">    <span class="comment"># 精确查找，完全匹配给定值</span></div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> session.query(User).filter(User.name.in_([<span class="string">'sqwe'</span>, <span class="string">'wendy'</span>, <span class="string">'jack'</span>])):</div><div class="line">        print(row)</div><div class="line">    <span class="comment"># 模糊查找，子串匹配即可</span></div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> session.query(User).filter(~User.name.in_([<span class="string">'sqwe2'</span>, <span class="string">'wendy'</span>, <span class="string">'jack'</span>])):</div><div class="line">        print(row)</div><div class="line">    <span class="comment"># count计数</span></div><div class="line">    print(session.query(User).filter(User.name == <span class="string">'sqwe'</span>).count())</div><div class="line"></div><div class="line">    <span class="comment"># 高级查询条件，与或逻辑</span></div><div class="line">    <span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> and_, or_</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> session.query(User).filter(and_(User.name == <span class="string">'ed'</span>, User.fullname == <span class="string">'Ed Jones'</span>)):</div><div class="line">        print(row)</div><div class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> session.query(User).filter(or_(User.name == <span class="string">'ed'</span>, User.name == <span class="string">'wendy'</span>)):</div><div class="line">        print(row)</div><div class="line"></div><div class="line"></div><div class="line">    jack = User(name=<span class="string">'jack'</span>, full_name=<span class="string">'Jack Bean'</span>, passwd=<span class="string">'gjffdd'</span>)</div><div class="line">    <span class="comment"># 一对多的关系，一个用户可以有多个地址</span></div><div class="line">    jack.addresses = [</div><div class="line">                    Address(email_address=<span class="string">'jack@google.com'</span>),</div><div class="line">                    Address(email_address=<span class="string">'j25@yahoo.com'</span>)]</div><div class="line">    session.add(jack)</div><div class="line">    session.commit()</div><div class="line">    <span class="comment"># 多表条件查询</span></div><div class="line">    <span class="keyword">for</span> u, a <span class="keyword">in</span> session.query(User, Address).\</div><div class="line">                        filter(User.id==Address.user_id).\</div><div class="line">                        filter(Address.email_address==<span class="string">'jack@google.com'</span>).\</div><div class="line">                        all():</div><div class="line">        <span class="keyword">print</span> u, a</div></pre></td></tr></table></figure>
+<h3 id="Flask-SQLAlchemy"><a href="#Flask-SQLAlchemy" class="headerlink" title="Flask-SQLAlchemy"></a>Flask-SQLAlchemy</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/G0aciA01Aa.png" alt="mark"></p>
+<p><strong>ORM相关操作</strong></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/7K927BJcgf.png?imageslim" alt="mark"></p>
+<h3 id="ORM使用示例"><a href="#ORM使用示例" class="headerlink" title="ORM使用示例"></a>ORM使用示例</h3><ul>
+<li><p>使用ORM实现用户注册、登陆</p>
+</li>
+<li><p>db.create_all()命令可以生成所有的表</p>
+</li>
+<li><p>先创建一个SQLAlchemy对象</p>
+</li>
+<li><p>继承db.Model创建Model对象，实现对应的SQL操作</p>
+</li>
+<li><p>model对象要定义与数据库表的列名一致的属性</p>
+</li>
+<li><p>数据库的表可以用<code>__tablename__</code>定义</p>
+<p>model.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># model.py</span></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> flask.ext.sqlalchemy <span class="keyword">import</span> SQLAlchemy</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = <span class="string">'mysql://root@localhost/test'</span></div><div class="line">db = SQLAlchemy(app)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Model)</span>:</span></div><div class="line">	id = db.Column(db.Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">	username = db.Column(db.String(<span class="number">32</span>),unique=<span class="keyword">True</span>)</div><div class="line">	password = db.Column(db.String(<span class="number">32</span>))</div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,username,password)</span>:</span></div><div class="line">		self.username = username</div><div class="line">		self.password = password</div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			db.session.add(self)</div><div class="line">			db.session.commit()</div><div class="line">			<span class="keyword">return</span> self.id</div><div class="line">		<span class="keyword">except</span> Exception,e:</div><div class="line">			db.session.rollback()</div><div class="line">			<span class="keyword">return</span> e</div><div class="line">		<span class="keyword">finally</span>:</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">isExisted</span><span class="params">(self)</span>:</span></div><div class="line">		temUser=User.query.filter_by(username=self.username,password=self.password).first()</div><div class="line">		<span class="keyword">if</span> temUser <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span></div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在view中实例化Model对象，并调用其SQL操作方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> model <span class="keyword">import</span> User</div><div class="line"></div><div class="line"><span class="meta">@app.route("/register",methods=['GET','POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">()</span>:</span></div><div class="line">	myForm=LoginForm(request.form)</div><div class="line">	<span class="keyword">if</span> request.method==<span class="string">'POST'</span>:</div><div class="line">		u=User(myForm.username.data,myForm.password.data)</div><div class="line">		u.add()</div><div class="line">		<span class="keyword">return</span> redirect(<span class="string">"http://www.jikexueyuan.com"</span>)</div><div class="line">	<span class="keyword">return</span> render_template(<span class="string">'index.html'</span>,form=myForm)</div><div class="line">  </div><div class="line"><span class="meta">@app.route("/login",methods=['GET','POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">()</span>:</span></div><div class="line">	myForm=LoginForm(request.form)</div><div class="line">	<span class="keyword">if</span> request.method ==<span class="string">'POST'</span>:</div><div class="line">		u=User(myForm.username.data,myForm.password.data)</div><div class="line">		<span class="keyword">if</span> (u.isExisted()):</div><div class="line">			<span class="keyword">return</span> redirect(<span class="string">"http://www.jikexueyuan.com"</span>)</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			<span class="keyword">return</span> <span class="string">"Login Failed"</span></div><div class="line">	<span class="keyword">return</span> render_template(<span class="string">'index.html'</span>,form=myForm)</div></pre></td></tr></table></figure>
+</li>
+<li><p>多表关联，主表中设置外键，foreignkey指向从表。从表中设置relationship指向主表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">db = SQLAlchemy(app)</div><div class="line"></div><div class="line"><span class="comment"># 主表</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Model)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line">    id = db.Column(db.Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">	username = db.Column(db.String(<span class="number">32</span>),unique=<span class="keyword">True</span>)</div><div class="line">	password = db.Column(db.String(<span class="number">32</span>))</div><div class="line">    address_id = db.Column(db.Integer, db.ForeignKey(<span class="string">'address.id'</span>))</div><div class="line">    </div><div class="line"><span class="comment"># 从表</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(db.model)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'address'</span></div><div class="line">    id = db.Column(db.Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">	address = db.Column(db.String(<span class="number">32</span>),unique=<span class="keyword">True</span>)</div><div class="line">    users = db.relationship(<span class="string">'User'</span>, backref=<span class="string">'adress_x'</span>)</div><div class="line">    <span class="comment"># 相当于为User增加了一个属性address_x</span></div><div class="line">   </div><div class="line"><span class="comment"># 使用 </span></div><div class="line">User(id=<span class="number">1</span>, name=<span class="string">'xx'</span>, address_x=Address())</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h2 id="实现一个留言板"><a href="#实现一个留言板" class="headerlink" title="实现一个留言板"></a>实现一个留言板</h2><ul>
+<li><p>SQLAlchemy Model对象有query方法，实现了一系列SQL查询操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Entry</span><span class="params">(db.Model)</span>:</span></div><div class="line">	id = db.Column(db.Integer,primary_key=<span class="keyword">True</span>)</div><div class="line">	content = db.Column(db.Text)</div><div class="line">	sender = db.Column(db.String(<span class="number">32</span>))</div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,content,sender)</span>:</span></div><div class="line">		self.content = content</div><div class="line">		self.sender = sender</div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self)</span>:</span></div><div class="line">		<span class="keyword">try</span>:</div><div class="line">			db.session.add(self)</div><div class="line">			db.session.commit()</div><div class="line">			<span class="keyword">return</span> self.id</div><div class="line">		<span class="keyword">except</span> Exception,e:</div><div class="line">			db.session.rollback()</div><div class="line">			<span class="keyword">return</span> e</div><div class="line">		<span class="keyword">finally</span>:</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Entry.query.filter_by().all()</code>可以从数据库获取全部Entry对象的记录</p>
+</li>
+<li><p>每个表单都用wtform实现一个类</p>
+</li>
+<li><p>POST提交数据，GET展示数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PublishForm</span><span class="params">(Form)</span>:</span></div><div class="line">	content = TextField(<span class="string">"content"</span>,[validators.Required()])</div><div class="line">	sender = TextField(<span class="string">"sender"</span>,[validators.Required()])</div><div class="line"></div><div class="line"><span class="meta">@app.route("/show",methods=['GET','POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">()</span>:</span></div><div class="line">	myEntryForm = PublishForm(request.form)</div><div class="line">	l = Entry.query.filter_by().all()</div><div class="line">	<span class="keyword">if</span> request.method ==<span class="string">'POST'</span>:</div><div class="line">		e = Entry(myEntryForm.content.data,myEntryForm.sender.data)</div><div class="line">		e.add()</div><div class="line">		<span class="keyword">return</span> render_template(<span class="string">"show.html"</span>,entries=l,form=myEntryForm)</div><div class="line">	<span class="keyword">return</span> render_template(<span class="string">"show.html"</span>,entries=l,form=myEntryForm)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Flask应用的外部脚本"><a href="#Flask应用的外部脚本" class="headerlink" title="Flask应用的外部脚本"></a>Flask应用的外部脚本</h2><ul>
+<li><p>flask-script</p>
+<p><code>pip install flask-script</code>  ，类似Django中的manage命令</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170921/ajeImh6JDk.png?imageslim" alt="mark"></p>
+</li>
+<li><p>一个manage.py示例</p>
+<ul>
+<li>不带参数的函数用<code>manager.command</code>装饰器</li>
+<li>带参数的函数<code>manager.option</code></li>
+<li>使用livereload启动app，可以在开发时，修改代码，页面自动刷新。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> adder <span class="keyword">import</span> app <span class="comment"># flask app</span></div><div class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</div><div class="line"></div><div class="line">manager = Manager(app)</div><div class="line"></div><div class="line"><span class="meta">@manager.command</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'hello world!'</span></div><div class="line"></div><div class="line"><span class="meta">@manager.option('-n', '--name', dest='name', default='my friend')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(name)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'hello &#123;&#125;!'</span>.format(name)</div><div class="line">    </div><div class="line"><span class="meta">@manager.command</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">from</span> livereload <span class="keyword">import</span> Server</div><div class="line">    live_server = Server(app.wsgi_app)</div><div class="line">    live_server.watch(<span class="string">'**/*.*'</span>)</div><div class="line">    live_server.serve(open_url=<span class="keyword">True</span>)</div><div class="line">    </div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    manager.run()</div></pre></td></tr></table></figure>
+<p>执行 <code>python manage hello -n Alice</code>就会运行hello函数。</p>
+<p>我们可以通过外部脚本与flask应用交互。</p>
+</li>
+</ul>
+<h3 id="SQLlite3操作"><a href="#SQLlite3操作" class="headerlink" title="SQLlite3操作"></a>SQLlite3操作</h3><ul>
+<li><p>model对象中定义SQL存储查询等操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sqlite3</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_conn</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> sqlite3.Connection(<span class="string">'test.db'</span>)</div><div class="line">  </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, id, name)</span>:</span></div><div class="line">        self.id = id</div><div class="line">        self.name = name</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></div><div class="line">        conn = get_conn()</div><div class="line">        cursor = conn.cursor()</div><div class="line">        sql = <span class="string">'insert into user VALUES (?, ?)'</span></div><div class="line">        cursor.execute(sql, (self.id, self.name))</div><div class="line">        conn.commit()</div><div class="line">        cursor.close()</div><div class="line">        conn.close()</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">()</span>:</span></div><div class="line">        sql = <span class="string">'select * from user'</span></div><div class="line">        conn = get_conn()</div><div class="line">        cursor = conn.cursor()</div><div class="line">        cursor.execute(sql)</div><div class="line">        rows = cursor.fetchall()</div><div class="line">        users = [User(row[<span class="number">0</span>], row[<span class="number">1</span>]) <span class="keyword">for</span> row <span class="keyword">in</span> rows]</div><div class="line">        cursor.close()</div><div class="line">        conn.close()</div><div class="line">        <span class="keyword">return</span> users</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'id:&#123;&#125; ----- name:&#123;&#125;'</span>.format(self.id, self.name)</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>在manage中可以执行SQL</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@manager.command</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_db</span><span class="params">()</span>:</span></div><div class="line">    conn = sqlite3.Connection(<span class="string">'test.db'</span>)</div><div class="line">    cursor = conn.cursor()</div><div class="line">    sql = <span class="string">'create table user(id INT, NAME VARCHAR )'</span></div><div class="line">    cursor.execute(sql)</div><div class="line">    conn.commit()</div><div class="line">    cursor.close()</div><div class="line">    conn.close()</div><div class="line"></div><div class="line"><span class="meta">@manager.command</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_user</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> User.query():</div><div class="line">        <span class="keyword">print</span> x</div><div class="line">    </div><div class="line"><span class="meta">@manager.option('-i', dest='id')</span></div><div class="line"><span class="meta">@manager.option('-n', dest='name', default='sss')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_user</span><span class="params">(id, name)</span>:</span></div><div class="line">    User(id, name).save()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Mysql操作"><a href="#Mysql操作" class="headerlink" title="Mysql操作"></a>Mysql操作</h3><ul>
+<li><p>model对象中定义SQL存储查询等操作</p>
+<ul>
+<li>Mysqldb建立连接时无法使用URI格式，接收关键字参数</li>
+<li>user passwd db host port</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> MySQLdb</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_conn</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> MySQLdb.Connection(user=<span class="string">'root'</span>, passwd=<span class="string">'123456'</span>, db=<span class="string">'test'</span> )</div><div class="line"><span class="comment"># ''mysql://root:123456@localhost:3306/test''</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, id, name)</span>:</span></div><div class="line">        self.id = id</div><div class="line">        self.name = name</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self)</span>:</span></div><div class="line">        conn = get_conn()</div><div class="line">        cursor = conn.cursor()</div><div class="line">        sql = <span class="string">'insert into user(user_id, user_name) VALUES (%s, %s)'</span></div><div class="line">        cursor.execute(sql, (self.id, self.name))</div><div class="line">        conn.commit()</div><div class="line">        cursor.close()</div><div class="line">        conn.close()</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">()</span>:</span></div><div class="line">        sql = <span class="string">'select * from user'</span></div><div class="line">        conn = get_conn()</div><div class="line">        cursor = conn.cursor()</div><div class="line">        cursor.execute(sql)</div><div class="line">        rows = cursor.fetchall()</div><div class="line">        users = [User(row[<span class="number">0</span>], row[<span class="number">1</span>]) <span class="keyword">for</span> row <span class="keyword">in</span> rows]</div><div class="line">        cursor.close()</div><div class="line">        conn.close()</div><div class="line">        <span class="keyword">return</span> users</div></pre></td></tr></table></figure>
+</li>
+<li><p>在manage中可以执行SQL</p>
+<p>调用对象sql方法即可</p>
+</li>
+</ul>
+<h3 id="Mysql-ORM使用"><a href="#Mysql-ORM使用" class="headerlink" title="Mysql ORM使用"></a>Mysql ORM使用</h3><ul>
+<li>使用 flask_sqlalchemy的Model对象定义Model</li>
+<li>代码简洁，且无需自己实现SQL操作</li>
+<li>会有一定的资源消耗</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># your app</span></div><div class="line">app = Flask(__name__)</div><div class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = <span class="string">'mysql://root:123456@localhost:3306/test'</span></div><div class="line">db = SQLAlchemy(app)</div></pre></td></tr></table></figure>
+<h4 id="数据库配置"><a href="#数据库配置" class="headerlink" title="数据库配置"></a>数据库配置</h4><ul>
+<li>app.config中配置数据库URI</li>
+<li><code>app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;mysql://root:123456@localhost:3306/test&#39;</code></li>
+</ul>
+<h4 id="创建db对象"><a href="#创建db对象" class="headerlink" title="创建db对象"></a>创建db对象</h4><ul>
+<li><code>db = SQLAlchemy(app)</code></li>
+</ul>
+<ul>
+<li>创建完APP后，就应该创建对应的db对象，然后在models.py中引用db</li>
+</ul>
+<h4 id="定义Model"><a href="#定义Model" class="headerlink" title="定义Model"></a>定义Model</h4><ul>
+<li>model的column属性名必须和数据表中字段一致</li>
+<li>变量名一致</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># model.py</span></div><div class="line"><span class="keyword">from</span> adder <span class="keyword">import</span> db</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Model)</span>:</span></div><div class="line">    user_id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    user_name = db.Column(db.String)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, id, name)</span>:</span></div><div class="line">        self.user_id = id</div><div class="line">        self.user_name = name</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'id:&#123;&#125; ----- name:&#123;&#125;'</span>.format(self.id, self.name)</div></pre></td></tr></table></figure>
+<h4 id="Model相关操作"><a href="#Model相关操作" class="headerlink" title="Model相关操作"></a>Model相关操作</h4><ul>
+<li><p>对于数据库的SQL操作都是使用的db对象</p>
+</li>
+<li><p>一个数据库的warning</p>
+<p><code>FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.</code>解决办法，</p>
+<p><code>app.config[&#39;SQLALCHEMY_TRACK_MODIFICATIONS&#39;]=True</code></p>
+</li>
+<li><p>一个Mysql数据库的bug</p>
+<p>Warning: Incorrect string value: ‘\xD6\xD0\xB9\xFA\xB1\xEA…’ for column ‘VARIABLE_VA<br>LUE’ at row 480</p>
+<p>​</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># manage.py</span></div><div class="line"><span class="keyword">from</span> models <span class="keyword">import</span> User</div><div class="line"><span class="keyword">from</span> adder <span class="keyword">import</span> app, db</div><div class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</div><div class="line">manager = Manager(app)</div><div class="line"></div><div class="line"><span class="meta">@manager.command</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_user</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> User.query.all():</div><div class="line">        <span class="keyword">print</span> x</div><div class="line"></div><div class="line"><span class="meta">@manager.option('-i', dest='id')</span></div><div class="line"><span class="meta">@manager.option('-n', dest='name', default='sss')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_user</span><span class="params">(id, name)</span>:</span></div><div class="line">    u = User(int(id), str(name))</div><div class="line">    db.session.add(u)</div><div class="line">    db.session.commit()</div></pre></td></tr></table></figure>
+<h3 id="Mobgodb-ORM使用"><a href="#Mobgodb-ORM使用" class="headerlink" title="Mobgodb ORM使用"></a>Mobgodb ORM使用</h3><p>Mongodb是文档型的，Document，准确的讲应该是Document-Relational Mapping.</p>
+<p>flask_mongoengine</p>
+<ul>
+<li>事务要求高的系统不适合Mongodb</li>
+<li>使用flask_Mongengine扩展来实现ORM</li>
+</ul>
+<ul>
+<li>app.config中配置数据库URI</li>
+<li><code>app.config[&#39;MONGODB_SETTINGS&#39;] = {&#39;db&#39;: &#39;test&#39;}</code></li>
+</ul>
+<h4 id="数据库配置-1"><a href="#数据库配置-1" class="headerlink" title="数据库配置"></a>数据库配置</h4><p>三种方式可选</p>
+<ul>
+<li><p><code>app.config[&#39;MONGODB_SETTINGS&#39;] = { &#39;db&#39;: &#39;project1&#39;, &#39;username&#39;:&#39;webapp&#39;,   &#39;password&#39;:&#39;pwd123&#39;}</code></p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.config[<span class="string">'MONGODB_SETTINGS'</span>] = &#123;</div><div class="line">    <span class="string">'db'</span>: <span class="string">'project1'</span>,</div><div class="line">    <span class="string">'host'</span>: <span class="string">'mongodb://localhost/database_name'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app.config[<span class="string">'MONGODB_DB'</span>] = <span class="string">'project1'</span></div><div class="line">app.config[<span class="string">'MONGODB_HOST'</span>] = <span class="string">'192.168.1.35'</span></div><div class="line">app.config[<span class="string">'MONGODB_PORT'</span>] = <span class="number">12345</span></div><div class="line">app.config[<span class="string">'MONGODB_USERNAME'</span>] = <span class="string">'webapp'</span></div><div class="line">app.config[<span class="string">'MONGODB_PASSWORD'</span>] = <span class="string">'pwd123'</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="创建db对象-1"><a href="#创建db对象-1" class="headerlink" title="创建db对象"></a>创建db对象</h4><ul>
+<li><p><code>db = MongoEngine(app)</code></p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from flask_mongoengine import MongoEngine</div><div class="line">app.config[&apos;MONGODB_SETTINGS&apos;] = &#123;&apos;db&apos;: &apos;test&apos;&#125;</div><div class="line">db = MongoEngine(app)</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建完APP后，就应该创建对应的db对象，然后在models.py中引用db</p>
+</li>
+</ul>
+<h4 id="定义Document对象"><a href="#定义Document对象" class="headerlink" title="定义Document对象"></a>定义Document对象</h4><ul>
+<li>document对象和mongodb中的数据结构要保持一致。</li>
+<li>变量命名一致</li>
+<li>不需要实现init</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># model.py</span></div><div class="line"><span class="keyword">from</span> adder <span class="keyword">import</span> db</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Document)</span>:</span></div><div class="line">    meta = &#123;</div><div class="line">        <span class="string">'collection'</span>: <span class="string">'todo'</span>,</div><div class="line">        <span class="string">'ordering'</span>: [<span class="string">'-create_at'</span>],</div><div class="line">        <span class="string">'strict'</span>: <span class="keyword">False</span>,</div><div class="line">    &#125;</div><div class="line">    user_id = db.StringField()</div><div class="line">    user_name = db.StringField()</div><div class="line">    create_at = db.DateTimeField(default=datetime.now)</div><div class="line">    is_completed = db.BooleanField(default=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"id: &#123;&#125;---name:&#123;&#125;"</span>.format(self.user_id, self.user_name)</div></pre></td></tr></table></figure>
+<h4 id="Model相关操作-1"><a href="#Model相关操作-1" class="headerlink" title="Model相关操作"></a>Model相关操作</h4><ul>
+<li><p>对于数据库的SQL操作都是使用的db对象</p>
+</li>
+<li><p>保存用document对象的save方法</p>
+</li>
+<li><p>查询所有用XXX.objects.all()</p>
+<p>​</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># manage.py</span></div><div class="line"><span class="keyword">from</span> models <span class="keyword">import</span> User</div><div class="line"><span class="keyword">from</span> adder <span class="keyword">import</span> app, db</div><div class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager</div><div class="line">manager = Manager(app)</div><div class="line"></div><div class="line"><span class="meta">@manager.command</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">all_user</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> User.objects.all():</div><div class="line">        <span class="keyword">print</span> x</div><div class="line"></div><div class="line"><span class="meta">@manager.option('-i', dest='id')</span></div><div class="line"><span class="meta">@manager.option('-n', dest='name', default='sss')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_user</span><span class="params">(id, name)</span>:</span></div><div class="line">    u = User(str(id), str(name))</div><div class="line">    u.save()</div></pre></td></tr></table></figure>
+<ul>
+<li><p>条件查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">task = <span class="string">'cooking'</span></div><div class="line">todo = Todo.objects(task=task).first()</div></pre></td></tr></table></figure>
+</li>
+<li><p>排序 用<code>Todo.objects().order_by(&#39;create_at&#39;)</code></p>
+</li>
+<li><p>更新、删除数据时，先找到，在更新</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">todo = Todo.objects(task=<span class="string">'1'</span>).first()  <span class="comment"># 先查找</span></div><div class="line"><span class="keyword">if</span> todo:</div><div class="line">    todo.update(is_completed=<span class="keyword">True</span>)   <span class="comment"># 再更新</span></div><div class="line"> todo.delete()</div></pre></td></tr></table></figure>
+</li>
+<li><p>还可以实现分页</p>
+</li>
+</ul>
+<h2 id="事件驱动-触发器"><a href="#事件驱动-触发器" class="headerlink" title="事件驱动 触发器"></a>事件驱动 触发器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span><span class="params">(db.Model)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'posts'</span></div><div class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    title = db.Column(db.String)</div><div class="line">    body = db.Column(db.String)</div><div class="line">    body_html = db.Column(db.String)</div><div class="line">    created = db.Column(db.DateTime, index=<span class="keyword">True</span>, default=datetime.utcnow)</div><div class="line"></div><div class="line">    comments = db.relationship(<span class="string">'Comment'</span>, backref=<span class="string">'post'</span>)</div><div class="line">    author_id = db.Column(db.Integer, db.ForeignKey(<span class="string">'users.id'</span>))</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_body_changed</span><span class="params">(target, value, oldvalue, initiator)</span>:</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> (value <span class="keyword">is</span> <span class="string">''</span>):</div><div class="line">            target.body_html = <span class="string">''</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            target.body_html = markdown(value)</div><div class="line"></div><div class="line"></div><div class="line">db.event.listen(Post.body, <span class="string">'set'</span>, Post.on_body_changed)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/flask/">flask</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Flask/">Flask</a>, <a href="/tags/Web/">Web</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/09/06/技术/python实现简单的CGI程序/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/09/04/技术/RESTful API 设计/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">2</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>19</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2017</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

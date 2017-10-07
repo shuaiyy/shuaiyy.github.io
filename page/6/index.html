@@ -30,17 +30,41 @@
   <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
   
   
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
 })();
 </script>
 
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
 
+
+
+
+
+  
+    
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-107525911-1']);
@@ -259,122 +283,6 @@ var _hmt = _hmt || [];
       
         <div class="icon"></div>
 		
-          <time datetime="2016-08-06T16:00:00.000Z"><a href="/2016/08/07/技术/python编程技巧/">2016-08-07</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/08/07/技术/python编程技巧/">python编程技巧</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#python编程技巧"><span class="toc-text">python编程技巧</span></a></li></ol>
-    </div>
-
-      
-        <h3 id="python编程技巧"><a href="#python编程技巧" class="headerlink" title="python编程技巧"></a>python编程技巧</h3><ul>
-<li><code>x的n次方求解 ： x ** n</code></li>
-<li>22</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-str/">2016-07-29</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/29/技术/python-str/">Python 字符串技巧</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#将-u3232-u6674转换成unicode字符"><span class="toc-text">将 \u3232\u6674转换成unicode字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。"><span class="toc-text">写入unicode报错‘ascii’ codec can’t encode character in position 0-3。</span></a></li></ol>
-    </div>
-
-      
-        <h3 id="将-u3232-u6674转换成unicode字符"><a href="#将-u3232-u6674转换成unicode字符" class="headerlink" title="将 \u3232\u6674转换成unicode字符"></a>将 <code>\u3232\u6674</code>转换成unicode字符</h3><ul>
-<li>运用str对象的decode方法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#任何字符，都可以在：</div><div class="line">#http://unicodelookup.com/</div><div class="line">#中，查找到对应的unicode的值</div><div class="line"></div><div class="line">s=&apos;\u6210\u529f&apos;</div><div class="line">print s.decode(&apos;unicode-escape&apos;)</div><div class="line">...成功</div></pre></td></tr></table></figure>
-<h3 id="写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。"><a href="#写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。" class="headerlink" title="写入unicode报错‘ascii’ codec can’t encode character in position 0-3。"></a>写入unicode报错‘ascii’ codec can’t encode character in position 0-3。</h3><p>py2如果开头指定了utf-8，Python的解释器根据 “#encoding:utf-8” 来按utf-8的编码规则来理解这些字符码<br>•当你把字符串写到文件中去时，因为你的字符串是 unicode，所以Python会（自动）先调用encode方法来编码unicode字符串，然后再写入文件<br>•当调用encode方法时，因为没有指定编码格式，所以采用默认值 ascii，ascii并不能解释定义的utf-8中翻译的字符码，所以报错</p>
-<p>今天遇到一个错误： UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-3 搜索网上找到一个解决办法（转载自 <a href="http://blog.sina.com.cn/s/blog_727b603701019pyl.html）" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_727b603701019pyl.html）</a> 异常: ‘ascii’ codec can’t encode characters 字符集的问题，在文件前加两句话： reload(sys) sys.setdefaultencoding( “utf-8” ) 完美解决，</p>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
           <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-dict-reverse/">2016-07-29</a></time>
         
 	  
@@ -385,25 +293,19 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#dict的key与value转置"><span class="toc-text">dict的key与value转置</span></a></li></ol>
-    </div>
-
       
         <h3 id="dict的key与value转置"><a href="#dict的key与value转置" class="headerlink" title="dict的key与value转置"></a>dict的key与value转置</h3><ul>
 <li>如果value1值唯一，则直接交换key1与value1的位置</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from collections import OrderedDict as od_dict #生成有序的dict</div><div class="line"></div><div class="line">d= od_dict((v,k) for k,v in OID_FS_lst.items()) </div><div class="line">print d</div></pre></td></tr></table></figure>
-<ul>
-<li>如果value1不唯一，直接交换，则作为key2插入的value1值，会被相同的key2覆盖。也就说会丢失部分值。</li>
-</ul>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/29/技术/python-dict-reverse/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -445,12 +347,6 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Cookiecutter模板创建Python项目样式"><span class="toc-text">使用Cookiecutter模板创建Python项目样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import自己的模块"><span class="toc-text">import自己的模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fatal-error-in-launcher-Unable-to-create-process-using-‘“‘"><span class="toc-text">Fatal error in launcher: Unable to create process using ‘“‘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pip安装模块失败的解决办法"><span class="toc-text">pip安装模块失败的解决办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python2-Unicode和普通字符串之间转换"><span class="toc-text">python2 Unicode和普通字符串之间转换</span></a></li></ol>
-    </div>
-
       
         <h3 id="使用Cookiecutter模板创建Python项目样式"><a href="#使用Cookiecutter模板创建Python项目样式" class="headerlink" title="使用Cookiecutter模板创建Python项目样式"></a>使用Cookiecutter模板创建Python项目样式</h3><ul>
 <li>首先安装cookiecutter</li>
@@ -461,24 +357,14 @@ var _hmt = _hmt || [];
 <li>在某个目录下执行</li>
 </ul>
 <p><code>cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git</code>，使用找到的模板创建项目，输入相关参数</p>
-<ul>
-<li>是否开源发布看个人</li>
-</ul>
-<h3 id="import自己的模块"><a href="#import自己的模块" class="headerlink" title="import自己的模块"></a>import自己的模块</h3><ul>
-<li>首先<code>.py</code>文件和主文件在一个目录下</li>
-<li><code>import name</code> ,不要加.py,否则报错 </li>
-</ul>
-<h3 id="Fatal-error-in-launcher-Unable-to-create-process-using-‘“‘"><a href="#Fatal-error-in-launcher-Unable-to-create-process-using-‘“‘" class="headerlink" title="Fatal error in launcher: Unable to create process using ‘“‘"></a>Fatal error in launcher: Unable to create process using ‘“‘</h3><p>Windows新装的python3自带了easy_install和pip，但执行时会出错<code>Fatal error in launcher: Unable to create process using &#39;&quot;&#39;</code> ,<br>1、确保环境变量中没空格。<br>2、如果不是环境变量问题，则重装\升级easy_install和pip，<code>python3 -m pip install -U pip</code>,<code>python3 -m pip install -U setuptools</code>。问题解决。</p>
-<h3 id="pip安装模块失败的解决办法"><a href="#pip安装模块失败的解决办法" class="headerlink" title="pip安装模块失败的解决办法"></a>pip安装模块失败的解决办法</h3><p>windows下直接pip安装lxml失败，可以先<code>pip install wheel</code> ,然后去<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml" target="_blank" rel="external">Python Extension Packages for Windows - Christoph Gohlke</a>上下载对应系统的安装包，然后<code>pip install c:\lxml-3.6.4-cp27-cp27m-win_amd64.whl</code><br>其他pip无法直接安装的模块也可用这种方法。</p>
-<h3 id="python2-Unicode和普通字符串之间转换"><a href="#python2-Unicode和普通字符串之间转换" class="headerlink" title="python2 Unicode和普通字符串之间转换"></a>python2 Unicode和普通字符串之间转换</h3><p>问题描述：You need to deal with data that doesn’t fit inthe ASCII character set.<br>解决： 将Unicode转换成普通的Python字符串:”编码(encode)”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">u_string = u&quot;你好&quot;</div><div class="line">utf8_s = u_string.encode(&apos;utf-8&apos;)</div></pre></td></tr></table></figure>
-<p>ascii_s ,iso_s,utf16_s 对应的编码集分别为”ascii” “ISO-8859-1”   “utf-16”<br>将普通的Python字符串转换成Unicode: “解码(decode)”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">plainstring1 = unicode(utf8string, &quot;utf-8&quot;)</div><div class="line"> plainstring2 = unicode(asciistring, &quot;ascii&quot;)</div><div class="line"> plainstring3 = unicode(isostring, &quot;ISO-8859-1&quot;)</div><div class="line">plainstring4 = unicode(utf16string, &quot;utf-16&quot;)</div></pre></td></tr></table></figure>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/28/技术/something-with-python-project/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -520,91 +406,18 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看内核版本"><span class="toc-text">查看内核版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改源"><span class="toc-text">修改源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh远程登陆"><span class="toc-text">ssh远程登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用ssh上传下载文件"><span class="toc-text">使用ssh上传下载文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FTP-服务配置"><span class="toc-text">FTP 服务配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装VMware-tools"><span class="toc-text">安装VMware tools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改防火墙端口"><span class="toc-text">修改防火墙端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改DNS"><span class="toc-text">修改DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux下python2-与3共存"><span class="toc-text">Linux下python2 与3共存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注销Linux"><span class="toc-text">注销Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础命令的操作"><span class="toc-text">基础命令的操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重要的热键"><span class="toc-text">重要的热键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在线求助-man-page"><span class="toc-text">在线求助 man page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正确的关机方法"><span class="toc-text">正确的关机方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩解压"><span class="toc-text">压缩解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用screen"><span class="toc-text">使用screen</span></a></li></ol>
-    </div>
-
       
         <h3 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uname -r</div></pre></td></tr></table></figure>
 <p>稳定版本的偶数版，如2.6.x，适合于商业与家用环境使用；开发中版本，如2.5.x，适合开发特殊功能的环境。</p>
 <p>安装内核文件：<code>apt-get install linux-headers-$(uname -r)</code></p>
-<h3 id="修改源"><a href="#修改源" class="headerlink" title="修改源"></a>修改源</h3><p><code>vim /etc/apt/sources.list</code></p>
-<p><code>deb http://http.kali.org/kali kali-rolling main contrib non-free</code></p>
-<h3 id="ssh远程登陆"><a href="#ssh远程登陆" class="headerlink" title="ssh远程登陆"></a>ssh远程登陆</h3><p>设置允许root登陆ssh<br>新装的系统可能需要要修改root密码<br>gedit /etc/ssh/sshd_config<br>修改 PermitRootLogin yes</p>
-<p>PermitRootLogin yes<br>PermitEmptyPasswords no<br>注意重启ssh service</p>
-<p>设置系统开机启动sshd服务<br>chkconfig sshd on 即可<br>but debian8不行，<br>　　如果是debian 8，直接使用systemd，比如：<br>sudo systemctl enable xxx.service<br>sudo systemctl disable xxx.service</p>
-<p>Mac：（若以root身份登陆，将username改为root）</p>
-<p>登陆</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh root@IPaddress</div></pre></td></tr></table></figure>
-<p>Linux：(若以root身份登陆，将username删掉）Linux默认root的提示符为#,而一般身份用户的提示符为$。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">su - username</div></pre></td></tr></table></figure>
-<h3 id="使用ssh上传下载文件"><a href="#使用ssh上传下载文件" class="headerlink" title="使用ssh上传下载文件"></a>使用ssh上传下载文件</h3><blockquote>
-<p>很多系统初始不带这工具，但感觉比起ftp，sftp传输文件，还是方便很多的。</p>
-</blockquote>
-<p>首先安装sz，rz命令行工具，apt-get install lrzsz。<br>然后使用xshell或secureRT登陆服务器，putty好像不行。</p>
-<ul>
-<li><p>上传 rz -E<br>输入rz -E会自动弹出打开文件窗口，选择要上传的文件。</p>
-</li>
-<li><p>下载 sz file-path<br>输入sz file，会弹出窗口选择file文件下载存放的位置。</p>
-</li>
-</ul>
-<h3 id="FTP-服务配置"><a href="#FTP-服务配置" class="headerlink" title="FTP 服务配置"></a>FTP 服务配置</h3><p><a href="http://www.open-open.com/lib/view/open1427547646481.html" target="_blank" rel="external">参考链接:proftp</a></p>
-<p>安装配置FTP服务器</p>
-<ol>
-<li>切换root</li>
-<li>安装proftpd，在确认安装中选Y，并选择《Standalone》安装<br><code>apt-get install proftpd</code></li>
-<li>安装完以后将实现先停掉，以方便改配置<br><code>/etc/init.d/proftpd stop</code> 或<code>service proftpd stop</code></li>
-<li><p>编辑proftpd的配置文件<br><code>nano /etc/proftpd/proftpd.conf</code><br>更改FTP根目录, 默认为: <code>DefaultRoot  ~</code>，比如说改为:<code>DefaultRoot          /var/www</code><br>允许匿名用户访问,找到配置文件中的 “<anonymous ~ftp="">“ 和 “</anonymous>“ 之间的部分，将注释移除即可。</p>
-</li>
-<li><p>保存配置文件 “/etc/proftpd.conf”,重启proftpd服务<br><code>/etc/init.d/proftpd restart</code></p>
-</li>
-<li><p>为FTP服务器添加用户名、密码和读写权限</p>
-</li>
-<li>FTP服务的用户名密码其实就是拥有特定目录权限的linux用户及其密码，所以添加一个FTP用户并设置密码，用户信息即可<br><code>adduser tester -home /var/www</code></li>
-<li>还要为此用户添加FTP共享目录的读写权限，[直接改变所有权]<br><code>chown tester /var/www</code></li>
-<li>[可选] 当用户非常多时，可以添加一个用户组，统一配置权限<br><code>addgroup ftpuser</code><br>并将tester添加进ftpuser组<br><code>adduser tester ftpuser</code><br>注* 删除用户和用户组<br><code>deluser tester</code><br><code>delgroup tester</code><h3 id="安装VMware-tools"><a href="#安装VMware-tools" class="headerlink" title="安装VMware tools"></a>安装VMware tools</h3></li>
-</ol>
-<h3 id="修改防火墙端口"><a href="#修改防火墙端口" class="headerlink" title="修改防火墙端口"></a>修改防火墙端口</h3><ul>
-<li>开启防火墙 UDP161端口 for snmp<ul>
-<li>查看防火墙配置：<code>iptables –L –n</code></li>
-<li>添加一条规则记录：<code>iptables -I INPUT -p udp --dport 161 -j ACCEPT</code></li>
-<li>保存规则使防火墙生效<code>iptables-save</code>(debian linux),ubuntu下的保存iptables命令<code>iptables -save</code>。</li>
-</ul>
-</li>
-<li>常用端口<ul>
-<li>21是指FTP默认端口、80是指web服务器端口、3306是指MySQL数据库链接端口，22是指SSH远程管理端口，9000到9045是FTP被动模式端口范围</li>
-</ul>
-</li>
-</ul>
-<h3 id="修改DNS"><a href="#修改DNS" class="headerlink" title="修改DNS"></a>修改DNS</h3><p>永久修改网卡DNS<br>sudo –i<br>cd /etc/resolvconf/resolv.conf.d<br>vim base<br>添加如下内容<br>nameserver 8.8.8.8<br>nameserver 8.8.4.4</p>
-<h3 id="Linux下python2-与3共存"><a href="#Linux下python2-与3共存" class="headerlink" title="Linux下python2 与3共存"></a>Linux下python2 与3共存</h3><ul>
-<li><p>安装Python3后，建立ln，使用Python（Python2），Python3 来区分两个版本，使用sudo apt-get install python3-setuptools 安装Easy_install，再使用sudo easy_install3 pip 安装Pip，Pip 对应Python2，Pip3 对应Python3。Easy_Install 对应Python2，Easy_Install3 对应Python3.</p>
-</li>
-<li><p>python使用virtualenv创建隔离环境</p>
-</li>
-</ul>
-<h3 id="注销Linux"><a href="#注销Linux" class="headerlink" title="注销Linux"></a>注销Linux</h3><p>注销Linux并不意味着关机，只是用户离开系统。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exit</div></pre></td></tr></table></figure>
-<h3 id="基础命令的操作"><a href="#基础命令的操作" class="headerlink" title="基础命令的操作"></a>基础命令的操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">command [-options] parameter1 parameter2 ···</div></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">echo $LANG   #显示目前支持的语言</div><div class="line">LANG=en_US   #将语言改为英文系</div><div class="line">date         #显示日期与实践</div><div class="line">cal 10 2014  #显示日历</div><div class="line">bc           #计算器</div><div class="line">quit         #退出</div></pre></td></tr></table></figure>
-<h3 id="重要的热键"><a href="#重要的热键" class="headerlink" title="重要的热键"></a>重要的热键</h3><p><code>[tab]</code>：连按两次，具有“命令补全”和“文件补齐”的作用。<br><code>[control]+c</code>：中断目前程序。<br><code>[control]+d</code>：键盘输入结束；直接离开文字界面（相当于<code>`exit</code>）。</p>
-<h3 id="在线求助-man-page"><a href="#在线求助-man-page" class="headerlink" title="在线求助 man page"></a>在线求助 man page</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">man command  #command是要查询的命令名称</div></pre></td></tr></table></figure>
-<p>进入man命令后，可按<code>空格</code>往下翻页，按<code>q</code>键离开。<br>在man page中，可以在任何时候输入<code>/keyword</code>来查询关键字，比如/date.</p>
-<h3 id="正确的关机方法"><a href="#正确的关机方法" class="headerlink" title="正确的关机方法"></a>正确的关机方法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">who         #查看目前有谁在线</div><div class="line">netstat -a  #查看网络的联机状态</div><div class="line">ps -aux     #查看后台执行的程序</div></pre></td></tr></table></figure>
-<p>数据同步写入磁盘：为了防止不正常关机导致的内存数据没有来得及写入磁盘，在文字界面输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sync</div></pre></td></tr></table></figure>
-<p>惯用的关机命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">shutdown -h now     #立刻关机</div><div class="line">shutdown -h 20:25   #晚上8点25分关机</div><div class="line">shutdown -h +10     #过十分钟后关机</div><div class="line">shutdown -r now     #立刻重启</div><div class="line">shutdown -r +30 ‘The system will be reboot’    #再过30分钟关机，并显示后面的消息给所有在线用户</div><div class="line">shutdown -k now ‘The system will be reboot’    #仅发出警告，系统并不会真正关机</div></pre></td></tr></table></figure>
-<p>重启、关机：reboot，halt，poweroff。务必用man去查询一下。</p>
-<h3 id="压缩解压"><a href="#压缩解压" class="headerlink" title="压缩解压"></a>压缩解压</h3><p><code>unrar x a.rar ./a/</code></p>
-<h3 id="使用screen"><a href="#使用screen" class="headerlink" title="使用screen"></a>使用screen</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">screen -S myjobSession</div><div class="line">screen -r sessionname/ID 恢复session</div><div class="line">screen -ls</div><div class="line">exit  退出screen session，终止任务，</div><div class="line">ctrl+a+d  暂时离开/后台运行session，先按住ctrl，然后按一下a，按一下d</div><div class="line">远程演示</div><div class="line">首先演示者先在服务器上执行 screen -S test 创建一个screen会话，观众可以链接到远程服务器上执行screen -x test  观众屏幕上就会出现和演示者同步</div><div class="line"></div><div class="line">其它命令</div><div class="line">Ctrl + a，d       #暂离当前会话</div><div class="line">Ctrl + a，c        #在当前screen会话中创建一个子会话 </div><div class="line">Ctrl + a，w       #子会话列表 </div><div class="line">Ctrl + a，p       #上一个子会话 </div><div class="line">Ctrl + a，n       #下一个子会话 </div><div class="line">Ctrl + a，0-9   #在第0窗口至第9子会话间切换</div><div class="line"></div><div class="line">有时在恢复screen时会出现There is no screen to be resumed matching ****，遇到这种情况咋办呢？输入命令</div><div class="line">screen -d ****</div></pre></td></tr></table></figure>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/26/技术/config-of-Linux/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -646,92 +459,20 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux目录操作"><span class="toc-text">Linux目录操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#几个常见的处理目录的命令"><span class="toc-text">几个常见的处理目录的命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件与目录管理"><span class="toc-text">文件与目录管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件内容查询"><span class="toc-text">文件内容查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件与目录的默认权限与隐藏权限"><span class="toc-text">文件与目录的默认权限与隐藏权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置SUID-SGID-SBIT权限"><span class="toc-text">配置SUID,SGID,SBIT权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#权限与命令的关系"><span class="toc-text">权限与命令的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、让使用者能进入某目录成为『可工作目录』的基本权限为何："><span class="toc-text">一、让使用者能进入某目录成为『可工作目录』的基本权限为何：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、使用者在某个目录内读取一个文件的基本权限为何？"><span class="toc-text">二、使用者在某个目录内读取一个文件的基本权限为何？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、让使用者可以修改一个文件的基本权限为何？"><span class="toc-text">三、让使用者可以修改一个文件的基本权限为何？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、让一个使用者可以创建一个文件的基本权限为何？"><span class="toc-text">四、让一个使用者可以创建一个文件的基本权限为何？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、让使用者进入某目录并运行该目录下的某个命令之基本权限为何？"><span class="toc-text">五、让使用者进入某目录并运行该目录下的某个命令之基本权限为何？</span></a></li></ol></li></ol>
-    </div>
-
       
         <h3 id="Linux目录操作"><a href="#Linux目录操作" class="headerlink" title="Linux目录操作"></a>Linux目录操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.         # 代表此层目录</div><div class="line">..        # 代表上一层目录</div><div class="line">-         # 代表前一个工作目录</div><div class="line">~         # 代表『目前使用者身份』所在的家目录</div><div class="line">~account  # 代表 account 这个使用者的家目录(account是个帐号名称)</div></pre></td></tr></table></figure>
 <ul>
 <li>在所有目录底下都会存在的两个目录，分别是<code>.</code>与<code>..</code></li>
 <li>根目录的上一层<code>(..)</code>与根目录自己<code>(.)</code>是同一个目录</li>
 </ul>
-<h4 id="几个常见的处理目录的命令"><a href="#几个常见的处理目录的命令" class="headerlink" title="几个常见的处理目录的命令"></a>几个常见的处理目录的命令</h4><ul>
-<li>cd：变换目录，cd是Change Directory的缩写</li>
-<li>pwd：显示目前的目录，pwd是Print Working Directory的缩写</li>
-<li>mkdir：创建一个新的目录</li>
-<li>rmdir：删除一个空的目录</li>
-<li>mv：移动文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pwd -P                   # -P：代表显示正确的完整路径，而不是连接路径</div><div class="line">mkdir -m xxx             # -m：直接配置文件的权限</div><div class="line">mkdir -p test1/test2     # -p：直接将所需要的目录(包含上一级目录)递回创建起来！</div><div class="line">PATH=&quot;$PATH&quot;:/root       # 将/root路径加入PATH环境变量中</div></pre></td></tr></table></figure>
-<h3 id="文件与目录管理"><a href="#文件与目录管理" class="headerlink" title="文件与目录管理"></a>文件与目录管理</h3><ul>
-<li>文件与目录的检视： ls</li>
-<li>复制、删除与移动： cp, rm, mv</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cp -a        # 将文件的所有特性都一起复制过来</div><div class="line">cp -p        # 连同文件的属性一起复制过去，而非使用默认属性(备份常用)</div><div class="line">cp -r        # 可以复制目录，但是，文件与目录的权限可能会被改变</div><div class="line">rm -i        # 互动模式，在删除前会询问使用者是否动作</div><div class="line">rm -r        # 连目录下的东西一起删掉，并且不会询问，慎用</div><div class="line">mv -f        # force强制移动，如果目标文件已经存在，不会询问而直接覆盖</div><div class="line">mv -i        # 若目标文件 (destination) 已经存在时，就会询问是否覆盖</div></pre></td></tr></table></figure>
-<h3 id="文件内容查询"><a href="#文件内容查询" class="headerlink" title="文件内容查询"></a>文件内容查询</h3><ul>
-<li>直接检视文件内容： cat, tac, nl （常用）</li>
-<li>可翻页检视： more, less （常用）</li>
-<li>数据撷取： head, tail</li>
-<li>非纯文字档： od</li>
-<li>修改文件时间与建置新档： touch</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cat [-AbEnTv] filename # 由第一行开始显示文件内容。-b列出非空白行行号；-n列出所有行号。</div><div class="line">tac                    # 从最后一行开始显示文件内容，tac就是cat倒着写！</div><div class="line">nl                     # 显示文件内容，顺便输出行号</div><div class="line">more                   # 一页一页地显示文件内容</div><div class="line">less                   # 与more类似，但可以往前翻页</div><div class="line">head [-n number]       # 只看文件头几行，默认是10行，number是自定义行数</div><div class="line">tail                   # 只看文件尾几行，文件很大的时候常用</div><div class="line">od                     # 以二进制方式读取文件内容</div></pre></td></tr></table></figure>
-<h3 id="文件与目录的默认权限与隐藏权限"><a href="#文件与目录的默认权限与隐藏权限" class="headerlink" title="文件与目录的默认权限与隐藏权限"></a>文件与目录的默认权限与隐藏权限</h3><ul>
-<li>文件默认权限：umask</li>
-<li>文件隐藏属性： chattr, lsattr</li>
-<li>文件特殊权限：SUID, SGID, SBIT, 权限配置</li>
-<li>观察文件类型：file</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">umask           # 后三位数是被拿走的权限分数，比如0022，u没有被拿走权限，g和o被拿走了w权限</div><div class="line">umask -S        # 以符号类型来显示权限</div><div class="line">umask number    # 配置自己需要的权限</div></pre></td></tr></table></figure>
-<p>在默认的情况中，root的umask会拿掉比较多的属性，root的umask默认是<code>022</code>， 这是基於安全的考量啦～至於一般身份使用者，通常他们的 umask 为<code>002</code> ，亦即保留同群组的写入权力。</p>
-<ul>
-<li>特殊权限<code>s</code>和<code>t</code></li>
-<li>Set UID，简称SUID，当s标志在文件拥有者的x项目为SUID，对目录无效</li>
-<li>Set GID，简称SGID，当s标志在群组的x项目为SGID，对目录有效</li>
-<li>Sticky Bit, 简称SBIT，目前只针对目录有效，对於文件已经没有效果了</li>
-</ul>
-<h3 id="配置SUID-SGID-SBIT权限"><a href="#配置SUID-SGID-SBIT权限" class="headerlink" title="配置SUID,SGID,SBIT权限"></a>配置SUID,SGID,SBIT权限</h3><p>在原有的权限数字前面加上需要配置的权限数字。<br>比如<code>755</code>-&gt;<code>4755</code> ，就意味着<code>-rwxr-xr-x</code>变为了<code>-rwsr-xr-x</code>。</p>
-<ul>
-<li>4 为 SUID</li>
-<li>2 为 SGID</li>
-<li>1 为 SBIT</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">chmod 4755 filename</div><div class="line">chmod u=rwxs,go=x test; ls -l test      # 配置权限为-rws--x--x的模样</div><div class="line">chmod g+s,o+t test; ls -l test          # 配置权限为-rws--s--t，即加入SGID,SBIT权限</div></pre></td></tr></table></figure>
-<p>###命令与文件的搜寻</p>
-<ul>
-<li>命令档名的搜寻：which</li>
-<li>文件档名的搜寻：whereis, locate, find</li>
-</ul>
-<h3 id="权限与命令的关系"><a href="#权限与命令的关系" class="headerlink" title="权限与命令的关系"></a>权限与命令的关系</h3><h4 id="一、让使用者能进入某目录成为『可工作目录』的基本权限为何："><a href="#一、让使用者能进入某目录成为『可工作目录』的基本权限为何：" class="headerlink" title="一、让使用者能进入某目录成为『可工作目录』的基本权限为何："></a>一、让使用者能进入某目录成为『可工作目录』的基本权限为何：</h4><ul>
-<li>可使用的命令：例如 cd 等变换工作目录的命令；</li>
-<li>目录所需权限：使用者对这个目录至少需要具有 x 的权限</li>
-<li>额外需求：如果使用者想要在这个目录内利用 ls 查阅档名，则使用者对此目录还需要 r 的权限。</li>
-</ul>
-<h4 id="二、使用者在某个目录内读取一个文件的基本权限为何？"><a href="#二、使用者在某个目录内读取一个文件的基本权限为何？" class="headerlink" title="二、使用者在某个目录内读取一个文件的基本权限为何？"></a>二、使用者在某个目录内读取一个文件的基本权限为何？</h4><ul>
-<li>可使用的命令：例如本章谈到的 cat, more, less等等</li>
-<li>目录所需权限：使用者对这个目录至少需要具有 x 权限；</li>
-<li>文件所需权限：使用者对文件至少需要具有 r 的权限才行！</li>
-</ul>
-<h4 id="三、让使用者可以修改一个文件的基本权限为何？"><a href="#三、让使用者可以修改一个文件的基本权限为何？" class="headerlink" title="三、让使用者可以修改一个文件的基本权限为何？"></a>三、让使用者可以修改一个文件的基本权限为何？</h4><ul>
-<li>可使用的命令：例如 nano 或未来要介绍的 vi 编辑器等；</li>
-<li>目录所需权限：使用者在该文件所在的目录至少要有 x 权限；</li>
-<li>文件所需权限：使用者对该文件至少要有 r, w 权限</li>
-</ul>
-<h4 id="四、让一个使用者可以创建一个文件的基本权限为何？"><a href="#四、让一个使用者可以创建一个文件的基本权限为何？" class="headerlink" title="四、让一个使用者可以创建一个文件的基本权限为何？"></a>四、让一个使用者可以创建一个文件的基本权限为何？</h4><ul>
-<li>目录所需权限：使用者在该目录要具有 w,x 的权限，重点在 w 啦！</li>
-</ul>
-<h4 id="五、让使用者进入某目录并运行该目录下的某个命令之基本权限为何？"><a href="#五、让使用者进入某目录并运行该目录下的某个命令之基本权限为何？" class="headerlink" title="五、让使用者进入某目录并运行该目录下的某个命令之基本权限为何？"></a>五、让使用者进入某目录并运行该目录下的某个命令之基本权限为何？</h4><ul>
-<li>目录所需权限：使用者在该目录至少要有 x 的权限；</li>
-<li>文件所需权限：使用者在该文件至少需要有 x 的权限</li>
-</ul>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/25/技术/file-and-dir-of-Linux/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -773,73 +514,89 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        
-    </div>
-
       
-        <p>###认识EXT2文件系统<br>每种操作系统能够使用的文件系统并不相同。 举例来说，windows 98以前的微软操作系统主要利用的文件系统是<code>FAT(或FAT16)</code>，windows 2000以后的版本有所谓的<code>NTFS</code>文件系统，至于Linux的正统文件系统则为<code>Ext2</code>(Linux second extended file system, ext2fs)这一个。此外，在默认的情况下，windows操作系统是不会认识Linux的Ext2的。</p>
+        <h3 id="认识EXT2文件系统"><a href="#认识EXT2文件系统" class="headerlink" title="认识EXT2文件系统"></a>认识EXT2文件系统</h3><p>每种操作系统能够使用的文件系统并不相同。 举例来说，windows 98以前的微软操作系统主要利用的文件系统是<code>FAT(或FAT16)</code>，windows 2000以后的版本有所谓的<code>NTFS</code>文件系统，至于Linux的正统文件系统则为<code>Ext2</code>(Linux second extended file system, ext2fs)这一个。此外，在默认的情况下，windows操作系统是不会认识Linux的Ext2的。</p>
 <p>那么文件系统是如何运行的呢？这与操作系统的文件数据有关。较新的操作系统的文件数据除了文件实际内容外，通常含有非常多的属性，例如Linux操作系统的文件权限(rwx)与文件属性(拥有者、群组、时间参数等)。 文件系统通常会将这两部份的数据分别存放在不同的区块，权限与属性放置到<code>inode</code>中，至于实际数据则放置到<code>data block</code>区块中。 另外，还有一个超级区块(<code>superblock</code>)会记录整个文件系统的整体信息，包括inode与block的总量、使用量、剩余量等。</p>
-<p>###文件系统的简单操作</p>
-<p>###磁盘的分割、格式化、检验与挂载</p>
-<ul>
-<li>磁盘分区： fdisk, partprobe</li>
-<li>磁盘格式化： mkfs, mke2fs</li>
-<li>磁盘检验： fsck, badblocks</li>
-<li>磁盘挂载与卸除： mount, umount</li>
-<li>磁盘参数修订： mknod, e2label, tune2fs, hdparm</li>
-</ul>
-<p>###配置启动挂载</p>
-<ul>
-<li>启动挂载 /etc/fstab 及 /etc/mtab</li>
-<li>特殊装置 loop 挂载(映象档不刻录就挂载使用)</li>
-</ul>
-<p>###内存置换空间(swap)之建置</p>
-<ul>
-<li>使用实体分割槽建置swap</li>
-<li>使用文件建置swap</li>
-<li>swap使用上的限制</li>
-</ul>
-<p>###文件系统的特殊观察与操作</p>
-<ul>
-<li>boot sector 与 superblock 的关系</li>
-<li>磁盘空间之浪费问题</li>
-<li>利用 GNU 的 parted 进行分割行为</li>
-</ul>
-<p>###重点回顾</p>
-<ul>
-<li><p>基本上 Linux 的正统文件系统为 Ext2 ，该文件系统内的信息主要有：</p>
-<ul>
-<li>superblock：记录此 filesystem 的整体信息，包括inode/block的总量、使用量、剩余量， 以及文件系统的格式与相关信息等；</li>
-<li>inode：记录文件的属性，一个文件占用一个inode，同时记录此文件的数据所在的 block 号码；</li>
-<li>block：实际记录文件的内容，若文件太大时，会占用多个 block 。</li>
-</ul>
-</li>
-<li><p>Ext2 文件系统的数据存取为索引式文件系统(indexed allocation)</p>
-</li>
-<li>需要碎片整理的原因就是文件写入的 block 太过于离散了，此时文件读取的效能将会变的很差所致。 这个时候可以透过碎片整理将同一个文件所属的 blocks 汇整在一起。</li>
-<li>Ext2文件系统主要有：boot sector, superblock, inode bitmap, block bitmap, inode table, data block 等六大部分。</li>
-<li>data block 是用来放置文件内容数据地方，在 Ext2 文件系统中所支持的 block 大小有 1K, 2K 及 4K 三种而已</li>
-<li>inode 记录文件的属性/权限等数据，其他重要项目为： 每个 inode 大小均固定为 128 bytes； 每个文件都仅会占用一个 inode 而已； 因此文件系统能够创建的文件数量与 inode 的数量有关；</li>
-<li>文件的 block 在记录文件的实际数据，目录的 block 则在记录该目录底下文件名与其 inode 号码的对照表；</li>
-<li>日志式文件系统 (journal) 会多出一块记录区，随时记载文件系统的主要活动，可加快系统复原时间；</li>
-<li>Linux 文件系统为添加效能，会让主存储器作为大量的磁盘高速缓存；</li>
-<li>实体链接只是多了一个文件名对该 inode 号码的链接而已；</li>
-<li>符号链接就类似Windows的快捷方式功能。</li>
-<li>磁盘的使用必需要经过：分割、格式化与挂载，分别惯用的命令为：fdisk, mkfs, mount三个命令</li>
-<li>启动自动挂载可参考/etc/fstab之配置，配置完毕务必使用 mount -a 测试语法正确否；</li>
-</ul>
-<p>###参考资料</p>
-<ul>
-<li><a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem.php#harddisk" target="_blank" rel="external">鸟哥的Linux私房菜 第八章</a></li>
-</ul>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/24/技术/disk-and-fileSystem-management-of-Linux/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-07-19T16:00:00.000Z"><a href="/2016/07/20/折腾/2016-07-20-software-tools-on-mylaptop/">2016-07-20</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/07/20/折腾/2016-07-20-software-tools-on-mylaptop/">我的装机必备软件</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="windows美化"><a href="#windows美化" class="headerlink" title="windows美化"></a>windows美化</h3><ul>
+<li>RocketDock 实现mac上的Dock栏</li>
+<li>TrueLancherBar 目录式的任务栏快捷操作入口</li>
+<li>Q-Dir 1分4的资源管理器</li>
+<li>Fliqlo 极客感十足的时钟屏保</li>
+<li>fences2.01 桌面整理，提高效率<ul>
+<li>win10安装破解后，如出现桌面图标无法移动，需要安装破解补丁</li>
+<li><a href="https://pan.baidu.com/s/19ue8G" target="_blank" rel="external">破解补丁</a> </li>
+</ul>
+</li>
+</ul>
+<h3 id="实用工具"><a href="#实用工具" class="headerlink" title="实用工具"></a>实用工具</h3><ul>
+<li>QQ Internet 国际版QQ，功能少，无广告，消息多时不卡顿</li>
+<li>魔影工厂 音视频格式转换工具</li>
+<li>镜像工具 <ul>
+<li>DAEMON 虚拟光驱</li>
+<li>V-Disk 虚拟光驱</li>
+<li>UltraIso 光驱加载刻录</li>
+<li>win32diskImager 镜像刻录</li>
+</ul>
+</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/07/20/折腾/2016-07-20-software-tools-on-mylaptop/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -881,31 +638,16 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux下配置sublime-text"><span class="toc-text">Linux下配置sublime text</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Sublime-Text-3的下载安装"><span class="toc-text">1. Sublime Text 3的下载安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-安装Package-Control"><span class="toc-text">2. 安装Package Control</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-安装强大的SublimeClang插件"><span class="toc-text">3. 安装强大的SublimeClang插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-工程实例"><span class="toc-text">4. 工程实例</span></a></li></ol></li></ol>
-    </div>
-
       
         <h3 id="Linux下配置sublime-text"><a href="#Linux下配置sublime-text" class="headerlink" title="Linux下配置sublime text"></a>Linux下配置sublime text</h3><p> Sublime Text是个跨平台的编辑器，支持Windows、Linux、Mac系统平台，支持各种语言的代码编辑，配合上对应的插件，话上点时间学习，你将会对它爱不释手，大大的提高你的编码效率。本文将讲解在Ubuntu 14.04系统中安装SublimeText 3，并配置SublimeClang插件来配置C/C++开发环境。</p>
-<h4 id="1-Sublime-Text-3的下载安装"><a href="#1-Sublime-Text-3的下载安装" class="headerlink" title="1. Sublime Text 3的下载安装"></a>1. Sublime Text 3的下载安装</h4><p>   到官方网站上<a href="http://www.sublimetext.com/3下载64位（系统位64位）的.deb安装包（http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3059_amd64.deb），下载后双击安装即可。安装好之后，通过命令subl即可打开程序，此时已经可以编写代码了。在开始之前建议先记下一些常用的快捷键，可参考：http://blog.csdn.net/cywosp/article/details/31791881" target="_blank" rel="external">http://www.sublimetext.com/3下载64位（系统位64位）的.deb安装包（http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3059_amd64.deb），下载后双击安装即可。安装好之后，通过命令subl即可打开程序，此时已经可以编写代码了。在开始之前建议先记下一些常用的快捷键，可参考：http://blog.csdn.net/cywosp/article/details/31791881</a></p>
-<h4 id="2-安装Package-Control"><a href="#2-安装Package-Control" class="headerlink" title="2. 安装Package Control"></a>2. 安装Package Control</h4><pre><code>Package Control是一个用于管理插件的好工具，可以用于安装、删除、禁用相应的插件，常用的插件都能在上面找到。其源码地址在https://github.com/wbond/package_control_channel上，安装非常方便，使用git将该代码先克隆下来即可，然后拷贝到~/.config/sublime-text-3/Packages/目录下并命名为Package Control即可。（也可以直接在github上打包下载，然后解压复制到~/.config/sublime-text-3/Packages/目录下并命名为Package Control）。
-</code></pre><p>cd ~/.config/sublime-text-3/Packages/<br>git clone <a href="https://github.com/wbond/package_control_channel.git" target="_blank" rel="external">https://github.com/wbond/package_control_channel.git</a> Package\ Control</p>
-<p>或者打开sublime_text然后按快捷键ctrl+`(Esc下面那个键)，在弹出的命令输入窗口输入下面信息回车即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[python] view plain copy</div><div class="line">import urllib.request,os,hashlib; h = &apos;2915d1851351e5ee549c20394736b442&apos; + &apos;8bc59f460fa1548d1514676163dafc88&apos;; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &apos;http://packagecontrol.io/&apos; + pf.replace(&apos; &apos;, &apos;%20&apos;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&apos;Error validating download (got %s instead of %s), please try manual install&apos; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &apos;wb&apos; ).write(by)</div></pre></td></tr></table></figure>
-<p>重新启动SublimeText 3，然后使用快捷键Ctrl + Shift + p，在弹出的输入框中输入Package Control则可以看到Install Package的选项，选择它后一会儿（看左下角的状态）会弹出插件查询及安装窗口，输入想用的插件，选中回车即可。如果用于C/C++开发建议安装C++ snipptes，ConvertToUTF8，SublimeAStyleFormatter插件，具体代表什么意思baidu一下就清楚了。</p>
-<h4 id="3-安装强大的SublimeClang插件"><a href="#3-安装强大的SublimeClang插件" class="headerlink" title="3. 安装强大的SublimeClang插件"></a>3. 安装强大的SublimeClang插件</h4><p>   SublimeClang是Sublime Text中唯一的C/C++自动补全插件，功能强大，自带语法检查功能，不过最近作者已经停止更新了，目前只能在Sublime Text 2的Package Control中可以找到并自动安装，在SublimeText 3中只能手动通过源码安装，其代码线在<a href="https://github.com/quarnster/SublimeClang中。具体安装步骤如下：" target="_blank" rel="external">https://github.com/quarnster/SublimeClang中。具体安装步骤如下：</a><br>安装相关软件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install cmake build-essential clang git</div><div class="line">cd ~/.config/sublime-text-3/Packages</div><div class="line">git clone --recursive https://github.com/quarnster/SublimeClang SublimeClang</div><div class="line">cd SublimeClang</div><div class="line">cp /usr/lib/x86_64-linux-gnu/libclang-3.4.so.1 internals/libclang.so      #这一步很重要，如果你的clang库不是3.4版本的话，请将对应版本的库拷贝到internals中</div><div class="line">cd src</div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">cmake ..</div><div class="line">make</div></pre></td></tr></table></figure>
-<p>一切成功的话将会在SublimeClang/internals目录中生成libcache.so库文件。重启Sublime Text，然后按快捷键Ctrl + ~ (Esc下面那个键)打开自带的控制输出，看看有没有错误，如果没有错误就说明一切OK了。接下来就是配置自己的文件了，按下ctrl + shift + p快捷键，在弹出的输入框中输入 sublimeclang settings ，然后选择带User那一行，在打开的文件中输入如下信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;show_output_panel&quot;: false,</div><div class="line">    &quot;dont_prepend_clang_includes&quot;: true,</div><div class="line">    &quot;inhibit_sublime_completions&quot;: false,</div><div class="line"></div><div class="line">    &quot;options&quot;:</div><div class="line">    [</div><div class="line">        &quot;-std=gnu++11&quot;,</div><div class="line">        &quot;-isystem&quot;, &quot;/usr/include&quot;,</div><div class="line">        &quot;-isystem&quot;, &quot;/usr/include/c++/*&quot;,</div><div class="line">        &quot;-isystem&quot;, &quot;/usr/include/c++/4.8&quot;,</div><div class="line">        &quot;-isystem&quot;, &quot;/usr/include/c++/4.8/*&quot;,</div><div class="line">        &quot;-isystem&quot;, &quot;/usr/include/boost&quot;,</div><div class="line">        &quot;-isystem&quot;, &quot;/usr/include/boost/**&quot;,</div><div class="line">        &quot;-isystem&quot;, &quot;/usr/lib/gcc/x86_64-linux-gnu/4.8/include&quot;,</div><div class="line">        &quot;-isystem&quot;, &quot;/usr/lib/gcc/x86_64-linux-gnu/4.8/include/*&quot;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>注释：我的gcc版本为4.8，如果你的不是请替换对应的版本，在#include相应的头文件后保存当前文件，在接下来的操作中将更快的提示所包含在头文件的函数或者变量。</p>
-<h4 id="4-工程实例"><a href="#4-工程实例" class="headerlink" title="4. 工程实例"></a>4. 工程实例</h4><p>通过菜单栏中的Project -&gt; Add Folder To Project…把你已有的原代码目录加入到Sublime Text中，然后通过Project -&gt; Save Project As…来保存你的项目，这样就创建好了项目。例如我的机器在/media/WinE/WorkStation/Swift中有个C++项目，代码分别放在了Swift下的swift/base和swift/disruptor两个目录下，现在想要把这两个目录中的内容在写代码时能够自动提示则需要相应的配置修改。Project -&gt; Edit Project，在所打开的配置文件中我更改如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;folders&quot;:</div><div class="line">    [</div><div class="line">        &#123;</div><div class="line">            &quot;follow_symlinks&quot;: true,</div><div class="line">            &quot;path&quot;: &quot;/media/WinE/WorkStation/Swift&quot;</div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    </div><div class="line">    &quot;settings&quot;:</div><div class="line">    &#123;</div><div class="line">        &quot;sublimeclang_options&quot;:</div><div class="line">        [</div><div class="line">            &quot;-I/media/WinE/WorkStation/Swift&quot;,</div><div class="line">            &quot;-I/media/WinE/WorkStation/Swift/swift/base&quot;,</div><div class="line">            &quot;-I/media/WinE/WorkStation/Swift/swift/disruptor&quot;,</div><div class="line">       ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/11/技术/Sublime-Text3-On-Linux/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -947,93 +689,16 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用内建模块"><span class="toc-text">常用内建模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#collections"><span class="toc-text">collections</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#base64"><span class="toc-text">base64</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#struct"><span class="toc-text">struct</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hashlib"><span class="toc-text">hashlib</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#itertools"><span class="toc-text">itertools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XML"><span class="toc-text">XML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTMLParser"><span class="toc-text">HTMLParser</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PIL"><span class="toc-text">PIL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Numpy"><span class="toc-text">Numpy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图形界面"><span class="toc-text">图形界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络编程"><span class="toc-text">网络编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP"><span class="toc-text">TCP/IP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP编程"><span class="toc-text">TCP编程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UDP编程"><span class="toc-text">UDP编程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#电子邮件"><span class="toc-text">电子邮件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SMTP发送邮件"><span class="toc-text">SMTP发送邮件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pop3接收邮件"><span class="toc-text">pop3接收邮件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问数据库"><span class="toc-text">访问数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用SQLite"><span class="toc-text">使用SQLite</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用MySQL"><span class="toc-text">使用MySQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用SQLAlchemy"><span class="toc-text">使用SQLAlchemy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web开发"><span class="toc-text">Web开发</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP协议"><span class="toc-text">HTTP协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML"><span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WSGI接口"><span class="toc-text">WSGI接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用Web框架"><span class="toc-text">使用Web框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用模板"><span class="toc-text">使用模板</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协程"><span class="toc-text">协程</span></a></li></ol>
-    </div>
-
       
         <h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>　　通过正则表达式匹配字符串，\w+\@\w+.\w+ 匹配一个邮箱地址，\w可以匹配一个数字或字母，\d \D  \s \S,[a-z,A-Z,0-9,_] 取值范围；[P|p]ython 匹配Python或python；^\d 必须以数字开头； \d$ 必须以数字结尾；</p>
-<ul>
-<li><p>re模块</p>
-<ul>
-<li>判断字符串是否匹配re.match()</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">test = &apos;用户输入的字符串&apos;</div><div class="line">if re.match(r&apos;正则表达式&apos;, test):</div><div class="line">    print &apos;ok&apos;</div><div class="line">else:</div><div class="line">    print &apos;failed&apos;</div></pre></td></tr></table></figure>
-<ul>
-<li>切分字符串，用正则表达式试试：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; re.split(r&apos;\s+\,\;&apos;, &apos;a b   c&apos;)</div><div class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</div></pre></td></tr></table></figure>
-<ul>
-<li>分组<br>正则表达式还有提取子串的强大功能。用<code>()</code>表示的就是要提取的分组（Group）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; m = re.match(r&apos;^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$&apos;, &apos;010-12345&apos;)</div><div class="line">&gt;&gt;&gt; m</div><div class="line">&lt;_sre.SRE_Match object at 0x1026fb3e8&gt;</div><div class="line">&gt;&gt;&gt; m.group(0) # `group(0)`永远是原始字符串</div><div class="line">&apos;010-12345&apos;</div><div class="line">&gt;&gt;&gt; m.group(1)</div><div class="line">&apos;010&apos;</div><div class="line">&gt;&gt;&gt; m.group(2)</div><div class="line">&apos;12345&apos;</div><div class="line"></div><div class="line">&gt;&gt;&gt; t = &apos;19:05:30&apos;</div><div class="line">&gt;&gt;&gt; m = re.match(r&apos;^(0[0-9]|1[0-9]|2[0-3]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$&apos;, t)</div><div class="line">&gt;&gt;&gt; m.groups()</div><div class="line">(&apos;19&apos;, &apos;05&apos;, &apos;30&apos;)</div></pre></td></tr></table></figure>
-<ul>
-<li>预编译<br>一个匹配模式被多次用到，可以先预编译，re.compile(‘string’)</li>
-<li>贪婪模式</li>
-</ul>
-</li>
-</ul>
-<h3 id="常用内建模块"><a href="#常用内建模块" class="headerlink" title="常用内建模块"></a>常用内建模块</h3><h4 id="collections"><a href="#collections" class="headerlink" title="collections"></a>collections</h4><ul>
-<li>namedtuple</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from collections import namedtuple</div><div class="line">&gt;&gt;&gt; Point = namedtuple(&apos;Point&apos;, [&apos;x&apos;, &apos;y&apos;]) #定义一个点</div><div class="line">&gt;&gt;&gt; Circle = namedtuple(&apos;Circle&apos;, [&apos;x&apos;, &apos;y&apos;, &apos;r&apos;])#定义一个圆</div><div class="line">&gt;&gt;&gt; p = Point(1, 2)</div><div class="line">&gt;&gt;&gt; p.x  #按属性访问</div><div class="line">&gt;&gt;&gt; 1</div><div class="line">&gt;&gt;&gt; p.y</div><div class="line">&gt;&gt;&gt; 2</div></pre></td></tr></table></figure>
-<ul>
-<li><p>deque</p>
-<p>双向列表，deque是为了高效实现插入和删除操作的双向列表，适合用于队列和栈</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from collections import deque</div><div class="line">&gt;&gt;&gt; q = deque([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;])</div><div class="line">&gt;&gt;&gt; q.append(&apos;x&apos;)</div><div class="line">&gt;&gt;&gt; q.appendleft(&apos;y&apos;)</div><div class="line">&gt;&gt;&gt; q</div><div class="line">&gt;&gt;&gt;    deque([&apos;y&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;x&apos;])</div></pre></td></tr></table></figure>
-<p>   deque除了实现list的append()和pop()外，还支持appendleft()和popleft()，这样就可以非常高效地往头部添加或删除元素。</p>
-<ul>
-<li><p>defaultdict</p>
-<p>使用<code>dict</code>时，如果引用的Key不存在，就会抛出<code>KeyError</code>。如果希望key不存在时，返回一个默认值，就可以用<code>defaultdict</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from collections import defaultdict</div><div class="line">&gt;&gt;&gt; dd = defaultdict(lambda: &apos;N/A&apos;)</div><div class="line">&gt;&gt;&gt; dd[&apos;key1&apos;] = &apos;abc&apos;</div><div class="line">&gt;&gt;&gt; dd[&apos;key1&apos;] # key1存在</div><div class="line">&gt;&gt;&gt;    &apos;abc&apos;</div><div class="line">&gt;&gt;&gt; dd[&apos;key2&apos;] # key2不存在，返回默认值</div><div class="line">&gt;&gt;&gt;    &apos;N/A&apos;</div></pre></td></tr></table></figure>
-<p>注意默认值是调用函数返回的，而函数在创建<code>defaultdict</code>对象时传入。</p>
-<p>除了在Key不存在时返回默认值，<code>defaultdict</code>的其他行为跟<code>dict</code>是完全一样的。</p>
-</li>
-<li><p>OrderedDict</p>
-</li>
-</ul>
-<p>使用<code>dict</code>时，Key是无序的。在对<code>dict</code>做迭代时，我们无法确定Key的顺序。<br>如果要保持Key的顺序，可以用<code>OrderedDict</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from collections import OrderedDict</div><div class="line">&gt;&gt;&gt; d = dict([(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3)])</div><div class="line">&gt;&gt;&gt; d # dict的Key是无序的</div><div class="line">&gt;&gt;&gt;    &#123;&apos;a&apos;: 1, &apos;c&apos;: 3, &apos;b&apos;: 2&#125;</div><div class="line">&gt;&gt;&gt; od = OrderedDict([(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3)])</div><div class="line">&gt;&gt;&gt; od # OrderedDict的Key是有序的</div><div class="line">&gt;&gt;&gt;    OrderedDict([(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3)])</div></pre></td></tr></table></figure>
-<p>注意，<code>OrderedDict</code>的Key会按照插入的顺序排列，不是Key本身排序：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; od = OrderedDict()</div><div class="line">&gt;&gt;&gt; od[&apos;z&apos;] = 1</div><div class="line">&gt;&gt;&gt; od[&apos;y&apos;] = 2</div><div class="line">&gt;&gt;&gt; od[&apos;x&apos;] = 3</div><div class="line">&gt;&gt;&gt; od.keys() # 按照插入的Key的顺序返回</div><div class="line">&gt;&gt;&gt;    [&apos;z&apos;, &apos;y&apos;, &apos;x&apos;]</div></pre></td></tr></table></figure>
-<p><code>OrderedDict</code>可以实现一个FIFO（先进先出）的dict，当容量超出限制时，先删除最早添加的Key：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LastUpdatedOrderedDict</span><span class="params">(OrderedDict)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, capacity)</span>:</span></div><div class="line">        super(LastUpdatedOrderedDict, self).__init__()</div><div class="line">        self._capacity = capacity</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(self, key, value)</span>:</span></div><div class="line">        containsKey = <span class="number">1</span> <span class="keyword">if</span> key <span class="keyword">in</span> self <span class="keyword">else</span> <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> len(self) - containsKey &gt;= self._capacity:</div><div class="line">            last = self.popitem(last=<span class="keyword">False</span>)</div><div class="line">            <span class="keyword">print</span> <span class="string">'remove:'</span>, last</div><div class="line">        <span class="keyword">if</span> containsKey:</div><div class="line">            <span class="keyword">del</span> self[key]</div><div class="line">            <span class="keyword">print</span> <span class="string">'set:'</span>, (key, value)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'add:'</span>, (key, value)</div><div class="line">        OrderedDict.__setitem__(self, key, value)</div></pre></td></tr></table></figure>
-<ul>
-<li>Counter</li>
-</ul>
-<p><code>Counter</code>是一个简单的计数器，例如，统计字符出现的个数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from collections import Counter</div><div class="line">&gt;&gt;&gt; c = Counter()</div><div class="line">&gt;&gt;&gt; for ch in &apos;programming&apos;:</div><div class="line">&gt;&gt;&gt;    ...     c[ch] = c[ch] + 1</div><div class="line">&gt;&gt;&gt;    ...</div><div class="line">&gt;&gt;&gt; c</div><div class="line">&gt;&gt;&gt;    Counter(&#123;&apos;g&apos;: 2, &apos;m&apos;: 2, &apos;r&apos;: 2, &apos;a&apos;: 1, &apos;i&apos;: 1, &apos;o&apos;: 1, &apos;n&apos;: 1, &apos;p&apos;: 1&#125;)</div></pre></td></tr></table></figure>
-<p>   <code>Counter</code>实际上也是<code>dict</code>的一个子类，统计的元素作为key，出现次数是key的值。</p>
-<h4 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h4><p>对二进制数据进行处理，每3个字节一组，一共是3x8=24bit，划为4组，每组正好6个bit，对应编码规则里定义的64个字符。二进制字节不是3的倍数，Base64用\x00字节在末尾补足后，再在编码的末尾加上1个或2个=号。解码的<code>=</code>。<br>urlsafe编码，把字符+和/分别变成-和_。字符+和/，在URL中就不能直接作为参数。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; base64.b64encode(<span class="string">'i\xb7\x1d\xfb\xef\xff'</span>)</div><div class="line"><span class="string">'abcd++//'</span></div><div class="line">&gt;&gt;&gt; base64.urlsafe_b64encode(<span class="string">'i\xb7\x1d\xfb\xef\xff'</span>)</div><div class="line"><span class="string">'abcd--__'</span></div><div class="line">&gt;&gt;&gt; base64.urlsafe_b64decode(<span class="string">'abcd--__'</span>)</div><div class="line"><span class="string">'i\xb7\x1d\xfb\xef\xff'</span></div></pre></td></tr></table></figure>
-<h4 id="struct"><a href="#struct" class="headerlink" title="struct"></a>struct</h4><p>   Python提供了一个struct模块来解决str和其他二进制数据类型的转换。<br>   struct的pack函数把任意数据类型变成字符串：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; struct.unpack(&apos;&gt;IH&apos;, &apos;\xf0\xf0\xf0\xf0\x80\x80&apos;)</div><div class="line">(4042322160, 32896)</div><div class="line">### &gt;IH的说明，后面的str依次变为I：4字节无符号整数和H：2字节无符号整数,&gt;表示大端存储方式</div></pre></td></tr></table></figure>
-<p>struct模块定义的数据类型可以参考： <a href="https://docs.python.org/2/library/struct.html#format-characters" target="_blank" rel="external">Python官方文档</a></p>
-<h4 id="hashlib"><a href="#hashlib" class="headerlink" title="hashlib"></a>hashlib</h4><p>用户名如果不可变可以作为salt与passwd一起hash</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> hashlib</div><div class="line">md5 = hashlib.md5()</div><div class="line">md5.update(<span class="string">'how to use md5 in python hashlib?'</span>)</div><div class="line"><span class="keyword">print</span> md5.hexdigest()</div><div class="line">		</div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line">sha1 = hashlib.sha1()</div><div class="line">sha1.update(<span class="string">'how to use sha1 in '</span>)</div><div class="line">sha1.update(<span class="string">'python hashlib?'</span>) <span class="comment">#多次update和一次做完结果一样</span></div><div class="line"><span class="keyword">print</span> sha1.hexdigest()</div></pre></td></tr></table></figure>
-<h4 id="itertools"><a href="#itertools" class="headerlink" title="itertools"></a>itertools</h4><ul>
-<li>count()</li>
-<li>cycle()</li>
-<li>repeat()</li>
-<li>chain()</li>
-<li>groupby()</li>
-<li>imap()<br>  imap()可以作用于无穷序列，并且，如果两个序列的长度不一致，以短的那个为准。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> itertools.imap(<span class="keyword">lambda</span> x, y: x * y, [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>], itertools.count(<span class="number">1</span>)):</div><div class="line">    <span class="keyword">print</span> x</div></pre></td></tr></table></figure>
-<p>注意imap()返回一个迭代对象，而map()返回list。当你调用map()时，已经计算完毕.当你调用imap()时，并没有进行任何计算,必须用for循环迭代，每次计算出一个元素。</p>
-<ul>
-<li>ifliter()</li>
-</ul>
-<h4 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h4><h4 id="HTMLParser"><a href="#HTMLParser" class="headerlink" title="HTMLParser"></a>HTMLParser</h4><p>###第三方模块</p>
-<h4 id="PIL"><a href="#PIL" class="headerlink" title="PIL"></a>PIL</h4><h4 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h4><h3 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h3><h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><h4 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h4><h4 id="TCP编程"><a href="#TCP编程" class="headerlink" title="TCP编程"></a>TCP编程</h4><h4 id="UDP编程"><a href="#UDP编程" class="headerlink" title="UDP编程"></a>UDP编程</h4><h3 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h3><h4 id="SMTP发送邮件"><a href="#SMTP发送邮件" class="headerlink" title="SMTP发送邮件"></a>SMTP发送邮件</h4><h4 id="pop3接收邮件"><a href="#pop3接收邮件" class="headerlink" title="pop3接收邮件"></a>pop3接收邮件</h4><h3 id="访问数据库"><a href="#访问数据库" class="headerlink" title="访问数据库"></a>访问数据库</h3><h4 id="使用SQLite"><a href="#使用SQLite" class="headerlink" title="使用SQLite"></a>使用SQLite</h4><h4 id="使用MySQL"><a href="#使用MySQL" class="headerlink" title="使用MySQL"></a>使用MySQL</h4><h4 id="使用SQLAlchemy"><a href="#使用SQLAlchemy" class="headerlink" title="使用SQLAlchemy"></a>使用SQLAlchemy</h4><h3 id="Web开发"><a href="#Web开发" class="headerlink" title="Web开发"></a>Web开发</h3><h4 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h4><h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><h4 id="WSGI接口"><a href="#WSGI接口" class="headerlink" title="WSGI接口"></a>WSGI接口</h4><h4 id="使用Web框架"><a href="#使用Web框架" class="headerlink" title="使用Web框架"></a>使用Web框架</h4><h4 id="使用模板"><a href="#使用模板" class="headerlink" title="使用模板"></a>使用模板</h4><h3 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/06/技术/study-of-python-3/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -1075,70 +740,8 @@ var _hmt = _hmt || [];
 
     </header>
     <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux简介"><span class="toc-text">Linux简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统安装与grub引导"><span class="toc-text">系统安装与grub引导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登陆系统"><span class="toc-text">登陆系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看命令帮助文档"><span class="toc-text">查看命令帮助文档</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-text">用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户和用户组"><span class="toc-text">用户和用户组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#账号管理和用户切换"><span class="toc-text">账号管理和用户切换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-text">文件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件和目录管理和权限"><span class="toc-text">文件和目录管理和权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件查找"><span class="toc-text">文件查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件压缩解压"><span class="toc-text">文件压缩解压</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件系统"><span class="toc-text">文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘分区，文件系统的挂载和卸载"><span class="toc-text">磁盘分区，文件系统的挂载和卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux逻辑卷"><span class="toc-text">linux逻辑卷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硬链接和软链接"><span class="toc-text">硬链接和软链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符处理"><span class="toc-text">字符处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#管道和grep"><span class="toc-text">管道和grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sort排序和uniq去重"><span class="toc-text">sort排序和uniq去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cut、tr、paste、split"><span class="toc-text">cut、tr、paste、split</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络管理"><span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络配置和dns配置"><span class="toc-text">网络配置和dns配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络测试"><span class="toc-text">网络测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理"><span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看进程"><span class="toc-text">查看进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杀死进程"><span class="toc-text">杀死进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询进程打开的文件"><span class="toc-text">查询进程打开的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程优先级调整：nice、renice"><span class="toc-text">进程优先级调整：nice、renice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译、安装软件"><span class="toc-text">编译、安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装包管理器"><span class="toc-text">安装包管理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译安装"><span class="toc-text">编译安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行定时任务"><span class="toc-text">执行定时任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式与sed、awk"><span class="toc-text">正则表达式与sed、awk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi和vim"><span class="toc-text">vi和vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell编程"><span class="toc-text">shell编程</span></a></li></ol>
-    </div>
-
       
-        <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="external">DocToc</a></em></p>
-<ul>
-<li><a href="#linux%E7%AE%80%E4%BB%8B">Linux简介</a><ul>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8Egrub%E5%BC%95%E5%AF%BC">系统安装与grub引导</a></li>
-<li><a href="#%E7%99%BB%E9%99%86%E7%B3%BB%E7%BB%9F">登陆系统</a></li>
-<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a></li>
-</ul>
-</li>
-<li><a href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86">用户管理</a><ul>
-<li><a href="#%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84">用户和用户组</a></li>
-<li><a href="#%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86%E5%92%8C%E7%94%A8%E6%88%B7%E5%88%87%E6%8D%A2">账号管理和用户切换</a></li>
-</ul>
-</li>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86">文件管理</a><ul>
-<li><a href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E5%92%8C%E6%9D%83%E9%99%90">文件和目录管理和权限</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE">文件查找</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B">文件压缩解压</a></li>
-</ul>
-</li>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a><ul>
-<li><a href="#%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8C%82%E8%BD%BD%E5%92%8C%E5%8D%B8%E8%BD%BD">磁盘分区，文件系统的挂载和卸载</a></li>
-<li><a href="#linux%E9%80%BB%E8%BE%91%E5%8D%B7">linux逻辑卷</a></li>
-<li><a href="#%E7%A1%AC%E9%93%BE%E6%8E%A5%E5%92%8C%E8%BD%AF%E9%93%BE%E6%8E%A5">硬链接和软链接</a></li>
-</ul>
-</li>
-<li><a href="#%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86">字符处理</a><ul>
-<li><a href="#%E7%AE%A1%E9%81%93%E5%92%8Cgrep">管道和grep</a></li>
-<li><a href="#sort%E6%8E%92%E5%BA%8F%E5%92%8Cuniq%E5%8E%BB%E9%87%8D">sort排序和uniq去重</a></li>
-<li><a href="#cuttrpastesplit">cut、tr、paste、split</a></li>
-</ul>
-</li>
-<li><a href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86">网络管理</a><ul>
-<li><a href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E5%92%8Cdns%E9%85%8D%E7%BD%AE">网络配置和dns配置</a></li>
-<li><a href="#%E7%BD%91%E7%BB%9C%E6%B5%8B%E8%AF%95">网络测试</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86">进程管理</a><ul>
-<li><a href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B">查看进程</a></li>
-<li><a href="#%E6%9D%80%E6%AD%BB%E8%BF%9B%E7%A8%8B">杀死进程</a></li>
-<li><a href="#%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6">查询进程打开的文件</a></li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E6%95%B4nicerenice">进程优先级调整：nice、renice</a></li>
-</ul>
-</li>
-<li><a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6">编译、安装软件</a><ul>
-<li><a href="#%E5%AE%89%E8%A3%85%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8">安装包管理器</a></li>
-<li><a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">编译安装</a></li>
-</ul>
-</li>
-<li><a href="#%E6%89%A7%E8%A1%8C%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">执行定时任务</a></li>
-<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8Esedawk">正则表达式与sed、awk</a></li>
-<li><a href="#vi%E5%92%8Cvim">vi和vim</a></li>
-<li><a href="#shell%E7%BC%96%E7%A8%8B">shell编程</a></li>
-</ul>
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><h3 id="系统安装与grub引导"><a href="#系统安装与grub引导" class="headerlink" title="系统安装与grub引导"></a>系统安装与grub引导</h3><ul>
+        <h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><h3 id="系统安装与grub引导"><a href="#系统安装与grub引导" class="headerlink" title="系统安装与grub引导"></a>系统安装与grub引导</h3><ul>
 <li>系统运行级别6级，<br>0：关机；1：单用户模式，进行系统维护；2：多用户，无网络连接；3：完全多用户模式，默认不用图形化；4：保留；5：窗口模式，多用户；6：重启。</li>
 <li>安装linux</li>
 <li>grub系统引导</li>
@@ -1157,87 +760,75 @@ var _hmt = _hmt || [];
 <li>cat</li>
 <li>ps</li>
 <li>ifconfig</li>
-<li>netstat -ano<h3 id="查看命令帮助文档"><a href="#查看命令帮助文档" class="headerlink" title="查看命令帮助文档"></a>查看命令帮助文档</h3></li>
+<li>netstat -ano</li>
+</ul>
+<h3 id="查看命令帮助文档"><a href="#查看命令帮助文档" class="headerlink" title="查看命令帮助文档"></a>查看命令帮助文档</h3><ul>
 <li>man 和 info<br>在查看结果中 使用 /keyword进行关键字搜索，n向下查找，N向上查找。空格向下翻页，pageup/pagedown翻页，q退出查看。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ man -f reboot 	man -f 查看命令位于哪些man文件里</div><div class="line">$ man 2 reboot    	查看2号文档里的reboot命令</div><div class="line">$ info ls			获取ls命令的说明文档</div></pre></td></tr></table></figure>
-<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="用户和用户组"><a href="#用户和用户组" class="headerlink" title="用户和用户组"></a>用户和用户组</h3><ul>
-<li>UID<br>UID为0的是root超级用户，1~500是系统用户，500以后是普通用户。</li>
-<li>GID<br>一个用户可以属于多个组</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ id 		查看自己的uid</div><div class="line">$ group		查看自己的gid</div><div class="line">$ whoami	查看用户自己的信息</div><div class="line">$ who 		查看当前已登录的用户信息</div><div class="line">$ w			查看更详细的用户信息</div></pre></td></tr></table></figure>
-<p><code>/etc/passwd</code> <code>/etc/shadow</code>两个文件记录了用户的用户名和密码。</p>
-<h3 id="账号管理和用户切换"><a href="#账号管理和用户切换" class="headerlink" title="账号管理和用户切换"></a>账号管理和用户切换</h3><ul>
-<li><p>增加删除用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># useradd -u 555  - g group1 -d /home/john -s /bin/bash  john	指定uid，加入的组，家目录，shell路径，组必须是已经存在的</div><div class="line"># useradd -G group1,group2 john		-G加入一系列的组</div><div class="line"># userdel john		删除了john用户，从shadow中清除记录，用户文件还在</div><div class="line"># userdel -r john  	删除john的home目录和邮件</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改密码和删除密码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># passwd			不加参数则是修改当前用户的密码</div><div class="line"># passwd user1		修改user1的密码，新建的用户必须修改密码后才能登陆</div><div class="line"># passwd -d user1   删除密码，即密码为空</div><div class="line"># passwd -l	user1	禁用user1的密码，实际在shadow文件的记录前加了`!`</div><div class="line"># passwd -u user1	解锁账号</div><div class="line"># usermod -L user1  </div><div class="line"># usermod -U user1	原理同上</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改用户<br><code># usermod</code></p>
-</li>
-<li><p>增加删除组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># groupadd  group1	新增group1</div><div class="line"># groupdel  group1  删除用户组，如果组内有用户，则删除失败</div></pre></td></tr></table></figure>
-</li>
-<li><p>切换用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ su 			直接切换到root用户，当前用户环境不变，工作目录，shell等</div><div class="line"># exit			退出root，切回普通用户</div><div class="line">$ su -			切换到root用户，同时使用root用户环境</div><div class="line"># su - john		切换为john用户，root切换为任何user无需密码，</div><div class="line">				普通user相互切换要知道user密码</div><div class="line">$ sudo  command		普通用户以root身份执行某条命令，输入自己的密码即可</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>用户能否使用sudo命令，在<code>/etc/sudoers</code>中配置。使用<code>visudo</code>命令进行配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># User privilege specification</div><div class="line">root	ALL=(ALL:ALL) ALL</div><div class="line">john	ALL=(ALL:ALL) ALL</div><div class="line">luna    ALL=(ALL:ALL) NOPASSWD:/sbin/shutdown</div><div class="line"># 在此处添加，允许john 从任何地方登陆后，执行任何人的，任何命令,对应3个all</div><div class="line"># 允许luna 不用输密码即可执行 sudo shutdown 命令。</div><div class="line"># Members of the admin group may gain root privileges</div><div class="line">%admin ALL=(ALL) ALL</div><div class="line"># 允许admin组的所有成员，......执行sudo</div></pre></td></tr></table></figure></p>
-<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><h3 id="文件和目录管理和权限"><a href="#文件和目录管理和权限" class="headerlink" title="文件和目录管理和权限"></a>文件和目录管理和权限</h3><ul>
-<li><p>目录结构</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">/</div><div class="line">├── bin			常见用户指令</div><div class="line">├── boot		内核和启动文件</div><div class="line">├── cdrom		光驱挂载位置</div><div class="line">├── dev			设备文件</div><div class="line">├── etc			系统和服务配置</div><div class="line">├── home		用户主目录</div><div class="line">├── lib			系统函数库</div><div class="line">├── lib64</div><div class="line">├── lost+found	ext3 文件系统用于磁盘检查</div><div class="line">├── media		挂载u盘等临时文件系统</div><div class="line">├── mnt			系统加载文件系统的挂载点</div><div class="line">├── opt			第三方软件安装目录</div><div class="line">├── root		root用户主目录</div><div class="line">├── sbin		系统管理命令</div><div class="line">├── tmp			临时文件存放目录</div><div class="line">├── usr			存放和用户直接相关的文件</div><div class="line">├── var</div></pre></td></tr></table></figure>
-</li>
-<li><p>路径和特殊目录<br>绝对路径，从<code>/</code>根路径开始，比如<code>/root/abc</code>;<br>当前路径，<code>pwd</code>命令可以查看。shell命令执行默认基于当前路径；<br>特殊目录<code>.</code>和<code>..</code>，分别表示当前目录和当前目录的父目录。<br>相对路径，从当前路径开始计算,通常配合<code>.</code>和<code>..</code>使用。</p>
-</li>
-<li><p>文件操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">### 文件创建</div><div class="line">$ touch a.txt  touch一个已存在的文件，会更新其时间戳属性</div><div class="line">$ vi a.txt</div><div class="line">$ echo &apos;XXX&apos; &gt; a.txt</div><div class="line">### 删除文件</div><div class="line">$ rm -f a.txt  	直接删除，不用确认</div><div class="line">### 复制、移动文件</div><div class="line">$ cp a.txt  /home/test/</div><div class="line">$ cp a.txt  /path/to/b.txt  	可以实现重命名</div><div class="line">$ mv a.txt  /path/to/filename</div><div class="line">$ mv a.txt  /path/to/</div><div class="line">### 文件查看</div><div class="line">$ cat readme.txt</div><div class="line">$ cat -n readme.txt		查看文件时显示行号</div><div class="line">$ head readme.txt		默认显示前10行内容</div><div class="line">$ head -n 20 readme.txt 查看前20行内容</div><div class="line">$ tail readme.txt		查看最后10行内容，-n 指定显示的行数目</div><div class="line">$ tail -f error.log     文件不断写入时，可以动态查看文件末尾的内容</div><div class="line">### 改变属主</div><div class="line"># chown john a.txt		改变a的所有者为john用户</div><div class="line"># chown :john a.txt     改变a的所有组为john组</div><div class="line"># chown -R john:john dir_a	递归改变dir_a下所有文件的所有组为john，所有者为john</div><div class="line"># chgrp -R john dir_b 		递归改变所有组</div></pre></td></tr></table></figure>
-</li>
-<li><p>目录操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd /home/				进入到指定目录</div><div class="line">$ mkdir dir_a			创建目录</div><div class="line">$ rm -rf dir_a			删除目录及其包含的全部内容，无需确认</div></pre></td></tr></table></figure>
-</li>
-<li><p>权限和属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># ls -al</div><div class="line">总用量 1712</div><div class="line">drwx------ 27 root root    4096 10月 31 12:54 .</div><div class="line">-rw-------  1 root root   16213 10月 30 22:25 .bash_history</div><div class="line">#第一个字符的含义：d目录，-普通文件，l链接文件，b块文件，</div><div class="line">   				c字符文件，s socket文件，p管道文件</div><div class="line">#接下来的3组 X 3个字符，表示文件所有者，文件所有组和其他用户对该文件的权限</div><div class="line"># rwx为可读、可写、可执行，-表示不拥有该位置的权限 </div><div class="line"># 第二列的数字为连接数，文件为1，目录为其包含的目录数（包括特殊目录.和..）</div><div class="line"># 第三四列 为文件的所有人和所有组</div><div class="line"># 第五列文件大写，第六列文件最近修改时间</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>文件隐藏属性a和i<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># lsattr run_dedicated_servers.sh </div><div class="line">-------------e-- run_dedicated_servers.sh</div><div class="line">## 有13个短横，</div><div class="line"># chattr +a  a.ttx		append,a属性的文件即使root也不能删除，可以追加的方式写文件</div><div class="line"># chattr +i  b.txt      i属性确保文件无法删除写入和改名，常用于关键配置文件</div><div class="line"># man chattr			查看更多</div></pre></td></tr></table></figure></p>
-<p>文件特殊属性SUID/SGID/Sticky<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># ll /usr/bin/passwd </div><div class="line">-rwsr-xr-x 1 root root 54256 3月  29  2016 /usr/bin/passwd*</div><div class="line">### 原本的执行权限x变成了s，表示其他用户可以以文件的所有者身份来执行该文件</div><div class="line">### SGID与SUID类似，都只能用于可执行文件</div><div class="line"># chmod u+s ‘可执行文件’		设置SUID</div><div class="line"># chmod g+s ‘可执行文件’		设置SGID，用的较少</div><div class="line">### Sticky属性用于目录</div><div class="line"># ll -d /tmp</div><div class="line">drwxrwxrwt 26 root root 4096 10月 31 14:24 /tmp/</div><div class="line">### 最后一个t表示，任何人都能在此创建修改文件，但只有owner和root可以删除文件。</div><div class="line"># chmod o+t ‘目录’		添加t属性</div></pre></td></tr></table></figure></p>
-<p>默认权限和umask，用户或系统创建的文件有默认的权限设置，root和普通用户创建文件，权限为644，root的目录为755，普通用户的为775.</p>
-<h3 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h3><ul>
-<li>find<br><code>find PATH -name FILENAME</code></li>
-<li>locate<br>locate查找依赖一个数据库，因此使用之前一般先执行<code>updatedb</code>。</li>
-<li>which/whereis 查找可执行文件<br><code>which command</code>可以找到命令所在位置，which在path路径中查找。whereis同时给出相关man文件。</li>
-</ul>
-<h3 id="文件压缩解压"><a href="#文件压缩解压" class="headerlink" title="文件压缩解压"></a>文件压缩解压</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># gzip a.txt		压缩成gz格式压缩包</div><div class="line"># gunzip a.txt.gz 	解压</div><div class="line"># tar -zcvf a.tar.gz  /home/a	创建压缩文件</div><div class="line">### 参数z，使用gzip压缩；参数c，创建压缩文件；参数f，使用文件名；参数v，详情模式；</div><div class="line"># tar -zxvf a.tar.gz -C /tmp     	-C 指定解压到的目录</div><div class="line"># bzip2 -z  a		压缩得到bz2格式的压缩包</div><div class="line"># bzip2 -d  a.bz2   解压文件</div></pre></td></tr></table></figure>
-<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="磁盘分区，文件系统的挂载和卸载"><a href="#磁盘分区，文件系统的挂载和卸载" class="headerlink" title="磁盘分区，文件系统的挂载和卸载"></a>磁盘分区，文件系统的挂载和卸载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># fdisk -l 				查看磁盘设备和分区</div><div class="line"># mount DEVICE MOUNT_POINT		将设备挂载到指定位置</div><div class="line">### 设备自动挂载，在/etc/fstab中配置</div><div class="line"># df -h					查看磁盘使用情况</div></pre></td></tr></table></figure>
-<h3 id="linux逻辑卷"><a href="#linux逻辑卷" class="headerlink" title="linux逻辑卷"></a>linux逻辑卷</h3><h3 id="硬链接和软链接"><a href="#硬链接和软链接" class="headerlink" title="硬链接和软链接"></a>硬链接和软链接</h3><p>硬链接：多个文件名指向同一个文件的inode索引节点，使得一个文件拥有多个合法的路径。<br>删除一个硬链接不会影响其他的硬链接和文件本身。<br>目录无法创建硬链接，不同文件系统/分区之间不能建立硬链接。<br><code>ln &#39;源文件&#39; &#39;新建硬链接文件&#39;</code><br>软连接：包含指向另一个文件的路径，类似windows的快捷方式。<br><code>ln -s &#39;源文件&#39; &#39;新建软连接&#39;</code></p>
-<h2 id="字符处理"><a href="#字符处理" class="headerlink" title="字符处理"></a>字符处理</h2><h3 id="管道和grep"><a href="#管道和grep" class="headerlink" title="管道和grep"></a>管道和grep</h3><p>管道连接符<code>command1 | command2</code>，将command1的输出作为command2的输入。<br>grep文本搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cat a.txt | grep &apos;name&apos; 		打印含有name的行</div><div class="line">$ grep [-ivnc] &apos;search_str&apos; CONTENT/FILE</div><div class="line">### i忽略大小写，v反向选择，n同时输出行号，c统计匹配的行数</div></pre></td></tr></table></figure></p>
-<h3 id="sort排序和uniq去重"><a href="#sort排序和uniq去重" class="headerlink" title="sort排序和uniq去重"></a>sort排序和uniq去重</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">### sort参数，-t指定分割符，k排序的列，n以数字排序，默认是字符排序，r反向排序，即降序</div><div class="line"># sort -t &apos;:&apos; -k 3 -n /etc/passwd </div><div class="line">daemon:*:1:1:daemon:/usr/sbin:/usr/sbin/nologin</div><div class="line">bin:*:2:2:bin:/bin:/usr/sbin/nologin</div><div class="line">sys:*:3:3:sys:/dev:/usr/sbin/nologin</div><div class="line">sync:*:4:65534:sync:/bin:/bin/sync</div><div class="line">games:*:5:60:games:/usr/games:/usr/sbin/nologin</div><div class="line">man:*:6:12:man:/var/cache/man:/usr/sbin/nologin</div><div class="line">lp:*:7:7:lp:/var/spool/lpd:/usr/sbin/nologin</div><div class="line">### uniq只能去除连续重复的行，因此一般配合sort使用</div><div class="line"># uniq -ic CONTENT 		忽略大小写，输出该行重复的次数</div></pre></td></tr></table></figure>
-<h3 id="cut、tr、paste、split"><a href="#cut、tr、paste、split" class="headerlink" title="cut、tr、paste、split"></a>cut、tr、paste、split</h3><h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><h3 id="网络配置和dns配置"><a href="#网络配置和dns配置" class="headerlink" title="网络配置和dns配置"></a>网络配置和dns配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$ ifconfig 			查看网卡信息</div><div class="line">eth0    Link encap:以太网  硬件地址 f4:8e:38:b8:1e:fd  </div><div class="line">          inet 地址:172.16.27.118  广播:172.16.27.255  掩码:255.255.252.0</div><div class="line">          inet6 地址: fe80::ec5d:eb79:5e03:112/64 Scope:Link</div><div class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  跃点数:1</div><div class="line">          接收数据包:1002 错误:0 丢弃:3 过载:0 帧数:0</div><div class="line">          发送数据包:147 错误:0 丢弃:0 过载:0 载波:0</div><div class="line">          碰撞:0 发送队列长度:1000 </div><div class="line">          接收字节:107932 (107.9 KB)  发送字节:18302 (18.3 KB)</div><div class="line">eth1	***</div><div class="line">lo		***</div><div class="line">wlan	***</div><div class="line">$ ifconfig eth0		查看指定网卡</div><div class="line">### 	ifconfig动态修改网卡的配置，重启后失效</div><div class="line"># ifconfig eth0	 192.168.159.130  netmask 255.255.255.0</div><div class="line"># ifconfig eth0  192.168.159.130/24		指定eth0的ip和子网</div><div class="line"># ifconfig eth0  down		停用网卡</div><div class="line"># ifconfig eth0  up			启用网卡</div><div class="line"># ifdown/ifup  eth0			效果同上</div><div class="line"># route add/del default gw 192.168.8.1 修改网关</div></pre></td></tr></table></figure>
-<p>修改网卡配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/etc/network/interfaces文件默认的内容如下： </div><div class="line">auto lo </div><div class="line">iface lo inet loopback </div><div class="line">在后面添加内容 </div><div class="line">1、获取动态配置： </div><div class="line">auto eth0 </div><div class="line">iface eth0 inet dhcp </div><div class="line">2、获取静态配置： </div><div class="line">auto eth0 </div><div class="line">iface eth0 inet static </div><div class="line">address 192.168.0.1 </div><div class="line">netmask 255.255.255.0 </div><div class="line">gateway 192.168.0.1 </div><div class="line">重启networking服务</div></pre></td></tr></table></figure></p>
-<p>修改DNS配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">永久修改网卡DNS</div><div class="line">sudo –i</div><div class="line">cd /etc/resolvconf/resolv.conf.d</div><div class="line">vim base</div><div class="line">添加如下内容</div><div class="line">nameserver 8.8.8.8</div><div class="line">nameserver 8.8.4.4</div></pre></td></tr></table></figure></p>
-<h3 id="网络测试"><a href="#网络测试" class="headerlink" title="网络测试"></a>网络测试</h3><ul>
-<li>ping<br>发icmp echo请求，判断主机是否可达</li>
-<li>host<br>host命令查询DNS记录</li>
-<li>traceroute<br>追溯数据包所经过的路由</li>
-<li>网络故障排查<br>1、ping 127.0.0.1 判断网卡工作是否正常，tcp/ip协议栈出问题<br>2、ping 本机ip    判断本地设备驱动/物理端口<br>3、ping 同网段其他主机 看交换机是否正常<br>4、ping 网关ip<br>5、ping 公网ip ，本地路由，nat<br>6、ping 公网域名   dns设置是否正确</li>
-</ul>
-<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ps aux 		显示所有包含其他使用者的有效进程</div><div class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</div><div class="line">root         1  0.0  0.1 119732  5812 ?        Ss   16:49   0:01 /sbin/init splash</div><div class="line">root         2  0.0  0.0      0     0 ?        S    16:49   0:00 [kthreadd]</div><div class="line"># top			查看结果是实时动态变化的</div><div class="line"># 按下O，大写的，进入排序过滤器，然后</div><div class="line">...</div></pre></td></tr></table></figure>
-<h3 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#### 先查看要杀死进程的PID</div><div class="line"># ps -ef | grep &apos;ssh&apos;</div><div class="line">root       975     1  0 16:49 ?        00:00:00 /usr/sbin/sshd -D</div><div class="line">root      3291   975  0 16:50 ?        00:00:00 sshd: root@pts/8</div><div class="line">root      4873  3782  0 20:05 pts/8    00:00:00 grep --color=auto ssh</div><div class="line"># pidof sshd</div><div class="line">3291 975</div><div class="line"># kill 3291			停止pid = 3291的进程</div><div class="line"># kill -1 pid       1重启，9强制退出，15正常退出（默认）</div><div class="line"># killall sshd 		停止进程，跟进程名</div></pre></td></tr></table></figure>
-<h3 id="查询进程打开的文件"><a href="#查询进程打开的文件" class="headerlink" title="查询进程打开的文件"></a>查询进程打开的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># lsof -i:22		查询打开22端口的进程</div><div class="line">COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</div><div class="line">sshd     975 root    3u  IPv4  19938      0t0  TCP *:ssh (LISTEN)</div><div class="line">sshd     975 root    4u  IPv6  19940      0t0  TCP *:ssh (LISTEN)</div><div class="line"></div><div class="line"># lsof -c sshd		显示COMMAND中包含指定字符串的进程所打开的全部文件</div><div class="line">COMMAND  PID USER   FD   TYPE             DEVICE SIZE/OFF     NODE NAME</div><div class="line">sshd     975 root  cwd    DIR                8,2     4096        2 /</div><div class="line">sshd     975 root  rtd    DIR                8,2     4096        2 /</div><div class="line">sshd     975 root  txt    REG                8,2   799216 12328642 /usr/sbin/</div><div class="line"># lsof FILENAME		显示所有打开FILENAME文件的进程</div></pre></td></tr></table></figure>
-<h3 id="进程优先级调整：nice、renice"><a href="#进程优先级调整：nice、renice" class="headerlink" title="进程优先级调整：nice、renice"></a>进程优先级调整：nice、renice</h3><p>使用top时，可以看到进程的NI、PR字段。<br>NI表示进程优先级，取值-20~19，默认为0。普通用户可以设置进程NI值0~19.<br>PR是动态优先级，系统进程调用采取的’动态优先级‘调度算法。<br>最终程序的优先级是NI+PR，定义和修改进程优先级<code>nice</code>和<code>renice</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># top</div><div class="line">PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND</div><div class="line"> 1 root      20   0  119732   5812   3904 S   0.0  0.1   0:01.58 systemd</div><div class="line"># nice -n -12 ./job.sh		设定程序运行时的优先级为-12</div><div class="line"># renice -10 -p 5555 		将优先级调整为-10</div></pre></td></tr></table></figure></p>
-<h2 id="编译、安装软件"><a href="#编译、安装软件" class="headerlink" title="编译、安装软件"></a>编译、安装软件</h2><h3 id="安装包管理器"><a href="#安装包管理器" class="headerlink" title="安装包管理器"></a>安装包管理器</h3><h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><h2 id="执行定时任务"><a href="#执行定时任务" class="headerlink" title="执行定时任务"></a>执行定时任务</h2><ul>
-<li>at</li>
-<li>crontab</li>
-<li>screen</li>
-</ul>
-<h2 id="正则表达式与sed、awk"><a href="#正则表达式与sed、awk" class="headerlink" title="正则表达式与sed、awk"></a>正则表达式与sed、awk</h2><h2 id="vi和vim"><a href="#vi和vim" class="headerlink" title="vi和vim"></a>vi和vim</h2><p>单独讲</p>
-<h2 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h2><p>单独讲</p>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/05/技术/linux基础/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-07-03T16:00:00.000Z"><a href="/2016/07/04/技术/study-of-python-2/">2016-07-04</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/07/04/技术/study-of-python-2/">Python学习笔记-2</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="错误、调试、测试"><a href="#错误、调试、测试" class="headerlink" title="错误、调试、测试"></a>错误、调试、测试</h3><ul>
+<li>try机制</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">try</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'try...'</span></div><div class="line">    r = <span class="number">10</span> / <span class="number">0</span>  <span class="comment">#此处出现异常直接跳转到except</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'result:'</span>, r</div><div class="line">  <span class="keyword">except</span> ZeroDivisionError, e:</div><div class="line">    <span class="keyword">print</span> <span class="string">'except:'</span>, e</div><div class="line">  <span class="keyword">finally</span>:  <span class="comment"># 若没有错误发生，except语句块不会被执行，但是finally如果有，则一定会被执行（可以没有finally语句）。</span></div><div class="line"><span class="comment">#此外，如果没有错误发生，可以在except语句块后面加一个else，当没有错误发生时，会自动执行else语句：</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'finally...'</span></div><div class="line"><span class="keyword">print</span> <span class="string">'END'</span></div></pre></td></tr></table></figure>
+<p>错误类型都继承自BaseException，所以在使用except时需要注意的是，它不但捕获该类型的错误，还把其子类也“一网打尽”。比如ValueError是StandardError的子类，如果有except先捕获了StandardError，则第二个except就捕获不到ValueError。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/07/04/技术/study-of-python-2/#more" class="more-link">阅读全文</a>
+          </div>
         
 		<!--  livere评论支持 -->
         
@@ -1459,7 +1050,7 @@ var _hmt = _hmt || [];
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/读书/">读书</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/科研/">科研</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">3</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">2</span></li></ul> 
 </div>
  
 
@@ -1495,45 +1086,43 @@ var _hmt = _hmt || [];
   
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
-    <li><a href="/tags/Enjoy/">Enjoy</a><small>2</small></li>
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
   
     <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
   
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
-    <li><a href="/tags/Html/">Html</a><small>1</small></li>
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/LaTeX/">LaTeX</a><small>2</small></li>
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
   
-    <li><a href="/tags/LaTeX-Mac/">LaTeX Mac</a><small>1</small></li>
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
     <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
   
-    <li><a href="/tags/Mac/">Mac</a><small>1</small></li>
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
     <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
   
     <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
   
-    <li><a href="/tags/Math/">Math</a><small>2</small></li>
-  
-    <li><a href="/tags/Math-Optimization/">Math Optimization</a><small>3</small></li>
-  
-    <li><a href="/tags/Math-Optimization-MachineLearning/">Math Optimization MachineLearning</a><small>1</small></li>
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
   
     <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
-    <li><a href="/tags/Mongodb-数据库/">Mongodb 数据库</a><small>1</small></li>
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
   
-    <li><a href="/tags/Optimization/">Optimization</a><small>4</small></li>
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
     <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
   
@@ -1541,27 +1130,37 @@ var _hmt = _hmt || [];
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>18</small></li>
+    <li><a href="/tags/Python/">Python</a><small>19</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
-    <li><a href="/tags/SNMP/">SNMP</a><small>1</small></li>
-  
-    <li><a href="/tags/Scrapy/">Scrapy</a><small>4</small></li>
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
   
     <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
+    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+  
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
   
-    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
-    <li><a href="/tags/明信片/">明信片</a><small>2</small></li>
+    <li><a href="/tags/git/">git</a><small>1</small></li>
   
-    <li><a href="/tags/爬虫/">爬虫</a><small>5</small></li>
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
   
-    <li><a href="/tags/随感/">随感</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
   
   </ul>
 </div>
@@ -1575,13 +1174,14 @@ var _hmt = _hmt || [];
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">1</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
     <div class="clearfix"></div>
   </div>
-  <footer id="footer" class="inner"><section>
+  <footer id="footer" class="inner">
+<section>
 <div class="copyright">
 		
 		  
