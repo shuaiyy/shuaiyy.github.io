@@ -1361,106 +1361,6 @@
 
     
   <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-10-Basic-Algorithms-of-Convex-Opt/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>凸优化的一些基础算法</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Optimization</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-09-What-is-NP-Hard/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>什么是 P, NP, NP-complete, NP-hard</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Math</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2015-03-23-Newton-QuasiNewton-Method/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Math Optimization</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-08-31-Papers-about-average-consensus/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>动态一致平均问题算法-EXTRA和DAC</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Optimization</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-08-22-Average-Consensus/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>对于一致平均问题的理解</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Optimization</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-07-25-matrix-completion/</loc>
     <lastmod>2016-05-08T16:02:22.000Z</lastmod>
     <data>
@@ -1481,14 +1381,34 @@
 
     
   <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-07-27-norms-of-vector-and-matrix/</loc>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-26-Presentation-at-Chinese-Academy-of-Science/</loc>
     <lastmod>2016-05-08T16:02:22.000Z</lastmod>
     <data>
         <display>
-        <title>各类范数</title>
-        <pubTime>2017-09-17T08:45:30.894Z</pubTime>
+        <title>我的报告 Decentralized Privacy-Preserving Low-Rank Matrix Completion</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
         
-        <tag>Math</tag>
+        <tag>Math Optimization</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-10-Basic-Algorithms-of-Convex-Opt/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>凸优化的一些基础算法</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
+        
+        <tag>Optimization</tag>
          
          
            
@@ -1541,14 +1461,34 @@
 
     
   <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-26-Presentation-at-Chinese-Academy-of-Science/</loc>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2015-03-23-Newton-QuasiNewton-Method/</loc>
     <lastmod>2016-05-08T16:02:22.000Z</lastmod>
     <data>
         <display>
-        <title>我的报告 Decentralized Privacy-Preserving Low-Rank Matrix Completion</title>
+        <title>牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</title>
         <pubTime>2017-09-17T08:45:30.910Z</pubTime>
         
         <tag>Math Optimization</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-09-What-is-NP-Hard/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>什么是 P, NP, NP-complete, NP-hard</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
+        
+        <tag>Math</tag>
          
          
            
@@ -1569,6 +1509,66 @@
         <pubTime>2017-09-17T08:45:30.910Z</pubTime>
         
         <tag>Matlab</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-07-27-norms-of-vector-and-matrix/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>各类范数</title>
+        <pubTime>2017-09-17T08:45:30.894Z</pubTime>
+        
+        <tag>Math</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-08-31-Papers-about-average-consensus/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>动态一致平均问题算法-EXTRA和DAC</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
+        
+        <tag>Optimization</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-08-22-Average-Consensus/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>对于一致平均问题的理解</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
+        
+        <tag>Optimization</tag>
          
          
            

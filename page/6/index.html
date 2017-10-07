@@ -8,7 +8,7 @@
   <title>第 6 页 | 帅羊羊的博客</title>
   
   <meta name="google-site-verification" content="hLu-CnRbqpthWxa76MJ-vpnGr7yMChNtTW6KA0pRMQo" />  
-  <meta name="baidu-site-verification" content="SOcrumVYOq" />  
+  <meta name="baidu-site-verification" content="WTddywKheI" />  
   
   
   <meta name="author" content="Shuai yy">
@@ -292,12 +292,12 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-dict-reverse/">2016-07-29</a></time>
+          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-str/">2016-07-29</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/29/技术/python-dict-reverse/">python字典键值转置</a></h1>
+    <h1 class="title"><a href="/2016/07/29/技术/python-str/">Python 字符串技巧</a></h1>
   
 
     </header>
@@ -305,17 +305,16 @@
          
         
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#dict的key与value转置"><span class="toc-text">dict的key与value转置</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#将-u3232-u6674转换成unicode字符"><span class="toc-text">将 \u3232\u6674转换成unicode字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。"><span class="toc-text">写入unicode报错‘ascii’ codec can’t encode character in position 0-3。</span></a></li></ol>
     </div>
 
       
-        <h3 id="dict的key与value转置"><a href="#dict的key与value转置" class="headerlink" title="dict的key与value转置"></a>dict的key与value转置</h3><ul>
-<li>如果value1值唯一，则直接交换key1与value1的位置</li>
+        <h3 id="将-u3232-u6674转换成unicode字符"><a href="#将-u3232-u6674转换成unicode字符" class="headerlink" title="将 \u3232\u6674转换成unicode字符"></a>将 <code>\u3232\u6674</code>转换成unicode字符</h3><ul>
+<li>运用str对象的decode方法</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from collections import OrderedDict as od_dict #生成有序的dict</div><div class="line"></div><div class="line">d= od_dict((v,k) for k,v in OID_FS_lst.items()) </div><div class="line">print d</div></pre></td></tr></table></figure>
-<ul>
-<li>如果value1不唯一，直接交换，则作为key2插入的value1值，会被相同的key2覆盖。也就说会丢失部分值。</li>
-</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#任何字符，都可以在：</div><div class="line">#http://unicodelookup.com/</div><div class="line">#中，查找到对应的unicode的值</div><div class="line"></div><div class="line">s=&apos;\u6210\u529f&apos;</div><div class="line">print s.decode(&apos;unicode-escape&apos;)</div><div class="line">...成功</div></pre></td></tr></table></figure>
+<h3 id="写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。"><a href="#写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。" class="headerlink" title="写入unicode报错‘ascii’ codec can’t encode character in position 0-3。"></a>写入unicode报错‘ascii’ codec can’t encode character in position 0-3。</h3><p>py2如果开头指定了utf-8，Python的解释器根据 “#encoding:utf-8” 来按utf-8的编码规则来理解这些字符码<br>•当你把字符串写到文件中去时，因为你的字符串是 unicode，所以Python会（自动）先调用encode方法来编码unicode字符串，然后再写入文件<br>•当调用encode方法时，因为没有指定编码格式，所以采用默认值 ascii，ascii并不能解释定义的utf-8中翻译的字符码，所以报错</p>
+<p>今天遇到一个错误： UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-3 搜索网上找到一个解决办法（转载自 <a href="http://blog.sina.com.cn/s/blog_727b603701019pyl.html）" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_727b603701019pyl.html）</a> 异常: ‘ascii’ codec can’t encode characters 字符集的问题，在文件前加两句话： reload(sys) sys.setdefaultencoding( “utf-8” ) 完美解决，</p>
 
       
     </div>
@@ -352,12 +351,12 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-str/">2016-07-29</a></time>
+          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-dict-reverse/">2016-07-29</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/29/技术/python-str/">Python 字符串技巧</a></h1>
+    <h1 class="title"><a href="/2016/07/29/技术/python-dict-reverse/">python字典键值转置</a></h1>
   
 
     </header>
@@ -365,16 +364,17 @@
          
         
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#将-u3232-u6674转换成unicode字符"><span class="toc-text">将 \u3232\u6674转换成unicode字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。"><span class="toc-text">写入unicode报错‘ascii’ codec can’t encode character in position 0-3。</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#dict的key与value转置"><span class="toc-text">dict的key与value转置</span></a></li></ol>
     </div>
 
       
-        <h3 id="将-u3232-u6674转换成unicode字符"><a href="#将-u3232-u6674转换成unicode字符" class="headerlink" title="将 \u3232\u6674转换成unicode字符"></a>将 <code>\u3232\u6674</code>转换成unicode字符</h3><ul>
-<li>运用str对象的decode方法</li>
+        <h3 id="dict的key与value转置"><a href="#dict的key与value转置" class="headerlink" title="dict的key与value转置"></a>dict的key与value转置</h3><ul>
+<li>如果value1值唯一，则直接交换key1与value1的位置</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#任何字符，都可以在：</div><div class="line">#http://unicodelookup.com/</div><div class="line">#中，查找到对应的unicode的值</div><div class="line"></div><div class="line">s=&apos;\u6210\u529f&apos;</div><div class="line">print s.decode(&apos;unicode-escape&apos;)</div><div class="line">...成功</div></pre></td></tr></table></figure>
-<h3 id="写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。"><a href="#写入unicode报错‘ascii’-codec-can’t-encode-character-in-position-0-3。" class="headerlink" title="写入unicode报错‘ascii’ codec can’t encode character in position 0-3。"></a>写入unicode报错‘ascii’ codec can’t encode character in position 0-3。</h3><p>py2如果开头指定了utf-8，Python的解释器根据 “#encoding:utf-8” 来按utf-8的编码规则来理解这些字符码<br>•当你把字符串写到文件中去时，因为你的字符串是 unicode，所以Python会（自动）先调用encode方法来编码unicode字符串，然后再写入文件<br>•当调用encode方法时，因为没有指定编码格式，所以采用默认值 ascii，ascii并不能解释定义的utf-8中翻译的字符码，所以报错</p>
-<p>今天遇到一个错误： UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-3 搜索网上找到一个解决办法（转载自 <a href="http://blog.sina.com.cn/s/blog_727b603701019pyl.html）" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_727b603701019pyl.html）</a> 异常: ‘ascii’ codec can’t encode characters 字符集的问题，在文件前加两句话： reload(sys) sys.setdefaultencoding( “utf-8” ) 完美解决，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from collections import OrderedDict as od_dict #生成有序的dict</div><div class="line"></div><div class="line">d= od_dict((v,k) for k,v in OID_FS_lst.items()) </div><div class="line">print d</div></pre></td></tr></table></figure>
+<ul>
+<li>如果value1不唯一，直接交换，则作为key2插入的value1值，会被相同的key2覆盖。也就说会丢失部分值。</li>
+</ul>
 
       
     </div>
