@@ -5,28 +5,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>低秩矩阵补全 | 帅羊羊的博客</title>
+  <title>帅羊羊的博客</title>
   
   <meta name="author" content="Shuai yy">
   
-  <meta name="description" content="###问题描述:
-如果有这样一个矩阵
-
-
-矩阵中有部分元素缺失矩阵的秩相较于矩阵维数来说很小，并作为先验已知
-
-
-
-
-我们希望恢复那些缺失的元素，这个问题就是低秩矩阵补全问题。      
-###思考过程:
-
-需要恢复一个低秩矩阵直接想法是极小化矩阵的秩但是的优化问题非凸，不好求解核范数是秩的凸近似">
+  <meta name="description" content="WTddywKheI">
   
-  <meta name="keywords" content="矩阵补全，去中心">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="低秩矩阵补全"/>
+  
   <meta property="og:site_name" content="帅羊羊的博客"/>
 
   
@@ -225,31 +213,14 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
   
   <div class="post-content">
     <header>
       
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-17T08:45:30.894Z"><a href="/2017/09/17/科研/2014-07-25-matrix-completion/">2017-09-17</a></time>
-        
-	  
       
   
-    <h1 class="title">低秩矩阵补全</h1>
+    <h1 class="title"></h1>
   
 
     </header>
@@ -261,63 +232,13 @@
     </div>
 
       
-        <p>###问题描述:</p>
-<div>如果有这样一个矩阵<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}"></div>
-
-<ul>
-<li>矩阵中有部分元素缺失</li><li>矩阵的秩<img src="http://latex.codecogs.com/gif.latex?rank(\mathbf{W})" title="rank(\mathbf{W})">相较于矩阵维数来说很小，并作为先验已知</li>
-
-
-
-</ul>
-<p>我们希望恢复那些缺失的元素，这个问题就是低秩矩阵补全问题。      </p>
-<p>###思考过程:</p>
-<ul>
-<li>需要恢复一个低秩矩阵</li><li>直接想法是极小化矩阵的秩<img src="http://latex.codecogs.com/gif.latex?\min&space;rank(\mathbf{W})" title="\min rank(\mathbf{W})"></li><br><li>但是<img src="http://latex.codecogs.com/gif.latex?\min&space;rank(\mathbf{W})" title="\min rank(\mathbf{W})">的优化问题非凸，不好求解</li><br><li>核范数<img src="http://latex.codecogs.com/gif.latex?\left&space;\|&space;\mathbf{W}\right&space;\|_{*}" title="\left \| \mathbf{W}\right \|_{*}">是秩的凸近似，所以想到<img src="http://latex.codecogs.com/gif.latex?\min&space;\left&space;\|&space;\mathbf{W}\right&space;\|_{*}" title="\min \left \| \mathbf{W}\right \|_{*}"></li>
-
-
-</ul>
-<p>###极小化核范数的集中式算法:</p>
-<div>求解<img src="http://latex.codecogs.com/gif.latex?\min&space;\left&space;\|&space;\mathbf{W}\right&space;\|_{*}" title="\min \left \| \mathbf{W}\right \|_{*}">的集中式算法有很多，比如：</div>
-
-<ul>
-<li>singular value thresholding algorithm</li>
-<li>fixed-point shrinkage algorithm</li>
-<li>proximal gradient algorithm</li>
-<li>ADMM</li>
-</ul>
-<p>但如果矩阵规模和秩增大，以上算法的计算代价也增大，因为它们都需要求解奇异值分解(SVD)。SVD中求伪逆的步骤运算量大，很耗费资源。因此需要想更好的方法，避免极小化核范数。</p>
-<p>###极小化分解矩阵之积的集中式方法:</p>
-<p><div>将问题写为<img src="http://latex.codecogs.com/gif.latex?\min&space;\left&space;\|&space;\mathbf{Z}-\mathbf{X}\mathbf{Y}\right&space;\|_{F}" title="\min \left \| \mathbf{Z}-\mathbf{X}\mathbf{Y}\right \|_{F}">，其中<img src="http://latex.codecogs.com/gif.latex?\mathbf{Z}" title="\mathbf{Z}">是对<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}">的估计，在元素没有缺失的位置上<img src="http://latex.codecogs.com/gif.latex?\mathbf{Z}" title="\mathbf{Z}">和<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}">的元素相同，<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Y}" title="\mathbf{Y}">是对<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}">的乘法分解。介绍两种求解该问题的方法：</div></p>
-<ul>
-<li>nonlinear Gauss-Seidel method</li>
-<li>nonlinear SOR(Successive Over-Relaxation)-like scheme:LMaFit</li>
-</ul>
-<p>其中SOR方法是GS方法的拓展，区别仅在于SOR方法中对于<strong>X</strong>的更新加了权重，并对权值进行更新。</p>
-<p>###去中心式算法:</p>
-<p><div>当矩阵规模大到一定程度时，集中式算法在计算能力上要求过高，普通计算机也许无法计算。这时，我们需要在由许多普通计算机作为节点组成的网络中运算，这需要实现去中心式计算。去中心式计算式很容易实现的，将<img src="http://latex.codecogs.com/gif.latex?\mathbf{W}" title="\mathbf{W}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Z}" title="\mathbf{Z}">,<img src="http://latex.codecogs.com/gif.latex?\mathbf{Y}" title="\mathbf{Y}">分别切块放在每个节点上，将<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}" title="\mathbf{X}">作为公共信息在网络各个邻居节点间交换，优化问题形式不变，但需要加上<img src="http://latex.codecogs.com/gif.latex?\mathbf{X}_{(i)}=\mathbf{X}_{(j)}" title="\mathbf{X}_{(i)}=\mathbf{X}_{(j)}">的约束。而这样一个约束就引出了另一个子问题：一致平均(average consensus)问题。</div></p>
-<p>关于一致平均问题的介绍请看：</p>
-<ul>
-<li><a href="http://painterlin.com/2014/08/22/Average-Consensus.html" target="_blank" rel="external">《对于一致平均问题的理解》</a></li>
-<li><a href="http://painterlin.com/2014/08/31/Papers-about-average-consensus.html" target="_blank" rel="external">《动态一致平均问题的4篇论文》</a></li>
-</ul>
-
+        WTddywKheI
       
     </div>
     <footer>
       
         
-  
-  <div class="categories">
-    <a href="/categories/科研/">科研</a>
-  </div>
-
         
-  
-  <div class="tags">
-    <a href="/tags/Optimization/">Optimization</a>
-  </div>
-
 <!-- 打赏按钮开始 -->
 
     <br>
@@ -392,10 +313,6 @@ window.onload = function(){
 
  <nav id="pagination" >
     
-    <a href="/2017/09/17/科研/2014-10-01-Alibaba-Big-Data/" class="alignleft prev" >上一页</a>
-    
-    
-    <a href="/2017/09/17/科研/2014-07-27-norms-of-vector-and-matrix/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>

@@ -7,6 +7,7 @@
     
     
     
+    
   <url>
     <loc>http://shuaiyy.cn/2016/01/28/%E9%98%85%E8%AF%BB/Book-List-2016/</loc>
     <lastmod>2017-09-18T03:27:38.083Z</lastmod>
@@ -698,9 +699,9 @@
         <title>scrapy ImagePipeline下载gif图片和自定义图片文件名称</title>
         <pubTime>2017-02-15T16:00:00.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>爬虫</tag>
+         
+        <tag>Python</tag>
          
         <tag>Scrapy</tag>
          
@@ -875,9 +876,9 @@
         <title>爬虫笔记(基于python2)</title>
         <pubTime>2016-08-08T16:00:00.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>爬虫</tag>
+         
+        <tag>Python</tag>
          
          
            
@@ -1360,74 +1361,14 @@
 
     
   <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-07-25-matrix-completion/</loc>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-10-Basic-Algorithms-of-Convex-Opt/</loc>
     <lastmod>2016-05-08T16:02:22.000Z</lastmod>
     <data>
         <display>
-        <title>低秩矩阵补全</title>
-        <pubTime>2017-09-17T08:45:30.894Z</pubTime>
-        
-        <tag>Optimization</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-08-31-Papers-about-average-consensus/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>动态一致平均问题算法-EXTRA和DAC</title>
+        <title>凸优化的一些基础算法</title>
         <pubTime>2017-09-17T08:45:30.910Z</pubTime>
         
         <tag>Optimization</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-09-11-Matlab-tips/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>Matlab科研小贴士</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Matlab</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-07-27-norms-of-vector-and-matrix/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>各类范数</title>
-        <pubTime>2017-09-17T08:45:30.894Z</pubTime>
-        
-        <tag>Math</tag>
          
          
            
@@ -1460,66 +1401,6 @@
 
     
   <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-26-Presentation-at-Chinese-Academy-of-Science/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>我的报告 Decentralized Privacy-Preserving Low-Rank Matrix Completion</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Math Optimization</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-10-Basic-Algorithms-of-Convex-Opt/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>凸优化的一些基础算法</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Optimization</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2015-02-04-Group-Meeting/</loc>
-    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>大数据机器学习初探---南大李武军</title>
-        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
-        
-        <tag>Math Optimization MachineLearning</tag>
-         
-         
-           
-             
-              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2015-03-23-Newton-QuasiNewton-Method/</loc>
     <lastmod>2016-05-08T16:02:22.000Z</lastmod>
     <data>
@@ -1528,6 +1409,26 @@
         <pubTime>2017-09-17T08:45:30.910Z</pubTime>
         
         <tag>Math Optimization</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-08-31-Papers-about-average-consensus/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>动态一致平均问题算法-EXTRA和DAC</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
+        
+        <tag>Optimization</tag>
          
          
            
@@ -1560,6 +1461,46 @@
 
     
   <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-07-25-matrix-completion/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>低秩矩阵补全</title>
+        <pubTime>2017-09-17T08:45:30.894Z</pubTime>
+        
+        <tag>Optimization</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-07-27-norms-of-vector-and-matrix/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>各类范数</title>
+        <pubTime>2017-09-17T08:45:30.894Z</pubTime>
+        
+        <tag>Math</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2015-09-12-Intuition-of-Eigen-Value/</loc>
     <lastmod>2016-05-08T16:02:22.000Z</lastmod>
     <data>
@@ -1568,6 +1509,66 @@
         <pubTime>2017-09-17T08:45:30.910Z</pubTime>
         
         <tag>Math Optimization</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2015-02-04-Group-Meeting/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>大数据机器学习初探---南大李武军</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
+        
+        <tag>Math Optimization MachineLearning</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-11-26-Presentation-at-Chinese-Academy-of-Science/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>我的报告 Decentralized Privacy-Preserving Low-Rank Matrix Completion</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
+        
+        <tag>Math Optimization</tag>
+         
+         
+           
+             
+              <breadCrumb title="科研" url="http://shuaiyy.cn/categories/%E7%A7%91%E7%A0%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/09/17/%E7%A7%91%E7%A0%94/2014-09-11-Matlab-tips/</loc>
+    <lastmod>2016-05-08T16:02:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Matlab科研小贴士</title>
+        <pubTime>2017-09-17T08:45:30.910Z</pubTime>
+        
+        <tag>Matlab</tag>
          
          
            
