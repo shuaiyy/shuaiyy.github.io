@@ -1,0 +1,1065 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PyQt5入门 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="PyQt入门开发环境配置Python2.7  + PyQt5 + Pycharm 
+
+pypi源下载超时的话可以切换豆瓣pip源
+我用的是python27，pyqt5.3， pycharm
+
+安装PyQt5
+如果你想使用py27+ pyqt58，参考知乎上的这篇，自行编译或使用作者提供的编译好的二进">
+  
+  <meta name="keywords" content="PyQt5,GUI编程">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="PyQt5入门"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-10-11T16:00:00.000Z"><a href="/2017/10/12/技术/PyQt入门/">2017-10-12</a></time>
+        
+	  
+      
+  
+    <h1 class="title">PyQt5入门</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PyQt入门"><span class="toc-text">PyQt入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境配置"><span class="toc-text">开发环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装PyQt5"><span class="toc-text">安装PyQt5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置Pycharm"><span class="toc-text">配置Pycharm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置eric6"><span class="toc-text">配置eric6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PyQt学习教程和资料"><span class="toc-text">PyQt学习教程和资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PyQt5与PyQt4的区别"><span class="toc-text">PyQt5与PyQt4的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Qt组件"><span class="toc-text">Qt组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#label"><span class="toc-text">label</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#button"><span class="toc-text">button</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LineEdit"><span class="toc-text">LineEdit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TextEdit"><span class="toc-text">TextEdit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TextBrowser"><span class="toc-text">TextBrowser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ProgressBar"><span class="toc-text">ProgressBar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MenuBar"><span class="toc-text">MenuBar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SliderBar"><span class="toc-text">SliderBar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dial"><span class="toc-text">Dial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对话框"><span class="toc-text">对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准输入对话框"><span class="toc-text">标准输入对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义输入对话框"><span class="toc-text">自定义输入对话框</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片显示"><span class="toc-text">图片显示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#label显示图片"><span class="toc-text">label显示图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GraphView图片"><span class="toc-text">GraphView图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更换图片"><span class="toc-text">更换图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动界面-QSplashScreen"><span class="toc-text">启动界面 QSplashScreen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号槽机制"><span class="toc-text">信号槽机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#信号种类"><span class="toc-text">信号种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信号和槽"><span class="toc-text">信号和槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义信号"><span class="toc-text">自定义信号</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <h1 id="PyQt入门"><a href="#PyQt入门" class="headerlink" title="PyQt入门"></a>PyQt入门</h1><h2 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h2><p><strong>Python2.7  + PyQt5 + Pycharm</strong> </p>
+<blockquote>
+<p>pypi源下载超时的话可以切换豆瓣pip源</p>
+<p>我用的是python27，pyqt5.3， pycharm</p>
+</blockquote>
+<h3 id="安装PyQt5"><a href="#安装PyQt5" class="headerlink" title="安装PyQt5"></a>安装PyQt5</h3><blockquote>
+<p>如果你想使用py27+ pyqt58，参考知乎上的<a href="https://zhuanlan.zhihu.com/p/25561911?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="external">这篇</a>，自行编译或使用作者提供的编译好的二进制包。我没试过，不保证成功。</p>
+</blockquote>
+<ul>
+<li><p>python3</p>
+<p>PyQt5官方编译版本仅支持python3，<code>pip install pyqt5</code></p>
+</li>
+<li><p>python2.7</p>
+<p>好在网上有编译的python2.7版本的pyqt，<a href="https://github.com/pyqt/python-qt5" target="_blank" rel="external">官网主页</a>指出使用pip安装的版本为qt5.3,git安装的版本为qt5.7  </p>
+<p><code>pip install --index-url https://pypi.douban.com/simple python-qt5</code></p>
+</li>
+<li><p>pyqt5 designer</p>
+<p>python3需要单独安装<code>pip install pyqt5-tools</code></p>
+<p>python2 <code>python-qt5</code> 里打包了designer工具，无需单独安装</p>
+</li>
+</ul>
+<h3 id="配置Pycharm"><a href="#配置Pycharm" class="headerlink" title="配置Pycharm"></a>配置Pycharm</h3><p>下面以python2为例，python3对应的designer.exe的位置不同。</p>
+<p>打开Pycharm，进入设置，添加外部工具，QtDesigner和PyUIC</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/0A13dkjIf2.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>QtDesigner</p>
+<p>QtDesigner用来生成ui文件</p>
+<p><code>$FileDir$</code>是pycharm的宏变量，即当前文件的路径</p>
+</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/JF9aJk6Efb.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>PyUIC</p>
+<p>将ui文件转换成对应的python文件</p>
+<p>参数为<code>-m PyQt5.uic.pyuic  $FileName$ -o $FileNameWithoutExtension$.py</code></p>
+</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/F4HkBKiA2F.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>pyrcc</p>
+<p>用于生成资源文件</p>
+<p>我在虚拟环境的pyqt5文件夹里没找到pyrcc5.exe,但在系统Python的bin目录下有一个，就copy了一份，使用正常。系统的Python用pip list看了一下，并没有安装pyqt5，但是有qtpy这个包，有点奇怪，我系统的Python是anaconda发行版。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/m7i0IDl3LK.png?imageslim" alt="mark"></p>
+<p><strong>使用方法</strong></p>
+<p>首先生成资源的qrc文件：</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/A5Ae444Jb9.png?imageslim" alt="mark"></p>
+<p>然后右键生成资源的py文件</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/JILDaame1E.png?imageslim" alt="mark"></p>
+<p>然后在需要引用资源的地方，先import py文件，然后资源的路径使用格式<code>:文件路径/prefix_dir/文件名</code>,冒号必不可少，文件路径是指_rc.py文件相对qrc资源文件的路径。当两者在同一路径时，可以不写。</p>
+</li>
+</ul>
+<p><strong>问题描述</strong></p>
+<p>在<code>pycharm &gt; tools &gt; external-tools</code>中打开Qtdesigner时，</p>
+<blockquote>
+<p>This application failed to start because it could not find or load the Qt platform plugin “windows”.</p>
+</blockquote>
+<p><strong>原因</strong>：</p>
+<p>环境变量没有添加。如果已经配置了环境变量，需要关闭并重新打开pycharm。</p>
+<p><strong>解决方法</strong>：</p>
+<p>参考<a href="https://github.com/pyqt/python-qt5/wiki/Qt-Environment-Variable-Reference" target="_blank" rel="external">官方wiki</a>在环境变量中增加：</p>
+<p>路径中的<qt_dir>替换为PyQt包所在的位置，查看你的安装位置</qt_dir></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> PyQt5</div><div class="line">PyQt5.__path__</div><div class="line">[<span class="string">'D:\\qt_env\\lib\\site-packages\\PyQt5'</span>]</div></pre></td></tr></table></figure>
+<p>QT_QPA_PLATFORM_PLUGIN_PATH：<code>&lt;QT_DIR&gt;/plugins/platforms</code></p>
+<p> QT_PLUGIN_PATH  <code>Example: &lt;QT_DIR&gt;/plugins</code></p>
+<p> QML_IMPORT_PATH： <code>&lt;QT_DIR&gt;/qml</code></p>
+<p>QML2_IMPORT_PATH： <code>&lt;QT_DIR&gt;/qml</code></p>
+<h3 id="配置eric6"><a href="#配置eric6" class="headerlink" title="配置eric6"></a>配置eric6</h3><blockquote>
+<p>这玩意儿是智障，自动补全一点也不智能</p>
+<p>唯一优势就是可以通过选择组件和触发事件的方式批量生成一堆槽函数。</p>
+<p>我还是用的pycharm</p>
+</blockquote>
+<p>由于Qscintilla2在python2下没有编译的安装包，需要自行编译安装。</p>
+<p>故选择在python3下安装。</p>
+<p>如果使用了Python虚拟环境，则需要临时将python3.exe的目录设置在系统环境变量path里。</p>
+<p>下载eric6，解压， 执行 <code>..\..\python.exe install.py</code></p>
+<h2 id="PyQt学习教程和资料"><a href="#PyQt学习教程和资料" class="headerlink" title="PyQt学习教程和资料"></a>PyQt学习教程和资料</h2><blockquote>
+<p>建议先看完鱼c网友的帖子</p>
+</blockquote>
+<ul>
+<li>知乎 - <a href="https://www.zhihu.com/question/26492283" target="_blank" rel="external">大家是怎么学pyqt5的？</a></li>
+<li><a href="http://bbs.fishc.com/forum.php?mod=viewthread&amp;tid=59816&amp;extra=page%3D1&amp;page=1" target="_blank" rel="external">pyqt5教程-鱼c论坛</a></li>
+<li>pyqt5 <a href="http://pyqt.sourceforge.net/Docs/PyQt5/index.html" target="_blank" rel="external">reference 官方</a></li>
+<li>Qt官方文档</li>
+</ul>
+<h3 id="PyQt5与PyQt4的区别"><a href="#PyQt5与PyQt4的区别" class="headerlink" title="PyQt5与PyQt4的区别"></a>PyQt5与PyQt4的区别</h3><p><strong>信号槽的不同</strong></p>
+<p>qt5中没有以下：</p>
+<ul>
+<li><code>QObject.connect()</code></li>
+<li><code>QObject.emit()</code></li>
+<li><code>SIGNAL()</code></li>
+<li><code>SLOT()</code></li>
+<li>All methods that had arguments that are usually the results of calls to <code>SIGNAL()</code> or <code>SLOT()</code> are no longer supported</li>
+<li><code>disconnect()</code> takes no arguments and disconnects all connections to the <a href="http://pyqt.sourceforge.net/Docs/PyQt5/api/QtCore/qobject.html#PyQt5-QtCore-QObject" target="_blank" rel="external"><code>QObject</code></a> instance.</li>
+</ul>
+<p><strong>Moudle组件的变化</strong></p>
+<ul>
+<li>PyQt4’s <code>QtGui</code> module has been split into PyQt5’s <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtGui.html#PyQt5-QtGui" target="_blank" rel="external"><code>QtGui</code></a>, <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtPrintSupport.html#PyQt5-QtPrintSupport" target="_blank" rel="external"><code>QtPrintSupport</code></a> and <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtWidgets.html#PyQt5-QtWidgets" target="_blank" rel="external"><code>QtWidgets</code></a> modules.</li>
+<li>Only the <a href="http://pyqt.sourceforge.net/Docs/PyQt5/api/QtOpenGL/qglcontext.html#PyQt5-QtOpenGL-QGLContext" target="_blank" rel="external"><code>QGLContext</code></a>, <a href="http://pyqt.sourceforge.net/Docs/PyQt5/api/QtOpenGL/qglformat.html#PyQt5-QtOpenGL-QGLFormat" target="_blank" rel="external"><code>QGLFormat</code></a> and <a href="http://pyqt.sourceforge.net/Docs/PyQt5/api/QtOpenGL/qglwidget.html#PyQt5-QtOpenGL-QGLWidget" target="_blank" rel="external"><code>QGLWidget</code></a> classes are supported by PyQt5.</li>
+<li>PyQt4’s <code>QtDeclarative</code>, <code>QtScript</code> and <code>QtScriptTools</code> modules are not supported. These have been replaced by PyQt5’s <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtQml.html#PyQt5-QtQml" target="_blank" rel="external"><code>QtQml</code></a> and<a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtQuick.html#PyQt5-QtQuick" target="_blank" rel="external"><code>QtQuick</code></a> modules. Unlike PyQt4, PyQt5 supports the creation of Python objects from QML.</li>
+<li>PyQt4’s <code>QtWebKit</code> module has been split into PyQt5’s <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtWebKit.html#PyQt5-QtWebKit" target="_blank" rel="external"><code>QtWebKit</code></a> and <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtWebKitWidgets.html#PyQt5-QtWebKitWidgets" target="_blank" rel="external"><code>QtWebKitWidgets</code></a> modules.</li>
+<li>PyQt4’s <code>pyqtconfig</code> module is not supported. The section <a href="http://pyqt.sourceforge.net/Docs/PyQt5/extension_api.html#ref-build-system" target="_blank" rel="external">The PyQt5 Extension API</a> describes the support that PyQt5 provides to third-party packages (e.g. <a href="https://www.riverbankcomputing.com/software/qscintilla/" target="_blank" rel="external">QScintilla</a>) that want to build on top of PyQt5.</li>
+<li>更多<a href="http://pyqt.sourceforge.net/Docs/PyQt5/pyqt4_differences.html#supported-python-versions" target="_blank" rel="external">内容</a></li>
+</ul>
+<h2 id="Qt组件"><a href="#Qt组件" class="headerlink" title="Qt组件"></a>Qt组件</h2><h3 id="label"><a href="#label" class="headerlink" title="label"></a>label</h3><ul>
+<li>改变文本</li>
+<li>改变字体</li>
+<li>使用图片</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/81HeJBm591.png?imageslim" alt="mark"></p>
+<h3 id="button"><a href="#button" class="headerlink" title="button"></a>button</h3><p><strong>radio button</strong></p>
+<ul>
+<li>使用GroupBox放置一组互斥的单选框</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/9bk5Bej498.png?imageslim" alt="mark"></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/d5l4h8HmAg.png?imageslim" alt="mark"></p>
+<h3 id="LineEdit"><a href="#LineEdit" class="headerlink" title="LineEdit"></a>LineEdit</h3><ul>
+<li>object.setText(“”)</li>
+<li>object.text()</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/gf3fDmgj5i.png?imageslim" alt="mark"></p>
+<h3 id="TextEdit"><a href="#TextEdit" class="headerlink" title="TextEdit"></a>TextEdit</h3><p>多行文本框，只读/编辑属性,多行文本持续输出</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/AlL5d6m1me.png?imageslim" alt="mark"></p>
+<h3 id="TextBrowser"><a href="#TextBrowser" class="headerlink" title="TextBrowser"></a>TextBrowser</h3><h3 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/gg1Fa8kFE8.png?imageslim" alt="mark"></p>
+<h3 id="MenuBar"><a href="#MenuBar" class="headerlink" title="MenuBar"></a>MenuBar</h3><ul>
+<li>每个菜单选项为一个Qaction对象</li>
+<li>Qdesigner中可以拖拽菜单项进行排序</li>
+<li>Qaction可以添加图标， png格式的。在属性的icon中右边有个…打开文件按钮，点击添加icon</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/Hm8F3Eh6F1.png?imageslim" alt="mark"></p>
+<p><strong>打开/关闭文件</strong></p>
+<ul>
+<li><code>QFileDialog.getSaveFileName</code> </li>
+<li><code>QFileDialog.getOpenFileName</code> </li>
+<li>win32com操作word打开文档</li>
+</ul>
+<h3 id="SliderBar"><a href="#SliderBar" class="headerlink" title="SliderBar"></a>SliderBar</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/9EgiD93fgA.png?imageslim" alt="mark"></p>
+<h3 id="Dial"><a href="#Dial" class="headerlink" title="Dial"></a>Dial</h3><h3 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h3><ul>
+<li>通知对话框 </li>
+<li>询问对话框</li>
+<li>警告对话框</li>
+<li>严重警告对话框</li>
+<li>关于对话框</li>
+<li>AboutQt对话框</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/jlkmc139F7.png?imageslim" alt="mark"></p>
+<h3 id="标准输入对话框"><a href="#标准输入对话框" class="headerlink" title="标准输入对话框"></a>标准输入对话框</h3><ul>
+<li>getText</li>
+<li>getInt</li>
+<li>getItem 下拉</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">reply, ok = QInputDialog.getText(</div><div class="line">                self, &apos;输入框&apos;, &apos;请输入姓名&apos;, QLineEdit.Normal, &apos;在此处输入你的姓名...&apos;)</div><div class="line"># title，提示，当前值，最小值，最大值</div><div class="line">reply, ok = QInputDialog.getInt(self, &apos;输入框&apos;, &apos;请输入你的年龄&apos;, 10, 5, 25)</div><div class="line">reply, ok = QInputDialog.getItem(</div><div class="line">                self, &apos;请选择&apos;, &apos;最爱的水果是？&apos;, [&apos;香蕉&apos;, &apos;苹果&apos;, &apos;大菠萝&apos;])</div></pre></td></tr></table></figure>
+<h3 id="自定义输入对话框"><a href="#自定义输入对话框" class="headerlink" title="自定义输入对话框"></a>自定义输入对话框</h3><ul>
+<li>一次获取多个变量</li>
+<li>修改全区变量</li>
+<li>个性化定制</li>
+</ul>
+<p>通过额外创建一个窗体ui界面实现，</p>
+<h2 id="图片显示"><a href="#图片显示" class="headerlink" title="图片显示"></a>图片显示</h2><blockquote>
+<p>使用designer右键组件，选择更改样式表，添加图片资源。</p>
+<p>boader-img，自适应组件大小的填充图片。背景图片，按原图显示。原比例显示，自动缩放，保持比例不变。</p>
+<p>可以在图片上添加自定义点击事件 </p>
+</blockquote>
+<h3 id="label显示图片"><a href="#label显示图片" class="headerlink" title="label显示图片"></a>label显示图片</h3><p>Qt Designer 右键 change StyleSheet</p>
+<h3 id="GraphView图片"><a href="#GraphView图片" class="headerlink" title="GraphView图片"></a>GraphView图片</h3><p>Qt Designer 右键 change StyleSheet</p>
+<ul>
+<li><p>为图片绑定鼠标点击事件</p>
+<p><code>self.graphicsView.mousePressEvent = self.photo_clicked</code></p>
+</li>
+</ul>
+<h3 id="更换图片"><a href="#更换图片" class="headerlink" title="更换图片"></a>更换图片</h3><ul>
+<li><code>self.graphicsView_photo.setStyleSheet(&quot;border-image: url(:/source/3345.jpg);&quot;)</code> </li>
+</ul>
+<h2 id="启动界面-QSplashScreen"><a href="#启动界面-QSplashScreen" class="headerlink" title="启动界面 QSplashScreen"></a>启动界面 QSplashScreen</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>程序启动时加载大量资源，启动缓慢，使用启动界面告知用户，程序运行中</li>
+<li>显示logo</li>
+<li>一些重要或有趣的图片和文字信息</li>
+<li>显示启动界面时不能阻塞gui事件响应</li>
+</ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><blockquote>
+<p>sleep是因为主窗口初始化很快就完成了，为了看到启动效果而加的延迟</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">app = QApplication(sys.argv)</div><div class="line">splash = QSplashScreen(QPixmap(<span class="string">':source/4532.png'</span>))</div><div class="line">splash.show()</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line"><span class="comment"># 显示文字信息，文字的位置和颜色</span></div><div class="line">splash.showMessage(<span class="string">'正在加载图片资源...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">splash.showMessage(<span class="string">'正在加载视频资源...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">splash.showMessage(<span class="string">'正在启动中...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">app.processEvents() <span class="comment"># 避免阻塞gui事件</span></div><div class="line"><span class="comment"># 主窗口初始化</span></div><div class="line">mywindow = MyWindow()</div><div class="line">mywindow.show()</div><div class="line"><span class="comment"># 关闭启动窗口</span></div><div class="line">splash.close()</div><div class="line">sys.exit(app.exec_())</div></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171017/KIfbDagJAh.png?imageslim" alt="mark"></p>
+<h2 id="信号槽机制"><a href="#信号槽机制" class="headerlink" title="信号槽机制"></a>信号槽机制</h2><h3 id="信号种类"><a href="#信号种类" class="headerlink" title="信号种类"></a>信号种类</h3><p>事件源：鼠标点击拖拽等，值改变。。。</p>
+<h3 id="信号和槽"><a href="#信号和槽" class="headerlink" title="信号和槽"></a>信号和槽</h3><blockquote>
+<p>所有的组件都可以产生信号，组件只负责发射信号。</p>
+<p>信号需要连接到槽函数，才能得到处理。</p>
+</blockquote>
+<ul>
+<li><p>通过QtDesigner连接信号与槽</p>
+</li>
+<li><p>通过手动代码连接信号与槽</p>
+</li>
+<li><p>装饰器方法</p>
+</li>
+</ul>
+<h3 id="自定义信号"><a href="#自定义信号" class="headerlink" title="自定义信号"></a>自定义信号</h3><p>参考<a href="http://blog.csdn.net/zhulove86/article/details/52563131" target="_blank" rel="external">博客</a></p>
+<ul>
+<li><p>多重载的信号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 声明一个多重载版本的信号，包括了一个带int和str类型参数的信号，以及带str参数的信号</span></div><div class="line">preview_signal = pyqtSignal([int,str],[str])</div><div class="line"><span class="comment"># 参数为int，str的信号</span></div><div class="line">help_signal = pyqtSignal(int, str)</div><div class="line"></div><div class="line"><span class="comment"># 信号发射</span></div><div class="line">self.preview_signal[int, str].emit(<span class="number">1</span>, <span class="string">'ok'</span>) <span class="comment"># 指定信号的版本</span></div><div class="line">self.preview_signal[str].emit(<span class="string">'success!'</span>)</div><div class="line"><span class="comment"># 槽函数绑定，同样需要指定信号的版本</span></div><div class="line">self.preview_signal[int, str].connect(self.func_1) <span class="comment"># 指定信号的版本</span></div><div class="line">self.preview_signal[str].connect(self.func_2)</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<p><strong>一般流程如下</strong>：<br>1、定义信号<br>2、定义槽函数<br>3、绑定信号和槽<br>4、发射信号</p>
+<p><strong>注意事项：</strong></p>
+<p>1、自定义的信号在<strong>init</strong>()函数之前定义；<br>2、自定义型号可以传递，str、int、list、object、float、tuple、dict等很多类型的参数；<br>3、注意signal和slot的调用逻辑，避免signal和slot之间出现死循环。如在slot方法中继续发射该信号；</p>
+<p><strong>问题描述</strong></p>
+<blockquote>
+<p><code>&#39;PyQt5.QtCore.pyqtSignal&#39; object has no attribute &#39;connect&#39;</code></p>
+</blockquote>
+<p><strong>原因</strong></p>
+<p>pyqtSignal只有绑定了对象后才有connect方法</p>
+<p><strong>解决方法</strong></p>
+<ol>
+<li><p>在Qobject对象init()初始化之前定义信号pyqtSignal, 使其成为类变量而不是实例变量</p>
+</li>
+<li><p>使用connect方法时，要先创建Qobject对象的实例，然后调用实例的信号变量，直接<code>Qobject.signal.connect</code>就会出现这种错误</p>
+<p>​</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/GUI编程/">GUI编程</a>, <a href="/categories/技术/GUI编程/PyQt5/">PyQt5</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/PyQt5/">PyQt5</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/10/13/技术/PyQt5.9编译 python27 64位Windows版/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/10/11/技术/PyQt5不同窗体之间传值/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
+    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>20</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+  
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2017</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

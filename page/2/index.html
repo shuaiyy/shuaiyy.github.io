@@ -283,12 +283,12 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-09-11T16:00:00.000Z"><a href="/2017/09/12/技术/Flask 国际化语言支持/">2017-09-12</a></time>
+          <time datetime="2017-10-11T16:00:00.000Z"><a href="/2017/10/12/技术/PyQt入门/">2017-10-12</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/09/12/技术/Flask 国际化语言支持/">Flask 国际化语言支持</a></h1>
+    <h1 class="title"><a href="/2017/10/12/技术/PyQt入门/">PyQt5入门</a></h1>
   
 
     </header>
@@ -296,462 +296,759 @@
          
         
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flask-国际化语言支持"><span class="toc-text">Flask 国际化语言支持</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PyQt入门"><span class="toc-text">PyQt入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境配置"><span class="toc-text">开发环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装PyQt5"><span class="toc-text">安装PyQt5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置Pycharm"><span class="toc-text">配置Pycharm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置eric6"><span class="toc-text">配置eric6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PyQt学习教程和资料"><span class="toc-text">PyQt学习教程和资料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PyQt5与PyQt4的区别"><span class="toc-text">PyQt5与PyQt4的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Qt组件"><span class="toc-text">Qt组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#label"><span class="toc-text">label</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#button"><span class="toc-text">button</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LineEdit"><span class="toc-text">LineEdit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TextEdit"><span class="toc-text">TextEdit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TextBrowser"><span class="toc-text">TextBrowser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ProgressBar"><span class="toc-text">ProgressBar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MenuBar"><span class="toc-text">MenuBar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SliderBar"><span class="toc-text">SliderBar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dial"><span class="toc-text">Dial</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对话框"><span class="toc-text">对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准输入对话框"><span class="toc-text">标准输入对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义输入对话框"><span class="toc-text">自定义输入对话框</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片显示"><span class="toc-text">图片显示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#label显示图片"><span class="toc-text">label显示图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GraphView图片"><span class="toc-text">GraphView图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更换图片"><span class="toc-text">更换图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动界面-QSplashScreen"><span class="toc-text">启动界面 QSplashScreen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号槽机制"><span class="toc-text">信号槽机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#信号种类"><span class="toc-text">信号种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信号和槽"><span class="toc-text">信号和槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义信号"><span class="toc-text">自定义信号</span></a></li></ol></li></ol></li></ol>
     </div>
 
       
-        <h1 id="Flask-国际化语言支持"><a href="#Flask-国际化语言支持" class="headerlink" title="Flask 国际化语言支持"></a>Flask 国际化语言支持</h1><blockquote>
-<p>flask-babel扩展</p>
-</blockquote>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170927/5m5BAabgBL.png?imageslim" alt="mark"></p>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-10T16:00:00.000Z"><a href="/2017/09/11/技术/flask 分页/">2017-09-11</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/11/技术/flask 分页/">Flask 分页</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="flask-分页"><a href="#flask-分页" class="headerlink" title="flask 分页"></a>flask 分页</h1><h2 id="数据伪装"><a href="#数据伪装" class="headerlink" title="数据伪装"></a>数据伪装</h2><blockquote>
-<p>使用 forgery_py, 安装 pip install forgerypy</p>
-</blockquote>
-<p>生成大量符合条件的随机数据,用于开发和测试，此处是用于分页的数据</p>
-<p>生成大量随机的符合条件的数据</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170927/fh241kKeAb.png?imageslim" alt="mark"></p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/09/11/技术/flask 分页/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-09T16:00:00.000Z"><a href="/2017/09/10/技术/Flask 代码测试/">2017-09-10</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/10/技术/Flask 代码测试/">Flask 应用测试</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Flask-应用测试"><a href="#Flask-应用测试" class="headerlink" title="Flask 应用测试"></a>Flask 应用测试</h1><h2 id="测试内容"><a href="#测试内容" class="headerlink" title="测试内容"></a>测试内容</h2><ul>
-<li>模型测试</li>
-<li>逻辑测试</li>
-<li>view测试</li>
-</ul>
-<h2 id="unittest"><a href="#unittest" class="headerlink" title="unittest"></a>unittest</h2><ul>
-<li>测试文件以test_开头命名</li>
-<li>每个测试文件都要实现一个测试用例</li>
-<li>测试用例内的方法命名也是test_开头命名</li>
-<li>测试用例有setUp和tearDown方法</li>
-</ul>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/09/10/技术/Flask 代码测试/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-08T16:00:00.000Z"><a href="/2017/09/09/技术/Flask Web应用部署和运维/">2017-09-09</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/09/技术/Flask Web应用部署和运维/">Flask Web应用部署和运维</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Flask-Web应用部署和运维"><a href="#Flask-Web应用部署和运维" class="headerlink" title="Flask Web应用部署和运维"></a>Flask Web应用部署和运维</h1><h2 id="web应用发布"><a href="#web应用发布" class="headerlink" title="web应用发布"></a>web应用发布</h2><h3 id="服务器要求"><a href="#服务器要求" class="headerlink" title="服务器要求"></a>服务器要求</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170921/0GiagKiael.png?imageslim" alt="mark"></p>
-<h3 id="云服务器"><a href="#云服务器" class="headerlink" title="云服务器"></a>云服务器</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170921/DILgBIJdGA.png?imageslim" alt="mark"></p>
-<ul>
-<li>ssh登录到远程服务器</li>
-<li>配置web服务器运行环境</li>
-</ul>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/09/09/技术/Flask Web应用部署和运维/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-07T16:00:00.000Z"><a href="/2017/09/08/技术/Flask Bootstrap/">2017-09-08</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/08/技术/Flask Bootstrap/">Flask Bootstrap</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Flask-Bootstrap"><a href="#Flask-Bootstrap" class="headerlink" title="Flask Bootstrap"></a>Flask Bootstrap</h1><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/5gILBg7g3I.png?imageslim" alt="mark"></p>
-<p>安装<code>pip install flask-bootstrap</code></p>
-<p>flask-nav生成导航栏</p>
-<h2 id="在app中注册Bootstrap"><a href="#在app中注册Bootstrap" class="headerlink" title="在app中注册Bootstrap"></a>在app中注册Bootstrap</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> flask_bootstrap <span class="keyword">import</span> Bootstrap</div><div class="line">Bootstrap(app)</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/09/08/技术/Flask Bootstrap/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-06T16:00:00.000Z"><a href="/2017/09/07/技术/Python Web框架简介/">2017-09-07</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/07/技术/Python Web框架简介/">python Web框架</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Python-Web框架简介"><a href="#Python-Web框架简介" class="headerlink" title="Python Web框架简介"></a>Python Web框架简介</h1><h2 id="Web开发框架"><a href="#Web开发框架" class="headerlink" title="Web开发框架"></a>Web开发框架</h2><h3 id="Web框架简介"><a href="#Web框架简介" class="headerlink" title="Web框架简介"></a>Web框架简介</h3><h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/i68LC03BDG.png?imageslim" alt="mark"></p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/09/07/技术/Python Web框架简介/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-05T16:00:00.000Z"><a href="/2017/09/06/技术/python实现简单的CGI程序/">2017-09-06</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/06/技术/python实现简单的CGI程序/">python CGI编程</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>python CGI编程简介</p>
-<h1 id="CGI介绍"><a href="#CGI介绍" class="headerlink" title="CGI介绍"></a>CGI介绍</h1><p>cgi允许web服务器执行外部脚本或程序，并将执行结果通过web服务器发送给浏览器。</p>
-<p>对一个 CGI 程序，做的工作其实只有：从<strong>环境变量(environment variables)</strong>和<strong>标准输入(standard input)</strong>中读取数据、处理数据、向<strong>标准输出(standard output)</strong>输出数据。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-9-19/22899824.jpg" alt=""></p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/09/06/技术/python实现简单的CGI程序/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-04T16:00:00.000Z"><a href="/2017/09/05/技术/Python数据库连接/">2017-09-05</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/05/技术/Python数据库连接/">python web 数据库连接</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Python数据库连接"><a href="#Python数据库连接" class="headerlink" title="Python数据库连接"></a>Python数据库连接</h1><h2 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h2><h3 id="数据库概念"><a href="#数据库概念" class="headerlink" title="数据库概念"></a>数据库概念</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/bmDdB9HC7F.png?imageslim" alt="mark"></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/Dj8eFefeaG.png?imageslim" alt="mark"></p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/09/05/技术/Python数据库连接/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-09-03T16:00:00.000Z"><a href="/2017/09/04/技术/RESTful API 设计/">2017-09-04</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/09/04/技术/RESTful API 设计/">RESTful API</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="RESTful-API-设计"><a href="#RESTful-API-设计" class="headerlink" title="RESTful API 设计"></a>RESTful API 设计</h1><h2 id="Chrome开发工具"><a href="#Chrome开发工具" class="headerlink" title="Chrome开发工具"></a>Chrome开发工具</h2><ul>
-<li>F12 审查元素，查看network，resource，element</li>
-<li>Console使用</li>
-<li>postman插件</li>
-</ul>
-<h2 id="RESTful简介"><a href="#RESTful简介" class="headerlink" title="RESTful简介"></a>RESTful简介</h2><p>比如微博开发平台<a href="http://open.weibo.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank" rel="external">API接口</a></p>
+        <h1 id="PyQt入门"><a href="#PyQt入门" class="headerlink" title="PyQt入门"></a>PyQt入门</h1><h2 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h2><p><strong>Python2.7  + PyQt5 + Pycharm</strong> </p>
 <blockquote>
-<p>RESTful API 不会保存会话和cookie</p>
-<p>验证身份可以服务器生成token，请求API时携带Token即为合法请求</p>
+<p>pypi源下载超时的话可以切换豆瓣pip源</p>
+<p>我用的是python27，pyqt5.3， pycharm</p>
 </blockquote>
+<h3 id="安装PyQt5"><a href="#安装PyQt5" class="headerlink" title="安装PyQt5"></a>安装PyQt5</h3><blockquote>
+<p>如果你想使用py27+ pyqt58，参考知乎上的<a href="https://zhuanlan.zhihu.com/p/25561911?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="external">这篇</a>，自行编译或使用作者提供的编译好的二进制包。我没试过，不保证成功。</p>
+</blockquote>
+<ul>
+<li><p>python3</p>
+<p>PyQt5官方编译版本仅支持python3，<code>pip install pyqt5</code></p>
+</li>
+<li><p>python2.7</p>
+<p>好在网上有编译的python2.7版本的pyqt，<a href="https://github.com/pyqt/python-qt5" target="_blank" rel="external">官网主页</a>指出使用pip安装的版本为qt5.3,git安装的版本为qt5.7  </p>
+<p><code>pip install --index-url https://pypi.douban.com/simple python-qt5</code></p>
+</li>
+<li><p>pyqt5 designer</p>
+<p>python3需要单独安装<code>pip install pyqt5-tools</code></p>
+<p>python2 <code>python-qt5</code> 里打包了designer工具，无需单独安装</p>
+</li>
+</ul>
+<h3 id="配置Pycharm"><a href="#配置Pycharm" class="headerlink" title="配置Pycharm"></a>配置Pycharm</h3><p>下面以python2为例，python3对应的designer.exe的位置不同。</p>
+<p>打开Pycharm，进入设置，添加外部工具，QtDesigner和PyUIC</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/0A13dkjIf2.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>QtDesigner</p>
+<p>QtDesigner用来生成ui文件</p>
+<p><code>$FileDir$</code>是pycharm的宏变量，即当前文件的路径</p>
+</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/JF9aJk6Efb.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>PyUIC</p>
+<p>将ui文件转换成对应的python文件</p>
+<p>参数为<code>-m PyQt5.uic.pyuic  $FileName$ -o $FileNameWithoutExtension$.py</code></p>
+</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/F4HkBKiA2F.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>pyrcc</p>
+<p>用于生成资源文件</p>
+<p>我在虚拟环境的pyqt5文件夹里没找到pyrcc5.exe,但在系统Python的bin目录下有一个，就copy了一份，使用正常。系统的Python用pip list看了一下，并没有安装pyqt5，但是有qtpy这个包，有点奇怪，我系统的Python是anaconda发行版。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/m7i0IDl3LK.png?imageslim" alt="mark"></p>
+<p><strong>使用方法</strong></p>
+<p>首先生成资源的qrc文件：</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/A5Ae444Jb9.png?imageslim" alt="mark"></p>
+<p>然后右键生成资源的py文件</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/JILDaame1E.png?imageslim" alt="mark"></p>
+<p>然后在需要引用资源的地方，先import py文件，然后资源的路径使用格式<code>:文件路径/prefix_dir/文件名</code>,冒号必不可少，文件路径是指_rc.py文件相对qrc资源文件的路径。当两者在同一路径时，可以不写。</p>
+</li>
+</ul>
+<p><strong>问题描述</strong></p>
+<p>在<code>pycharm &gt; tools &gt; external-tools</code>中打开Qtdesigner时，</p>
+<blockquote>
+<p>This application failed to start because it could not find or load the Qt platform plugin “windows”.</p>
+</blockquote>
+<p><strong>原因</strong>：</p>
+<p>环境变量没有添加。如果已经配置了环境变量，需要关闭并重新打开pycharm。</p>
+<p><strong>解决方法</strong>：</p>
+<p>参考<a href="https://github.com/pyqt/python-qt5/wiki/Qt-Environment-Variable-Reference" target="_blank" rel="external">官方wiki</a>在环境变量中增加：</p>
+<p>路径中的<qt_dir>替换为PyQt包所在的位置，查看你的安装位置</qt_dir></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> PyQt5</div><div class="line">PyQt5.__path__</div><div class="line">[<span class="string">'D:\\qt_env\\lib\\site-packages\\PyQt5'</span>]</div></pre></td></tr></table></figure>
+<p>QT_QPA_PLATFORM_PLUGIN_PATH：<code>&lt;QT_DIR&gt;/plugins/platforms</code></p>
+<p> QT_PLUGIN_PATH  <code>Example: &lt;QT_DIR&gt;/plugins</code></p>
+<p> QML_IMPORT_PATH： <code>&lt;QT_DIR&gt;/qml</code></p>
+<p>QML2_IMPORT_PATH： <code>&lt;QT_DIR&gt;/qml</code></p>
+<h3 id="配置eric6"><a href="#配置eric6" class="headerlink" title="配置eric6"></a>配置eric6</h3><blockquote>
+<p>这玩意儿是智障，自动补全一点也不智能</p>
+<p>唯一优势就是可以通过选择组件和触发事件的方式批量生成一堆槽函数。</p>
+<p>我还是用的pycharm</p>
+</blockquote>
+<p>由于Qscintilla2在python2下没有编译的安装包，需要自行编译安装。</p>
+<p>故选择在python3下安装。</p>
+<p>如果使用了Python虚拟环境，则需要临时将python3.exe的目录设置在系统环境变量path里。</p>
+<p>下载eric6，解压， 执行 <code>..\..\python.exe install.py</code></p>
+<h2 id="PyQt学习教程和资料"><a href="#PyQt学习教程和资料" class="headerlink" title="PyQt学习教程和资料"></a>PyQt学习教程和资料</h2><blockquote>
+<p>建议先看完鱼c网友的帖子</p>
+</blockquote>
+<ul>
+<li>知乎 - <a href="https://www.zhihu.com/question/26492283" target="_blank" rel="external">大家是怎么学pyqt5的？</a></li>
+<li><a href="http://bbs.fishc.com/forum.php?mod=viewthread&amp;tid=59816&amp;extra=page%3D1&amp;page=1" target="_blank" rel="external">pyqt5教程-鱼c论坛</a></li>
+<li>pyqt5 <a href="http://pyqt.sourceforge.net/Docs/PyQt5/index.html" target="_blank" rel="external">reference 官方</a></li>
+<li>Qt官方文档</li>
+</ul>
+<h3 id="PyQt5与PyQt4的区别"><a href="#PyQt5与PyQt4的区别" class="headerlink" title="PyQt5与PyQt4的区别"></a>PyQt5与PyQt4的区别</h3><p><strong>信号槽的不同</strong></p>
+<p>qt5中没有以下：</p>
+<ul>
+<li><code>QObject.connect()</code></li>
+<li><code>QObject.emit()</code></li>
+<li><code>SIGNAL()</code></li>
+<li><code>SLOT()</code></li>
+<li>All methods that had arguments that are usually the results of calls to <code>SIGNAL()</code> or <code>SLOT()</code> are no longer supported</li>
+<li><code>disconnect()</code> takes no arguments and disconnects all connections to the <a href="http://pyqt.sourceforge.net/Docs/PyQt5/api/QtCore/qobject.html#PyQt5-QtCore-QObject" target="_blank" rel="external"><code>QObject</code></a> instance.</li>
+</ul>
+<p><strong>Moudle组件的变化</strong></p>
+<ul>
+<li>PyQt4’s <code>QtGui</code> module has been split into PyQt5’s <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtGui.html#PyQt5-QtGui" target="_blank" rel="external"><code>QtGui</code></a>, <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtPrintSupport.html#PyQt5-QtPrintSupport" target="_blank" rel="external"><code>QtPrintSupport</code></a> and <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtWidgets.html#PyQt5-QtWidgets" target="_blank" rel="external"><code>QtWidgets</code></a> modules.</li>
+<li>Only the <a href="http://pyqt.sourceforge.net/Docs/PyQt5/api/QtOpenGL/qglcontext.html#PyQt5-QtOpenGL-QGLContext" target="_blank" rel="external"><code>QGLContext</code></a>, <a href="http://pyqt.sourceforge.net/Docs/PyQt5/api/QtOpenGL/qglformat.html#PyQt5-QtOpenGL-QGLFormat" target="_blank" rel="external"><code>QGLFormat</code></a> and <a href="http://pyqt.sourceforge.net/Docs/PyQt5/api/QtOpenGL/qglwidget.html#PyQt5-QtOpenGL-QGLWidget" target="_blank" rel="external"><code>QGLWidget</code></a> classes are supported by PyQt5.</li>
+<li>PyQt4’s <code>QtDeclarative</code>, <code>QtScript</code> and <code>QtScriptTools</code> modules are not supported. These have been replaced by PyQt5’s <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtQml.html#PyQt5-QtQml" target="_blank" rel="external"><code>QtQml</code></a> and<a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtQuick.html#PyQt5-QtQuick" target="_blank" rel="external"><code>QtQuick</code></a> modules. Unlike PyQt4, PyQt5 supports the creation of Python objects from QML.</li>
+<li>PyQt4’s <code>QtWebKit</code> module has been split into PyQt5’s <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtWebKit.html#PyQt5-QtWebKit" target="_blank" rel="external"><code>QtWebKit</code></a> and <a href="http://pyqt.sourceforge.net/Docs/PyQt5/QtWebKitWidgets.html#PyQt5-QtWebKitWidgets" target="_blank" rel="external"><code>QtWebKitWidgets</code></a> modules.</li>
+<li>PyQt4’s <code>pyqtconfig</code> module is not supported. The section <a href="http://pyqt.sourceforge.net/Docs/PyQt5/extension_api.html#ref-build-system" target="_blank" rel="external">The PyQt5 Extension API</a> describes the support that PyQt5 provides to third-party packages (e.g. <a href="https://www.riverbankcomputing.com/software/qscintilla/" target="_blank" rel="external">QScintilla</a>) that want to build on top of PyQt5.</li>
+<li>更多<a href="http://pyqt.sourceforge.net/Docs/PyQt5/pyqt4_differences.html#supported-python-versions" target="_blank" rel="external">内容</a></li>
+</ul>
+<h2 id="Qt组件"><a href="#Qt组件" class="headerlink" title="Qt组件"></a>Qt组件</h2><h3 id="label"><a href="#label" class="headerlink" title="label"></a>label</h3><ul>
+<li>改变文本</li>
+<li>改变字体</li>
+<li>使用图片</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/81HeJBm591.png?imageslim" alt="mark"></p>
+<h3 id="button"><a href="#button" class="headerlink" title="button"></a>button</h3><p><strong>radio button</strong></p>
+<ul>
+<li>使用GroupBox放置一组互斥的单选框</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/9bk5Bej498.png?imageslim" alt="mark"></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/d5l4h8HmAg.png?imageslim" alt="mark"></p>
+<h3 id="LineEdit"><a href="#LineEdit" class="headerlink" title="LineEdit"></a>LineEdit</h3><ul>
+<li>object.setText(“”)</li>
+<li>object.text()</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/gf3fDmgj5i.png?imageslim" alt="mark"></p>
+<h3 id="TextEdit"><a href="#TextEdit" class="headerlink" title="TextEdit"></a>TextEdit</h3><p>多行文本框，只读/编辑属性,多行文本持续输出</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/AlL5d6m1me.png?imageslim" alt="mark"></p>
+<h3 id="TextBrowser"><a href="#TextBrowser" class="headerlink" title="TextBrowser"></a>TextBrowser</h3><h3 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/gg1Fa8kFE8.png?imageslim" alt="mark"></p>
+<h3 id="MenuBar"><a href="#MenuBar" class="headerlink" title="MenuBar"></a>MenuBar</h3><ul>
+<li>每个菜单选项为一个Qaction对象</li>
+<li>Qdesigner中可以拖拽菜单项进行排序</li>
+<li>Qaction可以添加图标， png格式的。在属性的icon中右边有个…打开文件按钮，点击添加icon</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/Hm8F3Eh6F1.png?imageslim" alt="mark"></p>
+<p><strong>打开/关闭文件</strong></p>
+<ul>
+<li><code>QFileDialog.getSaveFileName</code> </li>
+<li><code>QFileDialog.getOpenFileName</code> </li>
+<li>win32com操作word打开文档</li>
+</ul>
+<h3 id="SliderBar"><a href="#SliderBar" class="headerlink" title="SliderBar"></a>SliderBar</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/9EgiD93fgA.png?imageslim" alt="mark"></p>
+<h3 id="Dial"><a href="#Dial" class="headerlink" title="Dial"></a>Dial</h3><h3 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h3><ul>
+<li>通知对话框 </li>
+<li>询问对话框</li>
+<li>警告对话框</li>
+<li>严重警告对话框</li>
+<li>关于对话框</li>
+<li>AboutQt对话框</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/jlkmc139F7.png?imageslim" alt="mark"></p>
+<h3 id="标准输入对话框"><a href="#标准输入对话框" class="headerlink" title="标准输入对话框"></a>标准输入对话框</h3><ul>
+<li>getText</li>
+<li>getInt</li>
+<li>getItem 下拉</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">reply, ok = QInputDialog.getText(</div><div class="line">                self, &apos;输入框&apos;, &apos;请输入姓名&apos;, QLineEdit.Normal, &apos;在此处输入你的姓名...&apos;)</div><div class="line"># title，提示，当前值，最小值，最大值</div><div class="line">reply, ok = QInputDialog.getInt(self, &apos;输入框&apos;, &apos;请输入你的年龄&apos;, 10, 5, 25)</div><div class="line">reply, ok = QInputDialog.getItem(</div><div class="line">                self, &apos;请选择&apos;, &apos;最爱的水果是？&apos;, [&apos;香蕉&apos;, &apos;苹果&apos;, &apos;大菠萝&apos;])</div></pre></td></tr></table></figure>
+<h3 id="自定义输入对话框"><a href="#自定义输入对话框" class="headerlink" title="自定义输入对话框"></a>自定义输入对话框</h3><ul>
+<li>一次获取多个变量</li>
+<li>修改全区变量</li>
+<li>个性化定制</li>
+</ul>
+<p>通过额外创建一个窗体ui界面实现，</p>
+<h2 id="图片显示"><a href="#图片显示" class="headerlink" title="图片显示"></a>图片显示</h2><blockquote>
+<p>使用designer右键组件，选择更改样式表，添加图片资源。</p>
+<p>boader-img，自适应组件大小的填充图片。背景图片，按原图显示。原比例显示，自动缩放，保持比例不变。</p>
+<p>可以在图片上添加自定义点击事件 </p>
+</blockquote>
+<h3 id="label显示图片"><a href="#label显示图片" class="headerlink" title="label显示图片"></a>label显示图片</h3><p>Qt Designer 右键 change StyleSheet</p>
+<h3 id="GraphView图片"><a href="#GraphView图片" class="headerlink" title="GraphView图片"></a>GraphView图片</h3><p>Qt Designer 右键 change StyleSheet</p>
+<ul>
+<li><p>为图片绑定鼠标点击事件</p>
+<p><code>self.graphicsView.mousePressEvent = self.photo_clicked</code></p>
+</li>
+</ul>
+<h3 id="更换图片"><a href="#更换图片" class="headerlink" title="更换图片"></a>更换图片</h3><ul>
+<li><code>self.graphicsView_photo.setStyleSheet(&quot;border-image: url(:/source/3345.jpg);&quot;)</code> </li>
+</ul>
+<h2 id="启动界面-QSplashScreen"><a href="#启动界面-QSplashScreen" class="headerlink" title="启动界面 QSplashScreen"></a>启动界面 QSplashScreen</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>程序启动时加载大量资源，启动缓慢，使用启动界面告知用户，程序运行中</li>
+<li>显示logo</li>
+<li>一些重要或有趣的图片和文字信息</li>
+<li>显示启动界面时不能阻塞gui事件响应</li>
+</ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><blockquote>
+<p>sleep是因为主窗口初始化很快就完成了，为了看到启动效果而加的延迟</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">app = QApplication(sys.argv)</div><div class="line">splash = QSplashScreen(QPixmap(<span class="string">':source/4532.png'</span>))</div><div class="line">splash.show()</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line"><span class="comment"># 显示文字信息，文字的位置和颜色</span></div><div class="line">splash.showMessage(<span class="string">'正在加载图片资源...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">splash.showMessage(<span class="string">'正在加载视频资源...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">splash.showMessage(<span class="string">'正在启动中...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">app.processEvents() <span class="comment"># 避免阻塞gui事件</span></div><div class="line"><span class="comment"># 主窗口初始化</span></div><div class="line">mywindow = MyWindow()</div><div class="line">mywindow.show()</div><div class="line"><span class="comment"># 关闭启动窗口</span></div><div class="line">splash.close()</div><div class="line">sys.exit(app.exec_())</div></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171017/KIfbDagJAh.png?imageslim" alt="mark"></p>
+<h2 id="信号槽机制"><a href="#信号槽机制" class="headerlink" title="信号槽机制"></a>信号槽机制</h2><h3 id="信号种类"><a href="#信号种类" class="headerlink" title="信号种类"></a>信号种类</h3><p>事件源：鼠标点击拖拽等，值改变。。。</p>
+<h3 id="信号和槽"><a href="#信号和槽" class="headerlink" title="信号和槽"></a>信号和槽</h3><blockquote>
+<p>所有的组件都可以产生信号，组件只负责发射信号。</p>
+<p>信号需要连接到槽函数，才能得到处理。</p>
+</blockquote>
+<ul>
+<li><p>通过QtDesigner连接信号与槽</p>
+</li>
+<li><p>通过手动代码连接信号与槽</p>
+</li>
+<li><p>装饰器方法</p>
+</li>
+</ul>
+<h3 id="自定义信号"><a href="#自定义信号" class="headerlink" title="自定义信号"></a>自定义信号</h3><p>参考<a href="http://blog.csdn.net/zhulove86/article/details/52563131" target="_blank" rel="external">博客</a></p>
+<ul>
+<li><p>多重载的信号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 声明一个多重载版本的信号，包括了一个带int和str类型参数的信号，以及带str参数的信号</span></div><div class="line">preview_signal = pyqtSignal([int,str],[str])</div><div class="line"><span class="comment"># 参数为int，str的信号</span></div><div class="line">help_signal = pyqtSignal(int, str)</div><div class="line"></div><div class="line"><span class="comment"># 信号发射</span></div><div class="line">self.preview_signal[int, str].emit(<span class="number">1</span>, <span class="string">'ok'</span>) <span class="comment"># 指定信号的版本</span></div><div class="line">self.preview_signal[str].emit(<span class="string">'success!'</span>)</div><div class="line"><span class="comment"># 槽函数绑定，同样需要指定信号的版本</span></div><div class="line">self.preview_signal[int, str].connect(self.func_1) <span class="comment"># 指定信号的版本</span></div><div class="line">self.preview_signal[str].connect(self.func_2)</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<p><strong>一般流程如下</strong>：<br>1、定义信号<br>2、定义槽函数<br>3、绑定信号和槽<br>4、发射信号</p>
+<p><strong>注意事项：</strong></p>
+<p>1、自定义的信号在<strong>init</strong>()函数之前定义；<br>2、自定义型号可以传递，str、int、list、object、float、tuple、dict等很多类型的参数；<br>3、注意signal和slot的调用逻辑，避免signal和slot之间出现死循环。如在slot方法中继续发射该信号；</p>
+<p><strong>问题描述</strong></p>
+<blockquote>
+<p><code>&#39;PyQt5.QtCore.pyqtSignal&#39; object has no attribute &#39;connect&#39;</code></p>
+</blockquote>
+<p><strong>原因</strong></p>
+<p>pyqtSignal只有绑定了对象后才有connect方法</p>
+<p><strong>解决方法</strong></p>
+<ol>
+<li><p>在Qobject对象init()初始化之前定义信号pyqtSignal, 使其成为类变量而不是实例变量</p>
+</li>
+<li><p>使用connect方法时，要先创建Qobject对象的实例，然后调用实例的信号变量，直接<code>Qobject.signal.connect</code>就会出现这种错误</p>
+<p>​</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-10-10T16:00:00.000Z"><a href="/2017/10/11/技术/PyQt5不同窗体之间传值/">2017-10-11</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/10/11/技术/PyQt5不同窗体之间传值/">PyQt5 不同窗体之间传值</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类静态方法"><span class="toc-text">类静态方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义对话框返回值给主窗体"><span class="toc-text">自定义对话框返回值给主窗体</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号槽"><span class="toc-text">信号槽</span></a></li></ol>
+    </div>
+
+      
+        <p>PyQt5 不同窗体之间传值</p>
+<h2 id="类静态方法"><a href="#类静态方法" class="headerlink" title="类静态方法"></a>类静态方法</h2><h3 id="自定义对话框返回值给主窗体"><a href="#自定义对话框返回值给主窗体" class="headerlink" title="自定义对话框返回值给主窗体"></a>自定义对话框返回值给主窗体</h3><blockquote>
+<p>PyQt提供了一系列的标准对话框用于获取用户输入，QFileDialog、QInputDialog、QColorDialog、QFontDialog</p>
+</blockquote>
+<ol>
+<li><p>第一种，自定义的Dialog对话框，我们可以通过类静态方法实现传值</p>
+<p>主要注意几点：<br>1、使用两个button(ok和cancel)分别连接accept()和reject()槽函数。<br>2、实现一个静态函数，将参数通过该函数传出。<br>3、在静态函数中实例化该类，并调用.exec<em>()函数来显示执行这个对话框。<br>4、通过.exec</em>()的返回值来判断用户点的是ok还是cancel按钮，进而做出下一步判断。</p>
+<p>在主窗口中调用静态函数方法，就可以得到传递的参数值，代码如下：</p>
+<p><code>data, ok = TestDialog.get_user()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 自定义对话框</span></div><div class="line"><span class="keyword">from</span> test <span class="keyword">import</span> Ui_Dialog <span class="keyword">as</span> Test_Ui</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDialog</span><span class="params">(QDialog, Test_Ui)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super(TestDialog, self).__init__()</div><div class="line">        self.setupUi(self)</div><div class="line">        <span class="comment"># accept/reject关闭窗口返回 1/0</span></div><div class="line">        self.buttonBox.accepted.connect(self.accept)</div><div class="line">        self.buttonBox.rejected.connect(self.reject)</div><div class="line">        self.data = &#123;<span class="string">'ok'</span>:<span class="number">1</span>&#125;</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_user</span><span class="params">(parent=None)</span>:</span></div><div class="line">        test_dialog = TestDialog()</div><div class="line">        ok = test_dialog.exec_()</div><div class="line">        data = test_dialog.data</div><div class="line">        data[<span class="string">'user'</span>] = <span class="string">'test input'</span></div><div class="line">        <span class="keyword">return</span> data, ok</div><div class="line">        </div><div class="line">        </div><div class="line"><span class="comment"># 在主窗口中使用</span></div><div class="line">data, ok = TestDialog.get_user()</div><div class="line"><span class="keyword">if</span> ok:</div><div class="line">    <span class="keyword">print</span> <span class="string">'ok button clicked!'</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'cancel button clicked!'</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>第二种，在主窗体中实例化自定义对话框，然后调用其属性和方法，最后destory对话框实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">test = TestDialog()</div><div class="line">ok = test.exec_()</div><div class="line"><span class="keyword">if</span> ok:</div><div class="line">	<span class="keyword">print</span> test.data</div><div class="line">test.destroy()</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="信号槽"><a href="#信号槽" class="headerlink" title="信号槽"></a>信号槽</h2><p>对于自定义的信号，使用方法是：</p>
+<ol>
+<li>自定义的信号在<strong>init</strong>()函数之前定义<code>signal_test= pyqtSignal(str)</code></li>
+<li>在子对话框的槽函数发射信号，或在事件中发射信号。<code>self.signal_test.emit((self.datetime.dateTime()).toString())</code></li>
+<li>在主窗体中连接信号和槽。<code>dialog.signal_test.connect(self.getStrDate)</code></li>
+<li>然后实现槽函数。</li>
+</ol>
+<ul>
+<li><p>在自定义对话框里定义一个信号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PyQt5.QtCore <span class="keyword">import</span> pyqtSignal, pyqtSlot</div><div class="line"><span class="keyword">from</span> test <span class="keyword">import</span> Ui_Dialog <span class="keyword">as</span> Test_Ui</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDialog</span><span class="params">(QDialog, Test_Ui)</span>:</span></div><div class="line">    mysignal = pyqtSignal(dict)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super(TestDialog, self).__init__()</div><div class="line">        self.setupUi(self)</div><div class="line">        <span class="comment"># accept/reject关闭窗口返回 1/0</span></div><div class="line">        self.buttonBox.accepted.connect(self.accepted)</div><div class="line">        self.buttonBox.rejected.connect(self.reject)</div><div class="line">        self.data = &#123;<span class="string">'ok'</span>:<span class="number">1</span>&#125;</div><div class="line">    </div><div class="line"><span class="meta">    @pyqtSlot(bool)</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">accepted</span><span class="params">(self, value)</span>:</span></div><div class="line">        self.accept()</div><div class="line">        data = self.data</div><div class="line">        data[<span class="string">'user'</span>] = <span class="string">'test input'</span></div><div class="line">        self.mysignal.emit(data) <span class="comment"># 发射信号，将dict数据传递出去</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>在主窗体里实例化自定义对话框，并为信号绑定槽函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">test = TestDialog()</div><div class="line">test.mysignal.connect(self.process_data) <span class="comment"># 绑定槽函数，接收数据</span></div><div class="line">test.exec_()</div><div class="line">test.destroy()</div><div class="line"></div><div class="line"><span class="comment"># 处理数据的槽函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_data</span><span class="params">(self, data)</span>:</span></div><div class="line">  <span class="keyword">print</span> data</div></pre></td></tr></table></figure>
+<p>使用信号与槽需要注意的事项：</p>
+</li>
+</ul>
+<ol>
+<li>信号与槽机制与普通函数的调用一样，如果使用不当，在程序执行时也有可能产生死循环。所以在定义槽函数时一定要注意避免间接形成无限循环，即在槽中再次发射所接收到的同样信号。</li>
+<li>​    如果一个信号与多个槽相连，当这个信号被发射时，与之相连的槽被激活的顺序是随机的。</li>
+<li>​    宏定义不能用在signal 和slot的参数中。</li>
+<li>​    信号和槽的参数个数与类型必须一致。</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-10-07T16:00:00.000Z"><a href="/2017/10/08/技术/BootStrap/">2017-10-08</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/10/08/技术/BootStrap/">Bootstrap 学习笔记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap入门"><span class="toc-text">Bootstrap入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栅格系统布局-grid"><span class="toc-text">栅格系统布局 grid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap文本排版"><span class="toc-text">Bootstrap文本排版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表与代码"><span class="toc-text">列表与代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap表格样式"><span class="toc-text">Bootstrap表格样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap表单样式"><span class="toc-text">Bootstrap表单样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap按钮样式"><span class="toc-text">Bootstrap按钮样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap图片"><span class="toc-text">Bootstrap图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap小图标"><span class="toc-text">Bootstrap小图标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap下拉菜单"><span class="toc-text">Bootstrap下拉菜单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap按钮组"><span class="toc-text">Bootstrap按钮组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap按钮下拉菜单"><span class="toc-text">Bootstrap按钮下拉菜单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap输入框"><span class="toc-text">Bootstrap输入框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap导航"><span class="toc-text">Bootstrap导航</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap导航条"><span class="toc-text">Bootstrap导航条</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap面包屑导航和分页导航"><span class="toc-text">Bootstrap面包屑导航和分页导航</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签-徽章-大屏展播-页面标题"><span class="toc-text">标签 徽章 大屏展播 页面标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缩略图和警告框"><span class="toc-text">缩略图和警告框</span></a></li></ol>
+    </div>
+
+      
+        <h2 id="Bootstrap入门"><a href="#Bootstrap入门" class="headerlink" title="Bootstrap入门"></a>Bootstrap入门</h2><ul>
+<li>html5文件</li>
+<li>引入css</li>
+<li>引入jquery和bootstrap.js</li>
+<li>查看官网<a href="http://v3.bootcss.com/" target="_blank" rel="external">文档和教程</a></li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171010/9Dfg6FKh0h.png?imageslim" alt="mark"></p>
+<h2 id="栅格系统布局-grid"><a href="#栅格系统布局-grid" class="headerlink" title="栅格系统布局 grid"></a>栅格系统布局 grid</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171010/jKBdBGi94h.png?im" alt="mark"></p>
+<ul>
+<li><p><a href="http://v3.bootcss.com/css/#grid" target="_blank" rel="external">grid文档</a></p>
+</li>
+<li><p>Bootstrap 需要为页面内容和栅格系统包裹一个 <code>.container</code> 容器</p>
+</li>
+<li><p>grid将屏幕横向像素12等分</p>
+</li>
+<li><p>媒体查询</p>
+<p>媒体查询是进行响应式设计的核心要素，其功能非常强大<br>Bootstrap主要用到min-width,max-width以及and语法，用于在不同的分辨率下设置不同的css样式<br>  示例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@media(max-width:767px)&#123;</div><div class="line">/在小于767px的屏幕里，这里的样式才生效/</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media(min-width:768px) and (max-width:991px)&#123;</div><div class="line">/768-991px屏幕里，这里的样式才生效/</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media(min-width:1200px)&#123;</div><div class="line">/大于1200px屏幕里，这里的样式才生效/</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="Bootstrap文本排版"><a href="#Bootstrap文本排版" class="headerlink" title="Bootstrap文本排版"></a>Bootstrap文本排版</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171010/Djgl0IBfCi.png?imageslim" alt="mark"></p>
+<h2 id="列表与代码"><a href="#列表与代码" class="headerlink" title="列表与代码"></a>列表与代码</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171010/hEl3hda2lI.png?imageslim" alt="mark"></p>
+<p>Bootstrap</p>
+<h2 id="Bootstrap表格样式"><a href="#Bootstrap表格样式" class="headerlink" title="Bootstrap表格样式"></a>Bootstrap表格样式</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171010/c5mHK4e8LJ.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap表单样式"><a href="#Bootstrap表单样式" class="headerlink" title="Bootstrap表单样式"></a>Bootstrap表单样式</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171010/894hJhFmBm.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap按钮样式"><a href="#Bootstrap按钮样式" class="headerlink" title="Bootstrap按钮样式"></a>Bootstrap按钮样式</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/5FC7C5DDHI.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap图片"><a href="#Bootstrap图片" class="headerlink" title="Bootstrap图片"></a>Bootstrap图片</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/DeHcDf8Lbf.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap小图标"><a href="#Bootstrap小图标" class="headerlink" title="Bootstrap小图标"></a>Bootstrap小图标</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/cKD412c35F.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap下拉菜单"><a href="#Bootstrap下拉菜单" class="headerlink" title="Bootstrap下拉菜单"></a>Bootstrap下拉菜单</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/b3GG8G8Ce1.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap按钮组"><a href="#Bootstrap按钮组" class="headerlink" title="Bootstrap按钮组"></a>Bootstrap按钮组</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/GhicBbc0lG.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap按钮下拉菜单"><a href="#Bootstrap按钮下拉菜单" class="headerlink" title="Bootstrap按钮下拉菜单"></a>Bootstrap按钮下拉菜单</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/55imemDe5b.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap输入框"><a href="#Bootstrap输入框" class="headerlink" title="Bootstrap输入框"></a>Bootstrap输入框</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/4CckG52h1g.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap导航"><a href="#Bootstrap导航" class="headerlink" title="Bootstrap导航"></a>Bootstrap导航</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/kE13IAaGee.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap导航条"><a href="#Bootstrap导航条" class="headerlink" title="Bootstrap导航条"></a>Bootstrap导航条</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/EBF7Hbd0G1.png?imageslim" alt="mark"></p>
+<h2 id="Bootstrap面包屑导航和分页导航"><a href="#Bootstrap面包屑导航和分页导航" class="headerlink" title="Bootstrap面包屑导航和分页导航"></a>Bootstrap面包屑导航和分页导航</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/D31Ag48FBm.png?imageslim" alt="mark"></p>
+<h2 id="标签-徽章-大屏展播-页面标题"><a href="#标签-徽章-大屏展播-页面标题" class="headerlink" title="标签 徽章 大屏展播 页面标题"></a>标签 徽章 大屏展播 页面标题</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/J5dfF7k910.png?imageslim" alt="mark"></p>
+<h2 id="缩略图和警告框"><a href="#缩略图和警告框" class="headerlink" title="缩略图和警告框"></a>缩略图和警告框</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/h64kBEHCde.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>可关闭的警告框，data-dismiss是html5中绑定方法用的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"alert alert-info alert-dismissable"</span> <span class="attr">role</span>=<span class="string">"alert"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"close "</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">data-dismiss</span>=<span class="string">"alert"</span>&gt;</span>&amp;times;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span> 登录成功！返回 <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"alert-link"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<p>##进度条和媒体内容</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/235fIi0I1A.png?imageslim" alt="mark"></p>
+<ul>
+<li>媒体对象：图文混排的风格</li>
+</ul>
+<p>##选项卡/标签页</p>
+<blockquote>
+<p>导航栏中点击不同的选项卡，显示其对应的面板页面</p>
+</blockquote>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/m2LHBm8l1D.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>可以用<code>date-toggle=&quot;tab&quot;</code>或<code>date-toggle=&quot;pill&quot;</code> 属性绑定面板切换动作</p>
+<p>href指向对应面板的id，data-toggle绑定方法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">	      <span class="comment">&lt;!--选项卡          --&gt;</span></div><div class="line">	      <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav nav-tabs"</span>&gt;</span></div><div class="line">	      	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#pan1"</span> <span class="attr">data-toggle</span>=<span class="string">"tab"</span>&gt;</span>tab面板1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	      	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#pan2"</span>  <span class="attr">data-toggle</span>=<span class="string">"tab"</span>&gt;</span>tab面板2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	      	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#pan3"</span>  <span class="attr">data-toggle</span>=<span class="string">"tab"</span>&gt;</span>tab面板3<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	      <span class="comment">&lt;!--面板--&gt;</span></div><div class="line">	      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-content"</span>&gt;</span></div><div class="line">	      	 <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-pane active"</span> <span class="attr">id</span>=<span class="string">"pan1"</span>&gt;</span></div><div class="line">	      	 	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>第一个面板页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	      	 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	      	 <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-pane"</span> <span class="attr">id</span>=<span class="string">"pan2"</span>&gt;</span></div><div class="line">	      	 	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>第二个面板页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	      	 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	      	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-pane"</span> <span class="attr">id</span>=<span class="string">"pan3"</span>&gt;</span></div><div class="line">	      	 	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>第三个面板页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	      	 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>js绑定面板显示，参考<a href="http://v3.bootcss.com/javascript/#tabs" target="_blank" rel="external">文档</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">        $(<span class="string">".nav.nav-pills li  a "</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></div><div class="line"><span class="undefined">            e.preventDefault();</span></div><div class="line"><span class="javascript">            $(<span class="keyword">this</span>).tab(<span class="string">'show'</span>);</span></div><div class="line"><span class="undefined">        &#125;);</span></div><div class="line"><span class="undefined">    &#125;)</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>事件监听，当点击了某个选项卡，触发事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"JavaScript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">    $(<span class="string">'a[data-toggle="tab"]'</span>).on(<span class="string">'shown.bs.tab'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></div><div class="line"><span class="javascript"> <span class="comment">// e.target // newly activated tab</span></span></div><div class="line"><span class="javascript"> <span class="comment">// e.relatedTarget // previous active tab</span></span></div><div class="line"><span class="javascript">      <span class="keyword">var</span> newobj=e.target.innerHTML;</span></div><div class="line"><span class="javascript">      $(<span class="string">"#testshow"</span>).html(newobj);</span></div><div class="line"><span class="undefined">&#125;);</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<p>##工具提示框</p>
+<blockquote>
+<p>移动到某个元素上弹出提示信息</p>
+</blockquote>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/679ffk0c0b.png?imageslim" alt="mark"></p>
+<ul>
+<li><a href="http://v3.bootcss.com/javascript/#tooltips" target="_blank" rel="external">文档</a></li>
+<li>需要声明式语法和javascript配合，指定data-toggle、data-placement、$(“select”).tooltip()</li>
+</ul>
+<p>##折叠 Collapse</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/541aHGfEL8.png?imageslim" alt="mark"></p>
+<p>##焦点广告/轮播图 </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171011/JJ4kcd1e3b.png?imageslim" alt="mark"> </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+<p>## </p>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-10-07T16:00:00.000Z"><a href="/2017/10/08/技术/mysql安装配置/">2017-10-08</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/10/08/技术/mysql安装配置/">MySQL生成测试数据</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装mysql"><span class="toc-text">安装mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置MySQL允许远程访问"><span class="toc-text">设置MySQL允许远程访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置用户允许远程登录"><span class="toc-text">设置用户允许远程登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置utf8字符集"><span class="toc-text">设置utf8字符集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装MySQL驱动"><span class="toc-text">安装MySQL驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建测试数据"><span class="toc-text">创建测试数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用DB-存储过程生成数据"><span class="toc-text">使用DB 存储过程生成数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用Python生成数据"><span class="toc-text">使用Python生成数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询测试"><span class="toc-text">查询测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单表查询"><span class="toc-text">单表查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多表查询"><span class="toc-text">多表查询</span></a></li></ol></li></ol>
+    </div>
+
+      
+        <p>Ubuntu安装配置MySQL</p>
+<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p><code>sudo apt-get install mysql-server</code></p>
+<p>安装过程中会提示设置root用户的密码</p>
+<ul>
+<li>启动<code>sudo service mysql start</code></li>
+<li>重启<code>sudo service mysql restart</code></li>
+<li>停止<code>sudo service mysql stop</code></li>
+</ul>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>主配置入口文件<code>/etc/mysql/mysql.cnf</code>, 这个文件里是全局配置，默认只设置了2个目录，告诉我们其中的配置文件，文件名后缀为cnf。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">!includedir /etc/mysql/conf.d/</div><div class="line">!includedir /etc/mysql/mysql.conf.d/</div></pre></td></tr></table></figure>
+<p>挨个查看后发现<code>mysql.conf.d/mysqld.cnf</code>文件配置[client]和[mysqld]。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="section">[client]</span></div><div class="line"><span class="comment"># 设置utf8可以支持中文</span></div><div class="line"><span class="attr">default-character-set</span> = utf8</div><div class="line"></div><div class="line"><span class="section">[mysqld_safe]</span></div><div class="line"><span class="attr">socket</span>		= /var/run/mysqld/mysqld.sock</div><div class="line"><span class="attr">nice</span>		= <span class="number">0</span></div><div class="line"></div><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="attr">user</span>		= mysql</div><div class="line"><span class="attr">pid-file</span>	= /var/run/mysqld/mysqld.pid</div><div class="line"><span class="attr">socket</span>		= /var/run/mysqld/mysqld.sock</div><div class="line"><span class="attr">port</span>		= <span class="number">3306</span></div><div class="line"><span class="attr">basedir</span>		= /usr</div><div class="line"></div><div class="line"><span class="comment"># 需要远程连接时，注释掉下面语句</span></div><div class="line"><span class="attr">bind-address</span>		= <span class="number">0.0</span>.<span class="number">0.0</span>  </div><div class="line"></div><div class="line"><span class="attr">datadir</span>		= /var/lib/mysql</div><div class="line"><span class="attr">tmpdir</span>		= /tmp</div><div class="line"><span class="attr">lc-messages-dir</span>	= /usr/share/mysql</div><div class="line"></div><div class="line"><span class="attr">myisam-recover-options</span>  = BACKUP</div><div class="line"><span class="attr">query_cache_limit</span>	= <span class="number">1</span>M</div><div class="line"><span class="attr">query_cache_size</span>        = <span class="number">16</span>M</div><div class="line"><span class="attr">log_error</span> = /var/log/mysql/error.log</div></pre></td></tr></table></figure>
+<h3 id="设置MySQL允许远程访问"><a href="#设置MySQL允许远程访问" class="headerlink" title="设置MySQL允许远程访问"></a>设置MySQL允许远程访问</h3><p>注释掉<code>bind-address = 0.0.0.0</code></p>
+<h3 id="设置用户允许远程登录"><a href="#设置用户允许远程登录" class="headerlink" title="设置用户允许远程登录"></a>设置用户允许远程登录</h3><p><code>mysql -h localhost -u root -p</code>, 连接数据库，在命令台输入命令：</p>
+<ul>
+<li><code>use mysql;</code></li>
+<li><code>select host, user from user;</code></li>
+<li><code>GRANT ALL PRIVILEGES ON  *.*  TO root@&quot;%&quot; IDENTIFIED BY &#39;用户root的密码&#39;;</code></li>
+</ul>
+<p>现在root可以支持远程登陆了，root的host变为<code>%</code>通配符。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171101/Bi12FD4lH2.png?imageslim" alt="mark"></p>
+<p>允许root用户以任意ip地址远程登陆，一旦密码泄露是非常危险的。</p>
+<p>推荐的做法:</p>
+<ol>
+<li><p>允许root从内网ip 192.168.1.122上登陆，指定内网单个ip</p>
+<p><code>GRANT ALL PRIVILEGES ON  *.*  TO root@&quot;192.168.1.122&quot; IDENTIFIED BY &#39;用户root的密码&#39;;</code></p>
+</li>
+<li><p>创建新的用户，为其分配有限的权限，指定ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//创建库</div><div class="line">create database dbTest;</div><div class="line">//创建用户，设置密码</div><div class="line">create user &apos;useTest&apos;@&apos;%&apos; IDENTIFIED BY &apos;pwdTest&apos;;</div><div class="line">// 赋给该用户在dbTest数据上增删查，插入的权限， 连接ip为%，任意ip</div><div class="line">grant select,update,delete,insert on dbTest.* to useTest@&apos;%&apos;;</div><div class="line">flush privileges;</div><div class="line">use dbTest;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+<h3 id="设置utf8字符集"><a href="#设置utf8字符集" class="headerlink" title="设置utf8字符集"></a>设置utf8字符集</h3><p>解决中文乱码问题，打开mysql控制台，输入命令<code>show variables like &#39;character%&#39;;</code>查看字符集。</p>
+<ol>
+<li>修改配置文件</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="section">[client]</span></div><div class="line"><span class="attr">default-character-set</span>=utf8</div><div class="line"></div><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="attr">default-storage-engine</span>=INNODB</div><div class="line"><span class="attr">character-set-server</span>=utf8</div><div class="line"><span class="attr">collation-server</span>=utf8_general_ci</div></pre></td></tr></table></figure>
+<ol>
+<li><p>在命令台输入命令<code>set names utf8;</code></p>
+</li>
+<li><p>重启mysql后，使用命令查看字符集。</p>
+<ul>
+<li>character_set_client    </li>
+<li>character_set_connection</li>
+<li>character_set_results</li>
+</ul>
+<p>　　　以上三个控制mysql client的字符集</p>
+<ul>
+<li>character_set_database  </li>
+</ul>
+<p>​          设置数据库的默认字符集</p>
+<ul>
+<li>character_set_server    </li>
+</ul>
+<p>​          设置以上所有的默认字符集</p>
+</li>
+</ol>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171101/dDEkF9KfHf.png?imageslim" alt="mark"></p>
+<h3 id="安装MySQL驱动"><a href="#安装MySQL驱动" class="headerlink" title="安装MySQL驱动"></a>安装MySQL驱动</h3><p>Python </p>
+<p>sudo apt-get install python-pip<br>sudo apt-get install python-dev<br>sudo pip install mysql-python</p>
+<p><code>pip install mysql-python</code></p>
+<p>mysql-python安装时EnvironmentError: mysql_config not found</p>
+<p>在安装 mysql-python时，会出现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sh: mysql_config: not found</div><div class="line">Traceback (most recent call last):</div><div class="line">  File &quot;setup.py&quot;, line 15, in &lt;module&gt;</div><div class="line">    metadata, options = get_config()</div><div class="line">  File &quot;/home/zhxia/apps/source/MySQL-python-1.2.3/setup_posix.py&quot;, line 43, in get_config</div><div class="line">    libs = mysql_config(&quot;libs_r&quot;)</div><div class="line">  File &quot;/home/zhxia/apps/source/MySQL-python-1.2.3/setup_posix.py&quot;, line 24, in mysql_config</div><div class="line">    raise EnvironmentError(&quot;%s not found&quot; % (mysql_config.path,))</div><div class="line">EnvironmentError: mysql_config not found</div></pre></td></tr></table></figure>
+<p>只要原因是没有安装:libmysqlclient-dev</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libmysqlclient-dev</div></pre></td></tr></table></figure>
+<p>找到mysql_config文件的路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo updatedb</div><div class="line">locate mysql_config</div></pre></td></tr></table></figure>
+<p>mysql_config的位置为：/usr/bin/mysql_config</p>
+<p>在mysql-python源码包下找到：setup_posix.py 文件，然后找到文件中的 mysql_config.path 将其值改为：/usr/bin/mysql_config,然后 sudo python setup.py install ,就ok了</p>
+<h3 id="创建测试数据"><a href="#创建测试数据" class="headerlink" title="创建测试数据"></a>创建测试数据</h3><h4 id="使用DB-存储过程生成数据"><a href="#使用DB-存储过程生成数据" class="headerlink" title="使用DB 存储过程生成数据"></a>使用DB 存储过程生成数据</h4><blockquote>
+<p>存储过程比较复杂，且sql提供的函数无法实现高级的数据处理功能</p>
+</blockquote>
+<ul>
+<li><p>创建库和用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">database</span> dbTest;</div><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">'useTest'</span>@<span class="string">'%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'pwdTest'</span>;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">select</span>,<span class="keyword">update</span>,<span class="keyword">delete</span>,<span class="keyword">insert</span> <span class="keyword">on</span> dbTest.* <span class="keyword">to</span> useTest@<span class="string">'%'</span>;</div><div class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</div><div class="line"><span class="keyword">use</span> dbTest;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`tabTest`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`tabTest`</span> (</div><div class="line">  <span class="string">`testID`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'ID'</span>,</div><div class="line">  <span class="string">`testTitle`</span> <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'title'</span>,</div><div class="line">  <span class="string">`testBody`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'boey'</span>,</div><div class="line">  <span class="string">`testType`</span> tinyint(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'title len'</span>,</div><div class="line">  <span class="string">`testValue`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'body len'</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`testID`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=MyISAM AUTO_INCREMENT=<span class="number">3</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span>=<span class="string">'test'</span>;</div><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tabTest auto_increment=<span class="number">1</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//创建存储过程，里面一长段汉字，用于随机抽取内容，可以随便改这段文字，但其中最好不要含用符号。</div><div class="line"></div><div class="line">DELIMITER $$</div><div class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`addTest`</span>$$</div><div class="line"><span class="keyword">CREATE</span> DEFINER=<span class="string">`root`</span>@<span class="string">`localhost`</span> <span class="keyword">PROCEDURE</span> <span class="string">`addTest`</span>(<span class="keyword">IN</span> insSum <span class="built_in">int</span>,<span class="keyword">IN</span> lenTitle <span class="built_in">int</span>,<span class="keyword">IN</span> lenBody <span class="built_in">int</span>)</div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">    <span class="keyword">DECLARE</span> i <span class="built_in">INT</span> <span class="keyword">UNSIGNED</span> <span class="keyword">DEFAULT</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">SET</span> i=<span class="number">0</span>;</div><div class="line">    <span class="keyword">set</span> @<span class="keyword">str</span>=<span class="string">'据新华社电日前，中共中央政治局常委、国务院总理李克强主持国务院专题讲座，讨论加快发展先进制造与3D打印等问题。李克强指出，推动中国制造由大变强，要紧紧依靠深化改革和创新驱动'</span></div><div class="line">    loop1: <span class="keyword">LOOP</span></div><div class="line">      <span class="keyword">SET</span> i=i+<span class="number">1</span>;</div><div class="line">      if i&gt;insSum then</div><div class="line">      LEAVE loop1;</div><div class="line">      <span class="keyword">end</span> <span class="keyword">if</span>;</div><div class="line"></div><div class="line">      <span class="keyword">set</span> @<span class="keyword">key</span>=<span class="keyword">SUBSTRING</span>(@<span class="keyword">str</span>,<span class="keyword">FLOOR</span>(<span class="keyword">rand</span>()*(<span class="keyword">length</span>(@<span class="keyword">str</span>)/<span class="number">3</span><span class="number">-10</span>)),<span class="number">2</span>+<span class="keyword">FLOOR</span>(<span class="keyword">rand</span>()*lenTitle));</div><div class="line">      <span class="keyword">set</span> @title=<span class="keyword">SUBSTRING</span>(@<span class="keyword">str</span>,<span class="keyword">FLOOR</span>(<span class="keyword">rand</span>()*(<span class="keyword">length</span>(@<span class="keyword">str</span>)/<span class="number">3</span><span class="number">-20</span>)),<span class="number">5</span>+<span class="keyword">FLOOR</span>(<span class="keyword">rand</span>()*lenBody));</div><div class="line">      <span class="keyword">insert</span> <span class="keyword">INTO</span> tabTest(testTitle,testBody,testType,testValue) <span class="keyword">values</span> (@<span class="keyword">key</span>,@title,<span class="keyword">length</span>(@title),<span class="keyword">length</span>(@<span class="keyword">key</span>));</div><div class="line">      </div><div class="line">      <span class="keyword">select</span> i,insSum-i;</div><div class="line">    <span class="keyword">END</span> <span class="keyword">LOOP</span> loop1;</div><div class="line"><span class="keyword">END</span>$$</div><div class="line">DELIMITER ;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>调用存储过程插入数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//调用过程开始添加数据，数字为要添加的条数</div><div class="line"><span class="keyword">call</span> addTest(<span class="number">2</span>,<span class="number">5</span>,<span class="number">80</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="使用Python生成数据"><a href="#使用Python生成数据" class="headerlink" title="使用Python生成数据"></a>使用Python生成数据</h4><ul>
+<li><p>使用Python批量插入数据</p>
+<p>表结构：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SET</span> FOREIGN_KEY_CHECKS=<span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for major</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`major`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`major`</span> (</div><div class="line">  <span class="string">`majorID`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`schooltype`</span> <span class="built_in">varchar</span>(<span class="number">40</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`major_name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`major_category`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`major_hot`</span> <span class="built_in">int</span>(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`majorID`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">3787</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for school</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`school`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`school`</span> (</div><div class="line">  <span class="string">`schoolID`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`sname`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`location`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`school_type`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`school_category`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`school_hot`</span> <span class="built_in">int</span>(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`schoolID`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">2779</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div><div class="line"></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="comment">-- Table structure for student</span></div><div class="line"><span class="comment">-- ----------------------------</span></div><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`student`</span>;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`student`</span> (</div><div class="line">  <span class="string">`studentID`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`studentName`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`age`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`schoolID`</span> <span class="built_in">int</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`majorID`</span> <span class="built_in">int</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`sex`</span> <span class="built_in">varchar</span>(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'男'</span>,</div><div class="line">  <span class="string">`score_4`</span> <span class="built_in">int</span>(<span class="number">3</span>) <span class="keyword">DEFAULT</span> <span class="string">'0'</span>,</div><div class="line">  <span class="string">`score_6`</span> <span class="built_in">int</span>(<span class="number">3</span>) <span class="keyword">DEFAULT</span> <span class="string">'0'</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`studentID`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">250708001</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div></pre></td></tr></table></figure>
+<p>一次插入多条数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">conn = MySQLdb.Connection(<span class="string">"123.207.235.76"</span>, <span class="string">"root"</span>, <span class="string">"123456"</span>, <span class="string">"dbTest"</span>, charset=<span class="string">'utf8'</span>)</div><div class="line">data = [(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>), (<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>)]</div><div class="line">cursor = conn.cursor()</div><div class="line">sql = <span class="string">"insert into student(schoolID, score_4, score_6) "</span> \</div><div class="line">              <span class="string">"VALUES (%s, %s, %s)"</span></div><div class="line">cursor.executemany(sql, data)</div><div class="line">conn.commit()</div></pre></td></tr></table></figure>
+<p>生成随机数据：</p>
+<p>forgery_py模块可以生成随机的英文名，地址，ip，品牌等测试数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> MySQLdb</div><div class="line"><span class="keyword">import</span> csv</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> forgery_py</div><div class="line"></div><div class="line"><span class="string">''' 写入major table'''</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_major</span><span class="params">()</span>:</span></div><div class="line">    t1 = time.time()</div><div class="line">    reader = csv.reader(file(<span class="string">'major_result.csv'</span>))</div><div class="line">    reader.next()  <span class="comment"># 调过csv的第一行</span></div><div class="line"></div><div class="line">    data  = [(x[<span class="number">0</span>], x[<span class="number">1</span>], int(x[<span class="number">2</span>]), x[<span class="number">3</span>]) <span class="keyword">for</span> x <span class="keyword">in</span> reader ]</div><div class="line">    conn = MySQLdb.Connection(<span class="string">"123.207.235.76"</span>,<span class="string">"root"</span>,<span class="string">"123456"</span>,<span class="string">"dbTest"</span>, charset=<span class="string">'utf8'</span>)</div><div class="line">    cursor = conn.cursor()</div><div class="line">    sql = <span class="string">"""insert into major(major_name, major_category, major_hot,schooltype) VALUES (%s, %s, %s, %s)"""</span></div><div class="line">    cursor.executemany(sql, data)</div><div class="line">    conn.commit()</div><div class="line">    cursor.close()</div><div class="line">    conn.close()</div><div class="line">    <span class="keyword">print</span> time.time() - t1  <span class="comment"># 1.23699998856</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="string">''' 写入school table'''</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_school</span><span class="params">()</span>:</span></div><div class="line">    reader = csv.reader(file(<span class="string">'result.csv'</span>))</div><div class="line">    reader.next()</div><div class="line">    data  = [(x[<span class="number">0</span>], x[<span class="number">1</span>], x[<span class="number">2</span>], x[<span class="number">4</span>], int(x[<span class="number">3</span>])) <span class="keyword">for</span> x <span class="keyword">in</span> reader ]</div><div class="line">    t1 = time.time()</div><div class="line">    conn = MySQLdb.Connection(<span class="string">"123.207.235.76"</span>,<span class="string">"root"</span>,<span class="string">"123456"</span>,<span class="string">"dbTest"</span>, charset=<span class="string">'utf8'</span>)</div><div class="line">    cursor = conn.cursor()</div><div class="line">    sql = <span class="string">"""insert into school(sname, location, school_type, school_category, school_hot) VALUES (%s, %s, %s, %s, %s)"""</span></div><div class="line">    cursor.executemany(sql, data)</div><div class="line">    conn.commit()</div><div class="line">    cursor.close()</div><div class="line">    conn.close()</div><div class="line">    <span class="keyword">print</span> time.time() - t1  <span class="comment">#0.851999998093</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="string">''' 写入school table'''</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_one</span><span class="params">()</span>:</span></div><div class="line">    name = forgery_py.name.full_name()</div><div class="line">    sid = forgery_py.name.random.randint(<span class="number">1</span>, <span class="number">2778</span>)</div><div class="line">    mid = forgery_py.name.random.randint(<span class="number">2525</span>, <span class="number">3786</span>)</div><div class="line">    age = forgery_py.name.random.randint(<span class="number">18</span>, <span class="number">35</span>)</div><div class="line">    score_4 = forgery_py.name.random.uniform(<span class="number">400</span>, <span class="number">750</span>)</div><div class="line">    score_6 = forgery_py.name.random.uniform(<span class="number">400</span>, <span class="number">750</span>)</div><div class="line">    sex = forgery_py.name.random.choice([<span class="string">u'男'</span>, <span class="string">u'女'</span>])</div><div class="line">    <span class="keyword">return</span> (name, age, sid, mid, sex, score_4, score_6)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_student</span><span class="params">()</span>:</span></div><div class="line">    conn = MySQLdb.Connection(<span class="string">"localhost"</span>, <span class="string">"root"</span>, <span class="string">"123456"</span>, <span class="string">"dbTest"</span>, charset=<span class="string">'utf8'</span>)</div><div class="line">    cursor = conn.cursor()</div><div class="line">    t1 = time.time()</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">200</span>):</div><div class="line">        data = [create_one() <span class="keyword">for</span> n <span class="keyword">in</span> range(<span class="number">2000</span>)]</div><div class="line">        sql = <span class="string">"insert into student(studentName, age, schoolID, majorID, sex, score_4, score_6) "</span> \</div><div class="line">              <span class="string">"VALUES (%s, %s, %s, %s, %s, %s, %s)"</span></div><div class="line">        cursor.executemany(sql, data)</div><div class="line">        conn.commit()</div><div class="line">        <span class="keyword">del</span> data</div><div class="line">    cursor.close()</div><div class="line">    conn.close()</div><div class="line">    <span class="keyword">print</span> time.time() - t1 <span class="comment"># 1.23699998856</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    insert_major()</div><div class="line">    insert_school()</div><div class="line">    insert_student()</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="查询测试"><a href="#查询测试" class="headerlink" title="查询测试"></a>查询测试</h3><h4 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h4><ol>
+<li><p>在有索引的情况下执行查询：</p>
+<p>表的主键、外键是必须有索引的，经常与其他表连接的字段，经常出现在where子句中的字段都应该有索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">SELECT * <span class="keyword">from</span> student where studentID=<span class="number">250000000</span>;</div><div class="line"></div><div class="line">/*</div><div class="line">受影响的行: <span class="number">0</span></div><div class="line">时间: <span class="number">0.037</span>s</div><div class="line">*/</div><div class="line"></div><div class="line">UPDATE student </div><div class="line">SET studentName = <span class="string">'Wanda Lawrence1'</span> </div><div class="line">WHERE studentID=<span class="number">250000000</span>;</div><div class="line"></div><div class="line">/*</div><div class="line">受影响的行: <span class="number">1</span></div><div class="line">时间: <span class="number">0.101</span>s</div><div class="line">*/</div></pre></td></tr></table></figure>
+</li>
+<li><p>在没有索引的字段执行查询</p>
+<ul>
+<li>使用LIMIT进行分页查询，一次查询想要拿到的结果越多，扫描权标花费的时间就越多。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> student <span class="keyword">where</span> studentName = <span class="string">'Wanda Lawrence1'</span>;</div><div class="line"></div><div class="line"><span class="comment">/* </span></div><div class="line"><span class="comment">studentName = 'Wanda Lawrence1'的记录仅有一条，且是第第2.5亿条记录</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 1651.702s， 27分钟。</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> studentName = <span class="string">'Wanda Lawrence'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">100</span>;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 6.525s </span></div><div class="line"><span class="comment">第100个符合条件的记录，其位置为2297114，也就是条件查询6.5s遍历了229万条数据。</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> studentName = <span class="string">'Wanda Lawrence'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">100</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 1.599s</span></div><div class="line"><span class="comment">第100个符合条件的记录，其位置为2297114。</span></div><div class="line"><span class="comment">相比上次的6.525秒的执行速度，这次只用了1.599s,说明mysql内部有缓存机制</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> studentName = <span class="string">'Wanda Lawrence'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">10</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 0.257s</span></div><div class="line"><span class="comment">第10个符合条件的记录，其位置为289394， 0.257s遍历了29万条记录， 可能会受到缓存的影响</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> studentName = <span class="string">'Michelle Warren'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">10</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 0.161s</span></div><div class="line"><span class="comment">第10个符合条件的记录，其位置为236033， 与上面的结果相比，mysql内部缓存机制对于30万级别的记录影响不大。</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>数据库中避免使用空值变量null</p>
+<p>对于一个数值字段可以设置0代替null,速度差别10倍</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> age = <span class="literal">null</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">10</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 2.161s</span></div><div class="line"><span class="comment">第10个符合条件的记录，其位置为199712</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> age = <span class="number">0</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">10</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 0.191s</span></div><div class="line"><span class="comment">第10个符合条件的记录，其位置为2558733</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>避免在where子句中使用or</p>
+<p>使用Union all 连接2个子查询，比使用or的逻辑条件查询速度快很多。</p>
+<p>从下面的执行结果可以看出二者相差8倍，这还是在查询字段有索引的情况下。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 有索引的字段</span></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> studentID = <span class="number">254000</span> <span class="keyword">or</span> studentID = <span class="number">220000000</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 0.224s</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> studentID = <span class="number">254000</span> </div><div class="line"><span class="keyword">UNION</span> ALL</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line"><span class="keyword">WHERE</span> studentID = <span class="number">220000000</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 0.038s</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line"><span class="comment">-- 没有索引的字段</span></div><div class="line"><span class="comment">-- union 联合查询无法配合分页Limit使用，下面的sql语句语法错误</span></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> studentName = <span class="string">'Carol Henderson'</span></div><div class="line"><span class="keyword">UNION</span> ALL</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> studentName = <span class="string">'Andrea Griffin'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">100</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>不要用模糊匹配，如果有必要可以使用全文检索提高效率。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> studentName <span class="keyword">LIKE</span> <span class="string">'Wanda%2'</span> <span class="keyword">LIMIT</span> <span class="number">1</span>;</div><div class="line"><span class="comment">/*  </span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 1.046s</span></div><div class="line"><span class="comment">*/</span></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> studentName = <span class="string">'Wanda Lawrence2'</span> <span class="keyword">LIMIT</span> <span class="number">1</span>;</div><div class="line"><span class="comment">/*	</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 0.975s</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>in和 not in也要慎用，否则会导致全表扫描：</p>
+<p>当查询条件是连续型数值时，使用between替换in语法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> majorID <span class="keyword">in</span> (<span class="number">2841</span>, <span class="number">2842</span>, <span class="number">2843</span>, <span class="number">2844</span>, <span class="number">2845</span>)</div><div class="line"><span class="keyword">LIMIT</span> <span class="number">10000</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 7.291s</span></div><div class="line"><span class="comment">*/</span></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> majorID <span class="keyword">BETWEEN</span> <span class="number">2841</span> <span class="keyword">AND</span> <span class="number">2845</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">10000</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 7.019s</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>、应尽量避免在 where子句中对字段进行表达式操作</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> majorID/<span class="number">2</span> = <span class="number">1422</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">1000</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 3.733s</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> majorID = <span class="number">1422</span>*<span class="number">2</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">1000</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 1.174s</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>应尽量避免在where子句中对字段进行函数操作,不要在 where子句中的“=”左边进行函数、算术运算或其他表达式运算</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> <span class="keyword">SUBSTRING</span>(studentName, <span class="number">1</span>, <span class="number">5</span>) = <span class="string">'Wanda'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">10000</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 3.015s</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student</div><div class="line">	<span class="keyword">WHERE</span> studentName <span class="keyword">LIKE</span> <span class="string">'Wanda%'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">10000</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 2.871s</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h4><ol>
+<li><p>用 exists代替 in执行嵌套查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">[SQL]<span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> student st</div><div class="line">	<span class="keyword">WHERE</span> st.majorID <span class="keyword">in</span> (<span class="keyword">SELECT</span> majorID <span class="keyword">FROM</span> major mj</div><div class="line">												<span class="keyword">WHERE</span> mj.major_category = <span class="string">'财经类'</span></div><div class="line">														<span class="keyword">AND</span> mj.major_name = <span class="string">'证券投资与管理'</span>)</div><div class="line">		<span class="keyword">AND</span> st.schoolID <span class="keyword">in</span> (<span class="keyword">SELECT</span> schoolID <span class="keyword">FROM</span> school sc</div><div class="line">													<span class="keyword">WHERE</span> sc.school_category = <span class="string">'财经类'</span></div><div class="line">														<span class="keyword">AND</span> sc.school_type = <span class="string">'高职高专'</span></div><div class="line">														<span class="keyword">AND</span> sc.location = <span class="string">'上海'</span>)</div><div class="line">		<span class="keyword">AND</span> st.age = <span class="number">33</span></div><div class="line">		<span class="keyword">AND</span> st.sex = <span class="string">'女'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">1</span>;</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 62.578s</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> student st</div><div class="line">	<span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> major mj</div><div class="line">												<span class="keyword">WHERE</span> st.majorID = mj.majorID</div><div class="line">														<span class="keyword">AND</span> mj.major_category = <span class="string">'财经类'</span></div><div class="line">														<span class="keyword">AND</span> mj.major_name = <span class="string">'证券投资与管理'</span>)</div><div class="line">		<span class="keyword">AND</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> school sc</div><div class="line">													<span class="keyword">WHERE</span> sc.schoolID=st.schoolID</div><div class="line">														<span class="keyword">AND</span> sc.school_category = <span class="string">'财经类'</span></div><div class="line">														<span class="keyword">AND</span> sc.school_type = <span class="string">'高职高专'</span></div><div class="line">														<span class="keyword">AND</span> sc.location = <span class="string">'上海'</span>)</div><div class="line">		<span class="keyword">AND</span> st.age = <span class="number">33</span></div><div class="line">		<span class="keyword">AND</span> st.sex = <span class="string">'女'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 68.563s</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>join</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">[SQL]<span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> student st, major mj, school sc</div><div class="line"><span class="keyword">WHERE</span> st.age = <span class="number">33</span></div><div class="line">			<span class="keyword">AND</span> st.sex = <span class="string">'女'</span></div><div class="line"> 			<span class="keyword">AND</span> st.majorID = mj.majorID </div><div class="line">			<span class="keyword">AND</span> st.schoolID = sc.schoolID</div><div class="line">			<span class="keyword">AND</span> sc.school_category = <span class="string">'财经类'</span></div><div class="line">			<span class="keyword">AND</span> sc.school_type = <span class="string">'高职高专'</span></div><div class="line">			<span class="keyword">AND</span> sc.location = <span class="string">'上海'</span></div><div class="line">			<span class="keyword">AND</span> mj.major_category = <span class="string">'财经类'</span></div><div class="line">			<span class="keyword">AND</span> mj.major_name = <span class="string">'证券投资与管理'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 76.140s</span></div><div class="line"><span class="comment">扫描到第200万行记录</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">[SQL]<span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> student st</div><div class="line">	<span class="keyword">JOIN</span> major mj <span class="keyword">ON</span> (st.majorID = mj.majorID </div><div class="line">								<span class="keyword">AND</span> mj.major_category = <span class="string">'财经类'</span></div><div class="line">								<span class="keyword">AND</span> mj.major_name = <span class="string">'证券投资与管理'</span>)</div><div class="line">	<span class="keyword">JOIN</span> school sc <span class="keyword">ON</span> (st.schoolID = sc.schoolID</div><div class="line">									<span class="keyword">AND</span> sc.school_category = <span class="string">'财经类'</span></div><div class="line">									<span class="keyword">AND</span> sc.school_type = <span class="string">'高职高专'</span></div><div class="line">									<span class="keyword">AND</span> sc.location = <span class="string">'上海'</span>)</div><div class="line"><span class="keyword">WHERE</span> st.age = <span class="number">33</span></div><div class="line">			<span class="keyword">AND</span> st.sex = <span class="string">'女'</span></div><div class="line"><span class="keyword">LIMIT</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">受影响的行: 0</span></div><div class="line"><span class="comment">时间: 65.335s</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-10-06T16:00:00.000Z"><a href="/2017/10/07/技术/hexo-lightum/">2017-10-07</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/10/07/技术/hexo-lightum/">hexo lightum 博客折腾之旅</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>最近打算将原来的博客从jekyll转到hexo，瞎折腾了好久。最初用的是next主题，好处是next文档丰富，插件齐全。</p>
+<p>后来又看上了light主题，但是light用的人不多，相关的插件、功能只好参考next以及其他hexo主题提供的解决方案，自己整合。</p>
+</blockquote>
+<h2 id="我喜欢的博客主题风格"><a href="#我喜欢的博客主题风格" class="headerlink" title="我喜欢的博客主题风格"></a>我喜欢的博客主题风格</h2><ul>
+<li><p><a href="https://www.zhihu.com/question/20223939" target="_blank" rel="external">有哪些简洁明快的jekyll模板</a></p>
+<p>我最开始用的是jekyll，主题是<a href="painterlin.com">首页 | 林安亚的博客</a> </p>
+<p><a href="http://yansu.org" target="_blank" rel="external">闫肃的博客</a>  现在依然觉得这个博客好看且实用</p>
+</li>
+<li><p><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">hexo-next</a></p>
+<p>用了一段时间，功能丰富，配置简单。不过后来看到了light主题，个人审美更喜欢light</p>
+</li>
+<li><p>hexo-lightum</p>
+<p>基于light的改进主题，也是我现在在使用的</p>
+</li>
+</ul>
+<p><strong>其他好看的博客</strong></p>
+<ul>
+<li><p><a href="http://www.lyun.me/" target="_blank" rel="external">琉璃之鸟</a></p>
+<p>wordpress的博客，当初玩饥荒查攻略时进入的网站，感觉挺不错的。</p>
+</li>
+<li><p><a href="https://sunflyer.cn/" target="_blank" rel="external">Crazy Coder</a></p>
+<p>SimplyNetKeeper电信E信路由器破解连接软件，作者的博客。</p>
+</li>
+<li><p><a href="http://iconmoon.com/about/" target="_blank" rel="external">图月志</a></p>
+<p>这个很酷炫，不过是Bo-Blog，mysql+PHP，模板不清楚。</p>
+</li>
+</ul>
+<h2 id="Hexo博客折腾之路"><a href="#Hexo博客折腾之路" class="headerlink" title="Hexo博客折腾之路"></a>Hexo博客折腾之路</h2>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/09/04/技术/RESTful API 设计/#more" class="more-link">阅读全文</a>
+            <a href="/2017/10/07/技术/hexo-lightum/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -784,34 +1081,272 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-09-02T16:00:00.000Z"><a href="/2017/09/03/技术/Scrapy使用bloom filter优化URL去重/">2017-09-03</a></time>
+          <time datetime="2017-10-06T16:00:00.000Z"><a href="/2017/10/07/折腾/hexo-lightum/">2017-10-07</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/09/03/技术/Scrapy使用bloom filter优化URL去重/">scrapy中使用BloomFilter优化URL去重</a></h1>
+    <h1 class="title"><a href="/2017/10/07/折腾/hexo-lightum/">hexo lightum 博客折腾之旅</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="scrapy使用BloomFilter优化URL去重"><a href="#scrapy使用BloomFilter优化URL去重" class="headerlink" title="scrapy使用BloomFilter优化URL去重"></a>scrapy使用BloomFilter优化URL去重</h1><blockquote>
-<p> scrapy原有的url去重算法是sha1 Hash算法，去重队列存放在内存中。</p>
-<p>当URL记录上亿时，内存开销会非常大，因此需要更加节省内存的算法来实现URL过滤。</p>
+        <blockquote>
+<p>最近打算将原来的博客从jekyll转到hexo，瞎折腾了好久。最初用的是next主题，好处是next文档丰富，插件齐全。</p>
+<p>后来又看上了light主题，但是light用的人不多，相关的插件、功能只好参考next以及其他hexo主题提供的解决方案，自己整合。</p>
 </blockquote>
-<p><strong>参考文章</strong></p>
-<ul>
-<li><a href="http://blog.csdn.net/bone_ace/article/details/53099042" target="_blank" rel="external">scrapy_redis去重优化</a></li>
-<li><a href="http://blog.csdn.net/bone_ace/article/details/53107018" target="_blank" rel="external">基于redis的BloomFilter实现</a></li>
-<li><a href="https://github.com/LiuXingMing/Scrapy_Redis_Bloomfilter" target="_blank" rel="external">demo</a></li>
+<h2 id="我喜欢的博客主题风格"><a href="#我喜欢的博客主题风格" class="headerlink" title="我喜欢的博客主题风格"></a>我喜欢的博客主题风格</h2><ul>
+<li><p><a href="https://www.zhihu.com/question/20223939" target="_blank" rel="external">有哪些简洁明快的jekyll模板</a></p>
+<p>我最开始用的是jekyll，主题是<a href="painterlin.com">首页 | 林安亚的博客</a> </p>
+<p><a href="http://yansu.org" target="_blank" rel="external">闫肃的博客</a>  现在依然觉得这个博客好看且实用</p>
+</li>
+<li><p><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">hexo-next</a></p>
+<p>用了一段时间，功能丰富，配置简单。不过后来看到了light主题，个人审美更喜欢light</p>
+</li>
+<li><p>hexo-lightum</p>
+<p>基于light的改进主题，也是我现在在使用的</p>
+</li>
 </ul>
+<p><strong>其他好看的博客</strong></p>
+<ul>
+<li><p><a href="http://www.lyun.me/" target="_blank" rel="external">琉璃之鸟</a></p>
+<p>wordpress的博客，当初玩饥荒查攻略时进入的网站，感觉挺不错的。</p>
+</li>
+<li><p><a href="https://sunflyer.cn/" target="_blank" rel="external">Crazy Coder</a></p>
+<p>SimplyNetKeeper电信E信路由器破解连接软件，作者的博客。</p>
+</li>
+<li><p><a href="http://iconmoon.com/about/" target="_blank" rel="external">图月志</a></p>
+<p>这个很酷炫，不过是Bo-Blog，mysql+PHP，模板不清楚。</p>
+</li>
+</ul>
+<h2 id="Hexo博客折腾之路"><a href="#Hexo博客折腾之路" class="headerlink" title="Hexo博客折腾之路"></a>Hexo博客折腾之路</h2>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/09/03/技术/Scrapy使用bloom filter优化URL去重/#more" class="more-link">阅读全文</a>
+            <a href="/2017/10/07/折腾/hexo-lightum/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-09-22T16:00:00.000Z"><a href="/2017/09/23/技术/Flask-Login/">2017-09-23</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/09/23/技术/Flask-Login/">Flask-Login 登录插件</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Flask-Login"><a href="#Flask-Login" class="headerlink" title="Flask-Login"></a>Flask-Login</h1><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170927/1eKC05Ba52.png?imageslim" alt="mark"></p>
+<h2 id="在Flask-app中注册插件"><a href="#在Flask-app中注册插件" class="headerlink" title="在Flask app中注册插件"></a>在Flask app中注册插件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># auth/__init__.py</span></div><div class="line"><span class="keyword">from</span> flask_login <span class="keyword">import</span> LoginManager</div><div class="line"></div><div class="line">login_manager = LoginManager()</div><div class="line">login_manager.session_protection = <span class="string">'strong'</span></div><div class="line">login_manager.login_view = <span class="string">'auth.login'</span></div><div class="line">login_manager.init_app(app)</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/09/23/技术/Flask-Login/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-09-21T16:00:00.000Z"><a href="/2017/09/22/技术/Flask表单/">2017-09-22</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/09/22/技术/Flask表单/">Flask 表单</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h2><ul>
+<li><p>什么是表单</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170920/7e6E8FeLgj.png?imageslim" alt="mark"></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/09/22/技术/Flask表单/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-09-19T16:00:00.000Z"><a href="/2017/09/20/技术/flask开发环境搭建/">2017-09-20</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/09/20/技术/flask开发环境搭建/">Flask 开发环境搭建</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Flask-开发环境搭建"><span class="toc-text">Flask 开发环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装python-pip-和虚拟环境"><span class="toc-text">安装python pip 和虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发工具"><span class="toc-text">开发工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vim"><span class="toc-text">vim</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <h2 id="Flask-开发环境搭建"><a href="#Flask-开发环境搭建" class="headerlink" title="Flask 开发环境搭建"></a>Flask 开发环境搭建</h2><h3 id="安装python-pip-和虚拟环境"><a href="#安装python-pip-和虚拟环境" class="headerlink" title="安装python pip 和虚拟环境"></a>安装python pip 和虚拟环境</h3><p>virtualenv</p>
+<p>虚拟机 </p>
+<ul>
+<li>docker</li>
+</ul>
+<h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4><p>  插件 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="external">vundle</a>  vim包管理工具</p>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-09-18T16:00:00.000Z"><a href="/2017/09/19/技术/Flask蓝图/">2017-09-19</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/09/19/技术/Flask蓝图/">Flask模块化 蓝图</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Flask模块化-–-蓝图"><a href="#Flask模块化-–-蓝图" class="headerlink" title="Flask模块化 – 蓝图"></a>Flask模块化 – 蓝图</h1><h2 id="概念简介"><a href="#概念简介" class="headerlink" title="概念简介"></a>概念简介</h2><blockquote>
+<p>在Django项目中，一个网站可以按模块划分，分别实现几个子APP，然后在settings里注册APP，并在urls里为不同的APP分配不同的url路由。</p>
+<p>Flask也有相似的设计模式，被称为蓝图</p>
+</blockquote>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170922/bB3Gl20Dh0.png?imageslim" alt="mark"></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/09/19/技术/Flask蓝图/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -1034,7 +1569,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">2</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
@@ -1068,6 +1603,10 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
     <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
@@ -1077,6 +1616,8 @@
     <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
   
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
@@ -1102,6 +1643,8 @@
   
     <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
   
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
@@ -1114,7 +1657,9 @@
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>19</small></li>
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>20</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
@@ -1130,13 +1675,19 @@
   
     <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
     <li><a href="/tags/git/">git</a><small>1</small></li>
   
     <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
   
     <li><a href="/tags/linux/">linux</a><small>1</small></li>
   
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
     <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
   
@@ -1158,7 +1709,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>

@@ -2,9 +2,128 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shuaiyy.cn/2017/10/17/%E6%8A%80%E6%9C%AF/python-%E5%86%85%E7%9C%81(Introspection)/</loc>
+    
+    <lastmod>2017-11-07T09:45:43.249Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/14/%E6%8A%80%E6%9C%AF/Python-super%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2017-11-07T09:45:04.279Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/15/%E6%8A%80%E6%9C%AF/python%20socket%E7%BC%96%E7%A8%8B/</loc>
+    
+    <lastmod>2017-11-07T09:44:50.659Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/14/%E6%8A%80%E6%9C%AF/Python%20logging%E6%A8%A1%E5%9D%97/</loc>
+    
+    <lastmod>2017-11-07T09:42:17.487Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/08/%E6%8A%80%E6%9C%AF/BootStrap/</loc>
+    
+    <lastmod>2017-11-07T09:38:23.106Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/13/%E6%8A%80%E6%9C%AF/PyQt5.9%E7%BC%96%E8%AF%91%20python27%2064%E4%BD%8DWindows%E7%89%88/</loc>
+    
+    <lastmod>2017-11-07T09:37:53.936Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/12/%E6%8A%80%E6%9C%AF/PyQt%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2017-11-07T09:36:25.727Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/11/%E6%8A%80%E6%9C%AF/PyQt5%E4%B8%8D%E5%90%8C%E7%AA%97%E4%BD%93%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/</loc>
+    
+    <lastmod>2017-11-07T09:35:32.634Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/08/%E6%8A%80%E6%9C%AF/mysql%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2017-11-07T09:34:22.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/01/%E6%8A%80%E6%9C%AF/Gevent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2017-11-07T09:15:39.956Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/04/%E6%8A%80%E6%9C%AF/Gevent%E7%88%AC%E8%99%AB%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%88%AC%E8%99%AB%E5%AF%B9%E6%AF%94/</loc>
+    
+    <lastmod>2017-11-07T09:14:35.169Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/05/%E6%8A%80%E6%9C%AF/Gevent%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
+    
+    <lastmod>2017-11-07T09:13:58.170Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/07/%E6%8A%98%E8%85%BE/hexo-lightum/</loc>
+    
+    <lastmod>2017-11-07T09:05:16.362Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/07/%E6%8A%80%E6%9C%AF/hexo-lightum/</loc>
+    
+    <lastmod>2017-11-07T09:05:16.362Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://shuaiyy.cn/2017/09/05/%E6%8A%80%E6%9C%AF/Python%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/</loc>
     
-    <lastmod>2017-10-07T13:58:38.300Z</lastmod>
+    <lastmod>2017-11-07T08:56:10.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/07/%E6%8A%80%E6%9C%AF/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    
+    <lastmod>2017-11-07T06:57:42.465Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/07/%E6%8A%80%E6%9C%AF/PyQt5%20%E4%BD%BF%E7%94%A8pyinstaller%E6%89%93%E5%8C%85PyQt5%E7%A8%8B%E5%BA%8F/</loc>
+    
+    <lastmod>2017-10-19T08:12:28.525Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://shuaiyy.cn/2016/10/24/%E6%8A%98%E8%85%BE/2016-10-24-meizu-mobile-meilan3s-imei-change/</loc>
+    
+    <lastmod>2017-10-08T05:07:37.533Z</lastmod>
     
   </url>
   
@@ -523,13 +642,6 @@
     <loc>http://shuaiyy.cn/2014/07/25/%E7%A7%91%E7%A0%94/2014-07-25-matrix-completion/</loc>
     
     <lastmod>2017-10-07T08:31:37.870Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://shuaiyy.cn/2016/10/24/%E6%8A%98%E8%85%BE/2016-10-24-meizu-mobile-meilan3s-imei-change/</loc>
-    
-    <lastmod>2017-10-07T07:47:23.000Z</lastmod>
     
   </url>
   

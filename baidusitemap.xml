@@ -4,8 +4,359 @@
 
     
   <url>
+    <loc>http://shuaiyy.cn/2017/10/17/%E6%8A%80%E6%9C%AF/python-%E5%86%85%E7%9C%81(Introspection)/</loc>
+    <lastmod>2017-11-07T09:45:43.249Z</lastmod>
+    <data>
+        <display>
+        <title>Python 内省机制</title>
+        <pubTime>2017-10-16T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="python" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/14/%E6%8A%80%E6%9C%AF/Python-super%E5%AF%B9%E8%B1%A1/</loc>
+    <lastmod>2017-11-07T09:45:04.279Z</lastmod>
+    <data>
+        <display>
+        <title>Python super与多重继承顺序</title>
+        <pubTime>2017-10-13T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="python" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/15/%E6%8A%80%E6%9C%AF/python%20socket%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2017-11-07T09:44:50.659Z</lastmod>
+    <data>
+        <display>
+        <title>Python socket编程</title>
+        <pubTime>2017-10-14T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>socket</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="网络编程" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+          
+             
+              <breadCrumb title="socket" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/socket/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/14/%E6%8A%80%E6%9C%AF/Python%20logging%E6%A8%A1%E5%9D%97/</loc>
+    <lastmod>2017-11-07T09:42:17.487Z</lastmod>
+    <data>
+        <display>
+        <title>Python logging模块使用</title>
+        <pubTime>2017-10-13T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="python" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/08/%E6%8A%80%E6%9C%AF/BootStrap/</loc>
+    <lastmod>2017-11-07T09:38:23.106Z</lastmod>
+    <data>
+        <display>
+        <title>Bootstrap 学习笔记</title>
+        <pubTime>2017-10-07T16:00:00.000Z</pubTime>
+        
+        <tag>Bootstrap</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="Web" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/Web/"/>
+          
+             
+              <breadCrumb title="前端" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/Web/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/13/%E6%8A%80%E6%9C%AF/PyQt5.9%E7%BC%96%E8%AF%91%20python27%2064%E4%BD%8DWindows%E7%89%88/</loc>
+    <lastmod>2017-11-07T09:37:53.936Z</lastmod>
+    <data>
+        <display>
+        <title>PyQt5 编译PyQt5 (python27, windows x64)</title>
+        <pubTime>2017-10-12T16:00:00.000Z</pubTime>
+        
+        <tag>PyQt5</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="GUI编程" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/GUI%E7%BC%96%E7%A8%8B/"/>
+          
+             
+              <breadCrumb title="PyQt5" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/GUI%E7%BC%96%E7%A8%8B/PyQt5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/12/%E6%8A%80%E6%9C%AF/PyQt%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2017-11-07T09:36:25.727Z</lastmod>
+    <data>
+        <display>
+        <title>PyQt5入门</title>
+        <pubTime>2017-10-11T16:00:00.000Z</pubTime>
+        
+        <tag>PyQt5</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="GUI编程" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/GUI%E7%BC%96%E7%A8%8B/"/>
+          
+             
+              <breadCrumb title="PyQt5" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/GUI%E7%BC%96%E7%A8%8B/PyQt5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/11/%E6%8A%80%E6%9C%AF/PyQt5%E4%B8%8D%E5%90%8C%E7%AA%97%E4%BD%93%E4%B9%8B%E9%97%B4%E4%BC%A0%E5%80%BC/</loc>
+    <lastmod>2017-11-07T09:35:32.634Z</lastmod>
+    <data>
+        <display>
+        <title>PyQt5 不同窗体之间传值</title>
+        <pubTime>2017-10-10T16:00:00.000Z</pubTime>
+        
+        <tag>PyQt5</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="GUI编程" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/GUI%E7%BC%96%E7%A8%8B/"/>
+          
+             
+              <breadCrumb title="PyQt5" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/GUI%E7%BC%96%E7%A8%8B/PyQt5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/08/%E6%8A%80%E6%9C%AF/mysql%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2017-11-07T09:34:22.820Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL生成测试数据</title>
+        <pubTime>2017-10-07T16:00:00.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="数据库" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+             
+              <breadCrumb title="MySQL" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/01/%E6%8A%80%E6%9C%AF/Gevent%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-11-07T09:15:39.956Z</lastmod>
+    <data>
+        <display>
+        <title>Gevent 学习笔记</title>
+        <pubTime>2017-10-31T16:00:00.000Z</pubTime>
+        
+        <tag>gevent</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="并发编程" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+          
+             
+              <breadCrumb title="Gevent" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Gevent/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/04/%E6%8A%80%E6%9C%AF/Gevent%E7%88%AC%E8%99%AB%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%88%AC%E8%99%AB%E5%AF%B9%E6%AF%94/</loc>
+    <lastmod>2017-11-07T09:14:35.169Z</lastmod>
+    <data>
+        <display>
+        <title>Gevent 实现网络爬虫</title>
+        <pubTime>2017-11-03T16:00:00.000Z</pubTime>
+        
+        <tag>gevent</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="并发编程" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+          
+             
+              <breadCrumb title="Gevent" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Gevent/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/05/%E6%8A%80%E6%9C%AF/Gevent%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2017-11-07T09:13:58.170Z</lastmod>
+    <data>
+        <display>
+        <title>Gevent 源码分析</title>
+        <pubTime>2017-11-04T16:00:00.000Z</pubTime>
+        
+        <tag>gevent</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="并发编程" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+          
+             
+              <breadCrumb title="Gevent" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/Gevent/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/07/%E6%8A%98%E8%85%BE/hexo-lightum/</loc>
+    <lastmod>2017-11-07T09:05:16.362Z</lastmod>
+    <data>
+        <display>
+        <title>hexo lightum 博客折腾之旅</title>
+        <pubTime>2017-10-06T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="折腾" url="http://shuaiyy.cn/categories/%E6%8A%98%E8%85%BE/"/>
+          
+             
+              <breadCrumb title="博客" url="http://shuaiyy.cn/categories/%E6%8A%98%E8%85%BE/%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/10/07/%E6%8A%80%E6%9C%AF/hexo-lightum/</loc>
+    <lastmod>2017-11-07T09:05:16.362Z</lastmod>
+    <data>
+        <display>
+        <title>hexo lightum 博客折腾之旅</title>
+        <pubTime>2017-10-06T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="折腾" url="http://shuaiyy.cn/categories/%E6%8A%98%E8%85%BE/"/>
+          
+             
+              <breadCrumb title="博客" url="http://shuaiyy.cn/categories/%E6%8A%98%E8%85%BE/%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://shuaiyy.cn/2017/09/05/%E6%8A%80%E6%9C%AF/Python%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/</loc>
-    <lastmod>2017-10-07T13:58:38.300Z</lastmod>
+    <lastmod>2017-11-07T08:56:10.524Z</lastmod>
     <data>
         <display>
         <title>python web 数据库连接</title>
@@ -21,7 +372,63 @@
               <breadCrumb title="技术" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/"/>
           
              
-              <breadCrumb title="flask" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/flask/"/>
+              <breadCrumb title="数据库" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+             
+              <breadCrumb title="flask" url="http://shuaiyy.cn/categories/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/flask/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/07/%E6%8A%80%E6%9C%AF/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2017-11-07T06:57:42.465Z</lastmod>
+    <data>
+        <display>
+        <title></title>
+        <pubTime>2017-11-07T06:57:42.355Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2017/11/07/%E6%8A%80%E6%9C%AF/PyQt5%20%E4%BD%BF%E7%94%A8pyinstaller%E6%89%93%E5%8C%85PyQt5%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2017-10-19T08:12:28.525Z</lastmod>
+    <data>
+        <display>
+        <title></title>
+        <pubTime>2017-11-07T09:40:41.286Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shuaiyy.cn/2016/10/24/%E6%8A%98%E8%85%BE/2016-10-24-meizu-mobile-meilan3s-imei-change/</loc>
+    <lastmod>2017-10-08T05:07:37.533Z</lastmod>
+    <data>
+        <display>
+        <title>魅蓝3s移动版刷机+修改串号</title>
+        <pubTime>2016-10-23T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="折腾" url="http://shuaiyy.cn/categories/%E6%8A%98%E8%85%BE/"/>
+          
+             
+              <breadCrumb title="手机" url="http://shuaiyy.cn/categories/%E6%8A%98%E8%85%BE/%E6%89%8B%E6%9C%BA/"/>
           
         </display>
     </data>
@@ -490,9 +897,9 @@
         <title>scrapy中使用BloomFilter优化URL去重</title>
         <pubTime>2017-09-02T16:00:00.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>爬虫</tag>
+         
+        <tag>Python</tag>
          
         <tag>Scrapy</tag>
          
@@ -540,9 +947,9 @@
         <title>web开发基础</title>
         <pubTime>2017-08-31T16:00:00.000Z</pubTime>
         
-        <tag>Html</tag>
-         
         <tag>Web</tag>
+         
+        <tag>Html</tag>
          
         <tag>JavaScript</tag>
          
@@ -717,9 +1124,9 @@
         <title>scrapy ImagePipeline下载gif图片和自定义图片文件名称</title>
         <pubTime>2017-02-15T16:00:00.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>爬虫</tag>
+         
+        <tag>Python</tag>
          
         <tag>Scrapy</tag>
          
@@ -817,9 +1224,9 @@
         <title>爬虫笔记(基于python2)</title>
         <pubTime>2016-08-08T16:00:00.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>爬虫</tag>
+         
+        <tag>Python</tag>
          
          
            
@@ -1832,24 +2239,6 @@
           
              
               <breadCrumb title="机器学习" url="http://shuaiyy.cn/categories/%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://shuaiyy.cn/2016/10/24/%E6%8A%98%E8%85%BE/2016-10-24-meizu-mobile-meilan3s-imei-change/</loc>
-    <lastmod>2017-10-07T07:47:23.000Z</lastmod>
-    <data>
-        <display>
-        <title>魅蓝3s移动版刷机+修改串号</title>
-        <pubTime>2016-10-23T16:00:00.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="资源" url="http://shuaiyy.cn/categories/%E8%B5%84%E6%BA%90/"/>
           
         </display>
     </data>

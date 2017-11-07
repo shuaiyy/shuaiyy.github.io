@@ -283,28 +283,33 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-dict-reverse/">2016-07-29</a></time>
+          <time datetime="2017-02-09T16:00:00.000Z"><a href="/2017/02/10/技术/use-ipython-noteboke/">2017-02-10</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/29/技术/python-dict-reverse/">python字典键值转置</a></h1>
+    <h1 class="title"><a href="/2017/02/10/技术/use-ipython-noteboke/">ipython使用技巧</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="dict的key与value转置"><a href="#dict的key与value转置" class="headerlink" title="dict的key与value转置"></a>dict的key与value转置</h3><ul>
-<li>如果value1值唯一，则直接交换key1与value1的位置</li>
+        <h2 id="ipython使用技巧"><a href="#ipython使用技巧" class="headerlink" title="ipython使用技巧"></a>ipython使用技巧</h2><ul>
+<li>ipython –pylab     pylab开关，ipython启动时自动导入np，sci，和matplotlib</li>
+<li>ipython  –pylab inline  进入pylab模式，且图片内嵌到网页中</li>
+<li>%logstart            保存会话，记录日志； %logstop关闭日志记录功能</li>
+<li>!date                    !+shell命令，执行系统shell命令 c = !date</li>
+<li>%hist                   显示历史命令</li>
+<li>%hist -g print             在输入的历史命令中搜索print</li>
+<li><code>% xx</code>                   magic function，单独一行时可以省略%</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from collections import OrderedDict as od_dict #生成有序的dict</div><div class="line"></div><div class="line">d= od_dict((v,k) for k,v in OID_FS_lst.items()) </div><div class="line">print d</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/29/技术/python-dict-reverse/#more" class="more-link">阅读全文</a>
+            <a href="/2017/02/10/技术/use-ipython-noteboke/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -337,256 +342,20 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-27T16:00:00.000Z"><a href="/2016/07/28/技术/something-with-python-project/">2016-07-28</a></time>
+          <time datetime="2016-12-18T16:00:00.000Z"><a href="/2016/12/19/技术/Scrapy学习笔记/">2016-12-19</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/28/技术/something-with-python-project/">Python创建项目</a></h1>
+    <h1 class="title"><a href="/2016/12/19/技术/Scrapy学习笔记/">scrapy 入门学习</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="使用Cookiecutter模板创建Python项目样式"><a href="#使用Cookiecutter模板创建Python项目样式" class="headerlink" title="使用Cookiecutter模板创建Python项目样式"></a>使用Cookiecutter模板创建Python项目样式</h3><ul>
-<li>首先安装cookiecutter</li>
-</ul>
-<p><code>pip install -U cookiecutter</code></p>
-<ul>
-<li>在github上找一个模板</li>
-<li>在某个目录下执行</li>
-</ul>
-<p><code>cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git</code>，使用找到的模板创建项目，输入相关参数</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/28/技术/something-with-python-project/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-25T16:00:00.000Z"><a href="/2016/07/26/技术/config-of-Linux/">2016-07-26</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/26/技术/config-of-Linux/">Linux系统服务配置</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uname -r</div></pre></td></tr></table></figure>
-<p>稳定版本的偶数版，如2.6.x，适合于商业与家用环境使用；开发中版本，如2.5.x，适合开发特殊功能的环境。</p>
-<p>安装内核文件：<code>apt-get install linux-headers-$(uname -r)</code></p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/26/技术/config-of-Linux/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-24T16:00:00.000Z"><a href="/2016/07/25/技术/file-and-dir-of-Linux/">2016-07-25</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/25/技术/file-and-dir-of-Linux/">Linux 目录 文件 权限</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="Linux目录操作"><a href="#Linux目录操作" class="headerlink" title="Linux目录操作"></a>Linux目录操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.         # 代表此层目录</div><div class="line">..        # 代表上一层目录</div><div class="line">-         # 代表前一个工作目录</div><div class="line">~         # 代表『目前使用者身份』所在的家目录</div><div class="line">~account  # 代表 account 这个使用者的家目录(account是个帐号名称)</div></pre></td></tr></table></figure>
-<ul>
-<li>在所有目录底下都会存在的两个目录，分别是<code>.</code>与<code>..</code></li>
-<li>根目录的上一层<code>(..)</code>与根目录自己<code>(.)</code>是同一个目录</li>
-</ul>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/25/技术/file-and-dir-of-Linux/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-23T16:00:00.000Z"><a href="/2016/07/24/技术/disk-and-fileSystem-management-of-Linux/">2016-07-24</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/24/技术/disk-and-fileSystem-management-of-Linux/">Linux-磁盘与文件系统管理</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="认识EXT2文件系统"><a href="#认识EXT2文件系统" class="headerlink" title="认识EXT2文件系统"></a>认识EXT2文件系统</h3><p>每种操作系统能够使用的文件系统并不相同。 举例来说，windows 98以前的微软操作系统主要利用的文件系统是<code>FAT(或FAT16)</code>，windows 2000以后的版本有所谓的<code>NTFS</code>文件系统，至于Linux的正统文件系统则为<code>Ext2</code>(Linux second extended file system, ext2fs)这一个。此外，在默认的情况下，windows操作系统是不会认识Linux的Ext2的。</p>
-<p>那么文件系统是如何运行的呢？这与操作系统的文件数据有关。较新的操作系统的文件数据除了文件实际内容外，通常含有非常多的属性，例如Linux操作系统的文件权限(rwx)与文件属性(拥有者、群组、时间参数等)。 文件系统通常会将这两部份的数据分别存放在不同的区块，权限与属性放置到<code>inode</code>中，至于实际数据则放置到<code>data block</code>区块中。 另外，还有一个超级区块(<code>superblock</code>)会记录整个文件系统的整体信息，包括inode与block的总量、使用量、剩余量等。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/24/技术/disk-and-fileSystem-management-of-Linux/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-19T16:00:00.000Z"><a href="/2016/07/20/折腾/2016-07-20-software-tools-on-mylaptop/">2016-07-20</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/20/折腾/2016-07-20-software-tools-on-mylaptop/">我的装机必备软件</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="windows美化"><a href="#windows美化" class="headerlink" title="windows美化"></a>windows美化</h3><ul>
-<li>RocketDock 实现mac上的Dock栏</li>
-<li>TrueLancherBar 目录式的任务栏快捷操作入口</li>
-<li>Q-Dir 1分4的资源管理器</li>
-<li>Fliqlo 极客感十足的时钟屏保</li>
-<li>fences2.01 桌面整理，提高效率<ul>
-<li>win10安装破解后，如出现桌面图标无法移动，需要安装破解补丁</li>
-<li><a href="https://pan.baidu.com/s/19ue8G" target="_blank" rel="external">破解补丁</a> </li>
-</ul>
-</li>
-</ul>
-<h3 id="实用工具"><a href="#实用工具" class="headerlink" title="实用工具"></a>实用工具</h3><ul>
-<li>QQ Internet 国际版QQ，功能少，无广告，消息多时不卡顿</li>
-<li>魔影工厂 音视频格式转换工具</li>
-<li>镜像工具 <ul>
-<li>DAEMON 虚拟光驱</li>
-<li>V-Disk 虚拟光驱</li>
-<li>UltraIso 光驱加载刻录</li>
-<li>win32diskImager 镜像刻录</li>
-</ul>
+        <h2 id="Scrapy学习笔记"><a href="#Scrapy学习笔记" class="headerlink" title="Scrapy学习笔记"></a>Scrapy学习笔记</h2><h3 id="1、安装scrapy"><a href="#1、安装scrapy" class="headerlink" title="1、安装scrapy"></a>1、安装scrapy</h3><ul>
+<li><p>windows下安装</p>
+<p>如果按照网上的方法自行安装scrapy，会出现各种错误，折腾很长时间。这里安装Anaconda2程序，会自带scrapy；如果默认没带的话，打开Anaconda Prompt，执行命令：<br><code>conda list</code><br><code>conda install scrapy</code><br>安装完后，使用scrapy时如果提示openssl错误，去下载对应的<a href="http://slproweb.com/products/Win32OpenSSL.html" title="openssl下载" target="_blank" rel="external">openssl</a>，安装即可。</p>
 </li>
 </ul>
       
@@ -595,7 +364,7 @@
       
         
           <div class="alignleft">
-            <a href="/2016/07/20/折腾/2016-07-20-software-tools-on-mylaptop/#more" class="more-link">阅读全文</a>
+            <a href="/2016/12/19/技术/Scrapy学习笔记/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -628,151 +397,40 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-10T16:00:00.000Z"><a href="/2016/07/11/技术/Sublime-Text3-On-Linux/">2016-07-11</a></time>
+          <time datetime="2016-12-13T16:00:00.000Z"><a href="/2016/12/14/技术/linux-snmp-server/">2016-12-14</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/11/技术/Sublime-Text3-On-Linux/">Linux 下配置sublime text</a></h1>
+    <h1 class="title"><a href="/2016/12/14/技术/linux-snmp-server/">Linux 配置SNMP服务</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="Linux下配置sublime-text"><a href="#Linux下配置sublime-text" class="headerlink" title="Linux下配置sublime text"></a>Linux下配置sublime text</h3><p> Sublime Text是个跨平台的编辑器，支持Windows、Linux、Mac系统平台，支持各种语言的代码编辑，配合上对应的插件，话上点时间学习，你将会对它爱不释手，大大的提高你的编码效率。本文将讲解在Ubuntu 14.04系统中安装SublimeText 3，并配置SublimeClang插件来配置C/C++开发环境。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/11/技术/Sublime-Text3-On-Linux/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-05T16:00:00.000Z"><a href="/2016/07/06/技术/study-of-python-3/">2016-07-06</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/06/技术/study-of-python-3/">Python学习笔记-3</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>　　通过正则表达式匹配字符串，\w+\@\w+.\w+ 匹配一个邮箱地址，\w可以匹配一个数字或字母，\d \D  \s \S,[a-z,A-Z,0-9,_] 取值范围；[P|p]ython 匹配Python或python；^\d 必须以数字开头； \d$ 必须以数字结尾；</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/06/技术/study-of-python-3/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-04T16:00:00.000Z"><a href="/2016/07/05/技术/linux基础/">2016-07-05</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/05/技术/linux基础/">Linux基础学习笔记</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><h3 id="系统安装与grub引导"><a href="#系统安装与grub引导" class="headerlink" title="系统安装与grub引导"></a>系统安装与grub引导</h3><ul>
-<li>系统运行级别6级，<br>0：关机；1：单用户模式，进行系统维护；2：多用户，无网络连接；3：完全多用户模式，默认不用图形化；4：保留；5：窗口模式，多用户；6：重启。</li>
-<li>安装linux</li>
-<li>grub系统引导</li>
+        <h2 id="Linux服务器配置snmp服务"><a href="#Linux服务器配置snmp服务" class="headerlink" title="Linux服务器配置snmp服务"></a>Linux服务器配置snmp服务</h2><h3 id="安装snmp-server"><a href="#安装snmp-server" class="headerlink" title="安装snmp server"></a>安装snmp server</h3><ul>
+<li>安装snmp</li>
 </ul>
-<h3 id="登陆系统"><a href="#登陆系统" class="headerlink" title="登陆系统"></a>登陆系统</h3><p>有图形登陆、终端登陆、远程终端登陆。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install snmp snmpd</div></pre></td></tr></table></figure>
 <ul>
-<li>linux默认提供6个终端，使用<code>ctrl + alt + F1~F6</code>切换。</li>
-<li>使用<code>ctrl + alt + F7</code>切回桌面图形登陆。</li>
-<li>在字符终端中使用<code>startx</code>可以启动图形桌面。</li>
-<li>终端用户退出登陆<code>exit</code>.</li>
+<li>安装mib库</li>
 </ul>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
-<li>ls</li>
-<li>pwd</li>
-<li>cd </li>
-<li>cat</li>
-<li>ps</li>
-<li>ifconfig</li>
-<li>netstat -ano</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install snmp-mibs-downloader</div></pre></td></tr></table></figure>
+<p><a href="https://wiki.debian.org/SNMP" target="_blank" rel="external">参考debian-wiki-snmp</a></p>
+<ul>
+<li>查看默认配置文件</li>
 </ul>
-<h3 id="查看命令帮助文档"><a href="#查看命令帮助文档" class="headerlink" title="查看命令帮助文档"></a>查看命令帮助文档</h3><ul>
-<li>man 和 info<br>在查看结果中 使用 /keyword进行关键字搜索，n向下查找，N向上查找。空格向下翻页，pageup/pagedown翻页，q退出查看。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ man -f reboot 	man -f 查看命令位于哪些man文件里</div><div class="line">$ man 2 reboot    	查看2号文档里的reboot命令</div><div class="line">$ info ls			获取ls命令的说明文档</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /etc/snmp/snmpd.conf </div><div class="line">cat /etc/snmp/snmp.conf</div></pre></td></tr></table></figure>
+<ul>
+<li><p>启动SNMP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># service snmpd start</div><div class="line"># snmpd -C -c /etc/snmp/myconfig.conf  ### -C不适用默认配置文件 -c指定自定义配置文件</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/05/技术/linux基础/#more" class="more-link">阅读全文</a>
+            <a href="/2016/12/14/技术/linux-snmp-server/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -805,29 +463,390 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-03T16:00:00.000Z"><a href="/2016/07/04/技术/study-of-python-2/">2016-07-04</a></time>
+          <time datetime="2016-12-12T16:00:00.000Z"><a href="/2016/12/13/技术/HTML-basic-grammar/">2016-12-13</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/04/技术/study-of-python-2/">Python学习笔记-2</a></h1>
+    <h1 class="title"><a href="/2016/12/13/技术/HTML-basic-grammar/">HTML语法基础</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="错误、调试、测试"><a href="#错误、调试、测试" class="headerlink" title="错误、调试、测试"></a>错误、调试、测试</h3><ul>
-<li>try机制</li>
+        <h2 id="HTML语法基础"><a href="#HTML语法基础" class="headerlink" title="HTML语法基础"></a>HTML语法基础</h2><blockquote>
+<p>学习django的时候发现还是要懂点html语法的</p>
+</blockquote>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ul>
+<li><p>html是一种展示网页的标记语言</p>
+</li>
+<li><p>由标签和被其标记的内容组成，标签的属性控制着显示的方式</p>
+<p><code>&lt;tag key=&quot;value&quot;&gt;被标记的内容&lt;/tag&gt;</code></p>
+</li>
+<li><p>语法不区分大小写，默认使用小写</p>
+</li>
+<li><p>语法不区分回车、空格和缩进，为了代码可读和逻辑清晰，应该保持严格的缩进风格，必要时添加注释</p>
+</li>
+<li><p>注释内容<code>&lt;!-- XXXXX --!&gt;</code>，不会被显示</p>
+</li>
+<li><p>字符字体：保留字符无法直接使用，如<code>&lt;</code> <code>&gt;</code> 会和标签符号产生歧义，可以使用&amp;lt 或 &amp;#60表示小于号</p>
+<p><img src="http://ww1.sinaimg.cn/large/af9df239gw1fap52sfmasj20k00f1wff.jpg" alt="HTML字符字体"></p>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">try</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'try...'</span></div><div class="line">    r = <span class="number">10</span> / <span class="number">0</span>  <span class="comment">#此处出现异常直接跳转到except</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'result:'</span>, r</div><div class="line">  <span class="keyword">except</span> ZeroDivisionError, e:</div><div class="line">    <span class="keyword">print</span> <span class="string">'except:'</span>, e</div><div class="line">  <span class="keyword">finally</span>:  <span class="comment"># 若没有错误发生，except语句块不会被执行，但是finally如果有，则一定会被执行（可以没有finally语句）。</span></div><div class="line"><span class="comment">#此外，如果没有错误发生，可以在except语句块后面加一个else，当没有错误发生时，会自动执行else语句：</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'finally...'</span></div><div class="line"><span class="keyword">print</span> <span class="string">'END'</span></div></pre></td></tr></table></figure>
-<p>错误类型都继承自BaseException，所以在使用except时需要注意的是，它不但捕获该类型的错误，还把其子类也“一网打尽”。比如ValueError是StandardError的子类，如果有except先捕获了StandardError，则第二个except就捕获不到ValueError。</p>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/04/技术/study-of-python-2/#more" class="more-link">阅读全文</a>
+            <a href="/2016/12/13/技术/HTML-basic-grammar/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-11-30T16:00:00.000Z"><a href="/2016/12/01/技术/mongodb 使用技巧/">2016-12-01</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/12/01/技术/mongodb 使用技巧/">Mongodb 学习笔记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="ubuntu安装，mongodb"><a href="#ubuntu安装，mongodb" class="headerlink" title="ubuntu安装，mongodb"></a>ubuntu安装，mongodb</h3><ul>
+<li><p><code>apt-get install mongodb</code></p>
+<p>安装好之后，服务自动运行，<code>service mongodb stop</code>停止服务，找到数据库存储位置<code>/var/lib/mongodb/</code>和日志文件位置<code>/var/log/mongodb/mongodb.log</code>,然后手动运行服务<code>mongod --dbpath /var/lib/mongodb/ --logpath /var/log/mongodb/mongodb.log --logappend &amp;</code></p>
+</li>
+<li><p>如果想作为服务一直运行</p>
+<p>修改<code>/etc/mongodb.conf</code>参数，允许远程登录和身份认证，</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/12/01/技术/mongodb 使用技巧/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-11-15T16:00:00.000Z"><a href="/2016/11/16/技术/python-cookbook-note1/">2016-11-16</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/11/16/技术/python-cookbook-note1/">Python cookbook 笔记1</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h3><ul>
+<li>多变量同时赋值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"># 左右两边必须数目一致，右边为列表或任意可迭代对象</div><div class="line">l = [&apos;a&apos;, 1, 345]</div><div class="line">a, b, c = l</div><div class="line">print(a, b, c)</div><div class="line">a, b, c = &apos;qwe&apos;</div><div class="line">print(a, b, c)</div><div class="line"># 变量数小于赋值数，使用*args表达式</div><div class="line">a, *others1 = l</div><div class="line">*others2, b = l</div><div class="line">print(a, b, others1, others2) #others是列表类型</div><div class="line"># 处理字符串分割时，或变长元组的序列时，使用*args变量来占位，很方便</div><div class="line">line = &apos;nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false&apos;</div><div class="line">uname, *fields, homedir, sh = line.split(&apos;:&apos;)</div><div class="line">records = [</div><div class="line">(&apos;foo&apos;, 1, 2),</div><div class="line">(&apos;bar&apos;, &apos;hello&apos;),</div><div class="line">(&apos;foo&apos;, 3, 4),</div><div class="line">(&apos;a&apos;, 4, 5, 6),</div><div class="line">]</div><div class="line"></div><div class="line">for tag, *args in records:</div><div class="line">if tag == &apos;foo&apos;:</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/11/16/技术/python-cookbook-note1/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-10-29T16:00:00.000Z"><a href="/2016/10/30/技术/zabbix/">2016-10-30</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/10/30/技术/zabbix/">zabbix部署</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="zabbix-appliance-部署"><a href="#zabbix-appliance-部署" class="headerlink" title="zabbix appliance 部署"></a>zabbix appliance 部署</h3><ul>
+<li>登陆 appliance：zabbix</li>
+<li>修改中文支持<br>修改你的 locales . inc . php 这个文件，/usr/share/zabbix/include/ 下<br>‘zh<em>CN’ =&gt; [‘name’ =&gt; </em>(‘Chinese (zh_CN)’), ‘display’ =&gt; true], #也就是把false改为true<br>，在web页面点击用户信息头像，选择语言。</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/10/30/技术/zabbix/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-10-23T16:00:00.000Z"><a href="/2016/10/24/折腾/2016-10-24-meizu-mobile-meilan3s-imei-change/">2016-10-24</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/10/24/折腾/2016-10-24-meizu-mobile-meilan3s-imei-change/">魅蓝3s移动版刷机+修改串号</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>最近魅蓝3s移动版，但是移动定制版，开机logo，系统软件，功能限制，网络限制，很恶心，果断刷机。</p>
+</blockquote>
+<hr>
+<h3 id="刷机教程"><a href="#刷机教程" class="headerlink" title="刷机教程"></a>刷机教程</h3><p>刷机教程魅族论坛有。</p>
+<ul>
+<li>移动定制版的系统recovery会验证固件，因此直接刷全网通版的固件会提示固件损坏，无法写入固件。</li>
+<li>使用flashfire刷入全网通的update.zip，<ul>
+<li>首先获取root权限，安装superSU，并重启。</li>
+<li>然后flashfire写入，等待系统自动重启。这时的系统并不是clean的，会有各种问题，相当于只是从移动版升级到全网通，绕过系统的rom检测。</li>
+<li>开机后，使用系统自带的recovery再刷一次全网通的固件，刷时选择清除数据。这是最后一步，然后就是全网通版的魅蓝3s啦。如果还是有相机图库无法使用的情况，恢复出厂设置，或再刷一次全网通固件，记得选清除数据。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="修改串号"><a href="#修改串号" class="headerlink" title="修改串号"></a>修改串号</h3><ol>
+<li>在拔号按<em>#</em>#3646633#<em>#</em>–&gt; 进入connectivity</li>
+<li>选 cds information –&gt; radioinformation</li>
+<li>选 phone1(SIM1)</li>
+<li>在command (有A+的位置)列按入”AT +EGMR = 1,7,”你的IMEI””(在输入sim2时改为”AT +EGMR = 1,10, “你的IMEI”)</li>
+<li>按 “SEND ATCOMMAND”</li>
+<li>完成后重启手机</li>
+</ol>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/10/24/折腾/2016-10-24-meizu-mobile-meilan3s-imei-change/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-09-21T16:00:00.000Z"><a href="/2016/09/22/技术/git-server-on-centos/">2016-09-22</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/09/22/技术/git-server-on-centos/">搭建Git服务器</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="cent-os-搭建git-server-gitolite"><a href="#cent-os-搭建git-server-gitolite" class="headerlink" title="cent os 搭建git server + gitolite"></a>cent os 搭建git server + gitolite</h1><blockquote>
+<p>爬了很久的坑，终于爬出来了，真累。说说走的弯路，最初打算配置gitlab（有和github一样漂亮的web界面），然后下源码编译，失败。后来发现gitlab有中文站，提供二进制包，可能是centos32位的原因，为了少浪费生命，果断放弃，转而采用git-core + gitolite。<br>后来，git服务器搭好了，但是没人用，实验室还是在用SVN。估计是迁移和学习成本吧，不愿意改变。</p>
+</blockquote>
+<h3 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h3><h4 id="1-1、创建git用户"><a href="#1-1、创建git用户" class="headerlink" title="1.1、创建git用户"></a>1.1、创建git用户</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># yum update</span></div><div class="line"><span class="comment"># yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel</span></div><div class="line"><span class="comment"># mkdir -p /home/git  //创建git用户的目录</span></div><div class="line"><span class="comment"># groupadd git  //创建git用户组</span></div><div class="line"><span class="comment"># useradd -g git -d /home/git -s /bin/bash git  // 添加linux用户git</span></div><div class="line"><span class="comment"># passwd git    //设置git用户密码</span></div><div class="line"></div><div class="line"><span class="comment"># passwd -d git  //在所有工作完成后禁用git用户的密码，这样git无法ssh远程登录主机</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/09/22/技术/git-server-on-centos/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-08-18T16:00:00.000Z"><a href="/2016/08/19/技术/Django模板语法/">2016-08-19</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/08/19/技术/Django模板语法/">Django 模板语法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Django模板语法"><a href="#Django模板语法" class="headerlink" title="Django模板语法"></a>Django模板语法</h2><h3 id="模板变量"><a href="#模板变量" class="headerlink" title="模板变量"></a>模板变量</h3><ul>
+<li><code> {{var_name}} </code>,view视图传入参数可以为<code> Context({'name':'vale',})</code></li>
+<li><code>{{dict.key}}</code>,view视图传入参数为dict字典</li>
+<li><code>{{object_name.attribute 或 method}} </code>,view视图传入一个对象object。</li>
+<li><code>{{list_name.N}}</code>,view视图出入一个list，可以取出list的第N个元素。</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/08/19/技术/Django模板语法/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -1050,7 +1069,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">2</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
@@ -1084,6 +1103,10 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
     <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
@@ -1093,6 +1116,8 @@
     <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
   
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
@@ -1118,6 +1143,8 @@
   
     <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
   
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
@@ -1130,7 +1157,9 @@
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>19</small></li>
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>20</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
@@ -1146,13 +1175,19 @@
   
     <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
     <li><a href="/tags/git/">git</a><small>1</small></li>
   
     <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
   
     <li><a href="/tags/linux/">linux</a><small>1</small></li>
   
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
     <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
   
@@ -1174,7 +1209,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>

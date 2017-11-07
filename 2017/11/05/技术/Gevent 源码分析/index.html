@@ -1,0 +1,1075 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Gevent 源码分析 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="Gevent 源码分析
+gevent包括2个重要的部分，libev和greenlet。
+libev实现事件循环， watcher(叶子，事件监控处理)，ev_run(主干，事件循环引擎)，ev_loop(watcher管理)。
+greenlet提供对协程的完整支持，用于执行异步任务。
+
+
+源码分析工">
+  
+  <meta name="keywords" content="gevent,并发编程">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Gevent 源码分析"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-11-04T16:00:00.000Z"><a href="/2017/11/05/技术/Gevent 源码分析/">2017-11-05</a></time>
+        
+	  
+      
+  
+    <h1 class="title">Gevent 源码分析</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gevent-源码分析"><span class="toc-text">Gevent 源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libev原理"><span class="toc-text">libev原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gevent-core"><span class="toc-text">gevent core</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gevent-hub"><span class="toc-text">gevent hub</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sleep触发调度"><span class="toc-text">sleep触发调度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gevent-socket"><span class="toc-text">gevent socket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gevent-server"><span class="toc-text">gevent server</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#StreamServer"><span class="toc-text">StreamServer</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <h2 id="Gevent-源码分析"><a href="#Gevent-源码分析" class="headerlink" title="Gevent 源码分析"></a>Gevent 源码分析</h2><blockquote>
+<p>gevent包括2个重要的部分，libev和greenlet。</p>
+<p>libev实现事件循环， watcher(叶子，事件监控处理)，ev_run(主干，事件循环引擎)，ev_loop(watcher管理)。</p>
+<p>greenlet提供对协程的完整支持，用于执行异步任务。</p>
+</blockquote>
+<ul>
+<li><p>源码分析工具：pycharm </p>
+<p><code>ctrl + B</code> 跳转到对象声明的源码位置， <code>ctrl + alt + 箭头</code> 前进或后退</p>
+<p>选择右侧导航栏的Structure窗口，可以快速的查看类的属性和方法。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171106/d3Dcl4dJB4.png?imageslim" alt="mark"></p>
+</li>
+<li><p>下载gevent源码</p>
+<p>从github上下载源码</p>
+</li>
+<li><p>源码目录结构</p>
+<p>doc：项目文档</p>
+<p>examples：简单的使用示例</p>
+<p>benchmarks：压力测试</p>
+<p>src：源代码所在目录</p>
+</li>
+</ul>
+<p><code>__init__.py</code></p>
+<ul>
+<li><p><code>__all__</code>属性由列表构成，它规定了模块的所有可见方法，会使属性列表之外的成员全部私有化。</p>
+<p>  只有在执行语句 <code>from module import *</code> 时，<code>__all__</code>属性才会起作用。此时所有枚举的成员被import，而其他成员被私有化。</p>
+<p>   它不仅在第一时间展现了模块的内容大纲，而且也更清晰的提供了外部访问接口。</p>
+</li>
+<li><p><code>__dependencies_for_freezing()</code> ，为打包工具如py2exe等指明hidden-import</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">__version__ = <span class="string">'1.3.0.dev0'</span></div><div class="line"></div><div class="line"></div><div class="line">__all__ = [<span class="string">'get_hub'</span>, <span class="string">'Greenlet'</span>, <span class="string">'GreenletExit'</span>, <span class="string">'spawn'</span>, <span class="string">'spawn_later'</span>,</div><div class="line">           <span class="string">'spawn_raw'</span>, <span class="string">'iwait'</span>, <span class="string">'wait'</span>, <span class="string">'killall'</span>, <span class="string">'Timeout'</span>, <span class="string">'with_timeout'</span>,</div><div class="line">           <span class="string">'getcurrent'</span>, <span class="string">'sleep'</span>, <span class="string">'idle'</span>, <span class="string">'kill'</span>, <span class="string">'signal'</span>, <span class="string">'fork'</span>, <span class="string">'reinit'</span>]</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">if</span> sys.platform == <span class="string">'win32'</span>:</div><div class="line">    <span class="comment"># trigger WSAStartup call</span></div><div class="line">    <span class="keyword">import</span> socket  <span class="comment"># pylint:disable=unused-import,useless-suppression</span></div><div class="line">    <span class="keyword">del</span> socket</div><div class="line"></div><div class="line"><span class="keyword">from</span> gevent.hub <span class="keyword">import</span> get_hub, iwait, wait</div><div class="line"><span class="keyword">from</span> gevent.greenlet <span class="keyword">import</span> Greenlet, joinall, killall</div><div class="line">joinall = joinall <span class="comment"># export for pylint</span></div><div class="line">spawn = Greenlet.spawn</div><div class="line">spawn_later = Greenlet.spawn_later</div><div class="line"></div><div class="line"><span class="keyword">from</span> gevent.timeout <span class="keyword">import</span> Timeout, with_timeout</div><div class="line"><span class="keyword">from</span> gevent.hub <span class="keyword">import</span> getcurrent, GreenletExit, spawn_raw, sleep, idle, kill, reinit</div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">from</span> gevent.os <span class="keyword">import</span> fork</div><div class="line"><span class="keyword">except</span> ImportError:</div><div class="line">    __all__.remove(<span class="string">'fork'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> gevent.hub <span class="keyword">import</span> signal <span class="keyword">as</span> _signal_class</div><div class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> signal <span class="keyword">as</span> _signal_module</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__dependencies_for_freezing</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># pylint:disable=unused-variable</span></div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> core</div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> resolver_thread</div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> resolver_ares</div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> socket <span class="keyword">as</span> _socket</div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> threadpool</div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> thread</div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> threading</div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> select</div><div class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> subprocess</div><div class="line">    <span class="keyword">import</span> pprint</div><div class="line">    <span class="keyword">import</span> traceback</div><div class="line">    <span class="keyword">import</span> signal <span class="keyword">as</span> _signal</div><div class="line"></div><div class="line"><span class="keyword">del</span> __dependencies_for_freezing</div></pre></td></tr></table></figure>
+<h3 id="libev原理"><a href="#libev原理" class="headerlink" title="libev原理"></a>libev原理</h3><p><a href="http://www.cnblogs.com/Huayuan/archive/2013/05/03/3058578.html" target="_blank" rel="external">libev源码解读</a></p>
+<p>Reactor模式</p>
+<p><strong>工作流程</strong>：</p>
+<ol>
+<li>获取ev_loop实例，它代表了一个事件循环，也是代码的主要组织者。</li>
+<li>创建和初始化watcher，并绑定到loop实例。libev中定义了一系列的watcher（如io，timer），每类watcher负责一类特定的事件。当loop中检测到感兴趣的事件发生，便会通知相关的watcher。</li>
+<li>启动事件循环，ev_run函数。事件循环启动后，当前线程/进程将会被阻塞，直到循环被终止。</li>
+<li>当watcher监听的事件发生时，wathcher被放入就绪状态队列，等待调用（执行watcher的回调函数）。</li>
+</ol>
+<p><strong>watcher对象</strong>：</p>
+<p>watcher是Reactor中的Event Handler。一方面，它向事件循环提供了统一的调用接口，监听事件;另一方面，它是外部代码的注入口，维护着具体的watcher信息，如：绑定的回调函数，watcher的优先级，是否激活等。</p>
+<ul>
+<li>active: 表示当前watcher是否被激活。</li>
+<li>pending: 表示当前watcher有事件就绪，等待处理。</li>
+<li>priority: 是当前watcher的优先级；</li>
+<li>data: 附加数据指针，用来在watcher中携带额外所需的数据；</li>
+<li>cb：是事件触发后的回调函数定义。</li>
+</ul>
+<p><strong>ev_loop对象</strong>:</p>
+<p>ev_loop则是一个Reactor的角色，是事件循环的上下文环境，就像一根竹签，把前面的watcher实例像糖葫芦一样串起来。ev_loop实现对watcher的管理，维护watcher就绪队列，触发watcher执行。</p>
+<p><strong>ev_run</strong>：</p>
+<p>执行事件循环的的引擎，即Reactor模式中的select方法。通过向ev_run函数传递一个ev_loop实例，便可以开启一个事件循环。</p>
+<p>ev_run实际上是一个巨大的do-while循环，期间会检查loop中注册的各种watcher的事件。如果有事件就绪，则触发相应的watcher。这个循环会一直持续到ev_break被调用或者无active的watcher为止。当然，也可以通过传递EVRUN_NOWAIT或EVRUN_ONCE等flag来控制循环的阻塞行为。</p>
+<h3 id="gevent-core"><a href="#gevent-core" class="headerlink" title="gevent core"></a>gevent core</h3><blockquote>
+<p>由于gevent封装的libev是c语言实现的事件循环框架，因此了解libev的工作原理是非常重要的。</p>
+</blockquote>
+<ol>
+<li><p><code>core.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> gevent.libev <span class="keyword">import</span> corecext <span class="keyword">as</span> _core</div><div class="line"><span class="comment"># CFFI/PyPy</span></div><div class="line"><span class="keyword">from</span> gevent.libev <span class="keyword">import</span> corecffi <span class="keyword">as</span> _core</div></pre></td></tr></table></figure>
+<p>从gevent.libev中导入<code>_core</code>,分python版和pypy版本。</p>
+</li>
+<li><p><code>gevent.libev corecext.ppyx</code> </p>
+<p>gevent封装了libev。libev是c实现的高效事件循环框架，其核心为ev_run,主要要做了五件事情：</p>
+<ol>
+<li>更新更改的FD事件</li>
+<li>进行必要的sleep</li>
+<li>backend_poll收集pending的IO事件</li>
+<li>收集pending的timer事件</li>
+<li>调用所有pending的事件</li>
+</ol>
+<p><code>corecext.ppyx</code>是cython写的，看不懂</p>
+<p>corecext.ppyx用Cython实现loop类，编译时会转换为gevent.core.c-&gt;gevent.core.so，对libev的结构体和接口进行封装，比如时间循环loop，回调callback，观察者watcher</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, object flags=None, object default=None, size_t ptr=<span class="number">0</span>)</span>:</span></div><div class="line">        cdef unsigned int c_flags</div><div class="line">        cdef object old_handler = <span class="keyword">None</span></div><div class="line">        libev.ev_prepare_init(&amp;self._prepare, &lt;void*&gt;gevent_run_callbacks)</div><div class="line"><span class="comment">#ifdef _WIN32</span></div><div class="line">        libev.ev_timer_init(&amp;self._periodic_signal_checker, &lt;void*&gt;gevent_periodic_signal_check, <span class="number">0.3</span>, <span class="number">0.3</span>)</div><div class="line"><span class="comment">#endif</span></div><div class="line">        libev.ev_timer_init(&amp;self._timer0, &lt;void*&gt;gevent_noop, <span class="number">0.0</span>, <span class="number">0.0</span>)</div><div class="line">	<span class="comment"># ........................</span></div><div class="line">            libev.ev_prepare_start(self._ptr, &amp;self._prepare)</div><div class="line">            libev.ev_unref(self._ptr)</div><div class="line">        self._callbacks = []</div><div class="line"></div><div class="line"><span class="comment"># ........</span></div><div class="line">cdef public class loop [object PyGeventLoopObject, type PyGeventLoop_Type]:</div><div class="line">  <span class="comment"># loop对象的实现</span></div><div class="line">  </div><div class="line">cdef public class watcher [object PyGeventWatcherObject, type PyGeventWatcher_Type]:</div><div class="line">  </div><div class="line">cdef public class io(watcher) [object PyGeventIOObject, type PyGeventIO_Type]:</div><div class="line">  </div><div class="line">cdef public class timer(watcher) [object PyGeventTimerObject, type PyGeventTimer_Type]:</div><div class="line">  </div><div class="line">cdef _run_callbacks(self):</div><div class="line">        cdef callback cb</div><div class="line">        cdef object callbacks</div><div class="line">        cdef int count = <span class="number">1000</span></div><div class="line">        libev.ev_timer_stop(self._ptr, &amp;self._timer0)</div><div class="line">        <span class="keyword">while</span> self._callbacks <span class="keyword">and</span> count &gt; <span class="number">0</span>:</div><div class="line">            callbacks = self._callbacks</div><div class="line">            self._callbacks = []</div><div class="line">            <span class="keyword">for</span> cb <span class="keyword">in</span> callbacks:</div><div class="line">                libev.ev_unref(self._ptr)</div><div class="line">                gevent_call(self, cb)</div><div class="line">                count -= <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> self._callbacks:</div><div class="line">            libev.ev_timer_start(self._ptr, &amp;self._timer0)</div><div class="line">            </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self, nowait=False, once=False)</span>:</span></div><div class="line">        CHECK_LOOP2(self)</div><div class="line">        cdef unsigned int flags = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> nowait:</div><div class="line">            flags |= libev.EVRUN_NOWAIT</div><div class="line">        <span class="keyword">if</span> once:</div><div class="line">            flags |= libev.EVRUN_ONCE</div><div class="line">        <span class="keyword">with</span> nogil:</div><div class="line">            libev.ev_run(self._ptr, flags)</div><div class="line">            </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_callback</span><span class="params">(self, func, *args)</span>:</span></div><div class="line">        CHECK_LOOP2(self)</div><div class="line">        cdef callback cb = callback(func, args)</div><div class="line">        self._callbacks.append(cb)</div><div class="line">        libev.ev_ref(self._ptr)</div><div class="line">        <span class="keyword">return</span> cb</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看core的对象loop及其方法</p>
+<p>pycharm的python shell（ipython）有自动补全，当单步执行时，可以利用其查看对象对外提供的方法</p>
+<p>或者使用debug查看对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></div><div class="line">  <span class="keyword">print</span> <span class="string">'hello'</span></div><div class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> core</div><div class="line">loop = core.loop()</div><div class="line"><span class="comment"># loop对象对外提供的方法和属性</span></div><div class="line">loop.run_callback(hello)</div><div class="line">loop.run()</div><div class="line">loop.depth</div><div class="line">loop.fileno()</div><div class="line">loop.update()</div><div class="line">loop.now()</div><div class="line"></div><div class="line">t = loop.timer(<span class="number">3</span>, <span class="number">2</span>) <span class="comment"># 每3秒执行2次</span></div><div class="line">t = loop.timer(<span class="number">3</span>) <span class="comment"># 3秒后执行并退出</span></div><div class="line">t.start(hello)</div><div class="line">loop.run() <span class="comment"># 必须loop运行起来，timer事件监听才会执行。</span></div><div class="line"></div><div class="line"><span class="comment"># ------- timer对象的声明和start方法</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">timer</span><span class="params">(watcher)</span>:</span></div><div class="line">    _watcher_type = <span class="string">'ev_timer'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, loop, after=<span class="number">0.0</span>, repeat=<span class="number">0.0</span>, ref=True, priority=None)</span>:</span></div><div class="line">        <span class="keyword">if</span> repeat &lt; <span class="number">0.0</span>:</div><div class="line">            <span class="keyword">raise</span> ValueError(<span class="string">"repeat must be positive or zero: %r"</span> % repeat)</div><div class="line">        watcher.__init__(self, loop, ref=ref, priority=priority, args=(after, repeat))</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self, callback, *args, **kw)</span>:</span></div><div class="line">      <span class="comment"># ...</span></div></pre></td></tr></table></figure>
+<p>直接ctrl + B，查看loop对象的声明。loop初始化了几个watcher，重要的方法有<code>run_callback</code>, <code>run</code>, <code>timer</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">loop</span><span class="params">(object)</span>:</span></div><div class="line">    error_handler = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, flags=None, default=None)</span>:</span></div><div class="line">        self._in_callback = <span class="keyword">False</span></div><div class="line">        self._callbacks = []</div><div class="line"></div><div class="line">        <span class="comment"># self._check is a watcher that runs in each iteration of the mainloop, just after the blocking call</span></div><div class="line">        self._check = ffi.new(<span class="string">"struct ev_check *"</span>)</div><div class="line"></div><div class="line">        <span class="comment"># self._prepare is a watcher that runs in each iteration of the mainloop, just before the blocking call</span></div><div class="line">        self._prepare = ffi.new(<span class="string">"struct ev_prepare *"</span>)</div><div class="line"></div><div class="line">        <span class="comment"># A timer we start and stop on demand. If we have callbacks,</span></div><div class="line">        self._timer0 = ffi.new(<span class="string">"struct ev_timer *"</span>)</div><div class="line">        libev.ev_timer_init(self._timer0, libev.gevent_noop, <span class="number">0.0</span>, <span class="number">0.0</span>)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_run_callbacks</span><span class="params">(self, _evloop, _, _revents)</span>:</span></div><div class="line">       count = <span class="number">1000</span></div><div class="line">       libev.ev_timer_stop(self._ptr, self._timer0)</div><div class="line">       <span class="keyword">while</span> self._callbacks <span class="keyword">and</span> count &gt; <span class="number">0</span>:</div><div class="line">           callbacks = self._callbacks</div><div class="line">           self._callbacks = []</div><div class="line">           <span class="keyword">for</span> cb <span class="keyword">in</span> callbacks:</div><div class="line">               self.unref()</div><div class="line">               callback = cb.callback</div><div class="line">               args = cb.args</div><div class="line">               <span class="keyword">if</span> callback <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> args <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">                   <span class="comment"># it's been stopped</span></div><div class="line">                   <span class="keyword">continue</span></div><div class="line"></div><div class="line">               cb.callback = <span class="keyword">None</span></div><div class="line"></div><div class="line">               <span class="keyword">try</span>:</div><div class="line">                   callback(*args)</div><div class="line">               <span class="keyword">except</span>: </div><div class="line">                 <span class="comment"># 。。。</span></div><div class="line"></div><div class="line">       <span class="keyword">if</span> self._callbacks:</div><div class="line">           libev.ev_timer_start(self._ptr, self._timer0)</div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">destroy</span><span class="params">(self)</span>:</span></div><div class="line">       <span class="comment"># 销毁loop对象</span></div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self, nowait=False, once=False)</span>:</span></div><div class="line">       flags = <span class="number">0</span></div><div class="line">       <span class="keyword">if</span> nowait:</div><div class="line">           flags |= libev.EVRUN_NOWAIT</div><div class="line">       <span class="keyword">if</span> once:</div><div class="line">           flags |= libev.EVRUN_ONCE</div><div class="line"></div><div class="line">       libev.ev_run(self._ptr, flags)</div><div class="line">      </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">timer</span><span class="params">(self, after, repeat=<span class="number">0.0</span>, ref=True, priority=None)</span>:</span></div><div class="line">       <span class="keyword">return</span> timer(self, after, repeat, ref, priority)</div><div class="line">   </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(self, priority=None)</span>:</span></div><div class="line">       <span class="keyword">return</span> callback(self, priority)</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">run_callback</span><span class="params">(self, func, *args)</span>:</span></div><div class="line">       cb = callback(func, args)</div><div class="line">       self._callbacks.append(cb)</div><div class="line">       self.ref()</div><div class="line">       <span class="keyword">return</span> cb</div><div class="line">      </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">fileno</span><span class="params">(self)</span>:</span></div><div class="line">       <span class="keyword">if</span> self._ptr:</div><div class="line">           fd = self._ptr.backend_fd</div><div class="line">           <span class="keyword">if</span> fd &gt;= <span class="number">0</span>:</div><div class="line">               <span class="keyword">return</span> fd</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="gevent-hub"><a href="#gevent-hub" class="headerlink" title="gevent hub"></a>gevent hub</h3><ul>
+<li><p>hub是greentlet子类，一个greenlet对象，是main greenlet。</p>
+</li>
+<li><p>hub是gevent的核心，依赖libev调度所有greenlet</p>
+<p>当有协程需要调度时，主协程调用switch方法切换到子协程。子协程阻塞或者主动调用switch时，切回主协程，由主协程调度其他协程运行。</p>
+</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171105/lh86hej12d.png?imageslim" alt="mark"></p>
+<ul>
+<li><p>主要的对象和方法</p>
+<p>get_hub</p>
+<p>sleep</p>
+<p>kill</p>
+<p>wait</p>
+<p>iwait</p>
+<p>signalClass</p>
+<p>HubClass</p>
+<p>WaiterClass  </p>
+</li>
+</ul>
+<h4 id="sleep触发调度"><a href="#sleep触发调度" class="headerlink" title="sleep触发调度"></a>sleep触发调度</h4><p>当执行<code>gevent.sleep(0)</code>语句时，当前协程立即被切换出去，回到gevent的主协程，紧接着主协程执行调度其他协程执行。我们从sleep函数入手分析。</p>
+<ol>
+<li><p><code>gevent.sleep</code></p>
+<p>sleep(0)意味着，协程立即yield，其他runnable greenlets将有机会被执行。等到下次loop到该协程时，它才会被恢复执行。</p>
+<p>具体流程：通过get_hub获取主协程和loop对象，然后调用waiter.switch或者hub.wait</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -------  hub.py  -----</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sleep</span><span class="params">(seconds=<span class="number">0</span>, ref=True)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Put the current greenlet to sleep for at least *seconds*.</span></div><div class="line"><span class="string">    """</span></div><div class="line">    hub = get_hub()</div><div class="line">    loop = hub.loop</div><div class="line">    <span class="keyword">if</span> seconds &lt;= <span class="number">0</span>:</div><div class="line">        waiter = Waiter()</div><div class="line">        loop.run_callback(waiter.switch)</div><div class="line">        waiter.get()</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        hub.wait(loop.timer(seconds, ref=ref))</div></pre></td></tr></table></figure>
+<ul>
+<li><p>get_hub</p>
+<p>从当前线程上下文中获取hub对象，如果没有就创建一个</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -------  hub.py  -----</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_hub</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    Return the hub for the current thread.</span></div><div class="line"><span class="string">    """</span></div><div class="line">    hub = _threadlocal.hub</div><div class="line">    <span class="keyword">if</span> hub <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        hubtype = get_hub_class()</div><div class="line">        hub = _threadlocal.hub = hubtype(*args, **kwargs)</div><div class="line">    <span class="keyword">return</span> hub</div></pre></td></tr></table></figure>
+</li>
+<li><p>hub.loop</p>
+<p>默认是一个GEVENT_LOOP对象</p>
+</li>
+<li><p>Waiter</p>
+<p>Waiter是低层次的greenlets通信工具，用来安全的实现switch()或throw()调用。类中的doc如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Waiter</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    A low level communication utility for greenlets.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Waiter is a wrapper around greenlet's ``switch()`` and ``throw()`` calls that makes them somewhat safer:</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    * switching will occur only if the waiting greenlet is executing :meth:`get` method currently;</span></div><div class="line"><span class="string">    * any error raised in the greenlet is handled inside :meth:`switch` and :meth:`throw`</span></div><div class="line"><span class="string">    * if :meth:`switch`/:meth:`throw` is called before the receiver calls :meth:`get`, then :class:`Waiter`</span></div><div class="line"><span class="string">      will store the value/exception. The following :meth:`get` will return the value/raise the exception.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    The :meth:`switch` and :meth:`throw` methods must only be called from the :class:`Hub` greenlet.</span></div><div class="line"><span class="string">    The :meth:`get` method must be called from a greenlet other than :class:`Hub`.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        &gt;&gt;&gt; result = Waiter()</span></div><div class="line"><span class="string">        &gt;&gt;&gt; timer = get_hub().loop.timer(0.1)</span></div><div class="line"><span class="string">        &gt;&gt;&gt; timer.start(result.switch, 'hello from Waiter')</span></div><div class="line"><span class="string">        &gt;&gt;&gt; result.get() # blocks for 0.1 seconds</span></div><div class="line"><span class="string">        'hello from Waiter'</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    If switch is called before the greenlet gets a chance to call :meth:`get` then</span></div><div class="line"><span class="string">    :class:`Waiter` stores the value.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        &gt;&gt;&gt; result = Waiter()</span></div><div class="line"><span class="string">        &gt;&gt;&gt; timer = get_hub().loop.timer(0.1)</span></div><div class="line"><span class="string">        &gt;&gt;&gt; timer.start(result.switch, 'hi from Waiter')</span></div><div class="line"><span class="string">        &gt;&gt;&gt; sleep(0.2)</span></div><div class="line"><span class="string">        &gt;&gt;&gt; result.get() # returns immediatelly without blocking</span></div><div class="line"><span class="string">        'hi from Waiter'</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    .. warning::</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        This a limited and dangerous way to communicate between</span></div><div class="line"><span class="string">        greenlets. It can easily leave a greenlet unscheduled forever</span></div><div class="line"><span class="string">        if used incorrectly. Consider using safer classes such as</span></div><div class="line"><span class="string">        :class:`gevent.event.Event`, :class:`gevent.event.AsyncResult`,</span></div><div class="line"><span class="string">        or :class:`gevent.queue.Queue`.</span></div><div class="line"><span class="string">    """</span></div><div class="line"> 	</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">switch</span><span class="params">(self, value=None)</span>:</span></div><div class="line">        <span class="string">"""Switch to the greenlet if one's available. Otherwise store the value."""</span></div><div class="line">        greenlet = self.greenlet</div><div class="line">        <span class="keyword">if</span> greenlet <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self.value = value</div><div class="line">            self._exception = <span class="keyword">None</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">assert</span> getcurrent() <span class="keyword">is</span> self.hub, <span class="string">"Can only use Waiter.switch method from the Hub greenlet"</span></div><div class="line">            switch = greenlet.switch</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                switch(value)</div><div class="line">            <span class="keyword">except</span>: <span class="comment"># pylint:disable=bare-except</span></div><div class="line">                self.hub.handle_error(switch, *sys.exc_info())</div><div class="line">                </div><div class="line">     <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""If a value/an exception is stored, return/raise it. Otherwise until switch() or throw() is called."""</span></div></pre></td></tr></table></figure>
+<p>Waiter的switch方法，如果Waiter对象当前绑定了greenlet对象(hub实例)，就调用<code>greenlet.switch</code>方法。</p>
+</li>
+<li><p>hub.wait(loop.timer(seconds, ref=ref))</p>
+<p>等待watcher对象（计时器timer）就绪之前，阻塞该协程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#   -------- hub.py -------    </span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">wait</span><span class="params">(self, watcher)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        Wait until the *watcher* (which should not be started) is ready.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        The current greenlet will be unscheduled during this time.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        .. seealso:: :class:`gevent.core.io`, :class:`gevent.core.timer`,</span></div><div class="line"><span class="string">            :class:`gevent.core.signal`, :class:`gevent.core.idle`, :class:`gevent.core.prepare`,</span></div><div class="line"><span class="string">            :class:`gevent.core.check`, :class:`gevent.core.fork`, :class:`gevent.core.async`,</span></div><div class="line"><span class="string">            :class:`gevent.core.child`, :class:`gevent.core.stat`</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        """</span></div><div class="line">      waiter = Waiter()</div><div class="line">        unique = object()</div><div class="line">        watcher.start(waiter.switch, unique)</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            result = waiter.get()</div><div class="line">            <span class="keyword">if</span> result <span class="keyword">is</span> <span class="keyword">not</span> unique:</div><div class="line">                <span class="keyword">raise</span> InvalidSwitchError(<span class="string">'Invalid switch into %s: %r (expected %r)'</span> % (getcurrent(), result, unique))</div><div class="line">        <span class="keyword">finally</span>:</div><div class="line">            watcher.stop()</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="gevent-socket"><a href="#gevent-socket" class="headerlink" title="gevent socket"></a>gevent socket</h3><blockquote>
+<p>当python底层的socket使用非阻塞模式时，执行socket操作会立即返回exception。gevent的socket在原始socket的基础上，通过处理exception，并监听socket 可读可写事件来实现异步。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> gevent</div><div class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> socket</div><div class="line"></div><div class="line">conn = socket.create_connection((<span class="string">'localhost'</span>, <span class="string">'8888'</span>))</div><div class="line"><span class="keyword">print</span> conn</div></pre></td></tr></table></figure>
+<ul>
+<li>socket.py</li>
+<li>协作式底层网络接口</li>
+<li>提供了套接字操作和相关函数。API与python标准库一致。但同步函数只会阻塞当前协程，其他协程会继续运行。</li>
+</ul>
+<p><strong>主要方法分析：</strong></p>
+<ul>
+<li><p><code>create_connection</code> 创建socket对象,调用<code>socket.connect</code>方法</p>
+<p>主要<code>sock = socket(af, socktype, proto)</code> ,这里的socket是gevent封装的一个对象，在<code>_socket2.py</code>中定义的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ----- gevent socket.py -------</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_connection</span><span class="params">(address, timeout=_GLOBAL_DEFAULT_TIMEOUT, source_address=None)</span>:</span></div><div class="line">    <span class="string">"""Connect to *address* and return the socket object.</span></div><div class="line"><span class="string">    and return the socket object.  </span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    host, port = address</div><div class="line">    err = <span class="keyword">None</span></div><div class="line">    <span class="keyword">for</span> res <span class="keyword">in</span> getaddrinfo(host, port, <span class="number">0</span> <span class="keyword">if</span> has_ipv6 <span class="keyword">else</span> AF_INET, SOCK_STREAM):</div><div class="line">        af, socktype, proto, _, sa = res</div><div class="line">        sock = <span class="keyword">None</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            sock = socket(af, socktype, proto)</div><div class="line">            <span class="keyword">if</span> timeout <span class="keyword">is</span> <span class="keyword">not</span> _GLOBAL_DEFAULT_TIMEOUT:</div><div class="line">                sock.settimeout(timeout)</div><div class="line">            <span class="keyword">if</span> source_address:</div><div class="line">                sock.bind(source_address)</div><div class="line">            sock.connect(sa)</div><div class="line">            <span class="keyword">return</span> sock</div><div class="line">        <span class="keyword">except</span> error <span class="keyword">as</span> ex:</div><div class="line">			<span class="comment"># ....</span></div></pre></td></tr></table></figure>
+<p><code>_socket2.py</code> 中<code>socket</code>对象</p>
+<p>实现gevent封装的socket对象，接口和python原始的socket一致。</p>
+<ul>
+<li><p><code>self._sock = _realsocket(family, type, proto)</code>创建一个real socket（python的socket对象）</p>
+</li>
+<li><p><code>self._sock.setblocking(0)</code>设置real socket为非阻塞的工作模式</p>
+</li>
+<li><p><code>self.hub = get_hub()</code>拿到gevent中的主协程greenlet对象，hub</p>
+</li>
+<li><p>设置两个监听事件，可读和可写事件监听</p>
+<p> <code>self._read_event = io(fileno, 1)</code></p>
+<p> <code>self._write_event = io(fileno, 2)</code></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ----- gevent _socket2.py -----</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">socket</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    gevent `socket.socket &lt;https://docs.python.org/2/library/socket.html#socket-objects&gt;`_ for Python 2.</span></div><div class="line"><span class="string">    This object should have the same API as the standard library socket linked to above.</span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, family=AF_INET, type=SOCK_STREAM, proto=<span class="number">0</span>, _sock=None)</span>:</span></div><div class="line">        <span class="keyword">if</span> _sock <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self._sock = _realsocket(family, type, proto)</div><div class="line">            self.timeout = _socket.getdefaulttimeout()</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">if</span> hasattr(_sock, <span class="string">'_sock'</span>):</div><div class="line">                self._sock = _sock._sock</div><div class="line">                self.timeout = getattr(_sock, <span class="string">'timeout'</span>, <span class="keyword">False</span>)</div><div class="line">                <span class="keyword">if</span> self.timeout <span class="keyword">is</span> <span class="keyword">False</span>:</div><div class="line">                    self.timeout = _socket.getdefaulttimeout()</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                self._sock = _sock</div><div class="line">                self.timeout = _socket.getdefaulttimeout()</div><div class="line">        self._sock.setblocking(<span class="number">0</span>)</div><div class="line">        fileno = self._sock.fileno()</div><div class="line">        self.hub = get_hub()</div><div class="line">        io = self.hub.loop.io</div><div class="line">        self._read_event = io(fileno, <span class="number">1</span>)</div><div class="line">        self._write_event = io(fileno, <span class="number">2</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>gevent socket对象的方法实现:</strong></p>
+<p>打开pycharm的Structure导航窗口。</p>
+<ul>
+<li><p><code>connect</code></p>
+<p>使用了非常巧妙的while循环，执行<code>result = sock.connect_ex(address)</code>进行socket连接，如果没有异常，则连接成功，跳出while。如果返回异常如连接未建立，缓冲区满等，则调用<code>self._wait(self._write_event)</code>等待socket变成可写状态(表示连接成功)，在继续while，等待期间协程交出运行权。</p>
+<p>重点<code>socket._wait</code>,它调用了<code>self.hub.wait(watcher)</code>,实现阻塞当前的greenlet，等待对应的watcher就绪</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ----- gevent _socket2.py -----</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">socket</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">connect</span><span class="params">(self, address)</span>:</span></div><div class="line">    <span class="keyword">if</span> self.timeout == <span class="number">0.0</span>:</div><div class="line">      <span class="keyword">return</span> self._sock.connect(address)</div><div class="line">    sock = self._sock</div><div class="line">    <span class="keyword">if</span> isinstance(address, tuple):</div><div class="line">      r = getaddrinfo(address[<span class="number">0</span>], address[<span class="number">1</span>], sock.family)</div><div class="line">      address = r[<span class="number">0</span>][<span class="number">-1</span>]</div><div class="line">      <span class="keyword">if</span> self.timeout <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">        timer = Timeout.start_new(self.timeout, timeout(<span class="string">'timed out'</span>))</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">          timer = <span class="keyword">None</span></div><div class="line">          <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">              err = sock.getsockopt(SOL_SOCKET, SO_ERROR)</div><div class="line">              <span class="keyword">if</span> err:</div><div class="line">                <span class="keyword">raise</span> error(err, strerror(err))</div><div class="line">                result = sock.connect_ex(address)</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> result <span class="keyword">or</span> result == EISCONN:</div><div class="line">                  <span class="keyword">break</span></div><div class="line">                  <span class="keyword">elif</span> (result <span class="keyword">in</span> (EWOULDBLOCK, EINPROGRESS, EALREADY)) <span class="keyword">or</span> (result == EINVAL <span class="keyword">and</span> is_windows):</div><div class="line">                    self._wait(self._write_event)</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                      <span class="keyword">raise</span> error(result, strerror(result))</div><div class="line">                      <span class="keyword">finally</span>:</div><div class="line">                        <span class="keyword">if</span> timer <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">                          timer.cancel()</div><div class="line">          </div><div class="line">          </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_wait</span><span class="params">(self, watcher, timeout_exc=timeout<span class="params">(<span class="string">'timed out'</span>)</span>)</span>:</span></div><div class="line">    <span class="string">"""Block the current greenlet until *watcher* has pending events."""</span></div><div class="line">    <span class="keyword">if</span> watcher.callback <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">      <span class="keyword">raise</span> _socketcommon.ConcurrentObjectUseError(<span class="string">'This socket is already used by another greenlet: %r'</span> % (watcher.callback, ))</div><div class="line">      <span class="keyword">if</span> self.timeout <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">        timeout = Timeout.start_new(self.timeout, timeout_exc, ref=<span class="keyword">False</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">          timeout = <span class="keyword">None</span></div><div class="line">          <span class="keyword">try</span>:</div><div class="line">            self.hub.wait(watcher)</div><div class="line">            <span class="keyword">finally</span>:</div><div class="line">              <span class="keyword">if</span> timeout <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">                timeout.cancel()</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>send</code></p>
+<p>首先拿到原生的<code>socket(self._sock)</code>,然后调用<code>socket.send</code>发送数据，因为socket是非阻塞的，所以会立即抛出异常 EWOULDBLOCK，然后调用  <code>self._wait(self._write_event)</code>, 等待可写事件发生后再次send数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ----- gevent _socket2.py -----</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">socket</span><span class="params">(object)</span>:</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">send</span><span class="params">(self, data, flags=<span class="number">0</span>, timeout=timeout_default)</span>:</span></div><div class="line">    sock = self._sock</div><div class="line">    <span class="keyword">if</span> timeout <span class="keyword">is</span> timeout_default:</div><div class="line">      timeout = self.timeout</div><div class="line">      <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">return</span> sock.send(data, flags)</div><div class="line">      <span class="keyword">except</span> error <span class="keyword">as</span> ex:</div><div class="line">        <span class="keyword">if</span> ex.args[<span class="number">0</span>] != EWOULDBLOCK <span class="keyword">or</span> timeout == <span class="number">0.0</span>:</div><div class="line">          <span class="keyword">raise</span></div><div class="line">          sys.exc_clear()</div><div class="line">          self._wait(self._write_event)</div><div class="line">          <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">return</span> sock.send(data, flags)</div><div class="line">          <span class="keyword">except</span> error <span class="keyword">as</span> ex2:</div><div class="line">            <span class="keyword">if</span> ex2.args[<span class="number">0</span>] == EWOULDBLOCK:</div><div class="line">              <span class="keyword">return</span> <span class="number">0</span></div><div class="line">            <span class="keyword">raise</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>recv</code></p>
+<p>send重试一次如果失败就会 return 0，而recv使用while循环，不停的尝试读数据，知道成功返回数据。</p>
+<p>当有<code>EWOULDBLOCK</code>异常时，等待<code>self._wait(self._read_event)</code>可读事件发生，然后再次尝试读取数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ----- gevent _socket2.py -----</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">socket</span><span class="params">(object)</span>:</span>    </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">recv</span><span class="params">(self, *args)</span>:</span></div><div class="line">        sock = self._sock  <span class="comment"># keeping the reference so that fd is not closed during waiting</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                <span class="keyword">return</span> sock.recv(*args)</div><div class="line">            <span class="keyword">except</span> error <span class="keyword">as</span> ex:</div><div class="line">                <span class="keyword">if</span> ex.args[<span class="number">0</span>] != EWOULDBLOCK <span class="keyword">or</span> self.timeout == <span class="number">0.0</span>:</div><div class="line">                    <span class="keyword">raise</span></div><div class="line">                <span class="comment"># QQQ without clearing exc_info test__refcount.test_clean_exit fails</span></div><div class="line">                sys.exc_clear()</div><div class="line">            self._wait(self._read_event)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>accept</code></p>
+<p>同样是while循环，当接收连接成功时跳出循环，然后创建一个gevent socket对象（<code>sockobj = socket(_sock=client_socket)</code>）并返回。如果发生异常则阻塞等待可读事件发生（<code>self._wait(self._read_event)</code>）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ----- gevent _socket2.py -----</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">socket</span><span class="params">(object)</span>:</span>    </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">accept</span><span class="params">(self)</span>:</span></div><div class="line">    sock = self._sock</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">      <span class="keyword">try</span>:</div><div class="line">        client_socket, address = sock.accept()</div><div class="line">        <span class="keyword">break</span></div><div class="line">        <span class="keyword">except</span> error <span class="keyword">as</span> ex:</div><div class="line">          <span class="keyword">if</span> ex.args[<span class="number">0</span>] != EWOULDBLOCK <span class="keyword">or</span> self.timeout == <span class="number">0.0</span>:</div><div class="line">            <span class="keyword">raise</span></div><div class="line">            sys.exc_clear()</div><div class="line">            self._wait(self._read_event)</div><div class="line">            sockobj = socket(_sock=client_socket)</div><div class="line">            <span class="keyword">if</span> PYPY:</div><div class="line">              client_socket._drop()</div><div class="line">              <span class="keyword">return</span> sockobj, address</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="gevent-server"><a href="#gevent-server" class="headerlink" title="gevent server"></a>gevent server</h3><ul>
+<li>BaseServer为服务器端实现了一些基础功能的抽象基类</li>
+<li>StreamServer实现了通用TCPServer，在监听端口上接受新连接并为每个连接创建一个协程，协程函数是用户提供的。</li>
+<li>分析Select，Poll部分的实现</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</div><div class="line"><span class="keyword">from</span> gevent.server <span class="keyword">import</span> StreamServer</div><div class="line">monkey.patch_all()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">handler</span><span class="params">(sock, addr)</span>:</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        data = sock.recv(<span class="number">1024</span>)</div><div class="line">        <span class="keyword">if</span> data:</div><div class="line">            <span class="keyword">print</span> data</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> addr, <span class="string">'closed!'</span></div><div class="line">            <span class="keyword">return</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    server = StreamServer((<span class="string">'localhost'</span>, <span class="number">12222</span>), handler)</div><div class="line">    server.serve_forever()</div></pre></td></tr></table></figure>
+<h4 id="StreamServer"><a href="#StreamServer" class="headerlink" title="StreamServer"></a>StreamServer</h4><p>从StreamServer对象入手，其doc文档表明，这是一个通用的TCP Server，从监听的sock里接收连接，然后根据用户提供的handle回调函数spawn（生成，创建并运行greenlet）出协程。handle回调函数接收两个对象，socket连接和客户端地址。</p>
+<p>backlog为服务器最大接收的连接数，默认为256. 只有服务器初始化，新创建socket时才需要在init里传入此参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ---- gevent server.py ------</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StreamServer</span><span class="params">(BaseServer)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    A generic TCP server.</span></div><div class="line"><span class="string">    Accepts connections on a listening socket and spawns user-provided</span></div><div class="line"><span class="string">    *handle* function for each connection with 2 arguments: the client</span></div><div class="line"><span class="string">    socket and the client address.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="comment"># the default backlog to use if none was provided in __init__</span></div><div class="line">    backlog = <span class="number">256</span></div><div class="line"></div><div class="line">    reuse_addr = DEFAULT_REUSE_ADDR</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, listener, handle=None, backlog=None, spawn=<span class="string">'default'</span>, **ssl_args)</span>:</span></div><div class="line">        BaseServer.__init__(self, listener, handle=handle, spawn=spawn)</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">if</span> ssl_args:</div><div class="line">                <span class="comment"># 初始化ssl参数</span></div><div class="line">            <span class="keyword">if</span> backlog <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">                <span class="keyword">if</span> hasattr(self, <span class="string">'socket'</span>):</div><div class="line">                    <span class="keyword">raise</span> TypeError(<span class="string">'backlog must be None when a socket instance is passed'</span>)</div><div class="line">                self.backlog = backlog</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            self.close()</div><div class="line">            <span class="keyword">raise</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_listener</span><span class="params">(self, listener)</span>:</span></div><div class="line">        BaseServer.set_listener(self, listener)</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self.socket = self.socket._sock</div><div class="line">        <span class="keyword">except</span> AttributeError:</div><div class="line">            <span class="keyword">pass</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">init_socket</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hasattr(self, <span class="string">'socket'</span>):</div><div class="line">            self.socket = self.get_listener(self.address, self.backlog, self.family)</div><div class="line">            self.address = self.socket.getsockname()</div><div class="line">        <span class="keyword">if</span> self.ssl_args: <span class="comment"># 封装支持ssl socket的handle函数</span></div><div class="line">            self._handle = self.wrap_socket_and_handle</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self._handle = self.handle</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">if</span> PY3:</div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">do_read</span><span class="params">(self)</span>:</span></div><div class="line">            <span class="comment"># 。。。</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">	<span class="comment"># 针对python2的 do_read函数</span></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">do_read</span><span class="params">(self)</span>:</span></div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                client_socket, address = self.socket.accept()</div><div class="line">            <span class="keyword">except</span> _socket.error <span class="keyword">as</span> err:</div><div class="line">                <span class="keyword">if</span> err.args[<span class="number">0</span>] == EWOULDBLOCK:</div><div class="line">                    <span class="keyword">return</span></div><div class="line">                <span class="keyword">raise</span></div><div class="line">            sockobj = socket(_sock=client_socket)</div><div class="line">            <span class="keyword">if</span> PYPY:</div><div class="line">                client_socket._drop()</div><div class="line">            <span class="keyword">return</span> sockobj, address</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_close</span><span class="params">(self, sock, *args)</span>:</span></div><div class="line">        sock.close()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrap_socket_and_handle</span><span class="params">(self, client_socket, address)</span>:</span></div><div class="line">        <span class="comment"># used in case of ssl sockets</span></div><div class="line">        ssl_socket = self.wrap_socket(client_socket, **self.ssl_args)</div><div class="line">        <span class="keyword">return</span> self.handle(ssl_socket, address)</div></pre></td></tr></table></figure>
+<p><code>BaseServer.__init__</code> 主要是初始化listener，spawn，handle， loop。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#   -----  BaseServer.__init__    ----</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, listener, handle=None, spawn=<span class="string">'default'</span>)</span>:</span></div><div class="line">        self._stop_event = Event()</div><div class="line">        self._stop_event.set()</div><div class="line">        self._watcher = <span class="keyword">None</span></div><div class="line">        self._timer = <span class="keyword">None</span></div><div class="line">        self._handle = <span class="keyword">None</span></div><div class="line">        self.pool = <span class="keyword">None</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self.set_listener(listener)</div><div class="line">            self.set_spawn(spawn)</div><div class="line">            self.set_handle(handle)</div><div class="line">            self.delay = self.min_delay</div><div class="line">            self.loop = get_hub().loop</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            self.close()</div><div class="line">            <span class="keyword">raise</span></div></pre></td></tr></table></figure>
+<p><code>server_forever()</code> 是基类BaseServer里提供的方法，如果server没有启动，则启动(start方法)并ready for 接收数据，直至停止。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#   ----- baseserver.py  BaseServer    ----</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">serve_forever</span><span class="params">(self, stop_timeout=None)</span>:</span></div><div class="line">        <span class="string">"""Start the server if it hasn't been already started and wait until it's stopped."""</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.started:</div><div class="line">            self.start()</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self._stop_event.wait()</div><div class="line">        <span class="keyword">finally</span>:</div><div class="line">            Greenlet.spawn(self.stop, timeout=stop_timeout).join()</div><div class="line">            </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></div><div class="line">        self.init_socket()</div><div class="line">        self._stop_event.clear()</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self.start_accepting()</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            self.close()</div><div class="line">            <span class="keyword">raise</span></div><div class="line">            </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_accepting</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self._watcher <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self._watcher = self.loop.io(self.socket.fileno(), <span class="number">1</span>)</div><div class="line">            self._watcher.start(self._do_read)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_do_read</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(self.max_accept):</div><div class="line">            <span class="keyword">if</span> self.full():</div><div class="line">                self.stop_accepting()</div><div class="line">                <span class="keyword">return</span></div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                args = self.do_read()</div><div class="line">                self.delay = self.min_delay</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> args:</div><div class="line">                    <span class="keyword">return</span></div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                <span class="comment"># 。。。。</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    self.do_handle(*args)</div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    self.loop.handle_error((args[<span class="number">1</span>:], self), *sys.exc_info())</div><div class="line">                    <span class="keyword">if</span> self.delay &gt;= <span class="number">0</span>:</div><div class="line">                        self.stop_accepting()</div><div class="line">                        self._timer = self.loop.timer(self.delay)</div><div class="line">                        self._timer.start(self._start_accepting_if_started)</div><div class="line">                        self.delay = min(self.max_delay, self.delay * <span class="number">2</span>)</div><div class="line">                    <span class="keyword">break</span>        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_read</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">raise</span> NotImplementedError()</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_handle</span><span class="params">(self, *args)</span>:</span></div><div class="line">        spawn = self._spawn</div><div class="line">        handle = self._handle</div><div class="line">        close = self.do_close</div><div class="line"></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">if</span> spawn <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">                _handle_and_close_when_done(handle, close, args)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                spawn(_handle_and_close_when_done, handle, close, args)</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            close(*args)</div><div class="line">            <span class="keyword">raise</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>start()</code>方法 </p>
+<p>首先<code>self.init_socket()</code>初始化socket，用clear将<code>self._stop_event</code>停止事件设为false状态，然后调用<code>self.start_accepting()</code> 接收连接请求。</p>
+<ul>
+<li><p><code>init_socket()</code></p>
+<p>init_socket由继承BaseServer的StreamServer实现,主要是获取socket和address，然后绑定handle方法，如果是ssl，则要先对handle方法进行ssl支持的封装。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># --- server.py StreamServer ---- </span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_socket</span><span class="params">(self)</span>:</span></div><div class="line">      <span class="keyword">if</span> <span class="keyword">not</span> hasattr(self, <span class="string">'socket'</span>):</div><div class="line">          self.socket = self.get_listener(self.address, self.backlog, self.family)</div><div class="line">          self.address = self.socket.getsockname()</div><div class="line">      <span class="keyword">if</span> self.ssl_args:</div><div class="line">          self._handle = self.wrap_socket_and_handle</div><div class="line">      <span class="keyword">else</span>:</div><div class="line">          self._handle = self.handle</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>self.start_accepting()</code></p>
+<ol>
+<li><p>设置一个watcher进行事件监听，watcher绑定了<code>_do_read()</code>方法</p>
+</li>
+<li><p><code>_do_read()</code>： 如果达到最大连接数，停止接收新连接，</p>
+</li>
+<li><p>否则执行<code>do_read()</code>方法</p>
+<p><code>do_read()</code>由子类实现，在<code>StreamServer</code>中的实现如下，就是通过<code>self.socket.accept()</code>获取socket连接对象，并返回gevent socket对象和客户端地址。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># server.py  StreamServer</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_read</span><span class="params">(self)</span>:</span></div><div class="line">  <span class="keyword">try</span>:</div><div class="line">    client_socket, address = self.socket.accept()</div><div class="line">    <span class="keyword">except</span> _socket.error <span class="keyword">as</span> err:</div><div class="line">      <span class="keyword">if</span> err.args[<span class="number">0</span>] == EWOULDBLOCK:</div><div class="line">        <span class="keyword">return</span></div><div class="line">      <span class="keyword">raise</span></div><div class="line">      sockobj = socket(_sock=client_socket)</div><div class="line">      <span class="keyword">if</span> PYPY:</div><div class="line">        client_socket._drop()</div><div class="line">        <span class="keyword">return</span> sockobj, address</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>然后执行<code>self.do_handle(*args)</code>方法</p>
+</li>
+<li><p><code>self.do_handle(*args)</code>方法调用的是<code>_handle_and_close_when_done</code>,这是个函数，不是类方法</p>
+</li>
+<li><p><code>_handle_and_close_when_done</code> 函数主要是执行handle，并调用close关闭handle。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#   ----- baseserver.py  BaseServer    ----</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_handle_and_close_when_done</span><span class="params">(handle, close, args_tuple)</span>:</span> <span class="comment"># 6</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">      <span class="keyword">return</span> handle(*args_tuple)</div><div class="line">    <span class="keyword">finally</span>:</div><div class="line">      close(*args_tuple)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseServer</span><span class="params">(object)</span>:</span>      </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">start_accepting</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self._watcher <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self._watcher = self.loop.io(self.socket.fileno(), <span class="number">1</span>)</div><div class="line">            self._watcher.start(self._do_read)  <span class="comment"># 1</span></div><div class="line">      </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_do_read</span><span class="params">(self)</span>:</span> <span class="comment"># 1</span></div><div class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(self.max_accept):</div><div class="line">            <span class="keyword">if</span> self.full():</div><div class="line">                self.stop_accepting()  <span class="comment"># 2</span></div><div class="line">                <span class="keyword">return</span></div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                args = self.do_read() <span class="comment"># 3</span></div><div class="line">                self.delay = self.min_delay</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> args:</div><div class="line">                    <span class="keyword">return</span></div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                self.loop.handle_error(self, *sys.exc_info())</div><div class="line">                ex = sys.exc_info()[<span class="number">1</span>]</div><div class="line">                <span class="keyword">if</span> self.is_fatal_error(ex):</div><div class="line">                    self.close()</div><div class="line">                    sys.stderr.write(<span class="string">'ERROR: %s failed with %s\n'</span> % (self, str(ex) <span class="keyword">or</span> repr(ex)))</div><div class="line">                    <span class="keyword">return</span></div><div class="line">                <span class="keyword">if</span> self.delay &gt;= <span class="number">0</span>:</div><div class="line">                    self.stop_accepting()</div><div class="line">                    self._timer = self.loop.timer(self.delay)</div><div class="line">                    self._timer.start(self._start_accepting_if_started)</div><div class="line">                    self.delay = min(self.max_delay, self.delay * <span class="number">2</span>)</div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">else</span>: <span class="comment"># 4</span></div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    self.do_handle(*args) <span class="comment"># 4</span></div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    self.loop.handle_error((args[<span class="number">1</span>:], self), *sys.exc_info())</div><div class="line">                    <span class="keyword">if</span> self.delay &gt;= <span class="number">0</span>:</div><div class="line">                        self.stop_accepting()</div><div class="line">                        self._timer = self.loop.timer(self.delay)</div><div class="line">                        self._timer.start(self._start_accepting_if_started)</div><div class="line">                        self.delay = min(self.max_delay, self.delay * <span class="number">2</span>)</div><div class="line">                    <span class="keyword">break</span></div><div class="line">                    </div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">do_handle</span><span class="params">(self, *args)</span>:</span> <span class="comment"># 4</span></div><div class="line">        spawn = self._spawn</div><div class="line">        handle = self._handle</div><div class="line">        close = self.do_close</div><div class="line"></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">if</span> spawn <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">                _handle_and_close_when_done(handle, close, args) <span class="comment"># 5</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                spawn(_handle_and_close_when_done, handle, close, args) <span class="comment"># 5</span></div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            close(*args)</div><div class="line">            <span class="keyword">raise</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/并发编程/">并发编程</a>, <a href="/categories/技术/并发编程/Gevent/">Gevent</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/gevent/">gevent</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/11/07/技术/Python多线程/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/11/04/技术/Gevent爬虫与多线程爬虫对比/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
+    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>20</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+  
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2017</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

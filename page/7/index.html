@@ -283,25 +283,26 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-01T16:00:00.000Z"><a href="/2016/07/02/技术/study-of-python/">2016-07-02</a></time>
+          <time datetime="2016-08-15T16:00:00.000Z"><a href="/2016/08/16/技术/Django学习笔记2/">2016-08-16</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/02/技术/study-of-python/">Python学习笔记-1</a></h1>
+    <h1 class="title"><a href="/2016/08/16/技术/Django学习笔记2/">Django 学习笔记(二)</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><h4 id="list"><a href="#list" class="headerlink" title="list"></a>list</h4><p>  len() 求长度<br>  a[i]  list a 中第i个元素， a[2:9] 第2到9个元素，a[-1] 倒数第一个元素。<br>  a.append(elem) list尾部追加一个元素<br>  a.insert(i,elem) list第i个位置插入一个元素<br>  a.pop(i) list 删除第i个元素，不指定i则默认删除最后一个<br>  list的元素可以类型不同，也可以是list </p>
+        <h1 id="Django进阶"><a href="#Django进阶" class="headerlink" title="Django进阶"></a>Django进阶</h1><h3 id="1、用户信息扩展"><a href="#1、用户信息扩展" class="headerlink" title="1、用户信息扩展"></a>1、用户信息扩展</h3><h4 id="1-1、使用profile扩展"><a href="#1-1、使用profile扩展" class="headerlink" title="1.1、使用profile扩展"></a>1.1、使用profile扩展</h4><p>在models定义一个profile表，使用外键关联</p>
+<h4 id="1-2、继承AbstractUser"><a href="#1-2、继承AbstractUser" class="headerlink" title="1.2、继承AbstractUser"></a>1.2、继承AbstractUser</h4><p>在models创建继承AbstractUser的User类，为其增加新的字段，比如QQ号，手机号。在setting里设置字段 <code>AUTH_USER_MODEL = &#39;blog.User&#39;</code><br>在admin注册自己的User。</p>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/02/技术/study-of-python/#more" class="more-link">阅读全文</a>
+            <a href="/2016/08/16/技术/Django学习笔记2/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -334,73 +335,27 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-06-30T16:00:00.000Z"><a href="/2016/07/01/技术/python笔记/">2016-07-01</a></time>
+          <time datetime="2016-08-12T16:00:00.000Z"><a href="/2016/08/13/技术/django学习笔记1/">2016-08-13</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/01/技术/python笔记/">python读写XLS和CSV</a></h1>
+    <h1 class="title"><a href="/2016/08/13/技术/django学习笔记1/">Django 学习笔记(一)</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="python读写CSV"><a href="#python读写CSV" class="headerlink" title="python读写CSV"></a>python读写CSV</h3><h4 id="1-写入并生成csv文件"><a href="#1-写入并生成csv文件" class="headerlink" title="1. 写入并生成csv文件"></a>1. 写入并生成csv文件</h4><p>   代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding: utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> csv</div><div class="line"></div><div class="line">csvfile = file(<span class="string">'csv_test.csv'</span>, <span class="string">'wb'</span>)</div><div class="line">writer = csv.writer(csvfile)</div><div class="line">writer.writerow([<span class="string">'姓名'</span>, <span class="string">'年龄'</span>, <span class="string">'电话'</span>])</div><div class="line"></div><div class="line">data = [</div><div class="line">    (<span class="string">'小河'</span>, <span class="string">'25'</span>, <span class="string">'1234567'</span>),</div><div class="line">    (<span class="string">'小芳'</span>, <span class="string">'18'</span>, <span class="string">'789456'</span>)</div><div class="line">]</div><div class="line">writer.writerows(data)</div><div class="line"></div><div class="line">csvfile.close()</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/01/技术/python笔记/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-05-17T16:00:00.000Z"><a href="/2016/05/18/技术/github问题汇总/">2016-05-18</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/05/18/技术/github问题汇总/">Github问题汇总</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="https-转换为-ssh"><a href="#https-转换为-ssh" class="headerlink" title="https 转换为 ssh"></a>https 转换为 ssh</h3><ul>
-<li><p>查看当前地址版本</p>
-<p><code>git remote -v</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git remote -v</div><div class="line">origin  git@github.com:shuaiyy/shuaiyy.github.io.git (fetch)</div><div class="line">origin  git@github.com:shuaiyy/shuaiyy.github.io.git (push)</div></pre></td></tr></table></figure>
+        <h1 id="Django-学习笔记1"><a href="#Django-学习笔记1" class="headerlink" title="Django 学习笔记1"></a>Django 学习笔记1</h1><blockquote>
+<p>基于python2.7和django1.10</p>
+</blockquote>
+<p>django工作流程：<br><img src="http://ww3.sinaimg.cn/large/af9df239gw1f8gckh77jrj20hm0c2dgy.jpg" alt=""></p>
+<h3 id="1、快速开始"><a href="#1、快速开始" class="headerlink" title="1、快速开始"></a>1、快速开始</h3><h4 id="1-1、创建项目"><a href="#1-1、创建项目" class="headerlink" title="1.1、创建项目"></a>1.1、创建项目</h4><ul>
+<li><p>django-admin.py startproject website</p>
+</li>
+<li><p>manage.py startapp blog</p>
+</li>
+<li><p>修改webisite下的setting.py urls.py</p>
 </li>
 </ul>
       
@@ -409,7 +364,7 @@
       
         
           <div class="alignleft">
-            <a href="/2016/05/18/技术/github问题汇总/#more" class="more-link">阅读全文</a>
+            <a href="/2016/08/13/技术/django学习笔记1/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -442,28 +397,30 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2015-09-11T16:00:00.000Z"><a href="/2015/09/12/科研/2015-09-12-Intuition-of-Eigen-Value/">2015-09-12</a></time>
+          <time datetime="2016-08-09T16:00:00.000Z"><a href="/2016/08/10/技术/PhantomJS + Selenium实现登陆网站签到/">2016-08-10</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2015/09/12/科研/2015-09-12-Intuition-of-Eigen-Value/">从二次型最优化问题中理解矩阵特征值的意义</a></h1>
+    <h1 class="title"><a href="/2016/08/10/技术/PhantomJS + Selenium实现登陆网站签到/">PhantomJS + Selenium实现登陆网站签到</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="惯例开场故事"><a href="#惯例开场故事" class="headerlink" title="惯例开场故事"></a>惯例开场故事</h3><p>在某次从实验室去往食堂的路上，曾发生这样一段对话：</p>
-<p>『大师兄，为什么你对算法的理解总是那么透彻呢？为什么我很难看出它背后的思想？』</p>
-<p>『因为你去理解一个算法的时候，不能只是看懂它的形，还要去思考它的神啊~』</p>
-<p>这就是我天分不够当不了科学家的佐证吧T。T</p>
+        <h3 id="PhantomJS-Selenium实现登陆网站签到"><a href="#PhantomJS-Selenium实现登陆网站签到" class="headerlink" title="PhantomJS + Selenium实现登陆网站签到"></a>PhantomJS + Selenium实现登陆网站签到</h3><blockquote>
+<p>js脚本是由浏览器前端加载执行的，因此爬虫要想渲染js，就要实现js引擎，或者我们分析出js发送的请求后，自己构造(很难，复杂)。</p>
+<p>另外一种，就是使用selenium调用浏览器自动化处理。phantomjs是一个无头浏览器，没有界面，因此运行速度要比chrome快一点，没有弹窗干扰。</p>
+<p>requests，urllib之类的http库，只能将http资源请求下来，其中的img link js标签都不会自动加载。而浏览器会请求所有的资源。</p>
+</blockquote>
+<h4 id="目标网站分析"><a href="#目标网站分析" class="headerlink" title="目标网站分析"></a>目标网站分析</h4>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2015/09/12/科研/2015-09-12-Intuition-of-Eigen-Value/#more" class="more-link">阅读全文</a>
+            <a href="/2016/08/10/技术/PhantomJS + Selenium实现登陆网站签到/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -496,252 +453,32 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2015-03-22T16:00:00.000Z"><a href="/2015/03/23/科研/2015-03-23-Newton-QuasiNewton-Method/">2015-03-23</a></time>
+          <time datetime="2016-08-08T16:00:00.000Z"><a href="/2016/08/09/技术/python2爬虫笔记/">2016-08-09</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2015/03/23/科研/2015-03-23-Newton-QuasiNewton-Method/">牛顿法与拟牛顿法（DFP BFGS LBFGS VLBFGS）</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>最近做LBFGS的并行，顺便把牛顿法、拟牛顿法顺理一下。</p>
-<p>拟牛顿法是求解非线性优化问题最有效的方法之一。考虑无约束的极小化问题<a href="http://www.codecogs.com/eqnedit.php?latex=\min\limits_x&space;f(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\min\limits_x&space;f(x)" title="\min\limits_x f(x)"></a>，假设<a href="http://www.codecogs.com/eqnedit.php?latex=f(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?f(x)" title="f(x)"></a>为凸函数，且二阶连续可导。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/03/23/科研/2015-03-23-Newton-QuasiNewton-Method/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2015-02-03T16:00:00.000Z"><a href="/2015/02/04/科研/2015-02-04-Group-Meeting/">2015-02-04</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2015/02/04/科研/2015-02-04-Group-Meeting/">大数据机器学习初探---南大李武军</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>每周的组会大概会持续2小时。如果是主讲，就需要花更多的时间去准备报告内容。之前，组会开完我就不管了，缺乏总结思考。而这样子的话实质上意义就不大了，没有内化为自己的知识，也没有什么critical thinking。从现在开始，记录每一次组会的思考。</p>
-<p>常言道：亡羊补牢，为时未晚。T.T</p>
-<h3 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h3><ul>
-<li>Learning to Hash</li>
-<li>Distributed Learning</li>
-<li>Stochastic Learning</li>
-</ul>
-<p>有一个形象的比喻是这样说的，大数据是金矿，云计算是采矿技术，大数据机器学习是冶金技术。</p>
-<p>大数据机器学习面临的挑战，一是存储，而是计算速度，三是网络。</p>
-<p>哈希学习，在内存、硬盘、cpu、通信上有优势；<br>分布式学习在内存、硬盘、cpu上有优势，但会增加通信成本；随机学习在内存、硬盘、cpu方面有优势。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/02/04/科研/2015-02-04-Group-Meeting/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2015-01-29T16:00:00.000Z"><a href="/2015/01/30/技术/Git-Resources/">2015-01-30</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2015/01/30/技术/Git-Resources/">Git常用命令速查表</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>master: 默认开发分支</p>
-<p>origin: 默认远程版本库</p>
-<p>Head: 默认开发分支</p>
-<p>Head^: Head的父提交</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/01/30/技术/Git-Resources/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2014-12-05T16:00:00.000Z"><a href="/2014/12/06/技术/Make-resume-by-LaTeX/">2014-12-06</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2014/12/06/技术/Make-resume-by-LaTeX/">在Mac上用LaTeX写漂亮的简历</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171007/chh5bKd449.jpg?imageslim" alt="mark"></p>
-<p>你会搜索查看到这篇文章，相信就不需要我解释为什么要用LaTeX写Resume了：）</p>
-<p>今晚报名Facebook China Tech Talk，最后一步需要上传简历。看着已经2年没有更新过的简历，好捉急。那时真是年轻，不舍得做减法，恨不能一张A4纸写尽一生。于是索性重新制作一份简历。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/12/06/技术/Make-resume-by-LaTeX/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2014-11-25T16:00:00.000Z"><a href="/2014/11/26/科研/2014-11-26-Presentation-at-Chinese-Academy-of-Science/">2014-11-26</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2014/11/26/科研/2014-11-26-Presentation-at-Chinese-Academy-of-Science/">我的报告 Decentralized Privacy-Preserving Low-Rank Matrix Completion</a></h1>
+    <h1 class="title"><a href="/2016/08/09/技术/python2爬虫笔记/">爬虫笔记(基于python2)</a></h1>
   
 
     </header>
     <div class="entry">
       
         <blockquote>
-<p>转载</p>
+<p>基于python2.7</p>
 </blockquote>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171007/aL4gICee1k.png?imageslim" alt="mark"></p>
-<h3 id="我的报告"><a href="#我的报告" class="headerlink" title="我的报告"></a>我的报告</h3><h4 id="Section-0-Introduce-Myself"><a href="#Section-0-Introduce-Myself" class="headerlink" title="Section 0: Introduce Myself"></a>Section 0: Introduce Myself</h4><p>Page 1</p>
-<ul>
-<li>Good afternoon everyone! My name is Anya Lin. I’m a second-year master candidate from University of Science and Technology of China. It’s my great pleasure to introduce to you the Decentralized Privacy-Preserving Low-Rank Matrix Completion. It’s a joint work with my supervisor, Prof. Ling from USTC.</li>
-<li>Before I start, I want to express my thanks to Prof. Ling for his patient instructions and help over the last a few months.</li>
+<h3 id="urllib2库的用法"><a href="#urllib2库的用法" class="headerlink" title="urllib2库的用法"></a>urllib2库的用法</h3><h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><ul>
+<li>urlopen方法打开网页</li>
 </ul>
+<p>传入3个参数，data和timeout不是必须的；返回网页的源码可用read方法读出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">response = urlopen(url,data,timeout)</div><div class="line">content = response.read()</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2014/11/26/科研/2014-11-26-Presentation-at-Chinese-Academy-of-Science/#more" class="more-link">阅读全文</a>
+            <a href="/2016/08/09/技术/python2爬虫笔记/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -774,27 +511,306 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2014-11-09T16:00:00.000Z"><a href="/2014/11/10/科研/2014-11-10-Basic-Algorithms-of-Convex-Opt/">2014-11-10</a></time>
+          <time datetime="2016-08-06T16:00:00.000Z"><a href="/2016/08/07/技术/python编程技巧/">2016-08-07</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2014/11/10/科研/2014-11-10-Basic-Algorithms-of-Convex-Opt/">凸优化的一些基础算法</a></h1>
+    <h1 class="title"><a href="/2016/08/07/技术/python编程技巧/">python编程技巧</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#python编程技巧"><span class="toc-text">python编程技巧</span></a></li></ol>
+    </div>
+
+      
+        <h3 id="python编程技巧"><a href="#python编程技巧" class="headerlink" title="python编程技巧"></a>python编程技巧</h3><ul>
+<li><code>x的n次方求解 ： x ** n</code></li>
+<li>22</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-dict-reverse/">2016-07-29</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/07/29/技术/python-dict-reverse/">python字典键值转置</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>本文假设读者对凸优化有基本了解，主要归纳一些基础算法，以便查阅。</p>
-<p><a href="http://www.codecogs.com/eqnedit.php?latex=\min&space;f(x)&space;\triangleq&space;g(x)&plus;h(x)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\min&space;f(x)&space;\triangleq&space;g(x)&plus;h(x)" title="\min f(x) \triangleq g(x)+h(x)"></a></p>
-<p>其中，f，g，h都是凸函数，g是光滑项，h是非光滑项。</p>
+        <h3 id="dict的key与value转置"><a href="#dict的key与value转置" class="headerlink" title="dict的key与value转置"></a>dict的key与value转置</h3><ul>
+<li>如果value1值唯一，则直接交换key1与value1的位置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from collections import OrderedDict as od_dict #生成有序的dict</div><div class="line"></div><div class="line">d= od_dict((v,k) for k,v in OID_FS_lst.items()) </div><div class="line">print d</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2014/11/10/科研/2014-11-10-Basic-Algorithms-of-Convex-Opt/#more" class="more-link">阅读全文</a>
+            <a href="/2016/07/29/技术/python-dict-reverse/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-str/">2016-07-29</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/07/29/技术/python-str/">Python 字符串技巧</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="将-u3232-u6674转换成unicode字符"><a href="#将-u3232-u6674转换成unicode字符" class="headerlink" title="将 \u3232\u6674转换成unicode字符"></a>将 <code>\u3232\u6674</code>转换成unicode字符</h3><ul>
+<li>运用str对象的decode方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#任何字符，都可以在：</div><div class="line">#http://unicodelookup.com/</div><div class="line">#中，查找到对应的unicode的值</div><div class="line"></div><div class="line">s=&apos;\u6210\u529f&apos;</div><div class="line">print s.decode(&apos;unicode-escape&apos;)</div><div class="line">...成功</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/07/29/技术/python-str/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-07-27T16:00:00.000Z"><a href="/2016/07/28/技术/something-with-python-project/">2016-07-28</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/07/28/技术/something-with-python-project/">Python创建项目</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="使用Cookiecutter模板创建Python项目样式"><a href="#使用Cookiecutter模板创建Python项目样式" class="headerlink" title="使用Cookiecutter模板创建Python项目样式"></a>使用Cookiecutter模板创建Python项目样式</h3><ul>
+<li>首先安装cookiecutter</li>
+</ul>
+<p><code>pip install -U cookiecutter</code></p>
+<ul>
+<li>在github上找一个模板</li>
+<li>在某个目录下执行</li>
+</ul>
+<p><code>cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git</code>，使用找到的模板创建项目，输入相关参数</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/07/28/技术/something-with-python-project/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-07-25T16:00:00.000Z"><a href="/2016/07/26/技术/config-of-Linux/">2016-07-26</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/07/26/技术/config-of-Linux/">Linux系统服务配置</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uname -r</div></pre></td></tr></table></figure>
+<p>稳定版本的偶数版，如2.6.x，适合于商业与家用环境使用；开发中版本，如2.5.x，适合开发特殊功能的环境。</p>
+<p>安装内核文件：<code>apt-get install linux-headers-$(uname -r)</code></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/07/26/技术/config-of-Linux/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2016-07-24T16:00:00.000Z"><a href="/2016/07/25/技术/file-and-dir-of-Linux/">2016-07-25</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2016/07/25/技术/file-and-dir-of-Linux/">Linux 目录 文件 权限</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Linux目录操作"><a href="#Linux目录操作" class="headerlink" title="Linux目录操作"></a>Linux目录操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.         # 代表此层目录</div><div class="line">..        # 代表上一层目录</div><div class="line">-         # 代表前一个工作目录</div><div class="line">~         # 代表『目前使用者身份』所在的家目录</div><div class="line">~account  # 代表 account 这个使用者的家目录(account是个帐号名称)</div></pre></td></tr></table></figure>
+<ul>
+<li>在所有目录底下都会存在的两个目录，分别是<code>.</code>与<code>..</code></li>
+<li>根目录的上一层<code>(..)</code>与根目录自己<code>(.)</code>是同一个目录</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/07/25/技术/file-and-dir-of-Linux/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -1017,7 +1033,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">2</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
@@ -1051,6 +1067,10 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
     <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
@@ -1060,6 +1080,8 @@
     <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
   
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
@@ -1085,6 +1107,8 @@
   
     <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
   
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
@@ -1097,7 +1121,9 @@
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>19</small></li>
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>20</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
@@ -1113,13 +1139,19 @@
   
     <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
     <li><a href="/tags/git/">git</a><small>1</small></li>
   
     <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
   
     <li><a href="/tags/linux/">linux</a><small>1</small></li>
   
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
     <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
   
@@ -1141,7 +1173,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
