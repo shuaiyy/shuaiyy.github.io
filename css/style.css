@@ -107,6 +107,32 @@ a:hover {
   text-shadow: 0 0 1px #fff;
   margin: 50px auto;
 }
+#header .avatar img {
+  border-radius: 50%;
+  height: 5em;
+  float: left;
+  -webkit-transition: height 0.3s, -webkit-transform 1s;
+  -moz-transition: height 0.3s, -moz-transform 1s;
+  -o-transition: height 0.3s, -o-transform 1s;
+  -ms-transition: height 0.3s, -ms-transform 1s;
+  transition: height 0.3s, transform 1s;
+}
+@media screen and (max-width: 320px) {
+  #header .avatar img {
+    text-align: center;
+  }
+}
+#header .avatar img:hover {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+  -ms-transform: rotate(360deg) /* IE 9 */;
+  -webkit-transform: rotate(360deg) /* Safari and Chrome */;
+  -o-transform: rotate(360deg) /* Opera */;
+  -moz-transform: rotate(360deg) /* Firefox */;
+}
 #header a {
   color: #999;
 }
@@ -734,6 +760,30 @@ article footer .addthis iframe {
   margin-bottom: 50px;
   font: 0.9em/1.6 Helvetica Neue, Helvetica, Arial, "Hiragino Sans GB", sans-serif;
   text-shadow: 0 0 1px #fff;
+}
+#toTop {
+  width: 30px;
+  height: 50px;
+  background: rgba(85,85,85,0.3) none repeat scroll 0% 0%;
+  position: fixed;
+  bottom: 1%;
+  right: 3%;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+}
+#toTop a {
+  display: block;
+  width: 30px;
+  height: 25px;
+  font-size: 18px;
+  line-height: 25px;
+  color: #fff;
+  background: transparent none repeat scroll 0% 0%;
+  text-decoration: none;
+}
+#toTop a:hover {
+  background-color: #258fb8;
 }
 .entry .gist {
   background: #eee;

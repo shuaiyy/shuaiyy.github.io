@@ -1,0 +1,986 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript实现的部分功能 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="JavaScript判断表单内容，不满足条件则不提交
+
+&amp;lt;form method=&amp;quot;post&amp;quot; action=&amp;quot;/study/register.jsp&amp;quot; onsubmit=&amp;quot;return register()&amp;quot;&amp;gt;长度判断整数判断正则判断
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546&amp;lt;body&amp;gt;&amp;lt;form method=&#34;post&#34; action=&#34;/study/register.jsp&#34; onsubmit=&#34;return register()&#34;&amp;gt;账号：&amp;lt;input id=&#34;name&#34; type=&#34;text&#34; name=&#34;name&#34;&amp;gt; &amp;lt;br&amp;gt;&amp;lt;br&amp;gt;年龄：&amp;lt;input id=&#34;age&#34; type=&#34;text&#34; name=&#34;age&#34;&amp;gt; &amp;lt;br&amp;gt;&amp;lt;br&amp;gt;  EMail：&amp;lt;input id=&#34;email&#34; type=&#34;text&#34; name=&#34;email&#34;&amp;gt; &amp;lt;br&amp;gt;&amp;lt;br&amp;gt;  &amp;lt;input type=&#34;submit&#34; value=&#34;注册&#34;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/form&amp;gt;    &amp;lt;script&amp;gt;  function register()&amp;#123;   var name = document.getElementById(&#34;name&#34;);   if(name.value.length&amp;lt;3)&amp;#123;     alert(&#34;用户名至少需要3位长度&#34;);     return false;   &amp;#125;   var age = document.getElementById(&#34;age&#34;);   if(isNaN(age.value))&amp;#123;     alert(&#34;年龄必须是数字&#34;);     return false;   &amp;#125;    var email = document.getElementById(&#34;email&#34;);         if(0==email.value.length)&amp;#123;     alert(&#34;email不能为空&#34;);    return false;  &amp;#125;      var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;             if (!Regex.test(email.value))&amp;#123;                       alert(&#34;email格式不正确&#34;);       return false;  &amp;#125;               return true;  &amp;#125;&amp;lt;/script&amp;gt;&amp;lt;/body&amp;gt;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="JavaScript实现的部分功能"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-04T16:00:00.000Z"><a href="/2018/02/05/技术/JavaScript前端部分功能实现/">2018-02-05</a></time>
+        
+	  
+      
+  
+    <h1 class="title">JavaScript实现的部分功能</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JQuery元素提取内容"><span class="toc-text">JQuery元素提取内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作css"><span class="toc-text">操作css</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery选择器"><span class="toc-text">jQuery选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery筛选器"><span class="toc-text">jQuery筛选器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery操作元素属性"><span class="toc-text">jQuery操作元素属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery动画效果"><span class="toc-text">jQuery动画效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery事件"><span class="toc-text">jQuery事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JQuery实现AJAX"><span class="toc-text">JQuery实现AJAX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JQuery操作数组、字符串、json"><span class="toc-text">JQuery操作数组、字符串、json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JQuery对象和JavaScript-DOM对象切换"><span class="toc-text">JQuery对象和JavaScript DOM对象切换</span></a></li></ol>
+    </div>
+
+      
+        <ul>
+<li>JavaScript判断表单内容，不满足条件则不提交</li>
+</ul>
+<p><code>&lt;form method=&quot;post&quot; action=&quot;/study/register.jsp&quot; onsubmit=&quot;return register()&quot;&gt;</code><br>长度判断<br>整数判断<br>正则判断</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"/study/register.jsp"</span> <span class="attr">onsubmit</span>=<span class="string">"return register()"</span>&gt;</span></div><div class="line">账号：<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"></div><div class="line">年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"age"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"age"</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">  </div><div class="line">EMail：<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"email"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">  </div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">    </div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">register</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">   <span class="keyword">var</span> name = <span class="built_in">document</span>.getElementById(<span class="string">"name"</span>);</span></div><div class="line"><span class="javascript">   <span class="keyword">if</span>(name.value.length&lt;<span class="number">3</span>)&#123;</span></div><div class="line"><span class="javascript">     alert(<span class="string">"用户名至少需要3位长度"</span>);</span></div><div class="line"><span class="javascript">     <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">   &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">   <span class="keyword">var</span> age = <span class="built_in">document</span>.getElementById(<span class="string">"age"</span>);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">   <span class="keyword">if</span>(<span class="built_in">isNaN</span>(age.value))&#123;</span></div><div class="line"><span class="javascript">     alert(<span class="string">"年龄必须是数字"</span>);</span></div><div class="line"><span class="javascript">     <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">   &#125;</span></div><div class="line"><span class="undefined">  </span></div><div class="line"><span class="javascript">  <span class="keyword">var</span> email = <span class="built_in">document</span>.getElementById(<span class="string">"email"</span>);</span></div><div class="line"><span class="undefined">       </span></div><div class="line"><span class="javascript">  <span class="keyword">if</span>(<span class="number">0</span>==email.value.length)&#123;</span></div><div class="line"><span class="javascript">     alert(<span class="string">"email不能为空"</span>);</span></div><div class="line"><span class="javascript">    <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined">    </span></div><div class="line"><span class="javascript">  <span class="keyword">var</span> Regex = <span class="regexp">/^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/</span>;       </span></div><div class="line"><span class="undefined">    </span></div><div class="line"><span class="javascript">  <span class="keyword">if</span> (!Regex.test(email.value))&#123;                </span></div><div class="line"><span class="javascript">       alert(<span class="string">"email格式不正确"</span>);</span></div><div class="line"><span class="javascript">       <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">  &#125;            </span></div><div class="line"><span class="javascript">   <span class="keyword">return</span> <span class="literal">true</span>;</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>javascript 显示或隐藏元素</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hide</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>);</div><div class="line"> d.style.display=<span class="string">"none"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>);</div><div class="line"> d.style.display=<span class="string">"block"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>javascript 删除内容前提示</p>
+<p>window.confirm<br>parentNode<br>removeChild<br>deleteRow(rowIndex)</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">deleteRow</span>(<span class="params">link</span>)</span>&#123;</span></div><div class="line"><span class="javascript"> <span class="keyword">var</span> b =  confirm(<span class="string">"确定删除？"</span>)</span></div><div class="line"><span class="javascript"> <span class="keyword">if</span>(!b)</span></div><div class="line"><span class="javascript">   <span class="keyword">return</span>;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> table = <span class="built_in">document</span>.getElementById(<span class="string">"heroTable"</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> td = link.parentNode;</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> tr = td.parentNode;</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> index=tr.rowIndex;</span></div><div class="line"><span class="undefined">table.deleteRow(index);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span> <span class="attr">id</span>=<span class="string">"heroTable"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">tbody</span>&gt;</span><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">width</span>=<span class="string">"50%"</span>&gt;</span>英雄名称<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">       操作</div><div class="line">   <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span>盖伦<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onclick</span>=<span class="string">"deleteRow(this)"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span>     </div><div class="line">    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span>提莫<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onclick</span>=<span class="string">"deleteRow(this)"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span>     </div><div class="line">    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span>祈求者<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onclick</span>=<span class="string">"deleteRow(this)"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span>     </div><div class="line">    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">tbody</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>javascript 实现表格排序</li>
+</ul>
+<p>使用col记录上次点击的列，reverse记录升序还是降序；如果再次点击该列，则排序方式取逆。<br>table append节点时，由于插入的是原有的元素节点，因而tr的内容和总行数不会发生变化，只有顺序改变。<br>比较器自定义，使用String.localeCompare比较字符串。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">table&#123;</span></div><div class="line"><span class="css"><span class="selector-tag">border-collapse</span><span class="selector-pseudo">:collapse</span>;</span></div><div class="line"><span class="css"><span class="selector-tag">width</span><span class="selector-pseudo">:90</span>%;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined">tr&#123;</span></div><div class="line"><span class="undefined">border-bottom-style: solid;</span></div><div class="line"><span class="undefined">border-bottom-width: 1px;</span></div><div class="line"><span class="undefined">border-bottom-color: lightgray;</span></div><div class="line"><span class="css"><span class="selector-tag">height</span><span class="selector-pseudo">:35px</span>;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined">    </span></div><div class="line"><span class="undefined">td&#123;</span></div><div class="line"><span class="css"><span class="selector-tag">width</span><span class="selector-pseudo">:25</span>%;</span></div><div class="line"><span class="css"><span class="selector-tag">text-align</span><span class="selector-pseudo">:center</span>;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined">  </span></div><div class="line"><span class="undefined">a&#123;</span></div><div class="line"><span class="undefined">  text-decoration: none;</span></div><div class="line"><span class="css">  <span class="selector-tag">color</span><span class="selector-pseudo">:skyblue</span>;</span></div><div class="line"><span class="undefined">&#125;  </span></div><div class="line"><span class="undefined">  </span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> col = <span class="number">0</span>;</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> reverse = <span class="literal">false</span>;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">column</span>)</span>&#123;</span></div><div class="line"><span class="javascript"> <span class="keyword">if</span>(column == col)</span></div><div class="line"><span class="undefined">     reverse = !reverse;</span></div><div class="line"><span class="undefined"> col = column;</span></div><div class="line"><span class="javascript"> <span class="keyword">var</span> tbody = <span class="built_in">document</span>.getElementById(<span class="string">"tbody"</span>);</span></div><div class="line"><span class="javascript"> <span class="comment">//通过getElementsByTagName取出来是一个Collection</span></span></div><div class="line"><span class="javascript"> <span class="keyword">var</span> trsCollection =  <span class="built_in">document</span>.getElementsByTagName(<span class="string">"tr"</span>);</span></div><div class="line"><span class="javascript"> <span class="comment">//因为Collection没有自带的排序函数，所以需要转换为数组，利用数组自带的排序</span></span></div><div class="line"><span class="javascript"> <span class="keyword">var</span> trs =<span class="keyword">new</span> <span class="built_in">Array</span>();</span></div><div class="line"><span class="javascript"> <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>; i &lt;trsCollection.length; i++) &#123;</span></div><div class="line"><span class="undefined">    trs.push(trsCollection[i]);</span></div><div class="line"><span class="undefined"> &#125;</span></div><div class="line"><span class="undefined"> trs.sort(comparator);</span></div><div class="line"><span class="javascript"> <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt;trs.length; i++) &#123;</span></div><div class="line"><span class="undefined">  tbody.appendChild(trs[i]);</span></div><div class="line"><span class="undefined"> &#125;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">comparator</span>(<span class="params">tr1,tr2</span>)</span>&#123;</span></div><div class="line"><span class="javascript">   <span class="keyword">var</span> td1 = tr1.children[col].innerHTML; <span class="comment">//取某一行的第col列中的内容</span></span></div><div class="line"><span class="javascript">   <span class="keyword">var</span> td2 = tr2.children[col].innerHTML;</span></div><div class="line"><span class="javascript">   <span class="keyword">if</span>(reverse)</span></div><div class="line"><span class="javascript">    <span class="keyword">return</span> td1.localeCompare(td2);</span></div><div class="line"><span class="javascript">   <span class="keyword">else</span></span></div><div class="line"><span class="javascript">    <span class="keyword">return</span> td2.localeCompare(td1);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">tbody</span> <span class="attr">id</span>=<span class="string">"tbody"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span> <span class="attr">onclick</span>=<span class="string">"sort(0)"</span>&gt;</span>id<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span> <span class="attr">onclick</span>=<span class="string">"sort(1)"</span>&gt;</span>名称<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span> <span class="attr">onclick</span>=<span class="string">"sort(2)"</span>&gt;</span>血量<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span> <span class="attr">onclick</span>=<span class="string">"sort(3)"</span>&gt;</span>伤害<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>annie<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>380<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>38<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>gareen<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>340<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>58<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>teemo<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>320<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>76<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>4<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>deadbrother<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>400<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">td</span>&gt;</span>90<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>JavaScript中的json对象</li>
+</ul>
+<p>定义和使用json对象和数组<br>字符串转json对象，通过字符串拼接得到一个JSON结构的字符串，并不是一个JSON对象。 需要通过eval转换得到<br>转换的时候注意,eval 函数的字符串参数以<code>(</code>开头 <code>)</code>结尾。<br>或者使用JQuery的$.parseJSON转换函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">var gareen = &#123;&quot;name&quot;:&quot;盖伦&quot;,&quot;hp&quot;:616&#125;;</div><div class="line">alert(&quot;这是一个JSON对象: &quot;+gareen);</div><div class="line">alert(&quot;英雄名称: &quot; + gareen.name + &quot;&lt;br&gt;&quot;);</div><div class="line">alert(&quot;英雄血量: &quot; + gareen.hp + &quot;&lt;br&gt;&quot;);</div><div class="line"></div><div class="line">var heros=</div><div class="line">[</div><div class="line">    &#123;&quot;name&quot;:&quot;盖伦&quot;,&quot;hp&quot;:616&#125;,</div><div class="line">    &#123;&quot;name&quot;:&quot;提莫&quot;,&quot;hp&quot;:313&#125;,</div><div class="line">    &#123;&quot;name&quot;:&quot;死哥&quot;,&quot;hp&quot;:432&#125;,</div><div class="line">    &#123;&quot;name&quot;:&quot;火女&quot;,&quot;hp&quot;:389&#125;</div><div class="line">]</div><div class="line">alert( &quot;第4个英雄是:&quot; +  heros[3].name);</div><div class="line"></div><div class="line">var s1 = &quot;&#123;\&quot;name\&quot;:\&quot;盖伦\&quot;&quot;;</div><div class="line">var s2 = &quot;,\&quot;hp\&quot;:616&#125;&quot;;</div><div class="line">var s3 = s1+s2;</div><div class="line">var gareen = eval(&quot;(&quot;+s3+&quot;)&quot;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>AJAX实现登录前表单验证</li>
+</ul>
+<p>AJAX: Asynchronous JAvaScript and XML<br>判断账户是否存在<br>1、定义一个XMLHttpRequest对象，即XHR对象<br>2、设置响应函数  <code>xmlhttp.onreadystatechange=checkResult; //响应函数</code><br>3、设置访问URL和参数<br>4、执行请求</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>输入账号 :<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">onkeyup</span>=<span class="string">"check()"</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"checkResult"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> xmlhttp;</span></div><div class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">  <span class="keyword">var</span> name = <span class="built_in">document</span>.getElementById(<span class="string">"name"</span>).value;</span></div><div class="line"><span class="javascript">  <span class="keyword">var</span> url = <span class="string">"http://how2j.cn/study/checkName.jsp?name="</span>+name;</span></div><div class="line"><span class="undefined"> </span></div><div class="line"><span class="javascript">  xmlhttp =<span class="keyword">new</span> XMLHttpRequest();</span></div><div class="line"><span class="javascript">  xmlhttp.onreadystatechange=checkResult; <span class="comment">//响应函数</span></span></div><div class="line"><span class="javascript">  xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>);   <span class="comment">//设置访问的页面</span></span></div><div class="line"><span class="javascript">  xmlhttp.send(<span class="literal">null</span>);  <span class="comment">//执行访问</span></span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"> </span></div><div class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">checkResult</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">  <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span></div><div class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">'checkResult'</span>).innerHTML=xmlhttp.responseText;</span></div><div class="line"><span class="undefined">  </span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"> </span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>jquery</li>
+</ul>
+<p>使用前先引入jQuery库</p>
+<p><code>$(function(){...});</code> 表示在HTML文档加载完成后在执行()里的内容 function，防止jQuery代码被提前执行；<br><code>$(&quot;css selector&quot;)</code> 用于选中元素对象<br>jQuery可以方便的在元素对象上监听事件<code>$(&quot;css selector&quot;).click(function(){})</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://how2j.cn/study/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">   $(<span class="string">"#b1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">      $(<span class="string">"#d"</span>).hide();</span></div><div class="line"><span class="undefined">   &#125;);</span></div><div class="line"><span class="javascript">   $(<span class="string">"#b2"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">      $(<span class="string">"#d"</span>).show();</span></div><div class="line"><span class="undefined">   &#125;);</span></div><div class="line"><span class="undefined">&#125;);</span></div><div class="line"><span class="undefined"> </span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"b1"</span>&gt;</span>隐藏div<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"b2"</span>&gt;</span>显示div<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d"</span>&gt;</span></div><div class="line"> </div><div class="line">这是一个div</div><div class="line"> </div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="JQuery元素提取内容"><a href="#JQuery元素提取内容" class="headerlink" title="JQuery元素提取内容"></a>JQuery元素提取内容</h3><p>取值使用 <code>$(&quot;css selector&quot;).val();</code> 相当于 <code>document.getElementById(&quot;input1&quot;).value;</code><br>获取元素使用 <code>$(&quot;css selector&quot;).html();</code><br>不包含标签的元素 <code>$(&quot;css selector&quot;).text();</code></p>
+<h3 id="操作css"><a href="#操作css" class="headerlink" title="操作css"></a>操作css</h3><p>增加、移除class，切换class状态，以及css函数的使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   $(<span class="string">"#b1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="string">"#d"</span>).addClass(<span class="string">"pink"</span>); <span class="comment">//增加class pink，要有.pink的class定义，样式才会生效</span></div><div class="line">      $(<span class="string">"#d"</span>).removeClass(<span class="string">"pink"</span>);<span class="comment">// 移除class </span></div><div class="line">      $(<span class="string">"#d"</span>).toggleClass(<span class="string">"pink"</span>); <span class="comment">//切换class，如果存在pink则移除，不存在则添加</span></div><div class="line">      $(<span class="string">"#d2"</span>).css(&#123;<span class="string">"background-color"</span>:<span class="string">"pink"</span>,<span class="string">"color"</span>:<span class="string">"green"</span>&#125;); <span class="comment">// 使用css函数，修改style里的属性键值。</span></div><div class="line">      $(<span class="string">"#d1"</span>).css(<span class="string">"background-color"</span>,<span class="string">"pink"</span>);</div><div class="line">   &#125;);</div><div class="line">  </div><div class="line">&#125;);</div><div class="line"></div><div class="line">&lt;style&gt;</div><div class="line">.pink&#123;</div><div class="line">   background-color:pink;</div><div class="line">&#125;</div><div class="line">&lt;<span class="regexp">/style&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h3><p>准确的将应该是css选择器，利用标签、样式、属性选择元素。</p>
+<ul>
+<li><code>$(this)</code> 表示当前元素</li>
+<li><code>$(&quot;tagName&quot;)</code></li>
+<li><code>$(&quot;#id&quot;)</code></li>
+<li><code>$(&quot;.className&quot;)</code></li>
+<li><code>$(&quot;tagName&quot;)</code></li>
+<li><code>$(&quot;div#id1 span.red a&quot;)</code></li>
+</ul>
+<p>有条件的选中元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div:first"</span>).addClass(<span class="string">"pink"</span>); <span class="comment">// 选中第一个元素</span></div><div class="line">$(<span class="string">"div:last"</span>).addClass(<span class="string">"pink"</span>); <span class="comment">// 选中最后一个元素</span></div><div class="line">$(<span class="string">"div:odd"</span>).toggleClass(<span class="string">"pink"</span>); <span class="comment">// 选中偶数元素</span></div><div class="line">$(<span class="string">"div:even"</span>).toggleClass(<span class="string">"pink"</span>); <span class="comment">// 选中奇数元素</span></div><div class="line">$(<span class="string">"selector:hidden"</span>)  <span class="comment">// 满足选择器条件的不可见的元素</span></div><div class="line">$(<span class="string">"selector:visible"</span>)   <span class="comment">//  满足选择器条件的可见的元素</span></div></pre></td></tr></table></figure>
+<p>根据属性选择元素，属性值的比较</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"selector[attribute]"</span>)   <span class="comment">// 满足选择器条件的有某属性的元素</span></div><div class="line">$(<span class="string">"selector[attribute=value]"</span>) <span class="comment">// 满足选择器条件的属性等于value的元素</span></div><div class="line">$(<span class="string">"selector[attribute!=value]"</span>) <span class="comment">// 满足选择器条件的属性不等于value的元素</span></div><div class="line">$(<span class="string">"selector[attribute^=value]"</span>) <span class="comment">// 满足选择器条件的属性以value开头的元素</span></div><div class="line">$(<span class="string">"selector[attribute$=value]"</span>) <span class="comment">// 满足选择器条件的属性以value结尾的元素</span></div><div class="line">$(<span class="string">"selector[attribute*=value]"</span>) <span class="comment">// 满足选择器条件的属性包含value的元素</span></div></pre></td></tr></table></figure>
+<p>表单对象和表单对象属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"selector:input"</span>) <span class="comment">// 会选择所有的输入元素，不仅仅是input标签开始的那些，还包括textarea,select和button</span></div><div class="line">$(<span class="string">"selector:button"</span>) <span class="comment">// 会选择type=button的input元素和button元素</span></div><div class="line">$(<span class="string">"selector:radio"</span>) <span class="comment">// 会选择单选框</span></div><div class="line">$(<span class="string">"selector:checkbox"</span>) <span class="comment">// 会选择复选框</span></div><div class="line">$(<span class="string">"selector:text"</span>) <span class="comment">// 会选择文本框，但是不会选择文本域</span></div><div class="line">$(<span class="string">"selector:submit"</span>) <span class="comment">// 会选择提交按钮</span></div><div class="line">$(<span class="string">"selector:image"</span>) <span class="comment">// 会选择图片型提交按钮</span></div><div class="line">$(<span class="string">"selector:reset"</span>) <span class="comment">// 会选择重置按钮</span></div><div class="line"></div><div class="line"><span class="comment">//表单对象属性</span></div><div class="line"></div><div class="line">$(<span class="string">"selector:enabled"</span>) <span class="comment">// 会选择可用的输入元素 注：输入元素的默认状态都是可用 </span></div><div class="line">$(<span class="string">"selector:disabled"</span>) <span class="comment">// 会选择不可用的输入元素 </span></div><div class="line">$(<span class="string">"selector:checked"</span>) <span class="comment">// 会选择被选中的单选框和复选框 注： checked在部分浏览器上(火狐,chrome)也可以选中selected的option </span></div><div class="line">$(<span class="string">"selector:select"</span>) <span class="comment">// 会选择被选中的option元素</span></div></pre></td></tr></table></figure>
+<h3 id="jQuery筛选器"><a href="#jQuery筛选器" class="headerlink" title="jQuery筛选器"></a>jQuery筛选器</h3><p>在选择器后可以使用的筛选函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div"</span>).first().toggleClass(<span class="string">"pink"</span>); <span class="comment">// 选中第一个元素</span></div><div class="line">$(<span class="string">"div"</span>).last().toggleClass(<span class="string">"pink"</span>); <span class="comment">// 选中最后一个元素</span></div><div class="line">$(<span class="string">"div"</span>).eq(<span class="number">4</span>).toggleClass(<span class="string">"pink"</span>); <span class="comment">// 选中第n个元素，n起始为0</span></div><div class="line">$(<span class="string">"#currentDiv"</span>).parent().toggleClass(<span class="string">"b"</span>); <span class="comment">// 选中父元素</span></div><div class="line">$(<span class="string">"#currentDiv"</span>).parents().toggleClass(<span class="string">"b"</span>); <span class="comment">// 选中祖先元素</span></div><div class="line">$(<span class="string">"#currentDiv"</span>).children().toggleClass(<span class="string">"b"</span>); <span class="comment">// 选中直接子元素</span></div><div class="line">$(<span class="string">"#currentDiv"</span>).siblings().toggleClass(<span class="string">"b"</span>); <span class="comment">// 选中同级元素</span></div><div class="line">$(<span class="string">"#currentDiv"</span>).find(<span class="string">"div"</span>).toggleClass(<span class="string">"b"</span>); <span class="comment">// 在当前元素下继续使用selector查找</span></div></pre></td></tr></table></figure>
+<h3 id="jQuery操作元素属性"><a href="#jQuery操作元素属性" class="headerlink" title="jQuery操作元素属性"></a>jQuery操作元素属性</h3><p>attr 和 prop 获取、修改、删除</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#h"</span>).attr(<span class="string">"align"</span>) <span class="comment">// 获取align属性</span></div><div class="line">$(<span class="string">"#h"</span>).attr(<span class="string">"align"</span>,<span class="string">"right"</span>) ; <span class="comment">// 修改align属性</span></div><div class="line">$(<span class="string">"#h"</span>).removeAttr(<span class="string">"align"</span>); <span class="comment">// 删除属性</span></div><div class="line"></div><div class="line"><span class="comment">// prop无法获取用户自定义的属性</span></div><div class="line">$(<span class="string">"#c"</span>).prop(<span class="string">"game"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 对于选中属性，如checked，attr获取的是初始值即checked, prop获取的是当前状态，返回的是true or false</span></div><div class="line">$(<span class="string">"#c"</span>).attr(<span class="string">"checked"</span>); <span class="comment">// 结果是不变的初始值</span></div><div class="line">$(<span class="string">"#c"</span>).prop(<span class="string">"checked"</span>); <span class="comment">// 结果为当前状态</span></div></pre></td></tr></table></figure>
+<h3 id="jQuery动画效果"><a href="#jQuery动画效果" class="headerlink" title="jQuery动画效果"></a>jQuery动画效果</h3><p>效果函数允许传入一个延时参数和动画完成后的回调函数</p>
+<ul>
+<li>显示 隐藏 切换<br>显示 隐藏 切换 分别通过show(), hide(),toggle()实现；<br>也可以加上毫秒数，表示延时操作,比如show(2000)</li>
+<li>滑动<br>向上滑动 向下滑动 滑动切换 分别通过slideUp(), slideDown(),slideToggle()实现<br>也可以加上毫秒数，表示延时操作，比如slideUp(2000) </li>
+<li>淡入 淡出<br>淡入 淡出 淡入淡出切换 指定淡入程度 分别通过fadeIn(), fadeOut(),fadeToggle() fadeTo()实现<br>也可以加上毫秒数，表示延时操作，比如fadeIn(2000)<br>fadeTo跟的参数是0-1之间的小数。 0表示不淡入，1表示全部淡入</li>
+<li>自定义动画效果<br>通过animate 可以实现更为丰富的动画效果<br>animate()第一个参数为css样式<br>animate()第二个参数为延时毫秒<br>注： 默认情况下，html中的元素都是固定，并且无法改变的位置的。 为了使用animate()自定义动画效果，需要通过css把元素的position设置为relative、absolute或者fixed。</li>
+<li>回调函数<br>效果一般需要一定的时间，并且这个时间可长可短，所以就无法精确的确定该效果合适结束。<br>好在，效果方法都提供对回调函数callback()的支持。<br>只需要在调用效果方法的最后一个参数传入一个function，当效果结束的时候，就会自动调用该function了。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> div = $(<span class="string">"#d"</span>);</div><div class="line">div.hide();  <span class="comment">// 隐藏元素div</span></div><div class="line">div.show(); <span class="comment">// 显示元素div</span></div><div class="line">div.toggle(); <span class="comment">// 切换状态，显示或隐藏元素div</span></div><div class="line"><span class="comment">// 延时1000毫秒</span></div><div class="line">div.hide(<span class="number">1000</span>);</div><div class="line">div.show(<span class="number">1000</span>);</div><div class="line">div.toggle(<span class="number">1000</span>);</div><div class="line"></div><div class="line">div.slideUp(); <span class="comment">// 向上滑动</span></div><div class="line">div.slideDown(<span class="number">1000</span>);  <span class="comment">// 向下滑动</span></div><div class="line">div.slideToggle(); <span class="comment">// 滑动切换</span></div><div class="line"></div><div class="line">div.fadeIn(<span class="number">2000</span>); <span class="comment">// 延时2000毫秒淡入</span></div><div class="line">div.fadeOut(<span class="number">2000</span>); <span class="comment">// 延时2000毫秒淡出</span></div><div class="line">div.fadeToggle(<span class="number">2000</span>); <span class="comment">// 淡入淡出切换</span></div><div class="line"></div><div class="line"><span class="comment">// 指定淡入程度，0完全淡出元素不可见，1完全显示</span></div><div class="line">$(<span class="string">"#d1"</span>).fadeTo(<span class="string">"slow"</span>,<span class="number">0.2</span>);</div><div class="line">$(<span class="string">"#d2"</span>).fadeTo(<span class="string">"slow"</span>,<span class="number">0.5</span>);</div><div class="line">$(<span class="string">"#d3"</span>).fadeTo(<span class="string">"slow"</span>,<span class="number">0.8</span>);</div><div class="line"></div><div class="line"><span class="comment">// 自定义动画效果</span></div><div class="line">div.animate(&#123;<span class="attr">left</span>:<span class="string">'100px'</span>&#125;,<span class="number">2000</span>); <span class="comment">// 移动到距离左侧100px的位置</span></div><div class="line">div.animate(&#123;<span class="attr">left</span>:<span class="string">'0px'</span>,<span class="attr">top</span>:<span class="string">'50px'</span>,<span class="attr">height</span>:<span class="string">'50px'</span>&#125;,<span class="number">2000</span>); <span class="comment">// 移动到距左侧0px，距离顶部50px的位置，同时改变高度为50px；</span></div><div class="line"><span class="comment">// 动画结束后调用回调函数</span></div><div class="line">div.animate(&#123;<span class="attr">left</span>:<span class="string">'0px'</span>,<span class="attr">top</span>:<span class="string">'50px'</span>,<span class="attr">height</span>:<span class="string">'50px'</span>&#125;,<span class="number">2000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     alert(<span class="string">"动画演示结束"</span>);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h3 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h3><p>加载 ：<code>$(document).ready()</code> <code>$()</code><br>图片加载： <code>load()</code><br>鼠标事件：<code>click()</code> <code>dblclick()</code>  <code>mousedown()</code> <code>mouseup()</code> <code>mousemove()</code> <code>mouseenter()</code> <code>mouseleave()</code> <code>mouseover()</code> <code>mouseout()</code><br>    mousedown 表示鼠标按下<br>mouseup表示鼠标弹起 </p>
+<p>mousemove表示鼠标进入<br>mouseenter表示鼠标进入<br>mouseover表示鼠标进入 </p>
+<p>mouseleave表示鼠标离开<br>mouseout表示鼠标离开 </p>
+<p>进入事件有3个 mousemove mouseenter mouseover<br>mousemove ：当鼠标进入元素，每移动一下都会被调用<br>mouseenter ：当鼠标进入元素，调用一下，在其中移动，不调用<br>mouseover：当鼠标进入元素，调用一下，在其中移动，不调用 </p>
+<p>mouseenter 和 mouseover的区别<br>mouseenter: 当鼠标经过其子元素不会被调用<br>mouseover：当鼠标经过其子元素会被调用 </p>
+<p>mouseleave 和 mouseout的区别<br>mouseleave: 当鼠标经过其子元素不会被调用<br>mouseout：当鼠标经过其子元素会被调用</p>
+<p>键盘事件 <code>keydown()</code> <code>keypress()</code> <code>keyup</code><br>    先后顺序： 按照 keydown keypress keyup 顺序发生<br>    键盘按钮值：<br>    通过event对象的which属性获取键盘的值<br>    keydown和keyup 能获取所有按键，不能识别大小写<br>    keypress 不能获取功能键，如F1 SHIFT等，能够识别大小写<br>    文本取值：<br>        keydown和keypress：不能获取最后一个字符<br>        keyup： 获取所有字符</p>
+<p>焦点：     <code>focus()</code> <code>blur()</code><br>内容改变： <code>change()</code>  注： 对于文本框，只有当该文本失去焦点的时候，才会触发change事件。<br>提交： <code>submit()</code><br>绑定事件：<code>on()</code><br>触发事件： <code>trigger()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// 页面加载</span></div><div class="line"> $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">"#message1"</span>).html(<span class="string">"页面加载成功"</span>);</div><div class="line">  &#125;);</div><div class="line"> </div><div class="line"> $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">// 不常用</span></div><div class="line">    $(<span class="string">"#message1"</span>).html(<span class="string">"页面加载成功"</span>);</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line">  <span class="comment">// 图片加载</span></div><div class="line"> $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">"#img"</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="string">"#message2"</span>).html(<span class="string">"图片加载成功"</span>);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line"><span class="comment">/* click() 表示单击 dblclick() 表示双击; </span></div><div class="line"><span class="comment">注: 空白键和回车键也可以触发click事件，但是只有双击鼠标才能造成dblclick事件 */</span></div><div class="line">  $(<span class="string">"#b"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          $(<span class="string">"#message"</span>).html(<span class="string">"单击按钮"</span>);</div><div class="line">      &#125;);</div><div class="line">  $(<span class="string">"#b"</span>).dblclick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          $(<span class="string">"#message"</span>).html(<span class="string">"双击按钮"</span>);</div><div class="line">      &#125;);</div><div class="line">  <span class="comment">// 键盘事件</span></div><div class="line">  $(<span class="string">"#i"</span>).keydown(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">     alert(e.which)</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line">  <span class="comment">// 焦点</span></div><div class="line">  $(<span class="string">"input"</span>).focus(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).val(<span class="string">"获取了焦点"</span>);</div><div class="line"> &#125;);</div><div class="line">  </div><div class="line">  $(<span class="string">"input"</span>).blur(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).val(<span class="string">"失去了焦点"</span>);</div><div class="line"> &#125;);</div><div class="line"> <span class="comment">// 内容改变：</span></div><div class="line"> $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">"#input1"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> text = $(<span class="keyword">this</span>).val();</div><div class="line">        $(<span class="string">"#message"</span>).html(<span class="string">"input1的内容变为了"</span>+text);</div><div class="line">    &#125;);</div><div class="line"> &#125;);</div><div class="line"> </div><div class="line"> <span class="comment">// 以上操作都可以用$(element).on(event,function)形式实现</span></div><div class="line"> $(<span class="string">"#b"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          $(<span class="string">"#message"</span>).html(<span class="string">"单击按钮"</span>);</div><div class="line">      &#125;);</div><div class="line"> </div><div class="line"> <span class="comment">// 事件也可以主动触发</span></div><div class="line"> $(<span class="string">"#b"</span>).trigger(<span class="string">"dblclick"</span>); <span class="comment">// 触发双击事件</span></div></pre></td></tr></table></figure>
+<h3 id="JQuery实现AJAX"><a href="#JQuery实现AJAX" class="headerlink" title="JQuery实现AJAX"></a>JQuery实现AJAX</h3><ul>
+<li><code>$.ajax()</code><br>默认type参数为GET请求方式<br>重要的参数有url，data，type，回调函数success、error、complete，dataType包括”xml html script json jsonp text”, 不指定则由JQuery自行判断。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#name"</span>).keyup(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> page = <span class="string">"/study/checkName.jsp"</span>;</div><div class="line">     <span class="keyword">var</span> value = $(<span class="keyword">this</span>).val();</div><div class="line">        $.ajax(&#123;</div><div class="line">            url: page,  <span class="comment">// 提交的页面</span></div><div class="line">            data:&#123;<span class="string">"name"</span>:value&#125;, <span class="comment">// 提交的数据</span></div><div class="line">            success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123; <span class="comment">// 成功后处理返回结果</span></div><div class="line">              $(<span class="string">"#checkResult"</span>).html(result);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">   &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>$.get()</code> 和 <code>s.post()</code></li>
+</ul>
+<p>使用3个参数 访问的页面,提交的数据,回调函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$.get(</div><div class="line">            page,</div><div class="line">            &#123;<span class="string">"name"</span>:value&#125;,</div><div class="line">            <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</div><div class="line">              $(<span class="string">"#checkResult"</span>).html(result);</div><div class="line">            &#125;</div><div class="line">        );</div><div class="line">        </div><div class="line"> $.post(</div><div class="line">            page,</div><div class="line">            &#123;<span class="string">"name"</span>:value&#125;,</div><div class="line">            <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</div><div class="line">              $(<span class="string">"#checkResult"</span>).html(result);</div><div class="line">            &#125;</div><div class="line">        );</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>$(&quot;div&quot;).load(pageUrl, data)</code> 在指定的div里显示请求pageUrl获取到的数据</p>
+</li>
+<li><p><code>var data = $(&quot;#form&quot;).serialize();</code> 将表单输入值格式化字符串</p>
+</li>
+</ul>
+<h3 id="JQuery操作数组、字符串、json"><a href="#JQuery操作数组、字符串、json" class="headerlink" title="JQuery操作数组、字符串、json"></a>JQuery操作数组、字符串、json</h3><ul>
+<li><code>$.each(array, function(index, data){})</code><br> 接收一个数组和一个回调函数，回调函数的参数为下标和数组元素值</li>
+<li><code>$.unique(array)</code>  数组去重，去重前需要先排序</li>
+<li><code>$.inArray(data,array)</code>  判断data是否在数组中</li>
+<li><code>$.trim(&quot; Hello JQuery    &quot;)</code>  去掉字符串首尾的空格</li>
+<li><code>$.parseJSON(&quot;{\&quot;name\&quot;: \&quot;Teemo\&quot;}&quot;)</code> 将json字符串解析成json对象</li>
+</ul>
+<h3 id="JQuery对象和JavaScript-DOM对象切换"><a href="#JQuery对象和JavaScript-DOM对象切换" class="headerlink" title="JQuery对象和JavaScript DOM对象切换"></a>JQuery对象和JavaScript DOM对象切换</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// jQuery转DOM</span></div><div class="line"><span class="keyword">var</span> div= $(<span class="string">"#d"</span>);  <span class="comment">// jQuery对象</span></div><div class="line"><span class="keyword">var</span> d = div[<span class="number">0</span>];    <span class="comment">// DOM对象</span></div><div class="line"><span class="keyword">var</span> d = div.get(<span class="number">0</span>); <span class="comment">// DOM对象</span></div><div class="line"></div><div class="line"><span class="comment">// DOM转jQuery</span></div><div class="line"><span class="keyword">var</span> div= <span class="built_in">document</span>.getElementById(<span class="string">"d"</span>); <span class="comment">//DOM对象</span></div><div class="line"><span class="keyword">var</span> d = $(div); <span class="comment">// jQuery对象</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/Web/">Web</a>, <a href="/categories/技术/Web/JavaScript/">JavaScript</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2018/02/10/技术/J2EE/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2018/01/15/技术/Zeal自制docset/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
+    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+  
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

@@ -10,8 +10,8 @@
   <meta name="author" content="Shuai yy">
   
   <meta name="description" content="scrapy使用BloomFilter优化URL去重
- scrapy原有的url去重算法是sha1 Hash算法，去重队列存放在内存中。
-当URL记录上亿时，内存开销会非常大，因此需要更加节省内存的算法来实现URL过滤。
+ scrapy原有的url去重算法是sha1 Hash算法，去重队列存放在内存中,数据结构为set。
+ 当URL记录上亿时，内存开销会非常大，因此需要更加节省内存的算法来实现URL过滤。 MD5输出128bit SHA1输出160bit SHA256输出256bit，对于100亿的去重对象，需要保存（128bit * 100亿 约150GB， 160bit的约187GB），使用bloomfilter的占用空间约为25Gb（在保证出错率不超过0.01%的情况下）。
 
 参考文章
 
@@ -89,9 +89,17 @@ demo">
 
 
 <body>
-  <header id="header" class="inner"><div class="alignleft">
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
   <h1><a href="/">帅羊羊的博客</a></h1>
-  <h2><a href="/"></a></h2>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -228,7 +236,7 @@ demo">
 	var t = 30;
 	var n = 350;
 	var r = 350;
-	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
 	var s = "mw-harlem_shake_me";
 	var o = "im_first";
 	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
@@ -301,13 +309,13 @@ demo">
          
         
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#scrapy使用BloomFilter优化URL去重"><span class="toc-text">scrapy使用BloomFilter优化URL去重</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#源码解读"><span class="toc-text">源码解读</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#scrapy使用BloomFilter优化URL去重"><span class="toc-text">scrapy使用BloomFilter优化URL去重</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BloomFilter算法原理简介"><span class="toc-text">BloomFilter算法原理简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#保存元素信息"><span class="toc-text">保存元素信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断元素是否在集合中"><span class="toc-text">判断元素是否在集合中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#精度控制和参数选择"><span class="toc-text">精度控制和参数选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码解读"><span class="toc-text">源码解读</span></a></li></ol></li></ol>
     </div>
 
       
         <h1 id="scrapy使用BloomFilter优化URL去重"><a href="#scrapy使用BloomFilter优化URL去重" class="headerlink" title="scrapy使用BloomFilter优化URL去重"></a>scrapy使用BloomFilter优化URL去重</h1><blockquote>
-<p> scrapy原有的url去重算法是sha1 Hash算法，去重队列存放在内存中。</p>
-<p>当URL记录上亿时，内存开销会非常大，因此需要更加节省内存的算法来实现URL过滤。</p>
+<p> scrapy原有的url去重算法是sha1 Hash算法，去重队列存放在内存中,数据结构为set。</p>
+<p> 当URL记录上亿时，内存开销会非常大，因此需要更加节省内存的算法来实现URL过滤。<br> MD5输出128bit SHA1输出160bit SHA256输出256bit，对于100亿的去重对象，需要保存（128bit * 100亿 约150GB， 160bit的约187GB），使用bloomfilter的占用空间约为25Gb（在保证出错率不超过0.01%的情况下）。</p>
 </blockquote>
 <p><strong>参考文章</strong></p>
 <ul>
@@ -316,6 +324,49 @@ demo">
 <li><a href="https://github.com/LiuXingMing/Scrapy_Redis_Bloomfilter" target="_blank" rel="external">demo</a></li>
 </ul>
 <a id="more"></a>
+<h2 id="BloomFilter算法原理简介"><a href="#BloomFilter算法原理简介" class="headerlink" title="BloomFilter算法原理简介"></a>BloomFilter算法原理简介</h2><p>bloomfilter是基于bitmap数据结构的一种算法，用于精确（非100%准确）判断某个元素是否在集合中。使用场景为对空间、时间要求严格，但是能够容忍一定程度的失误率。</p>
+<p>布隆过滤器的优点就是利用很少的空间就能实现很高的精确度。</p>
+<ul>
+<li>黑名单系统</li>
+<li>垃圾邮件过滤</li>
+<li>爬虫网址去重系统</li>
+</ul>
+<h3 id="保存元素信息"><a href="#保存元素信息" class="headerlink" title="保存元素信息"></a>保存元素信息</h3><ul>
+<li><p>共有<strong>n</strong>个对象</p>
+</li>
+<li><p>使用长度为<strong>m bit</strong>的bitarray记录对象信息。（m远大于n）</p>
+</li>
+<li><p>使用<strong>k个</strong>相互独立的哈希函数提取对象信息，标记bitarray中<strong>模m取余</strong>后的k个位置。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180603/JFEgaB6K4l.png?imageslim" alt="mark"></p>
+</li>
+<li><p>在存储元素的过程中，可能一个不在集合中的元素的k个哈希位，全部都被标记。因此容易产生误判，即不再集合中的元素被误判为已经存在于集合中，而已经在集合中的元素，是绝对不可能被误判为不再集合中的。</p>
+<p>即使误差三千也不会漏掉一个。</p>
+</li>
+</ul>
+<h3 id="判断元素是否在集合中"><a href="#判断元素是否在集合中" class="headerlink" title="判断元素是否在集合中"></a>判断元素是否在集合中</h3><ol>
+<li>用k个哈希函数处理对象A</li>
+<li>将k个哈希值模m，得到k个位置</li>
+<li>如果bitarray中k个位置全部都为1，则A存在于集合中，否则A不存在于集合中。</li>
+</ol>
+<h3 id="精度控制和参数选择"><a href="#精度控制和参数选择" class="headerlink" title="精度控制和参数选择"></a>精度控制和参数选择</h3><blockquote>
+<p>假设样本数量n为100亿，容忍的失误率不超过0.01%，</p>
+</blockquote>
+<p>bitarray大小为m，样本数量为n，失误率为p</p>
+<ul>
+<li><p>确定bitarray的大小m</p>
+<p>$$m=- \frac{n \times \ln p}{(\ln2)^2}$$</p>
+<p>当 $p=0.01\%$ 时， $m\approx19.19n$ ，  m取20n，2000亿bit约为25G。</p>
+</li>
+<li><p>确定哈希函数的个数k</p>
+<p>$$k=\ln2\times\frac{m}{n}​$$     </p>
+<p>可以求得k=14。</p>
+</li>
+<li><p>计算真实的失误率p</p>
+<p>由于m越大失误率越低，在确定m时，一般会向上取整。实际的计算公式如下：</p>
+<p>$$p=(1-e^{-\frac{mk}{n}})^k$$</p>
+<p>当n=100亿， m=20n时，k=14，p=0.006%。</p>
+</li>
+</ul>
 <h2 id="源码解读"><a href="#源码解读" class="headerlink" title="源码解读"></a>源码解读</h2><ul>
 <li><p>当scrapy的scheduler将url request任务入队时，首先要判断URL是否重复</p>
 <p>在scrapy_redis/scheduler下有一个enqueue_request方法</p>
@@ -330,6 +381,7 @@ demo">
 <p>使用的是redis的集合添加操作sadd，如果存在sadd会返回0</p>
 <p>redis中存放的是request的指纹，<code>request_fingerprint(request)</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">request_seen</span><span class="params">(self, request)</span>:</span></div><div class="line">    fp = self.request_fingerprint(request)</div><div class="line">    <span class="comment"># This returns the number of values added, zero if already exists.</span></div><div class="line">    added = self.server.sadd(self.key, fp)</div><div class="line">    <span class="keyword">return</span> added == <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>​</p>
 </li>
 <li><p>查看<code>request_fingerprint(request)</code>函数</p>
 <p>fp是<code>hashlib.sha1</code>对象，也就是说存放在redis数据库中的是request的sha1摘要。</p>
@@ -356,13 +408,13 @@ demo">
         
   
   <div class="categories">
-    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/scrapy/">scrapy</a>
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/Scrapy/">Scrapy</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/爬虫/">爬虫</a>, <a href="/tags/Python/">Python</a>, <a href="/tags/Scrapy/">Scrapy</a>
+    <a href="/tags/Python/">Python</a>, <a href="/tags/爬虫/">爬虫</a>, <a href="/tags/Scrapy/">Scrapy</a>
   </div>
 
 <!-- 打赏按钮开始 -->
@@ -442,7 +494,7 @@ window.onload = function(){
     <a href="/2017/09/04/技术/RESTful API 设计/" class="alignleft prev" >上一页</a>
     
     
-    <a href="/2017/09/02/技术/screen 连接出错/" class="alignright next" >下一页</a>
+    <a href="/2017/09/02/技术/Screen 连接出错/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
@@ -661,7 +713,7 @@ window.onload = function(){
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
@@ -699,6 +751,8 @@ window.onload = function(){
   
     <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
   
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
     <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
@@ -709,17 +763,25 @@ window.onload = function(){
   
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
     <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
   
     <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
   
     <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
@@ -733,13 +795,19 @@ window.onload = function(){
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
     <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
   
     <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
@@ -751,7 +819,7 @@ window.onload = function(){
   
     <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>20</small></li>
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
@@ -761,9 +829,17 @@ window.onload = function(){
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
-    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
   
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
   
     <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
@@ -775,19 +851,25 @@ window.onload = function(){
   
     <li><a href="/tags/linux/">linux</a><small>1</small></li>
   
-    <li><a href="/tags/python/">python</a><small>3</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/restful/">restful</a><small>1</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
   
     <li><a href="/tags/框架/">框架</a><small>1</small></li>
   
     <li><a href="/tags/测试/">测试</a><small>1</small></li>
   
     <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
 </div>
@@ -801,7 +883,7 @@ window.onload = function(){
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
@@ -812,7 +894,7 @@ window.onload = function(){
 <div class="copyright">
 		
 		  
-		  &copy;2014&mdash; <span itemprop="copyrightYear">2017</span>
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
 		  
   <span class="with-love">
     <i class="fa fa-heart" style="color:red"></i>
@@ -852,6 +934,13 @@ window.onload = function(){
     });
   </script>
 
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
 <!-- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">

@@ -83,9 +83,17 @@
 
 
 <body>
-  <header id="header" class="inner"><div class="alignleft">
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
   <h1><a href="/">帅羊羊的博客</a></h1>
-  <h2><a href="/"></a></h2>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -222,7 +230,7 @@
 	var t = 30;
 	var n = 350;
 	var r = 350;
-	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
 	var s = "mw-harlem_shake_me";
 	var o = "im_first";
 	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
@@ -283,26 +291,28 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-08-15T16:00:00.000Z"><a href="/2016/08/16/技术/Django学习笔记2/">2016-08-16</a></time>
+          <time datetime="2017-03-01T16:00:00.000Z"><a href="/2017/03/02/技术/Scrapy-redis分布式爬虫入门/">2017-03-02</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/08/16/技术/Django学习笔记2/">Django 学习笔记(二)</a></h1>
+    <h1 class="title"><a href="/2017/03/02/技术/Scrapy-redis分布式爬虫入门/">scrapy-redis 分布式爬虫</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="Django进阶"><a href="#Django进阶" class="headerlink" title="Django进阶"></a>Django进阶</h1><h3 id="1、用户信息扩展"><a href="#1、用户信息扩展" class="headerlink" title="1、用户信息扩展"></a>1、用户信息扩展</h3><h4 id="1-1、使用profile扩展"><a href="#1-1、使用profile扩展" class="headerlink" title="1.1、使用profile扩展"></a>1.1、使用profile扩展</h4><p>在models定义一个profile表，使用外键关联</p>
-<h4 id="1-2、继承AbstractUser"><a href="#1-2、继承AbstractUser" class="headerlink" title="1.2、继承AbstractUser"></a>1.2、继承AbstractUser</h4><p>在models创建继承AbstractUser的User类，为其增加新的字段，比如QQ号，手机号。在setting里设置字段 <code>AUTH_USER_MODEL = &#39;blog.User&#39;</code><br>在admin注册自己的User。</p>
+        <h1 id="scrapy-redis-分布式爬虫"><a href="#scrapy-redis-分布式爬虫" class="headerlink" title="scrapy-redis 分布式爬虫"></a>scrapy-redis 分布式爬虫</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h4 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h4><ul>
+<li>安装redis数据库 </li>
+<li><code>pip install scrapy redis-py scrapy-redis</code></li>
+</ul>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/08/16/技术/Django学习笔记2/#more" class="more-link">阅读全文</a>
+            <a href="/2017/03/02/技术/Scrapy-redis分布式爬虫入门/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -335,36 +345,27 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-08-12T16:00:00.000Z"><a href="/2016/08/13/技术/django学习笔记1/">2016-08-13</a></time>
+          <time datetime="2017-02-28T16:00:00.000Z"><a href="/2017/03/01/技术/Scapy-redis源码阅读/">2017-03-01</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/08/13/技术/django学习笔记1/">Django 学习笔记(一)</a></h1>
+    <h1 class="title"><a href="/2017/03/01/技术/Scapy-redis源码阅读/">Scrapy_redis源码阅读</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="Django-学习笔记1"><a href="#Django-学习笔记1" class="headerlink" title="Django 学习笔记1"></a>Django 学习笔记1</h1><blockquote>
-<p>基于python2.7和django1.10</p>
+        <h2 id="scapy-redis-源码阅读"><a href="#scapy-redis-源码阅读" class="headerlink" title="scapy-redis 源码阅读"></a>scapy-redis 源码阅读</h2><h3 id="connection-py"><a href="#connection-py" class="headerlink" title="connection.py"></a>connection.py</h3><blockquote>
+<p>创建redis连接实例</p>
 </blockquote>
-<p>django工作流程：<br><img src="http://ww3.sinaimg.cn/large/af9df239gw1f8gckh77jrj20hm0c2dgy.jpg" alt=""></p>
-<h3 id="1、快速开始"><a href="#1、快速开始" class="headerlink" title="1、快速开始"></a>1、快速开始</h3><h4 id="1-1、创建项目"><a href="#1-1、创建项目" class="headerlink" title="1.1、创建项目"></a>1.1、创建项目</h4><ul>
-<li><p>django-admin.py startproject website</p>
-</li>
-<li><p>manage.py startapp blog</p>
-</li>
-<li><p>修改webisite下的setting.py urls.py</p>
-</li>
-</ul>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/08/13/技术/django学习笔记1/#more" class="more-link">阅读全文</a>
+            <a href="/2017/03/01/技术/Scapy-redis源码阅读/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -397,312 +398,101 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-08-09T16:00:00.000Z"><a href="/2016/08/10/技术/PhantomJS + Selenium实现登陆网站签到/">2016-08-10</a></time>
+          <time datetime="2017-02-28T16:00:00.000Z"><a href="/2017/03/01/技术/Redis学习笔记/">2017-03-01</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/08/10/技术/PhantomJS + Selenium实现登陆网站签到/">PhantomJS + Selenium实现登陆网站签到</a></h1>
+    <h1 class="title"><a href="/2017/03/01/技术/Redis学习笔记/">redis学习笔记</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="PhantomJS-Selenium实现登陆网站签到"><a href="#PhantomJS-Selenium实现登陆网站签到" class="headerlink" title="PhantomJS + Selenium实现登陆网站签到"></a>PhantomJS + Selenium实现登陆网站签到</h3><blockquote>
-<p>js脚本是由浏览器前端加载执行的，因此爬虫要想渲染js，就要实现js引擎，或者我们分析出js发送的请求后，自己构造(很难，复杂)。</p>
-<p>另外一种，就是使用selenium调用浏览器自动化处理。phantomjs是一个无头浏览器，没有界面，因此运行速度要比chrome快一点，没有弹窗干扰。</p>
-<p>requests，urllib之类的http库，只能将http资源请求下来，其中的img link js标签都不会自动加载。而浏览器会请求所有的资源。</p>
+        <h2 id="redis学习笔记"><a href="#redis学习笔记" class="headerlink" title="redis学习笔记"></a>redis学习笔记</h2><p>no sql：redis，mongodb，Memcached</p>
+<p>redis：Remote Directory Server，远程字典服务器。</p>
+<p>键值数据类型支持：</p>
+<p>●字符串String类型</p>
+<p>set、get、getset。。。 </p>
+<p>●散列Hash类型</p>
+<p>类似python的字典</p>
+<p>hset、hget、hdel、hgetall、hkeys、hvals</p>
+<p>●列表List类型</p>
+<p>lpush、rpush、lpop、rpop、llen</p>
+<p>●集合Set类型</p>
+<p>sadd、smembers、srem、spop、sdiff(差集)、sinter(交集)、sunion(并集)、scard(长度)、</p>
+<p>●有序集合Zset类型</p>
+<p> <code>ZADD key [NX|XX][CH] [INCR] score member [score member ...]</code></p>
+<p>zscore、zcard、zrank、</p>
+<p>一个键最多存储512MB</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/03/01/技术/Redis学习笔记/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-02-27T16:00:00.000Z"><a href="/2017/02/28/技术/Numpy-liner-skills/">2017-02-28</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/02/28/技术/Numpy-liner-skills/">Numpy线性运算</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h2><blockquote>
+<p>解方程组</p>
 </blockquote>
-<h4 id="目标网站分析"><a href="#目标网站分析" class="headerlink" title="目标网站分析"></a>目标网站分析</h4>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/08/10/技术/PhantomJS + Selenium实现登陆网站签到/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-08-08T16:00:00.000Z"><a href="/2016/08/09/技术/python2爬虫笔记/">2016-08-09</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/08/09/技术/python2爬虫笔记/">爬虫笔记(基于python2)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <blockquote>
-<p>基于python2.7</p>
-</blockquote>
-<h3 id="urllib2库的用法"><a href="#urllib2库的用法" class="headerlink" title="urllib2库的用法"></a>urllib2库的用法</h3><h4 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h4><ul>
-<li>urlopen方法打开网页</li>
-</ul>
-<p>传入3个参数，data和timeout不是必须的；返回网页的源码可用read方法读出。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">response = urlopen(url,data,timeout)</div><div class="line">content = response.read()</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/08/09/技术/python2爬虫笔记/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-08-06T16:00:00.000Z"><a href="/2016/08/07/技术/python编程技巧/">2016-08-07</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/08/07/技术/python编程技巧/">python编程技巧</a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#python编程技巧"><span class="toc-text">python编程技巧</span></a></li></ol>
-    </div>
-
-      
-        <h3 id="python编程技巧"><a href="#python编程技巧" class="headerlink" title="python编程技巧"></a>python编程技巧</h3><ul>
-<li><code>x的n次方求解 ： x ** n</code></li>
-<li>22</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-dict-reverse/">2016-07-29</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/29/技术/python-dict-reverse/">python字典键值转置</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="dict的key与value转置"><a href="#dict的key与value转置" class="headerlink" title="dict的key与value转置"></a>dict的key与value转置</h3><ul>
-<li>如果value1值唯一，则直接交换key1与value1的位置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from collections import OrderedDict as od_dict #生成有序的dict</div><div class="line"></div><div class="line">d= od_dict((v,k) for k,v in OID_FS_lst.items()) </div><div class="line">print d</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/29/技术/python-dict-reverse/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-28T16:00:00.000Z"><a href="/2016/07/29/技术/python-str/">2016-07-29</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/29/技术/python-str/">Python 字符串技巧</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="将-u3232-u6674转换成unicode字符"><a href="#将-u3232-u6674转换成unicode字符" class="headerlink" title="将 \u3232\u6674转换成unicode字符"></a>将 <code>\u3232\u6674</code>转换成unicode字符</h3><ul>
-<li>运用str对象的decode方法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#任何字符，都可以在：</div><div class="line">#http://unicodelookup.com/</div><div class="line">#中，查找到对应的unicode的值</div><div class="line"></div><div class="line">s=&apos;\u6210\u529f&apos;</div><div class="line">print s.decode(&apos;unicode-escape&apos;)</div><div class="line">...成功</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/07/29/技术/python-str/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2016-07-27T16:00:00.000Z"><a href="/2016/07/28/技术/something-with-python-project/">2016-07-28</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2016/07/28/技术/something-with-python-project/">Python创建项目</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="使用Cookiecutter模板创建Python项目样式"><a href="#使用Cookiecutter模板创建Python项目样式" class="headerlink" title="使用Cookiecutter模板创建Python项目样式"></a>使用Cookiecutter模板创建Python项目样式</h3><ul>
-<li>首先安装cookiecutter</li>
-</ul>
-<p><code>pip install -U cookiecutter</code></p>
 <ul>
-<li>在github上找一个模板</li>
-<li>在某个目录下执行</li>
+<li>Numpy和Scipy模块</li>
+<li>Numpy进行简单的描述性统计计算</li>
+<li>Numpy进行线性代数运算</li>
+<li>Numpy计算特征值和特征向量</li>
+<li>Numpy随机数</li>
+<li>创建掩码式Numpy数组</li>
 </ul>
-<p><code>cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git</code>，使用找到的模板创建项目，输入相关参数</p>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/28/技术/something-with-python-project/#more" class="more-link">阅读全文</a>
+            <a href="/2017/02/28/技术/Numpy-liner-skills/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -735,27 +525,33 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-25T16:00:00.000Z"><a href="/2016/07/26/技术/config-of-Linux/">2016-07-26</a></time>
+          <time datetime="2017-02-25T16:00:00.000Z"><a href="/2017/02/26/技术/Matplotlib-use/">2017-02-26</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/26/技术/config-of-Linux/">Linux系统服务配置</a></h1>
+    <h1 class="title"><a href="/2017/02/26/技术/Matplotlib-use/">Matplotlib笔记</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uname -r</div></pre></td></tr></table></figure>
-<p>稳定版本的偶数版，如2.6.x，适合于商业与家用环境使用；开发中版本，如2.5.x，适合开发特殊功能的环境。</p>
-<p>安装内核文件：<code>apt-get install linux-headers-$(uname -r)</code></p>
+        <h3 id="matplotlib"><a href="#matplotlib" class="headerlink" title="matplotlib"></a>matplotlib</h3><ul>
+<li>matplotlib API</li>
+<li>pandas中绘图函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%pylab</div></pre></td></tr></table></figure>
+<pre><code>Using matplotlib backend: Qt5Agg
+Populating the interactive namespace from numpy and matplotlib
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%matplotlib inline</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/26/技术/config-of-Linux/#more" class="more-link">阅读全文</a>
+            <a href="/2017/02/26/技术/Matplotlib-use/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -788,21 +584,76 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-24T16:00:00.000Z"><a href="/2016/07/25/技术/file-and-dir-of-Linux/">2016-07-25</a></time>
+          <time datetime="2017-02-24T16:00:00.000Z"><a href="/2017/02/25/技术/Pandas-skills/">2017-02-25</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2016/07/25/技术/file-and-dir-of-Linux/">Linux 目录 文件 权限</a></h1>
+    <h1 class="title"><a href="/2017/02/25/技术/Pandas-skills/">Pandas学习笔记</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="Linux目录操作"><a href="#Linux目录操作" class="headerlink" title="Linux目录操作"></a>Linux目录操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.         # 代表此层目录</div><div class="line">..        # 代表上一层目录</div><div class="line">-         # 代表前一个工作目录</div><div class="line">~         # 代表『目前使用者身份』所在的家目录</div><div class="line">~account  # 代表 account 这个使用者的家目录(account是个帐号名称)</div></pre></td></tr></table></figure>
+        <h1 id="Pandas数据结构"><a href="#Pandas数据结构" class="headerlink" title="Pandas数据结构"></a>Pandas数据结构</h1><h3 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h3><h3 id="汇总和计算描述统计"><a href="#汇总和计算描述统计" class="headerlink" title="汇总和计算描述统计"></a>汇总和计算描述统计</h3><h3 id="处理缺失数据"><a href="#处理缺失数据" class="headerlink" title="处理缺失数据"></a>处理缺失数据</h3><h3 id="层次化索引"><a href="#层次化索引" class="headerlink" title="层次化索引"></a>层次化索引</h3><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/02/25/技术/Pandas-skills/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-02-15T16:00:00.000Z"><a href="/2017/02/16/技术/Scrapy-image-download/">2017-02-16</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/02/16/技术/Scrapy-image-download/">scrapy ImagePipeline下载gif图片和自定义图片文件名称</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="scrapy图片下载保留gif格式和自定义图片名称"><a href="#scrapy图片下载保留gif格式和自定义图片名称" class="headerlink" title="scrapy图片下载保留gif格式和自定义图片名称"></a>scrapy图片下载保留gif格式和自定义图片名称</h3><p>继承ImagesPipeline并重写部分函数</p>
 <ul>
-<li>在所有目录底下都会存在的两个目录，分别是<code>.</code>与<code>..</code></li>
-<li>根目录的上一层<code>(..)</code>与根目录自己<code>(.)</code>是同一个目录</li>
+<li><p><code>get_media_requests</code>  返回下载图片的Request</p>
+</li>
+<li><p><code>file_path</code> 返回文件名，文件名是sha1哈希image url生成的image_guid</p>
+</li>
+<li><p><code>convert_image</code>  该函数将图片转化成rgb 模式的jpg格式，避免重新下载近期下载过的图片</p>
+</li>
 </ul>
       
     </div>
@@ -810,7 +661,178 @@
       
         
           <div class="alignleft">
-            <a href="/2016/07/25/技术/file-and-dir-of-Linux/#more" class="more-link">阅读全文</a>
+            <a href="/2017/02/16/技术/Scrapy-image-download/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-02-11T16:00:00.000Z"><a href="/2017/02/12/技术/Linux-how-to-use/">2017-02-12</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/02/12/技术/Linux-how-to-use/">如何优雅的使用Linux</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="如何优雅的使用Linux"><a href="#如何优雅的使用Linux" class="headerlink" title="如何优雅的使用Linux"></a>如何优雅的使用Linux</h2><blockquote>
+<p>作为学习/开发环境使用，而不是娱乐。写这边文章是为了下次重装系统快速恢复，系统使用以为简洁、优雅、高效为目标。</p>
+</blockquote>
+<h3 id="1、选择"><a href="#1、选择" class="headerlink" title="1、选择"></a>1、选择</h3><ul>
+<li><p>发行版选择Debian</p>
+<p>之前一直使用Ubuntu，大概过那么一两个月就会出现啥问题，然后不得不重装系统，我严重Ubuntu16.04的桌面有bug，开2个软件窗口就卡的爹妈不认了。现在决定再也不用Ubuntu了，改用Debian8后稳定多了，图形桌面很少崩溃。关于centos和openSUSE，只在搭建服务器使用过，个人使用还是更习惯Debian系的。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/02/12/技术/Linux-how-to-use/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-02-10T16:00:00.000Z"><a href="/2017/02/11/技术/Numpy-use/">2017-02-11</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/02/11/技术/Numpy-use/">Numpy笔记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Numpy数组入门"><a href="#Numpy数组入门" class="headerlink" title="Numpy数组入门"></a>Numpy数组入门</h2><h3 id="1-Numpy数组对象"><a href="#1-Numpy数组对象" class="headerlink" title="1 Numpy数组对象"></a>1 Numpy数组对象</h3><p>Numpy数组</p>
+<ul>
+<li>数组中的元素类型必须一致</li>
+<li>数组的空间大小可以确定，可以运用向量化运算，底层c实现，速度快</li>
+<li>数组下标0开始</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/02/11/技术/Numpy-use/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-02-09T16:00:00.000Z"><a href="/2017/02/10/技术/Ipython-noteboke-use/">2017-02-10</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/02/10/技术/Ipython-noteboke-use/">ipython使用技巧</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="ipython使用技巧"><a href="#ipython使用技巧" class="headerlink" title="ipython使用技巧"></a>ipython使用技巧</h2><ul>
+<li>ipython –pylab     pylab开关，ipython启动时自动导入np，sci，和matplotlib</li>
+<li>ipython  –pylab inline  进入pylab模式，且图片内嵌到网页中</li>
+<li>%logstart            保存会话，记录日志； %logstop关闭日志记录功能</li>
+<li>!date                    !+shell命令，执行系统shell命令 c = !date</li>
+<li>%hist                   显示历史命令</li>
+<li>%hist -g print             在输入的历史命令中搜索print</li>
+<li><code>% xx</code>                   magic function，单独一行时可以省略%</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/02/10/技术/Ipython-noteboke-use/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -1033,7 +1055,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
@@ -1071,6 +1093,8 @@
   
     <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
   
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
     <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
@@ -1081,17 +1105,25 @@
   
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
     <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
   
     <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
   
     <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
@@ -1105,13 +1137,19 @@
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
     <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
   
     <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
@@ -1123,7 +1161,7 @@
   
     <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>20</small></li>
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
@@ -1133,9 +1171,17 @@
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
-    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
   
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
   
     <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
@@ -1147,19 +1193,25 @@
   
     <li><a href="/tags/linux/">linux</a><small>1</small></li>
   
-    <li><a href="/tags/python/">python</a><small>3</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/restful/">restful</a><small>1</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
   
     <li><a href="/tags/框架/">框架</a><small>1</small></li>
   
     <li><a href="/tags/测试/">测试</a><small>1</small></li>
   
     <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
 </div>
@@ -1173,7 +1225,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
@@ -1184,7 +1236,7 @@
 <div class="copyright">
 		
 		  
-		  &copy;2014&mdash; <span itemprop="copyrightYear">2017</span>
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
 		  
   <span class="with-love">
     <i class="fa fa-heart" style="color:red"></i>
@@ -1224,6 +1276,13 @@
     });
   </script>
 
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
 <!-- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">

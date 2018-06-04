@@ -1,0 +1,1446 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java编程高级编程 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="Java编程高级多线程JVM至少启动2个线程，main和gc
+三种实现方式
+继承Thread类
+必须覆写Thread类中的run方法，是线程运行的主体。
+start方法启动线程，运行的是run内的代码
+
+实现Runnable接口
+解决单继承的限制
+覆写run方法
+Runnable对象没有start方法，Thread类可以接收Runnable接口对象，构造Thread实例，然后并调用start启动。
+
+Callable接口Runnable接口的run方法不能返回操作接口，java.util.concurrent.Callable提供。
+Callable由FutureTask对象接收。FutureTask对象可以取得返回结果，由Thread类启动FutureTask。
+实现区别
+接口可以解决单继承问题
+
+Thread内部实现了Runnable接口，是其子类
+Thread实现系统资源分配和执行目标功能，Runnable负责执行目标功能。
+Thread很像代理设计模式，但是start方法不是接口提供的。
+
+Runnable能更好的描述线程间的数据共享">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java编程高级编程"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-01-06T16:00:00.000Z"><a href="/2018/01/07/技术/Java高级/">2018-01-07</a></time>
+        
+	  
+      
+  
+    <h1 class="title">Java编程高级编程</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java编程高级"><span class="toc-text">Java编程高级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程"><span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#继承Thread类"><span class="toc-text">继承Thread类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现Runnable接口"><span class="toc-text">实现Runnable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Callable接口"><span class="toc-text">Callable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现区别"><span class="toc-text">实现区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程对象命名与获取"><span class="toc-text">线程对象命名与获取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#休眠、优先级"><span class="toc-text">休眠、优先级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#同步和死锁"><span class="toc-text">同步和死锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生产者消费者"><span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sleep和wait的区别"><span class="toc-text">sleep和wait的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StringBuffer对象"><span class="toc-text">StringBuffer对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#StringBuilder"><span class="toc-text">StringBuilder</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runtime类"><span class="toc-text">Runtime类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#System类"><span class="toc-text">System类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象克隆"><span class="toc-text">对象克隆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学操作类"><span class="toc-text">数学操作类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Math类"><span class="toc-text">Math类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random类"><span class="toc-text">Random类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BigInteger和BigDecimal"><span class="toc-text">BigInteger和BigDecimal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Date"><span class="toc-text">Date</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#日期格式化"><span class="toc-text">日期格式化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Calendar类"><span class="toc-text">Calendar类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较器"><span class="toc-text">比较器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Arrays类"><span class="toc-text">Arrays类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Comparable接口"><span class="toc-text">Comparable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二叉树"><span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Comparator接口"><span class="toc-text">Comparator接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正则表达式"><span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#String的正则支持"><span class="toc-text">String的正则支持</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反射机制"><span class="toc-text">反射机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#利用反射实例化对象"><span class="toc-text">利用反射实例化对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#利用反射调用构造"><span class="toc-text">利用反射调用构造</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调用普通方法"><span class="toc-text">调用普通方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调用成员属性"><span class="toc-text">调用成员属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#国际化支持"><span class="toc-text">国际化支持</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Locale类"><span class="toc-text">Locale类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Properties类"><span class="toc-text">Properties类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO操作"><span class="toc-text">IO操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#File类"><span class="toc-text">File类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#目录操作"><span class="toc-text">目录操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字节流"><span class="toc-text">字节流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符流"><span class="toc-text">字符流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字节流与字符流的区别"><span class="toc-text">字节流与字符流的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转换流"><span class="toc-text">转换流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符编码"><span class="toc-text">字符编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存流"><span class="toc-text">内存流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印流"><span class="toc-text">打印流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#System类的IO支持"><span class="toc-text">System类的IO支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓冲流"><span class="toc-text">缓冲流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scanner"><span class="toc-text">Scanner</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象序列化"><span class="toc-text">对象序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#序列化支持"><span class="toc-text">序列化支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#序列化"><span class="toc-text">序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反序列化"><span class="toc-text">反序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#transient关键字"><span class="toc-text">transient关键字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类集"><span class="toc-text">类集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection接口"><span class="toc-text">Collection接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#List接口"><span class="toc-text">List接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set接口"><span class="toc-text">Set接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合的输出方式"><span class="toc-text">集合的输出方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map接口"><span class="toc-text">Map接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap"><span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HashTable"><span class="toc-text">HashTable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterator输出"><span class="toc-text">Iterator输出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#栈"><span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collections工具类"><span class="toc-text">Collections工具类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据流"><span class="toc-text">数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDBC"><span class="toc-text">JDBC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库连接"><span class="toc-text">数据库连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Statement接口操作数据库"><span class="toc-text">Statement接口操作数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PreparedStatement"><span class="toc-text">PreparedStatement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#批处理与事务处理"><span class="toc-text">批处理与事务处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DAO设计模式"><span class="toc-text">DAO设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分层思想"><span class="toc-text">分层思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库操作类"><span class="toc-text">数据库操作类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据对象类"><span class="toc-text">数据对象类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据层接口"><span class="toc-text">数据层接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据层实现类"><span class="toc-text">数据层实现类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据层工厂类"><span class="toc-text">数据层工厂类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#业务层接口标准"><span class="toc-text">业务层接口标准</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#业务层子类"><span class="toc-text">业务层子类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#业务层工厂类"><span class="toc-text">业务层工厂类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码测试"><span class="toc-text">代码测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#调用测试"><span class="toc-text">调用测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#junit测试"><span class="toc-text">junit测试</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <h2 id="Java编程高级"><a href="#Java编程高级" class="headerlink" title="Java编程高级"></a>Java编程高级</h2><h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>JVM至少启动2个线程，main和gc</p>
+<p>三种实现方式</p>
+<h4 id="继承Thread类"><a href="#继承Thread类" class="headerlink" title="继承Thread类"></a>继承Thread类</h4><ul>
+<li>必须覆写Thread类中的run方法，是线程运行的主体。</li>
+<li>start方法启动线程，运行的是run内的代码</li>
+</ul>
+<h4 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h4><ul>
+<li>解决单继承的限制</li>
+<li>覆写run方法</li>
+<li>Runnable对象没有start方法，Thread类可以接收Runnable接口对象，构造Thread实例，然后并调用start启动。</li>
+</ul>
+<h4 id="Callable接口"><a href="#Callable接口" class="headerlink" title="Callable接口"></a>Callable接口</h4><p>Runnable接口的run方法不能返回操作接口，<code>java.util.concurrent.Callable</code>提供。</p>
+<p>Callable由FutureTask对象接收。FutureTask对象可以取得返回结果，由Thread类启动FutureTask。</p>
+<h4 id="实现区别"><a href="#实现区别" class="headerlink" title="实现区别"></a>实现区别</h4><ol>
+<li><p>接口可以解决单继承问题</p>
+</li>
+<li><p>Thread内部实现了Runnable接口，是其子类</p>
+<p>Thread实现系统资源分配和执行目标功能，Runnable负责执行目标功能。</p>
+<p>Thread很像代理设计模式，但是start方法不是接口提供的。</p>
+</li>
+<li><p>Runnable能更好的描述线程间的数据共享 </p>
+</li>
+</ol>
+<a id="more"></a>
+<h4 id="线程对象命名与获取"><a href="#线程对象命名与获取" class="headerlink" title="线程对象命名与获取"></a>线程对象命名与获取</h4><ul>
+<li>Thread对象构造时传入</li>
+<li>使用setName,getName方法</li>
+<li>取得当前线程对象 <code>Thread.currentThread()</code> </li>
+</ul>
+<h4 id="休眠、优先级"><a href="#休眠、优先级" class="headerlink" title="休眠、优先级"></a>休眠、优先级</h4><ul>
+<li>sleep() 单位是毫秒，中断sleep会抛出中断异常。</li>
+<li>setPriority</li>
+<li>getPriority</li>
+</ul>
+<h4 id="同步和死锁"><a href="#同步和死锁" class="headerlink" title="同步和死锁"></a>同步和死锁</h4><p>多个线程访问同一数据时，需要同步。</p>
+<p>多个线程互相等待，陷入死锁。</p>
+<ul>
+<li>同步代码块</li>
+</ul>
+<p>使用同步关键字 <code>synchronizied</code>定义同步代码块，锁定一个对象。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180107/9g9E6Kj14f.png?imageslim" alt="mark">  </p>
+<ul>
+<li><p>同步方法 </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180107/EF1L40DIHf.png?imageslim" alt="mark">  </p>
+</li>
+</ul>
+<h4 id="生产者消费者"><a href="#生产者消费者" class="headerlink" title="生产者消费者"></a>生产者消费者</h4><p>实现等待和唤醒机制，Object类提供了实现方法<code>notify, wait</code>。</p>
+<p>product设置一个flag标志，如果生产者可以生产则生产一个，并唤醒消费者线程来消费。如果不能生产，则需等待，当满足条件时会被唤醒生产。</p>
+<p>消费者如果可以消费，则消费一个并唤醒生产者生产，否则等待生产者来唤醒消费。</p>
+<h4 id="sleep和wait的区别"><a href="#sleep和wait的区别" class="headerlink" title="sleep和wait的区别"></a>sleep和wait的区别</h4><p>sleep是Thread实现的方法，线程睡眠到时自动唤醒。</p>
+<p>wait是Object类实现的，必须由notify实现。</p>
+<h3 id="StringBuffer对象"><a href="#StringBuffer对象" class="headerlink" title="StringBuffer对象"></a>StringBuffer对象</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/dmJJGHFI9c.png?imageslim" alt="mark"> </p>
+<ul>
+<li><p>StringBuffer可以修改内容，不能直接赋值实例化，可以使用append拼接字符串。</p>
+<p><code>StringBuffer(String obj)</code></p>
+<p><code>StringBuffer().append(String obj)</code></p>
+<p><code>StringBuffer(&quot;hello world&quot;).toString()</code></p>
+<p><code>String(StringBuffer obj)</code></p>
+</li>
+<li><p>String与StringBuffer的内容比较</p>
+<p><code>contentEquals</code></p>
+</li>
+</ul>
+<p>String与StringBuffer都是<code>CharSequence</code>接口的子类。 </p>
+<ul>
+<li>reverse   sbf字符串反转，常规实现入栈出栈。</li>
+<li><code>insert</code>  指定位置插入字符串</li>
+<li><code>delete(start, end)</code> 删除指定位置的字符串</li>
+</ul>
+<h4 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h4><p>定义和方法与StringBuffer很相似，在是否同步上有区别。</p>
+<ul>
+<li>StringBuffer类的方法都是同步方法，属于线程安全的操作</li>
+<li>StringBuilder的方法是异步方法</li>
+</ul>
+<h3 id="Runtime类"><a href="#Runtime类" class="headerlink" title="Runtime类"></a>Runtime类</h3><p>每个JVM进程都有唯一一个Runtime对象，其构造方法被私有化，属于单例设计，有一个static方法可以取得实例对象。</p>
+<ul>
+<li><p>totalMemory   返回全部内存大小</p>
+</li>
+<li><p>maxMemory   最大可用内存空间</p>
+</li>
+<li><p>freeMemory    空余可用空间</p>
+</li>
+<li><p>gc 释放垃圾空间</p>
+</li>
+<li><p>exec 创建Process进程对象</p>
+<p><code>Process p = runtime.exec(&#39;cmd.exe&#39;); p.destory()</code></p>
+</li>
+</ul>
+<h3 id="System类"><a href="#System类" class="headerlink" title="System类"></a>System类</h3><ul>
+<li><p>System.out.println()</p>
+</li>
+<li><p>System.arraycopy()</p>
+</li>
+<li><p>System.currentTimeMillis()  获取当前时间毫秒</p>
+</li>
+<li><p>gc()   等价于调用runtime对象的GC</p>
+<p>覆写Object对象的<code>finalize</code>方法，对象回收前被调用。</p>
+<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/76IiA35cK4.png?imageslim" alt="mark"> </p>
+</li>
+</ul>
+<h3 id="对象克隆"><a href="#对象克隆" class="headerlink" title="对象克隆"></a>对象克隆</h3><p>Object对象提供Clone方法 <code>protected Object clone() throws CloneNotSupportedException</code></p>
+<p>可克隆对象必须实现<code>Cloneable</code>接口，Cloneable是标识接口，没有抽象方法。覆写Object类的Clone方法，实现clone操作。</p>
+<p><code>@override clone(){return super().clone();}</code></p>
+<h3 id="数学操作类"><a href="#数学操作类" class="headerlink" title="数学操作类"></a>数学操作类</h3><h4 id="Math类"><a href="#Math类" class="headerlink" title="Math类"></a>Math类</h4><p>math提供的一切方法都是static方法。</p>
+<ul>
+<li>Math.E  Math.PI</li>
+<li>round() 四舍五入取整，  注意该方法的负数<code>-15.5</code>不产生进位。</li>
+</ul>
+<h4 id="Random类"><a href="#Random类" class="headerlink" title="Random类"></a>Random类</h4><p>产生随机数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Random rand = <span class="keyword">new</span> Random()</div><div class="line">rand.nextInt(<span class="number">100</span>)  <span class="comment">// 产生100以内随机整数</span></div></pre></td></tr></table></figure>
+<h4 id="BigInteger和BigDecimal"><a href="#BigInteger和BigDecimal" class="headerlink" title="BigInteger和BigDecimal"></a>BigInteger和BigDecimal</h4><p>大整数，超过double范围的值为Infinity，可以用String保存，使用时按位取出计算真实值。</p>
+<p>大浮点数，可以保存小数。</p>
+<ul>
+<li><p>BigInteger(String num)</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/aFa80E6352.png?imageslim" alt="mark"></p>
+</li>
+<li><p>BigDecimal</p>
+<p>可以利用其divide方法实现准确小数位的四舍五入。</p>
+<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/A8JeKg2fih.png?imageslim" alt="mark"> </p>
+<p>​</p>
+</li>
+</ul>
+<h3 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h3><p>java.util.Date</p>
+<ul>
+<li>new Date()   当前日期信息</li>
+<li>new Date(long 时间戳)</li>
+<li>date.getTime() 获取Date对象的时间戳</li>
+</ul>
+<h4 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h4><p><code>java.text.SimpleDateFormat</code></p>
+<ul>
+<li><p>构造方法传入string 日期转换格式</p>
+<p>格式转换：“yyyy年-MM月–dd日-ss秒-SSS毫秒”</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/K380D1hf53.png?imageslim" alt="mark"> </p>
+</li>
+<li><p>format(Date date)</p>
+</li>
+<li><p>parse(String date)</p>
+</li>
+</ul>
+<h4 id="Calendar类"><a href="#Calendar类" class="headerlink" title="Calendar类"></a>Calendar类</h4><p><code>java.util.Calendar</code>  </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/1D5eDmc311.png?imageslim" alt="mark"> </p>
+<h3 id="比较器"><a href="#比较器" class="headerlink" title="比较器"></a>比较器</h3><h4 id="Arrays类"><a href="#Arrays类" class="headerlink" title="Arrays类"></a>Arrays类</h4><p>与数组有关的操作</p>
+<ul>
+<li>java.util.Arrays.sort()  可以实现对象数组排序，对象必须实现Comparable接口</li>
+<li>binarySearch()  二分查找</li>
+<li>equals()  两个数组元素顺序，数值一样</li>
+<li>fill() 填充数组</li>
+<li>toString()  将数组以字符串的形式输出</li>
+</ul>
+<h4 id="Comparable接口"><a href="#Comparable接口" class="headerlink" title="Comparable接口"></a>Comparable接口</h4><p>定义对象的比较规则，String也是Comparable的子类。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/13CJh349F5.png?imageslim" alt="mark"></p>
+<p>Arrays.sort()会调用compareTo方法。</p>
+<h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><h4 id="Comparator接口"><a href="#Comparator接口" class="headerlink" title="Comparator接口"></a>Comparator接口</h4><p>挽救的接口</p>
+<p>开发完成的对象，在初期没有实现Comparable接口，后期需要比较，在不修改原对象的前提下，使用<code>java.util.Comparator</code> 接口。实现一个用于排序的工具类，排序时传入数组和排序工具类 <code>Arrays.sort(books, new BookComparator())</code></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/g138e3mg3H.png?imageslim" alt="mark"> </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/kmE67DfCdH.png?imageslim" alt="mark"> </p>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p><code>java.util.regex</code></p>
+<ul>
+<li><p>compile(‘regex str’)  返回Pattern对象</p>
+</li>
+<li><p>Matcher类</p>
+</li>
+<li><p><code>\\</code> 转义字符</p>
+</li>
+<li><p><code>[^abc]</code>不是abc里的任何一个</p>
+</li>
+<li><p>数量表达</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/d49bKamJhC.png?imageslim" alt="mark"> </p>
+</li>
+</ul>
+<h4 id="String的正则支持"><a href="#String的正则支持" class="headerlink" title="String的正则支持"></a>String的正则支持</h4><ul>
+<li>matches(regex str)    判断是否满足某种格式</li>
+<li>repalceAll   替换全部</li>
+<li>replaceFirst  替换匹配的第一个</li>
+<li>split  拆分</li>
+<li>split(str regex, int limit)  有个数限制的拆分   </li>
+</ul>
+<h3 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h3><p>先有类才能产生对象。类实例化对象的方式，new， clone，反射</p>
+<p>反是指通过对象找到其类。<code>getClass</code>方法</p>
+<p><code>java.util.Class</code>是所有反射操作开始的源头</p>
+<ul>
+<li>obj.getClass()</li>
+<li>cls.class  类的class属性，没有实例化对象就拿到了类</li>
+<li>Class.forName(‘java.lang.String’)  可以不用显式的import，而是通过类名获得类</li>
+</ul>
+<h4 id="利用反射实例化对象"><a href="#利用反射实例化对象" class="headerlink" title="利用反射实例化对象"></a>利用反射实例化对象</h4><p>工厂设计模式，解耦合，可扩展性强。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/C8Eh3LLKIA.png?imageslim" alt="mark"></p>
+<h4 id="利用反射调用构造"><a href="#利用反射调用构造" class="headerlink" title="利用反射调用构造"></a>利用反射调用构造</h4><p><code>java.lang.reflect.Constructor</code></p>
+<ul>
+<li><p>Class.getConstructor()获取类的构造方法</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/Ailg1LBkHd.png?imageslim" alt="mark"> </p>
+</li>
+</ul>
+<h4 id="调用普通方法"><a href="#调用普通方法" class="headerlink" title="调用普通方法"></a>调用普通方法</h4><p><code>java.lang.reflect.Method</code></p>
+<ul>
+<li><p>Class.getMethod() </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/aae74K1m4e.png?imageslim" alt="mark"> </p>
+</li>
+</ul>
+<h4 id="调用成员属性"><a href="#调用成员属性" class="headerlink" title="调用成员属性"></a>调用成员属性</h4><p><code>java.lang.reflect.Field</code></p>
+<p>反射可以实现取消封装，访问私有field</p>
+<ul>
+<li>field.get(‘fieldName’)</li>
+<li>field.set(‘fieldName’)</li>
+<li>field.setAccessible(true)  取消封装，设置可以访问</li>
+</ul>
+<h3 id="国际化支持"><a href="#国际化支持" class="headerlink" title="国际化支持"></a>国际化支持</h3><p><code>java.text.MessageFormat</code></p>
+<p>将语言支持放入资源文件里，key=value，占位符，字符串里的可变内容。</p>
+<p><code>info = 欢迎{0}来到{1}</code></p>
+<p>如果是中文，则必须是Unicode编码</p>
+<p>读取信息</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/H99aFaji7E.png?imageslim" alt="mark"> </p>
+<p>获取国家的区域和语言编码，默认调用全局资源文件。</p>
+<ul>
+<li>zh_CN   <code>Message_zh_CN.properties</code>  访问时不加语言和文件类型后缀</li>
+<li>en_US</li>
+</ul>
+<h4 id="Locale类"><a href="#Locale类" class="headerlink" title="Locale类"></a>Locale类</h4><ul>
+<li>Local(‘语言’, ‘国家’)</li>
+<li>getDefault()  获取当前语言环境</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/5ljI2K6IIc.png?imageslim" alt="mark"> </p>
+<h4 id="Properties类"><a href="#Properties类" class="headerlink" title="Properties类"></a>Properties类</h4><p>是Hashtable的子类，利用key-value保存String信息。</p>
+<ul>
+<li><p>setProperty(k, v)</p>
+</li>
+<li><p>getProperty(k, default v)</p>
+</li>
+<li><p>store(输出流，注释说明)</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/hkfefkkG6e.png?imageslim" alt="mark"> </p>
+</li>
+<li><p>load(输入流)  从读中取属性内容</p>
+<p>也可以用ResourceBundle类读取。</p>
+</li>
+</ul>
+<h3 id="IO操作"><a href="#IO操作" class="headerlink" title="IO操作"></a>IO操作</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/9dFHGBL0ac.png?imageslim" alt="mark"> </p>
+<h4 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h4><p><code>java.io.File</code></p>
+<ul>
+<li>定义File对象，传入文件路径</li>
+<li>创建新文件createNewFile()</li>
+<li>删除文件 delete()</li>
+<li>判断是否存在 exists()</li>
+<li>isDirectory()   isFile()</li>
+<li>lastModified()  最近修改日期</li>
+<li>File.separator  属性值，文件系统的分隔符</li>
+<li>取得文件大小 length()</li>
+</ul>
+<h4 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h4><ul>
+<li><p>getParent() 返回字符串，父路径</p>
+</li>
+<li><p>getParentFile() 取得父路径作为File类型，可以调用exists方法</p>
+</li>
+<li><p>mkdir() 创建一级目录</p>
+</li>
+<li><p>mkdirs()  创建多级目录</p>
+</li>
+<li><p>list 获取路径下的全部文件和文件夹的名字</p>
+</li>
+<li><p>listFiles()  返回的是File对象数组。</p>
+</li>
+<li><p>递归遍历或删除</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/9dhkeH3465.png?imageslim" alt="mark"> </p>
+<p>​</p>
+</li>
+</ul>
+<h4 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h4><p><code>InputStream</code> <code>OutputStream</code></p>
+<ul>
+<li>定义File对象</li>
+<li>实例化字节流或字符流对象</li>
+<li>数据读写</li>
+<li>关闭数据流</li>
+</ul>
+<p><strong>OutputStream</strong>抽象类实现了2个接口Closeable、Flushable。write方法输出。</p>
+<p><strong>FileOutputStream</strong>  接收一个File对象，可以覆盖内容或追加内容。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/J1fCIc5Jaf.png?imageslim" alt="mark"> </p>
+<p><strong>InputStream</strong> 的方法，skip跳过，read读取内容。使用<strong>FileInputStream</strong>读取文件。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/F2gLF5C8i3.png?imageslim" alt="mark"></p>
+<p>使用while循环读取文件内容：</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180108/144i5HHEaF.png?imageslim" alt="mark"> </p>
+<h4 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h4><p><strong>输出流Writer</strong> 对象，在Appendable接口里提供了append追加操作， write方法输出对象是字符数组char []，也可以是Str类型。</p>
+<p><strong>输入流Reader</strong> read(char [] cbuf)，输入流不能是Str接收。</p>
+<p><strong>FileWrite</strong> </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/E4lICf2Lh1.png?imageslim" alt="mark"> </p>
+<p><strong>FileReader</strong></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/jIC1JklkjK.png?imageslim" alt="mark"> </p>
+<h4 id="字节流与字符流的区别"><a href="#字节流与字符流的区别" class="headerlink" title="字节流与字符流的区别"></a>字节流与字符流的区别</h4><ul>
+<li>字节流可以与终端直接数据交互，字符流需要经过缓冲区处理后才能输出。</li>
+<li>flush()操作可以清空缓冲区</li>
+<li>字符流利于避免中文乱码问题，字符输出流可以直接输出Str对象</li>
+</ul>
+<h4 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h4><ul>
+<li><p><code>InputStreamReader</code>   <code>OutputStreamWriter</code> </p>
+<p>将字节流转换成字符流。</p>
+</li>
+</ul>
+<p><strong>实现文件copy</strong></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/G6BC654giG.png?imageslim" alt="mark"></p>
+<h4 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h4><p>java内部使用的是Unicode，常见的是英文ASCII码。</p>
+<p>程序编码使用UTF-8</p>
+<p>强制编码 <code>&quot;hello&quot;.getBytes(&quot;GBK&quot;)</code></p>
+<p>获取JVM默认编码</p>
+<p>乱码解决</p>
+<h4 id="内存流"><a href="#内存流" class="headerlink" title="内存流"></a>内存流</h4><ul>
+<li><p>字节内存流</p>
+<p><code>ByteArrayOutputStream</code>   <code>ByteArrayInputStream</code></p>
+</li>
+<li><p>字符内存流</p>
+</li>
+<li><p>output.toByteArray()</p>
+</li>
+</ul>
+<h4 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h4><p><code>PrintStream</code>  <code>PrintWriter</code> </p>
+<p><strong>装饰设计类</strong> : 对功能不足的OutputStream进行功能扩充。</p>
+<ul>
+<li><p>System.out.printf(String format,  args)    </p>
+<p>%d, %m.nf , %s</p>
+</li>
+<li><p>String.format(String fmt, args)</p>
+</li>
+</ul>
+<h4 id="System类的IO支持"><a href="#System类的IO支持" class="headerlink" title="System类的IO支持"></a>System类的IO支持</h4><p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/dC2L1Kb3BE.png?imageslim" alt="mark"> </p>
+<h4 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h4><ul>
+<li>BufferedReader   BufferedWriter</li>
+<li>BufferedInputStream    BufferedOutputStream</li>
+</ul>
+<p>BufferedReader的String readLine()读取一行数据，返回String对象。</p>
+<p><strong>键盘输入处理</strong>: 超级麻烦</p>
+<ul>
+<li>将System.in 转换成Reader对象</li>
+<li>利用BufferedReader的readLine方法进行数据读取</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/70Fc5efmGC.png?imageslim" alt="mark"> </p>
+<p><strong>缓冲区读取文本文件</strong></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/LbLdCec0fA.png?imageslim" alt="mark"> </p>
+<h4 id="Scanner"><a href="#Scanner" class="headerlink" title="Scanner"></a>Scanner</h4><p><code>java.util.Scanner</code></p>
+<p>BufferedReader有两个不足，只能返回字符串，分隔符固定为回车。</p>
+<ul>
+<li>Scanner(InputStream source) 构造</li>
+<li>hasNext()</li>
+<li>next()</li>
+<li>hasNextDouble()  判断输入的是否是小数</li>
+<li>NextDouble() 取得输入的小数，不用类型转换。</li>
+</ul>
+<p>标准输入数据键盘：</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/HE832KLbgL.png?imageslim" alt="mark"> </p>
+<p>处理文本文件：</p>
+<ul>
+<li>scan.useDelimiter(“\n”) 设置使用回车作为分隔符， 默认的以回车、空格。</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/3c2l5DdJcH.png?imageslim" alt="mark"> </p>
+<p>总结</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/2aHbEh1ml0.png?imageslim" alt="mark"> </p>
+<h3 id="对象序列化"><a href="#对象序列化" class="headerlink" title="对象序列化"></a>对象序列化</h3><h4 id="序列化支持"><a href="#序列化支持" class="headerlink" title="序列化支持"></a>序列化支持</h4><p>将内存中数据对象转换为二进制数据流，用于传输。</p>
+<p>对象必须实现<code>java.io.Serializable</code>接口才能被序列化。</p>
+<p><code>Serializable</code>和<code>Cloneable</code>都是标识接口，没有内部方法。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/IkEc1fd2Jb.png?imageslim" alt="mark"> </p>
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p><code>java.io.ObjectOutputStream</code></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/15fbl9Jil7.png?imageslim" alt="mark"> </p>
+<h4 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h4><p><code>java.io.ObjectInputStream</code> </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/1581140lCf.png?imageslim" alt="mark"> </p>
+<h4 id="transient关键字"><a href="#transient关键字" class="headerlink" title="transient关键字"></a>transient关键字</h4><p>声明不能被序列化的属性</p>
+<h3 id="类集"><a href="#类集" class="headerlink" title="类集"></a>类集</h3><p>实现了很多数据结构</p>
+<h3 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h3><p>两个子接口，<strong>List</strong>  <strong>Set</strong> </p>
+<ul>
+<li>add 向集合里添加数据</li>
+<li>addAll  追加一个集合</li>
+<li>clear</li>
+<li>contains</li>
+<li>isEmpty</li>
+<li>remove  需要对象的equals方法支持</li>
+<li>size</li>
+<li>toArray  将集合元素转换为对象数组</li>
+<li>iterator()  获取iterator的实例</li>
+</ul>
+<h4 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h4><ul>
+<li>list.get(int index)</li>
+<li>list.set(int index, value)</li>
+<li>list.listIterator()</li>
+</ul>
+<p><strong>ArrayList</strong>   List接口的子类，元素按插入顺序保存，允许重复对象。</p>
+<h4 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h4><p>Set接口下的两个子类： <strong>HashSet</strong>和<strong>TreeSet</strong>。</p>
+<ul>
+<li><p>HashSet</p>
+<p>元素无序无重复</p>
+</li>
+<li><p>TreeSet</p>
+<p>元素自动排序。</p>
+<p>依靠Comparable接口的compareTo方法实现排序。</p>
+<p>重复元素的判断依靠的是Object的hashCode()和equals()方法。</p>
+</li>
+</ul>
+<h4 id="集合的输出方式"><a href="#集合的输出方式" class="headerlink" title="集合的输出方式"></a>集合的输出方式</h4><ul>
+<li><p>Iterator  迭代输出</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180109/7Ge21lmem4.png?imageslim" alt="mark">  </p>
+</li>
+<li><p>ListIterator</p>
+<p>让List支持双向输出，可以从后向前输出。但是必须先进行一次由前向后，才能进行由后向前输出。 </p>
+<p>hasPrevious()</p>
+<p>previous()</p>
+</li>
+<li><p>foreach输出</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/fgJA1C61Ac.png?imageslim" alt="mark"> </p>
+</li>
+<li><p>Enumeration 枚举</p>
+<p>只能依靠Vector子类，不能是List和Set</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/iE5fCBj1F3.png?imageslim" alt="mark"> </p>
+</li>
+</ul>
+<h3 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h3><p>key-value，可以作为key的自定义对象必须实现hashCode和equals方法。</p>
+<p>一般使用String作为key。</p>
+<ul>
+<li>put(key, value)</li>
+<li>get(key) 获得对应的value，不存在则返回null</li>
+<li>entrySet()</li>
+<li>keySet()</li>
+</ul>
+<p>两个子类HashMap、HashTable</p>
+<h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/bDl7iJC5hF.png?imageslim" alt="mark"> </p>
+<h4 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h4><p>HashTable的key和value的数据都不允许设置为null。但是使用的同步处理，性能较低，线程安全。</p>
+<h4 id="Iterator输出"><a href="#Iterator输出" class="headerlink" title="Iterator输出"></a>Iterator输出</h4><p>Map使用Map.Entry对象保存key-value。</p>
+<p>使用Map.entrySet()获取Entry的集合，然后调用set.iterator()方法，实现输出。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/8dBcG17h3K.png?imageslim" alt="mark"></p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p><code>java.util.Stack</code></p>
+<ul>
+<li>push</li>
+<li>pop</li>
+<li>栈空异常和满异常</li>
+</ul>
+<h3 id="Collections工具类"><a href="#Collections工具类" class="headerlink" title="Collections工具类"></a>Collections工具类</h3><p>提供了操作map、list、set对象的一系列方法</p>
+<ul>
+<li>addAll()  一次添加多个元素</li>
+<li>reverse  反转</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/aHmEi5dFH3.png?imageslim" alt="mark"></p>
+<h3 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h3><p>Lambda表达式、方法引用、函数式接口、MapReduce。</p>
+<p>default接口方法，所有子类对象都默认实现该方法，不用在每个子类对象里单独实现。</p>
+<ul>
+<li>forEach(消费型接口)</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/gb55G4m4L1.png?imageslim" alt="mark"> </p>
+<ul>
+<li><p>Collection.Stream()</p>
+<p>Stream接口提供了大量操作集合对象的方法</p>
+<ul>
+<li><p>count</p>
+</li>
+<li><p>distinct</p>
+</li>
+<li><p>collect方法、collector接口和Collectors对象</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/1d2a9hd6He.png?imageslim" alt="mark"></p>
+</li>
+<li><p>filter过滤，断言式函数式接口  </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/96CI1Lbb27.png?imageslim" alt="mark"> </p>
+</li>
+<li><p>map，接收function式接口，接收参数并返回结果</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/3kaL4HmgB7.png?imageslim" alt="mark"> </p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>Stream的结果分页</p>
+<p>skip(n) 跳过</p>
+<p>limit(n) 取出个数</p>
+</li>
+<li><p>多条件匹配</p>
+<p>allMatch， anyMatch</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/0i972limk2.png?imageslim" alt="mark"></p>
+</li>
+<li><p>reduce</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/aaLDgA8gGC.png?imageslim" alt="mark"></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/ACE0CJbh5B.png?imageslim" alt="mark">  </p>
+</li>
+<li><p>mapToDouble().summaryStatistics()</p>
+</li>
+</ul>
+<h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/mEdkdDmk90.png?imageslim" alt="mark"> </p>
+<h4 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h4><ol>
+<li><p>加载驱动程序</p>
+<p>下载对应数据库的JDBC驱动</p>
+</li>
+<li><p>连接数据库</p>
+</li>
+<li><p>进行数据操作</p>
+</li>
+<li><p>关闭数据库</p>
+</li>
+</ol>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/DCII6i7d9a.png?imageslim" alt="mark"> </p>
+<h4 id="Statement接口操作数据库"><a href="#Statement接口操作数据库" class="headerlink" title="Statement接口操作数据库"></a>Statement接口操作数据库</h4><p>一个Connection可以打开多个Statement。</p>
+<ul>
+<li><p>插入</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/1KgBcdcmhi.png?imageslim" alt="mark"></p>
+</li>
+<li><p>修改</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/c4bLIFIlDk.png?imageslim" alt="mark"> </p>
+</li>
+<li><p>删除</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/kdC14hJmfm.png?imageslim" alt="mark"></p>
+</li>
+<li><p>查询</p>
+<p>尽量按列的顺序取内容，同一字段只取一次</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/4kGDmf7gJB.png?imageslim" alt="mark"> </p>
+<p>​</p>
+</li>
+</ul>
+<h4 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h4><p>Statement存在Sql安全隐患</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/6jEhHkJgFg.png?imageslim" alt="mark"> </p>
+<p>sql语句<code>Like %x%</code>  中的%应该和参数一起传入占位符 </p>
+<h4 id="批处理与事务处理"><a href="#批处理与事务处理" class="headerlink" title="批处理与事务处理"></a>批处理与事务处理</h4><ul>
+<li>批处理： 一次执行多条语句</li>
+<li>​</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180110/Kf8fLgCfh0.png?imageslim" alt="mark"> </p>
+<h3 id="DAO设计模式"><a href="#DAO设计模式" class="headerlink" title="DAO设计模式"></a>DAO设计模式</h3><p>DAO（Data Access Object,数据访问对象），主要的功能是用于进行数据操作的，在程序的标准开发框架中属于数据层的操作。</p>
+<h4 id="分层思想"><a href="#分层思想" class="headerlink" title="分层思想"></a>分层思想</h4><p>显示层 - 控制层 -  | -  业务层 - 数据层 -  |  - 数据层</p>
+<p>前台  - | - 后台</p>
+<h4 id="数据库操作类"><a href="#数据库操作类" class="headerlink" title="数据库操作类"></a>数据库操作类</h4><h4 id="数据对象类"><a href="#数据对象类" class="headerlink" title="数据对象类"></a>数据对象类</h4><ul>
+<li>必须实现支持序列化标准的接口</li>
+<li>类的名字与表的名字一致</li>
+<li>类中的属性必须使用包装类，包装类的默认值为null。</li>
+<li>属性的名字与表字段名字一致</li>
+<li>属性使用private包装，并提供set、get方法</li>
+<li>必须保留一个无参构造方法</li>
+</ul>
+<h4 id="数据层接口"><a href="#数据层接口" class="headerlink" title="数据层接口"></a>数据层接口</h4><ul>
+<li><p>所有的对象定义在dao包下面</p>
+</li>
+<li><p>对于表student，其在数据层的 接口定义为IStudentDAO</p>
+</li>
+<li><p>数据更新方法，以doXxx定义</p>
+</li>
+<li><p>数据查询，查询表中数据findXxxx表示，统计以getXxx定义</p>
+<p>findByUserID， getAllCount</p>
+</li>
+</ul>
+<h4 id="数据层实现类"><a href="#数据层实现类" class="headerlink" title="数据层实现类"></a>数据层实现类</h4><p>数据库的打开与关闭由业务层负责，因为一个业务层可能会调用多个数据层获取数据。</p>
+<h4 id="数据层工厂类"><a href="#数据层工厂类" class="headerlink" title="数据层工厂类"></a>数据层工厂类</h4><p>使用工厂类获取数据层接口对象实例。</p>
+<h4 id="业务层接口标准"><a href="#业务层接口标准" class="headerlink" title="业务层接口标准"></a>业务层接口标准</h4><h4 id="业务层子类"><a href="#业务层子类" class="headerlink" title="业务层子类"></a>业务层子类</h4><h4 id="业务层工厂类"><a href="#业务层工厂类" class="headerlink" title="业务层工厂类"></a>业务层工厂类</h4><p>控制层通过工厂类获取业务层对象实例。</p>
+<ul>
+<li>前台逻辑ServiceFrontFactory</li>
+<li>后台逻辑ServiceBackFactory</li>
+</ul>
+<h3 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h3><h4 id="调用测试"><a href="#调用测试" class="headerlink" title="调用测试"></a>调用测试</h4><p>产生对象，并调用方法</p>
+<h4 id="junit测试"><a href="#junit测试" class="headerlink" title="junit测试"></a>junit测试</h4>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/Java/">Java</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2018/01/08/技术/Logging unicode decode error/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2018/01/07/技术/python时间转换/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
+    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+  
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

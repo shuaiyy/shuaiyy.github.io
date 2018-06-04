@@ -22,7 +22,7 @@ linux默认提供6个终端，使用ctrl + alt + F1~F6切换。
 终端用户退出登陆exit.
 
 常用命令
-ls
+lsls -al 查看详细信息，ls -lh 文件的大小自适应显示(GB,MB,KB),使用参数--block-size=m 指定文件大小的单位。
 pwd
 cd 
 cat
@@ -105,9 +105,17 @@ man 和 info在查看结果中 使用 /keyword进行关键字搜索，n向下查
 
 
 <body>
-  <header id="header" class="inner"><div class="alignleft">
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
   <h1><a href="/">帅羊羊的博客</a></h1>
-  <h2><a href="/"></a></h2>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -244,7 +252,7 @@ man 和 info在查看结果中 使用 /keyword进行关键字搜索，n向下查
 	var t = 30;
 	var n = 350;
 	var r = 350;
-	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
 	var s = "mw-harlem_shake_me";
 	var o = "im_first";
 	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
@@ -304,7 +312,7 @@ man 和 info在查看结果中 使用 /keyword进行关键字搜索，n向下查
       
         <div class="icon"></div>
 		
-          <time datetime="2016-07-04T16:00:00.000Z"><a href="/2016/07/05/技术/linux基础/">2016-07-05</a></time>
+          <time datetime="2016-07-04T16:00:00.000Z"><a href="/2016/07/05/技术/Linux基础/">2016-07-05</a></time>
         
 	  
       
@@ -317,7 +325,7 @@ man 和 info在查看结果中 使用 /keyword进行关键字搜索，n向下查
          
         
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux简介"><span class="toc-text">Linux简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统安装与grub引导"><span class="toc-text">系统安装与grub引导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登陆系统"><span class="toc-text">登陆系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看命令帮助文档"><span class="toc-text">查看命令帮助文档</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-text">用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户和用户组"><span class="toc-text">用户和用户组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#账号管理和用户切换"><span class="toc-text">账号管理和用户切换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-text">文件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件和目录管理和权限"><span class="toc-text">文件和目录管理和权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件查找"><span class="toc-text">文件查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件压缩解压"><span class="toc-text">文件压缩解压</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件系统"><span class="toc-text">文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘分区，文件系统的挂载和卸载"><span class="toc-text">磁盘分区，文件系统的挂载和卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux逻辑卷"><span class="toc-text">linux逻辑卷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硬链接和软链接"><span class="toc-text">硬链接和软链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符处理"><span class="toc-text">字符处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#管道和grep"><span class="toc-text">管道和grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sort排序和uniq去重"><span class="toc-text">sort排序和uniq去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cut、tr、paste、split"><span class="toc-text">cut、tr、paste、split</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络管理"><span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络配置和dns配置"><span class="toc-text">网络配置和dns配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络测试"><span class="toc-text">网络测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理"><span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看进程"><span class="toc-text">查看进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杀死进程"><span class="toc-text">杀死进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询进程打开的文件"><span class="toc-text">查询进程打开的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程优先级调整：nice、renice"><span class="toc-text">进程优先级调整：nice、renice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译、安装软件"><span class="toc-text">编译、安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装包管理器"><span class="toc-text">安装包管理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译安装"><span class="toc-text">编译安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行定时任务"><span class="toc-text">执行定时任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式与sed、awk"><span class="toc-text">正则表达式与sed、awk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi和vim"><span class="toc-text">vi和vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell编程"><span class="toc-text">shell编程</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux简介"><span class="toc-text">Linux简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统安装与grub引导"><span class="toc-text">系统安装与grub引导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登陆系统"><span class="toc-text">登陆系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看命令帮助文档"><span class="toc-text">查看命令帮助文档</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理"><span class="toc-text">用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户和用户组"><span class="toc-text">用户和用户组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#账号管理和用户切换"><span class="toc-text">账号管理和用户切换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理"><span class="toc-text">文件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件和目录管理和权限"><span class="toc-text">文件和目录管理和权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件查找"><span class="toc-text">文件查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件压缩解压"><span class="toc-text">文件压缩解压</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件系统"><span class="toc-text">文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘分区，文件系统的挂载和卸载"><span class="toc-text">磁盘分区，文件系统的挂载和卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux逻辑卷"><span class="toc-text">linux逻辑卷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硬链接和软链接"><span class="toc-text">硬链接和软链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符处理"><span class="toc-text">字符处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#管道和grep"><span class="toc-text">管道和grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sort排序和uniq去重"><span class="toc-text">sort排序和uniq去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cut、tr、paste、split"><span class="toc-text">cut、tr、paste、split</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络管理"><span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网络配置和dns配置"><span class="toc-text">网络配置和dns配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络测试"><span class="toc-text">网络测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程管理"><span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看进程"><span class="toc-text">查看进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杀死进程"><span class="toc-text">杀死进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询进程打开的文件"><span class="toc-text">查询进程打开的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程优先级调整：nice、renice"><span class="toc-text">进程优先级调整：nice、renice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译、安装软件"><span class="toc-text">编译、安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装包管理器"><span class="toc-text">安装包管理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译安装"><span class="toc-text">编译安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行定时任务"><span class="toc-text">执行定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#crontab"><span class="toc-text">crontab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#screen-和-nohub"><span class="toc-text">screen 和 nohub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supervisor"><span class="toc-text">supervisor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式与sed、awk"><span class="toc-text">正则表达式与sed、awk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi和vim"><span class="toc-text">vi和vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell编程"><span class="toc-text">shell编程</span></a></li></ol>
     </div>
 
       
@@ -334,7 +342,7 @@ man 和 info在查看结果中 使用 /keyword进行关键字搜索，n向下查
 <li>终端用户退出登陆<code>exit</code>.</li>
 </ul>
 <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
-<li>ls</li>
+<li>ls<br><code>ls -al</code> 查看详细信息，<code>ls -lh</code> 文件的大小自适应显示(GB,MB,KB),使用参数<code>--block-size=m</code> 指定文件大小的单位。</li>
 <li>pwd</li>
 <li>cd </li>
 <li>cat</li>
@@ -417,8 +425,39 @@ man 和 info在查看结果中 使用 /keyword进行关键字搜索，n向下查
 <li>crontab</li>
 <li>screen</li>
 </ul>
-<h2 id="正则表达式与sed、awk"><a href="#正则表达式与sed、awk" class="headerlink" title="正则表达式与sed、awk"></a>正则表达式与sed、awk</h2><h2 id="vi和vim"><a href="#vi和vim" class="headerlink" title="vi和vim"></a>vi和vim</h2><p>单独讲</p>
-<h2 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h2><p>单独讲</p>
+<h3 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h3><p>crontab用于配置定时任务，并交由cond进程调度。</p>
+<p>定时任务的脚本文件应具有可执行权限，并且使用绝对路径。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></div><div class="line">cd /home/ubuntu/kickstarter/ &amp;&amp; scrapy crawl new_project_spider</div></pre></td></tr></table></figure>
+<ul>
+<li><code>crontab -e</code>   编辑任务</li>
+<li><code>crontab -l</code>  查看任务</li>
+</ul>
+<p>添加任务后， crontab 会自动的帮我们每分钟重新读取一次<code>/etc/crontab</code>的例行工作事项，但是某些原因或者是其他的 Unix 系统中，由于 crontab 是读到内存当中的，所以在你修改完/etc/crontab 之后，可能并不会马上运行， 这个时候请重新启动 crond 这个服务吧！<code>/etc/init.d/crondrestart</code> 或 <code>service crond restart</code></p>
+<p><strong>crontab任务格式</strong></p>
+<ul>
+<li><strong>分   时   日   月  周      任务命令</strong></li>
+<li><code>*</code> 表示任意时刻都接受  比如每天12点，<code>0 12 * * *  /path/to/run.sh&amp;</code></li>
+<li><code>,</code>分隔，表示或，比如12点或0点，<code>0 0,12 * * *  /path/to/run.sh</code></li>
+<li><code>-</code>表示一段时间内，比如0点到8点每个小时都执行一次， <code>0 0-8 * * *  /path/to/run.sh</code></li>
+<li><code>/n</code> 每间隔n执行一次， 比如每五分钟执行一次， <code>*/5 * * * *  /path/to/run.sh</code></li>
+<li>周几和日月是互斥的，只能二选一</li>
+</ul>
+<p><strong>crontab执行日志</strong></p>
+<p><code>tail -100 /var/log/cron</code> </p>
+<p>在ubuntu下安装crontab后，系统默认的是不开启crontab的日志记录的，启用crontab的日志的办法：<br>修改rsyslog文件，将/etc/rsyslog.d/50-default.conf 文件中的#cron.*前的#删掉；<br>重启rsyslog服务service rsyslog restart；<br>重启cron服务service cron restart；代码如下:<br>more /var/log/cron.log；<br>就可以查看运行时的日志文件，如果在日志文件中出现：<br>代码如下:<br>No MTA installed, discarding output<br>那么就是说，crontab执行脚本时是不会直接错误的信息输出，而是会以邮件的形式发送到你的邮箱里，这时候就需要邮件服务器了，如果你没有安装邮件服务器，它就会报这个错。如果是测试，可以用下面的办法来解决：<br>在每条定时脚本后面加入：<br>代码如下:</p>
+<p>/dev/null 2&gt;&amp;1</p>
+<p><strong>后台执行&amp;</strong>  和 <strong>输出重定向&gt;</strong></p>
+<ul>
+<li><code>/path/to/run.sh &amp;</code>  表示后台运行命令</li>
+<li><code>0 2 * * * /u01/test.sh &gt;/dev/null 2&gt;&amp;1 &amp;</code> 后台运行，错误输出重定向到1，标准输出清空，即输入到null。</li>
+<li>0 键盘输入 1 标准输出  2 错误输出</li>
+</ul>
+<h3 id="screen-和-nohub"><a href="#screen-和-nohub" class="headerlink" title="screen 和 nohub"></a>screen 和 nohub</h3><ul>
+<li><code>nohup sh 22.sh</code><br>将任务放到后台，关闭标准输入，前台不再能够接收任何输入（标准输入），重定向标准输出和标准错误到当前目录下的<strong>nohup.out文件</strong>，即使关闭xshell退出当前session依然继续运行。</li>
+<li><code>nohup sh 22.sh  &amp;</code><br>将任务放到后台，但是依然可以使用标准输入，前台能够接收任何输入，重定向标准输出和标准错误到当前目录下的<strong>nohup.out文件</strong>，即使关闭xshell退出当前session依然继续运行。</li>
+</ul>
+<h3 id="supervisor"><a href="#supervisor" class="headerlink" title="supervisor"></a>supervisor</h3><h2 id="正则表达式与sed、awk"><a href="#正则表达式与sed、awk" class="headerlink" title="正则表达式与sed、awk"></a>正则表达式与sed、awk</h2><h2 id="vi和vim"><a href="#vi和vim" class="headerlink" title="vi和vim"></a>vi和vim</h2><p><code># TODO</code></p>
+<h2 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h2><p><code># TODO</code></p>
 
       
     </div>
@@ -510,10 +549,10 @@ window.onload = function(){
 
  <nav id="pagination" >
     
-    <a href="/2016/07/06/技术/study-of-python-3/" class="alignleft prev" >上一页</a>
+    <a href="/2016/07/06/技术/Python3-study/" class="alignleft prev" >上一页</a>
     
     
-    <a href="/2016/07/04/技术/study-of-python-2/" class="alignright next" >下一页</a>
+    <a href="/2016/07/04/技术/python2-study/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
@@ -732,7 +771,7 @@ window.onload = function(){
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
@@ -770,6 +809,8 @@ window.onload = function(){
   
     <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
   
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
     <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
@@ -780,17 +821,25 @@ window.onload = function(){
   
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
     <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
   
     <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
   
     <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
@@ -804,13 +853,19 @@ window.onload = function(){
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
     <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
   
     <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
@@ -822,7 +877,7 @@ window.onload = function(){
   
     <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>20</small></li>
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
@@ -832,9 +887,17 @@ window.onload = function(){
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
-    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
   
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
   
     <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
@@ -846,19 +909,25 @@ window.onload = function(){
   
     <li><a href="/tags/linux/">linux</a><small>1</small></li>
   
-    <li><a href="/tags/python/">python</a><small>3</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/restful/">restful</a><small>1</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
   
     <li><a href="/tags/框架/">框架</a><small>1</small></li>
   
     <li><a href="/tags/测试/">测试</a><small>1</small></li>
   
     <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
 </div>
@@ -872,7 +941,7 @@ window.onload = function(){
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
@@ -883,7 +952,7 @@ window.onload = function(){
 <div class="copyright">
 		
 		  
-		  &copy;2014&mdash; <span itemprop="copyrightYear">2017</span>
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
 		  
   <span class="with-love">
     <i class="fa fa-heart" style="color:red"></i>
@@ -923,6 +992,13 @@ window.onload = function(){
     });
   </script>
 
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
 <!-- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">

@@ -15,7 +15,34 @@ Python 的内省机制
 help 函数
 sys 模块sys模块中包含了系统，当前进程等相关的信息，例如
 
-">
+123456sys.platformsys.versionsys.maxintsys.argsys.pathsys.modules123456
+
+keyword模块keyword.kwlist 包含Python所有的关键词
+
+123&amp;gt;&amp;gt;&amp;gt; import keyword&amp;gt;&amp;gt;&amp;gt; keyword.kwlist[&amp;apos;and&amp;apos;, &amp;apos;as&amp;apos;, &amp;apos;assert&amp;apos;, &amp;apos;break&amp;apos;, &amp;apos;class&amp;apos;, &amp;apos;continue&amp;apos;, &amp;apos;def&amp;apos;, &amp;apos;del&amp;apos;, &amp;apos;elif&amp;apos;, &amp;apos;else&amp;apos;, &amp;apos;except&amp;apos;, &amp;apos;exec&amp;apos;, &amp;apos;finally&amp;apos;, &amp;apos;for&amp;apos;, &amp;apos;from&amp;apos;, &amp;apos;global&amp;apos;, &amp;apos;if&amp;apos;, &amp;apos;import&amp;apos;, &amp;apos;in&amp;apos;, &amp;apos;is&amp;apos;, &amp;apos;lambda&amp;apos;, &amp;apos;not&amp;apos;, &amp;apos;or&amp;apos;, &amp;apos;pass&amp;apos;, &amp;apos;print&amp;apos;, &amp;apos;raise&amp;apos;, &amp;apos;return&amp;apos;, &amp;apos;try&amp;apos;, &amp;apos;while&amp;apos;, &amp;apos;with&amp;apos;, &amp;apos;yield&amp;apos;]
+
+dir函数返回由传入对象的属性排序后构成的列表
+builtins模块包含Python中的内建函数
+docstring
+__name__属性
+hasattr函数
+getattr函数
+type函数
+id函数
+callable函数
+isinstance函数
+issubclass函数
+
+type()
+type()函数可以查看一个类型或变量的类型
+
+type也可以用来动态地创建一个class对象,传入3个参数
+
+class name，
+继承的父类集合（元组）
+class的方法名称与函数绑定（字典）
+
+123456def f(self, x):  print &#39;hello&#39;, x Hello = type(&#39;Hello&#39;, (object,), dict(hello=f))h = Hello()h.hello(&#39;x&#39;)">
   
   <meta name="keywords" content="内省">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -87,9 +114,17 @@ sys 模块sys模块中包含了系统，当前进程等相关的信息，例如
 
 
 <body>
-  <header id="header" class="inner"><div class="alignleft">
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
   <h1><a href="/">帅羊羊的博客</a></h1>
-  <h2><a href="/"></a></h2>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -226,7 +261,7 @@ sys 模块sys模块中包含了系统，当前进程等相关的信息，例如
 	var t = 30;
 	var n = 350;
 	var r = 350;
-	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
 	var s = "mw-harlem_shake_me";
 	var o = "im_first";
 	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
@@ -286,7 +321,7 @@ sys 模块sys模块中包含了系统，当前进程等相关的信息，例如
       
         <div class="icon"></div>
 		
-          <time datetime="2017-10-16T16:00:00.000Z"><a href="/2017/10/17/技术/python-内省(Introspection)/">2017-10-17</a></time>
+          <time datetime="2017-10-16T16:00:00.000Z"><a href="/2017/10/17/技术/Python-内省(Introspection)/">2017-10-17</a></time>
         
 	  
       
@@ -299,7 +334,7 @@ sys 模块sys模块中包含了系统，当前进程等相关的信息，例如
          
         
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内省-Introspection-是什么？"><span class="toc-text">内省(Introspection) 是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Python-的内省机制"><span class="toc-text">Python 的内省机制</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内省-Introspection-是什么？"><span class="toc-text">内省(Introspection) 是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Python-的内省机制"><span class="toc-text">Python 的内省机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#type"><span class="toc-text">type()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-metaclass"><span class="toc-text">Python metaclass</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义一个Metaclass类"><span class="toc-text">定义一个Metaclass类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么时候用到metaclass"><span class="toc-text">什么时候用到metaclass</span></a></li></ol></li></ol></li></ol>
     </div>
 
       
@@ -327,6 +362,53 @@ sys 模块sys模块中包含了系统，当前进程等相关的信息，例如
 <li>isinstance函数</li>
 <li>issubclass函数</li>
 </ul>
+<h2 id="type"><a href="#type" class="headerlink" title="type()"></a>type()</h2><ul>
+<li><p><code>type()</code>函数可以查看一个类型或变量的类型</p>
+</li>
+<li><p>type也可以用来动态地创建一个class对象,传入3个参数</p>
+<ul>
+<li>class name，</li>
+<li>继承的父类集合（元组）</li>
+<li>class的方法名称与函数绑定（字典）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(self, x)</span>:</span></div><div class="line">  <span class="keyword">print</span> <span class="string">'hello'</span>, x</div><div class="line"> </div><div class="line">Hello = type(<span class="string">'Hello'</span>, (object,), dict(hello=f))</div><div class="line">h = Hello()</div><div class="line">h.hello(<span class="string">'x'</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<p>  ​</p>
+<h2 id="Python-metaclass"><a href="#Python-metaclass" class="headerlink" title="Python metaclass"></a>Python metaclass</h2><blockquote>
+<p>“元类就是深度的魔法，99%的用户应该根本不必为此操心。如果你想搞清楚究竟是否需要用到元类，那么你就不需要它。那些实际用到元类的人都非常清楚地知道他们需要做什么，而且根本不需要解释为什么要用元类。”  —— Python界的领袖 Tim Peters</p>
+</blockquote>
+<p>metaclass，直译为元类，简单的解释就是：当我们定义了类以后，就可以根据这个类创建出实例，所以：先定义类，然后创建实例。</p>
+<ul>
+<li>拦截类的创建</li>
+<li>修改类</li>
+<li>返回修改后的类</li>
+<li>Django的ORM框架就是使用元类创建操作数据库的api</li>
+</ul>
+<p>参考：<a href="https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386820064557c69858840b4c48d2b8411bc2ea9099ba000" target="_blank" rel="external">廖雪峰的博客</a>,  <a href="http://blog.jobbole.com/21351/" target="_blank" rel="external">深入理解元类</a></p>
+<h3 id="定义一个Metaclass类"><a href="#定义一个Metaclass类" class="headerlink" title="定义一个Metaclass类"></a>定义一个Metaclass类</h3><blockquote>
+<p>按照默认习惯，metaclass的类名总是以Metaclass结尾，以便清楚地表示这是一个metaclass：</p>
+</blockquote>
+<p>下面使用metaclass为List class添加一个方法add</p>
+<p>metaclass必须继承type类，重写其<code>__new__()</code>方法，依次传入4个参数。</p>
+<p><code>__new__()</code>方法接收到的参数依次是：</p>
+<ol>
+<li>当前准备创建的类的对象；</li>
+<li>类的名字；</li>
+<li>类继承的父类集合；</li>
+<li>类的方法集合。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># metaclass是创建类，所以必须从`type`类型派生：</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListMetaclass</span><span class="params">(type)</span>:</span></div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, attrs)</span>:</span></div><div class="line">        attrs[<span class="string">'add'</span>] = <span class="keyword">lambda</span> self, value: self.append(value)</div><div class="line">        <span class="keyword">return</span> type.__new__(cls, name, bases, attrs)</div><div class="line">      <span class="comment"># return super(ListMetaclass, cls).__new__(cls, name, bases, uppercase_attr)</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyList</span><span class="params">(list)</span>:</span></div><div class="line">    __metaclass__ = ListMetaclass</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    l = MyList()</div><div class="line">    l.append(<span class="number">1</span>)</div><div class="line">    l.add(<span class="number">1</span>)</div><div class="line">    <span class="keyword">print</span> l</div><div class="line">    <span class="comment"># [1, 1]</span></div></pre></td></tr></table></figure>
+<h3 id="什么时候用到metaclass"><a href="#什么时候用到metaclass" class="headerlink" title="什么时候用到metaclass"></a>什么时候用到metaclass</h3><ul>
+<li>99%时间的99% 情况下用不到动态修改类</li>
+<li>当我们需要动态修改类时，一般使用：<ul>
+<li><strong>monkey patch</strong></li>
+<li>类装饰器</li>
+</ul>
+</li>
+<li>ORM框架中常用metaclass来创建hook数据库操作的API</li>
+</ul>
 
       
     </div>
@@ -335,7 +417,7 @@ sys 模块sys模块中包含了系统，当前进程等相关的信息，例如
         
   
   <div class="categories">
-    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/python/">python</a>
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/Python/">Python</a>
   </div>
 
         
@@ -418,10 +500,10 @@ window.onload = function(){
 
  <nav id="pagination" >
     
-    <a href="/2017/11/01/技术/Gevent学习笔记/" class="alignleft prev" >上一页</a>
+    <a href="/2017/10/18/技术/TensorFlow安装/" class="alignleft prev" >上一页</a>
     
     
-    <a href="/2017/10/15/技术/python socket编程/" class="alignright next" >下一页</a>
+    <a href="/2017/10/15/技术/Python socket编程/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
@@ -640,7 +722,7 @@ window.onload = function(){
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
@@ -678,6 +760,8 @@ window.onload = function(){
   
     <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
   
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
     <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
@@ -688,17 +772,25 @@ window.onload = function(){
   
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
     <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
   
     <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
   
     <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
@@ -712,13 +804,19 @@ window.onload = function(){
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
     <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
   
     <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
@@ -730,7 +828,7 @@ window.onload = function(){
   
     <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>20</small></li>
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
@@ -740,9 +838,17 @@ window.onload = function(){
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
-    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
   
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
   
     <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
@@ -754,19 +860,25 @@ window.onload = function(){
   
     <li><a href="/tags/linux/">linux</a><small>1</small></li>
   
-    <li><a href="/tags/python/">python</a><small>3</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/restful/">restful</a><small>1</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
   
     <li><a href="/tags/框架/">框架</a><small>1</small></li>
   
     <li><a href="/tags/测试/">测试</a><small>1</small></li>
   
     <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
 </div>
@@ -780,7 +892,7 @@ window.onload = function(){
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
@@ -791,7 +903,7 @@ window.onload = function(){
 <div class="copyright">
 		
 		  
-		  &copy;2014&mdash; <span itemprop="copyrightYear">2017</span>
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
 		  
   <span class="with-love">
     <i class="fa fa-heart" style="color:red"></i>
@@ -831,6 +943,13 @@ window.onload = function(){
     });
   </script>
 
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
 <!-- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">

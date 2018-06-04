@@ -1,0 +1,910 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python wordcloud生成词云 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="Python wordcloud生成词云wordcloud官网，github
+
+主要步骤：
+
+安装wordcloud
+创建WordCloud对象，定义生成词云的布局参数，如背景颜色，字体库、单词最大最小像素，词云图片长宽，最大单词数，随机配色种类，使用掩膜等
+通过文本或统计好的词频生成词云，即将词按词频绘制到词云布局图片上。
+显示、保存词云图片文件">
+  
+  <meta name="keywords" content="词云,wordcloud">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Python wordcloud生成词云"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-11-04T16:00:00.000Z"><a href="/2017/11/05/技术/Python wordcloud生成词云/">2017-11-05</a></time>
+        
+	  
+      
+  
+    <h1 class="title">Python wordcloud生成词云</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python-wordcloud生成词云"><span class="toc-text">Python wordcloud生成词云</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WordCloud对象"><span class="toc-text">WordCloud对象</span></a></li></ol></li></ol>
+    </div>
+
+      
+        <h1 id="Python-wordcloud生成词云"><a href="#Python-wordcloud生成词云" class="headerlink" title="Python wordcloud生成词云"></a>Python wordcloud生成词云</h1><p>wordcloud<a href="https://amueller.github.io/word_cloud/" target="_blank" rel="external">官网</a>，<a href="https://github.com/amueller/word_cloud" target="_blank" rel="external">github</a></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171206/Em5dbm25F1.png?imageslim" alt="mark"></p>
+<p>主要步骤：</p>
+<ol>
+<li>安装wordcloud</li>
+<li>创建WordCloud对象，定义生成词云的布局参数，如背景颜色，字体库、单词最大最小像素，词云图片长宽，最大单词数，随机配色种类，使用掩膜等</li>
+<li>通过文本或统计好的词频生成词云，即将词按词频绘制到词云布局图片上。</li>
+<li>显示、保存词云图片文件</li>
+</ol>
+<a id="more"></a>
+<h2 id="WordCloud对象"><a href="#WordCloud对象" class="headerlink" title="WordCloud对象"></a>WordCloud对象</h2><ul>
+<li><p>创建时，传入配置参数，具体见doc string</p>
+<p><code>WordCloud(self, font_path=None, width=400, height=200, margin=2, ranks_only=None, prefer_horizontal=0.9, mask=None, scale=1, color_func=None, max_words=200, min_font_size=4, stopwords=None, random_state=None, background_color=&#39;black&#39;, max_font_size=None, font_step=1, mode=&#39;RGB&#39;, relative_scaling=0.5, regexp=None, collocations=True, colormap=None, normalize_plurals=True)</code></p>
+</li>
+<li><p>生成词云的函数</p>
+<p>将词按对应的词频在词云布局图上生成图片，核心方法是<code>generate_from_frequencies</code>,不论是<code>generate（）</code>还是<code>generate_from_text（）</code>都最终用到generate_from_frequencies<br>完成词云上各词的着色,默认是随机着色 </p>
+</li>
+<li><p>示例代码</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 测试数据是豆瓣读书热门标签的词频</span></div><div class="line">all_words = &#123;<span class="string">u'\u5916\u56fd\u540d\u8457'</span>: <span class="number">84857</span>, <span class="string">u'\u793e\u4f1a\u5b66'</span>: <span class="number">590925</span>, <span class="string">u'\u52b1\u5fd7'</span>: <span class="number">362798</span>, <span class="string">u'\u7f8e\u672f'</span>: <span class="number">33100</span>, <span class="string">u'\u5fc3\u7406\u5b66'</span>: <span class="number">1200006</span>, <span class="string">u'\u8bd7\u8bcd'</span>: <span class="number">70763</span>, <span class="string">u'\u5916\u56fd\u6587\u5b66'</span>: <span class="number">1716128</span>, <span class="string">u'\u60c5\u611f'</span>: <span class="number">72526</span>, <span class="string">u'\u897f\u65b9\u54f2\u5b66'</span>: <span class="number">61787</span>, <span class="string">u'\u8bbe\u8ba1'</span>: <span class="number">373956</span>, <span class="string">u'web'</span>: <span class="number">21242</span>, <span class="string">u'\u6587\u5b66'</span>: <span class="number">1344359</span>, <span class="string">u'\u4eba\u6587'</span>: <span class="number">111407</span>, <span class="string">u'\u7535\u5f71'</span>: <span class="number">222370</span>, <span class="string">u'\u7406\u8d22'</span>: <span class="number">97220</span>, <span class="string">u'UCD'</span>: <span class="number">3517</span>, <span class="string">u'\u5f20\u5c0f\u5a34'</span>: <span class="number">97471</span>, <span class="string">u'\u7c73\u5170\xb7\u6606\u5fb7\u62c9'</span>: <span class="number">50510</span>, <span class="string">u'\u6e2f\u53f0'</span>: <span class="number">6904</span>, <span class="string">u'\u653f\u6cbb\u5b66'</span>: <span class="number">195558</span>, <span class="string">u'\u653f\u6cbb'</span>: <span class="number">320641</span>, <span class="string">u'\u843d\u843d'</span>: <span class="number">58448</span>, <span class="string">u'\u5546\u4e1a'</span>: <span class="number">264136</span>, <span class="string">u'\u8f7b\u5c0f\u8bf4'</span>: <span class="number">137336</span>, <span class="string">u'\u513f\u7ae5\u6587\u5b66'</span>: <span class="number">209248</span>, <span class="string">u'\u79d1\u5b66'</span>: <span class="number">115359</span>, <span class="string">u'\u9752\u6625\u6587\u5b66'</span>: <span class="number">110718</span>, <span class="string">u'\u65e5\u672c\u6f2b\u753b'</span>: <span class="number">268990</span>, <span class="string">u'\u5065\u5eb7'</span>: <span class="number">73083</span>, <span class="string">u'\u5b97\u6559'</span>: <span class="number">230071</span>, <span class="string">u'\u4ea6\u8212'</span>: <span class="number">232463</span>, <span class="string">u'\u9ad8\u6728\u76f4\u5b50'</span>: <span class="number">71579</span>, <span class="string">u'\u91d1\u878d'</span>: <span class="number">247852</span>, <span class="string">u'\u4eba\u7269\u4f20\u8bb0'</span>: <span class="number">106837</span>, <span class="string">u'\u79d1\u6280'</span>: <span class="number">21923</span>, <span class="string">u'\u827a\u672f\u53f2'</span>: <span class="number">98192</span>, <span class="string">u'\u81ea\u52a9\u6e38'</span>: <span class="number">2635</span>, <span class="string">u'\u7f51\u7edc\u5c0f\u8bf4'</span>: <span class="number">194533</span>, <span class="string">u'\u6559\u80b2'</span>: <span class="number">181616</span>, <span class="string">u'\u4ea4\u4e92'</span>: <span class="number">4507</span>, <span class="string">u'\u963f\u52a0\u838e\xb7\u514b\u91cc\u65af\u8482'</span>: <span class="number">140070</span>, <span class="string">u'\u6751\u4e0a\u6625\u6811'</span>: <span class="number">410205</span>, <span class="string">u'\u94b1\u949f\u4e66'</span>: <span class="number">97394</span>, <span class="string">u'\u9c81\u8fc5'</span>: <span class="number">81995</span>, <span class="string">u'\u9b54\u5e7b'</span>: <span class="number">108292</span>, <span class="string">u'\u521b\u4e1a'</span>: <span class="number">101110</span>, <span class="string">u'\u8bd7\u6b4c'</span>: <span class="number">292956</span>, <span class="string">u'\u5fc3\u7406'</span>: <span class="number">337962</span>, <span class="string">u'\u4e2d\u56fd\u5386\u53f2'</span>: <span class="number">150383</span>, <span class="string">u'\u7b56\u5212'</span>: <span class="number">7865</span>, <span class="string">u'\u8328\u5a01\u683c'</span>: <span class="number">58270</span>, <span class="string">u'\u60ac\u7591'</span>: <span class="number">427890</span>, <span class="string">u'\u519b\u4e8b'</span>: <span class="number">64337</span>, <span class="string">u'\u5c0f\u8bf4'</span>: <span class="number">4836526</span>, <span class="string">u'\u7ba1\u7406'</span>: <span class="number">373936</span>, <span class="string">u'\u4eba\u9645\u5173\u7cfb'</span>: <span class="number">32141</span>, <span class="string">u'\u97e9\u5bd2'</span>: <span class="number">261086</span>, <span class="string">u'\u7ae5\u8bdd'</span>: <span class="number">274365</span>, <span class="string">u'\u79d1\u5e7b\u5c0f\u8bf4'</span>: <span class="number">118837</span>, <span class="string">u'\u5f53\u4ee3\u6587\u5b66'</span>: <span class="number">124970</span>, <span class="string">u'\u5973\u6027'</span>: <span class="number">260571</span>, <span class="string">u'\u4e8c\u6218'</span>: <span class="number">61933</span>, <span class="string">u'\u6444\u5f71'</span>: <span class="number">274433</span>, <span class="string">u'\u56de\u5fc6\u5f55'</span>: <span class="number">155101</span>, <span class="string">u'\u6742\u6587'</span>: <span class="number">204031</span>, <span class="string">u'\u624b\u5de5'</span>: <span class="number">39266</span>, <span class="string">u'\u8a00\u60c5'</span>: <span class="number">467793</span>, <span class="string">u'\u80a1\u7968'</span>: <span class="number">57220</span>, <span class="string">u'\u4f20\u8bb0'</span>: <span class="number">706782</span>, <span class="string">u'\u56fd\u5b66'</span>: <span class="number">131244</span>, <span class="string">u'\u4e2d\u56fd\u6587\u5b66'</span>: <span class="number">914012</span>, <span class="string">u'\u804c\u573a'</span>: <span class="number">191402</span>, <span class="string">u'\u5386\u53f2'</span>: <span class="number">1831830</span>, <span class="string">u'\u601d\u60f3'</span>: <span class="number">140789</span>, <span class="string">u'\u7a0b\u5e8f'</span>: <span class="number">1228</span>, <span class="string">u'\u7528\u6237\u4f53\u9a8c'</span>: <span class="number">51529</span>, <span class="string">u'\u4e1c\u91ce\u572d\u543e'</span>: <span class="number">495900</span>, <span class="string">u'\u5e7f\u544a'</span>: <span class="number">61104</span>, <span class="string">u'\u6f2b\u753b'</span>: <span class="number">1203437</span>, <span class="string">u'\u968f\u7b14'</span>: <span class="number">1037335</span>, <span class="string">u'\u63a8\u7406'</span>: <span class="number">852405</span>, <span class="string">u'\u4e09\u6bdb'</span>: <span class="number">197016</span>, <span class="string">u'\u8fd1\u4ee3\u53f2'</span>: <span class="number">58041</span>, <span class="string">u'\u620f\u5267'</span>: <span class="number">96981</span>, <span class="string">u'\u4f5b\u6559'</span>: <span class="number">65193</span>, <span class="string">u'\u7ecf\u6d4e\u5b66'</span>: <span class="number">382231</span>, <span class="string">u'UE'</span>: <span class="number">4894</span>, <span class="string">u'\u901a\u4fe1'</span>: <span class="number">4556</span>, <span class="string">u'\u6b66\u4fa0'</span>: <span class="number">297293</span>, <span class="string">u'\u795e\u7ecf\u7f51\u7edc'</span>: <span class="number">2175</span>, <span class="string">u'\u6e38\u8bb0'</span>: <span class="number">142629</span>, <span class="string">u'\u5b89\u59ae\u5b9d\u8d1d'</span>: <span class="number">172265</span>, <span class="string">u'\u793e\u4f1a'</span>: <span class="number">339416</span>, <span class="string">u'\u8425\u9500'</span>: <span class="number">139198</span>, <span class="string">u'\u54f2\u5b66'</span>: <span class="number">998389</span>, <span class="string">u'\u6570\u5b66'</span>: <span class="number">200099</span>, <span class="string">u'\u7a7f\u8d8a'</span>: <span class="number">147747</span>, <span class="string">u'\u53e4\u9f99'</span>: <span class="number">72338</span>, <span class="string">u'\u6295\u8d44'</span>: <span class="number">198723</span>, <span class="string">u'\u5efa\u7b51'</span>: <span class="number">253809</span>, <span class="string">u'\u6ca7\u6708'</span>: <span class="number">65008</span>, <span class="string">u'\u4e24\u6027'</span>: <span class="number">37553</span>, <span class="string">u'\u79d1\u5e7b'</span>: <span class="number">474318</span>, <span class="string">u'\u97f3\u4e50'</span>: <span class="number">110843</span>, <span class="string">u'\u6210\u957f'</span>: <span class="number">439250</span>, <span class="string">u'\u81ea\u7531\u4e3b\u4e49'</span>: <span class="number">41215</span>, <span class="string">u'\u9752\u6625'</span>: <span class="number">615963</span>, <span class="string">u'\u4f01\u4e1a\u53f2'</span>: <span class="number">18254</span>, <span class="string">u'\u7f16\u7a0b'</span>: <span class="number">143976</span>, <span class="string">u'\u79d1\u666e'</span>: <span class="number">503806</span>, <span class="string">u'\u4ea4\u4e92\u8bbe\u8ba1'</span>: <span class="number">64467</span>, <span class="string">u'\u5947\u5e7b'</span>: <span class="number">297252</span>, <span class="string">u'\u63a8\u7406\u5c0f\u8bf4'</span>: <span class="number">222021</span>, <span class="string">u'\u675c\u62c9\u65af'</span>: <span class="number">42901</span>, <span class="string">u'\u5f20\u7231\u73b2'</span>: <span class="number">181350</span>, <span class="string">u'\u4f59\u534e'</span>: <span class="number">184440</span>, <span class="string">u'\u91d1\u5eb8'</span>: <span class="number">143676</span>, <span class="string">u'\u5e7e\u7c73'</span>: <span class="number">97562</span>, <span class="string">u'\u90ed\u656c\u660e'</span>: <span class="number">152101</span>, <span class="string">u'\u7231\u60c5'</span>: <span class="number">787234</span>, <span class="string">u'\u751f\u6d3b'</span>: <span class="number">465841</span>, <span class="string">u'\u7ed8\u672c'</span>: <span class="number">838757</span>, <span class="string">u'\u738b\u5c0f\u6ce2'</span>: <span class="number">206659</span>, <span class="string">u'\u517b\u751f'</span>: <span class="number">33840</span>, <span class="string">u'\u8003\u53e4'</span>: <span class="number">45231</span>, <span class="string">u'\u7ed8\u753b'</span>: <span class="number">100734</span>, <span class="string">u'\u540d\u8457'</span>: <span class="number">195566</span>, <span class="string">u'\u7075\u4fee'</span>: <span class="number">117161</span>, <span class="string">u'\u6587\u5316'</span>: <span class="number">646049</span>, <span class="string">u'\u827a\u672f'</span>: <span class="number">436899</span>, <span class="string">u'\u65e5\u672c\u6587\u5b66'</span>: <span class="number">722390</span>, <span class="string">u'J.K.\u7f57\u7433'</span>: <span class="number">82487</span>, <span class="string">u'\u6821\u56ed'</span>: <span class="number">56805</span>, <span class="string">u'\u51e0\u7c73'</span>: <span class="number">114200</span>, <span class="string">u'\u7b97\u6cd5'</span>: <span class="number">47242</span>, <span class="string">u'\u53e4\u5178\u6587\u5b66'</span>: <span class="number">207377</span>, <span class="string">u'\u7ecf\u5178'</span>: <span class="number">800417</span>, <span class="string">u'\u7ecf\u6d4e'</span>: <span class="number">303485</span>, <span class="string">u'\u5bb6\u5c45'</span>: <span class="number">20761</span>, <span class="string">u'\u5f20\u60a6\u7136'</span>: <span class="number">57515</span>, <span class="string">u'\u6563\u6587'</span>: <span class="number">631865</span>, <span class="string">u'\u4e92\u8054\u7f51'</span>: <span class="number">216614</span>, <span class="string">u'\u65c5\u884c'</span>: <span class="number">540931</span>, <span class="string">u'\u7f8e\u98df'</span>: <span class="number">179070</span>, <span class="string">u'\u803d\u7f8e'</span>: <span class="number">239324</span>&#125;</div><div class="line"></div><div class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud, ImageColorGenerator</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> imread</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"></div><div class="line"><span class="comment"># background_mask = np.array(Image.open(r'ssss.png'))</span></div><div class="line">background_mask = imread(<span class="string">r'ssss.png'</span>) <span class="comment"># 掩膜图片，词云生成按照其形状在非白色区域显示单词</span></div><div class="line">wc = WordCloud(</div><div class="line">    font_path=<span class="string">r'C:\Windows\Fonts\simfang.ttf'</span>, <span class="comment"># 设置字体格式，支持中文</span></div><div class="line">    width=<span class="number">2400</span>, height=<span class="number">2400</span>, margin=<span class="number">2</span>, </div><div class="line">    background_color=<span class="string">'white'</span>, <span class="comment"># 白色背景</span></div><div class="line">    mask=background_mask, <span class="comment"># 背景形状的掩膜</span></div><div class="line">    max_font_size = <span class="number">50</span>,            <span class="comment"># 设置字体最大值</span></div><div class="line">    random_state = <span class="number">30</span>,            <span class="comment"># 设置有多少种随机生成状态，即有多少种配色方案</span></div><div class="line">    max_words=<span class="number">2000</span>,<span class="comment"># 词云显示的最大词数</span></div><div class="line">)</div><div class="line">wc = wc.generate_from_frequencies(all_words)</div><div class="line"><span class="comment"># all_words为字典, &#123;'word': freq_num&#125;</span></div><div class="line"><span class="comment"># 中文乱码需要指定中文字体路径</span></div><div class="line"></div><div class="line"><span class="comment"># 根据指定的图片生成词云颜色</span></div><div class="line">image_colors = ImageColorGenerator(background_mask)</div><div class="line"></div><div class="line"><span class="comment"># 显示图片</span></div><div class="line">plt.axis(<span class="string">'off'</span>)</div><div class="line">plt.imshow(wc.recolor(color_func=image_colors))</div><div class="line">plt.show()</div><div class="line"></div><div class="line"><span class="comment"># 保存图片</span></div><div class="line">wc.to_file(<span class="string">'tags.png'</span>)</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/Python/">Python</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Python/">Python</a>, <a href="/tags/WordCloud/">WordCloud</a>, <a href="/tags/词云/">词云</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/11/05/技术/Gevent 源码分析/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/11/04/技术/Gevent爬虫与多线程爬虫对比/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
+    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+  
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

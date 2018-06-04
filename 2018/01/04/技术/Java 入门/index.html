@@ -1,0 +1,1298 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java 入门学习笔记 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="java 入门hello worldpublic class一个java文件只能有一个定义， 类名称必须与其所在的文件名一致。
+编译后，一个class生成一个对应的*.class文件。
+执行从主方法开始，主方法所在的类成为主类。
+1234567891011// Main.javapublic class Main &amp;#123;    public static void main(String[] args) &amp;#123;	// write your code here        int a = 0;        a++;        System.out.println(&#34;Hello World!&#34;);    &amp;#125;&amp;#125;class A&amp;#123;&amp;#125;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java 入门学习笔记"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-01-03T16:00:00.000Z"><a href="/2018/01/04/技术/Java 入门/">2018-01-04</a></time>
+        
+	  
+      
+  
+    <h1 class="title">Java 入门学习笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-入门"><span class="toc-text">java 入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hello-world"><span class="toc-text">hello world</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#标识符"><span class="toc-text">标识符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本运算"><span class="toc-text">基本运算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#程序结构"><span class="toc-text">程序结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java面向对象"><span class="toc-text">Java面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类和对象"><span class="toc-text">类和对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类方法重载"><span class="toc-text">类方法重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类封装"><span class="toc-text">类封装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造方法和匿名对象"><span class="toc-text">构造方法和匿名对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java简单类"><span class="toc-text">Java简单类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问控制权限"><span class="toc-text">访问控制权限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一维数组"><span class="toc-text">一维数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二维数组"><span class="toc-text">二维数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组用作方法参数"><span class="toc-text">数组用作方法参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组对象的方法"><span class="toc-text">数组对象的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象数组"><span class="toc-text">对象数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String类"><span class="toc-text">String类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串比较"><span class="toc-text">字符串比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#String实例化"><span class="toc-text">String实例化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串与字符、字节"><span class="toc-text">字符串与字符、字节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串查找"><span class="toc-text">字符串查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串替换"><span class="toc-text">字符串替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串截取"><span class="toc-text">字符串截取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串拆分"><span class="toc-text">字符串拆分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串连接"><span class="toc-text">字符串连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this"><span class="toc-text">this</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用传递"><span class="toc-text">引用传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象比较"><span class="toc-text">对象比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Static关键字"><span class="toc-text">Static关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造块和静态块"><span class="toc-text">构造块和静态块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内部类"><span class="toc-text">内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链表"><span class="toc-text">链表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Node定义"><span class="toc-text">Node定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#节点关系处理"><span class="toc-text">节点关系处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链表使用"><span class="toc-text">链表使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承和多态"><span class="toc-text">继承和多态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法覆写"><span class="toc-text">方法覆写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性覆盖"><span class="toc-text">属性覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多态性"><span class="toc-text">多态性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final"><span class="toc-text">final</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java接口"><span class="toc-text">Java接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂设计模式-Factory"><span class="toc-text">工厂设计模式 Factory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代理设计模式-Proxy"><span class="toc-text">代理设计模式 Proxy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口定义增强"><span class="toc-text">接口定义增强</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类和接口的区别"><span class="toc-text">抽象类和接口的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object类"><span class="toc-text">Object类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名内部类"><span class="toc-text">匿名内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包装类"><span class="toc-text">包装类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#装箱与拆箱"><span class="toc-text">装箱与拆箱</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据类型转换"><span class="toc-text">数据类型转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Package-包"><span class="toc-text">Package 包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#导入包"><span class="toc-text">导入包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统常见包"><span class="toc-text">系统常见包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第三方包"><span class="toc-text">第三方包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jar打包程序"><span class="toc-text">jar打包程序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法私有化"><span class="toc-text">构造方法私有化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单例设计"><span class="toc-text">单例设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多例设计"><span class="toc-text">多例设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常"><span class="toc-text">异常</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#捕获处理"><span class="toc-text">捕获处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#throws和throw"><span class="toc-text">throws和throw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RuntimeException类"><span class="toc-text">RuntimeException类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#断言"><span class="toc-text">断言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义异常"><span class="toc-text">自定义异常</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可变参数"><span class="toc-text">可变参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#foreach"><span class="toc-text">foreach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型"><span class="toc-text">泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#通配符"><span class="toc-text">通配符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛型接口"><span class="toc-text">泛型接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛型方法"><span class="toc-text">泛型方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举类型"><span class="toc-text">枚举类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lambda表达式"><span class="toc-text">Lambda表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法引用"><span class="toc-text">方法引用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引用静态方法"><span class="toc-text">引用静态方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引用对象方法"><span class="toc-text">引用对象方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引用特定类型方法"><span class="toc-text">引用特定类型方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#引用构造方法"><span class="toc-text">引用构造方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内建函数式接口"><span class="toc-text">内建函数式接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Annotation"><span class="toc-text">Annotation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类图与软件设计"><span class="toc-text">类图与软件设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-API文档查询"><span class="toc-text">JAVA API文档查询</span></a></li></ol>
+    </div>
+
+      
+        <h3 id="java-入门"><a href="#java-入门" class="headerlink" title="java 入门"></a>java 入门</h3><h4 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h4><p>public class一个java文件只能有一个定义， 类名称必须与其所在的文件名一致。</p>
+<p>编译后，一个class生成一个对应的<code>*.class</code>文件。</p>
+<p>执行从主方法开始，主方法所在的类成为主类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Main.java</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="comment">// write your code here</span></div><div class="line">        <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">        a++;</div><div class="line">        System.out.println(<span class="string">"Hello World!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h4><ul>
+<li><p>CLASSPATH环境变量，JVM执行class时，从加载路径进行类的加载。</p>
+</li>
+<li><p>java的文档注释  <code>/** ... */</code></p>
+</li>
+<li><p>标识符：类名，属性名，变量名， <code>$</code>不要使用，可以字母下划线数字等组成。</p>
+</li>
+<li><p>关键字：java语法保留字，以及true，false，null</p>
+<p>jdk1.7之后，标识符可以用中文，如<code>int 年龄 = 20;</code>,但是不要用。</p>
+</li>
+</ul>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>基本数据类型由jvm分配内存，引用数据类型需要开发者为其分配内存。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171229/GLC19iehgE.png?imageslim" alt="mark"></p>
+<p>“”是空字符串，长度为0，”\u0000”是一个字符，表示空字符，长度为1。</p>
+<p>数值范围：</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171229/lHf1hdc510.png?imageslim" alt="mark"> </p>
+<p>符号位，0为正，1为负。超长数据范围会导致内存溢出。类型转换,自动转换和强制转换。</p>
+<p><code>1L</code>, <code>(long) 1</code></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171229/H5m9bHClal.png?imageslim" alt="mark"></p>
+<p><strong>String类型</strong>  </p>
+<p>format<a href="http://blog.csdn.net/lonely_fireworks/article/details/7962171/" target="_blank" rel="external">格式化输出</a></p>
+<h4 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h4><ul>
+<li><p>自增自减</p>
+<p>符号放到前面和后面结果不同 </p>
+</li>
+<li><p>三目运算</p>
+<p><code>int num = numA &gt; numB ? numA:numB</code></p>
+<p>有一个布尔运算</p>
+</li>
+<li><p>逻辑运算，与、或、非</p>
+<p><code>A &amp;&amp; B</code>, 短路的与， <code>A &amp; B</code>,非短路的与，每个条件判断都执行</p>
+<p>使用短路的逻辑运算，性能、效率高</p>
+</li>
+<li><p>位运算</p>
+<p>移位操作，左移1为乘2，不改变原变量的值。</p>
+<p>位的与<code>&amp;</code>、<code>||</code>或运算，没有<code>&amp;&amp;</code>和<code>||</code></p>
+</li>
+</ul>
+<h4 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h4><ul>
+<li>分支结构</li>
+</ul>
+<p><code>if</code>  和<code>switch</code></p>
+<p>switch不支持布尔运算，只能判断内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span> (<span class="keyword">int</span> | <span class="keyword">char</span> | 枚举 | String )&#123;</div><div class="line">            <span class="keyword">case</span> 值<span class="number">1</span>:</div><div class="line">                执行;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> 值<span class="number">2</span>:</div><div class="line">    			执行;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">    			条件都不满足时，执行;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>循环结构</p>
+<p>while循环和do while循环。实际项目避免do while,不利于代码阅读。</p>
+<p>for循环</p>
+<p>循环控制 continue、break</p>
+</li>
+</ul>
+<h3 id="Java面向对象"><a href="#Java面向对象" class="headerlink" title="Java面向对象"></a>Java面向对象</h3><h4 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h4><ul>
+<li>类是对象的模板，对象是类的可操作实例。</li>
+<li>引用对象创建时必须先申请内存空间。</li>
+<li>声明对象时，栈内存空间会生成一个该对象的引用(指向其真实堆内存空间所在的地址，类似c指针)。</li>
+<li>new实例化对象时，会在堆内存中分配一块空间用于保存数据，并将栈内存里的对象引用指向堆内存中的实际地址，没有实例化时引用指向<code>null</code>。</li>
+<li>堆内存空间中没有被任何对象引用的已分配空间，将被java的GC进行垃圾回收</li>
+</ul>
+<h4 id="类方法重载"><a href="#类方法重载" class="headerlink" title="类方法重载"></a>类方法重载</h4><p>根据方法参数的类型或个数不同，调用不同的方法。不是根据方法的返回值类型。</p>
+<h4 id="类封装"><a href="#类封装" class="headerlink" title="类封装"></a>类封装</h4><p>类对自己的属性负责，因此将属性声明<code>private</code>，需要外部访问时定义setter，getter方法setter或getter方法的命名要求严格,以set/get开头，后面接上属性名，首字母大写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">  <span class="keyword">private</span> String title;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTitle</span><span class="params">(String t)</span></span>&#123;</div><div class="line">    title = t;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getTitle</span><span class="params">(String t)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> title;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="构造方法和匿名对象"><a href="#构造方法和匿名对象" class="headerlink" title="构造方法和匿名对象"></a>构造方法和匿名对象</h4><p>构造方法在实例化新对象时自动调用一次，进行初始化工作。构造方法也是可以重载的。</p>
+<p>没有栈指向的堆空间中的对象即为匿名对象，只能使用一次，然后就等待被GC回收。</p>
+<h4 id="Java简单类"><a href="#Java简单类" class="headerlink" title="Java简单类"></a>Java简单类</h4><ul>
+<li>必须保留一个无参数构造方法</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180102/2bL6dIedCf.png?imageslim" alt="mark"> </p>
+<h4 id="访问控制权限"><a href="#访问控制权限" class="headerlink" title="访问控制权限"></a>访问控制权限</h4><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/Hl3h22ehge.png?imageslim" alt="mark"></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h4><ul>
+<li>下标从0开始</li>
+<li><code>data.length</code>获取数组的长度，长度不变</li>
+<li>超过长度的访问会造成数组越界访问</li>
+<li>数组引用传递，即同一块堆空间数据可以被不同的栈地址指向。</li>
+<li>动态初始化和静态初始化</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int nums [] = new int [3]； # 声明并开辟一个长度为3的数组，值为类型的默认值</div><div class="line"><span class="keyword">int</span> nums [] = <span class="keyword">null</span>; nums = <span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">3</span>];</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="keyword">int</span> nums [] = <span class="keyword">new</span> <span class="keyword">int</span> [] &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</div></pre></td></tr></table></figure>
+<h4 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> nums [][] = <span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">3</span>][<span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="keyword">int</span> nums [] [] <span class="keyword">new</span> <span class="keyword">int</span> [][]&#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;,&#125;</div></pre></td></tr></table></figure>
+<h4 id="数组用作方法参数"><a href="#数组用作方法参数" class="headerlink" title="数组用作方法参数"></a>数组用作方法参数</h4><p>引用传递，方法对数组的修改会影响到原始数据；</p>
+<h4 id="数组对象的方法"><a href="#数组对象的方法" class="headerlink" title="数组对象的方法"></a>数组对象的方法</h4><ul>
+<li>数组copy  <code>System.arraycopy(dataA, 4, dataB, 6, 3)</code>  从A的第4个开始，向B的第6位置起始复制3个元素，会覆盖B上的元素</li>
+<li>数组排序 <code>java.util.Arrays.sort(data)</code></li>
+</ul>
+<h4 id="对象数组"><a href="#对象数组" class="headerlink" title="对象数组"></a>对象数组</h4><p>数组里的元素是引用对象</p>
+<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180102/4dbC3GbgF3.png?imageslim" alt="mark"> </p>
+<h3 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h3><p>字符串常量是String类的匿名对象，String一旦定义对象就不可改变（如果变了，则是生成了新的String对象，引用关系发生变化）。</p>
+<h4 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h4><p><code>==</code>比较的是对象的内存地址，即是不是同一个对象，而不是比较的其内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">String s1 = <span class="string">"hello"</span>;</div><div class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</div><div class="line">String s3 = s2;  <span class="comment">//引用传递</span></div><div class="line"><span class="comment">// s1==s2  false</span></div><div class="line"><span class="comment">// s1==s3  false</span></div><div class="line"><span class="comment">// s2==s3  true</span></div><div class="line">s1.equals(s2);  <span class="comment">// 内容比较</span></div><div class="line">s1.equalsIgnoreCase(s2);  <span class="comment">// 内容比较，不区分大小写</span></div><div class="line">String s4 = <span class="string">"hello"</span>;</div><div class="line">String s5 = <span class="string">"hello"</span>;</div><div class="line">s4==s5 <span class="comment">//true  匿名对象，JVM的共享设计模式，维护一个对象池。</span></div></pre></td></tr></table></figure>
+<p>在python中 <code>==</code>比较的是值是否相等， <code>is</code>是判断对象是否为同一内存地址，是否表示同一对象。</p>
+<h4 id="String实例化"><a href="#String实例化" class="headerlink" title="String实例化"></a>String实例化</h4><p><code>String a = new String(&#39;hello&#39;)</code>,这种方法会开辟2块堆内存，一块变成垃圾，String对象不会自动入池。</p>
+<h4 id="字符串与字符、字节"><a href="#字符串与字符、字节" class="headerlink" title="字符串与字符、字节"></a>字符串与字符、字节</h4><ul>
+<li><p>字符数组与字符串对象之间的转化</p>
+</li>
+<li><p>字节数组与字符串对象之间的转化</p>
+<p>IO操作，转码时，常用byte</p>
+</li>
+</ul>
+<h4 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h4><ul>
+<li>子串查找 <code>str.contains(subStr)</code></li>
+<li>以指定字符串开头， <code>startsWith</code></li>
+<li>以指定字符串结束<code>endsWith</code></li>
+</ul>
+<h4 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h4><ul>
+<li>repalceAll</li>
+<li>replaceFirst</li>
+</ul>
+<h4 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h4><ul>
+<li>subString</li>
+</ul>
+<h4 id="字符串拆分"><a href="#字符串拆分" class="headerlink" title="字符串拆分"></a>字符串拆分</h4><p>将字符串拆分成多个字符串的数组</p>
+<p>注意re正则表达式</p>
+<ul>
+<li>split() ,但参数为””时，按每个字符拆分</li>
+</ul>
+<h4 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接"></a>字符串连接</h4><ul>
+<li><code>+</code></li>
+<li>concat 与 +一样</li>
+<li>join</li>
+<li>toUpperCase</li>
+<li>toLowerCase</li>
+<li>trim  去掉开头和结尾的空格</li>
+<li>str.length()  返回字符串长度</li>
+<li>isEmpty    判断是否为空串（空串的长度为0， str.equals(“”)）</li>
+</ul>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>表示当前对象，可以在对象/类内调用属性或方法</p>
+<p>this互相调用类构造方法，简化对象的创建过程代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//构造方法互相调用</span></div><div class="line"><span class="keyword">this</span>() <span class="comment">//必须在构造函数内，且为首行</span></div><div class="line">       <span class="comment">//互相调用必须由出口，避免递归调用</span></div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hello</span><span class="params">()</span></span>&#123;</div><div class="line">      System.out.print(<span class="string">'Create Hello'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hello</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">      <span class="keyword">this</span>();</div><div class="line">      <span class="keyword">this</span>.num = num;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hello</span><span class="params">(<span class="keyword">int</span> num, String name)</span></span>&#123;</div><div class="line">      <span class="keyword">this</span>();</div><div class="line">      <span class="keyword">this</span>.num = num;</div><div class="line">      <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="引用传递"><a href="#引用传递" class="headerlink" title="引用传递"></a>引用传递</h3><p>同一块堆内存可以被不同的栈内存指向，指向同一堆内存的不同栈内存可以修改堆内存内容。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/2a9ADi9efa.png?imageslim" alt="mark"> </p>
+<p>输出结果为Hello，原因是String对象的内容一旦声明则不可改变，如果改变，则会创建新的String对象。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/8fIGm3GieA.png?imageslim" alt="mark"> </p>
+<p>String内容不可改变，一个字符串值，在堆内存中开辟一块空间，其数据不可改变。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/mJiBkIKB23.png?imageslim" alt="mark"> </p>
+<h3 id="对象比较"><a href="#对象比较" class="headerlink" title="对象比较"></a>对象比较</h3><p>一个类的方法可以接收本类的对象实例作为参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="keyword">private</span> String <span class="number">20</span>;</div><div class="line">    <span class="comment">//对象比较</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span>  <span class="title">compare</span><span class="params">(Test test)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(test==<span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>==test)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.id==test.id &amp;&amp; <span class="keyword">this</span>.name==test.name)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;           </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Static关键字"><a href="#Static关键字" class="headerlink" title="Static关键字"></a>Static关键字</h3><p>用于声明类、方法、属性。</p>
+<ul>
+<li><p>声明属性为static后，属性为共享属性，任何一个对象修改该属性，其他对象的属性也会变化。static数据存储于程序的全局共享内存。</p>
+<p>static属性属于类，非static属性必须由实例化对象访问。</p>
+</li>
+<li><p>static静态方法，可以直接由类调用</p>
+</li>
+<li><p>非static的方法可以访问static属性、方法</p>
+</li>
+<li><p>static方法无法访问非static属性、方法</p>
+</li>
+<li><p>主方法 <code>public static void main(String args[])</code></p>
+<p>命令行参数以空格分开，有空格的参数用双引号包围</p>
+</li>
+</ul>
+<h3 id="构造块和静态块"><a href="#构造块和静态块" class="headerlink" title="构造块和静态块"></a>构造块和静态块</h3><p>在构造方法里的代码块，优先于构造方法执行，创建n个对象就执行n次。静态块执行优先于构造块，且只会被执行1次。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="comment">//对象比较</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.print(<span class="string">'这是构造函数部分'</span>);</div><div class="line">      &#123;</div><div class="line">        System.out.print(<span class="string">'这是构造块'</span>);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">static</span> &#123;</div><div class="line">        System.out.print(<span class="string">'这是静态块'</span>);</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在主类中定义的静态块将优先于主方法运行。</p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><p>在一个类的内部定义新的类，也可以在代码块、方法里定义。</p>
+<p>内部类可以访问外部类的私有属性，外部类也可以访问内部类的私有属性。</p>
+<p>内部类在外部类的外部实例化：</p>
+<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/cJ8EFIE24L.png?imageslim" alt="mark"> </p>
+<p>如果内部类声明了private，则内部类无法在外部类以外实例化。</p>
+<p>如果内部类声明了static，则内部类与外部类相对独立。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/310FHAjlb4.png?imageslim" alt="mark"> </p>
+<p>经常会有这样的类实例化方法<code>类.类.类.类(args)</code></p>
+<p>方法中的内部类，在jdk1.8可以访问方法的参数、属性。在1.7及之前，参数或变量类型前要加<code>final</code>修饰。 为了兼容性，还是加上<code>final</code></p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/HDagHfKD07.png?imageslim" alt="mark"> </p>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>由节点连接起来的链表</p>
+<h4 id="Node定义"><a href="#Node定义" class="headerlink" title="Node定义"></a>Node定义</h4><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/ii04jad0K8.png?imageslim" alt="mark"> </p>
+<h4 id="节点关系处理"><a href="#节点关系处理" class="headerlink" title="节点关系处理"></a>节点关系处理</h4><ul>
+<li><p>Node对象应该只能由Link对象操作。因此node应该作为link的私有内部类。</p>
+</li>
+<li><p>链表的方法</p>
+<p>add增加新节点，size取得链表中保存元素的个数（使用count属性），isEmpty判断是否为空链表（root节点为空或长度为0），contains数据查询（循环链表的全部节点并进行数据比对，自定义对象的对比方法实现compare）， get通过index返回node，set 替换index处节点的数据，remove删除指定数据，删除指定index，insert指定数据，toArray,链表转换为数组。</p>
+</li>
+<li><p>处理根节点</p>
+</li>
+<li><p>添加新节点</p>
+</li>
+<li><p>遍历链表</p>
+</li>
+</ul>
+<h4 id="链表使用"><a href="#链表使用" class="headerlink" title="链表使用"></a>链表使用</h4><p>自定义类链表</p>
+<h3 id="继承和多态"><a href="#继承和多态" class="headerlink" title="继承和多态"></a>继承和多态</h3><p>解决代码复用问题</p>
+<p>继承的限制</p>
+<ul>
+<li>不允许多重继承，但是可以多层继承，一般不要超过3层。</li>
+<li>私有操作属于隐式继承，公开操作显示继承</li>
+<li>子类构造时，默认先调用父类的无参构造，有参数的父类构造，必须在首行使用super显示调用</li>
+</ul>
+<h4 id="方法覆写"><a href="#方法覆写" class="headerlink" title="方法覆写"></a>方法覆写</h4><ul>
+<li><p>子类覆写父类的方法，子类方法权限不能高于父类，public &gt; default &gt; private</p>
+<p>如果父类使用private修饰方法，则其对子类不可见，子类同名同参方法无法将其覆盖。</p>
+</li>
+<li><p>super.func调用父类的方法</p>
+</li>
+<li><p>重载和覆写的区别</p>
+<p>发生的地方，方法名、参数，权限，返回值。</p>
+</li>
+</ul>
+<h4 id="属性覆盖"><a href="#属性覆盖" class="headerlink" title="属性覆盖"></a>属性覆盖</h4><p>父类的private属性被封装，对子类不可见。覆盖属性是没有意义的，相当于定义新的属性。</p>
+<h4 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h4><ul>
+<li>方法的多态性：依赖于方法的覆写和重载</li>
+<li>对象的多态性：发生在继承关系之中，子类与父类的转换。</li>
+<li>instanceof   判断 a是否为对象A的实例</li>
+</ul>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><ul>
+<li>final类不能有子类</li>
+<li>final方法不能被子类覆写</li>
+<li>final修饰的变量将变为常量，即定义时设置好值，且不能被修改。</li>
+<li>public static final 变量，全局常量。</li>
+</ul>
+<p>常量命名全用大写字母。</p>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>含有抽象方法，类和抽象方法使用abstract关键字声明</p>
+<ul>
+<li><p>由子类继承</p>
+</li>
+<li><p>子类如果不是抽象类，则必须覆写父类全部抽象方法</p>
+</li>
+<li><p>实例化必须依靠子类完成</p>
+</li>
+<li><p>外部的抽象类不允许使用static声明，内部的抽象类可以使用static声明。</p>
+<p>使用static声明的内部抽象类使用时相当于外部抽象类，声明时<code>A.B a_b = new X()</code></p>
+<p><code>class X extends A.B{ xxx }</code></p>
+</li>
+<li><p>下面的程序输出为0 </p>
+<p>构造函数对属性赋值之前，属性值为默认值。</p>
+<p>父类的构造先于子类进行，调用print方法时，num还未被初始化，其值默认为0。</p>
+<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/F6636EKhGf.png?imageslim" alt="mark"> </p>
+</li>
+<li><p>抽象类主要用于模板设计</p>
+</li>
+</ul>
+<h3 id="Java接口"><a href="#Java接口" class="headerlink" title="Java接口"></a>Java接口</h3><p>接口是一种特殊的抽象类，只有抽象方法和全局常量(final)，没有构造方法。</p>
+<ul>
+<li><code>interface X { xxx}</code></li>
+<li>一个子类可以使用implents关键字实现多个接口</li>
+<li>接口的子类如果不是抽象类，必须覆盖全部方法</li>
+<li>可以利用子类的向上转型实现接口的实例化</li>
+<li>子类要先继承父类在实现接口 <code>extends A implents B, C</code></li>
+<li>接口可以用extends继承多个接口</li>
+<li>在接口里定义内部普通类、抽象类、接口都是可以的。使用<code>static</code>修饰的内部接口，相当于外部接口。即<code>A.B</code></li>
+</ul>
+<h4 id="工厂设计模式-Factory"><a href="#工厂设计模式-Factory" class="headerlink" title="工厂设计模式 Factory"></a>工厂设计模式 Factory</h4><p>好的程序设计标准：</p>
+<ul>
+<li>用户不需要关注代码细节</li>
+<li>用户不需要关注代码的变更</li>
+</ul>
+<p>new导致耦合度高，工厂类屏蔽了子类的细节。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/16L6mlk8me.png?imageslim" alt="mark"> </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/e92DE9178e.png?imageslim" alt="mark"> </p>
+<h4 id="代理设计模式-Proxy"><a href="#代理设计模式-Proxy" class="headerlink" title="代理设计模式 Proxy"></a>代理设计模式 Proxy</h4><p>一个主题操作接口类（可能有多种方法），核心业务主题主完成核心操作，代理主题负责其他辅助操作。</p>
+<ul>
+<li><p>客户端代码只用关注接口</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/geBLCcg553.png?imageslim" alt="mark"> </p>
+</li>
+</ul>
+<h4 id="接口定义增强"><a href="#接口定义增强" class="headerlink" title="接口定义增强"></a>接口定义增强</h4><p>jdk1.8允许在接口里定义抽象方法外的普通方法，但是必须使用default或static修饰。。</p>
+<ul>
+<li><p>default</p>
+<p>1.8之前，假如在项目中一个接口有N个子类，项目升级时接口需要增加新的方法，则N个子类必须都重写该抽象方法，很费力。</p>
+</li>
+<li><p>static</p>
+<p>该方法只能由接口直接调用</p>
+</li>
+</ul>
+<h4 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h4><ul>
+<li>当抽象类和接口都可以使用时，优先使用接口</li>
+<li>使用工厂类实例化接口子类，不要直接new</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/gI07ABaDEk.png?imageslim" alt="mark"> </p>
+<h3 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h3><p>Object类是所有类的父类。</p>
+<ul>
+<li>利用Object可以接收任何对象，本身有一个无参构造方法。统一参数。</li>
+<li>Object提供了很多内置方法</li>
+<li>子类一般覆写3个方法<ul>
+<li><code>toString</code>    print函数会调用对象的该方法</li>
+<li><code>equals</code></li>
+<li><code>hashCode</code> </li>
+</ul>
+</li>
+</ul>
+<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>必须基于接口或抽象类的应用，如果子类只需要使用一次，可以使用匿名内部类，以减少类文件的创建。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/cci867ki1L.png?imageslim" alt="mark"></p>
+<h3 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h3><p>对基本数据类型包装</p>
+<ul>
+<li>对象型包装类： Boolean，Character</li>
+<li>数值型包装类 ： Integer，Long，Float等 </li>
+</ul>
+<h4 id="装箱与拆箱"><a href="#装箱与拆箱" class="headerlink" title="装箱与拆箱"></a>装箱与拆箱</h4><p>基本数据类型与包装类互相转换。jdk1.5之后java自动实现拆箱装箱和数值计算</p>
+<h4 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h4><p>字符串与包装类互相转换</p>
+<p>将String类转换成对应的包装类，比如 Sting ‘1’ 和Integer 1。</p>
+<p><code>+</code>任何对象与字符串相加的结果都是字符串</p>
+<p><code>String.valueOf(数据)</code></p>
+<h3 id="Package-包"><a href="#Package-包" class="headerlink" title="Package 包"></a>Package 包</h3><p>同一目录下不能存在相同名字的文件</p>
+<p><code>package cn.java.study</code></p>
+<p><code>javac -d . xxx.java</code>  打包编译，会在当前路径下自动生成目录</p>
+<p><code>java  cn.java.study.Hello</code>  运行</p>
+<h4 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h4><p><code>import xxx.xxx.ClassA</code>   可以被导入的包必须是public。 </p>
+<p>一个<code>*.java</code>里只能有一个public类，且必须与文件名保持一致。</p>
+<p><code>import 包.*</code>  编译时只会导入代码需要的包，不用担心性能。</p>
+<p>如果导入的多个包里有同名类，则实例化类时，为避免冲突使用<code>包.类</code>完整包名。</p>
+<h4 id="系统常见包"><a href="#系统常见包" class="headerlink" title="系统常见包"></a>系统常见包</h4><ul>
+<li>java.lang</li>
+<li>java.lang.reflect    反射</li>
+<li>java.util    工具包</li>
+<li>java.util.regex  正则化</li>
+<li>java.text   国际化处理</li>
+<li>java.io       输入输出、文件流</li>
+<li>java.net    网络</li>
+<li>java.sql    数据库</li>
+</ul>
+<h4 id="第三方包"><a href="#第三方包" class="headerlink" title="第三方包"></a>第三方包</h4><h4 id="jar打包程序"><a href="#jar打包程序" class="headerlink" title="jar打包程序"></a>jar打包程序</h4><h3 id="构造方法私有化"><a href="#构造方法私有化" class="headerlink" title="构造方法私有化"></a>构造方法私有化</h3><p>private修饰的构造方法，只能在类的内部调用，无法用new创建对象。</p>
+<p>为了控制类实例化对象的个数，必须锁定构造方法。</p>
+<h4 id="单例设计"><a href="#单例设计" class="headerlink" title="单例设计"></a>单例设计</h4><p>可以用static final在类内部定义一个唯一的对象。</p>
+<ul>
+<li><p>饿汉式：定义时就实例化</p>
+</li>
+<li><p>懒汉式：使用时在实例化一次</p>
+<p><code>this.instance = new Singleton()</code></p>
+</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/2H4Iaac6j5.png?imageslim" alt="mark"> </p>
+<h4 id="多例设计"><a href="#多例设计" class="headerlink" title="多例设计"></a>多例设计</h4><p>可以实例化固定个数实例对象的类</p>
+<p> <code>类内部定义多个static final的实例</code><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/Kl6Fe2eIAJ.png?imageslim" alt="mark"> </p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><h4 id="捕获处理"><a href="#捕获处理" class="headerlink" title="捕获处理"></a>捕获处理</h4><ul>
+<li><p>所有异常都是Throwable的子类</p>
+<p>Throwable的直接子类Error和Exception。Error是JVM错误，程序还没执行。Exception是程序运行中的，用户可以处理的。</p>
+</li>
+<li><p><code>e.printStackTrace()</code>  打印异常详细信息</p>
+</li>
+<li><p>程序运行出现自动生成Exception对象，然后交由try语句依次匹配catch。</p>
+<p>如果没被catch捕获到，则finally会交给jvm处理，即异常退出。如果匹配到了则继续执行finally后续操作。</p>
+</li>
+<li><p>catch异常必须先捕获小的exception，然后在捕获大的。</p>
+</li>
+</ul>
+<h4 id="throws和throw"><a href="#throws和throw" class="headerlink" title="throws和throw"></a>throws和throw</h4><p>用throws声明的方法，表示调用该方法时必须用try进行异常处理。强制异常处理</p>
+<p>在程序执行代码中用throw抛出异常。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/F1eFf4Fdd3.png?imageslim" alt="mark"></p>
+<h4 id="RuntimeException类"><a href="#RuntimeException类" class="headerlink" title="RuntimeException类"></a>RuntimeException类</h4><p>throws该异常类时，用户可以选择性处理，如果不处理则交由JVM处理。</p>
+<p><code>NullPointerException</code></p>
+<h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><p>判断是否得到预期的结果，程序默认运行时不启用断言代码。</p>
+<p><code>assert</code></p>
+<h4 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h4><p>继承自Exception或RuntimeException。</p>
+<h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><p><code>int add(int ... data)</code>   …相当于把出入的多个参数作为一个数组传入</p>
+<h3 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x: data)&#123;</div><div class="line">  <span class="comment">//从data中取出每个元素</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>可以接收不同类型的变量，避免利用object向下转型的不安全操作，类中属性的类型是动态设置的。</p>
+<ul>
+<li>Type类型不能是基本类型。不设置时，Type则变为Object</li>
+<li>简化声明泛型，实例化中的Type类型可以省略。</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/cbfF20c5D0.png?imageslim" alt="mark">  </p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/AlH84599Fj.png?imageslim" alt="mark">  </p>
+<h4 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h4><ul>
+<li><p><code>void func(Point temp)</code>   不指定Point的泛型类型，则为Object类对象，此时传入的对象在函数内可以被改变。</p>
+</li>
+<li><p><code>?</code>可以保证泛型对象不被改变，<code>void func(Point&lt;?&gt; temp)</code></p>
+</li>
+<li><p><code>?extends Number</code></p>
+<p>  泛型可以设置为Number及其子类，用在类声明或方法的参数类型声明。</p>
+</li>
+<li><p><code>?super String</code></p>
+<p> 泛型可以设置为String及其父类，仅用在方法传入参数的类型声明上。</p>
+</li>
+</ul>
+<h4 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt; </span>&#123; </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(T t)</span></span>;</div><div class="line">&#125; </div><div class="line"><span class="comment">//接口子类也用 T， 实例化时指定类型</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(T t)</span></span>&#123;</div><div class="line">    <span class="comment">// xxx</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">  <span class="function">psvm <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    IMessage&lt;String&gt; msg = <span class="keyword">new</span> Message&lt;string&gt;(); <span class="comment">//指定String类型</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 接口子类使用具体类型</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span> <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">String</span>&gt;</span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(String t)</span></span>&#123;</div><div class="line">    <span class="comment">// xxx</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">  <span class="function">psvm <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    IMessage&lt;String&gt; msg = <span class="keyword">new</span> Message();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4><p>泛型的方法可以在非泛型类里定义</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/HIGKcA0gDF.png?imageslim" alt="mark"> </p>
+<h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><p><code>enum</code>, <code>Enum</code>是抽象类， enum可以实现多例设计和接口</p>
+<ul>
+<li>多例设计</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/GfiGBjK4a9.png?imageslim" alt="mark"> </p>
+<ul>
+<li><p>接口</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/A0mCCH4eal.png?imageslim" alt="mark"> </p>
+</li>
+<li><p>在枚举里每个实例单独实现方法覆写，使用匿名内部类</p>
+</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/Cb6dDgdE5L.png?imageslim" alt="mark"></p>
+<ul>
+<li>在枚举里定义抽象方法，此时枚举对象必须覆写抽象方法</li>
+</ul>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/lbI02kli09.png?imageslim" alt="mark"> </p>
+<ul>
+<li><p>枚举应用在switch中</p>
+<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/g03FC37GB8.png?imageslim" alt="mark"></p>
+</li>
+</ul>
+<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>在接口子类中用lambda表达式实现匿名内部类，覆写接口的抽象方法。</p>
+<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/kE9dh8209i.png?imageslim" alt="mark"> </p>
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>在函数式接口里使用方法引用</p>
+<h4 id="引用静态方法"><a href="#引用静态方法" class="headerlink" title="引用静态方法"></a>引用静态方法</h4><h4 id="引用对象方法"><a href="#引用对象方法" class="headerlink" title="引用对象方法"></a>引用对象方法</h4><h4 id="引用特定类型方法"><a href="#引用特定类型方法" class="headerlink" title="引用特定类型方法"></a>引用特定类型方法</h4><h4 id="引用构造方法"><a href="#引用构造方法" class="headerlink" title="引用构造方法"></a>引用构造方法</h4><h3 id="内建函数式接口"><a href="#内建函数式接口" class="headerlink" title="内建函数式接口"></a>内建函数式接口</h3><p><code>java.util.function</code>提供有4类函数式接口</p>
+<ul>
+<li>Function</li>
+<li>Consumer</li>
+<li>Supplier</li>
+<li>Predict</li>
+</ul>
+<h3 id="Annotation"><a href="#Annotation" class="headerlink" title="Annotation"></a>Annotation</h3><p>利用注解的形式来实现程序的不同功能。类似于利用配置文件。</p>
+<ul>
+<li><code>@override</code> 精确覆写，告诉编译器，这个方法要被覆写</li>
+<li><code>@Deprecated</code>   声明过期的方法，不被推荐，有新的方法替代</li>
+<li><code>@SupressWarning</code>  压制警告，告诉编译器取消警告</li>
+</ul>
+<h3 id="类图与软件设计"><a href="#类图与软件设计" class="headerlink" title="类图与软件设计"></a>类图与软件设计</h3><p>UML</p>
+<ul>
+<li>类图，描述类及类间关系。</li>
+<li>时序图，</li>
+</ul>
+<h3 id="JAVA-API文档查询"><a href="#JAVA-API文档查询" class="headerlink" title="JAVA API文档查询"></a>JAVA API文档查询</h3>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/Java/">Java</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
+  </div>
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2018/01/07/技术/python时间转换/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2018/01/02/技术/HTML转义和URL编解码/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
+    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+  
+    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

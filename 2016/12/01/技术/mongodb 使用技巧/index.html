@@ -9,7 +9,8 @@
   
   <meta name="author" content="Shuai yy">
   
-  <meta name="description" content="ubuntu安装，mongodb
+  <meta name="description" content="ubuntu安装 mongodb32位的mongodb的数据库只能保存2G数据，32bit内存最大寻址长度。所以要用64位系统和mongodb。
+
 apt-get install mongodb
 安装好之后，服务自动运行，service mongodb stop停止服务，找到数据库存储位置/var/lib/mongodb/和日志文件位置/var/log/mongodb/mongodb.log,然后手动运行服务mongod --dbpath /var/lib/mongodb/ --logpath /var/log/mongodb/mongodb.log --logappend &amp;amp;
 
@@ -86,9 +87,17 @@ apt-get install mongodb
 
 
 <body>
-  <header id="header" class="inner"><div class="alignleft">
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
   <h1><a href="/">帅羊羊的博客</a></h1>
-  <h2><a href="/"></a></h2>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -225,7 +234,7 @@ apt-get install mongodb
 	var t = 30;
 	var n = 350;
 	var r = 350;
-	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
 	var s = "mw-harlem_shake_me";
 	var o = "im_first";
 	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
@@ -285,7 +294,7 @@ apt-get install mongodb
       
         <div class="icon"></div>
 		
-          <time datetime="2016-11-30T16:00:00.000Z"><a href="/2016/12/01/技术/mongodb 使用技巧/">2016-12-01</a></time>
+          <time datetime="2016-11-30T16:00:00.000Z"><a href="/2016/12/01/技术/Mongodb 使用技巧/">2016-12-01</a></time>
         
 	  
       
@@ -298,11 +307,12 @@ apt-get install mongodb
          
         
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ubuntu安装，mongodb"><span class="toc-text">ubuntu安装，mongodb</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mongodb-使用技巧"><span class="toc-text">mongodb 使用技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-text">find</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ubuntu安装-mongodb"><span class="toc-text">ubuntu安装 mongodb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mongodb基本命令"><span class="toc-text">mongodb基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本命令"><span class="toc-text">基本命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本数据操作"><span class="toc-text">基本数据操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动和停止"><span class="toc-text">启动和停止</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#锁操作"><span class="toc-text">锁操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mongodb用户与权限"><span class="toc-text">mongodb用户与权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mongodb-使用技巧"><span class="toc-text">mongodb 使用技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#find"><span class="toc-text">find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#update"><span class="toc-text">update</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合重命名"><span class="toc-text">集合重命名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合建立索引"><span class="toc-text">集合建立索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据备份和恢复"><span class="toc-text">数据备份和恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mongoexport"><span class="toc-text">mongoexport</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mongoimport"><span class="toc-text">mongoimport</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mongodump"><span class="toc-text">mongodump</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mongorestore"><span class="toc-text">mongorestore</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#db-copyDatabase"><span class="toc-text">db.copyDatabase</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pymongo使用技巧"><span class="toc-text">pymongo使用技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误解决"><span class="toc-text">错误解决</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存不足，重启失败"><span class="toc-text">内存不足，重启失败</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mmap-failed-with-out-of-memory"><span class="toc-text">mmap failed with out of memory</span></a></li></ol></li></ol>
     </div>
 
       
-        <h3 id="ubuntu安装，mongodb"><a href="#ubuntu安装，mongodb" class="headerlink" title="ubuntu安装，mongodb"></a>ubuntu安装，mongodb</h3><ul>
+        <h3 id="ubuntu安装-mongodb"><a href="#ubuntu安装-mongodb" class="headerlink" title="ubuntu安装 mongodb"></a>ubuntu安装 mongodb</h3><p>32位的mongodb的数据库只能保存2G数据，32bit内存最大寻址长度。所以要用64位系统和mongodb。</p>
+<ul>
 <li><p><code>apt-get install mongodb</code></p>
 <p>安装好之后，服务自动运行，<code>service mongodb stop</code>停止服务，找到数据库存储位置<code>/var/lib/mongodb/</code>和日志文件位置<code>/var/log/mongodb/mongodb.log</code>,然后手动运行服务<code>mongod --dbpath /var/lib/mongodb/ --logpath /var/log/mongodb/mongodb.log --logappend &amp;</code></p>
 </li>
@@ -311,34 +321,173 @@ apt-get install mongodb
 <a id="more"></a>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># mongodb.conf</span></div><div class="line"><span class="comment"># Where to store the data.</span></div><div class="line"><span class="attr">dbpath</span>=/var/lib/mongodb</div><div class="line"><span class="comment">#where to log</span></div><div class="line"><span class="attr">logpath</span>=/var/log/mongodb/mongodb.log</div><div class="line"><span class="attr">logappend</span>=<span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment"># 允许远程注释掉此处</span></div><div class="line"><span class="attr">bind_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></div><div class="line"><span class="comment"># 修改端口在此处</span></div><div class="line"><span class="attr">port</span> = <span class="number">27017</span></div><div class="line"></div><div class="line"><span class="comment"># Enable journaling, http://www.mongodb.org/display/DOCS/Journaling</span></div><div class="line"><span class="attr">journal</span>=<span class="literal">true</span></div><div class="line"><span class="comment"># 默认是关闭认证的，开启账号密码认证改此处</span></div><div class="line"><span class="comment"># Turn on/off security.  Off is currently the default</span></div><div class="line"><span class="comment">#noauth = true</span></div><div class="line"><span class="attr">auth</span> = <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment"># Verbose logging output.</span></div><div class="line"><span class="attr">verbose</span> = <span class="literal">true</span></div></pre></td></tr></table></figure>
 <p>然后运行服务<code>service mongodb restart</code>，本地连接mongodb后，给某个数据库添加用户，然后重启service。给admin添加的用户有数据库管理员权限。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">MongoDB shell version: 2.4.9</div><div class="line">connecting to: test</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show dbs</span></div><div class="line">admin	(empty)</div><div class="line">local	0.078125GB</div><div class="line"><span class="meta">&gt;</span><span class="bash"> use admin</span></div><div class="line">switched to db admin</div><div class="line"><span class="meta">&gt;</span><span class="bash"> db.addUser(<span class="string">'mongo'</span>,<span class="string">'mongo123'</span>)</span></div><div class="line">&#123;</div><div class="line">	"user" : "mongo",</div><div class="line">	"readOnly" : false,</div><div class="line">	"pwd" : "6a524e081c761e95c4d0b0096840d87c",</div><div class="line">	"_id" : ObjectId("591078d7a129373b2f059bb3")</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>admin里可以保存其他数据库的用户，普通数据库里只能保存自己的用户。</p>
+<p>在哪个数据库下保存的用户，认证时要连接相应的数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">MongoDB shell version: 2.4.9</div><div class="line">connecting to: test</div><div class="line"><span class="meta">&gt;</span><span class="bash"> show dbs</span></div><div class="line">admin	(empty)</div><div class="line">local	0.078125GB</div><div class="line"><span class="meta">&gt;</span><span class="bash"> use admin</span></div><div class="line">switched to db admin</div><div class="line"><span class="meta">&gt;</span><span class="bash"> db.addUser(<span class="string">'mongo'</span>,<span class="string">'mongo123'</span>)</span></div><div class="line">&#123;</div><div class="line">	"user" : "mongo",</div><div class="line">	"readOnly" : false,</div><div class="line">	"pwd" : "6a524e081c761e95c4d0b0096840d87c",</div><div class="line">	"_id" : ObjectId("591078d7a129373b2f059bb3")</div><div class="line">&#125;</div><div class="line"><span class="meta">#</span><span class="bash"> createUser</span></div><div class="line">db.createUser(</div><div class="line">     &#123;</div><div class="line">       user:"DBadmin",</div><div class="line">       pwd:"secret",</div><div class="line">       roles:[&#123;role:"root",db:"admin"&#125;]  # 超级管理员，admin数据库</div><div class="line">     &#125;</div><div class="line">  )</div><div class="line">db.createUser(</div><div class="line">     &#123;</div><div class="line">       user:"kickstart",</div><div class="line">       pwd:"kickstart",</div><div class="line">       roles:[&#123;role:"read",db:"kickstart"&#125;] # 只读，kickstart数据库</div><div class="line">     &#125;</div><div class="line">  )</div><div class="line">  db.createUser(</div><div class="line">     &#123;</div><div class="line">       user:"kickwrite",</div><div class="line">       pwd:"kickstart",</div><div class="line">       roles:[&#123;role:"readWrite",db:"kickstart"&#125;] # 读写权限，kickstart数据库</div><div class="line">     &#125;</div><div class="line">  )</div></pre></td></tr></table></figure>
 </li>
 <li><p>连接mongodb</p>
 <ol>
 <li><p>指定数据库及身份信息 <code>mongo ip/dbname -u username -p password</code></p>
 </li>
 <li><p>先连接，后认证</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongo  ip</div><div class="line">use dbname</div><div class="line">db.auth('username', 'password')</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongo  </div><div class="line">use dbname</div><div class="line">db.auth('username', 'password')</div></pre></td></tr></table></figure>
 </li>
 <li><p>URI <code>MONGO_URI = &#39;mongodb://localhost:27017&#39;</code> <code>MONGO_URI = &#39;mongodb://user:pass@localhost:27017&#39;</code></p>
 </li>
 </ol>
 </li>
 </ul>
-<h2 id="mongodb-使用技巧"><a href="#mongodb-使用技巧" class="headerlink" title="mongodb 使用技巧"></a>mongodb 使用技巧</h2><blockquote>
-<p>pymongo api</p>
+<h3 id="mongodb基本命令"><a href="#mongodb基本命令" class="headerlink" title="mongodb基本命令"></a>mongodb基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">help</span></span></div><div class="line">        db.help()                    help on db methods</div><div class="line">        db.mycoll.help()             help on collection methods</div><div class="line">        rs.help()                    help on replica set methods</div><div class="line">        help connect                 connecting to a db help</div><div class="line">        help admin                   administrative help</div><div class="line">        help misc                    misc things to know</div><div class="line">        help mr                      mapreduce help</div><div class="line"></div><div class="line">        show dbs                     show database names</div><div class="line">        show collections             show collections in current database</div><div class="line">        show users                   show users in current database</div><div class="line">        show profile                 show most recent system.profile entries with time &gt;= 1ms</div><div class="line">        use &lt;db_name&gt;                set current database</div><div class="line">        db.foo.find()                list objects in collection foo</div><div class="line">        db.foo.find( &#123; a : 1 &#125; )     list objects in foo where a == 1</div><div class="line">        it                           result of the last line evaluated; use to further iterate</div><div class="line">        DBQuery.shellBatchSize = x   set default number of items to display on shell</div><div class="line">        exit                         quit the mongo shell</div></pre></td></tr></table></figure>
+<h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><ul>
+<li><p>db.help()  查看当前db的可用命令</p>
+</li>
+<li><p>db.mycoll.help()   查看集合的可用命令</p>
+</li>
+<li><p>show dbs</p>
+<p>显示当前数据库服务器上的数据库</p>
+</li>
+<li><p>use xxx</p>
+<p> 切换到指定数据库xxx的上下文，可以在此上下文中管理xxx数据库以及其中的集合等</p>
+</li>
+<li><p>show collections</p>
+<p>显示数据库中所有的集合（collection）</p>
+</li>
+<li><p>db.serverStatus()</p>
+<p>查看数据库的状态，如 version， mem， uptime</p>
+</li>
+<li><p>db.stats()</p>
+<p>查询指定数据库统计信息</p>
+</li>
+<li><p>db.getCollectionNames()</p>
+<p>查询指定数据库包含的集合名称列表</p>
+</li>
+</ul>
+<h4 id="基本数据操作"><a href="#基本数据操作" class="headerlink" title="基本数据操作"></a>基本数据操作</h4><ul>
+<li><p>use  new_db</p>
+<p>切换上下文的过程后，插入一条数据时会自动创建新数据库</p>
+</li>
+<li><p>db.dropDatabase()</p>
+<p>删除指定的数据库</p>
+</li>
+<li><p>db.createCollection(‘Colletion_name’, {‘capped’:true, ‘size’:10240, ‘max’:17855200})</p>
+<p>创建集合</p>
+</li>
+<li><p>db.mycoll.drop()</p>
+<p>删除集合</p>
+</li>
+<li><p>db.mycoll.save({‘version’:’3.5’, ‘segment’:’e3ol6’})</p>
+<p>插入、更新记录</p>
+</li>
+<li><p>findOne() 查询满足条件的一条记录， find() 满足条件的所有记录，find().count()统计结果</p>
+</li>
+<li><p>db.mycoll.remove({‘version’:’3.5’})</p>
+<p>删除满足条件的所有记录</p>
+</li>
+<li><p>db.mycoll.ensureIndex(keypattern[,options])</p>
+<p>创建索引</p>
+</li>
+<li><p>db.system.indexes.find()</p>
+<p>查询数据库中所有索引</p>
+</li>
+<li><p>db.mycoll.getIndexes()</p>
+<p>查看集合上的所有索引</p>
+</li>
+<li><p>删除索引</p>
+<p>db.mycoll.dropIndex(name)<br>db.mycoll.dropIndexes()</p>
+</li>
+<li><p>索引重建</p>
+<p>db.mycoll.reIndex()</p>
+</li>
+<li><p>查询存储空间</p>
+<p>db.mycoll.storageSize() 集合可用存储空间， db.baseSe.totalSize() 集合已分配的存储空间 </p>
+</li>
+</ul>
+<h4 id="启动和停止"><a href="#启动和停止" class="headerlink" title="启动和停止"></a>启动和停止</h4><p><code>mongod --auth --dbpath /usr/mongo/data --logfile /var/mongo.log</code>  启动</p>
+<p><code>mongod -f /etc/mongodb.conf --repair</code>  以修复模式启动</p>
+<p><code>db.shutdownServer()</code> 停止数据库，或者kill掉mongod进程</p>
+<h4 id="锁操作"><a href="#锁操作" class="headerlink" title="锁操作"></a>锁操作</h4><p>加写数据锁，一般在执行数据库备份时使用，不允许写数据操作。 <code>db.runCommand({fsync:1,lock:1})</code></p>
+<p>查看当前的锁状态 <code>db.currentOp()</code></p>
+<p>解锁  <code>db.$cmd.sys.unlock.findOne()</code></p>
+<h3 id="mongodb用户与权限"><a href="#mongodb用户与权限" class="headerlink" title="mongodb用户与权限"></a>mongodb用户与权限</h3><p>mongodb 的权限:</p>
+<ol>
+<li><p>数据库用户角色：read、readWrite;  </p>
+</li>
+<li><p>数据库管理角色：dbAdmin、dbOwner、userAdmin；       </p>
+</li>
+<li><p>集群管理角色：clusterAdmin、clusterManager、clusterMonitor、hostManager；</p>
+</li>
+<li><p>备份恢复角色：backup、restore；</p>
+</li>
+<li><p>所有数据库角色：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase</p>
+</li>
+<li><p>超级用户角色：root  </p>
+<p>// 这里还有几个角色间接或直接提供了系统超级用户的访问（dbOwner 、userAdmin、userAdminAnyDatabase）</p>
+</li>
+<li><p>内部角色：__system12345678</p>
+</li>
+</ol>
+<blockquote>
+<p>read:允许用户读取指定数据库<br>readWrite:允许用户读写指定数据库<br>dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile<br>userAdmin：允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户<br>clusterAdmin：只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。<br>readAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读权限<br>readWriteAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读写权限<br>userAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的userAdmin权限<br>dbAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。<br>root：只在admin数据库中可用。超级账号，超级权限</p>
 </blockquote>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><ul>
-<li><p>查询非空</p>
+<h3 id="mongodb-使用技巧"><a href="#mongodb-使用技巧" class="headerlink" title="mongodb 使用技巧"></a>mongodb 使用技巧</h3><h4 id="find"><a href="#find" class="headerlink" title="find"></a>find</h4><p><code>find({条件}, {指定Field}).skip(n).limit(m)</code> 查询满足条件的记录，跳过n条，总共取m条，只取指定Field数据。</p>
+<p><code>db.getCollection(&#39;finished&#39;).find({}, {&#39;_id&#39;: 0, &#39;name&#39;:1}, limits=2, skip=2)</code></p>
+<ul>
+<li><p>查询key的值是否非空</p>
 <p><code>db.mycollection.find({&quot;pic_url&quot;:{$ne:null}});</code></p>
+</li>
+<li><p>查询key是否存在</p>
+<p><code>db.course.find( { &quot;lectures.lectures_count&quot;: { $exists: true } } )</code></p>
 </li>
 <li><p>查询某个key的值</p>
 <p><code>db.mycollection.find({&quot;IMAGE URL&quot;:{$ne:&#39;&#39;}});</code></p>
 </li>
-<li><p>​</p>
-<p>​</p>
+<li><p>数值比较，in查询， all多值匹配</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">db.collection.find(&#123; "field" : &#123; $gt: value &#125; &#125; ); // greater than : field &gt; value</div><div class="line">db.collection.find(&#123; "field" : &#123; $lt: value &#125; &#125; ); // less than : field &lt; value</div><div class="line">db.collection.find(&#123; "field" : &#123; $gte: value &#125; &#125; ); // greater than or equal to : field &gt;= value</div><div class="line">db.collection.find(&#123; "field" : &#123; $lte: value &#125; &#125; ); // less than or equal to : field &lt;= value</div><div class="line">db.collection.find(&#123; "field" : &#123; $gt: value1, $lt: value2 &#125; &#125; ); // value1 &lt; field &lt; value</div><div class="line">db.things.find( &#123; 'field' : &#123; $ne : 3 &#125; &#125; );</div><div class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">in</span></span></div><div class="line">db.things.find(&#123;j:&#123;$in: [2,4,6]&#125;&#125;);</div><div class="line">db.things.find(&#123;j:&#123;$nin: [2,4,6]&#125;&#125;);</div><div class="line"><span class="meta">#</span><span class="bash"> all</span></div><div class="line">db.things.find( &#123; a: &#123; $all: [ 2, 3 ] &#125; &#125; ); // 可以匹配到&#123; a: [ 1, 2, 3 ] &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>数组长度</p>
+<p><code>$size</code></p>
+</li>
+<li><p>嵌套对象查询</p>
+<p><code>db.postings.find( { &quot;author.name&quot; : &quot;joe&quot; } )</code>  对于记录<code>{&quot;author&quot; : {&quot;name&quot; : &quot;Jane&quot;, &quot;id&quot; : 1}}</code> </p>
+<p>这种查询会失败<code>db.blog.findOne({&quot;author&quot; : {&quot;name&quot; : &quot;Jane&quot;}})</code>, 因为<code>{&quot;name&quot; : &quot;Jane&quot;}</code>是key的value，必须精确匹配。</p>
+<p>内嵌文档的完全匹配查询和数组的<strong>完全匹配查询</strong>一样，内嵌文档内键值对的<strong>数量，顺序</strong>都必须一致才会匹配:</p>
 </li>
 </ul>
+<h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>如果不存在则创建，upsert操作。</p>
+<p><code>db.xxx.update({条件}，{操作}，upsert=true)</code> </p>
+<h4 id="集合重命名"><a href="#集合重命名" class="headerlink" title="集合重命名"></a>集合重命名</h4><p><code>db.runCommand( { renameCollection: &quot;kickstart.project_name&quot;, to: &quot;kickstart.project_data&quot; })</code></p>
+<h4 id="集合建立索引"><a href="#集合建立索引" class="headerlink" title="集合建立索引"></a>集合建立索引</h4><p>测试集合内有35万条记录，没建立索引前执行500次查询约耗时5分钟。在id字段建立索引后，执行124371次查找，耗时不到1分钟。</p>
+<p><code>db.test.ensureIndex({&quot;userid&quot;:1},{&quot;unique&quot;:true})</code> 唯一索引，如果有重复的会报错</p>
+<p><code>db.test.ensureIndex({&quot;id&quot;:1},{&quot;unique&quot;:true,&quot;dropDups&quot;:true})</code> 唯一索引，删除重复记录</p>
+<p><code>db.test.reIndex()</code>  重建索引</p>
+<h3 id="数据备份和恢复"><a href="#数据备份和恢复" class="headerlink" title="数据备份和恢复"></a>数据备份和恢复</h3><h4 id="mongoexport"><a href="#mongoexport" class="headerlink" title="mongoexport"></a>mongoexport</h4><ul>
+<li>-h：数据库宿主机IP</li>
+<li>-u：数据库用户名</li>
+<li>-p：数据库密码</li>
+<li>-d：数据库名字</li>
+<li>-c：集合名字</li>
+<li>-f：指明列</li>
+<li>–csv 导出csv格式，默认导出json格式</li>
+</ul>
+<p><code>mongoexport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 -f 字段1，字段2 -q　‘{条件导出}’ -o data.json</code></p>
+<h4 id="mongoimport"><a href="#mongoimport" class="headerlink" title="mongoimport"></a>mongoimport</h4><p><code>mongoimport -d kickstart -c finished    finish.json</code></p>
+<h4 id="mongodump"><a href="#mongodump" class="headerlink" title="mongodump"></a>mongodump</h4><p><code>mongodump --host mongodb1.example.net --port 37017 --username user --password &quot;pass&quot; --out /opt/backup/mongodump-2011-10-24</code></p>
+<h4 id="mongorestore"><a href="#mongorestore" class="headerlink" title="mongorestore"></a>mongorestore</h4><p><code>mongorestore -h 182.254.229.194  -u kickwrite -p &quot;kickstart&quot;  -d kickstart -c project_data  --authenticationDatabase admin  mongodump-2018-01-12/newkick/project_data.bson</code></p>
+<p>1.65GB数据恢复到腾讯云上用了10分钟左右，1C1G1M低配云。</p>
+<h4 id="db-copyDatabase"><a href="#db-copyDatabase" class="headerlink" title="db.copyDatabase"></a>db.copyDatabase</h4><p>这个方法必须要在要写入的mongod上登陆，并且有写入权限，数据源必须要有公网IP。</p>
+<p>比如从腾讯云(有公网ip)上复制数据库到本地电脑（局域网），则在本地登陆mongo client，执行copyDatabase。</p>
+<p>参考<a href="https://docs.mongodb.com/manual/reference/method/db.copyDatabase/" target="_blank" rel="external">官方文档</a></p>
+<h3 id="pymongo使用技巧"><a href="#pymongo使用技巧" class="headerlink" title="pymongo使用技巧"></a>pymongo使用技巧</h3><ul>
+<li>建立连接</li>
+<li>增删改查，参考<a href="http://api.mongodb.com/python/current/api/pymongo/collection.html" target="_blank" rel="external">集合操作</a></li>
+</ul>
+<h3 id="错误解决"><a href="#错误解决" class="headerlink" title="错误解决"></a>错误解决</h3><h4 id="内存不足，重启失败"><a href="#内存不足，重启失败" class="headerlink" title="内存不足，重启失败"></a>内存不足，重启失败</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var/lib/mongodb/kickstart.4 open/create failed in createPrivateMap (look in log for more information)</div><div class="line">warning database /var/lib/mongodb kickstart could not be opened</div><div class="line">2018-01-11T20:29:57.778+0800 [initandlisten] DBException 13636: file /var/lib/mongodb/kickstart.4 open/create failed in createPrivateMap (look in log for more information)</div><div class="line">2018-01-11T20:29:57.778+0800 [initandlisten] exception in initAndListen: 13636 file /var/lib/mongodb/kickstart.4 open/create failed in createPrivateMap (look in log for more information), terminating</div><div class="line">2018-01-11T20:29:57.778+0800 [initandlisten] dbexit:</div></pre></td></tr></table></figure>
+<p>原因： 32位mongodb写满了2G数据，重启数据库后，发现启动失败，我还开启了journal功能。</p>
+<p>解决： 我没敢删除数据库里的其他文件，值把数据库data文件复制出来， 然后 <code>mongodb --dbpath /path/to/newdir --auth=true</code>  </p>
+<h4 id="mmap-failed-with-out-of-memory"><a href="#mmap-failed-with-out-of-memory" class="headerlink" title="mmap failed with out of memory"></a>mmap failed with out of memory</h4><p>64位系统下，可能是虚拟内存不足导致的</p>
+<p>取消虚拟内存限制的方法：修改etc/profile文件，在文件最后加入一行</p>
+<p>ulimit -v unlimited</p>
+<p>然后<code># source /etc/profile</code>，使配置生效。</p>
 
       
     </div>
@@ -433,7 +582,7 @@ window.onload = function(){
     <a href="/2016/12/13/技术/HTML-basic-grammar/" class="alignleft prev" >上一页</a>
     
     
-    <a href="/2016/11/16/技术/python-cookbook-note1/" class="alignright next" >下一页</a>
+    <a href="/2016/11/16/技术/Python-cookbook-note1/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
@@ -652,7 +801,7 @@ window.onload = function(){
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">76</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/pandas/">pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python/">python</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/python-爬虫/">python 爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/scrapy/">scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
 </div>
  
 
@@ -690,6 +839,8 @@ window.onload = function(){
   
     <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
   
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
     <li><a href="/tags/Django/">Django</a><small>4</small></li>
   
     <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
@@ -700,17 +851,25 @@ window.onload = function(){
   
     <li><a href="/tags/Git/">Git</a><small>3</small></li>
   
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
     <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
+    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+  
     <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
   
     <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>9</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
   
     <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
@@ -724,13 +883,19 @@ window.onload = function(){
   
     <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
   
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
     <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
   
     <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
   
     <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
   
     <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
   
     <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
@@ -742,7 +907,7 @@ window.onload = function(){
   
     <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>20</small></li>
+    <li><a href="/tags/Python/">Python</a><small>24</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
@@ -752,9 +917,17 @@ window.onload = function(){
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
-    <li><a href="/tags/Web/">Web</a><small>18</small></li>
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
   
     <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
   
     <li><a href="/tags/flask/">flask</a><small>1</small></li>
   
@@ -766,19 +939,25 @@ window.onload = function(){
   
     <li><a href="/tags/linux/">linux</a><small>1</small></li>
   
-    <li><a href="/tags/python/">python</a><small>3</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/restful/">restful</a><small>1</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
   
     <li><a href="/tags/框架/">框架</a><small>1</small></li>
   
     <li><a href="/tags/测试/">测试</a><small>1</small></li>
   
     <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
 </div>
@@ -792,7 +971,7 @@ window.onload = function(){
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>
@@ -803,7 +982,7 @@ window.onload = function(){
 <div class="copyright">
 		
 		  
-		  &copy;2014&mdash; <span itemprop="copyrightYear">2017</span>
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
 		  
   <span class="with-love">
     <i class="fa fa-heart" style="color:red"></i>
@@ -843,6 +1022,13 @@ window.onload = function(){
     });
   </script>
 
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
 <!-- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
