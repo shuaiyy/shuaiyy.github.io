@@ -88,7 +88,7 @@
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -315,11 +315,11 @@
 <a id="more"></a>
 <h3 id="从二次型最优化来理解"><a href="#从二次型最优化来理解" class="headerlink" title="从二次型最优化来理解"></a>从二次型最优化来理解</h3><p>最小化二次型目标函数<a href="http://www.codecogs.com/eqnedit.php?latex=f(x)=x^TAx" target="_blank"><img src="http://latex.codecogs.com/gif.latex?f(x)=x^TAx" title="f(x)=x^TAx"></a>，其中A为已知的实对称二阶矩阵，<a href="http://www.codecogs.com/eqnedit.php?latex=A=[1,0.5;0.5,1]" target="_blank"><img src="http://latex.codecogs.com/gif.latex?A=[1,0.5;0.5,1]" title="A=[1,0.5;0.5,1]"></a>，<a href="http://www.codecogs.com/eqnedit.php?latex=x=[x_1,x_2]^{\textrm{T}}&space;\in&space;\textcal{R}^2" target="_blank"><img src="http://latex.codecogs.com/gif.latex?x=[x_1,x_2]^{\textrm{T}}&space;\in&space;\textcal{R}^2" title="x=[x_1,x_2]^{\textrm{T}} \in \textcal{R}^2"></a>.这个问题的求解很简单，这里以此为例来说明该问题与矩阵特征值的关系。</p>
 <p>首先，可以得到目标函数的网格图与等高线图如下。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171007/2mLmji0glF.png?imageslim" alt="mark"><br><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171007/madFAeK2bI.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171007/2mLmji0glF.png?imageslim" alt="mark"><br><img src="http://img.shuaiyy.cn/blog/171007/madFAeK2bI.png?imageslim" alt="mark"></p>
 <p>对矩阵A进行特征分解可以得到其特征向量为[-0.7071, 0.7071], [0.7071, 0.7071]，对应的特征值分别是0.5, 1.5.</p>
 <p>观察函数的等高线图可以知道，等高线最密集的地方，函数值变化最快，而这个函数值变化最快的方向归一化后就是[0.7071, 0.7071]，这恰好是矩阵的一个特征向量。同样地，可以观察，等高线最稀疏的地方，函数值变化最慢，变化方向则是矩阵的另一个特征向量。可以看出，<code>矩阵特征值的大小与函数值的变化快慢有关</code>，较大特征值所对应的特征向量方向上函数值的变化较快，较小特征值所对应的特征向量方向上函数值的变化较慢。</p>
 <p>进一步，对于实对称矩阵，我们总是可以对其进行相似变化，得到一个以该矩阵特征值为对角线元素的对角阵。<a href="http://www.codecogs.com/eqnedit.php?latex=P^{-1}AP=B" target="_blank"><img src="http://latex.codecogs.com/gif.latex?P^{-1}AP=B" title="P^{-1}AP=B"></a>，其中，P为正交矩阵，有性质P的逆等于P的转置。把目标函数改写为<a href="http://www.codecogs.com/eqnedit.php?latex=f(x)=x^{\textrm{T}}PBP^{\textrm{T}}x" target="_blank"><img src="http://latex.codecogs.com/gif.latex?f(x)=x^{\textrm{T}}PBP^{\textrm{T}}x" title="f(x)=x^{\textrm{T}}PBP^{\textrm{T}}x"></a>，其中<a href="http://www.codecogs.com/eqnedit.php?latex=B=[0.5,&space;0;&space;0,&space;1.5]" target="_blank"><img src="http://latex.codecogs.com/gif.latex?B=[0.5,&space;0;&space;0,&space;1.5]" title="B=[0.5, 0; 0, 1.5]"></a>. 相似变换的作用可以理解为将等高线图进行旋转，于是得到下面经过旋转后的等高线图。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171007/8e6bBmdkEe.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171007/8e6bBmdkEe.png?imageslim" alt="mark"></p>
 <p>在这张图上说明矩阵特征值的意义。当函数值取1时所对应的椭圆等高线的长轴长度为<a href="http://www.codecogs.com/eqnedit.php?latex=\frac{1}{\sqrt{0.5}}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\frac{1}{\sqrt{0.5}}" title="\frac{1}{\sqrt{0.5}}"></a>， 即由矩阵特征值0.5决定。同理，该椭圆短轴长度为<a href="http://www.codecogs.com/eqnedit.php?latex=\frac{1}{\sqrt{1.5}}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\frac{1}{\sqrt{1.5}}" title="\frac{1}{\sqrt{1.5}}"></a>，由矩阵特征值1.5决定。</p>
 <p>二阶矩阵的理解较为直观。高阶矩阵的道理是一样的。</p>
 <h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><p>【1】<a href="http://www.zhihu.com/question/21874816/answer/19592526" target="_blank" rel="external">如何理解矩阵特征值</a></p>
@@ -335,10 +335,13 @@
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/Math/">Math</a>, <a href="/tags/Optimization/">Optimization</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Math/" style="font-size: 13px; color: #90f">Math</a> <a href="/tags/Optimization/" style="font-size: 23px; color: #f00">Optimization</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -352,8 +355,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -661,11 +664,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -795,6 +799,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 

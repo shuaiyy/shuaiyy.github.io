@@ -85,7 +85,7 @@
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -324,8 +324,8 @@
 </li>
 <li><p>自定义参数转化器</p>
 <p><code>from werkzeug.routing import BaseConverter</code></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170925/jjdch2dALj.png?imageslim" alt="mark"></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170925/A7g1k740ae.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/170925/jjdch2dALj.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/170925/A7g1k740ae.png?imageslim" alt="mark"></p>
 <p> <code>/url/&lt;regex(&quot;[a-z0-9]{3}&quot;):user_id&gt;</code></p>
 </li>
 </ul>
@@ -336,7 +336,7 @@
 <p>如果路由是<code>/about</code>，那么访问<code>/about/</code>会404出错。</p>
 </li>
 </ul>
-<h1 id="request"><a href="#request" class="headerlink" title="request"></a>request</h1><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/kckfHalLB5.png?imageslim" alt="mark"></p>
+<h1 id="request"><a href="#request" class="headerlink" title="request"></a>request</h1><p><img src="http://img.shuaiyy.cn/blog/170926/kckfHalLB5.png?imageslim" alt="mark"></p>
 <ul>
 <li><p>request上下文可以获取cookie、form(POST)、args(GET)参数等信息</p>
 </li>
@@ -347,12 +347,12 @@
 </li>
 <li><p><code>request.files[&#39;form-key&#39;]</code>可以 获取post提交的文件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> werkzeug.utils <span class="keyword">import</span> secure_filename</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/2G9kefEJ6i.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/170926/2G9kefEJ6i.png?imageslim" alt="mark"></p>
 <p>form表单必须指明enctype参数</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/5IIDGd4BBJ.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/170926/5IIDGd4BBJ.png?imageslim" alt="mark"></p>
 </li>
 </ul>
-<h1 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h1><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/hhCEBEe3hj.png?imageslim" alt="mark"></p>
+<h1 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h1><p><img src="http://img.shuaiyy.cn/blog/170926/hhCEBEe3hj.png?imageslim" alt="mark"></p>
 <p>使用jinja2模板，块语句、表达式、变量赋值和with域、</p>
 <h2 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;% raw %&#125;</div><div class="line">&#123;% with %&#125;</div><div class="line">&#123;% set links=[</div><div class="line">  	('Hpme', url_for('.index')),</div><div class="line">	('About', url_for('.about')),</div><div class="line">	('Projects', url_for('.projects')),</div><div class="line">]%&#125;</div><div class="line">&#123;% endwith %&#125;</div><div class="line">&#123;% endraw %&#125;</div></pre></td></tr></table></figure>
 <h2 id="条件语句if"><a href="#条件语句if" class="headerlink" title="条件语句if"></a>条件语句if</h2><p>  if elif else endif</p>
@@ -371,7 +371,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_mdfile</span><span class="params">(filename)</span>:</span></div><div class="line">    <span class="keyword">with</span> open(filename) <span class="keyword">as</span> md:</div><div class="line">        content = reduce(<span class="keyword">lambda</span> x, y: x + y, md.readlines())</div><div class="line">        <span class="keyword">return</span> content.decode(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line"><span class="meta">@app.context_processor</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">inject_methods</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span>  dict(read_mdfile=read_mdfile)</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h2><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/2Agjfi1A3E.png?imageslim" alt="mark"></p>
+<h2 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h2><p><img src="http://img.shuaiyy.cn/blog/170926/2Agjfi1A3E.png?imageslim" alt="mark"></p>
 <ul>
 <li><p>同一个block如何引用多次？ <code> {{ self.title() }}</code></p>
 </li>
@@ -400,7 +400,7 @@
 </li>
 <li><p>模板宏</p>
 <p>宏类似于python的函数，引用<code> {{ input('password', type='password') }}</code></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/170926/hE6jAkAJ38.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/170926/hE6jAkAJ38.png?imageslim" alt="mark"></p>
 <p>当宏很多时，可以写在单独的文件里，然后在需要的地方引用</p>
 <p><code> {% import '_marcos.html' as ui %} </code></p>
 <p>然后调用<code> {{ ui.input('password', type='password') }}</code></p>
@@ -434,10 +434,13 @@
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/Flask/">Flask</a>, <a href="/tags/Web/">Web</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Flask/" style="font-size: 13px; color: #90f">Flask</a> <a href="/tags/Web/" style="font-size: 23px; color: #f00">Web</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -451,8 +454,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -760,11 +763,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -894,6 +898,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 

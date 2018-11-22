@@ -93,7 +93,7 @@ IOC/DI两个概念（其实是不同的角度）
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -444,8 +444,8 @@ IOC/DI两个概念（其实是不同的角度）
 </li>
 <li><p>依赖注入的方式：属性注入（通过setter方法）；构造器注入.</p>
 <p>属性可以使用ref引用其他bean，也可以创建内部bean。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180409/bgGAkBm82c.png?imageslim" alt="mark"></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180409/gIkb16mJEj.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180409/bgGAkBm82c.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180409/gIkb16mJEj.png?imageslim" alt="mark"></p>
 <p>​</p>
 </li>
 <li><p>注入属性值的字面值，即可以用字符串表示的值，基本类型，封装类都可以。 <code>&lt;null/&gt;</code>表示注入null值。</p>
@@ -491,18 +491,18 @@ IOC/DI两个概念（其实是不同的角度）
 <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><ul>
 <li><p>组件扫描，component-scan，可以扫描并实例化具有特定注解的组件</p>
 <p>配置中<code>&lt;context:component-scan&gt;</code>, base-package 属性指定一个需要扫描的基类包，Spring 容器将会扫描<br>这个基类包里及其子包中的所有类. 当需要扫描多个包时, 可以使用逗号分隔. 还可以指定包含或过滤的特定类，或者匹配模式</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180409/cB0817ICh4.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180409/cB0817ICh4.png?imageslim" alt="mark"></p>
 <p>@Autowired 和@Resource 、@Inject注解的属性也会被自动装配。</p>
 </li>
 <li><p>特定组件：</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180409/cJmKhF0GhE.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180409/cJmKhF0GhE.png?imageslim" alt="mark"></p>
 </li>
 <li><p>默认命名为类名的首字母小写，或者通过注解的value指定。</p>
 </li>
 <li><p>自动装配</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180409/fIlBE1E3JG.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180409/fIlBE1E3JG.png?imageslim" alt="mark"></p>
 <p>​</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180409/5k7j1hkI3D.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180409/5k7j1hkI3D.png?imageslim" alt="mark"></p>
 </li>
 </ul>
 <h2 id="AOP-1"><a href="#AOP-1" class="headerlink" title="AOP"></a>AOP</h2><p>如日志、验证等需要面向切面编程的场景。做到核心业务与辅助业务相分离。</p>
@@ -547,7 +547,7 @@ IOC/DI两个概念（其实是不同的角度）
 <li><p>切入点表达式支持通配符，多个表达式可以通过操作符<code>&amp;&amp;, ||, !</code>结合起来. </p>
 </li>
 <li><p>切入点表达式重用，用@Pointcut(“切入点表达式”)声明一个切入点的空方法，通知注解的pointcut属性传入该方法的调用。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180410/aB0Hk3fAfd.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180410/aB0Hk3fAfd.png?imageslim" alt="mark"></p>
 </li>
 <li><p>连接点对象JoinPoint，可以让Advice的方法访问连接点的细节.@Around环绕通知使用的是ProceedingJoinPoint。</p>
 <p><strong>通过XML配置AOP</strong></p>
@@ -559,7 +559,7 @@ IOC/DI两个概念（其实是不同的角度）
 <h2 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h2><p>spring对原始的jdbc api提供了封装。</p>
 <ul>
 <li><p>注入方式，在DAO中注入jdbcTemplate对象。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180410/0im14A43Ka.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180410/0im14A43Ka.png?imageslim" alt="mark"></p>
 </li>
 <li><p>支持批量更新、插入、删除，查询；sql语句可以使用具名参数，如map集合进行参数绑定</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 查询一个</span></div><div class="line">String sql = <span class="string">"SELECT id, last_name lastName, email, dept_id as \"department.id\" FROM employees WHERE id = ?"</span>;</div><div class="line">RowMapper&lt;Employee&gt; rowMapper = <span class="keyword">new</span> BeanPropertyRowMapper&lt;&gt;(Employee.class);</div><div class="line">Employee employee = jdbcTemplate.queryForObject(sql, rowMapper, <span class="number">1</span>);</div><div class="line"><span class="comment">// 查询多个</span></div><div class="line">String sql = <span class="string">"SELECT id, last_name lastName, email FROM employees WHERE id &gt; ?"</span>;</div><div class="line">RowMapper&lt;Employee&gt; rowMapper = <span class="keyword">new</span> BeanPropertyRowMapper&lt;&gt;(Employee.class);</div><div class="line">List&lt;Employee&gt; employees = jdbcTemplate.query(sql, rowMapper,<span class="number">5</span>);</div><div class="line"></div><div class="line">List&lt;Object[]&gt; batchObjs = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">batchObjs.add(<span class="keyword">new</span> Object[]&#123;<span class="string">"AA"</span>, <span class="string">"aa@atguigu.com"</span>, <span class="number">1</span>&#125;);</div><div class="line">batchObjs.add(<span class="keyword">new</span> Object[]&#123;<span class="string">"BB"</span>, <span class="string">"bb@atguigu.com"</span>, <span class="number">2</span>&#125;);</div><div class="line">batchObjs.add(<span class="keyword">new</span> Object[]&#123;<span class="string">"CC"</span>, <span class="string">"cc@atguigu.com"</span>, <span class="number">3</span>&#125;);</div><div class="line">batchObjs.add(<span class="keyword">new</span> Object[]&#123;<span class="string">"DD"</span>, <span class="string">"dd@atguigu.com"</span>, <span class="number">3</span>&#125;);</div><div class="line">batchObjs.add(<span class="keyword">new</span> Object[]&#123;<span class="string">"EE"</span>, <span class="string">"ee@atguigu.com"</span>, <span class="number">2</span>&#125;);</div><div class="line"><span class="comment">// 批量更新</span></div><div class="line">String sql = <span class="string">"INSERT INTO employees(last_name, email, dept_id) VALUES(?,?,?)"</span>;</div><div class="line">jdbcTemplate.batchUpdate(sql, batchObjs);</div></pre></td></tr></table></figure>
@@ -580,7 +580,7 @@ IOC/DI两个概念（其实是不同的角度）
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Transactional</span>(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)</div><div class="line"><span class="function"><span class="keyword">public</span> Boolean <span class="title">delete</span><span class="params">(Person b)</span></span>&#123;</div><div class="line">        <span class="comment">// 数据操作相关代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>事务的传播属性</strong></p>
 <p>默认为REQUIRED，使用当前的事务。REQUIRED_NEW，挂起当前事务，并开辟新的事务。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180410/DJ80iAEAfd.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180410/DJ80iAEAfd.png?imageslim" alt="mark"></p>
 <p><strong>事务隔离级别</strong></p>
 <p>并发处理事务时，容易导致：</p>
 <ul>
@@ -590,7 +590,7 @@ IOC/DI两个概念（其实是不同的角度）
 </ul>
 <p>因此需要事务隔离。原则上完全隔离最好，但是没有并发，性能极低。</p>
 <p>Spring 支持的事务隔离级别：</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180410/a0dfgLga8E.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180410/a0dfgLga8E.png?imageslim" alt="mark"></p>
 <p>还可以设置 回滚、不会滚、只读、超时属性。</p>
 <ul>
 <li>回滚： 指定的异常回滚</li>
@@ -725,10 +725,13 @@ IOC/DI两个概念（其实是不同的角度）
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/Java/">Java</a>, <a href="/tags/Spring/">Spring</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 23px; color: #f00">Java</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -742,8 +745,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -1051,11 +1054,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -1185,6 +1189,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 

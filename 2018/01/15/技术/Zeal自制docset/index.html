@@ -100,7 +100,7 @@ Doxygen
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -341,7 +341,7 @@ Doxygen
 <blockquote>
 <p> 本例使用的是python doc生成docset，使用的工具为<a href="https://doc2dash.readthedocs.io/en/stable/usage.html" target="_blank" rel="external">doc2dash</a>, scrapy文档源可以下载官方源码，解压源码中的doc文件夹。</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 在Python的虚拟环境里安装</span></div><div class="line">pip install Sphinx&gt;=1.3</div><div class="line">pip install sphinx_rtd_theme</div><div class="line">pip install doc2dash</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 在Python的虚拟环境里安装</div><div class="line">pip install Sphinx&gt;=1.3</div><div class="line">pip install sphinx_rtd_theme</div><div class="line">pip install doc2dash</div></pre></td></tr></table></figure>
 <h4 id="下载doc源文档"><a href="#下载doc源文档" class="headerlink" title="下载doc源文档"></a>下载doc源文档</h4><p>在github上下载scrapy的源码，其中包含<a href="https://github.com/scrapy/scrapy/tree/1.5/docs" target="_blank" rel="external">doc文档的源码</a></p>
 <h4 id="编译doc文档"><a href="#编译doc文档" class="headerlink" title="编译doc文档"></a>编译doc文档</h4><p>使用sphinx编译doc文档源码。sphinx是Python下广泛使用的文档编写工具，可以将srt格式的文档编译成HTMl，大多数python第三方库使用的都是该工具，并且发布在免费的文档托管网站，read the doc。</p>
 <p> 编译<code>sphinx-build -b html docs docs_dir</code> , 如果想要自己创建、编写文档，可以参考sphix的<a href="https://zh-sphinx-doc.readthedocs.io/en/latest/tutorial.html" target="_blank" rel="external">用法</a></p>
@@ -349,10 +349,10 @@ Doxygen
 <p><code>doc2dash -u https://doc.scrapy.org/en/1.5/ -n scrapy_1.5 docs_dir</code> </p>
 <p>将得到的 <code>scrapy_1.5.docset</code> 文件夹拷贝到Zeal的文档文件下。</p>
 <h4 id="添加图标和meta信息"><a href="#添加图标和meta信息" class="headerlink" title="添加图标和meta信息"></a>添加图标和meta信息</h4><p>在docset文件夹里添加文件icon.png和meta.json </p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180124/hgk7la7E56.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180124/hgk7la7E56.png?imageslim" alt="mark"> </p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># meta.json</div><div class="line"></div><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"Scrapy"</span>,</div><div class="line">    <span class="attr">"revision"</span>: <span class="string">"0"</span>,</div><div class="line">    <span class="attr">"title"</span>: <span class="string">"Scrapy"</span>,</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"1.5.0"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>打开Zeal查看效果：</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180124/fbBg250EGh.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180124/fbBg250EGh.png?imageslim" alt="mark"> </p>
 <h3 id="发布docset"><a href="#发布docset" class="headerlink" title="发布docset"></a>发布docset</h3><p><a href="https://kapeli.com/docsets#improveDocset" target="_blank" rel="external">参考</a></p>
 <ul>
 <li><p>可以将其贡献给Dash，方便其他的dash用户下载使用。</p>
@@ -374,10 +374,13 @@ Doxygen
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/Zeal/">Zeal</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -391,8 +394,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -700,11 +703,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -834,6 +838,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 

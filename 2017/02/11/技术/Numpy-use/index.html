@@ -89,7 +89,7 @@
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -534,16 +534,16 @@ complex128 [ 1.  3.] [ 2. -4.]
 <li>view()</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scipy.misc</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line">%matplotlib inline</div><div class="line"><span class="comment"># 显示图片</span></div><div class="line">face = scipy.misc.face()</div><div class="line">acopy = face.copy()</div><div class="line">aview = face.view()</div><div class="line">plt.subplot(<span class="number">221</span>)</div><div class="line">plt.imshow(face)</div><div class="line">plt.subplot(<span class="number">222</span>)</div><div class="line">plt.imshow(acopy)</div><div class="line">plt.subplot(<span class="number">223</span>)</div><div class="line">plt.imshow(aview)</div><div class="line">aview.flat = <span class="number">0</span></div><div class="line">plt.subplot(<span class="number">224</span>)</div><div class="line">plt.imshow(aview)</div><div class="line"><span class="comment"># 改变view视图后，原数组同样被改变，copy不受影响</span></div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-2-28/69107225-file_1488289287341_1137b.png" alt=""></p>
+<p><img src="http://img.shuaiyy.cn/17-2-28/69107225-file_1488289287341_1137b.png" alt=""></p>
 <h3 id="8-花式索引"><a href="#8-花式索引" class="headerlink" title="8 花式索引"></a>8 花式索引</h3><p>花式索引，通过坐标x y的迭代器序列，索引一系列的元素</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">face = scipy.misc.face()</div><div class="line">xmax = face.shape[<span class="number">0</span>] </div><div class="line">ymax = face.shape[<span class="number">1</span>]</div><div class="line"><span class="keyword">print</span> xmax, ymax</div><div class="line">face[range(xmax), range(xmax)] = <span class="number">0</span>  <span class="comment"># 对角线上的像素点值改为0，sorry，非n*n方阵</span></div><div class="line">face[range(xmax<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>), range(xmax)] = <span class="number">0</span>  <span class="comment"># range(start, stop, step) 不包含stop，因此是n-1，-1</span></div><div class="line">plt.imshow(face)</div></pre></td></tr></table></figure>
 <pre><code>768 1024
-</code></pre><p><img src="http://o8i01ajlj.bkt.clouddn.com/17-2-28/31590580-file_1488289287476_17d6e.png" alt=""></p>
+</code></pre><p><img src="http://img.shuaiyy.cn/17-2-28/31590580-file_1488289287476_17d6e.png" alt=""></p>
 <h3 id="9-基于位置变量的索引方法"><a href="#9-基于位置变量的索引方法" class="headerlink" title="9 基于位置变量的索引方法"></a>9 基于位置变量的索引方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 通过位置列表索引</span></div><div class="line">x = np.arange(xmax)</div><div class="line">y = np.arange(ymax)</div><div class="line">np.random.shuffle(x)</div><div class="line">np.random.shuffle(y)</div><div class="line">plt.imshow(face[np.ix_(x, y)]) <span class="comment"># np.ix_() 输入n个1维数组，返回n个n维数组 </span></div><div class="line"><span class="comment"># a[np.ix_([1,3],[2,5])] 的结果 [[a[1,2] a[1,5]], [a[3,2] a[3,5]]]</span></div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-2-28/75202176-file_1488289287606_ebb3.png" alt=""></p>
+<p><img src="http://img.shuaiyy.cn/17-2-28/75202176-file_1488289287606_ebb3.png" alt=""></p>
 <h3 id="10-用bool型变量索引Numpy数组"><a href="#10-用bool型变量索引Numpy数组" class="headerlink" title="10 用bool型变量索引Numpy数组"></a>10 用bool型变量索引Numpy数组</h3><p>用布尔型变量索引数组</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">x = (np.arange(xmax)%<span class="number">4</span> == <span class="number">0</span>)</div><div class="line">face = scipy.misc.face()</div><div class="line">f2 = face.copy()</div><div class="line">face[x, x] = <span class="number">0</span> <span class="comment"># 对角线上索引整除4的元素值设为0</span></div><div class="line">plt.subplot(<span class="number">121</span>)</div><div class="line">plt.imshow(face)</div><div class="line">plt.subplot(<span class="number">122</span>)</div><div class="line">f2[(face &gt; face.max()/<span class="number">4</span>) &amp; (face &lt; <span class="number">3</span>*face.max()/<span class="number">4</span>)] = <span class="number">0</span>  <span class="comment"># 数组中值大于最大值1/4小于3/4的置为0</span></div><div class="line">plt.imshow(f2)</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-2-28/71072137-file_1488289287743_54ed.png" alt=""></p>
+<p><img src="http://img.shuaiyy.cn/17-2-28/71072137-file_1488289287743_54ed.png" alt=""></p>
 <h3 id="11-numpy数组的广播"><a href="#11-numpy数组的广播" class="headerlink" title="11 numpy数组的广播"></a>11 numpy数组的广播</h3><p>数组要和标量相乘的话，标量要根据数组的形状进行相应的扩展</p>
 
       
@@ -557,10 +557,13 @@ complex128 [ 1.  3.] [ 2. -4.]
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/Python/">Python</a>, <a href="/tags/Numpy/">Numpy</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Numpy/" style="font-size: 13px; color: #90f">Numpy</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -574,8 +577,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -883,11 +886,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -1017,6 +1021,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 

@@ -93,7 +93,7 @@ Populating the interactive namespace from numpy and matplotlib
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -325,9 +325,9 @@ Populating the interactive namespace from numpy and matplotlib
 <a id="more"></a>
 <h4 id="Figure-和Subplot"><a href="#Figure-和Subplot" class="headerlink" title="Figure 和Subplot"></a>Figure 和Subplot</h4><p>创建一个figure后，还需要在上面添加子图，然后调用子图的绘图方法绘图。<br>直接使用plot绘图，图像绘制在最后一次选定的子图</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> randn</div><div class="line">fig = plt.figure()</div><div class="line">sp1 = fig.add_subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>)  <span class="comment"># 2*2布局的第一个子图</span></div><div class="line">sp1.plot(randn(<span class="number">50</span>).cumsum(), <span class="string">'k--'</span>)  <span class="comment"># k--黑色虚线图</span></div><div class="line"></div><div class="line">sp2 = fig.add_subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)</div><div class="line">sp2.hist(randn(<span class="number">100</span>), bins=<span class="number">20</span>, color=<span class="string">'k'</span>, alpha=<span class="number">0.3</span>) <span class="comment">## 直方图，20个箱子</span></div><div class="line"></div><div class="line">sp3 = fig.add_subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</div><div class="line">sp3.scatter(np.arange(<span class="number">30</span>), np.arange(<span class="number">30</span>) + randn(<span class="number">30</span>) * <span class="number">3</span>, color = <span class="string">'b'</span>)</div><div class="line"><span class="comment"># sp4 = fig.add_subplot(2, 2, 4)</span></div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/32548773-file_1489305673034_6cf8.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/32548773-file_1489305673034_6cf8.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用plt.subplot()创建子图</span></div><div class="line">fig, axes = plt.subplots(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">## 返回画布和子图对象的数组</span></div><div class="line">axes[<span class="number">0</span>][<span class="number">0</span>].plot(range(<span class="number">10</span>), range(<span class="number">10</span>))</div><div class="line"><span class="comment">## 调整子图间的距离, wspace和hspace 子图间百分比</span></div><div class="line">fig.subplots_adjust(left=<span class="number">1</span>, right=<span class="number">2</span>, wspace=<span class="number">0</span>, hspace=<span class="number">0</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/72473159-file_1489305673146_ad2c.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/72473159-file_1489305673146_ad2c.png" alt="png"></p>
 <h4 id="颜色、标记、线型"><a href="#颜色、标记、线型" class="headerlink" title="颜色、标记、线型"></a>颜色、标记、线型</h4><p>plot函数接受一组X和y坐标，还有格式字符串。<br>表示颜色和线型的字符串,如<strong>“g–”</strong>,表示绿色的折线<br><strong>“go–”</strong>, 绿色O点折线，marker=’o’<br>也可以在plot中指定参数</p>
 <ul>
 <li>linestyle=’–’</li>
@@ -344,28 +344,28 @@ Populating the interactive namespace from numpy and matplotlib
 <li>fig.xlim()</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">plt.plot(randn(<span class="number">30</span>).cumsum(), <span class="string">'go--'</span>, label=<span class="string">'yyy'</span>)</div><div class="line">plt.plot(randn(<span class="number">30</span>).cumsum(), color=<span class="string">'b'</span>, marker=<span class="string">'*'</span>, linestyle=<span class="string">'--'</span>, label=<span class="string">'xxx'</span>)</div><div class="line">plt.plot(randn(<span class="number">30</span>).cumsum(), color=<span class="string">'r'</span>, drawstyle=<span class="string">'steps-post'</span>, label=<span class="string">'zzz'</span>)</div><div class="line">plt.legend(loc=<span class="string">'best'</span>)  <span class="comment"># 图例，label的位置为best</span></div><div class="line">plt.xlabel(<span class="string">'X'</span>)</div><div class="line">plt.ylabel(<span class="string">'random'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/78474909-file_1489305673254_5759.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/78474909-file_1489305673254_5759.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">plt.xlim() <span class="comment"># 当前x轴的范围</span></div><div class="line">plt.xlim([<span class="number">-10</span>,<span class="number">10</span>]) <span class="comment"># 调整x轴的范围</span></div></pre></td></tr></table></figure>
 <pre><code>(-10, 10)
-</code></pre><p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/85467516-file_1489305673368_16744.png" alt="png"></p>
+</code></pre><p><img src="http://img.shuaiyy.cn/17-3-12/85467516-file_1489305673368_16744.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#### 注解以及在subplot上绘图</span></div><div class="line">ax = plt.subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</div><div class="line">ax.plot(range(<span class="number">10</span>), range(<span class="number">3</span>, <span class="number">13</span>), <span class="string">'g*--'</span>, label=<span class="string">'line'</span>)</div><div class="line">ax.legend(<span class="string">'best'</span>)</div><div class="line">ax.text(<span class="number">2</span>, <span class="number">5</span>, <span class="string">'Here!'</span>, family=<span class="string">'monospace'</span>, fontsize=<span class="number">10</span>)</div><div class="line">ax.annotate(<span class="string">'Look Here!'</span>, xy=(<span class="number">3</span>, <span class="number">6</span>), arrowprops=dict(facecolor=<span class="string">'black'</span>))  <span class="comment">#,family='monospace', fontsize=10)</span></div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/41144219-file_1489305672107_13c9a.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/41144219-file_1489305672107_13c9a.png" alt="png"></p>
 <h3 id="pandas中的绘图函数"><a href="#pandas中的绘图函数" class="headerlink" title="pandas中的绘图函数"></a>pandas中的绘图函数</h3><h4 id="线型图"><a href="#线型图" class="headerlink" title="线型图"></a>线型图</h4><p>Series和Dataframe的plot方法默认生成的是线型图</p>
 <h4 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h4><p>添加参数kind=bar或barh，生成柱状图和水平方向的柱状图</p>
 <h4 id="直方图和密度图"><a href="#直方图和密度图" class="headerlink" title="直方图和密度图"></a>直方图和密度图</h4><p>直方图是一种可以对值频率进行离散化显示的柱状图，plot.hist()<br>密度图：计算“可能会产生观测数据的连续发布的估计”，一般是将该分布近似为一组核（如高斯正态分布）分布。</p>
 <h4 id="散布图"><a href="#散布图" class="headerlink" title="散布图"></a>散布图</h4><p>观察两组一维数据之间关系的有效方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> Series, DataFrame</div><div class="line">s = Series(randn(<span class="number">10</span>).cumsum(), index=range(<span class="number">0</span>, <span class="number">100</span>, <span class="number">10</span>))</div><div class="line">s.plot()</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/2827479-file_1489305672228_c94b.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/2827479-file_1489305672228_c94b.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">fig, axes = plt.subplots(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line">s.plot(ax=axes[<span class="number">0</span>][<span class="number">0</span>])</div><div class="line">frame = DataFrame(randn(<span class="number">10</span>, <span class="number">4</span>).cumsum(<span class="number">0</span>), columns=list(<span class="string">'ABCD'</span>), index=range(<span class="number">0</span>, <span class="number">100</span>, <span class="number">10</span>))</div><div class="line">frame.plot(ax=axes[<span class="number">0</span>][<span class="number">1</span>])</div><div class="line">frame.plot(ax=axes[<span class="number">0</span>][<span class="number">1</span>])</div><div class="line"><span class="comment">### 柱状图</span></div><div class="line">s.plot(ax=axes[<span class="number">1</span>][<span class="number">0</span>], kind=<span class="string">'barh'</span>)</div><div class="line">frame.plot(ax=axes[<span class="number">1</span>][<span class="number">1</span>], kind=<span class="string">'bar'</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/58849151-file_1489305672343_537e.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/58849151-file_1489305672343_537e.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fig, axes = plt.subplots(<span class="number">2</span>, <span class="number">2</span>)</div><div class="line"><span class="comment">## 堆积柱状图</span></div><div class="line">s.plot(ax=axes[<span class="number">0</span>][<span class="number">0</span>], kind=<span class="string">'bar'</span>, stacked=<span class="keyword">True</span>, alpha=<span class="number">0.3</span>) </div><div class="line">frame.plot(ax=axes[<span class="number">0</span>][<span class="number">1</span>], kind=<span class="string">'bar'</span>, stacked=<span class="keyword">True</span>, alpha=<span class="number">0.5</span>)</div><div class="line">s.value_counts().plot(ax=axes[<span class="number">1</span>][<span class="number">0</span>], kind=<span class="string">'bar'</span>, stacked=<span class="keyword">True</span>, alpha=<span class="number">0.3</span>)</div><div class="line">frame.ix[:, <span class="number">2</span>:<span class="number">8</span>].plot(ax=axes[<span class="number">1</span>][<span class="number">1</span>], kind=<span class="string">'bar'</span>, stacked=<span class="keyword">True</span>, alpha=<span class="number">0.5</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/71308396-file_1489305672462_13b8b.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/71308396-file_1489305672462_13b8b.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>)</div><div class="line">s = Series(randn(<span class="number">100</span>).cumsum(), index=range(<span class="number">0</span>, <span class="number">1000</span>, <span class="number">10</span>))</div><div class="line"><span class="comment"># 直方图</span></div><div class="line">s.hist(ax=axes[<span class="number">0</span>], bins=<span class="number">40</span>)</div><div class="line"><span class="comment"># 密度图</span></div><div class="line">s.plot(ax=axes[<span class="number">1</span>], kind=<span class="string">'kde'</span>, color=<span class="string">'k'</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/78764023-file_1489305672591_17531.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/78764023-file_1489305672591_17531.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s.hist(bins=<span class="number">40</span>, normed=<span class="keyword">True</span>)</div><div class="line">s.plot(kind=<span class="string">'kde'</span>, style=<span class="string">'g--'</span>)</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/54224940-file_1489305672702_146df.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/54224940-file_1489305672702_146df.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">### 散点图</span></div><div class="line">plt.scatter(frame[<span class="string">'A'</span>], frame[<span class="string">'D'</span>])</div></pre></td></tr></table></figure>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/84592200-file_1489305672811_2aa.png" alt="png"></p>
+<p><img src="http://img.shuaiyy.cn/17-3-12/84592200-file_1489305672811_2aa.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.scatter_matrix(frame, diagonal=<span class="string">'kde'</span>)</div></pre></td></tr></table></figure>
 <pre><code>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x0000000021169438&gt;,
         &lt;matplotlib.axes._subplots.AxesSubplot object at 0x00000000213EB4A8&gt;,
@@ -383,7 +383,7 @@ Populating the interactive namespace from numpy and matplotlib
         &lt;matplotlib.axes._subplots.AxesSubplot object at 0x0000000021E70E10&gt;,
         &lt;matplotlib.axes._subplots.AxesSubplot object at 0x0000000021F677F0&gt;,
         &lt;matplotlib.axes._subplots.AxesSubplot object at 0x0000000022036240&gt;]], dtype=object)
-</code></pre><p><img src="http://o8i01ajlj.bkt.clouddn.com/17-3-12/29501980-file_1489305672921_1138.png" alt="png"></p>
+</code></pre><p><img src="http://img.shuaiyy.cn/17-3-12/29501980-file_1489305672921_1138.png" alt="png"></p>
 
       
     </div>
@@ -396,10 +396,13 @@ Populating the interactive namespace from numpy and matplotlib
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/Python/">Python</a>, <a href="/tags/Matplotlib/">Matplotlib</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -413,8 +416,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -722,11 +725,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -856,6 +860,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 

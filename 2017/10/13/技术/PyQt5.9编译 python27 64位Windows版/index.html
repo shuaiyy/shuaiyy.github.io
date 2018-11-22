@@ -93,7 +93,7 @@ python-qt5是第三方编译提供的，pypi上pyqt版本为5.3，github上源�
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -341,7 +341,7 @@ python-qt5是第三方编译提供的，pypi上pyqt版本为5.3，github上源�
 <p>我用的 visual studio 2015社区版本，安装的时候选择自定义，把c++的组件勾选上。</p>
 <p>由于我选了默认安装，没有c++编译工具，安装好后还得打开vs2015，在新建c++项目的界面选择安装C++组件，又多花了近一个小时。</p>
 <p>VS的安装过程十分漫长，需要数个小时，因为是在线安装。如果下载了完整的离线安装包，应该会很快。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171019/02jfGB5CjJ.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171019/02jfGB5CjJ.png?imageslim" alt="mark"></p>
 </li>
 <li><p>Qt5.8环境</p>
 <p>如果是vs2013环境，就下对应MSVC2013的Qt</p>
@@ -362,7 +362,7 @@ python-qt5是第三方编译提供的，pypi上pyqt版本为5.3，github上源�
 <p>应该是pyqt5.8对应qt5.8。一开始我用的pyqt5.9+qt5.8，智障了。</p>
 </li>
 </ul>
-<h3 id="开始编译"><a href="#开始编译" class="headerlink" title="开始编译"></a>开始编译</h3><h4 id="编译SIP"><a href="#编译SIP" class="headerlink" title="编译SIP"></a>编译SIP</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> sip-4.19.2</span></div><div class="line"><span class="meta">$</span><span class="bash"> c:\python27\python.exe configure.py</span></div><div class="line"><span class="meta">$</span><span class="bash"> nmake</span></div><div class="line"><span class="meta">$</span><span class="bash"> nmake install <span class="comment"># 这个安装命令放到最最后面在执行</span></span></div></pre></td></tr></table></figure>
+<h3 id="开始编译"><a href="#开始编译" class="headerlink" title="开始编译"></a>开始编译</h3><h4 id="编译SIP"><a href="#编译SIP" class="headerlink" title="编译SIP"></a>编译SIP</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cd sip-4.19.2</div><div class="line"><span class="meta">$</span> c:\python27\python.exe configure.py</div><div class="line"><span class="meta">$</span> nmake</div><div class="line"><span class="meta">$</span> nmake install # 这个安装命令放到最最后面在执行</div></pre></td></tr></table></figure>
 <p>得到的sip可执行文件在sipgen中，sip的Python模块（sip.pyd或sip.so）在siplib中。这时不要nmake install安装sip，先编译安装pyqt5。</p>
 <p>编译时出现问题<code>LINK : fatal error LNK1181: 无法打开输入文件“python27.lib”</code></p>
 <p>原因可能是我用的anaconda的Python虚拟环境，后来用c:\python27\python.exe 没有报错。</p>
@@ -372,8 +372,8 @@ python-qt5是第三方编译提供的，pypi上pyqt版本为5.3，github上源�
 <p><code>c:\Python27\python.exe configure.py --sip=..\sip-4.19.2\sipgen\sip.exe  --sip-incdir=..\sip-4.19.2\siplib --disable=QtNfc --qmake=C:\Qt\Qt5.8.0\5.8\msvc2015_64\bin\qmake.exe</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd PyQt5_gpl-5.8.2</div><div class="line">$ c:\Python27\python.exe configure.py --sip=..\sip-4.19.2\sipgen\sip.exe  --sip-incdir=..\sip-4.19.2\siplib --disable=QtNfc --qmake=C:\Qt\Qt5.8.0\5.8\msvc2015_64\bin\qmake.exe</div><div class="line">$ nmake</div><div class="line">$ nmake install</div></pre></td></tr></table></figure>
 <p>此时安装成功后，<code>import PyQt5.QtCore</code> 提示找不到dll，后面给解决方法。看打包整理部分。</p>
-<h4 id="编译PyQt3D"><a href="#编译PyQt3D" class="headerlink" title="编译PyQt3D"></a>编译PyQt3D</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> PyQt3D_gpl-5.9</span></div><div class="line"><span class="meta">$</span><span class="bash"> c:\Python27\python.exe configure.py --sip=..\sip-4.19.3\sipgen\sip.exe  --sip-incdir=..\sip-4.19.3\siplib  --qmake=C:\Qt\Qt5.8.0\5.8\msvc2015_64\bin\qmake.exe</span></div><div class="line"><span class="meta">$</span><span class="bash"> nmake</span></div><div class="line"><span class="meta">$</span><span class="bash"> nmake install</span></div></pre></td></tr></table></figure>
-<h4 id="编译QScintilla2"><a href="#编译QScintilla2" class="headerlink" title="编译QScintilla2"></a><strong>编译QScintilla2</strong></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> QScintilla_gpl-2.10\Qt4Qt5</span></div><div class="line"><span class="meta">$</span><span class="bash"> C:\Qt\Qt5.8.0\5.8\msvc2015_64\bin\qmake.exe</span></div><div class="line"><span class="meta">$</span><span class="bash"> nmake release</span></div><div class="line"><span class="meta">$</span><span class="bash"> nmake install</span></div></pre></td></tr></table></figure>
+<h4 id="编译PyQt3D"><a href="#编译PyQt3D" class="headerlink" title="编译PyQt3D"></a>编译PyQt3D</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cd PyQt3D_gpl-5.9</div><div class="line"><span class="meta">$</span> c:\Python27\python.exe configure.py --sip=..\sip-4.19.3\sipgen\sip.exe  --sip-incdir=..\sip-4.19.3\siplib  --qmake=C:\Qt\Qt5.8.0\5.8\msvc2015_64\bin\qmake.exe</div><div class="line"><span class="meta">$</span> nmake</div><div class="line"><span class="meta">$</span> nmake install</div></pre></td></tr></table></figure>
+<h4 id="编译QScintilla2"><a href="#编译QScintilla2" class="headerlink" title="编译QScintilla2"></a><strong>编译QScintilla2</strong></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cd QScintilla_gpl-2.10\Qt4Qt5</div><div class="line"><span class="meta">$</span> C:\Qt\Qt5.8.0\5.8\msvc2015_64\bin\qmake.exe</div><div class="line"><span class="meta">$</span> nmake release</div><div class="line"><span class="meta">$</span> nmake install</div></pre></td></tr></table></figure>
 <h4 id="打包整理"><a href="#打包整理" class="headerlink" title="打包整理"></a>打包整理</h4><p><strong>问题描述</strong></p>
 <ol>
 <li><p><code>PyQt5 ImportError: DLL load failed</code></p>
@@ -394,7 +394,7 @@ python-qt5是第三方编译提供的，pypi上pyqt版本为5.3，github上源�
 <li><p>Plugins</p>
 <p>从<code>C:\Qt\Qt5.8.0\5.8\msvc2015_64\plugins\</code>复制到PyQt5下plugins文件夹，</p>
 <p>会有3种文件，只保留xxx.dll,删除xxxd.dll和xxxd.pdb文件。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171019/5hgCE1j82i.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171019/5hgCE1j82i.png?imageslim" alt="mark"></p>
 </li>
 <li><p><code>*.dll</code></p>
 <p>从<code>C:\Qt\Qt5.8.0\5.8\msvc2015_64\bin\</code>下全部内容复制到PyQt5目录下</p>
@@ -405,7 +405,7 @@ python-qt5是第三方编译提供的，pypi上pyqt版本为5.3，github上源�
 <p>上面的操作就是<code>PyQt5.sip</code>模块，如果还同时想安装sip包，<code>nmake install</code></p>
 </li>
 <li><p>sip包</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171019/J2Hd80CbJk.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171019/J2Hd80CbJk.png?imageslim" alt="mark"></p>
 <p>将这4个文件复制进PyQt5。</p>
 <p>同时将其复制到site-packages下。</p>
 </li>
@@ -461,10 +461,13 @@ python-qt5是第三方编译提供的，pypi上pyqt版本为5.3，github上源�
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/PyQt5/">PyQt5</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/PyQt5/" style="font-size: 13px; color: #90f">PyQt5</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -478,8 +481,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -787,11 +790,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -921,6 +925,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 

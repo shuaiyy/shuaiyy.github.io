@@ -88,7 +88,7 @@ pypi源下载超时的话可以切换豆瓣pip源
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -332,31 +332,31 @@ pypi源下载超时的话可以切换豆瓣pip源
 </ul>
 <h3 id="配置Pycharm"><a href="#配置Pycharm" class="headerlink" title="配置Pycharm"></a>配置Pycharm</h3><p>下面以python2为例，python3对应的designer.exe的位置不同。</p>
 <p>打开Pycharm，进入设置，添加外部工具，QtDesigner和PyUIC</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/0A13dkjIf2.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171012/0A13dkjIf2.png?imageslim" alt="mark"></p>
 <ul>
 <li><p>QtDesigner</p>
 <p>QtDesigner用来生成ui文件</p>
 <p><code>$FileDir$</code>是pycharm的宏变量，即当前文件的路径</p>
 </li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/JF9aJk6Efb.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171012/JF9aJk6Efb.png?imageslim" alt="mark"></p>
 <ul>
 <li><p>PyUIC</p>
 <p>将ui文件转换成对应的python文件</p>
 <p>参数为<code>-m PyQt5.uic.pyuic  $FileName$ -o $FileNameWithoutExtension$.py</code></p>
 </li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171012/F4HkBKiA2F.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171012/F4HkBKiA2F.png?imageslim" alt="mark"></p>
 <ul>
 <li><p>pyrcc</p>
 <p>用于生成资源文件</p>
 <p>我在虚拟环境的pyqt5文件夹里没找到pyrcc5.exe,但在系统Python的bin目录下有一个，就copy了一份，使用正常。系统的Python用pip list看了一下，并没有安装pyqt5，但是有qtpy这个包，有点奇怪，我系统的Python是anaconda发行版。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/m7i0IDl3LK.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171013/m7i0IDl3LK.png?imageslim" alt="mark"></p>
 <p><strong>使用方法</strong></p>
 <p>首先生成资源的qrc文件：</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/A5Ae444Jb9.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171013/A5Ae444Jb9.png?imageslim" alt="mark"></p>
 <p>然后右键生成资源的py文件</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171013/JILDaame1E.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171013/JILDaame1E.png?imageslim" alt="mark"></p>
 <p>然后在需要引用资源的地方，先import py文件，然后资源的路径使用格式<code>:文件路径/prefix_dir/文件名</code>,冒号必不可少，文件路径是指_rc.py文件相对qrc资源文件的路径。当两者在同一路径时，可以不写。</p>
 </li>
 </ul>
@@ -417,34 +417,34 @@ pypi源下载超时的话可以切换豆瓣pip源
 <li>改变字体</li>
 <li>使用图片</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/81HeJBm591.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171016/81HeJBm591.png?imageslim" alt="mark"></p>
 <h3 id="button"><a href="#button" class="headerlink" title="button"></a>button</h3><p><strong>radio button</strong></p>
 <ul>
 <li>使用GroupBox放置一组互斥的单选框</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/9bk5Bej498.png?imageslim" alt="mark"></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/d5l4h8HmAg.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171016/9bk5Bej498.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171016/d5l4h8HmAg.png?imageslim" alt="mark"></p>
 <h3 id="LineEdit"><a href="#LineEdit" class="headerlink" title="LineEdit"></a>LineEdit</h3><ul>
 <li>object.setText(“”)</li>
 <li>object.text()</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/gf3fDmgj5i.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171016/gf3fDmgj5i.png?imageslim" alt="mark"></p>
 <h3 id="TextEdit"><a href="#TextEdit" class="headerlink" title="TextEdit"></a>TextEdit</h3><p>多行文本框，只读/编辑属性,多行文本持续输出</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/AlL5d6m1me.png?imageslim" alt="mark"></p>
-<h3 id="TextBrowser"><a href="#TextBrowser" class="headerlink" title="TextBrowser"></a>TextBrowser</h3><h3 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/gg1Fa8kFE8.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171016/AlL5d6m1me.png?imageslim" alt="mark"></p>
+<h3 id="TextBrowser"><a href="#TextBrowser" class="headerlink" title="TextBrowser"></a>TextBrowser</h3><h3 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h3><p><img src="http://img.shuaiyy.cn/blog/171016/gg1Fa8kFE8.png?imageslim" alt="mark"></p>
 <h3 id="MenuBar"><a href="#MenuBar" class="headerlink" title="MenuBar"></a>MenuBar</h3><ul>
 <li>每个菜单选项为一个Qaction对象</li>
 <li>Qdesigner中可以拖拽菜单项进行排序</li>
 <li>Qaction可以添加图标， png格式的。在属性的icon中右边有个…打开文件按钮，点击添加icon</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/Hm8F3Eh6F1.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171016/Hm8F3Eh6F1.png?imageslim" alt="mark"></p>
 <p><strong>打开/关闭文件</strong></p>
 <ul>
 <li><code>QFileDialog.getSaveFileName</code> </li>
 <li><code>QFileDialog.getOpenFileName</code> </li>
 <li>win32com操作word打开文档</li>
 </ul>
-<h3 id="SliderBar"><a href="#SliderBar" class="headerlink" title="SliderBar"></a>SliderBar</h3><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/9EgiD93fgA.png?imageslim" alt="mark"></p>
+<h3 id="SliderBar"><a href="#SliderBar" class="headerlink" title="SliderBar"></a>SliderBar</h3><p><img src="http://img.shuaiyy.cn/blog/171016/9EgiD93fgA.png?imageslim" alt="mark"></p>
 <h3 id="Dial"><a href="#Dial" class="headerlink" title="Dial"></a>Dial</h3><h3 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h3><ul>
 <li>通知对话框 </li>
 <li>询问对话框</li>
@@ -453,7 +453,7 @@ pypi源下载超时的话可以切换豆瓣pip源
 <li>关于对话框</li>
 <li>AboutQt对话框</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171016/jlkmc139F7.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171016/jlkmc139F7.png?imageslim" alt="mark"></p>
 <h3 id="标准输入对话框"><a href="#标准输入对话框" class="headerlink" title="标准输入对话框"></a>标准输入对话框</h3><ul>
 <li>getText</li>
 <li>getInt</li>
@@ -492,7 +492,7 @@ pypi源下载超时的话可以切换豆瓣pip源
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">app = QApplication(sys.argv)</div><div class="line">splash = QSplashScreen(QPixmap(<span class="string">':source/4532.png'</span>))</div><div class="line">splash.show()</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line"><span class="comment"># 显示文字信息，文字的位置和颜色</span></div><div class="line">splash.showMessage(<span class="string">'正在加载图片资源...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">splash.showMessage(<span class="string">'正在加载视频资源...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">splash.showMessage(<span class="string">'正在启动中...'</span>, Qt.AlignBottom, Qt.blue)</div><div class="line">sleep(<span class="number">2</span>)</div><div class="line">app.processEvents() <span class="comment"># 避免阻塞gui事件</span></div><div class="line"><span class="comment"># 主窗口初始化</span></div><div class="line">mywindow = MyWindow()</div><div class="line">mywindow.show()</div><div class="line"><span class="comment"># 关闭启动窗口</span></div><div class="line">splash.close()</div><div class="line">sys.exit(app.exec_())</div></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171017/KIfbDagJAh.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171017/KIfbDagJAh.png?imageslim" alt="mark"></p>
 <h2 id="信号槽机制"><a href="#信号槽机制" class="headerlink" title="信号槽机制"></a>信号槽机制</h2><h3 id="信号种类"><a href="#信号种类" class="headerlink" title="信号种类"></a>信号种类</h3><p>事件源：鼠标点击拖拽等，值改变。。。</p>
 <h3 id="信号和槽"><a href="#信号和槽" class="headerlink" title="信号和槽"></a>信号和槽</h3><blockquote>
 <p>所有的组件都可以产生信号，组件只负责发射信号。</p>
@@ -542,10 +542,13 @@ pypi源下载超时的话可以切换豆瓣pip源
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/PyQt5/">PyQt5</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/PyQt5/" style="font-size: 13px; color: #90f">PyQt5</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -559,8 +562,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -868,11 +871,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -1002,6 +1006,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 

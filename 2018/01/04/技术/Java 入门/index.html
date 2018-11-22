@@ -88,7 +88,7 @@
 <div class= "header-nav">
 
 			<div class='avatar'>
-				<img src = "http://o8i01ajlj.bkt.clouddn.com/blog/171005/FFHDJd20A4.jpeg?imageslim">
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
               </div>
 		
 <div class="header-div">
@@ -325,13 +325,13 @@
 </li>
 </ul>
 <h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>基本数据类型由jvm分配内存，引用数据类型需要开发者为其分配内存。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171229/GLC19iehgE.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171229/GLC19iehgE.png?imageslim" alt="mark"></p>
 <p>“”是空字符串，长度为0，”\u0000”是一个字符，表示空字符，长度为1。</p>
 <p>数值范围：</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171229/lHf1hdc510.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/171229/lHf1hdc510.png?imageslim" alt="mark"> </p>
 <p>符号位，0为正，1为负。超长数据范围会导致内存溢出。类型转换,自动转换和强制转换。</p>
 <p><code>1L</code>, <code>(long) 1</code></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/171229/H5m9bHClal.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/171229/H5m9bHClal.png?imageslim" alt="mark"></p>
 <p><strong>String类型</strong>  </p>
 <p>format<a href="http://blog.csdn.net/lonely_fireworks/article/details/7962171/" target="_blank" rel="external">格式化输出</a></p>
 <h4 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h4><ul>
@@ -379,8 +379,8 @@
 <h4 id="Java简单类"><a href="#Java简单类" class="headerlink" title="Java简单类"></a>Java简单类</h4><ul>
 <li>必须保留一个无参数构造方法</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180102/2bL6dIedCf.png?imageslim" alt="mark"> </p>
-<h4 id="访问控制权限"><a href="#访问控制权限" class="headerlink" title="访问控制权限"></a>访问控制权限</h4><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/Hl3h22ehge.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180102/2bL6dIedCf.png?imageslim" alt="mark"> </p>
+<h4 id="访问控制权限"><a href="#访问控制权限" class="headerlink" title="访问控制权限"></a>访问控制权限</h4><p><img src="http://img.shuaiyy.cn/blog/180106/Hl3h22ehge.png?imageslim" alt="mark"></p>
 <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h4><ul>
 <li>下标从0开始</li>
 <li><code>data.length</code>获取数组的长度，长度不变</li>
@@ -396,7 +396,7 @@
 <li>数组排序 <code>java.util.Arrays.sort(data)</code></li>
 </ul>
 <h4 id="对象数组"><a href="#对象数组" class="headerlink" title="对象数组"></a>对象数组</h4><p>数组里的元素是引用对象</p>
-<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180102/4dbC3GbgF3.png?imageslim" alt="mark"> </p>
+<p> <img src="http://img.shuaiyy.cn/blog/180102/4dbC3GbgF3.png?imageslim" alt="mark"> </p>
 <h3 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h3><p>字符串常量是String类的匿名对象，String一旦定义对象就不可改变（如果变了，则是生成了新的String对象，引用关系发生变化）。</p>
 <h4 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h4><p><code>==</code>比较的是对象的内存地址，即是不是同一个对象，而不是比较的其内容</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">String s1 = <span class="string">"hello"</span>;</div><div class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</div><div class="line">String s3 = s2;  <span class="comment">//引用传递</span></div><div class="line"><span class="comment">// s1==s2  false</span></div><div class="line"><span class="comment">// s1==s3  false</span></div><div class="line"><span class="comment">// s2==s3  true</span></div><div class="line">s1.equals(s2);  <span class="comment">// 内容比较</span></div><div class="line">s1.equalsIgnoreCase(s2);  <span class="comment">// 内容比较，不区分大小写</span></div><div class="line">String s4 = <span class="string">"hello"</span>;</div><div class="line">String s5 = <span class="string">"hello"</span>;</div><div class="line">s4==s5 <span class="comment">//true  匿名对象，JVM的共享设计模式，维护一个对象池。</span></div></pre></td></tr></table></figure>
@@ -440,11 +440,11 @@
 <p>this互相调用类构造方法，简化对象的创建过程代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//构造方法互相调用</span></div><div class="line"><span class="keyword">this</span>() <span class="comment">//必须在构造函数内，且为首行</span></div><div class="line">       <span class="comment">//互相调用必须由出口，避免递归调用</span></div><div class="line">  </div><div class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hello</span><span class="params">()</span></span>&#123;</div><div class="line">      System.out.print(<span class="string">'Create Hello'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hello</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">      <span class="keyword">this</span>();</div><div class="line">      <span class="keyword">this</span>.num = num;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hello</span><span class="params">(<span class="keyword">int</span> num, String name)</span></span>&#123;</div><div class="line">      <span class="keyword">this</span>();</div><div class="line">      <span class="keyword">this</span>.num = num;</div><div class="line">      <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <h3 id="引用传递"><a href="#引用传递" class="headerlink" title="引用传递"></a>引用传递</h3><p>同一块堆内存可以被不同的栈内存指向，指向同一堆内存的不同栈内存可以修改堆内存内容。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/2a9ADi9efa.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180103/2a9ADi9efa.png?imageslim" alt="mark"> </p>
 <p>输出结果为Hello，原因是String对象的内容一旦声明则不可改变，如果改变，则会创建新的String对象。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/8fIGm3GieA.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180103/8fIGm3GieA.png?imageslim" alt="mark"> </p>
 <p>String内容不可改变，一个字符串值，在堆内存中开辟一块空间，其数据不可改变。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/mJiBkIKB23.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180103/mJiBkIKB23.png?imageslim" alt="mark"> </p>
 <h3 id="对象比较"><a href="#对象比较" class="headerlink" title="对象比较"></a>对象比较</h3><p>一个类的方法可以接收本类的对象实例作为参数</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="keyword">private</span> String <span class="number">20</span>;</div><div class="line">    <span class="comment">//对象比较</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span>  <span class="title">compare</span><span class="params">(Test test)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(test==<span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>==test)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.id==test.id &amp;&amp; <span class="keyword">this</span>.name==test.name)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;           </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Static关键字"><a href="#Static关键字" class="headerlink" title="Static关键字"></a>Static关键字</h3><p>用于声明类、方法、属性。</p>
@@ -468,15 +468,15 @@
 <h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><p>在一个类的内部定义新的类，也可以在代码块、方法里定义。</p>
 <p>内部类可以访问外部类的私有属性，外部类也可以访问内部类的私有属性。</p>
 <p>内部类在外部类的外部实例化：</p>
-<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/cJ8EFIE24L.png?imageslim" alt="mark"> </p>
+<p> <img src="http://img.shuaiyy.cn/blog/180103/cJ8EFIE24L.png?imageslim" alt="mark"> </p>
 <p>如果内部类声明了private，则内部类无法在外部类以外实例化。</p>
 <p>如果内部类声明了static，则内部类与外部类相对独立。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/310FHAjlb4.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180103/310FHAjlb4.png?imageslim" alt="mark"> </p>
 <p>经常会有这样的类实例化方法<code>类.类.类.类(args)</code></p>
 <p>方法中的内部类，在jdk1.8可以访问方法的参数、属性。在1.7及之前，参数或变量类型前要加<code>final</code>修饰。 为了兼容性，还是加上<code>final</code></p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/HDagHfKD07.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180103/HDagHfKD07.png?imageslim" alt="mark"> </p>
 <h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>由节点连接起来的链表</p>
-<h4 id="Node定义"><a href="#Node定义" class="headerlink" title="Node定义"></a>Node定义</h4><p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180103/ii04jad0K8.png?imageslim" alt="mark"> </p>
+<h4 id="Node定义"><a href="#Node定义" class="headerlink" title="Node定义"></a>Node定义</h4><p><img src="http://img.shuaiyy.cn/blog/180103/ii04jad0K8.png?imageslim" alt="mark"> </p>
 <h4 id="节点关系处理"><a href="#节点关系处理" class="headerlink" title="节点关系处理"></a>节点关系处理</h4><ul>
 <li><p>Node对象应该只能由Link对象操作。因此node应该作为link的私有内部类。</p>
 </li>
@@ -536,7 +536,7 @@
 <li><p>下面的程序输出为0 </p>
 <p>构造函数对属性赋值之前，属性值为默认值。</p>
 <p>父类的构造先于子类进行，调用print方法时，num还未被初始化，其值默认为0。</p>
-<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/F6636EKhGf.png?imageslim" alt="mark"> </p>
+<p> <img src="http://img.shuaiyy.cn/blog/180105/F6636EKhGf.png?imageslim" alt="mark"> </p>
 </li>
 <li><p>抽象类主要用于模板设计</p>
 </li>
@@ -557,12 +557,12 @@
 <li>用户不需要关注代码的变更</li>
 </ul>
 <p>new导致耦合度高，工厂类屏蔽了子类的细节。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/16L6mlk8me.png?imageslim" alt="mark"> </p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/e92DE9178e.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180105/16L6mlk8me.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180105/e92DE9178e.png?imageslim" alt="mark"> </p>
 <h4 id="代理设计模式-Proxy"><a href="#代理设计模式-Proxy" class="headerlink" title="代理设计模式 Proxy"></a>代理设计模式 Proxy</h4><p>一个主题操作接口类（可能有多种方法），核心业务主题主完成核心操作，代理主题负责其他辅助操作。</p>
 <ul>
 <li><p>客户端代码只用关注接口</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/geBLCcg553.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180105/geBLCcg553.png?imageslim" alt="mark"> </p>
 </li>
 </ul>
 <h4 id="接口定义增强"><a href="#接口定义增强" class="headerlink" title="接口定义增强"></a>接口定义增强</h4><p>jdk1.8允许在接口里定义抽象方法外的普通方法，但是必须使用default或static修饰。。</p>
@@ -578,7 +578,7 @@
 <li>当抽象类和接口都可以使用时，优先使用接口</li>
 <li>使用工厂类实例化接口子类，不要直接new</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/gI07ABaDEk.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180105/gI07ABaDEk.png?imageslim" alt="mark"> </p>
 <h3 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h3><p>Object类是所有类的父类。</p>
 <ul>
 <li>利用Object可以接收任何对象，本身有一个无参构造方法。统一参数。</li>
@@ -591,7 +591,7 @@
 </li>
 </ul>
 <h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>必须基于接口或抽象类的应用，如果子类只需要使用一次，可以使用匿名内部类，以减少类文件的创建。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180105/cci867ki1L.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180105/cci867ki1L.png?imageslim" alt="mark"></p>
 <h3 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h3><p>对基本数据类型包装</p>
 <ul>
 <li>对象型包装类： Boolean，Character</li>
@@ -630,9 +630,9 @@
 <p><code>this.instance = new Singleton()</code></p>
 </li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/2H4Iaac6j5.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/2H4Iaac6j5.png?imageslim" alt="mark"> </p>
 <h4 id="多例设计"><a href="#多例设计" class="headerlink" title="多例设计"></a>多例设计</h4><p>可以实例化固定个数实例对象的类</p>
-<p> <code>类内部定义多个static final的实例</code><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/Kl6Fe2eIAJ.png?imageslim" alt="mark"> </p>
+<p> <code>类内部定义多个static final的实例</code><img src="http://img.shuaiyy.cn/blog/180106/Kl6Fe2eIAJ.png?imageslim" alt="mark"> </p>
 <h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><h4 id="捕获处理"><a href="#捕获处理" class="headerlink" title="捕获处理"></a>捕获处理</h4><ul>
 <li><p>所有异常都是Throwable的子类</p>
 <p>Throwable的直接子类Error和Exception。Error是JVM错误，程序还没执行。Exception是程序运行中的，用户可以处理的。</p>
@@ -647,7 +647,7 @@
 </ul>
 <h4 id="throws和throw"><a href="#throws和throw" class="headerlink" title="throws和throw"></a>throws和throw</h4><p>用throws声明的方法，表示调用该方法时必须用try进行异常处理。强制异常处理</p>
 <p>在程序执行代码中用throw抛出异常。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/F1eFf4Fdd3.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/F1eFf4Fdd3.png?imageslim" alt="mark"></p>
 <h4 id="RuntimeException类"><a href="#RuntimeException类" class="headerlink" title="RuntimeException类"></a>RuntimeException类</h4><p>throws该异常类时，用户可以选择性处理，如果不处理则交由JVM处理。</p>
 <p><code>NullPointerException</code></p>
 <h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><p>判断是否得到预期的结果，程序默认运行时不启用断言代码。</p>
@@ -660,8 +660,8 @@
 <li>Type类型不能是基本类型。不设置时，Type则变为Object</li>
 <li>简化声明泛型，实例化中的Type类型可以省略。</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/cbfF20c5D0.png?imageslim" alt="mark">  </p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/AlH84599Fj.png?imageslim" alt="mark">  </p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/cbfF20c5D0.png?imageslim" alt="mark">  </p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/AlH84599Fj.png?imageslim" alt="mark">  </p>
 <h4 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h4><ul>
 <li><p><code>void func(Point temp)</code>   不指定Point的泛型类型，则为Object类对象，此时传入的对象在函数内可以被改变。</p>
 </li>
@@ -676,31 +676,31 @@
 </ul>
 <h4 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt; </span>&#123; </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(T t)</span></span>;</div><div class="line">&#125; </div><div class="line"><span class="comment">//接口子类也用 T， 实例化时指定类型</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(T t)</span></span>&#123;</div><div class="line">    <span class="comment">// xxx</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">  <span class="function">psvm <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    IMessage&lt;String&gt; msg = <span class="keyword">new</span> Message&lt;string&gt;(); <span class="comment">//指定String类型</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 接口子类使用具体类型</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span> <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">String</span>&gt;</span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(String t)</span></span>&#123;</div><div class="line">    <span class="comment">// xxx</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">  <span class="function">psvm <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    IMessage&lt;String&gt; msg = <span class="keyword">new</span> Message();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4><p>泛型的方法可以在非泛型类里定义</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/HIGKcA0gDF.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/HIGKcA0gDF.png?imageslim" alt="mark"> </p>
 <h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><p><code>enum</code>, <code>Enum</code>是抽象类， enum可以实现多例设计和接口</p>
 <ul>
 <li>多例设计</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/GfiGBjK4a9.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/GfiGBjK4a9.png?imageslim" alt="mark"> </p>
 <ul>
 <li><p>接口</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/A0mCCH4eal.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/A0mCCH4eal.png?imageslim" alt="mark"> </p>
 </li>
 <li><p>在枚举里每个实例单独实现方法覆写，使用匿名内部类</p>
 </li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/Cb6dDgdE5L.png?imageslim" alt="mark"></p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/Cb6dDgdE5L.png?imageslim" alt="mark"></p>
 <ul>
 <li>在枚举里定义抽象方法，此时枚举对象必须覆写抽象方法</li>
 </ul>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/lbI02kli09.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/lbI02kli09.png?imageslim" alt="mark"> </p>
 <ul>
 <li><p>枚举应用在switch中</p>
-<p> <img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/g03FC37GB8.png?imageslim" alt="mark"></p>
+<p> <img src="http://img.shuaiyy.cn/blog/180106/g03FC37GB8.png?imageslim" alt="mark"></p>
 </li>
 </ul>
 <h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>在接口子类中用lambda表达式实现匿名内部类，覆写接口的抽象方法。</p>
-<p><img src="http://o8i01ajlj.bkt.clouddn.com/blog/180106/kE9dh8209i.png?imageslim" alt="mark"> </p>
+<p><img src="http://img.shuaiyy.cn/blog/180106/kE9dh8209i.png?imageslim" alt="mark"> </p>
 <h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>在函数式接口里使用方法引用</p>
 <h4 id="引用静态方法"><a href="#引用静态方法" class="headerlink" title="引用静态方法"></a>引用静态方法</h4><h4 id="引用对象方法"><a href="#引用对象方法" class="headerlink" title="引用对象方法"></a>引用对象方法</h4><h4 id="引用特定类型方法"><a href="#引用特定类型方法" class="headerlink" title="引用特定类型方法"></a>引用特定类型方法</h4><h4 id="引用构造方法"><a href="#引用构造方法" class="headerlink" title="引用构造方法"></a>引用构造方法</h4><h3 id="内建函数式接口"><a href="#内建函数式接口" class="headerlink" title="内建函数式接口"></a>内建函数式接口</h3><p><code>java.util.function</code>提供有4类函数式接口</p>
 <ul>
@@ -732,10 +732,13 @@
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/Java/">Java</a>
-  </div>
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 13px; color: #90f">Java</a>
+    </div>
+
+
+
 
 <!-- 打赏按钮开始 -->
 
@@ -749,8 +752,8 @@ new Donate({
   title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
   btnText: '打赏作者', // 可选参数，打赏按钮文字
   el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
-  wechatImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/9h7fIfcILJ.png',
-  alipayImage: 'http://o8i01ajlj.bkt.clouddn.com/blog/171004/KLLJdiLg9c.jpg'
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
 });
 </script>
 
@@ -1058,11 +1061,12 @@ window.onload = function(){
 <h3 class="title">打赏</h3>
 <ul class="entry">
 <li>支付宝扫一扫，捐助支持，谢谢！</li>
-<li><a href="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://o8i01ajlj.bkt.clouddn.com/blog/171004/LikDAfKDg0.png"></a></li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
 </ul>
 </div>
 
-  
+  <!--  旧的标签
+
 <div class="widget tag">
   <h3 class="title">标签</h3>
   <ul class="entry">
@@ -1192,6 +1196,17 @@ window.onload = function(){
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
   
   </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+  </div>
 </div>
 
 
