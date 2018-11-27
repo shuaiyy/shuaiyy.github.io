@@ -1,0 +1,1420 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Go学习笔记 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="Go 学习笔记hello world环境配置
+安装go
+
+设置环境变量
+
+GOROOT 安装go的根目录
+path: 添加 $GOROOT/bin/
+GOPATH: go project的目录
+
+
+安装调试工具
+go get http://github.com/derekparker/delve/c">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Go学习笔记"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+      <li><a href="/games"><i class="fa fa-fa-gamepad"></i>游戏</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-10-31T16:00:00.000Z"><a href="/2018/11/01/技术/Go 学习笔记/">2018-11-01</a></time>
+        
+	  
+      
+  
+    <h1 class="title">Go学习笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Go-学习笔记"><span class="toc-text">Go 学习笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hello-world"><span class="toc-text">hello world</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境配置"><span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#go特性"><span class="toc-text">go特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#helllo-go"><span class="toc-text">helllo go</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包"><span class="toc-text">包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本数据类型和操作符"><span class="toc-text">基本数据类型和操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件名-amp-关键字-amp-标识符"><span class="toc-text">文件名&关键字&标识符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#go程序的基本结构"><span class="toc-text">go程序的基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数声明和注释"><span class="toc-text">函数声明和注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量"><span class="toc-text">常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#值类型和引用类型"><span class="toc-text">值类型和引用类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量的作用域"><span class="toc-text">变量的作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型和操作符"><span class="toc-text">数据类型和操作符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#strings和strconv使用"><span class="toc-text">strings和strconv使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#时间和日期类型"><span class="toc-text">时间和日期类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#指针类型"><span class="toc-text">指针类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流程控制"><span class="toc-text">流程控制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#内置函数"><span class="toc-text">内置函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#闭包"><span class="toc-text">闭包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数组和切片"><span class="toc-text">数组和切片</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线程同步"><span class="toc-text">线程同步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结构体和方法"><span class="toc-text">结构体和方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#struct"><span class="toc-text">struct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用struct构建链表和树"><span class="toc-text">用struct构建链表和树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂模式创建struct"><span class="toc-text">工厂模式创建struct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匿名字段"><span class="toc-text">匿名字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#接口"><span class="toc-text">接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#interface"><span class="toc-text">interface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sort-Interface"><span class="toc-text">sort.Interface</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#反射"><span class="toc-text">反射</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IO和Json序列化"><span class="toc-text">IO和Json序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标准IO"><span class="toc-text">标准IO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#File"><span class="toc-text">File</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令行参数"><span class="toc-text">命令行参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Json"><span class="toc-text">Json</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#错误处理"><span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#goroutine和channel"><span class="toc-text">goroutine和channel</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单元测试"><span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#socket编程"><span class="toc-text">socket编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#redis"><span class="toc-text">redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#连接池"><span class="toc-text">连接池</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li></ol>
+    </div>
+
+      
+        <h1 id="Go-学习笔记"><a href="#Go-学习笔记" class="headerlink" title="Go 学习笔记"></a>Go 学习笔记</h1><h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul>
+<li><p>安装go</p>
+</li>
+<li><p>设置环境变量</p>
+<ul>
+<li>GOROOT 安装go的根目录</li>
+<li>path: 添加 <code>$GOROOT/bin/</code></li>
+<li>GOPATH: go project的目录</li>
+</ul>
+</li>
+<li><p>安装调试工具</p>
+<p><code>go get http://github.com/derekparker/delve/cmd/dlv</code></p>
+<p>如果安装失败，需要删掉derekparker的目录，然后重新执行</p>
+<p>idea的go插件无法debug，使用go目录里的dlv替换idea插件目录里的。用everything快速定位文件所在目录。</p>
+</li>
+</ul>
+<h2 id="go特性"><a href="#go特性" class="headerlink" title="go特性"></a>go特性</h2><ol>
+<li><p>垃圾回收<br>a. 内存自动回收，再也不需要开发人员管理内存<br>b. 开发人员专注业务实现，降低了心智负担<br>c. 只需要new分配内存，不需要释放 </p>
+</li>
+<li><p>天然并发<br>a. 从语言层面支持并发，非常简单<br>b. goroute，轻量级线程，创建成千上万个goroute成为可能<br>c. 基于CSP（Communicating Sequential Process）模型实现</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">go</span> fmt.Println(“hello<span class="string">")</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>channel<br>a. 管道，类似unix/linux中的pipe<br>b. 多个goroute之间通过channel进行通信<br>c. 支持任何类型 </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	pipe := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>,<span class="number">3</span>)</div><div class="line">	pipe &lt;- <span class="number">1</span></div><div class="line">	pipe &lt;- <span class="number">2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>多返回值<br>a. 一个函数返回多个值 </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">calc</span><span class="params">(a <span class="keyword">int</span>, b <span class="keyword">int</span>)</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span> &#123;</div><div class="line">    sum := a + b</div><div class="line">    avg := (a+b)/<span class="number">2</span></div><div class="line">    <span class="keyword">return</span> sum, avg</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="helllo-go"><a href="#helllo-go" class="headerlink" title="helllo go"></a>helllo go</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span>(</div><div class="line">	“fmt”</div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(“hello world”)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><ol>
+<li>和python一样，把相同功能的代码放到一个目录，称之为包</li>
+<li>包可以被其他包引用，使用import</li>
+<li>main包是用来生成可执行文件，每个程序只有一个main包</li>
+<li>包的主要用途是提高代码的可复用性 </li>
+<li>访问可见性，包里的函数必须首字母大写才能被其他包访问</li>
+<li>go get安装第三方包</li>
+</ol>
+<h1 id="基本数据类型和操作符"><a href="#基本数据类型和操作符" class="headerlink" title="基本数据类型和操作符"></a>基本数据类型和操作符</h1><h2 id="文件名-amp-关键字-amp-标识符"><a href="#文件名-amp-关键字-amp-标识符" class="headerlink" title="文件名&amp;关键字&amp;标识符"></a>文件名&amp;关键字&amp;标识符</h2><ol>
+<li><p>所有go源码以.go结尾</p>
+</li>
+<li><p>标识符以字母或下划线开头，大小写敏感，比如：</p>
+</li>
+<li><p>_是特殊标识符，用来忽略结果</p>
+</li>
+<li><p>保留关键字</p>
+<p>| break    | default    | func   | interface | select |<br>| ——– | ———- | —— | ——— | —— |<br>| case     | defer      | go     | map       | struct |<br>| chan     | else       | goto   | package   | switch |<br>| const    | fallthough | if     | range     | type   |<br>| continue | for        | import | return    | var    |</p>
+</li>
+</ol>
+<h2 id="go程序的基本结构"><a href="#go程序的基本结构" class="headerlink" title="go程序的基本结构"></a>go程序的基本结构</h2><ol>
+<li>任何一个代码文件隶属于一个包</li>
+<li>import 关键字，引用其他包。包的相对路径是GOPATH下的src文件夹</li>
+<li>import包时会执行init函数</li>
+<li>golang可执行程序， package main，并且有且只有一个main入口函数</li>
+<li>包中函数调用：<br>a. 同一个包中函数，直接调用<br>b. 不同包中函数，通过包名+点+函数名进行调用</li>
+<li>包访问控制规则：<br>a. 大写意味着这个函数/变量是可导出<br>b. 小写意味着这个函数/变量是私有的，包外部不能访问 </li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">    a <span class="string">"test/utils"</span> <span class="comment">// 包的别名</span></div><div class="line">    _ <span class="string">"xxx"</span> <span class="comment">// 只执行包里的init</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<h2 id="函数声明和注释"><a href="#函数声明和注释" class="headerlink" title="函数声明和注释"></a>函数声明和注释</h2><ol>
+<li>函数声明：<code>func 函数名字 (参数列表) (返回值列表） {}</code></li>
+<li>注释，两种注释，单行注释: // 和多行注释 /<em> </em>/ </li>
+</ol>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><ol>
+<li><p>常量使用const 修饰，代表永远是只读的，不能修改。</p>
+</li>
+<li><p>const 只能修饰boolean， number（int相关类型、浮点类型、 complex）和string。</p>
+</li>
+<li><p>语法： <code>const identifier [type] = value</code>，其中type可以省略。 </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> b <span class="keyword">string</span> = “hello world”</div><div class="line"><span class="keyword">const</span> b = “hello world”</div><div class="line"><span class="keyword">const</span> Pi = <span class="number">3.1414926</span></div><div class="line"><span class="keyword">const</span> a = <span class="number">9</span>/<span class="number">3</span></div><div class="line"><span class="keyword">const</span> c = getValue()</div><div class="line"><span class="comment">// 枚举</span></div><div class="line"><span class="keyword">const</span> (</div><div class="line">	a = <span class="number">0</span></div><div class="line">	b = <span class="number">1</span></div><div class="line">	c = <span class="number">2</span></div><div class="line">)</div><div class="line"><span class="keyword">const</span> (</div><div class="line">	a = <span class="literal">iota</span></div><div class="line">	b <span class="comment">//1</span></div><div class="line">	c <span class="comment">//2</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Var (</div><div class="line">    a <span class="keyword">int</span> <span class="comment">//默认为0</span></div><div class="line">    b <span class="keyword">string</span> <span class="comment">//默认为””</span></div><div class="line">    c <span class="keyword">bool</span> <span class="comment">//默认为false</span></div><div class="line">    d <span class="keyword">int</span> = <span class="number">8</span></div><div class="line">    e <span class="keyword">string</span> = “hello world”</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h2><ol>
+<li><p>值类型：变量直接存储值，内存通常在栈中分配。<code>var i = 5</code></p>
+<p>基本数据类型int、 float、 bool、 string以及数组和struct。</p>
+</li>
+<li><p>引用类型：变量存储的是一个地址，这个地址存储最终的值。内存通常在<br>堆上分配。通过GC回收。</p>
+<p>引用类型：指针、 slice、 map、 chan等都是引用类型。 </p>
+</li>
+</ol>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><ol>
+<li>在函数内部声明的变量叫做局部变量，生命周期仅限于函数内部。</li>
+<li>在函数外部声明的变量叫做全局变量，生命周期作用于整个包，如果是大写的，<br>则作用于整个程序。 </li>
+</ol>
+<h2 id="数据类型和操作符"><a href="#数据类型和操作符" class="headerlink" title="数据类型和操作符"></a>数据类型和操作符</h2><ol>
+<li><p>bool类型，只能存true和false，默认值为false</p>
+<p>相关操作符，<code>！、 &amp;&amp;、 ||</code></p>
+</li>
+<li><p>数字类型，主要有int、 int8、 int16、 int32、 int64、 uint8、 uint16、 uint32、 uint64，无符号整型</p>
+</li>
+<li><p>类型转换，<code>type(variable)</code>， 比如： <code>var a int=8; var b int32=int32(a)</code></p>
+</li>
+<li><p>逻辑操作符： == 、 !=、 &lt;、 &lt;=、 &gt;和 &gt;=</p>
+</li>
+<li><p>数学操作符： +、 -、 *、 /、%等等</p>
+</li>
+<li><p>字符类型： byte，0~127对应的ASCII码</p>
+</li>
+<li><p>字符串类型：</p>
+<p>字符串表示两种方式： 双引号 和反引号，反引号为raw字符串。</p>
+<p>两个字符串拼接 <code>+</code>，字符串底层是byte数组，支持index和切片</p>
+</li>
+</ol>
+<h1 id="strings和strconv使用"><a href="#strings和strconv使用" class="headerlink" title="strings和strconv使用"></a>strings和strconv使用</h1><ol>
+<li><code>strings.HasPrefix(s string, prefix string) bool</code>：判断字符串s是否以prefix开</li>
+<li><p><code>strings.HasSuffix(s string, suffix string) bool</code>：判断字符串s是否以suffix结</p>
+</li>
+<li><p><code>strings.Index(s string, str string) in</code>：判断str在s中首次出现的位置，如果出现，则返回-1</p>
+</li>
+<li><p><code>strings.LastIndex(s string, str string) int</code>：判断str在s中最后出现的位置，出现，则返回-1</p>
+</li>
+<li><p><code>strings.Replace(str string, old string, new string, n int)</code>：字符串替换</p>
+</li>
+<li><code>strings.Count(str string, substr string)int</code>：字符串计数</li>
+<li><code>strings.Repeat(str string, count int)string</code>：重复count次str</li>
+<li><code>strings.ToLower(str string)string</code>：转为小写</li>
+<li><code>strings.ToUpper(str string)string</code>：转为大写</li>
+<li><code>strings.TrimSpace(str string)</code>：去掉字符串首尾空白字符</li>
+<li>strings.Trim(str string, cut string)：去掉字符串首尾cut字符</li>
+<li>strings.TrimLeft(str string, cut string)：去掉字符串首cut字符</li>
+<li>strings.TrimRight(str string, cut string)：去掉字符串首cut字符</li>
+<li>strings.Field(str string)：返回str空格分隔的所有子串的slice</li>
+<li>strings.Split(str string, split string)：返回str split分隔的所有子串的s</li>
+<li>strings.Join(s1 []string, sep string)：用sep把s1中的所有元素链接起来</li>
+<li>strings.Itoa(i int)：把一个整数i转成字符串</li>
+<li>strings.Atoi(str string)(int, error)：把一个字符串转成整数</li>
+</ol>
+<h1 id="时间和日期类型"><a href="#时间和日期类型" class="headerlink" title="时间和日期类型"></a>时间和日期类型</h1><p>time.Time类型，用来表示时间</p>
+<ol>
+<li>获取当前时间， <code>now := time.Now()</code></li>
+<li><code>time.Now().Day()， time.Now().Minute()， time.Now().Month()， time.Now().Ye</code></li>
+<li><p>格式化， <code>fmt.Printf(“%02d/%02d%02d %02d:%02d:%02d”, now.Year()…)</code></p>
+<p>time.Duration用来表示纳秒</p>
+</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> (</div><div class="line">Nanosecond Duration = <span class="number">1</span></div><div class="line">Microsecond = <span class="number">1000</span> * Nanosecond</div><div class="line">Millisecond = <span class="number">1000</span> * Microsecond</div><div class="line">Second = <span class="number">1000</span> * Millisecond</div><div class="line">Minute = <span class="number">60</span> * Second</div><div class="line">Hour = <span class="number">60</span> * Minute</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>格式化：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// layout 必须是 2006-01-02 15:04:05.999999999，不能用其他的数字， 15点也可以是3点</span></div><div class="line">now := time.Now()</div><div class="line">fmt.Println(now.Format(“<span class="number">02</span>/<span class="number">1</span>/<span class="number">2006</span> <span class="number">15</span>:<span class="number">04</span>”))</div><div class="line">fmt.Println(now.Format(“<span class="number">2006</span>/<span class="number">1</span>/<span class="number">02</span> <span class="number">15</span>:<span class="number">04</span>”))</div><div class="line">fmt.Println(now.Format(“<span class="number">2006</span>/<span class="number">1</span>/<span class="number">02</span>”))</div></pre></td></tr></table></figure>
+<h1 id="指针类型"><a href="#指针类型" class="headerlink" title="指针类型"></a>指针类型</h1><ol>
+<li>普通类型，变量存的就是值，也叫值类型</li>
+<li>获取变量的地址，用&amp;，比如： <code>var a int</code>, 获取a的地址： <code>&amp;a</code></li>
+<li>指针类型，指针变量存的是一个地址，这个地址存的才是值。给指针变量赋值必须是一个地址。</li>
+<li>获取指针类型所指向的值，使用： <code>*</code>，比如： <code>var *p int</code>, 使用<code>*p</code>获取p指向的值 </li>
+</ol>
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><ol>
+<li><p>If / else分支判断</p>
+</li>
+<li><p>switch case语句</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span> varX &#123;</div><div class="line">    <span class="keyword">case</span> var1:</div><div class="line">    	<span class="keyword">fallthrough</span> <span class="comment">// 默认自带break</span></div><div class="line">    <span class="keyword">case</span> var2:</div><div class="line">    <span class="keyword">case</span> var3, var4, var5: <span class="comment">//多个值</span></div><div class="line">    <span class="keyword">default</span>:</div><div class="line">&#125;</div><div class="line"><span class="keyword">switch</span>&#123;</div><div class="line">    <span class="keyword">case</span> condition1：</div><div class="line">    <span class="keyword">case</span> condition2：</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>for 语句</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i := <span class="number">0</span> ; i &lt; <span class="number">100</span>; i++ &#123;</div><div class="line"> <span class="keyword">break</span> </div><div class="line"> <span class="keyword">continue</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span> i &gt; <span class="number">0</span> &#123;</div><div class="line">	fmt.Println(“i &gt; <span class="number">0</span>”)</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span> <span class="literal">true</span> &#123;&#125; <span class="comment">// 等价于 for&#123;&#125;</span></div><div class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> str &#123;</div><div class="line">&#125;</div><div class="line"><span class="comment">// range 用来遍历切片、map、chan、str等</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>goto 和 label 语句</p>
+</li>
+</ol>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><ol>
+<li><p>声明语法： <code>func 函数名 (参数列表) [(返回值列表)] {}</code></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">()</span></span> &#123;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(a <span class="keyword">int</span>, b <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(a <span class="keyword">int</span>, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(a <span class="keyword">int</span>, b <span class="keyword">int</span>)</span> <span class="params">(low <span class="keyword">int</span>, max <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>golang函数特点：<br>a. 不支持重载，一个包不能有两个名字一样的函数<br>b. 函数是一等公民，函数也是一种类型，一个函数可以赋值给变量<br>c. 匿名函数<br>d. 多返回值</p>
+</li>
+<li><p>函数参数传递方式：<br>1). 值传递<br>2). 引用传递</p>
+<p>注意1：无论是值传递，还是引用传递，传递给函数的都是变量的副本，不过，值传递是值的拷贝。引用传递是地址的拷贝，一般来说，地址拷贝更为高效。而值拷贝取决于拷贝的对象大小，对象越大，则性能越低。</p>
+<p>注意2： map、 slice、 chan、指针、 interface默认以引用的方式传递</p>
+</li>
+<li><p>命名返回值的名字：<code>func add(a, b int) (c int){}</code></p>
+<p> <code>_</code>标识符，可以接收想要忽略的函数返回值</p>
+</li>
+<li><p>可变参数：<br><code>func add(arg…int) int {}</code> 0个或多个参数</p>
+<p><code>func add(a int, b int, arg…int) int {}</code> 2个或多个参数<br>注意：其中arg是一个slice，我们可以通过<code>arg[index]</code>依次访问所有参数;通过<code>len(arg)</code>来判断传递参数的个数</p>
+</li>
+<li><p>defer用途：</p>
+<ol>
+<li>当函数返回时，执行defer语句。因此，可以用来做资源清理</li>
+<li>多个defer语句，按先进后出的方式执行</li>
+<li>defer语句中的变量，在defer声明时就决定了。</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 关闭文件句柄</span></div><div class="line">file := open(filename)</div><div class="line"><span class="keyword">defer</span> file.Close()</div><div class="line"><span class="comment">// 锁资源释放</span></div><div class="line">mc.Lock()</div><div class="line"><span class="keyword">defer</span> mc.Unlock()</div><div class="line"><span class="comment">// 数据库、网络连接</span></div><div class="line">conn := openDatabase()</div><div class="line"><span class="keyword">defer</span> conn.Close()</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h2><ol>
+<li>close：主要用来关闭channel</li>
+<li>len：用来求长度，比如string、 array、 slice、 map、 channel</li>
+<li>new：用来分配内存，主要用来分配值类型，比如int、 struct。返回的是指针</li>
+<li>make：用来分配内存，主要用来分配引用类型，比如chan、 map、 slice</li>
+<li>append：用来追加元素到数组、 slice中</li>
+<li>panic和recover：用来做错误处理</li>
+<li>new和make的区别</li>
+<li>一个函数调用自己，就叫做递归。<br>递归的设计原则<br>递归函数<br>1）一个大的问题能够分解成相似的小问题<br>2）定义好出口条件</li>
+</ol>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><ol>
+<li><p>闭包：定义的一个函数和与其相关的引用环境组合而成的实体</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"><span class="keyword">import</span> (</div><div class="line"><span class="string">"fmt"</span></div><div class="line"><span class="string">"strings"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeSuffixFunc</span><span class="params">(suffix <span class="keyword">string</span>)</span> <span class="title">func</span><span class="params">(<span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">  <span class="comment">// 返回一个函数</span></div><div class="line">    <span class="keyword">var</span> x <span class="keyword">string</span>  <span class="comment">// 如果函数引用了x这个变量，x在其生命周期一直存在</span></div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(name <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">		<span class="keyword">if</span> !strings.HasSuffix(name, suffix) &#123;</div><div class="line">			<span class="keyword">return</span> name + suffix</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> name</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    func1 := makeSuffixFunc(<span class="string">".bmp"</span>)</div><div class="line">    func2 := makeSuffixFunc(<span class="string">".jpg"</span>)</div><div class="line">    fmt.Println(func1(<span class="string">"test"</span>))</div><div class="line">    fmt.Println(func2(<span class="string">"test"</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="数组和切片"><a href="#数组和切片" class="headerlink" title="数组和切片"></a>数组和切片</h1><ol>
+<li><p>数组：是同一种数据类型的固定长度的序列。</p>
+<p>数组定义： <code>var a [len]int</code>, len必须是整数常量，不能传入变量，<code>a [10]int</code></p>
+<p>长度是数组类型的一部分，因此， <code>var a[5] int</code>和<code>var a[10]int</code>是不同的类型</p>
+</li>
+<li><p>数组可以通过下标进行访问，下标是从0开始，最后一个元素下标是： len-1</p>
+</li>
+<li><p>访问越界，如果下标在数组合法范围之外，则触发访问越界，会panic</p>
+</li>
+<li><p>数组是值类型，因此改变副本的值，不会改变本身的值<br><code>arr2 := arr1 arr2[2] = 100</code> arr1的值不会变</p>
+</li>
+<li><p>数组初始化</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> age1 = [<span class="number">5</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</div><div class="line"><span class="keyword">var</span> age2 = […]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</div><div class="line"><span class="keyword">var</span> age0 [<span class="number">5</span>]<span class="keyword">int</span> = [<span class="number">5</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</div><div class="line"><span class="keyword">var</span> str = [<span class="number">5</span>]<span class="keyword">string</span>&#123;<span class="number">3</span>:”hello world”, <span class="number">4</span>:”tom”&#125;</div><div class="line"><span class="keyword">var</span> a [<span class="number">2</span>][<span class="number">3</span>]<span class="keyword">int</span> = [...][<span class="number">3</span>]<span class="keyword">int</span>&#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>切片</p>
+<ol>
+<li><p>切片：切片是数组的一个引用，因此切片是引用类型</p>
+</li>
+<li><p>切片的长度可以改变，因此，切片是一个可变的数组</p>
+</li>
+<li><p>切片遍历方式和数组一样，可以用len()求长度，cap可以求出slice最大的容量， 0 &lt;= len(slice) &lt;= (array)， 其中array是slice引用的数组</p>
+</li>
+<li><p>切片的定义：<code>var 变量名 []类型</code>，比如<code>var str []string</code>  <code>var arr []int</code></p>
+</li>
+<li><p>切片初始化： </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> slice []<span class="keyword">int</span> = arr[start:end]</div><div class="line"><span class="keyword">var</span> slice []<span class="keyword">int</span>=arr[:end]</div><div class="line"><span class="keyword">var</span> slice []<span class="keyword">int</span> = arr[start]</div><div class="line"><span class="keyword">var</span> slice []<span class="keyword">int</span> = arr[:]</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过make来创建切片</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> slice []<span class="keyword">type</span> = <span class="built_in">make</span>([]<span class="keyword">type</span>, <span class="built_in">len</span>)</div><div class="line">slice := <span class="built_in">make</span>([]<span class="keyword">type</span>, <span class="built_in">len</span>)</div><div class="line">slice := <span class="built_in">make</span>([]<span class="keyword">type</span>, <span class="built_in">len</span>, <span class="built_in">cap</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>用append内置函数,在切片尾部添加元素</p>
+</li>
+<li><p>For range 遍历切片 <code>for index, val := range slice {}</code></p>
+</li>
+<li><p>切片resize</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = []<span class="keyword">int</span> &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</div><div class="line">b := a[<span class="number">1</span>:<span class="number">2</span>]</div><div class="line">b = b[<span class="number">0</span>:<span class="number">3</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>切片拷贝</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">s1 := []<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</div><div class="line">s2 := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">10</span>)</div><div class="line"><span class="built_in">copy</span>(s2, s1)</div><div class="line">s3 := []<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</div><div class="line">s3 = <span class="built_in">append</span>(s3, s2…)</div><div class="line">s3 = <span class="built_in">append</span>(s3, <span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>string与slice，string底层就是一个byte的数组，因此，也可以进行切片操作</p>
+</li>
+<li><p>如何改变string中的字符值？<br>string本身是不可变的，因此要改变string中字符，只能建立新的字符串</p>
+</li>
+<li><p>排序和查找操作</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sort.Ints()<span class="comment">//对整数进行排序， </span></div><div class="line">sort.Strings() <span class="comment">// 对字符串进行排序, </span></div><div class="line">sort.Float64s() <span class="comment">//对浮点数进行排序.</span></div><div class="line">sort.SearchInts(a []<span class="keyword">int</span>, b <span class="keyword">int</span>) <span class="comment">//从数组a中查找b，前提是a必须有序</span></div><div class="line">sort.SearchFloats(a []<span class="keyword">float64</span>, b <span class="keyword">float64</span>) <span class="comment">//从数组a中查找b，前提是a必须有序</span></div><div class="line">sort.SearchStrings(a []<span class="keyword">string</span>, b <span class="keyword">string</span>) <span class="comment">//从数组a中查找b，前提是a必须有序</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><blockquote>
+<p>key-value的数据结构，又叫字典或关联数组</p>
+</blockquote>
+<ul>
+<li><p>声明</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> map1 <span class="keyword">map</span>[keytype]valuetype</div><div class="line"><span class="keyword">var</span> a <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span></div><div class="line"><span class="keyword">var</span> a <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> a <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">string</span></div><div class="line"><span class="keyword">var</span> a <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span> = <span class="built_in">make</span>( <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>,<span class="number">16</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>map相关操作<br>插入和更新、查找、遍历<br><code>delete(a, “hello”)</code>删除<br><code>len(a)</code> 长度</li>
+<li>map是引用类型</li>
+<li>map排序<br>a. 先获取所有key，把key进行排序<br>b. 按照排序好的key，进行遍历</li>
+</ol>
+<h1 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h1><ul>
+<li>import(“sync”)</li>
+<li>互斥锁, <code>var mu sync.Mutex</code></li>
+<li>读写锁, <code>var mu sync.RWMutex</code></li>
+<li><code>go build -race xxx.go</code> race参数可以帮助分析是否有数据竞争</li>
+</ul>
+<h1 id="结构体和方法"><a href="#结构体和方法" class="headerlink" title="结构体和方法"></a>结构体和方法</h1><h2 id="struct"><a href="#struct" class="headerlink" title="struct"></a>struct</h2><ol>
+<li>用来自定义复杂数据结构，Go语言没有class类型，只有struct类型</li>
+<li>struct里面可以包含多个字段（属性）, 在内存上是连续分配的</li>
+<li>struct类型可以绑定方法</li>
+<li>struct类型是值类型，使用new初始化</li>
+<li>struct类型可以嵌套</li>
+<li>我们可以为struct中的每个字段，写上一个tag。这个tag可以通过反射的机制获取到，最常用的场景就是json序列化和反序列化</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</div><div class="line">    Name <span class="keyword">string</span> <span class="string">"tag name"</span></div><div class="line">    Age <span class="keyword">int</span> <span class="string">`json:"age"`</span></div><div class="line">    Score <span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> stu Student</div><div class="line">stu.Name = “tony”</div><div class="line">stu.Age = <span class="number">18</span></div><div class="line">stu.Score=<span class="number">20</span></div><div class="line">fmt.Printf(“name=%s age=%d score=%d”, stu.Name, stu.Age, stu.Score)</div></pre></td></tr></table></figure>
+<h2 id="用struct构建链表和树"><a href="#用struct构建链表和树" class="headerlink" title="用struct构建链表和树"></a>用struct构建链表和树</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</div><div class="line">	Name <span class="keyword">string</span></div><div class="line">	Next* Student</div><div class="line">&#125;</div><div class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</div><div class="line">    Name <span class="keyword">string</span></div><div class="line">    Next* Student</div><div class="line">    Prev* Student</div><div class="line">&#125;</div><div class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</div><div class="line">    Name <span class="keyword">string</span></div><div class="line">    left* Student</div><div class="line">    right* Student</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="工厂模式创建struct"><a href="#工厂模式创建struct" class="headerlink" title="工厂模式创建struct"></a>工厂模式创建struct</h2><p>golang中的struct没有构造函数，一般可以使用工厂模式来解决这个问题</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> student <span class="keyword">struct</span> &#123;</div><div class="line">	Name stirng</div><div class="line">	Age <span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewStudent</span><span class="params">(name <span class="keyword">string</span>, age <span class="keyword">int</span>)</span> *<span class="title">student</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> &amp;student&#123;</div><div class="line">				Name:name,</div><div class="line">				Age:age,</div><div class="line">				&#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line">S := model.NewStudent(“tony”, <span class="number">20</span>)</div></pre></td></tr></table></figure>
+<h2 id="匿名字段"><a href="#匿名字段" class="headerlink" title="匿名字段"></a>匿名字段</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Car <span class="keyword">struct</span> &#123;</div><div class="line">	Name stirng</div><div class="line">	Age <span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">type</span> Train <span class="keyword">struct</span> &#123;</div><div class="line">	Car</div><div class="line">    <span class="keyword">int</span></div><div class="line">    Name <span class="comment">// 冲突字段</span></div><div class="line">	Start time.Time</div><div class="line">&#125;</div><div class="line">train.<span class="keyword">int</span></div><div class="line">train.Name</div><div class="line">train.Car.Name = <span class="string">"train"</span></div></pre></td></tr></table></figure>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ol>
+<li><p>Golang中的方法是作用在特定类型的变量上，因此自定义类型都可以有方法，而不仅仅是struct<br>方法定义： <code>func (recevier type) methodName(参数列表)(返回值列表){}</code></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this A)</span> <span class="title">test</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(this.a)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> t A</div><div class="line">t.test()</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法的调用<code>receiver.method(args)</code></p>
+</li>
+<li><p>指针receiver vs 值receiver,本质上和函数的值传递和地址传递是一样的</p>
+</li>
+<li><p>方法的<strong>访问控制</strong>，通过大小写控制</p>
+</li>
+<li><p>方法<strong>继承</strong>: struct嵌套的匿名结构体，匿名结构体的方法可以直接调用，从而实现了继承。</p>
+</li>
+<li><p>组合和匿名字段<br>方法<br>如果一个struct嵌套了另一个匿名结构体，那么这个结构可以直接访问<br>匿名结构体的方法，从而实现了继承。<br>如果一个struct嵌套了另一个有名结构体，那么这个模式就叫组合。</p>
+</li>
+<li><p><strong>多重继承</strong> 一个struct嵌套多个匿名结构体，那么这个结构可以继承多个匿名结构体的方法</p>
+</li>
+<li><p>实现String()：方法如果一个变量实现了<code>String()</code>这个接口的方法，那么<code>fmt.Println</code>就会调用该方法。</p>
+</li>
+</ol>
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><h2 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h2><p>Interface类型可以定义一组方法，但是这些不需要实现。并且interface不能包含任何变量。</p>
+<p>interface类型默认是一个指针.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> example <span class="keyword">interface</span>&#123;</div><div class="line">    Method1(参数列表) 返回值列表</div><div class="line">    Method2(参数列表) 返回值列表</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>接口实现<br>a. Golang中的接口，不需要显示的实现。只要一个变量，含有接口类型中的所有方法，那么这个变量就实现这个接口。因此， golang中没有implement类似的关键字<br>b. 如果一个变量含有了多个interface类型的方法，那么这个变量就实现了多个接口。<br>c. 如果一个变量只含有了1个interface的部分方法，那么这个变量没有实现这个接口。</p>
+</li>
+<li><p><strong>多态</strong>: 一种事物的多种形态，都可以按照统一的接口进行操作</p>
+</li>
+<li><p>接口嵌套 :一个接口可以嵌套在另外的接口</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> ReadWrite <span class="keyword">interface</span> &#123;</div><div class="line">	Read(b Buffer) <span class="keyword">bool</span></div><div class="line">	Write(b Buffer) <span class="keyword">bool</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">type</span> Lock <span class="keyword">interface</span> &#123;</div><div class="line">	Lock()</div><div class="line">	Unlock()</div><div class="line">&#125;</div><div class="line"><span class="keyword">type</span> File <span class="keyword">interface</span> &#123;</div><div class="line">	ReadWrite</div><div class="line">	Lock</div><div class="line">	Close()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>类型断言</strong>，由于接口是一般类型，如果要转成具体类型,需要使用类型断言。或者采用<code>type switch</code>方式</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> t <span class="keyword">int</span></div><div class="line"><span class="keyword">var</span> x <span class="keyword">interface</span>&#123;&#125;</div><div class="line">x = t</div><div class="line">y = x.(<span class="keyword">int</span>) <span class="comment">//转成int</span></div><div class="line">y, ok = x.(<span class="keyword">int</span>) <span class="comment">//转成int，带检查</span></div><div class="line"></div><div class="line"><span class="keyword">switch</span> x.(<span class="keyword">type</span>) &#123;</div><div class="line">    <span class="keyword">case</span> *Circle: fmt.Printf(“Type Circle %T with value %v\n”, t, t)</div><div class="line">	<span class="keyword">case</span> <span class="keyword">bool</span>: fmt.Printf(“param #%d is a <span class="keyword">bool</span>\n”</div><div class="line">	<span class="keyword">case</span> <span class="keyword">float64</span>: fmt.Printf(“param #%d is a <span class="keyword">float64</span>\</div><div class="line">	<span class="keyword">case</span> <span class="keyword">int</span>, <span class="keyword">int64</span>: fmt.Printf(“param #%d is an <span class="keyword">int</span>\n”</div><div class="line">	<span class="keyword">case</span> <span class="literal">nil</span>: fmt.Printf(“param #%d is <span class="literal">nil</span>\n”, i)</div><div class="line">	<span class="keyword">case</span> <span class="keyword">string</span>: fmt.Printf(“param #%d is a <span class="keyword">string</span>\n”,</div><div class="line">	<span class="keyword">default</span>: fmt.Printf(“param #%d’s <span class="keyword">type</span> is unknown\n</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>空接口，<code>Interface{}</code>空接口没有任何方法，所以所有类型都实现了空接口。</p>
+</li>
+<li><p>判断一个变量是否实现了指定接口, 同样使用类型断言。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Stringer <span class="keyword">interface</span> &#123;</div><div class="line">	String() <span class="keyword">string</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> v MyStruct</div><div class="line"><span class="keyword">if</span> sv, ok := v.(Stringer); ok &#123;</div><div class="line">	fmt.Printf(“v implements String(): %s\n”, sv.String());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="sort-Interface"><a href="#sort-Interface" class="headerlink" title="sort.Interface"></a>sort.Interface</h2><p>被排序的对象必须实现<code>Interface</code>这个接口。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Interface <span class="keyword">interface</span> &#123;</div><div class="line">	<span class="comment">// Len is the number of elements in the collection.</span></div><div class="line">	Len() <span class="keyword">int</span></div><div class="line">	<span class="comment">// Less reports whether the element with</span></div><div class="line">	<span class="comment">// index i should sort before the element with index j.</span></div><div class="line">	Less(i, j <span class="keyword">int</span>) <span class="keyword">bool</span></div><div class="line">	<span class="comment">// Swap swaps the elements with indexes i and j.</span></div><div class="line">	Swap(i, j <span class="keyword">int</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sort</span><span class="params">(data Interface)</span></span> &#123;</div><div class="line">	n := data.Len()</div><div class="line">	quickSort(data, <span class="number">0</span>, n, maxDepth(n))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>反射：可以在运行时动态获取变量的相关信息</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (“reflect”)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test_reflact</span><span class="params">(b <span class="keyword">interface</span>&#123;&#125;)</span></span>  &#123;</div><div class="line">	fmt.Println(<span class="string">"type: "</span>, reflect.TypeOf(b)) <span class="comment">//获取变量的类型</span></div><div class="line">	fmt.Println(<span class="string">"value: "</span>, reflect.ValueOf(b))</div><div class="line">	v := reflect.ValueOf(b) <span class="comment">//获取变量的值，返回reflect.Value类型</span></div><div class="line">	fmt.Println(<span class="string">"kind: "</span>, v.Kind())<span class="comment">//获取变量的类别，返回一个常量</span></div><div class="line">	fmt.Println(<span class="string">"type: "</span>, v.Type()) </div><div class="line">	fmt.Println(<span class="string">"value: "</span>, v.Float()) <span class="comment">// 返回Float</span></div><div class="line">	iv := v.Interface() <span class="comment">//reflect.Value.Interface() 转换成interface&#123;&#125;类型变量</span></div><div class="line">	x, ok := iv.(<span class="keyword">float64</span>)</div><div class="line">	<span class="keyword">if</span> ok &#123;</div><div class="line">		fmt.Println(x)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>reflect.Value.Kind()方法返回的常量</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> (</div><div class="line">Invalid Kind = <span class="literal">iota</span></div><div class="line">Bool</div><div class="line">Int</div><div class="line">Int8</div><div class="line">Int16</div><div class="line">Int32</div><div class="line">Int64</div><div class="line">Uint</div><div class="line">Uint8</div><div class="line">Uint16</div><div class="line">Uint32</div><div class="line">Uint64</div><div class="line">Uintptr</div><div class="line">Float32</div><div class="line">Float64</div><div class="line">Complex64</div><div class="line">Complex128</div><div class="line">Array</div><div class="line">Chan</div><div class="line">Func</div><div class="line">Interface</div><div class="line">Map</div><div class="line">Ptr</div><div class="line">Slice</div><div class="line">String</div><div class="line">Struct</div><div class="line">UnsafePointer</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取变量的值：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">reflect.ValueOf(x).Float()</div><div class="line">reflect.ValueOf(x).Int()</div><div class="line">reflect.ValueOf(x).String()</div><div class="line">reflect.ValueOf(x).Bool()</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过反射的来改变变量的值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// reflect.Value.SetXX相关方法，比如:</span></div><div class="line">reflect.Value.SetFloat()<span class="comment">//设置浮点数</span></div><div class="line">reflect.Value.SetInt() <span class="comment">//设置整数</span></div><div class="line">reflect.Value.SetString() <span class="comment">//设置字符串</span></div><div class="line">a := <span class="number">3.14</span></div><div class="line">fv := reflect.ValueOf(&amp;a)</div><div class="line">fv.Elem().SetFloat(<span class="number">3.3</span>)</div><div class="line">fmt.Printf(<span class="string">"%v\n"</span>, a)</div></pre></td></tr></table></figure>
+<p>修改变量时要传入地址，访问变量时无法用<code>*</code>, 可以用 <code>p.Elem()</code></p>
+</li>
+<li><p>用反射操作结构体</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Rf_obj <span class="keyword">struct</span> &#123;</div><div class="line">	Name <span class="keyword">string</span> <span class="string">`json:"name"`</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(rf *Rf_obj)</span> <span class="title">Print</span><span class="params">()</span></span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(rf *Rf_obj)</span> <span class="title">Set</span><span class="params">()</span></span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">(b <span class="keyword">interface</span>&#123;&#125;)</span></span>  &#123;</div><div class="line">    <span class="comment">// 获取struct tag</span></div><div class="line">	tp := reflect.TypeOf(b)</div><div class="line">	fmt.Println(<span class="string">"type field tag: "</span>, tp.Elem().Field(<span class="number">0</span>).Tag.Get(<span class="string">"json"</span>))</div><div class="line">	</div><div class="line">	vP := reflect.ValueOf(b)</div><div class="line">	<span class="keyword">if</span> vP.Kind() == reflect.Ptr &#123;</div><div class="line">		fmt.Println(<span class="string">"这是个指针kind"</span>)</div><div class="line">	&#125;</div><div class="line">	vV := vP.Elem()</div><div class="line">	<span class="keyword">if</span> vV.Kind() == reflect.Struct &#123;</div><div class="line">		fmt.Println(<span class="string">"通过指针获取到了struct"</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 类型的Value上有field和部分方法</span></div><div class="line">	fmt.Println(<span class="string">"struct field num: "</span>, vV.NumField()) <span class="comment">// 获取结构体中字段的个数</span></div><div class="line">	fmt.Println(<span class="string">"field: "</span>, vV.Field(<span class="number">0</span>))</div><div class="line">    vV.Field(<span class="number">0</span>).SetString(<span class="string">"yyyy"</span>)</div><div class="line">	<span class="comment">// 指针type上绑定的方法</span></div><div class="line">	fmt.Println(<span class="string">"*ptr's method num: "</span>, vP.NumMethod())  <span class="comment">// 获取方法的个数</span></div><div class="line">	vP.Method(<span class="number">0</span>).Call(<span class="literal">nil</span>) <span class="comment">// 来调用结构体中的方法</span></div><div class="line">	vP.Method(<span class="number">1</span>).Call(<span class="literal">nil</span>)</div><div class="line">	vP.Method(<span class="number">0</span>).Call(<span class="literal">nil</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="IO和Json序列化"><a href="#IO和Json序列化" class="headerlink" title="IO和Json序列化"></a>IO和Json序列化</h1><h2 id="标准IO"><a href="#标准IO" class="headerlink" title="标准IO"></a>标准IO</h2><ul>
+<li>os.Stdin：标准输入</li>
+<li>os.Stdout：标准输出</li>
+<li>os.Stderr：标准错误输出</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">fmt.Println(<span class="string">"Please enter your full name: "</span>)</div><div class="line">fmt.Scanln(&amp;firstName, &amp;lastName)</div><div class="line"><span class="comment">// fmt.Scanf("%s %s", &amp;firstName, &amp;lastName)</span></div><div class="line">fmt.Printf(<span class="string">"Hi %s %s!\n"</span>, firstName, lastName) <span class="comment">// Hi Chris Naegels</span></div><div class="line">fmt.Sscanf(input, format, &amp;f, &amp;i, &amp;s)</div><div class="line">fmt.Println(<span class="string">"From the string we read: "</span>, f, i, s)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 带缓冲区的IO，提高读写性能</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    inputReader := bufio.NewReader(os.Stdin)</div><div class="line">    input, err := inputReader.ReadString(<span class="string">'\n'</span>)</div><div class="line">    <span class="keyword">if</span> err == <span class="literal">nil</span> &#123;</div><div class="line">        fmt.Printf(<span class="string">"The input was: %s\n"</span>, input)</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="File"><a href="#File" class="headerlink" title="File"></a>File</h2><ol>
+<li>os.File封装所有文件相关操作，<code>os.Stdin,os.Stdout, os.Stderr</code> 都是<code>*os.File</code><br>a. 打开一个文件进行读操作： <code>os.Open(name string) (*File, error)</code><br>b. 关闭一个文件： <code>File.Close()</code></li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bufio 读文件</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	inputFile, err := os.Open(<span class="string">"input.dat"</span>)</div><div class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">		fmt.Printf(<span class="string">"open file err:%v\n"</span>, err)</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">defer</span> inputFile.Close()</div><div class="line">	inputReader := bufio.NewReader(inputFile)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">    	inputString, readerError := inputReader.ReadString(<span class="string">'\n'</span>)</div><div class="line">    	<span class="keyword">if</span> readerError == io.EOF &#123;</div><div class="line">    		<span class="keyword">return</span></div><div class="line">    	&#125;</div><div class="line">   		fmt.Printf(<span class="string">"The input was: %s"</span>, inputString)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// ioutil 一次性读取整个文件</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	inputFile := <span class="string">"products.txt"</span></div><div class="line">	outputFile := <span class="string">"products_copy.txt"</span></div><div class="line">	buf, err := ioutil.ReadFile(inputFile)</div><div class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">		fmt.Fprintf(os.Stderr, <span class="string">"File Error: %s\n"</span>, err)</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	fmt.Printf(<span class="string">"%s\n"</span>, <span class="keyword">string</span>(buf))</div><div class="line">	err = ioutil.WriteFile(outputFile, buf, <span class="number">0x644</span>)</div><div class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="built_in">panic</span>(err.Error())</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 读gz压缩文件</span></div><div class="line"><span class="keyword">import</span> <span class="string">"compress/gzip"</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    fi, err := os.Open(<span class="string">"test.zip"</span>)</div><div class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">        fmt.Fprintf(os.Stderr, <span class="string">"Can’t open file: error: %s\n"</span>, err)</div><div class="line">    	os.Exit(<span class="number">1</span>)</div><div class="line">	&#125;</div><div class="line">	fz, err := gzip.NewReader(fi)</div><div class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">    	fmt.Fprintf(os.Stderr, <span class="string">"open gzip failed, err: %v\n"</span>, err)</div><div class="line">   	 	<span class="keyword">return</span></div><div class="line">    &#125;</div><div class="line">    r := bufio.NewReader(fz)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">    	line, err := r.ReadString(<span class="string">'\n'</span>)</div><div class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">            fmt.Println(<span class="string">"Done reading file"</span>)</div><div class="line">            os.Exit(<span class="number">0</span>)</div><div class="line">        &#125;</div><div class="line">        fmt.Println(line)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>文件写入</p>
+<p><code>os.OpenFile(“output.dat”, os.O_WRONLY|os.O_CREATE, 0666)</code></p>
+<ol>
+<li><code>os.O_WRONLY</code> 只写</li>
+<li>os.O_CREATE：创建文件</li>
+<li>os.O_RDONLY：只读</li>
+<li>os.O_RDWR：读写</li>
+<li>os.O_TRUNC ：清空</li>
+</ol>
+<p><code>outputWriter.Flush()</code></p>
+</li>
+<li><p>拷贝文件</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">CopyFile</span><span class="params">(dstName, srcName <span class="keyword">string</span>)</span> <span class="params">(written <span class="keyword">int64</span>, err error)</span></span> &#123;</div><div class="line">	src, err := os.Open(srcName)</div><div class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">defer</span> src.Close()</div><div class="line">	dst, err := os.OpenFile(dstName, os.O_WRONLY|os.O_CREATE, <span class="number">0644</span>)</div><div class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">defer</span> dst.Close()</div><div class="line">	<span class="keyword">return</span> io.Copy(dst, src)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h2><ul>
+<li><p><code>os.Args</code>是一个string的切片，用来存储所有的命令行参数.<code>len(os.Args)</code></p>
+</li>
+<li><p>flag包的使用，用来解析命令行参数：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">flag.BoolVar(&amp;test, <span class="string">"b"</span>, <span class="literal">false</span>, <span class="string">"require a bool val"</span>) <span class="comment">// 说明文字</span></div><div class="line">flag.StringVar(&amp;str, <span class="string">"s"</span>, <span class="string">""</span>, <span class="string">"require a str val"</span>)</div><div class="line">flag.IntVar(&amp;count, <span class="string">"c"</span>, <span class="number">1001</span>, <span class="string">"require a int val"</span>)</div><div class="line">flag.Parse()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h2><ul>
+<li>“encoding/json”</li>
+<li>序列化: json.Marshal(data interface{})</li>
+<li><p>反序列化: json.UnMarshal(data []byte, v interface{})</p>
+</li>
+<li><p>json序列化结构体</p>
+</li>
+<li>json序列化map</li>
+</ul>
+<h1 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h1><ul>
+<li><p><code>var errNotFound error = errors.New(&quot;Not found error&quot;)</code></p>
+</li>
+<li><p>error是一个接口</p>
+</li>
+<li><p>自定义错误</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> error <span class="keyword">interface</span> &#123;</div><div class="line">	Error() <span class="keyword">string</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">type</span> PathError <span class="keyword">struct</span> &#123;</div><div class="line">	Op <span class="keyword">string</span></div><div class="line">	Path <span class="keyword">string</span></div><div class="line">	err <span class="keyword">string</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 实现error接口</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(e *PathError)</span> <span class="title">Error</span><span class="params">()</span> <span class="title">string</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> e.Op + <span class="string">" "</span> + e.Path + <span class="string">": "</span> + e.Err.Error()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>判断error类型，使用类型断言<code>switch err.(type)</code> </p>
+</li>
+<li><p>Panic&amp;Recover</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">badCall</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="built_in">panic</span>(<span class="string">"bad end"</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="comment">// recover 捕获panic</span></div><div class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">		<span class="keyword">if</span> e := <span class="built_in">recover</span>(); e != <span class="literal">nil</span> &#123;</div><div class="line">			fmt.Printf(<span class="string">"Panicking %s\r\n"</span>, e)</div><div class="line">		&#125;</div><div class="line">	&#125;()</div><div class="line">	badCall()</div><div class="line">	fmt.Printf(<span class="string">"After bad call\r\n"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="goroutine和channel"><a href="#goroutine和channel" class="headerlink" title="goroutine和channel"></a>goroutine和channel</h1><ul>
+<li><p>全局变量共享内存，需要加锁</p>
+</li>
+<li><p>go提供的channel机制，实现协程间的数据通信。线程安全的，类型unix的管道，先进先出</p>
+<ul>
+<li>make申请内存</li>
+</ul>
+</li>
+<li><p>判断管道是否关闭</p>
+<ul>
+<li><code>if data, ok := &lt;- ch , ok{}</code> </li>
+<li><code>for range</code>遍历channel，如果channel不关闭，会一直阻塞取数据。channel关闭后，取完就会退出<code>for range</code></li>
+</ul>
+</li>
+<li><p>定时器</p>
+<p>t.C是一个大小为1的<code>chan Time</code>类型管道，每隔指定的时间会尝试往其中写入一个时间</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">t := time.NewTicker(<span class="number">5</span> * time.Second)</div><div class="line"><span class="keyword">for</span> v := <span class="keyword">range</span> t.C &#123;</div><div class="line">    fmt.Println(v)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 下面的After也会创建一个chan，但是不会在触发后立即被垃圾回收，存在内存泄露。不建议使用</span></div><div class="line">&lt;-time.After(<span class="number">5</span> * time.Second)</div></pre></td></tr></table></figure>
+</li>
+<li><p>判断chan状态以及读取写超时</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">    t := time.NewTicker(<span class="number">5</span> * time.Second)</div><div class="line">    <span class="keyword">for</span> &#123;</div><div class="line">        <span class="keyword">select</span> &#123;</div><div class="line">            <span class="keyword">case</span> num := &lt;-channel:</div><div class="line">            	fmt.Println(num)</div><div class="line">            <span class="keyword">case</span> &lt;-t.C:</div><div class="line">            	fmt.Println(<span class="string">"超时"</span>)</div><div class="line">            <span class="keyword">case</span> &lt;-time.After(<span class="number">3</span> * time.Second): <span class="comment">// 不推荐使用，容易内存泄露</span></div><div class="line">            	fmt.Println(<span class="string">"超时"</span>)</div><div class="line">            	quit &lt;- <span class="literal">true</span></div><div class="line">        &#125;</div><div class="line">        t.Stop()</div><div class="line">    &#125;</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><ul>
+<li>导入<code>testing</code>包</li>
+<li>文件名以<code>_test.go</code>结尾的为测试用例文件</li>
+<li>测试用例函数必须以<code>Test</code>开头， 传入的第一个参数为<code>*testing.T</code></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestAdd</span><span class="params">(t *testing.T)</span></span>&#123;</div><div class="line">    r := add(<span class="number">2</span>, <span class="number">4</span>)</div><div class="line">    <span class="keyword">if</span>(r != <span class="number">6</span>)&#123;</div><div class="line">        t.Fatalf(<span class="string">"add(2, 4) error, expect : %d, got: %d"</span>, <span class="number">6</span>, r)</div><div class="line">    &#125;</div><div class="line">    t.Log(<span class="string">"test add success"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>测试 <code>go test -v</code></li>
+</ul>
+<h1 id="socket编程"><a href="#socket编程" class="headerlink" title="socket编程"></a>socket编程</h1><ol>
+<li><p>服务端的处理流程<br>a. 监听端口<br>b. 接收客户端的链接<br>c. 创建goroutine，处理该链接</p>
+</li>
+<li><p>客户端的处理流程<br>a. 建立与服务端的链接<br>b. 进行数据收发<br>c. 关闭链接</p>
+</li>
+<li><p>发送http请求</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">response, err := http.Get(<span class="string">"http://www.baidu.com"</span>)</div><div class="line"><span class="keyword">if</span> err!= <span class="literal">nil</span> &#123;</div><div class="line">    log.Println(err)</div><div class="line">&#125;</div><div class="line">body := response.Body</div><div class="line"><span class="keyword">defer</span> body.Close()</div><div class="line">res := <span class="string">""</span></div><div class="line">buf := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">2048</span>)</div><div class="line"><span class="keyword">for</span>  &#123;</div><div class="line">    n, err:= body.Read(buf)</div><div class="line">    log.Println(n)</div><div class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> || n == <span class="number">0</span>&#123;</div><div class="line">        log.Println(err, n)</div><div class="line">        <span class="keyword">break</span></div><div class="line">    &#125;</div><div class="line">    res += <span class="keyword">string</span>(buf[:n])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><ol>
+<li><p>redis连接库<br>使用第三方开源的redis库: <code>&quot;github.com/garyburd/redigo/redis&quot;</code><br>官方<a href="https://godoc.org/github.com/garyburd/redigo/redis" target="_blank" rel="external">文档</a></p>
+</li>
+<li><p>链接redis</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">c, err := redis.Dial(<span class="string">"tcp"</span>, <span class="string">"localhost:6379"</span>)</div><div class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">    fmt.Println(err, <span class="number">1</span>)</div><div class="line">    <span class="keyword">return</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">defer</span> c.Close()</div><div class="line"><span class="comment">// 认证</span></div><div class="line"><span class="keyword">if</span> _, err := c.Do(<span class="string">"AUTH"</span>, <span class="string">"mima"</span>); err != <span class="literal">nil</span> &#123;</div><div class="line">    c.Close()</div><div class="line">    <span class="keyword">return</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 选择db</span></div><div class="line"><span class="keyword">if</span> _, err := c.Do(<span class="string">"SELECT"</span>, <span class="number">0</span>); err != <span class="literal">nil</span> &#123;</div><div class="line">    c.Close()</div><div class="line">    <span class="keyword">return</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 读数据</span></div><div class="line"><span class="keyword">if</span> str, err := redis.String(c.Do(<span class="string">"GET"</span>, <span class="string">"a"</span>)); err != <span class="literal">nil</span>&#123;</div><div class="line">    fmt.Println(err)</div><div class="line">&#125;<span class="keyword">else</span> &#123;</div><div class="line">    fmt.Println(str)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通用操作接口<code>conn.Do(&quot;Command&quot;, &quot;key&quot;, &quot;value&quot;)</code></p>
+<ul>
+<li><p>读取GET  <code>GET key</code></p>
+</li>
+<li><p>写入SET</p>
+<p><code>SET key value [EX seconds] [PX milliseconds] [NX|XX]</code></p>
+<p>EX seconds – 指定过期时间，单位为秒.<br>PX milliseconds – 指定过期时间，单位为毫秒.<br>NX – 仅当键值不存在时设置键值.<br>XX – 仅当键值存在时设置键值. </p>
+<p><code>c.Do(&quot;SET&quot;, &quot;password&quot;, &quot;123456&quot;, &quot;EX&quot;, &quot;10&quot;)</code></p>
+</li>
+<li><p>批量读、写</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//批量写入读取</span></div><div class="line">MGET key [key ...]</div><div class="line">MSET key value [key value ...]</div><div class="line"><span class="comment">//批量写入读取对象(Hashtable)</span></div><div class="line">HMSET key field value [field value ...]</div><div class="line">HMGET key field [field ...]</div></pre></td></tr></table></figure>
+</li>
+<li><p>检测key <code>EXISTS key</code></p>
+</li>
+<li><p>删除key <code>DEL key [key ...]</code></p>
+</li>
+<li><p>设置key过期时间 <code>EXPIRE key seconds</code></p>
+</li>
+</ul>
+</li>
+<li><p>Hash表操作</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_, err = c.Do(<span class="string">"HSet"</span>, <span class="string">"books"</span>, <span class="string">"abc"</span>, <span class="number">100</span>)</div><div class="line">r, err := redis.Int(c.Do(<span class="string">"HGet"</span>, <span class="string">"books"</span>, <span class="string">"abc"</span>))</div></pre></td></tr></table></figure>
+</li>
+<li><p>批量MSet  MGet</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_, err = c.Do(<span class="string">"MSet"</span>, <span class="string">"abc"</span>, <span class="number">100</span>, <span class="string">"efg"</span>, <span class="number">300</span>)</div><div class="line">rs, err := redis.Ints(c.Do(<span class="string">"MGet"</span>, <span class="string">"abc"</span>, <span class="string">"efg"</span>))</div></pre></td></tr></table></figure>
+</li>
+<li><p>过期时间 <code>_, err = c.Do(&quot;expire&quot;, &quot;abc&quot;, 10)</code></p>
+</li>
+<li><p>队列操作</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_, err = c.Do(<span class="string">"lpush"</span>, <span class="string">"book_list"</span>, <span class="string">"abc"</span>, <span class="string">"ceg"</span>, <span class="number">300</span>)</div><div class="line">r, err := redis.String(c.Do(<span class="string">"lpop"</span>, <span class="string">"book_list"</span>))</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="连接池"><a href="#连接池" class="headerlink" title="连接池"></a>连接池</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pool *redis.Pool	</div><div class="line">pool := &amp;redis.Pool&#123;</div><div class="line">    MaxIdle:     <span class="number">16</span>,</div><div class="line">    MaxActive:   <span class="number">0</span>,</div><div class="line">    IdleTimeout: <span class="number">300</span>,</div><div class="line">  <span class="comment">// 连接方式</span></div><div class="line">  	Dial: <span class="function"><span class="keyword">func</span> <span class="params">()</span> <span class="params">(redis.Conn, error)</span></span> &#123;</div><div class="line">        c, err := redis.Dial(<span class="string">"tcp"</span>, server)</div><div class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">          <span class="keyword">return</span> <span class="literal">nil</span>, err</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> _, err := c.Do(<span class="string">"AUTH"</span>, password); err != <span class="literal">nil</span> &#123;</div><div class="line">          c.Close()</div><div class="line">          <span class="keyword">return</span> <span class="literal">nil</span>, err</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> _, err := c.Do(<span class="string">"SELECT"</span>, db); err != <span class="literal">nil</span> &#123;</div><div class="line">          c.Close()</div><div class="line">          <span class="keyword">return</span> <span class="literal">nil</span>, err</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> c, <span class="literal">nil</span></div><div class="line">      &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/Go/">Go</a>, <a href="/categories/技术/Go/标准库/">标准库</a>
+  </div>
+
+        
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go/" style="font-size: 13px; color: #90f">Go</a>
+    </div>
+
+
+
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2018/11/01/工具/MACOS软件推荐/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2018/10/09/学习/找工作/我的秋招求职经历/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/">ѧϰ</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/д��/">д��</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/д��/�K�/">�Ķ�</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/">写作</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Doc/">Doc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/推荐系统/">推荐系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/">求职</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/基础知识/">基础知识</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/经历/">经历</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/面试/">面试</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/IDEA/">IDEA</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/">软件</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/MacOS/">MacOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/Windows/">Windows</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">98</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Go/">Go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Go/标准库/">标准库</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/标准库/">标准库</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/Server/">Server</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/日志监控/">日志监控</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/">MacOS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/latex/">latex</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/CGI编程/">CGI编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/PyQt5/">PyQt5</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/数据库连接/">数据库连接</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/标准库/">标准库</a><span class="category-list-count">17</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Bootstrap/">Bootstrap</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Django/">Django</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Flask/">Flask</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/">数据分析</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/IPython/">IPython</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Matplotlib/">Matplotlib</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Numpy/">Numpy</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/词云/">词云</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MongoDB/">MongoDB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/Redis/">Redis</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/">爬虫</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/Scrapy/">Scrapy</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/Socket/">Socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/路由器/">路由器</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <!--  旧的标签
+
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
+    <li><a href="/tags/Django/">Django</a><small>6</small></li>
+  
+    <li><a href="/tags/Docset/">Docset</a><small>1</small></li>
+  
+    <li><a href="/tags/ElasticSearch/">ElasticSearch</a><small>1</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>0</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>0</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>19</small></li>
+  
+    <li><a href="/tags/Gevent/">Gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>4</small></li>
+  
+    <li><a href="/tags/Gitbook/">Gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/Go/">Go</a><small>1</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/IDEA/">IDEA</a><small>3</small></li>
+  
+    <li><a href="/tags/IPython/">IPython</a><small>1</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>0</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>11</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>3</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/LeetCode/">LeetCode</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>11</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
+    <li><a href="/tags/MongoDB/">MongoDB</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>0</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
+  
+    <li><a href="/tags/Openwrt/">Openwrt</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>4</small></li>
+  
+    <li><a href="/tags/Pycharm/">Pycharm</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>32</small></li>
+  
+    <li><a href="/tags/RESTful/">RESTful</a><small>1</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>8</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Socket/">Socket</a><small>2</small></li>
+  
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Tensorflow/">Tensorflow</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>0</small></li>
+  
+    <li><a href="/tags/gevent/">gevent</a><small>0</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>0</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>0</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>0</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>0</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>0</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>0</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>0</small></li>
+  
+    <li><a href="/tags/刷题/">刷题</a><small>2</small></li>
+  
+    <li><a href="/tags/推荐系统/">推荐系统</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>3</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/求职/">求职</a><small>6</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>9</small></li>
+  
+    <li><a href="/tags/经历/">经历</a><small>1</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
+  
+    <li><a href="/tags/面试/">面试</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/PyQt5/" style="font-size: 16.33px; color: #b0a">PyQt5</a> <a href="/tags/Hexo/" style="font-size: 13px; color: #90f">Hexo</a> <a href="/tags/Math/" style="font-size: 17.44px; color: #c6008e">Math</a> <a href="/tags/Optimization/" style="font-size: 18.56px; color: #d20071">Optimization</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/Linux/" style="font-size: 20.78px; color: #e80039">Linux</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 17.44px; color: #c6008e">Django</a> <a href="/tags/Flask/" style="font-size: 21.89px; color: #f4001c">Flask</a> <a href="/tags/Web/" style="font-size: 21.89px; color: #f4001c">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/Git/" style="font-size: 16.33px; color: #b0a">Git</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Java/" style="font-size: 20.78px; color: #e80039">Java</a> <a href="/tags/IDEA/" style="font-size: 15.22px; color: #b000c6">IDEA</a> <a href="/tags/ORM/" style="font-size: 14.11px; color: #a400e3">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/Html/" style="font-size: 14.11px; color: #a400e3">Html</a> <a href="/tags/JavaScript/" style="font-size: 15.22px; color: #b000c6">JavaScript</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/LaTeX/" style="font-size: 15.22px; color: #b000c6">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14.11px; color: #a400e3">Mac</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/数据库/" style="font-size: 14.11px; color: #a400e3">数据库</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Numpy/" style="font-size: 14.11px; color: #a400e3">Numpy</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/爬虫/" style="font-size: 19.67px; color: #d05">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/Redis/" style="font-size: 15.22px; color: #b000c6">Redis</a> <a href="/tags/Scrapy/" style="font-size: 18.56px; color: #d20071">Scrapy</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/机器学习/" style="font-size: 15.22px; color: #b000c6">机器学习</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Gevent/" style="font-size: 15.22px; color: #b000c6">Gevent</a> <a href="/tags/IPython/" style="font-size: 13px; color: #90f">IPython</a> <a href="/tags/MongoDB/" style="font-size: 13px; color: #90f">MongoDB</a> <a href="/tags/Socket/" style="font-size: 14.11px; color: #a400e3">Socket</a> <a href="/tags/RESTful/" style="font-size: 13px; color: #90f">RESTful</a> <a href="/tags/Gitbook/" style="font-size: 13px; color: #90f">Gitbook</a> <a href="/tags/Docset/" style="font-size: 13px; color: #90f">Docset</a> <a href="/tags/Tensorflow/" style="font-size: 13px; color: #90f">Tensorflow</a> <a href="/tags/Pycharm/" style="font-size: 13px; color: #90f">Pycharm</a> <a href="/tags/JQuery/" style="font-size: 13px; color: #90f">JQuery</a> <a href="/tags/求职/" style="font-size: 17.44px; color: #c6008e">求职</a> <a href="/tags/Openwrt/" style="font-size: 13px; color: #90f">Openwrt</a> <a href="/tags/推荐系统/" style="font-size: 13px; color: #90f">推荐系统</a> <a href="/tags/ElasticSearch/" style="font-size: 13px; color: #90f">ElasticSearch</a> <a href="/tags/刷题/" style="font-size: 14.11px; color: #a400e3">刷题</a> <a href="/tags/LeetCode/" style="font-size: 14.11px; color: #a400e3">LeetCode</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">2018年11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">2018年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">2018年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">2018年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">2018年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">2017年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>

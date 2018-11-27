@@ -113,6 +113,9 @@
       <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
 	  
     
+      <li><a href="/games"><i class="fa fa-fa-gamepad"></i>游戏</a></li>
+	  
+    
 	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
 <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
 	function c() {
@@ -291,12 +294,452 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2018-01-07T16:00:00.000Z"><a href="/2018/01/08/技术/Logging unicode decode error/">2018-01-08</a></time>
+          <time datetime="2018-03-01T16:00:00.000Z"><a href="/2018/03/02/技术/CentOS 6.8/">2018-03-02</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2018/01/08/技术/Logging unicode decode error/">Python logging 模块编码错误</a></h1>
+    <h1 class="title"><a href="/2018/03/02/技术/CentOS 6.8/">CentOS 6.8服务器使用</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="CentOS-6-8"><a href="#CentOS-6-8" class="headerlink" title="CentOS 6.8"></a>CentOS 6.8</h1><h2 id="开启SSH"><a href="#开启SSH" class="headerlink" title="开启SSH"></a>开启SSH</h2><p>默认是开机启动并自动运行的，无需设置。</p>
+<ul>
+<li>查看是否安装ssh<code>rpm -qa | grep ssh</code> </li>
+<li>安装命令 <code>yum install openssh-server</code></li>
+<li>查看服务状态<code>service sshd status</code> </li>
+</ul>
+<h2 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h2><ul>
+<li><p>安装lrzsz</p>
+</li>
+<li><p>安装并开启ftp服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">39  yum -y install vsftpd</div><div class="line"><span class="meta">#</span> 为ftp创建一个Linux用户，其主目录用于文件传输，禁止其登陆系统， </div><div class="line">46  useradd ftpuser -d /ftpfile -s /sbin/nologin</div><div class="line"><span class="meta">#</span> 修改主目录的所有权</div><div class="line">47  chown ftpuser.ftpuser /ftpfile</div><div class="line"><span class="meta">#</span> 修改用户密码</div><div class="line">48  passwd ftpuser</div><div class="line">50  vim /etc/vsftpd/chroot_list</div><div class="line">51  vim /etc/selinux/config </div><div class="line">52  vim /etc/vsftpd/vsftpd.conf </div><div class="line">53  service vsftpd restart</div><div class="line"><span class="meta">#</span> 配置防火墙</div><div class="line">54  iptables -I INPUT -p tcp --dport 61001:62000 -j ACCEPT</div><div class="line">55  iptables -I OUTPUT -p tcp --sport 61001:62000 -j ACCEPT</div><div class="line">56  iptables -I INPUT -p tcp --dport 20 -j ACCEPT</div><div class="line">57  iptables -I OUTPUT -p tcp --sport 20 -j ACCEPT</div><div class="line">58  iptables -I INPUT -p tcp --dport 21 -j ACCEPT</div><div class="line">59  iptables -I OUTPUT -p tcp --sport 21 -j ACCEPT</div><div class="line">60  iptables-save</div><div class="line">61  service iptables save # 永久保存</div><div class="line">62  vim /ftpfile/index.html</div><div class="line">63  setsebool -P ftp_home_dir 1</div><div class="line">64  vim /etc/selinux/config  # 关闭selinux</div><div class="line">65  reboot</div><div class="line">79  service vsftpd restart</div></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="增加用户sudoer权限"><a href="#增加用户sudoer权限" class="headerlink" title="增加用户sudoer权限"></a>增加用户sudoer权限</h2><p>root用户下执行 visudo，并添加用户<code>ypur_user ALL=(ALL)       ALL</code></p>
+<h2 id="更改阿里云源"><a href="#更改阿里云源" class="headerlink" title="更改阿里云源"></a>更改阿里云源</h2><p><code>sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</code></p>
+<p><code>yum makecache</code></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/03/02/技术/CentOS 6.8/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-24T16:00:00.000Z"><a href="/2018/02/25/技术/Spring入门-Hello World/">2018-02-25</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/02/25/技术/Spring入门-Hello World/">Spring入门</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Spring-Hello-World"><a href="#Spring-Hello-World" class="headerlink" title="Spring Hello World"></a>Spring Hello World</h1><blockquote>
+<p> Spring 是一个IOC(DI) 和AOP 容器框架</p>
+</blockquote>
+<h2 id="IOC-DI"><a href="#IOC-DI" class="headerlink" title="IOC/DI"></a>IOC/DI</h2><p><strong>两个概念</strong>（其实是不同的角度） </p>
+<p>控制反转：对象实例由spring通过配置创建，而不是程序员主动new构造。</p>
+<p>依赖注入：拿到的对象实例可以直接使用，其定义在配置文件的属性值在实例化时已被注入。</p>
+<ul>
+<li><p>创建一个pojo类，<em>POJO</em>（Plain Ordinary Java Object）简单的Java对象，实际就是普通JavaBeans。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Category</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/02/25/技术/Spring入门-Hello World/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-19T16:00:00.000Z"><a href="/2018/02/20/技术/Maven入门/">2018-02-20</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/02/20/技术/Maven入门/">Maven入门</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="使用Maven"><a href="#使用Maven" class="headerlink" title="使用Maven"></a>使用Maven</h1><h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><ul>
+<li><p>下载，解压，配置环境变量</p>
+</li>
+<li><p>配置仓库(repository)：本地存放位置，远程下载镜像</p>
+<p>修改到D盘，以免重装系统时丢失。mirror使用阿里云，在<code>conf/settings.xml</code>下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>d:/maven/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/repositories/central/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>maven使用<code>pom.xml</code>维护项目依赖的jar</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.20<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>IDEA中配置maven</p>
+<p>settings -&gt; build tools -&gt; maven</p>
+<p>配置maven所在的路径，及其user settings文件。</p>
+<p>file -》 other settings  -》default settings -》  build tools 下设置默认的maven</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/02/20/技术/Maven入门/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-17T16:00:00.000Z"><a href="/2018/02/18/技术/Mybatis入门/">2018-02-18</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/02/18/技术/Mybatis入门/">Mybatis入门</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><p>MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Old Java Objects,普通的 Java对象)映射成数据库中的记录。</p>
+<p>Python Django的ORM框架提供了增删改查接口， mybatis必须要手动配置SQL语句。</p>
+<p><a href="http://www.mybatis.org/mybatis-3/zh/index.html" target="_blank" rel="external">官方文档</a></p>
+<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><ul>
+<li><p>创建表和数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">USE how2java;</div><div class="line"> </div><div class="line">CREATE TABLE category_ (</div><div class="line">  id int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  name varchar(32) DEFAULT NULL,</div><div class="line">  PRIMARY KEY (id)</div><div class="line">) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;</div><div class="line"></div><div class="line">INSERT INTO category_ VALUES (null,&apos;category1&apos;);</div><div class="line">INSERT INTO category_ VALUES (null,&apos;category2&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建对应的pojo对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.how2java.pojo;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Category</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/02/18/技术/Mybatis入门/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-15T16:00:00.000Z"><a href="/2018/02/16/技术/Hibernate入门/">2018-02-16</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/02/16/技术/Hibernate入门/">Hibernate入门</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Hibernate入门"><a href="#Hibernate入门" class="headerlink" title="Hibernate入门"></a>Hibernate入门</h1><p>一个Java 领域的持久化框架，ORM 框架。</p>
+<p>“持久化”包括和数据库相关的各种操作：增删查改，根据OID加载对象。</p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><ul>
+<li><p>创建数据库表和POJO对象 Product.java</p>
+</li>
+<li><p>配置POJO到table的映射关系 <code>Product.hbm.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE hibernate-mapping PUBLIC</span></div><div class="line"><span class="meta">        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></div><div class="line"><span class="meta">        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span> <span class="attr">package</span>=<span class="string">"cn.shuaiyy.pojo"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"Product"</span> <span class="attr">table</span>=<span class="string">"product_"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"id"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"native"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">generator</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"price"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/02/16/技术/Hibernate入门/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-10T16:00:00.000Z"><a href="/2018/02/11/工具/IDEA创建WEB项目/">2018-02-11</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/02/11/工具/IDEA创建WEB项目/">IDEA创建Java Web项目</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="IDEA创建WEB项目"><a href="#IDEA创建WEB项目" class="headerlink" title="IDEA创建WEB项目"></a>IDEA创建WEB项目</h3><ul>
+<li><p>new project  &gt; web application</p>
+<p><img src="http://img.shuaiyy.cn/blog/180304/BHKlfgKFHm.png?imageslim" alt="mark"></p>
+</li>
+<li><p>更改编译输出的目录，引入项目依赖的包</p>
+<p><code>ctrl alt shift s</code> 打开project structure：</p>
+<p><img src="http://img.shuaiyy.cn/blog/180304/mBkJHl4hEB.png?imageslim" alt="mark"></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/02/11/工具/IDEA创建WEB项目/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-09T16:00:00.000Z"><a href="/2018/02/10/技术/J2EE/">2018-02-10</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/02/10/技术/J2EE/">Java J2EE</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="下载Tomcat"><a href="#下载Tomcat" class="headerlink" title="下载Tomcat"></a>下载Tomcat</h4><p>进入官网<a href="http://tomcat.apache.org/，选择download，下载所需Tomcat版本。" target="_blank" rel="external">http://tomcat.apache.org/，选择download，下载所需Tomcat版本。</a></p>
+<p>我用的是Tomcat7，core x64 zip。不同版本的比较参考<a href="http://tomcat.apache.org/whichversion.html" target="_blank" rel="external">官网</a>。</p>
+<p>解压后，点击bin里的startup.bat运行，访问<a href="http://127.0.0.1:8080，可以看到欢迎界面，运行shutdown.bat关闭Tomcat。" target="_blank" rel="external">http://127.0.0.1:8080，可以看到欢迎界面，运行shutdown.bat关闭Tomcat。</a></p>
+<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><ul>
+<li><p>在系统变量里添加2个变量 CATALINA_BASE，CATALINA_HOME</p>
+<p><strong>变量名：CATALINA_BASE</strong></p>
+<p><strong>变量值：C:\Program Files\Java\apache-tomcat-7.0.85       //Tomcat安装目录</strong></p>
+<p><strong>变量名：CATALINA_HOME</strong></p>
+<p><strong>变量值：C:\Program Files\Java\apache-tomcat-7.0.85</strong></p>
+</li>
+<li><p>修改classpath和path</p>
+<p>在ClassPath的变量值中加入：<code>%CATALINA_HOME%\lib\servlet-api.jar;</code>（注意加的时候在原变量值后加<code>;</code>）</p>
+<p>在path中添加 <code>%CATALINA_HOME%\bin;%CATALINA_HOME%\lib;</code></p>
+</li>
+<li><p>验证</p>
+<p>新打开一个cmd，输入startup：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">C:\Users\<span class="number">20189</span>&gt;startup</div><div class="line">Using CATALINA_BASE:   <span class="string">"C:\Program Files\Java\apache-tomcat-7.0.85"</span></div><div class="line">Using CATALINA_HOME:   <span class="string">"C:\Program Files\Java\apache-tomcat-7.0.85"</span></div><div class="line">Using CATALINA_TMPDIR: <span class="string">"C:\Program Files\Java\apache-tomcat-7.0.85\temp"</span></div><div class="line">Using JRE_HOME:        <span class="string">"C:\Program Files\Java\jdk1.8.0_151"</span></div><div class="line">Using CLASSPATH:       <span class="string">"C:\Program Files\Java\apache-tomcat-7.0.85\bin\bootstrap.jar;C:\Program Files\Java\apache-tomcat-7.0.85\bin\tomcat-juli.jar"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/02/10/技术/J2EE/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-05T16:00:00.000Z"><a href="/2018/02/06/技术/JQuery入门/">2018-02-06</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/02/06/技术/JQuery入门/">JQuery学习</a></h1>
   
 
     </header>
@@ -304,571 +747,216 @@
          
         
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#python-logging-UnicodeDecodeError解决方法"><span class="toc-text">python logging UnicodeDecodeError解决方法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery学习"><span class="toc-text">JQuery学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用jquery实现一个前端小程序"><span class="toc-text">用jquery实现一个前端小程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装JS库和相关依赖"><span class="toc-text">安装JS库和相关依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS实现局部域变量定义"><span class="toc-text">JS实现局部域变量定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#整体页面布局"><span class="toc-text">整体页面布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS修改渲染HTML页面"><span class="toc-text">JS修改渲染HTML页面</span></a></li></ol></li></ol>
     </div>
 
       
-        <h3 id="python-logging-UnicodeDecodeError解决方法"><a href="#python-logging-UnicodeDecodeError解决方法" class="headerlink" title="python logging UnicodeDecodeError解决方法"></a>python logging UnicodeDecodeError解决方法</h3><p>一般是python2.7写入中文时编码错误<br>在logging中加上</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys  </div><div class="line">reload(sys)  </div><div class="line">sys.setdefaultencoding(<span class="string">"utf-8"</span>)</div></pre></td></tr></table></figure>
-<p>如果是 <code>stream.write(fs % msg.encode(&quot;UTF-8&quot;))</code> 这行代码异常，</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:  </div><div class="line">    stream.write(fs % msg.encode(<span class="string">"UTF-8"</span>))  </div><div class="line"><span class="keyword">except</span> UnicodeError:  </div><div class="line">    stream.write(fs % msg.decode(<span class="string">"gbk"</span>).encode(<span class="string">"UTF-8"</span>))</div><div class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">    <span class="keyword">print</span> e.msg</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2018-01-06T16:00:00.000Z"><a href="/2018/01/07/技术/Java高级/">2018-01-07</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2018/01/07/技术/Java高级/">Java编程高级编程</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Java编程高级"><a href="#Java编程高级" class="headerlink" title="Java编程高级"></a>Java编程高级</h2><h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>JVM至少启动2个线程，main和gc</p>
-<p>三种实现方式</p>
-<h4 id="继承Thread类"><a href="#继承Thread类" class="headerlink" title="继承Thread类"></a>继承Thread类</h4><ul>
-<li>必须覆写Thread类中的run方法，是线程运行的主体。</li>
-<li>start方法启动线程，运行的是run内的代码</li>
-</ul>
-<h4 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h4><ul>
-<li>解决单继承的限制</li>
-<li>覆写run方法</li>
-<li>Runnable对象没有start方法，Thread类可以接收Runnable接口对象，构造Thread实例，然后并调用start启动。</li>
-</ul>
-<h4 id="Callable接口"><a href="#Callable接口" class="headerlink" title="Callable接口"></a>Callable接口</h4><p>Runnable接口的run方法不能返回操作接口，<code>java.util.concurrent.Callable</code>提供。</p>
-<p>Callable由FutureTask对象接收。FutureTask对象可以取得返回结果，由Thread类启动FutureTask。</p>
-<h4 id="实现区别"><a href="#实现区别" class="headerlink" title="实现区别"></a>实现区别</h4><ol>
-<li><p>接口可以解决单继承问题</p>
-</li>
-<li><p>Thread内部实现了Runnable接口，是其子类</p>
-<p>Thread实现系统资源分配和执行目标功能，Runnable负责执行目标功能。</p>
-<p>Thread很像代理设计模式，但是start方法不是接口提供的。</p>
-</li>
-<li><p>Runnable能更好的描述线程间的数据共享 </p>
-</li>
-</ol>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/01/07/技术/Java高级/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2018-01-06T16:00:00.000Z"><a href="/2018/01/07/技术/python时间转换/">2018-01-07</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2018/01/07/技术/python时间转换/">Python时间格式转换</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="python时间转换"><a href="#python时间转换" class="headerlink" title="python时间转换"></a>python时间转换</h2><h3 id="字符串和时间格式化"><a href="#字符串和时间格式化" class="headerlink" title="字符串和时间格式化"></a>字符串和时间格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="comment"># 时间字符串</span></div><div class="line">time_str = <span class="string">'2018-01-15 15:27:54'</span></div><div class="line"><span class="comment"># 字符串的time format</span></div><div class="line">time_fmt = <span class="string">'%Y-%m-%d %H:%M:%S'</span></div><div class="line"><span class="comment"># str parse time, 转换成时间数组,</span></div><div class="line">time_array = time.strptime(time_str, time_fmt)</div><div class="line"><span class="keyword">print</span> time_array</div><div class="line"><span class="comment"># str from time, 时间数组转字符串</span></div><div class="line">time_str = time.strftime(time_fmt, time_array)</div><div class="line"><span class="keyword">print</span> time_str</div><div class="line"><span class="comment"># 默认时间为当前时间</span></div><div class="line">time_str = time.strftime(time_fmt)</div><div class="line"><span class="keyword">print</span> time_str</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/01/07/技术/python时间转换/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2018-01-03T16:00:00.000Z"><a href="/2018/01/04/技术/Java 入门/">2018-01-04</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2018/01/04/技术/Java 入门/">Java 入门学习笔记</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="java-入门"><a href="#java-入门" class="headerlink" title="java 入门"></a>java 入门</h3><h4 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h4><p>public class一个java文件只能有一个定义， 类名称必须与其所在的文件名一致。</p>
-<p>编译后，一个class生成一个对应的<code>*.class</code>文件。</p>
-<p>执行从主方法开始，主方法所在的类成为主类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Main.java</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="comment">// write your code here</span></div><div class="line">        <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">        a++;</div><div class="line">        System.out.println(<span class="string">"Hello World!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/01/04/技术/Java 入门/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2018-01-01T16:00:00.000Z"><a href="/2018/01/02/技术/HTML转义和URL编解码/">2018-01-02</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2018/01/02/技术/HTML转义和URL编解码/">HTML代码转义和URL编解码</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="HTML代码转义和URL编解码"><a href="#HTML代码转义和URL编解码" class="headerlink" title="HTML代码转义和URL编解码"></a>HTML代码转义和URL编解码</h2><h3 id="HTML代码转义"><a href="#HTML代码转义" class="headerlink" title="HTML代码转义"></a>HTML代码转义</h3><p><a href="http://tool.oschina.net/commons?type=2" target="_blank" rel="external">html转义字符表</a><br>当爬虫抓到的html字符串是这种 <code>&#39;&amp;lt;abc&amp;gt;&#39;</code>, 其对应的文本为 <code>&lt;abc&gt;</code>,需要进行反转义处理。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 标准库即可实现</span></div><div class="line"><span class="keyword">import</span> HTMLParser</div><div class="line">html_parser = HTMLParser.HTMLParser()</div><div class="line">txt = html_parser.unescape(html)</div><div class="line"><span class="comment"># 或者用BS</span></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup </div><div class="line">soup = BeautifulSoup(html, \</div><div class="line">       convertEntities=BeautifulSoup.HTML_ENTITIES)</div><div class="line"><span class="comment"># 转义的功能在cgi模块</span></div><div class="line"><span class="keyword">import</span> cgi</div><div class="line">html = cgi.escape(txt)</div></pre></td></tr></table></figure>
-<p><img src="http://img.shuaiyy.cn/blog/180115/76jEdKKfAf.png?imageslim" alt="mark"></p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/01/02/技术/HTML转义和URL编解码/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-12-31T16:00:00.000Z"><a href="/2018/01/01/技术/IDEA配置与使用技巧/">2018-01-01</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2018/01/01/技术/IDEA配置与使用技巧/">IDEA使用技巧</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="IDEA配置"><a href="#IDEA配置" class="headerlink" title="IDEA配置"></a>IDEA配置</h3><p>代码补全中关掉首字母大小写敏感。</p>
-<h3 id="IDEA使用技巧"><a href="#IDEA使用技巧" class="headerlink" title="IDEA使用技巧"></a>IDEA使用技巧</h3><ul>
-<li>主方法补全，public static  void main首字母，<code>psvm</code></li>
-<li>for循环补全，输入<code>fori</code> 根据提示后选择</li>
-<li><code>System.out.println();</code>在IntellJ中是输入<code>sout</code></li>
-</ul>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2018/01/01/技术/IDEA配置与使用技巧/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-11-17T01:27:34.436Z"><a href="/2017/11/17/技术/Python多线程/">2017-11-17</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/11/17/技术/Python多线程/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Python多线程"><a href="#Python多线程" class="headerlink" title="Python多线程"></a>Python多线程</h2><h3 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h3><blockquote>
-<p>python解释器的GIL限制了线程的多核并行</p>
+        <h2 id="JQuery学习"><a href="#JQuery学习" class="headerlink" title="JQuery学习"></a>JQuery学习</h2><blockquote>
+<p>前端开发的库</p>
 </blockquote>
-<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><ul>
-<li>程序的一次执行</li>
-<li>由代码段、数据段和进程控制块组成</li>
-<li>基本状态：就绪、阻塞、执行</li>
-<li>是拥有资源的独立单位</li>
-</ul>
-<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><ul>
-<li>进程中的任务执行的实体</li>
-<li>一个进程里可以有多个线程，线程占有极少资源，多个线程共享进程的资源。这就会涉及同步和通信的问题。</li>
-<li>通常认为线程不拥有系统资源</li>
-<li>线程的开销比进程小</li>
-</ul>
-<h3 id="线程状态和生命周期"><a href="#线程状态和生命周期" class="headerlink" title="线程状态和生命周期"></a>线程状态和生命周期</h3><p><img src="http://img.shuaiyy.cn/blog/171115/L0IDB46066.png?imageslim" alt="mark"></p>
-<h3 id="python内置模块threading"><a href="#python内置模块threading" class="headerlink" title="python内置模块threading"></a>python内置模块threading</h3><h4 id="Thread对象"><a href="#Thread对象" class="headerlink" title="Thread对象"></a>Thread对象</h4><p>用来创建线程的主要对象</p>
-<p><code>Thread( target=None, name=None,args=(), kwargs=None)</code></p>
+<h3 id="用jquery实现一个前端小程序"><a href="#用jquery实现一个前端小程序" class="headerlink" title="用jquery实现一个前端小程序"></a>用jquery实现一个前端小程序</h3><p><strong>简介</strong></p>
+<p>使用jquery开发一个纯前端实现的Todo-List任务清单管理器。</p>
+<p><img src="http://ww1.sinaimg.cn/large/af9df239ly1fhoa3rjgqbj20kv0hn43b.jpg" alt=""></p>
 <ul>
-<li>start() :启动线程</li>
-<li>run()：启动线程调用的方法。</li>
-<li>join([timeout]):等待到被调用线程终止或超时为止。</li>
-<li>is_alive():返回线程的活动状态（run()方法期间）。</li>
-<li>name:线程名</li>
-<li>ident：线程ID</li>
-<li>daemon:后台标志（在启动之前设置）</li>
-</ul>
-<p>获取当前线程的方法<code>current_thread()</code>, 获取所有活动线程的方法<code>enumerate()</code>:包括当前线程</p>
-<h4 id="线程创建方法"><a href="#线程创建方法" class="headerlink" title="线程创建方法"></a>线程创建方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(name)</span>:</span></div><div class="line">  <span class="keyword">print</span> <span class="string">'hello'</span> + name</div><div class="line">  </div><div class="line">t = Thread(target=hello, args=(<span class="string">'lio'</span>, ))</div><div class="line">t.start()</div><div class="line">t.join()</div></pre></td></tr></table></figure>
-<ul>
-<li><p>主动停止线程</p>
-<p>线程并未提供stop或kill方法，如果用了死循环，则线程会一直运行。</p>
-<p>可以使用线程的信号机制，或者设置一个全局变量作为停止的flag。</p>
-</li>
-<li><p>控制多线程的并发</p>
-<p>threading模块没有实现线程池，可以用第三方分threadpool模块。</p>
-<p>自己实现线程池pool：</p>
-<ul>
-<li>pool是一个有size，可以遍历，pop，add的对象，如list，dict，queue等</li>
-<li>如果pool没满，可以向pool里添加线程</li>
-<li>从pool里移除运行结束的线程，pop后del</li>
-</ul>
+<li>定时提醒功能的实现</li>
+<li>最大限度的重用数据</li>
+<li>自定义更强大的alert()函数</li>
+<li><p>position的属性</p>
+<p><strong>逻辑和功能</strong></p>
 </li>
 </ul>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/11/17/技术/Python多线程/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-11-07T09:40:41.286Z"><a href="/2017/11/07/技术/PyQt5 使用pyinstaller打包PyQt5程序/">2017-11-07</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/11/07/技术/PyQt5 使用pyinstaller打包PyQt5程序/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-         
-        
-    <div id="toc">
-        
-    </div>
-
-      
-        <p>使用pyinstaller打包PyQt5程序</p>
-
-      
-    </div>
-    <footer>
-      
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-11-04T16:00:00.000Z"><a href="/2017/11/05/技术/Gevent 源码分析/">2017-11-05</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/11/05/技术/Gevent 源码分析/">Gevent 源码分析</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Gevent-源码分析"><a href="#Gevent-源码分析" class="headerlink" title="Gevent 源码分析"></a>Gevent 源码分析</h2><blockquote>
-<p>gevent包括2个重要的部分，libev和greenlet。</p>
-<p>libev实现事件循环， watcher(叶子，事件监控处理)，ev_run(主干，事件循环引擎)，ev_loop(watcher管理)。</p>
-<p>greenlet提供对协程的完整支持，用于执行异步任务。</p>
-</blockquote>
-<ul>
-<li><p>源码分析工具：pycharm </p>
-<p><code>ctrl + B</code> 跳转到对象声明的源码位置， <code>ctrl + alt + 箭头</code> 前进或后退</p>
-<p>选择右侧导航栏的Structure窗口，可以快速的查看类的属性和方法。</p>
-<p><img src="http://img.shuaiyy.cn/blog/171106/d3Dcl4dJB4.png?imageslim" alt="mark"></p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/11/05/技术/Gevent 源码分析/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-11-04T16:00:00.000Z"><a href="/2017/11/05/技术/Python wordcloud生成词云/">2017-11-05</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/11/05/技术/Python wordcloud生成词云/">Python wordcloud生成词云</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Python-wordcloud生成词云"><a href="#Python-wordcloud生成词云" class="headerlink" title="Python wordcloud生成词云"></a>Python wordcloud生成词云</h1><p>wordcloud<a href="https://amueller.github.io/word_cloud/" target="_blank" rel="external">官网</a>，<a href="https://github.com/amueller/word_cloud" target="_blank" rel="external">github</a></p>
-<p><img src="http://img.shuaiyy.cn/blog/171206/Em5dbm25F1.png?imageslim" alt="mark"></p>
-<p>主要步骤：</p>
 <ol>
-<li>安装wordcloud</li>
-<li>创建WordCloud对象，定义生成词云的布局参数，如背景颜色，字体库、单词最大最小像素，词云图片长宽，最大单词数，随机配色种类，使用掩膜等</li>
-<li>通过文本或统计好的词频生成词云，即将词按词频绘制到词云布局图片上。</li>
-<li>显示、保存词云图片文件</li>
+<li>应用的整体布局</li>
+<li>应用的细节完善</li>
+<li>需求和逻辑分析</li>
+<li>应用的架构方式</li>
+<li>数据存储方式</li>
+<li>数据组织方式</li>
+<li>模板的实现和使用</li>
+<li>定时功能的实现</li>
+<li>应用响铃提醒的实现</li>
 </ol>
+<p><strong>用到的插件和API</strong></p>
+<ul>
+<li>Store.js实现与localStorage读取与存储</li>
+<li>JQuery插件，datetimepicker</li>
+<li>JQuery API：deferred的使用</li>
+<li>JQuery API：选择器的应用和实现</li>
+<li>JQuery promise机制</li>
+</ul>
+<h3 id="安装JS库和相关依赖"><a href="#安装JS库和相关依赖" class="headerlink" title="安装JS库和相关依赖"></a>安装JS库和相关依赖</h3><p>在项目根目录下使用npm管理器安装js插件，默认安装到node_modules。</p>
+<p>使用save参数，会把安装的package写入到package.json文件的depend中，项目迁移或部署时直接<code>npm install</code>就会安装所有的依赖包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm init</div><div class="line">npm install jquery --save</div></pre></td></tr></table></figure>
+<h3 id="JS实现局部域变量定义"><a href="#JS实现局部域变量定义" class="headerlink" title="JS实现局部域变量定义"></a>JS实现局部域变量定义</h3><p>如果直接定义<code>var a = 1;</code>则a是window根对象的一个属性，容易造成变量污染。</p>
+<p>因此应该将变量定义在函数内。把内置js函数的运行也可以放入一个匿名函数当中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">  'use strict'</span>;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">  alert(a);  <span class="comment">// 1</span></div><div class="line">  alert(<span class="built_in">window</span>.a);  <span class="comment">//这个会是undefined</span></div><div class="line">  <span class="comment">//自己实现的代码</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h3 id="整体页面布局"><a href="#整体页面布局" class="headerlink" title="整体页面布局"></a>整体页面布局</h3><p><img src="http://ww1.sinaimg.cn/large/af9df239gy1fho9a34cg4j20af098q2z.jpg" alt=""></p>
+<ul>
+<li>页面背景</li>
+<li>默认显示列表</li>
+<li>可以标记为已完成</li>
+<li>双击或点击detail查看详情</li>
+<li>可以编辑，修改，删除</li>
+<li>有时间设置页面</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span> <span class="comment">&lt;!-- 总容器 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"add-task"</span>&gt;</span>  <span class="comment">&lt;!-- 添加一个任务 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>submmit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"task-list"</span>&gt;</span>  <span class="comment">&lt;!-- 任务list --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"task-item"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"task-content"</span>&gt;</span>item content<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>delete<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>detail<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>  <span class="comment">&lt;!-- 任务item --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"task-item"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"task-content"</span>&gt;</span>item content<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>delete<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>detail<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"task-item"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"task-content"</span>&gt;</span>item content<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>delete<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>detail<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"task-detail"</span>&gt;</span>  <span class="comment">&lt;!-- 任务详情 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"desc"</span>&gt;</span></div><div class="line"></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"remind"</span>&gt;</span>  <span class="comment">&lt;!-- 添加闹钟提醒 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用CSS进行布局美化</p>
+<p><img src="http://ww1.sinaimg.cn/large/af9df239gy1fho9a33yjpj20tb0b9dg1.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/af9df239gy1fho9a32sqsj20ss0du3z1.jpg" alt=""></p>
+<ul>
+<li><p>重置/常规化浏览器默认的margin布局及样式。</p>
+<p>不同的浏览器下的不同标签有不同的默认设置，比如body，html等等标签。解决方法， normalize.css  在bootcdn里找到在线版本的css库。或npm install 安装后引入。引入应该是最先引入。</p>
+</li>
+<li><p>如果使用第三方库比如bootstrap，一般库会自动先进行常规化。</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install normalize.css --save</div><div class="line"></div><div class="line"><span class="meta">#</span> ----- index.html</div><div class="line">&lt;link src='xxx/normalize.css'&gt;</div></pre></td></tr></table></figure>
+<p>CSS属性</p>
+<ul>
+<li>margin 属性：元素的4个外边距</li>
+<li>border属性：边框样式属性 </li>
+</ul>
+<h3 id="JS修改渲染HTML页面"><a href="#JS修改渲染HTML页面" class="headerlink" title="JS修改渲染HTML页面"></a>JS修改渲染HTML页面</h3><ul>
+<li><p>定义一个函数返回包含HTMl的字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> item = task_list[index]</div><div class="line"><span class="keyword">var</span> task_detail_tpl=</div><div class="line">            <span class="string">'&lt;form class="forms"&gt;'</span>+</div><div class="line">            <span class="string">'&lt;div class="content"&gt;'</span> +</div><div class="line">            item.content +</div><div class="line">            <span class="string">'&lt;/div&gt;'</span>+</div><div class="line">            <span class="string">'&lt;input style="display:none;" name="content" class="content" value="'</span> +</div><div class="line">            item.content+</div><div class="line">            <span class="string">'"/&gt;'</span> +</div><div class="line">            <span class="string">'&lt;div&gt;'</span> +</div><div class="line">            <span class="string">'&lt;div class="desc input-item"&gt;'</span> +</div><div class="line">            <span class="string">'&lt;textarea name="desc" id=""&gt;'</span>+</div><div class="line">            (item.desc||<span class="string">''</span>)+</div><div class="line">            <span class="string">'&lt;/textarea&gt;'</span> +</div><div class="line">            <span class="string">'&lt;/div&gt;'</span> +</div><div class="line">            <span class="string">'&lt;/div&gt;'</span> +</div><div class="line">            <span class="string">'&lt;div class="remind input-item"&gt;'</span> +</div><div class="line">            <span class="string">'&lt;input type="date" name="remind_date" value="'</span> +</div><div class="line">            item.remind_date +</div><div class="line">            <span class="string">'" /&gt;'</span> +</div><div class="line">            <span class="string">'&lt;/div&gt;'</span>+</div><div class="line">            <span class="string">'&lt;div class="input-item"&gt;&lt;button type="submit" class="fr"&gt;Update&lt;/button&gt;&lt;/div&gt;'</span>+</div><div class="line">            <span class="string">'&lt;/form&gt;'</span>;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>将要修改的tag内容清空，然后填充我们自定义的html代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $form_add_task = $(<span class="string">".add-task"</span>)</div><div class="line">        ,$task_detail_mask=$(<span class="string">".task-detail-mask"</span>)</div><div class="line">        ,$task_detail = $(<span class="string">".task-detail"</span>)   <span class="comment">// css selector选择器</span></div><div class="line">        ,$task_detail_trigger  <span class="comment">//这个元素是js后添加的，要在添加完成后在调用选择器</span></div><div class="line">        ,$task_detail_content;</div><div class="line"><span class="comment">//清空旧模板</span></div><div class="line">$task_detail.html(<span class="string">""</span>);</div><div class="line"><span class="comment">//使用新模板代替旧模板</span></div><div class="line">$task_detail.html(task_detail_tpl);</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果有选择器，要在更新完HTML代码之后执行。之前定义的Jquery不会再次执行，浴室没选到tag，结果undefinded。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$task_detail_content =$task_detail.find(<span class="string">'[class=content]'</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>为同一类tag绑定事件监听。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">listen_task_detail</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  		$task_detail_trigger=$(<span class="string">".action.detail"</span>);</div><div class="line">        $task_detail_trigger.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">            <span class="keyword">var</span>  $item = $<span class="keyword">this</span>.parent().parent();</div><div class="line">            <span class="keyword">var</span> index = $item.data(<span class="string">'index'</span>);</div><div class="line">           show_task_detail(index);</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"><span class="comment">// 然后在js执行时调用函数</span></div><div class="line">listen_task_detail()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/af9df239ly1fhoa3rjgqbj20kv0hn43b.jpg" alt=""></p>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-02-04T16:00:00.000Z"><a href="/2018/02/05/技术/JavaScript前端部分功能实现/">2018-02-05</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/02/05/技术/JavaScript前端部分功能实现/">JavaScript实现的部分功能</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>JavaScript判断表单内容，不满足条件则不提交</li>
+</ul>
+<p><code>&lt;form method=&quot;post&quot; action=&quot;/study/register.jsp&quot; onsubmit=&quot;return register()&quot;&gt;</code><br>长度判断<br>整数判断<br>正则判断</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"/study/register.jsp"</span> <span class="attr">onsubmit</span>=<span class="string">"return register()"</span>&gt;</span></div><div class="line">账号：<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"></div><div class="line">年龄：<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"age"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"age"</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">  </div><div class="line">EMail：<span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"email"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">  </div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">    </div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">register</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">   <span class="keyword">var</span> name = <span class="built_in">document</span>.getElementById(<span class="string">"name"</span>);</span></div><div class="line"><span class="javascript">   <span class="keyword">if</span>(name.value.length&lt;<span class="number">3</span>)&#123;</span></div><div class="line"><span class="javascript">     alert(<span class="string">"用户名至少需要3位长度"</span>);</span></div><div class="line"><span class="javascript">     <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">   &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">   <span class="keyword">var</span> age = <span class="built_in">document</span>.getElementById(<span class="string">"age"</span>);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">   <span class="keyword">if</span>(<span class="built_in">isNaN</span>(age.value))&#123;</span></div><div class="line"><span class="javascript">     alert(<span class="string">"年龄必须是数字"</span>);</span></div><div class="line"><span class="javascript">     <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">   &#125;</span></div><div class="line"><span class="undefined">  </span></div><div class="line"><span class="javascript">  <span class="keyword">var</span> email = <span class="built_in">document</span>.getElementById(<span class="string">"email"</span>);</span></div><div class="line"><span class="undefined">       </span></div><div class="line"><span class="javascript">  <span class="keyword">if</span>(<span class="number">0</span>==email.value.length)&#123;</span></div><div class="line"><span class="javascript">     alert(<span class="string">"email不能为空"</span>);</span></div><div class="line"><span class="javascript">    <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined">    </span></div><div class="line"><span class="javascript">  <span class="keyword">var</span> Regex = <span class="regexp">/^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/</span>;       </span></div><div class="line"><span class="undefined">    </span></div><div class="line"><span class="javascript">  <span class="keyword">if</span> (!Regex.test(email.value))&#123;                </span></div><div class="line"><span class="javascript">       alert(<span class="string">"email格式不正确"</span>);</span></div><div class="line"><span class="javascript">       <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">  &#125;            </span></div><div class="line"><span class="javascript">   <span class="keyword">return</span> <span class="literal">true</span>;</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/11/05/技术/Python wordcloud生成词云/#more" class="more-link">阅读全文</a>
+            <a href="/2018/02/05/技术/JavaScript前端部分功能实现/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-01-14T16:00:00.000Z"><a href="/2018/01/15/学习/写作/Zeal自制docset/">2018-01-15</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/01/15/学习/写作/Zeal自制docset/">Zeal自制docset</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Zeal自制docset"><a href="#Zeal自制docset" class="headerlink" title="Zeal自制docset"></a>Zeal自制docset</h2><h3 id="Zeal使用"><a href="#Zeal使用" class="headerlink" title="Zeal使用"></a>Zeal使用</h3><blockquote>
+<p> Zeal是一款离线文档浏览器（类似于MAC下的dash），可以配合各种编辑器，IDE使用。官方提供的数百个不同应用的离线文档(docset格式)，当某个文档官方没有提供时，我们可以自己制作一个。本文以Scrapy 1.5的文档为例。</p>
+</blockquote>
+<p>在IDEA、Pycharm中使用，安装Dash插件，选中要查找的字符串，<code>ctrl shift b</code>在Zeal中查看API。</p>
+<h3 id="docset文档源"><a href="#docset文档源" class="headerlink" title="docset文档源"></a>docset文档源</h3><ol>
+<li>任意的HTML文档</li>
+<li>AppleDoc</li>
+<li>Python, Sphinx or PyDoctor</li>
+<li>javadoc</li>
+<li>Rdoc</li>
+<li>Scaladoc</li>
+<li>goDoc</li>
+<li>JSDoc</li>
+<li>Doxygen</li>
+</ol>
+<p>基本上所有的文档都可以转换为docset。</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/01/15/学习/写作/Zeal自制docset/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -1091,7 +1179,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/">ѧϰ</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/д��/">д��</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/д��/�K�/">�Ķ�</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/">写作</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Doc/">Doc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/推荐系统/">推荐系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/">求职</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/基础知识/">基础知识</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/经历/">经历</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/面试/">面试</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/IDEA/">IDEA</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/">软件</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/MacOS/">MacOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/Windows/">Windows</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">98</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Go/">Go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Go/标准库/">标准库</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/标准库/">标准库</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/Server/">Server</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/日志监控/">日志监控</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/">MacOS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/latex/">latex</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/CGI编程/">CGI编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/PyQt5/">PyQt5</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/数据库连接/">数据库连接</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/标准库/">标准库</a><span class="category-list-count">17</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Bootstrap/">Bootstrap</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Django/">Django</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Flask/">Flask</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/">数据分析</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/IPython/">IPython</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Matplotlib/">Matplotlib</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Numpy/">Numpy</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/词云/">词云</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MongoDB/">MongoDB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/Redis/">Redis</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/">爬虫</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/Scrapy/">Scrapy</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/Socket/">Socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/路由器/">路由器</a><span class="category-list-count">1</span></li></ul></li></ul> 
 </div>
  
 
@@ -1132,35 +1220,51 @@
   
     <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
   
-    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+    <li><a href="/tags/Django/">Django</a><small>6</small></li>
   
-    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+    <li><a href="/tags/Docset/">Docset</a><small>1</small></li>
   
-    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+    <li><a href="/tags/ElasticSearch/">ElasticSearch</a><small>1</small></li>
   
-    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>0</small></li>
   
-    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+    <li><a href="/tags/Exam/">Exam</a><small>0</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>19</small></li>
+  
+    <li><a href="/tags/Gevent/">Gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>4</small></li>
+  
+    <li><a href="/tags/Gitbook/">Gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/Go/">Go</a><small>1</small></li>
   
     <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
   
-    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
   
     <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
-    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+    <li><a href="/tags/IDEA/">IDEA</a><small>3</small></li>
   
-    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+    <li><a href="/tags/IPython/">IPython</a><small>1</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+    <li><a href="/tags/Ipython/">Ipython</a><small>0</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
+    <li><a href="/tags/JQuery/">JQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>11</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>3</small></li>
   
     <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
+    <li><a href="/tags/LeetCode/">LeetCode</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>11</small></li>
   
     <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
@@ -1176,7 +1280,9 @@
   
     <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
   
-    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+    <li><a href="/tags/MongoDB/">MongoDB</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>0</small></li>
   
     <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
   
@@ -1188,6 +1294,8 @@
   
     <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
   
+    <li><a href="/tags/Openwrt/">Openwrt</a><small>1</small></li>
+  
     <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
     <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
@@ -1196,21 +1304,29 @@
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>4</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>24</small></li>
+    <li><a href="/tags/Pycharm/">Pycharm</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>32</small></li>
+  
+    <li><a href="/tags/RESTful/">RESTful</a><small>1</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
-    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>8</small></li>
   
     <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
+    <li><a href="/tags/Socket/">Socket</a><small>2</small></li>
+  
     <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
   
     <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Tensorflow/">Tensorflow</a><small>1</small></li>
   
     <li><a href="/tags/Web/">Web</a><small>19</small></li>
   
@@ -1220,35 +1336,45 @@
   
     <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
   
-    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+    <li><a href="/tags/flask/">flask</a><small>0</small></li>
   
-    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+    <li><a href="/tags/gevent/">gevent</a><small>0</small></li>
   
-    <li><a href="/tags/git/">git</a><small>1</small></li>
+    <li><a href="/tags/git/">git</a><small>0</small></li>
   
-    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+    <li><a href="/tags/gitbook/">gitbook</a><small>0</small></li>
   
-    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>0</small></li>
   
-    <li><a href="/tags/python/">python</a><small>2</small></li>
+    <li><a href="/tags/python/">python</a><small>0</small></li>
   
-    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+    <li><a href="/tags/restful/">restful</a><small>0</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+    <li><a href="/tags/socket/">socket</a><small>0</small></li>
   
-    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>0</small></li>
+  
+    <li><a href="/tags/刷题/">刷题</a><small>2</small></li>
+  
+    <li><a href="/tags/推荐系统/">推荐系统</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
   
-    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
+    <li><a href="/tags/机器学习/">机器学习</a><small>3</small></li>
   
     <li><a href="/tags/框架/">框架</a><small>1</small></li>
   
+    <li><a href="/tags/求职/">求职</a><small>6</small></li>
+  
     <li><a href="/tags/测试/">测试</a><small>1</small></li>
   
-    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+    <li><a href="/tags/爬虫/">爬虫</a><small>9</small></li>
+  
+    <li><a href="/tags/经历/">经历</a><small>1</small></li>
   
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
+  
+    <li><a href="/tags/面试/">面试</a><small>1</small></li>
   
   </ul>
 </div>
@@ -1260,7 +1386,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+    <a href="/tags/PyQt5/" style="font-size: 16.33px; color: #b0a">PyQt5</a> <a href="/tags/Hexo/" style="font-size: 13px; color: #90f">Hexo</a> <a href="/tags/Math/" style="font-size: 17.44px; color: #c6008e">Math</a> <a href="/tags/Optimization/" style="font-size: 18.56px; color: #d20071">Optimization</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/Linux/" style="font-size: 20.78px; color: #e80039">Linux</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 17.44px; color: #c6008e">Django</a> <a href="/tags/Flask/" style="font-size: 21.89px; color: #f4001c">Flask</a> <a href="/tags/Web/" style="font-size: 21.89px; color: #f4001c">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/Git/" style="font-size: 16.33px; color: #b0a">Git</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Java/" style="font-size: 20.78px; color: #e80039">Java</a> <a href="/tags/IDEA/" style="font-size: 15.22px; color: #b000c6">IDEA</a> <a href="/tags/ORM/" style="font-size: 14.11px; color: #a400e3">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/Html/" style="font-size: 14.11px; color: #a400e3">Html</a> <a href="/tags/JavaScript/" style="font-size: 15.22px; color: #b000c6">JavaScript</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/LaTeX/" style="font-size: 15.22px; color: #b000c6">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14.11px; color: #a400e3">Mac</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/数据库/" style="font-size: 14.11px; color: #a400e3">数据库</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Numpy/" style="font-size: 14.11px; color: #a400e3">Numpy</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/爬虫/" style="font-size: 19.67px; color: #d05">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/Redis/" style="font-size: 15.22px; color: #b000c6">Redis</a> <a href="/tags/Scrapy/" style="font-size: 18.56px; color: #d20071">Scrapy</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/机器学习/" style="font-size: 15.22px; color: #b000c6">机器学习</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Gevent/" style="font-size: 15.22px; color: #b000c6">Gevent</a> <a href="/tags/IPython/" style="font-size: 13px; color: #90f">IPython</a> <a href="/tags/MongoDB/" style="font-size: 13px; color: #90f">MongoDB</a> <a href="/tags/Socket/" style="font-size: 14.11px; color: #a400e3">Socket</a> <a href="/tags/RESTful/" style="font-size: 13px; color: #90f">RESTful</a> <a href="/tags/Gitbook/" style="font-size: 13px; color: #90f">Gitbook</a> <a href="/tags/Docset/" style="font-size: 13px; color: #90f">Docset</a> <a href="/tags/Tensorflow/" style="font-size: 13px; color: #90f">Tensorflow</a> <a href="/tags/Pycharm/" style="font-size: 13px; color: #90f">Pycharm</a> <a href="/tags/JQuery/" style="font-size: 13px; color: #90f">JQuery</a> <a href="/tags/求职/" style="font-size: 17.44px; color: #c6008e">求职</a> <a href="/tags/Openwrt/" style="font-size: 13px; color: #90f">Openwrt</a> <a href="/tags/推荐系统/" style="font-size: 13px; color: #90f">推荐系统</a> <a href="/tags/ElasticSearch/" style="font-size: 13px; color: #90f">ElasticSearch</a> <a href="/tags/刷题/" style="font-size: 14.11px; color: #a400e3">刷题</a> <a href="/tags/LeetCode/" style="font-size: 14.11px; color: #a400e3">LeetCode</a>
   </div>
 </div>
 
@@ -1273,7 +1399,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">2018年11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">2018年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">2018年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">2018年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">2018年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">2017年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>

@@ -113,6 +113,9 @@
       <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
 	  
     
+      <li><a href="/games"><i class="fa fa-fa-gamepad"></i>游戏</a></li>
+	  
+    
 	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
 <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
 	function c() {
@@ -291,40 +294,81 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-11-03T16:00:00.000Z"><a href="/2017/11/04/技术/Gevent爬虫与多线程爬虫对比/">2017-11-04</a></time>
+          <time datetime="2018-01-07T16:00:00.000Z"><a href="/2018/01/08/技术/Logging unicode decode error/">2018-01-08</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/11/04/技术/Gevent爬虫与多线程爬虫对比/">Gevent 实现网络爬虫</a></h1>
+    <h1 class="title"><a href="/2018/01/08/技术/Logging unicode decode error/">Python logging 模块编码错误</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#python-logging-UnicodeDecodeError解决方法"><span class="toc-text">python logging UnicodeDecodeError解决方法</span></a></li></ol>
+    </div>
+
+      
+        <h3 id="python-logging-UnicodeDecodeError解决方法"><a href="#python-logging-UnicodeDecodeError解决方法" class="headerlink" title="python logging UnicodeDecodeError解决方法"></a>python logging UnicodeDecodeError解决方法</h3><p>一般是python2.7写入中文时编码错误<br>在logging中加上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys  </div><div class="line">reload(sys)  </div><div class="line">sys.setdefaultencoding(<span class="string">"utf-8"</span>)</div></pre></td></tr></table></figure>
+<p>如果是 <code>stream.write(fs % msg.encode(&quot;UTF-8&quot;))</code> 这行代码异常，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:  </div><div class="line">    stream.write(fs % msg.encode(<span class="string">"UTF-8"</span>))  </div><div class="line"><span class="keyword">except</span> UnicodeError:  </div><div class="line">    stream.write(fs % msg.decode(<span class="string">"gbk"</span>).encode(<span class="string">"UTF-8"</span>))</div><div class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">    <span class="keyword">print</span> e.msg</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2018-01-06T16:00:00.000Z"><a href="/2018/01/07/技术/python时间转换/">2018-01-07</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/01/07/技术/python时间转换/">Python时间格式转换</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="Gevent爬虫与多线程爬虫对比"><a href="#Gevent爬虫与多线程爬虫对比" class="headerlink" title="Gevent爬虫与多线程爬虫对比"></a>Gevent爬虫与多线程爬虫对比</h2><h3 id="爬虫通用网页解析模块"><a href="#爬虫通用网页解析模块" class="headerlink" title="爬虫通用网页解析模块"></a>爬虫通用网页解析模块</h3><ul>
-<li>网页字符集检测</li>
-<li>根据指定规则解析数据</li>
-<li>url处理子模块<ul>
-<li>能够抽取页面中所有的url以供后续爬取</li>
-<li>抽取的url过滤处理，如图片，文件等url肯定不需要递归爬取</li>
-<li>抽取的url分类http 和 https</li>
-<li>判断url中是否有非法字符</li>
-</ul>
-</li>
-</ul>
-<h3 id="Gevent爬虫"><a href="#Gevent爬虫" class="headerlink" title="Gevent爬虫"></a>Gevent爬虫</h3><ul>
-<li><p>每个任务是一个url object，存储url，页面深度等信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UrlObject</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, url, depth)</span>:</span></div><div class="line">        self.url = url</div><div class="line">        self.depth = depth</div></pre></td></tr></table></figure>
-</li>
-</ul>
+        <h2 id="python时间转换"><a href="#python时间转换" class="headerlink" title="python时间转换"></a>python时间转换</h2><h3 id="字符串和时间格式化"><a href="#字符串和时间格式化" class="headerlink" title="字符串和时间格式化"></a>字符串和时间格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="comment"># 时间字符串</span></div><div class="line">time_str = <span class="string">'2018-01-15 15:27:54'</span></div><div class="line"><span class="comment"># 字符串的time format</span></div><div class="line">time_fmt = <span class="string">'%Y-%m-%d %H:%M:%S'</span></div><div class="line"><span class="comment"># str parse time, 转换成时间数组,</span></div><div class="line">time_array = time.strptime(time_str, time_fmt)</div><div class="line"><span class="keyword">print</span> time_array</div><div class="line"><span class="comment"># str from time, 时间数组转字符串</span></div><div class="line">time_str = time.strftime(time_fmt, time_array)</div><div class="line"><span class="keyword">print</span> time_str</div><div class="line"><span class="comment"># 默认时间为当前时间</span></div><div class="line">time_str = time.strftime(time_fmt)</div><div class="line"><span class="keyword">print</span> time_str</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/11/04/技术/Gevent爬虫与多线程爬虫对比/#more" class="more-link">阅读全文</a>
+            <a href="/2018/01/07/技术/python时间转换/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -357,311 +401,39 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-10-31T16:00:00.000Z"><a href="/2017/11/01/技术/Gevent学习笔记/">2017-11-01</a></time>
+          <time datetime="2018-01-06T16:00:00.000Z"><a href="/2018/01/07/技术/Java高级/">2018-01-07</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/11/01/技术/Gevent学习笔记/">Gevent 学习笔记</a></h1>
+    <h1 class="title"><a href="/2018/01/07/技术/Java高级/">Java编程高级编程</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>python Gevent</p>
-<h3 id="进程、线程、协程"><a href="#进程、线程、协程" class="headerlink" title="进程、线程、协程"></a>进程、线程、协程</h3><blockquote>
-<p>python 中的yield提供对协程的有限支持。</p>
-</blockquote>
-<ul>
-<li><p>进程</p>
-<ul>
-<li>正在运行的程序的实例</li>
-<li>具有独立地址空间</li>
-<li>是操作系统资源分配的基本单位</li>
+        <h2 id="Java编程高级"><a href="#Java编程高级" class="headerlink" title="Java编程高级"></a>Java编程高级</h2><h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>JVM至少启动2个线程，main和gc</p>
+<p>三种实现方式</p>
+<h4 id="继承Thread类"><a href="#继承Thread类" class="headerlink" title="继承Thread类"></a>继承Thread类</h4><ul>
+<li>必须覆写Thread类中的run方法，是线程运行的主体。</li>
+<li>start方法启动线程，运行的是run内的代码</li>
 </ul>
-<p><img src="http://img.shuaiyy.cn/blog/171025/e7D70Jf4Bh.png?imageslim" alt="mark"></p>
-<ul>
-<li>进程上下文： 进程的物理实体与支持进程运行的物理环境，包括地址空间，系统栈，打开文件表，……</li>
-<li>上下文切换：由一个进程的上下文转到另外一个进程的上下文</li>
-<li>系统开销：操作系统完成系统管理工作所花费的时间和空间</li>
-<li>一个进程可以包含多个线程</li>
+<h4 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h4><ul>
+<li>解决单继承的限制</li>
+<li>覆写run方法</li>
+<li>Runnable对象没有start方法，Thread类可以接收Runnable接口对象，构造Thread实例，然后并调用start启动。</li>
 </ul>
+<h4 id="Callable接口"><a href="#Callable接口" class="headerlink" title="Callable接口"></a>Callable接口</h4><p>Runnable接口的run方法不能返回操作接口，<code>java.util.concurrent.Callable</code>提供。</p>
+<p>Callable由FutureTask对象接收。FutureTask对象可以取得返回结果，由Thread类启动FutureTask。</p>
+<h4 id="实现区别"><a href="#实现区别" class="headerlink" title="实现区别"></a>实现区别</h4><ol>
+<li><p>接口可以解决单继承问题</p>
 </li>
-<li><p>线程</p>
-<ul>
-<li>线程是程序执行的最小单位</li>
-<li>多线程可以提高程序的并发性</li>
-<li>由于python的GIL机制，一个进程只能使用一个cpu核心，因此多线程并不适合解决CPU密集的运算，此时应该使用多进程。</li>
-</ul>
-<p><img src="http://img.shuaiyy.cn/blog/171025/A5b27FJ7h0.png?imageslim" alt="mark"></p>
+<li><p>Thread内部实现了Runnable接口，是其子类</p>
+<p>Thread实现系统资源分配和执行目标功能，Runnable负责执行目标功能。</p>
+<p>Thread很像代理设计模式，但是start方法不是接口提供的。</p>
 </li>
-<li><p>协程</p>
-<ul>
-<li>可以认为是一种用户态的线程</li>
-<li>线程是由系统调度，而协程需要主动让出CPU时间，即控制权在程序员手中</li>
-<li>线程里可以包含多个协程</li>
-</ul>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/11/01/技术/Gevent学习笔记/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-10-17T16:00:00.000Z"><a href="/2017/10/18/技术/TensorFlow安装/">2017-10-18</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/10/18/技术/TensorFlow安装/">TensorFlow 安装</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="安装TensorFlow-GPU"><a href="#安装TensorFlow-GPU" class="headerlink" title="安装TensorFlow_GPU"></a>安装TensorFlow_GPU</h2><blockquote>
-<p>环境：TensorFlow 1.4，windows 10 x64，python3.6（Anaconda），显卡gtx610m(笔记本渣显卡)，vs2015， cuda8.0， cuDnn6</p>
-<p>截至2017.11，tensorflow最新版本为1.4，不支持cuda9和cuDnn7，下载时注意版本。</p>
-</blockquote>
-<p>TensorFlow官网为<a href="https://tensorflow.google.cn/install/install_windows" target="_blank" rel="external">https://tensorflow.google.cn/install/install_windows</a>，<code>www.tensorflow.org</code>貌似被墙了，打不开。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/10/18/技术/TensorFlow安装/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-10-16T16:00:00.000Z"><a href="/2017/10/17/技术/Python-内省(Introspection)/">2017-10-17</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/10/17/技术/Python-内省(Introspection)/">Python 内省机制</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Python 内省机制</p>
-<h1 id="内省-Introspection-是什么？"><a href="#内省-Introspection-是什么？" class="headerlink" title="内省(Introspection) 是什么？"></a>内省(Introspection) 是什么？</h1><p>在计算机科学中，内省指一种能力，可以确定对象是什么，包含何种信息，可以做什么。<br>Python 就是一门提供了内省机制的语言。</p>
-<h1 id="Python-的内省机制"><a href="#Python-的内省机制" class="headerlink" title="Python 的内省机制"></a>Python 的内省机制</h1><ul>
-<li>help 函数</li>
-<li>sys 模块<br>sys模块中包含了系统，当前进程等相关的信息，例如</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sys.platform</div><div class="line">sys.version</div><div class="line">sys.maxint</div><div class="line">sys.arg</div><div class="line">sys.path</div><div class="line">sys.modules123456</div></pre></td></tr></table></figure>
-<ul>
-<li>keyword模块<br>keyword.kwlist 包含Python所有的关键词</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import keyword</div><div class="line">&gt;&gt;&gt; keyword.kwlist</div><div class="line">[&apos;and&apos;, &apos;as&apos;, &apos;assert&apos;, &apos;break&apos;, &apos;class&apos;, &apos;continue&apos;, &apos;def&apos;, &apos;del&apos;, &apos;elif&apos;, &apos;else&apos;, &apos;except&apos;, &apos;exec&apos;, &apos;finally&apos;, &apos;for&apos;, &apos;from&apos;, &apos;global&apos;, &apos;if&apos;, &apos;import&apos;, &apos;in&apos;, &apos;is&apos;, &apos;lambda&apos;, &apos;not&apos;, &apos;or&apos;, &apos;pass&apos;, &apos;print&apos;, &apos;raise&apos;, &apos;return&apos;, &apos;try&apos;, &apos;while&apos;, &apos;with&apos;, &apos;yield&apos;]</div></pre></td></tr></table></figure>
-<ul>
-<li>dir函数<br>返回由传入对象的属性排序后构成的列表</li>
-<li><strong>builtins</strong>模块<br>包含Python中的内建函数</li>
-<li>docstring</li>
-<li><code>__name__</code>属性</li>
-<li>hasattr函数</li>
-<li>getattr函数</li>
-<li>type函数</li>
-<li>id函数</li>
-<li>callable函数</li>
-<li>isinstance函数</li>
-<li>issubclass函数</li>
-</ul>
-<h2 id="type"><a href="#type" class="headerlink" title="type()"></a>type()</h2><ul>
-<li><p><code>type()</code>函数可以查看一个类型或变量的类型</p>
+<li><p>Runnable能更好的描述线程间的数据共享 </p>
 </li>
-<li><p>type也可以用来动态地创建一个class对象,传入3个参数</p>
-<ul>
-<li>class name，</li>
-<li>继承的父类集合（元组）</li>
-<li>class的方法名称与函数绑定（字典）</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(self, x)</span>:</span></div><div class="line">  <span class="keyword">print</span> <span class="string">'hello'</span>, x</div><div class="line"> </div><div class="line">Hello = type(<span class="string">'Hello'</span>, (object,), dict(hello=f))</div><div class="line">h = Hello()</div><div class="line">h.hello(<span class="string">'x'</span>)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/10/17/技术/Python-内省(Introspection)/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-10-14T16:00:00.000Z"><a href="/2017/10/15/技术/Python socket编程/">2017-10-15</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/10/15/技术/Python socket编程/">Python socket编程</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="python-socket编程"><a href="#python-socket编程" class="headerlink" title="python socket编程"></a>python socket编程</h2><p>参考资料： </p>
-<p><a href="http://www.cnblogs.com/sunailong/p/5057288.html" target="_blank" rel="external">socket编程</a></p>
-<p><a href="http://www.cnblogs.com/sunailong/p/5058786.html" target="_blank" rel="external">SocketServer</a></p>
-<h3 id="Socket简介"><a href="#Socket简介" class="headerlink" title="Socket简介"></a>Socket简介</h3><p>file可以对指定的文件进行打开、读写、关闭操作。socket是针对网络IO通信的，服务器和客户端之间进行打开、读写、关闭操作，也就是网络通信的核心与基础。</p>
-<p>socket套接字，由Ip地址和port端口组成的元组，可以唯一确定网络通信的主体。</p>
-<p><img src="http://img.shuaiyy.cn/blog/171024/98eH8J6k3a.png?imageslim" alt="mark"></p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/10/15/技术/Python socket编程/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-10-13T16:00:00.000Z"><a href="/2017/10/14/技术/Python logging模块/">2017-10-14</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/10/14/技术/Python logging模块/">Python logging模块使用</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Python logging模块</p>
-<h3 id="为啥要用日志模块"><a href="#为啥要用日志模块" class="headerlink" title="为啥要用日志模块"></a>为啥要用日志模块</h3><p>当我们编写python程序时，希望能到输出一些调试信息，一般情况我们用print打印出想要的信息。</p>
-<p>使用print的缺点：</p>
-<ol>
-<li>输出信息没有分级</li>
-<li>程序发布时，要修改所有的print语句</li>
-<li>无法输出信息到文件，或者发邮件</li>
-</ol>
-<p>使用python的日志系统，就可以解决上述问题。</p>
-<h3 id="简单使用示例"><a href="#简单使用示例" class="headerlink" title="简单使用示例"></a>简单使用示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"> </div><div class="line"><span class="keyword">import</span> logging</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"> </div><div class="line"><span class="comment"># 获取logger实例，如果参数为空则返回root logger</span></div><div class="line">logger = logging.getLogger(<span class="string">"AppName"</span>)</div><div class="line"> </div><div class="line"><span class="comment"># 指定logger输出格式</span></div><div class="line">formatter = logging.Formatter(<span class="string">'%(asctime)s %(levelname)-8s: %(message)s'</span>)</div><div class="line"> </div><div class="line"><span class="comment"># 文件日志</span></div><div class="line">file_handler = logging.FileHandler(<span class="string">"test.log"</span>)</div><div class="line">file_handler.setFormatter(formatter)  <span class="comment"># 可以通过setFormatter指定输出格式</span></div><div class="line"> </div><div class="line"><span class="comment"># 控制台日志</span></div><div class="line">console_handler = logging.StreamHandler(sys.stdout)</div><div class="line">console_handler.formatter = formatter  <span class="comment"># 也可以直接给formatter赋值</span></div><div class="line"> </div><div class="line"><span class="comment"># 为logger添加的日志处理器</span></div><div class="line">logger.addHandler(file_handler)</div><div class="line">logger.addHandler(console_handler)</div><div class="line"> </div><div class="line"><span class="comment"># 指定日志的最低输出级别，默认为WARN级别</span></div><div class="line">logger.setLevel(logging.INFO)</div><div class="line"> </div><div class="line"><span class="comment"># 输出不同级别的log</span></div><div class="line">logger.debug(<span class="string">'this is debug info'</span>)</div><div class="line">logger.info(<span class="string">'this is information'</span>)</div><div class="line">logger.warn(<span class="string">'this is warning message'</span>)</div><div class="line">logger.error(<span class="string">'this is error message'</span>)</div><div class="line">logger.fatal(<span class="string">'this is fatal message, it is same as logger.critical'</span>)</div><div class="line">logger.critical(<span class="string">'this is critical message'</span>)</div><div class="line"><span class="comment"># 移除一些日志处理器</span></div><div class="line">logger.removeHandler(file_handler)</div></pre></td></tr></table></figure>
-<ol>
-<li>获取一个logger对象</li>
-<li>添加Handler日志处理器</li>
-<li>设置logger输出级别</li>
 </ol>
       
     </div>
@@ -669,7 +441,7 @@
       
         
           <div class="alignleft">
-            <a href="/2017/10/14/技术/Python logging模块/#more" class="more-link">阅读全文</a>
+            <a href="/2018/01/07/技术/Java高级/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -702,36 +474,28 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-10-13T16:00:00.000Z"><a href="/2017/10/14/技术/网络通信基础/">2017-10-14</a></time>
+          <time datetime="2018-01-03T16:00:00.000Z"><a href="/2018/01/04/技术/Java 入门/">2018-01-04</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/10/14/技术/网络通信基础/">网络通信基础TCP/IP</a></h1>
+    <h1 class="title"><a href="/2018/01/04/技术/Java 入门/">Java 入门学习笔记</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h2><ul>
-<li>一种抽象的网络体系结构的现实规则</li>
-<li>规定了组成计算机网络的硬件和软件工件方式和运行规则</li>
-<li>目前主要采用结构化的分层设计</li>
-<li>它是通信双方必须遵循的控制信息交换的规则的集合</li>
-<li>由语法、语义和同步三个要素组成<ul>
-<li>语法：信息的结构与格式约定</li>
-<li>语义：控制信息所表达的意义</li>
-<li>同步：事件的顺序、速度匹配</li>
-</ul>
-</li>
-</ul>
+        <h3 id="java-入门"><a href="#java-入门" class="headerlink" title="java 入门"></a>java 入门</h3><h4 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h4><p>public class一个java文件只能有一个定义， 类名称必须与其所在的文件名一致。</p>
+<p>编译后，一个class生成一个对应的<code>*.class</code>文件。</p>
+<p>执行从主方法开始，主方法所在的类成为主类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Main.java</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="comment">// write your code here</span></div><div class="line">        <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">        a++;</div><div class="line">        System.out.println(<span class="string">"Hello World!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;&#125;</div></pre></td></tr></table></figure>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/10/14/技术/网络通信基础/#more" class="more-link">阅读全文</a>
+            <a href="/2018/01/04/技术/Java 入门/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -764,155 +528,932 @@
       
         <div class="icon"></div>
 		
-          <time datetime="2017-10-13T16:00:00.000Z"><a href="/2017/10/14/技术/Python-super对象/">2017-10-14</a></time>
+          <time datetime="2018-01-01T16:00:00.000Z"><a href="/2018/01/02/技术/HTML转义和URL编解码/">2018-01-02</a></time>
         
 	  
       
   
-    <h1 class="title"><a href="/2017/10/14/技术/Python-super对象/">Python super与多重继承顺序</a></h1>
+    <h1 class="title"><a href="/2018/01/02/技术/HTML转义和URL编解码/">HTML代码转义和URL编解码</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>python多重继承的顺序</p>
-<h2 id="Python-super对象"><a href="#Python-super对象" class="headerlink" title="Python super对象"></a>Python super对象</h2><ol>
-<li><p><code>Base.__init__(self, args)</code></p>
-<p>在Python2.2以前，未绑定的父类构造方法经常被使用<code>A.__init__(self)</code></p>
-<p>这种做法的缺点是，</p>
+        <h2 id="HTML代码转义和URL编解码"><a href="#HTML代码转义和URL编解码" class="headerlink" title="HTML代码转义和URL编解码"></a>HTML代码转义和URL编解码</h2><h3 id="HTML代码转义"><a href="#HTML代码转义" class="headerlink" title="HTML代码转义"></a>HTML代码转义</h3><p><a href="http://tool.oschina.net/commons?type=2" target="_blank" rel="external">html转义字符表</a><br>当爬虫抓到的html字符串是这种 <code>&#39;&amp;lt;abc&amp;gt;&#39;</code>, 其对应的文本为 <code>&lt;abc&gt;</code>,需要进行反转义处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 标准库即可实现</span></div><div class="line"><span class="keyword">import</span> HTMLParser</div><div class="line">html_parser = HTMLParser.HTMLParser()</div><div class="line">txt = html_parser.unescape(html)</div><div class="line"><span class="comment"># 或者用BS</span></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup </div><div class="line">soup = BeautifulSoup(html, \</div><div class="line">       convertEntities=BeautifulSoup.HTML_ENTITIES)</div><div class="line"><span class="comment"># 转义的功能在cgi模块</span></div><div class="line"><span class="keyword">import</span> cgi</div><div class="line">html = cgi.escape(txt)</div></pre></td></tr></table></figure>
+<p><img src="http://img.shuaiyy.cn/blog/180115/76jEdKKfAf.png?imageslim" alt="mark"></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2018/01/02/技术/HTML转义和URL编解码/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-12-31T16:00:00.000Z"><a href="/2018/01/01/工具/IntelliJ IDE (Pycharm) 教程/">2018-01-01</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/01/01/工具/IntelliJ IDE (Pycharm) 教程/">IDEA教程</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IntelliJ-IDE-Pycharm-教程"><span class="toc-text">IntelliJ IDE (Pycharm) 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装与配置"><span class="toc-text">安装与配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主题、字体、编码、乱码问题"><span class="toc-text">主题、字体、编码、乱码问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图标"><span class="toc-text">图标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建项目"><span class="toc-text">创建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#版本控制"><span class="toc-text">版本控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SVN-的配置"><span class="toc-text">SVN 的配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Git-的配置"><span class="toc-text">Git 的配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Github配置"><span class="toc-text">Github配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Git-常见问题"><span class="toc-text">Git 常见问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码模板"><span class="toc-text">代码模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件"><span class="toc-text">插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debug-常用快捷键"><span class="toc-text">Debug 常用快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#必备常用设置"><span class="toc-text">必备常用设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用快捷键"><span class="toc-text">常用快捷键</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关闭其他软件的快捷键"><span class="toc-text">关闭其他软件的快捷键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ctrl"><span class="toc-text">Ctrl</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Alt"><span class="toc-text">Alt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Shift"><span class="toc-text">Shift</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ctrl-Alt"><span class="toc-text">Ctrl + Alt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ctrl-Shift"><span class="toc-text">Ctrl + Shift</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Alt-Shift"><span class="toc-text">Alt + Shift</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+      
+        <h2 id="IntelliJ-IDE-Pycharm-教程"><a href="#IntelliJ-IDE-Pycharm-教程" class="headerlink" title="IntelliJ IDE (Pycharm) 教程"></a>IntelliJ IDE (Pycharm) 教程</h2><h3 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h3><ul>
+<li><p><a href="http://www.jetbrains.com/pycharm/" target="_blank" rel="external">官网下载并安装</a>，硬件最好8G ram + SSD</p>
+</li>
+<li><p><a href="http://xidea.online/#/" target="_blank" rel="external">激活服务器</a></p>
+</li>
+<li><p><code>JetBrains\PyCharm 2017.1.2\bin</code>下的重要配置文件</p>
 <ul>
-<li>当多重继承以后，想要修改代码的话，比如某个基类改名字了，那么所有调用该类方法的代码部分都要修改。</li>
-<li>基类的方法可能会被多次调用</li>
-<li>要保证子类能够覆盖父类，及生成所有的子类后再生成父类。这要看代码的质量，如果继承关系复杂，很容易把人搞晕。</li>
+<li><p>idea.properties</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">idea.config.path=$&#123;user.home&#125;/.IntelliJIdea/config</div><div class="line"><span class="comment">#  该属性主要用于指向 IntelliJ IDEA 的个性化配置目录</span></div><div class="line">idea.system.path=$&#123;user.home&#125;/.IntelliJIdea/system</div><div class="line"><span class="comment">#  该属性主要用于指向 IntelliJ IDEA 的系统文件目录，如果你的项目很多，则该目录会很大，C盘空间不够的建议把该目录转移到其他盘符下。</span></div><div class="line">idea.max.intellisense.filesize=<span class="number">2500</span></div><div class="line"><span class="comment"># 该属性主要用于提高在编辑大文件时候的代码帮助。IntelliJ IDEA 在编辑大文件的时候还是很容易卡顿的。</span></div><div class="line">idea.cycle.buffer.size=<span class="number">1024</span></div><div class="line"><span class="comment"># 该属性主要用于控制控制台输出缓存。有遇到一些项目开启很多输出，控制台很快就被刷满了没办法再自动输出后面内容，这种项目建议增大该值或是直接禁用掉，禁用语句 idea.cycle.buffer.size=disabled</span></div></pre></td></tr></table></figure>
+<p><code>idea.config.path=${user.home}/.PyCharm/config</code>可以指定配置文件的目录，多台电脑间安装pycharm可以拷贝使用同一份config。这样就只需维护一份配置，并保持所有机器同步。</p>
+</li>
+<li><p>pycharm64.exe.vmoptions  IDEA 64 位的可执行文件的 VM 配置文件</p>
+<p>如果你是开发大型项目、Python 项目或是 Web项目，并且内存大于 8G，建议进行修改此文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-Xms128m   <span class="comment"># 16G 内存的机器可尝试设置为 -Xms512m</span></div><div class="line">-Xmx750m   <span class="comment"># 16 G 内存的机器可尝试设置为 -Xmx1500m</span></div><div class="line">-XX:ReservedCodeCacheSize=<span class="number">240</span>m <span class="comment"># 16G 内存的机器可尝试设置为 -XX:ReservedCodeCacheSize=500m</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
-<li><p><code>super(Child, self).__init__(args)</code></p>
-<p>在Python类的方法中，要调用父类的某个方法，一般会用<code>super(X, self).func(args)</code>,尤其是在类初始化中。</p>
-<p>使用super不会显示的调用父类方法。super对象会根据继承关系的顺序依次执行每个父类的<code>__init__</code>方法,如果每个类都使用super调用父类方法的话，那么可以确保每个类的<code>__init__</code>只会执行一次。</p>
+<li><p>运行界面</p>
+<p>没有workspace的概念，最大的工作单元是project。因此查看多个项目时，可以同时打开多个project</p>
+<p>新建项目后，IDEA会自动创建索引，可能会卡顿，此时需稍作等待，不要乱操作。</p>
 </li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>：</span></div><div class="line"><span class="class">    <span class="title">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'A'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></div><div class="line">  <span class="comment"># 直接调用类方法</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">      A.__init__(self)</div><div class="line">      <span class="keyword">print</span> <span class="string">'B'</span></div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A)</span>:</span></div><div class="line">  <span class="comment"># 使用super构造</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">      super(C, self).__init__(self)</div><div class="line">      <span class="keyword">print</span> <span class="string">'C'</span></div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/10/14/技术/Python-super对象/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-10-12T16:00:00.000Z"><a href="/2017/10/13/技术/PyQt5.9编译 python27 64位Windows版/">2017-10-13</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/10/13/技术/PyQt5.9编译 python27 64位Windows版/">PyQt5 编译PyQt5 (python27, windows x64)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>编译PyQt5.9 基于python2.7  Windows 64位版</strong></p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><strong>自己编译的PyQt5的原因</strong></p>
+</ul>
+<h3 id="主题、字体、编码、乱码问题"><a href="#主题、字体、编码、乱码问题" class="headerlink" title="主题、字体、编码、乱码问题"></a>主题、字体、编码、乱码问题</h3><p><strong>在打开project下修改settings下次关闭后在进来，某些改动会失效，可以修改default settings</strong></p>
+<p>Ctrl + Alt + S 快速打开设置 </p>
 <ul>
-<li><p>python27下，pyqt5没有官方支持的安装包， python3下可以直接安装</p>
+<li><p>主题</p>
+<p>files -&gt; settings -&gt; appearence -&gt; theam下, 个人偏爱Darcula (吸血鬼德库拉伯爵) 黑色风格。改完需重启IDEA。</p>
 </li>
-<li><p>python-qt5是第三方编译提供的，pypi上pyqt版本为5.3，github上源码为5.7，不是最新版</p>
+<li><p>主题字体</p>
+<p>files -&gt; settings -&gt; appearence -&gt; Override default fonts by 下,微软雅黑和宋体是包含中文的，Monaco只有英文。</p>
 </li>
-<li><p>使用python-qt5编写的程序使用pyinstaller打包，import sip error， sip对于py27也是需要自己编译安装的。</p>
-<p>在我折腾了1天编译成功PyQt5.9后，突发奇想，尝试把PyQt5.sip这个包，直接复制到site-packages目录下，然后打包时使用<code>--hidden-import import sip</code>就可以了。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2017/10/13/技术/PyQt5.9编译 python27 64位Windows版/#more" class="more-link">阅读全文</a>
-          </div>
-        
-		<!--  livere评论支持 -->
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-		
-          <time datetime="2017-10-11T16:00:00.000Z"><a href="/2017/10/12/技术/PyQt入门/">2017-10-12</a></time>
-        
-	  
-      
-  
-    <h1 class="title"><a href="/2017/10/12/技术/PyQt入门/">PyQt5入门</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="PyQt入门"><a href="#PyQt入门" class="headerlink" title="PyQt入门"></a>PyQt入门</h1><h2 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h2><p><strong>Python2.7  + PyQt5 + Pycharm</strong> </p>
+<li><p>代码编辑字体</p>
+<p>Files -&gt; settings -&gt;  Editor -&gt; Colors &amp; Fonts -&gt; Font ，默认的模板无法直接修改，要先Save As…, 编码字体有第一字体（<code>Primary font</code>） 和 第二字体（<code>Secondary font</code>）之分。当有些字符在第一字体支持不了的时候，会去使用第二字体进行支持。</p>
+<p>个人习惯英文字体使用 <code>Monaco</code>，作为第一字体，第二字体使用 <code>Yahei Consolas Hybrid</code>支持中文。这两个字体都不是系统自带的，需要自行下载安装。</p>
+</li>
+<li><p>控制台输出字体，解决中文乱码</p>
+<p>files -&gt; settings -&gt; appearence -&gt; Editor -&gt; Colors &amp; Fonts -&gt; Console Font，</p>
+</li>
+<li><p>编辑区主题</p>
+<p>files -&gt; settings -&gt; appearence -&gt; Editor -&gt; Colors &amp; Fonts -&gt; General</p>
+<p>常修改的有：</p>
 <blockquote>
-<p>pypi源下载超时的话可以切换豆瓣pip源</p>
-<p>我用的是python27，pyqt5.3， pycharm</p>
+<ul>
+<li><code>Default text</code>，指的是默认代码文本，我一般会修改其 <code>Background</code> 属性。</li>
+<li><code>Caret row</code>，指的是光标所在行，我一般会修改其 <code>Background</code> 属性。</li>
+<li><code>Vertical indent guide</code>，指的是垂直缩进线，我一般会修改其 <code>Foreground</code> 属性。</li>
+<li><code>Identifier under caret</code>，指的是光标所在位置的相同标识符呈现什么效果，我一般会修改其 <code>Background</code> 属性。</li>
+<li><code>Text search result</code>，指的是在查找模式下，匹配字符的样式，我一般会修改其 <code>Background</code> 属性</li>
+</ul>
 </blockquote>
+</li>
+<li><p>代码显示<strong>行号</strong></p>
+<p>File –&gt; Settings –&gt;Editor –&gt;Appearance ,  之后勾选Show Line Numbers</p>
+</li>
+<li><p>文件编码修改</p>
+<p>files -&gt; settings -&gt; appearence -&gt; Editor -&gt; Codestyle -&gt; File Encodings</p>
+<ul>
+<li>IDE 和Project Encoding 都建议修改为 <code>UTF-8</code>。</li>
+<li>IntelliJ IDEA 可以对 Properties 文件进行专门的编码设置，一般也建议改为 UTF-8，其中有一个重点就是属性 Transparent native-to-ascii conversion， 主要用于转换 <code>ascii</code>，一般都要勾选，不然 <code>Properties</code> 文件中的注释显示的都不会是中文。</li>
+</ul>
+</li>
+</ul>
+<h3 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h3><p><a href="http://www.jetbrains.com/help/pycharm/2017.1/symbols.html" target="_blank" rel="external">文档</a></p>
+<p><img src="http://img.shuaiyy.cn/17-5-20/79622489-file_1495276678909_1738d.png" alt=""></p>
+<p><img src="http://img.shuaiyy.cn/17-5-20/17395075-file_1495276679023_e7cf.png" alt=""></p>
+<p><img src="http://img.shuaiyy.cn/17-5-20/7865994-file_1495276679131_fac4.png" alt=""></p>
+<p><img src="http://img.shuaiyy.cn/17-5-20/49566876-file_1495276679241_5414.png" alt=""></p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><ul>
+<li>在项目目录上右键设为source root</li>
+<li>IDEA的哲学是一个IDE窗口管理一个project，没有workspace 多project的概念，也不推荐在一个项目里创建多个project。</li>
+<li>IDEA 没有ctrl + s，因此改完代码可以直接run或debug。</li>
+</ul>
+<h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><blockquote>
+<p>首先要安装版本控制的客户端，然后在files -&gt; settings -&gt; Version Control 下对应的插件进行相关配置。</p>
+</blockquote>
+<h4 id="SVN-的配置"><a href="#SVN-的配置" class="headerlink" title="SVN 的配置"></a>SVN 的配置</h4><p>要在 IntelliJ IDEA 中使用 SVN，需要先安装 SVN 客户端或是 TortoiseSVN 这类图形化工具，Windows 系统这里推荐安装 TortoiseSVN，即使在不使用 IntelliJ IDEA 也可以方便管理我们的项目。</p>
+<p>SVN 主要使用的版本有 1.6、1.7、1.8，最新的是 1.9。推荐大家使用 1.8 的。如果你的项目使用的是 1.6 的版本，在安装 1.8 之后是可以直接对项目文件进行升级的，所以无需担心，也因此更加推荐大家使用 1.8。</p>
+<blockquote>
+<ul>
+<li>Subversion 官网下载：<a href="https://subversion.apache.org/download/#recommended-release" target="_blank" rel="external">https://subversion.apache.org/download/#recommended-release</a></li>
+<li>TortoiseSVN 官网下载：<a href="http://tortoisesvn.net/downloads.zh.html" target="_blank" rel="external">http://tortoisesvn.net/downloads.zh.html</a></li>
+</ul>
+</blockquote>
+<h4 id="Git-的配置"><a href="#Git-的配置" class="headerlink" title="Git 的配置"></a>Git 的配置</h4><p>要在 IntelliJ IDEA 中使用 Git，需要先安装 Git 客户端，这里推荐安装官网版本。</p>
+<p>Git 主要的版本有 1.X、2.X，最新的是 2.X，使用版本随意，但是不要太新了，不然可能 IntelliJ IDEA 小旧版本会无法支持可能。</p>
+<blockquote>
+<ul>
+<li>Git 官网下载：<a href="http://git-scm.com/" target="_blank" rel="external">http://git-scm.com/</a></li>
+<li>TortoiseGit 官网下载：<a href="http://download.tortoisegit.org/tgit/" target="_blank" rel="external">http://download.tortoisegit.org/tgit/</a></li>
+</ul>
+</blockquote>
+<h4 id="Github配置"><a href="#Github配置" class="headerlink" title="Github配置"></a>Github配置</h4><p>填写对应的账户和密码</p>
+<p>可以Checkout项目，和分享本地项目到github上去。</p>
+<p>VCS -&gt; Checkout from Version Control -&gt; Github</p>
+<p>VCS -&gt; Import into Version Control -&gt; Github</p>
+<h4 id="Git-常见问题"><a href="#Git-常见问题" class="headerlink" title="Git 常见问题"></a>Git 常见问题</h4><ul>
+<li>更新的时候报：Can’t update: no tracked branch<ul>
+<li>解决办法：打开 git-bash（路径：C:\Program Files\Git\git-bash.exe），切换到这个更新不下来的项目的根目录，然后输入：<code>git branch --set-upstream-to origin/master master</code>，回车之后重新回到 IntelliJ IDEA 进行更新，正常就可以了。</li>
+</ul>
+</li>
+<li>输错密码后，弹出验证的登录框没有再出现：<ul>
+<li>解决办法：files -&gt; settings -&gt; System Settings -&gt; Passwords 选择 <code>Do not save, forget passwords after restart</code> 等你确定你的密码没错后再选择保存密码方案。</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h3><p>通过在File-&gt;setting-&gt;File and Code Templates设置模板代码，这样就可以在新建<a href="http://lib.csdn.net/base/python" target="_blank" rel="external">Python</a>文件的时候自动带上抬头。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-    </span></div><div class="line">__author__=<span class="string">'hklliang'</span>  </div><div class="line">__date__=<span class="string">'$DATE $TIME'</span></div></pre></td></tr></table></figure>
+<p>文件类型的预设变量请查阅<a href="https://www.jetbrains.com/idea/help/file-template-variables.html" target="_blank" rel="external">官网</a></p>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>官网<a href="https://plugins.jetbrains.com/pycharm" target="_blank" rel="external">地址</a>，常用的插件， markdown navigator，数据库管理插件：mongo</p>
+<p>插件列表刷新不出来，或者无法下载，要使用代理VPN。比如可以使用lantern，代理地址填<a href="http://127.0.0.1:16823/" target="_blank" rel="external">http://127.0.0.1:16823/</a></p>
+<h3 id="Debug-常用快捷键"><a href="#Debug-常用快捷键" class="headerlink" title="Debug 常用快捷键"></a>Debug 常用快捷键</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F7</td>
+<td>在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中 <code>必备</code></td>
+</tr>
+<tr>
+<td>F8</td>
+<td>在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则不进入当前方法体内 <code>必备</code></td>
+</tr>
+<tr>
+<td>F9</td>
+<td>在 Debug 模式下，恢复程序运行，但是如果该断点下面代码还有断点则停在下一个断点上 <code>必备</code></td>
+</tr>
+<tr>
+<td>Alt + F8</td>
+<td>在 Debug 的状态下，选中对象，弹出可输入计算表达式调试框，查看该输入内容的调试结果 <code>必备</code></td>
+</tr>
+<tr>
+<td>Ctrl + F8</td>
+<td>在 Debug 模式下，设置光标当前行为断点，如果当前已经是断点则去掉断点</td>
+</tr>
+<tr>
+<td>Shift + F7</td>
+<td>在 Debug 模式下，智能步入。断点所在行上有多个方法调用，会弹出进入哪个方法</td>
+</tr>
+<tr>
+<td>Shift + F8</td>
+<td>在 Debug 模式下，跳出，表现出来的效果跟 <code>F9</code> 一样</td>
+</tr>
+<tr>
+<td>Ctrl + Shift + F8</td>
+<td>在 Debug 模式下，指定断点进入条件</td>
+</tr>
+<tr>
+<td>Alt + Shift + F7</td>
+<td>在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果方法体还有方法，则会进入该内嵌的方法中，依此循环进入</td>
+</tr>
+</tbody>
+</table>
+<p>有时候我们可以这样粗鲁地认为 Debug 的使用就是等同于这几个快捷键的使用，所以上面的 <code>必备</code> 快捷键是我们必须牢记的，这些也是开发很常用的。</p>
+<h3 id="必备常用设置"><a href="#必备常用设置" class="headerlink" title="必备常用设置"></a>必备常用设置</h3><ul>
+<li><p>取消自动补全的大小写敏感</p>
+<p>Files -&gt; settings -&gt;  Editor -&gt; Code Completion  下Case Sensitive 改为None</p>
+</li>
+<li><p>暂时取消语法检查</p>
+<p>pycharm打开较大的文件会比较卡，是因为在做代码检查。可以点击最右下角的小图标，临时将Highlight Level改为None，不检查；Syntax检查拼写错误，简单语法错误；Inspections为最高等级检查，可以检查单词拼写，语法错误，变量使用，方法之间调用等。</p>
+</li>
+<li><p>Ctrl + D</p>
+<p>Editor状态下， <code>Ctrl + D</code> 默认是用来复制所选的内容的，并黏贴在原位置之后。个人更喜欢复制所选的行数完整内容然后黏贴在新的起始行。所以进行了修改，Files -&gt; settings -&gt;  Keymap 下，找到ctrl+d的Duplicate Line or Selection功能并remove，然后将ctrl +d 设置给Duplicate Entire Lines，提示ctrl+d还设置给了其他功能时，选择leave，即保留其他keymap选项对Ctrl+D的设置。</p>
+</li>
+<li><p>Ctrl + 空格</p>
+<p>默认 <code>Ctrl + 空格</code> 快捷键是基础代码提示、补充快捷键，但是由于我们中文系统基本这个快捷键都被输入法占用了，所以不管怎么按都是没有提示代码效果的。因此建议修改此快捷键为 <code>Ctrl + 逗号</code>。在keymap下搜索Basic。</p>
+</li>
+<li><p>打开多文件时，文件名多行显示</p>
+<p>默认单行显示文件名，当打开的文件多了，后面的文件名会被自动折叠隐藏，因此应取消单行文件名显示。</p>
+<p>Files -&gt; settings -&gt;  Editor -&gt; Editor Tabs  下取消 Show tabs in single row</p>
+</li>
+<li><p>忽略.idea文件夹</p>
+<p>Files -&gt; settings -&gt;  Editor -&gt; Code Style -&gt; File Type 下ignore files and flolder 添加 <code>.idea;.git</code></p>
+</li>
+<li><p>将经常打开的文件添加到收藏夹</p>
+<p>选中文件，然后 Files -&gt; Add to Favorites。在左侧窄边栏的右下部分可以看到Favorites 收藏夹组件窗口。</p>
+</li>
+<li><p>Alt + F1 + 回车 可以查看当前文件在项目中的位置</p>
+</li>
+<li><p>ctrl + 滚轮 调整字体大小</p>
+<p>需要在Files -&gt; settings -&gt;  Editor -&gt; General 下的Mouse栏勾选Change font size with Ctrl+Mouse Wheel</p>
+</li>
+<li><p>设置显示代码行号和方法分隔线</p>
+<p>Files -&gt; settings -&gt;  Editor -&gt; Appearance下，方法分割线看个人喜好设置。</p>
+</li>
+<li><p>ctrl alt T 选中想要折叠的代码块进行折叠，并添加注释</p>
+</li>
+<li><p>编辑某个文件时，project导航窗自动定位到文件所在的位置</p>
+<p>在project导航窗口的右上角。点击齿轮图标，选中 Autoscroll from Source</p>
+</li>
+<li><p>本地历史记录 源码文件编辑窗右键，选择Local History。文件夹也可以查看历史。</p>
+</li>
+<li><p>RESTful API 测试工具  在Tools下</p>
+</li>
+<li><p>快速注释 Ctrl + /  <code>/</code>也叫Slash</p>
+</li>
+<li><p>TODO工具窗</p>
+<p>可以在要实现或修改的代码部分添加todo标记，下次就可以快速定位到该位置。标记可以自己定义，点击矿口左侧的漏斗图标，自定义过滤器。默认定义了<code>\btodo\b.*</code> 和<code>\bfixme\b.*</code></p>
+<p>| filter pattern | comment string             |<br>| ————– | ————————– |<br>| \btodo\b.<em>     | <code>#todo 此处应实现功能XXX</code>         |<br>| \bfixme\b.</em>    | <code>#fixme 此处要修改XXX</code>          |<br>| \b未完成\b.<em>      | 只要匹配该规则的注释内容，都会被TODO工具定位到。 |<br>| \b要修改\b.</em>      |                            |</p>
+</li>
+<li><p>DEBUG窗口有一个批量删除断点的按钮</p>
+</li>
+</ul>
+<h3 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h3><h4 id="关闭其他软件的快捷键"><a href="#关闭其他软件的快捷键" class="headerlink" title="关闭其他软件的快捷键"></a>关闭其他软件的快捷键</h4><p>QQ、搜狗输入法、Snipaste的快捷键都关掉，以免冲突。</p>
+<ul>
+<li>搜狗 输入法管理器中设置搜狗为默认中文输入法，快捷键为<code>ctrl + ~</code>, 然后按键栏的系统功能快捷键和扩展功能快捷键全部取消</li>
+<li>QQ热键仅保留截图</li>
+<li>网易音乐 有道词典等的快捷键</li>
+</ul>
+<h4 id="Ctrl"><a href="#Ctrl" class="headerlink" title="Ctrl"></a>Ctrl</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + F</td>
+<td>在当前文件进行文本查找 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + R</td>
+<td>在当前文件进行文本替换 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Z</td>
+<td>撤销 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Y</td>
+<td>删除光标所在行 或 删除选中的行 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + D</td>
+<td>复制光标所在行 或 复制选择内容，并把复制内容插入光标位置下面 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + W</td>
+<td>递进式选择代码块。可选中光标所在的单词或段落，连续按会在原有选中的基础上再扩展选中范围 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + E</td>
+<td>显示最近打开的文件记录列表 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + N</td>
+<td>根据输入的 <strong>类名</strong> 查找类文件 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + G</td>
+<td>在当前文件跳转到指定行处</td>
+</tr>
+<tr>
+<td>Ctrl + P</td>
+<td>方法参数提示显示 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + U</td>
+<td>前往当前光标所在的方法的父类的方法 / 接口定义 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + B</td>
+<td>进入光标所在的方法/变量的接口或是定义处，等效于 <code>Ctrl + 左键单击</code> <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + +</td>
+<td>展开代码</td>
+</tr>
+<tr>
+<td>Ctrl + -</td>
+<td>折叠代码</td>
+</tr>
+<tr>
+<td>Ctrl + /</td>
+<td>注释光标所在行代码，会根据当前不同文件类型使用不同的注释符号 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + F1</td>
+<td>在光标所在的错误代码处显示错误信息 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + F3</td>
+<td>调转到所选中的词的下一个引用位置 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + F8</td>
+<td>在 Debug 模式下，设置光标当前行为断点，如果当前已经是断点则去掉断点</td>
+</tr>
+<tr>
+<td>Ctrl + F11</td>
+<td>选中文件 / 文件夹，使用助记符设定 / 取消书签 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Tab</td>
+<td>编辑窗口切换，如果在切换的过程又加按上delete，则是关闭对应选中的窗口</td>
+</tr>
+<tr>
+<td>Ctrl + Space</td>
+<td>基础代码补全，默认在 Windows 系统上被输入法占用，需要进行修改，建议修改为 <code>Ctrl + 逗号</code> <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Delete</td>
+<td>删除光标后面的单词或是中文句 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + BackSpace</td>
+<td>删除光标前面的单词或是中文句 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + 左键单击</td>
+<td>在打开的文件标题上，弹出该文件路径 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + 左方向键</td>
+<td>光标跳转到当前单词 / 中文句的左侧开头位置 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + 右方向键</td>
+<td>光标跳转到当前单词 / 中文句的右侧开头位置 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + 前方向键</td>
+<td>等效于鼠标滚轮向前效果 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + 后方向键</td>
+<td>等效于鼠标滚轮向后效果 <code>（必备）</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Alt"><a href="#Alt" class="headerlink" title="Alt"></a>Alt</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt + ~</td>
+<td>显示版本控制常用操作菜单弹出层 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Alt + F1</td>
+<td>显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Alt + F8</td>
+<td>在 Debug 的状态下，选中对象，弹出可输入计算表达式调试框，查看该输入内容的调试结果</td>
+</tr>
+<tr>
+<td>Alt + Enter</td>
+<td>IntelliJ IDEA 根据光标所在问题，提供快速修复选择，光标放在的位置不同提示的结果也不同 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Alt + 左方向键</td>
+<td>切换当前已打开的窗口中的子视图，比如Debug窗口中有Output、Debugger等子视图，用此快捷键就可以在子视图中切换 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Alt + 右方向键</td>
+<td>按切换当前已打开的窗口中的子视图，比如Debug窗口中有Output、Debugger等子视图，用此快捷键就可以在子视图中切换 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Alt + 前方向键</td>
+<td>当前光标跳转到当前文件的前一个方法名位置 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Alt + 后方向键</td>
+<td>当前光标跳转到当前文件的后一个方法名位置 <code>（必备）</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Shift"><a href="#Shift" class="headerlink" title="Shift"></a>Shift</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shift + F7</td>
+<td>在 Debug 模式下，智能步入。断点所在行上有多个方法调用，会弹出进入哪个方法</td>
+</tr>
+<tr>
+<td>Shift + F8</td>
+<td>在 Debug 模式下，跳出，表现出来的效果跟 <code>F9</code> 一样</td>
+</tr>
+<tr>
+<td>Shift + F9</td>
+<td>等效于点击工具栏的 <code>Debug</code> 按钮</td>
+</tr>
+<tr>
+<td>Shift + F10</td>
+<td>等效于点击工具栏的 <code>Run</code> 按钮</td>
+</tr>
+<tr>
+<td>Shift + F11</td>
+<td>弹出书签显示层 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Shift + Tab</td>
+<td>取消缩进 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Shift + Enter</td>
+<td>光标定位到新行位置，新行下还会空出一行 <code>（必备）</code> Enter不会空出一行</td>
+</tr>
+<tr>
+<td>Shift + 左键单击</td>
+<td>在打开的文件名上按此快捷键，可以关闭当前打开文件 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Shift + 滚轮前后滚动</td>
+<td>当前文件的横向滚动轴滚动 <code>（必备）</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Ctrl-Alt"><a href="#Ctrl-Alt" class="headerlink" title="Ctrl + Alt"></a>Ctrl + Alt</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + Alt + T</td>
+<td>对选中的代码弹出环绕选项弹出层 <code>（必备）</code> 例如 try/except, if/else</td>
+</tr>
+<tr>
+<td>Ctrl + Alt + S</td>
+<td>打开 IntelliJ IDEA 系统设置 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Alt + Enter</td>
+<td>光标所在行上空出一行，光标定位到新行 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Alt + 左方向键</td>
+<td>退回到上一个操作的地方 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Alt + 右方向键</td>
+<td>前进到上一个操作的地方 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Alt + 前方向键</td>
+<td>在查找模式下，跳到上个查找的文件</td>
+</tr>
+<tr>
+<td>Ctrl + Alt + 后方向键</td>
+<td>在查找模式下，跳到下个查找的文件</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Ctrl-Shift"><a href="#Ctrl-Shift" class="headerlink" title="Ctrl + Shift"></a>Ctrl + Shift</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + Shift + F</td>
+<td>根据输入内容查找整个项目 或 指定目录内文件 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + Z</td>
+<td>取消撤销 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + C</td>
+<td>复制当前文件磁盘路径到剪贴板 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + B</td>
+<td>跳转到类型声明处 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + /</td>
+<td>代码块注释 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + +</td>
+<td>展开所有代码 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + -</td>
+<td>折叠所有代码 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + F7</td>
+<td>高亮显示所有该选中文本，按Esc高亮消失 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + F8</td>
+<td>在 Debug 模式下，指定断点进入条件</td>
+</tr>
+<tr>
+<td>Ctrl + Shift + 前方向键</td>
+<td>光标放在方法名上，将方法移动到上一个方法前面，调整方法排序 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Ctrl + Shift + 后方向键</td>
+<td>光标放在方法名上，将方法移动到下一个方法前面，调整方法排序 <code>（必备）</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="Alt-Shift"><a href="#Alt-Shift" class="headerlink" title="Alt + Shift"></a>Alt + Shift</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt + Shift + N</td>
+<td>选择 / 添加 task <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Alt + Shift + 前方向键</td>
+<td>移动光标所在行上移，和 上面一行位置交换 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Alt + Shift + 后方向键</td>
+<td>移动光标所在行下移，和下面一行位置交换 <code>（必备）</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F2</td>
+<td>跳转到下一个高亮错误 或 警告位置 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>F3</td>
+<td>在查找模式下，定位到下一个匹配处</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则不进入当前方法体内</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>在 Debug 模式下，恢复程序运行，但是如果该断点下面代码还有断点则停在下一个断点上</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>添加书签 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>F12</td>
+<td>回到前一个工具窗口 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>缩进 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>ESC</td>
+<td>从工具窗口进入代码文件窗口 <code>（必备）</code></td>
+</tr>
+<tr>
+<td>连按两次Shift</td>
+<td>弹出 <code>Search Everywhere</code> 弹出层</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-12-31T16:00:00.000Z"><a href="/2018/01/01/工具/IDEA配置与使用技巧/">2018-01-01</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2018/01/01/工具/IDEA配置与使用技巧/">IDEA使用技巧</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="IDEA配置"><a href="#IDEA配置" class="headerlink" title="IDEA配置"></a>IDEA配置</h3><p>代码补全中关掉首字母大小写敏感。</p>
+<h3 id="IDEA使用技巧"><a href="#IDEA使用技巧" class="headerlink" title="IDEA使用技巧"></a>IDEA使用技巧</h3><ul>
+<li>主方法补全，public static  void main首字母，<code>psvm</code></li>
+<li>for循环补全，输入<code>fori</code> 根据提示后选择</li>
+<li><code>System.out.println();</code>在IntellJ中是输入<code>sout</code></li>
+</ul>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2017/10/12/技术/PyQt入门/#more" class="more-link">阅读全文</a>
+            <a href="/2018/01/01/工具/IDEA配置与使用技巧/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-12-17T16:00:00.000Z"><a href="/2017/12/18/学习/机器学习/集体智慧编程-推荐系统/">2017-12-18</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/12/18/学习/机器学习/集体智慧编程-推荐系统/">集体智慧编程笔记 -- 推荐系统</a></h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#集体智慧编程读书笔记"><span class="toc-text">集体智慧编程读书笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-导言"><span class="toc-text">1 导言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-推荐系统"><span class="toc-text">2 推荐系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-协同过滤"><span class="toc-text">2.1 协同过滤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-发现群组（聚类）"><span class="toc-text">3  发现群组（聚类）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-搜索和排名"><span class="toc-text">4 搜索和排名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-优化"><span class="toc-text">5 优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-文档过滤"><span class="toc-text">6 文档过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-决策树建模"><span class="toc-text">7 决策树建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-构建价格模型"><span class="toc-text">8 构建价格模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-高阶分类、核方法和SVM"><span class="toc-text">9 高阶分类、核方法和SVM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-寻找独立特征"><span class="toc-text">10 寻找独立特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-智能进化"><span class="toc-text">11 智能进化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-算法总结"><span class="toc-text">12 算法总结</span></a></li></ol></li></ol>
+    </div>
+
+      
+        <h2 id="集体智慧编程读书笔记"><a href="#集体智慧编程读书笔记" class="headerlink" title="集体智慧编程读书笔记"></a>集体智慧编程读书笔记</h2><h3 id="1-导言"><a href="#1-导言" class="headerlink" title="1 导言"></a>1 导言</h3><h3 id="2-推荐系统"><a href="#2-推荐系统" class="headerlink" title="2 推荐系统"></a>2 推荐系统</h3><h4 id="2-1-协同过滤"><a href="#2-1-协同过滤" class="headerlink" title="2.1 协同过滤"></a>2.1 协同过滤</h4><p><strong>基于用户的协同过滤</strong></p>
+<ul>
+<li><p>收集偏好</p>
+</li>
+<li><p>评价2个用户的相似度</p>
+<p><strong>相似度评价</strong> 算法：欧几里得距离和皮尔逊相关系数</p>
+<p><strong>欧式距离评价公式</strong>：$j = 1/(1+\sqrt{(x_1-x_2)^2 + (y_1 -y_2)^2})$</p>
+<p>j值范围为0~1，j=1时，可以理解为2个用户有相同的偏好。</p>
+<p><strong>皮尔逊相关系数</strong> </p>
+<p>公式：<img src="http://img.shuaiyy.cn/17-3-5/58524666-file_1488704244209_12391.gif" alt=""></p>
+<p>结果取值[-1, 1]，值为1则表明2人有一样的偏好（对每件物品都有一样的评价）。</p>
+<p><strong>Jaccard系数</strong></p>
+<p><strong>曼哈顿距离</strong></p>
+</li>
+<li><p>寻找相近的用户</p>
+<p>给定用户和其他所有用户进行相似度计算，得到评价值列表，评价值最高的为偏好最相近的用户。</p>
+</li>
+<li><p>推荐物品</p>
+<p>对于X未评分的物品Y，计算用户X对物品Y的评价，然后决定是否推荐物品Y</p>
+<p>加权评价（要推荐的物品的评分）：S = sum(其他用户对Y的评分*相似度)/sum(其他用户与X相似度评价之和)</p>
+</li>
+<li><p>商品匹配</p>
+<p>找到喜欢物品X的人，这些人还喜欢哪些其他物品，以此决定物品之间的相似度。</p>
+</li>
+</ul>
+<p><strong>基于物品的协同过滤</strong></p>
+<p>物品之间的比较不是特别频繁，根据用户对物品的评价建立物品间的相似度评价。</p>
+<p>需要不断更新，但随着用户数量和评分数量增加，物品间相似度评价值会趋于稳定。</p>
+<ul>
+<li><p><strong>物品推荐</strong> </p>
+<p>新物品X与该用户喜爱的物品集合，采用加权归一化的方法，计算新物品的评分。</p>
+<p>| item | score | A    | B    | C    |<br>| —- | —– | —- | —- | —- |<br>| X1   | 3     | 0.18 |      |      |<br>| X2   | 4.5   | 0.27 |      |      |<br>| X3   | 5     | 0.31 |      |      |</p>
+<p>J(A) = (3<code>*</code>0.18+4.5<code>*</code>0.27+5<code>*</code>0.31) /(0.18 + 0.27 + 0.31)</p>
+<p>根据user的物品X1，X2，X3，得到新物品A的评分。</p>
+</li>
+</ul>
+<h3 id="3-发现群组（聚类）"><a href="#3-发现群组（聚类）" class="headerlink" title="3  发现群组（聚类）"></a>3  发现群组（聚类）</h3><p>分级聚类：类似构建2叉树</p>
+<p>K-均值聚类</p>
+<h3 id="4-搜索和排名"><a href="#4-搜索和排名" class="headerlink" title="4 搜索和排名"></a>4 搜索和排名</h3><h3 id="5-优化"><a href="#5-优化" class="headerlink" title="5 优化"></a>5 优化</h3><h3 id="6-文档过滤"><a href="#6-文档过滤" class="headerlink" title="6 文档过滤"></a>6 文档过滤</h3><h3 id="7-决策树建模"><a href="#7-决策树建模" class="headerlink" title="7 决策树建模"></a>7 决策树建模</h3><h3 id="8-构建价格模型"><a href="#8-构建价格模型" class="headerlink" title="8 构建价格模型"></a>8 构建价格模型</h3><h3 id="9-高阶分类、核方法和SVM"><a href="#9-高阶分类、核方法和SVM" class="headerlink" title="9 高阶分类、核方法和SVM"></a>9 高阶分类、核方法和SVM</h3><h3 id="10-寻找独立特征"><a href="#10-寻找独立特征" class="headerlink" title="10 寻找独立特征"></a>10 寻找独立特征</h3><h3 id="11-智能进化"><a href="#11-智能进化" class="headerlink" title="11 智能进化"></a>11 智能进化</h3><h3 id="12-算法总结"><a href="#12-算法总结" class="headerlink" title="12 算法总结"></a>12 算法总结</h3>
+      
+    </div>
+    <footer>
+      
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-11-04T16:00:00.000Z"><a href="/2017/11/05/技术/Gevent 源码分析/">2017-11-05</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/11/05/技术/Gevent 源码分析/">Gevent 源码分析</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Gevent-源码分析"><a href="#Gevent-源码分析" class="headerlink" title="Gevent 源码分析"></a>Gevent 源码分析</h2><blockquote>
+<p>gevent包括2个重要的部分，libev和greenlet。</p>
+<p>libev实现事件循环， watcher(叶子，事件监控处理)，ev_run(主干，事件循环引擎)，ev_loop(watcher管理)。</p>
+<p>greenlet提供对协程的完整支持，用于执行异步任务。</p>
+</blockquote>
+<ul>
+<li><p>源码分析工具：pycharm </p>
+<p><code>ctrl + B</code> 跳转到对象声明的源码位置， <code>ctrl + alt + 箭头</code> 前进或后退</p>
+<p>选择右侧导航栏的Structure窗口，可以快速的查看类的属性和方法。</p>
+<p><img src="http://img.shuaiyy.cn/blog/171106/d3Dcl4dJB4.png?imageslim" alt="mark"></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/11/05/技术/Gevent 源码分析/#more" class="more-link">阅读全文</a>
+          </div>
+        
+		<!--  livere评论支持 -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-11-04T16:00:00.000Z"><a href="/2017/11/05/技术/Python wordcloud生成词云/">2017-11-05</a></time>
+        
+	  
+      
+  
+    <h1 class="title"><a href="/2017/11/05/技术/Python wordcloud生成词云/">Python wordcloud生成词云</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Python-wordcloud生成词云"><a href="#Python-wordcloud生成词云" class="headerlink" title="Python wordcloud生成词云"></a>Python wordcloud生成词云</h1><p>wordcloud<a href="https://amueller.github.io/word_cloud/" target="_blank" rel="external">官网</a>，<a href="https://github.com/amueller/word_cloud" target="_blank" rel="external">github</a></p>
+<p><img src="http://img.shuaiyy.cn/blog/171206/Em5dbm25F1.png?imageslim" alt="mark"></p>
+<p>主要步骤：</p>
+<ol>
+<li>安装wordcloud</li>
+<li>创建WordCloud对象，定义生成词云的布局参数，如背景颜色，字体库、单词最大最小像素，词云图片长宽，最大单词数，随机配色种类，使用掩膜等</li>
+<li>通过文本或统计好的词频生成词云，即将词按词频绘制到词云布局图片上。</li>
+<li>显示、保存词云图片文件</li>
+</ol>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2017/11/05/技术/Python wordcloud生成词云/#more" class="more-link">阅读全文</a>
           </div>
         
 		<!--  livere评论支持 -->
@@ -1135,7 +1676,7 @@
   
 <div class="widget tag">
   <h3 class="title" id="categories">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">95</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/">GUI编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/GUI编程/PyQt5/">PyQt5</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/IDEA/">IDEA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/Python-爬虫/">Python 爬虫</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Scrapy/">Scrapy</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/django/">django</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/flask/">flask</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/latex/">latex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/linux/">linux</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/mongodb/">mongodb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/numpy/">numpy</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/redis/">redis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/flask/">flask</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/socket/">socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/博客/">博客</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/电子书/">电子书</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/游戏/">游戏</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/资源/">资源</a><span class="category-list-count">1</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/">ѧϰ</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/д��/">д��</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/д��/�K�/">�Ķ�</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/">写作</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Doc/">Doc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/推荐系统/">推荐系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/">求职</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/基础知识/">基础知识</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/经历/">经历</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/面试/">面试</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/IDEA/">IDEA</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/">软件</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/MacOS/">MacOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/Windows/">Windows</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">98</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Go/">Go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Go/标准库/">标准库</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/标准库/">标准库</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/Server/">Server</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/日志监控/">日志监控</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/">MacOS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/latex/">latex</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/CGI编程/">CGI编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/PyQt5/">PyQt5</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/数据库连接/">数据库连接</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/标准库/">标准库</a><span class="category-list-count">17</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Bootstrap/">Bootstrap</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Django/">Django</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Flask/">Flask</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/">数据分析</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/IPython/">IPython</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Matplotlib/">Matplotlib</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Numpy/">Numpy</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/词云/">词云</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MongoDB/">MongoDB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/Redis/">Redis</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/">爬虫</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/Scrapy/">Scrapy</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/Socket/">Socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/路由器/">路由器</a><span class="category-list-count">1</span></li></ul></li></ul> 
 </div>
  
 
@@ -1176,35 +1717,51 @@
   
     <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
   
-    <li><a href="/tags/Django/">Django</a><small>4</small></li>
+    <li><a href="/tags/Django/">Django</a><small>6</small></li>
   
-    <li><a href="/tags/Enjoy/">Enjoy</a><small>1</small></li>
+    <li><a href="/tags/Docset/">Docset</a><small>1</small></li>
   
-    <li><a href="/tags/Exam/">Exam</a><small>1</small></li>
+    <li><a href="/tags/ElasticSearch/">ElasticSearch</a><small>1</small></li>
   
-    <li><a href="/tags/Flask/">Flask</a><small>17</small></li>
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>0</small></li>
   
-    <li><a href="/tags/Git/">Git</a><small>3</small></li>
+    <li><a href="/tags/Exam/">Exam</a><small>0</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>19</small></li>
+  
+    <li><a href="/tags/Gevent/">Gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>4</small></li>
+  
+    <li><a href="/tags/Gitbook/">Gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/Go/">Go</a><small>1</small></li>
   
     <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
   
-    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
+    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
   
     <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
   
     <li><a href="/tags/Html/">Html</a><small>2</small></li>
   
-    <li><a href="/tags/IDEA/">IDEA</a><small>2</small></li>
+    <li><a href="/tags/IDEA/">IDEA</a><small>3</small></li>
   
-    <li><a href="/tags/Ipython/">Ipython</a><small>1</small></li>
+    <li><a href="/tags/IPython/">IPython</a><small>1</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>10</small></li>
+    <li><a href="/tags/Ipython/">Ipython</a><small>0</small></li>
   
-    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
+    <li><a href="/tags/JQuery/">JQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>11</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>3</small></li>
   
     <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
   
-    <li><a href="/tags/Linux/">Linux</a><small>10</small></li>
+    <li><a href="/tags/LeetCode/">LeetCode</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>11</small></li>
   
     <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
   
@@ -1220,7 +1777,9 @@
   
     <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
   
-    <li><a href="/tags/Mongodb/">Mongodb</a><small>1</small></li>
+    <li><a href="/tags/MongoDB/">MongoDB</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>0</small></li>
   
     <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
   
@@ -1232,6 +1791,8 @@
   
     <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
   
+    <li><a href="/tags/Openwrt/">Openwrt</a><small>1</small></li>
+  
     <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
   
     <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
@@ -1240,21 +1801,29 @@
   
     <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
   
-    <li><a href="/tags/PyQt5/">PyQt5</a><small>3</small></li>
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>4</small></li>
   
-    <li><a href="/tags/Python/">Python</a><small>24</small></li>
+    <li><a href="/tags/Pycharm/">Pycharm</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>32</small></li>
+  
+    <li><a href="/tags/RESTful/">RESTful</a><small>1</small></li>
   
     <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
   
-    <li><a href="/tags/Scrapy/">Scrapy</a><small>5</small></li>
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>8</small></li>
   
     <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
   
     <li><a href="/tags/Service/">Service</a><small>1</small></li>
   
+    <li><a href="/tags/Socket/">Socket</a><small>2</small></li>
+  
     <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
   
     <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Tensorflow/">Tensorflow</a><small>1</small></li>
   
     <li><a href="/tags/Web/">Web</a><small>19</small></li>
   
@@ -1264,35 +1833,45 @@
   
     <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
   
-    <li><a href="/tags/flask/">flask</a><small>1</small></li>
+    <li><a href="/tags/flask/">flask</a><small>0</small></li>
   
-    <li><a href="/tags/gevent/">gevent</a><small>3</small></li>
+    <li><a href="/tags/gevent/">gevent</a><small>0</small></li>
   
-    <li><a href="/tags/git/">git</a><small>1</small></li>
+    <li><a href="/tags/git/">git</a><small>0</small></li>
   
-    <li><a href="/tags/gitbook/">gitbook</a><small>1</small></li>
+    <li><a href="/tags/gitbook/">gitbook</a><small>0</small></li>
   
-    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>0</small></li>
   
-    <li><a href="/tags/python/">python</a><small>2</small></li>
+    <li><a href="/tags/python/">python</a><small>0</small></li>
   
-    <li><a href="/tags/restful/">restful</a><small>1</small></li>
+    <li><a href="/tags/restful/">restful</a><small>0</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+    <li><a href="/tags/socket/">socket</a><small>0</small></li>
   
-    <li><a href="/tags/tensorflow/">tensorflow</a><small>1</small></li>
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>0</small></li>
+  
+    <li><a href="/tags/刷题/">刷题</a><small>2</small></li>
+  
+    <li><a href="/tags/推荐系统/">推荐系统</a><small>1</small></li>
   
     <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
   
-    <li><a href="/tags/机器学习/">机器学习</a><small>1</small></li>
+    <li><a href="/tags/机器学习/">机器学习</a><small>3</small></li>
   
     <li><a href="/tags/框架/">框架</a><small>1</small></li>
   
+    <li><a href="/tags/求职/">求职</a><small>6</small></li>
+  
     <li><a href="/tags/测试/">测试</a><small>1</small></li>
   
-    <li><a href="/tags/爬虫/">爬虫</a><small>6</small></li>
+    <li><a href="/tags/爬虫/">爬虫</a><small>9</small></li>
+  
+    <li><a href="/tags/经历/">经历</a><small>1</small></li>
   
     <li><a href="/tags/词云/">词云</a><small>1</small></li>
+  
+    <li><a href="/tags/面试/">面试</a><small>1</small></li>
   
   </ul>
 </div>
@@ -1304,7 +1883,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 16px; color: #b800b3">Django</a> <a href="/tags/Flask/" style="font-size: 21px; color: #eb0033">Flask</a> <a href="/tags/Web/" style="font-size: 22px; color: #f5001a">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/gevent/" style="font-size: 15px; color: #ad00cc">gevent</a> <a href="/tags/Git/" style="font-size: 15px; color: #ad00cc">Git</a> <a href="/tags/git/" style="font-size: 13px; color: #90f">git</a> <a href="/tags/gitbook/" style="font-size: 13px; color: #90f">gitbook</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Html/" style="font-size: 14px; color: #a300e6">Html</a> <a href="/tags/Hexo/" style="font-size: 14px; color: #a300e6">Hexo</a> <a href="/tags/Java/" style="font-size: 20px; color: #e0004d">Java</a> <a href="/tags/IDEA/" style="font-size: 14px; color: #a300e6">IDEA</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Ipython/" style="font-size: 13px; color: #90f">Ipython</a> <a href="/tags/ORM/" style="font-size: 14px; color: #a300e6">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/JavaScript/" style="font-size: 14px; color: #a300e6">JavaScript</a> <a href="/tags/LaTeX/" style="font-size: 15px; color: #ad00cc">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14px; color: #a300e6">Mac</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/Mongodb/" style="font-size: 13px; color: #90f">Mongodb</a> <a href="/tags/数据库/" style="font-size: 14px; color: #a300e6">数据库</a> <a href="/tags/Numpy/" style="font-size: 14px; color: #a300e6">Numpy</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Linux/" style="font-size: 20px; color: #e0004d">Linux</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/爬虫/" style="font-size: 18px; color: #cc0080">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/PyQt5/" style="font-size: 15px; color: #ad00cc">PyQt5</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/socket/" style="font-size: 14px; color: #a300e6">socket</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/python/" style="font-size: 14px; color: #a300e6">python</a> <a href="/tags/Redis/" style="font-size: 15px; color: #ad00cc">Redis</a> <a href="/tags/flask/" style="font-size: 13px; color: #90f">flask</a> <a href="/tags/restful/" style="font-size: 13px; color: #90f">restful</a> <a href="/tags/Scrapy/" style="font-size: 17px; color: #c20099">Scrapy</a> <a href="/tags/linux/" style="font-size: 13px; color: #90f">linux</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/tensorflow/" style="font-size: 13px; color: #90f">tensorflow</a> <a href="/tags/机器学习/" style="font-size: 13px; color: #90f">机器学习</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Exam/" style="font-size: 13px; color: #90f">Exam</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Enjoy/" style="font-size: 13px; color: #90f">Enjoy</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/Math/" style="font-size: 18px; color: #cc0080">Math</a> <a href="/tags/Optimization/" style="font-size: 19px; color: #d60066">Optimization</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a>
+    <a href="/tags/PyQt5/" style="font-size: 16.33px; color: #b0a">PyQt5</a> <a href="/tags/Hexo/" style="font-size: 13px; color: #90f">Hexo</a> <a href="/tags/Math/" style="font-size: 17.44px; color: #c6008e">Math</a> <a href="/tags/Optimization/" style="font-size: 18.56px; color: #d20071">Optimization</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/Linux/" style="font-size: 20.78px; color: #e80039">Linux</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 17.44px; color: #c6008e">Django</a> <a href="/tags/Flask/" style="font-size: 21.89px; color: #f4001c">Flask</a> <a href="/tags/Web/" style="font-size: 21.89px; color: #f4001c">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/Git/" style="font-size: 16.33px; color: #b0a">Git</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Java/" style="font-size: 20.78px; color: #e80039">Java</a> <a href="/tags/IDEA/" style="font-size: 15.22px; color: #b000c6">IDEA</a> <a href="/tags/ORM/" style="font-size: 14.11px; color: #a400e3">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/Html/" style="font-size: 14.11px; color: #a400e3">Html</a> <a href="/tags/JavaScript/" style="font-size: 15.22px; color: #b000c6">JavaScript</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/LaTeX/" style="font-size: 15.22px; color: #b000c6">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14.11px; color: #a400e3">Mac</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/数据库/" style="font-size: 14.11px; color: #a400e3">数据库</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Numpy/" style="font-size: 14.11px; color: #a400e3">Numpy</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/爬虫/" style="font-size: 19.67px; color: #d05">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/Redis/" style="font-size: 15.22px; color: #b000c6">Redis</a> <a href="/tags/Scrapy/" style="font-size: 18.56px; color: #d20071">Scrapy</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/机器学习/" style="font-size: 15.22px; color: #b000c6">机器学习</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Gevent/" style="font-size: 15.22px; color: #b000c6">Gevent</a> <a href="/tags/IPython/" style="font-size: 13px; color: #90f">IPython</a> <a href="/tags/MongoDB/" style="font-size: 13px; color: #90f">MongoDB</a> <a href="/tags/Socket/" style="font-size: 14.11px; color: #a400e3">Socket</a> <a href="/tags/RESTful/" style="font-size: 13px; color: #90f">RESTful</a> <a href="/tags/Gitbook/" style="font-size: 13px; color: #90f">Gitbook</a> <a href="/tags/Docset/" style="font-size: 13px; color: #90f">Docset</a> <a href="/tags/Tensorflow/" style="font-size: 13px; color: #90f">Tensorflow</a> <a href="/tags/Pycharm/" style="font-size: 13px; color: #90f">Pycharm</a> <a href="/tags/JQuery/" style="font-size: 13px; color: #90f">JQuery</a> <a href="/tags/求职/" style="font-size: 17.44px; color: #c6008e">求职</a> <a href="/tags/Openwrt/" style="font-size: 13px; color: #90f">Openwrt</a> <a href="/tags/推荐系统/" style="font-size: 13px; color: #90f">推荐系统</a> <a href="/tags/ElasticSearch/" style="font-size: 13px; color: #90f">ElasticSearch</a> <a href="/tags/刷题/" style="font-size: 14.11px; color: #a400e3">刷题</a> <a href="/tags/LeetCode/" style="font-size: 14.11px; color: #a400e3">LeetCode</a>
   </div>
 </div>
 
@@ -1317,7 +1896,7 @@
   
   <div class="widget tag">
     <h3 class="title">归档</h3>
-	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">2018年11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">2018年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">2018年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">2018年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">2018年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">2017年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
   </div>
 
 </aside>

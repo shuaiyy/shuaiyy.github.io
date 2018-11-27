@@ -1,0 +1,993 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ElasticSearch入门与初步使用 | 帅羊羊的博客</title>
+  
+  <meta name="author" content="Shuai yy">
+  
+  <meta name="description" content="ElasticSearch安装全文搜索引擎，还有其他的，solr， sphinx，lucene。
+Elastic是构建在lucene之上的，分布式搜索引擎。lucence不支持分布式。
+
+安装elasticsearch-rtf（包含插件的发行版），github下载。RTF是Ready To Fly的">
+  
+  <meta name="keywords" content="ElasticSearch">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="ElasticSearch入门与初步使用"/>
+  <meta property="og:site_name" content="帅羊羊的博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="http://shuaiyy.cn/atom.xml" title="帅羊羊的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+  
+  
+  
+    
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?02f792017724a2c2af494ece7edc5fd1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+
+
+
+
+  
+    
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-107525911-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  
+</head>
+
+
+
+<body>
+  <header id="header" class="inner">
+<div class= "header-nav">
+
+			<div class='avatar'>
+				<img src = "http://img.shuaiyy.cn/blog/171005/FFHDJd20A4.jpeg?imageslim">
+              </div>
+		
+<div class="header-div">
+  
+  <h1><a href="/">帅羊羊的博客</a></h1>
+  <h2><a href="/">坚持学习,努力学习...</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+	  
+    
+      <li><a href="/archives"><i class="fa fa-archive"></i>归档</a></li>
+	  
+    
+      <li><a href="/resume"><i class="fa fa-user"></i>关于</a></li>
+	  
+    
+      <li><a href="/books"><i class="fa fa-book"></i>阅读</a></li>
+	  
+    
+      <li><a href="/movies"><i class="fa fa-play-circle"></i>电影</a></li>
+	  
+    
+      <li><a href="/games"><i class="fa fa-fa-gamepad"></i>游戏</a></li>
+	  
+    
+	<li> <a href="/atom.xml"><i class="fa fa-rss"></i>RSS</a> </li>
+<li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//ojp9dzqic.bkt.clouddn.com/high_background.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>
+
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+		
+          <time datetime="2017-10-29T16:00:00.000Z"><a href="/2017/10/30/技术/ElasticSearch入门与初步使用/">2017-10-30</a></time>
+        
+	  
+      
+  
+    <h1 class="title">ElasticSearch入门与初步使用</h1>
+  
+
+    </header>
+    <div class="entry">
+         
+        
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch安装"><span class="toc-text">ElasticSearch安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elastic增删改查"><span class="toc-text">Elastic增删改查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射-mapping"><span class="toc-text">映射(mapping)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询"><span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本查询"><span class="toc-text">基本查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#过滤查询和组合查询"><span class="toc-text">过滤查询和组合查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将数据写入elastic"><span class="toc-text">将数据写入elastic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch-搜索自动补全"><span class="toc-text">ElasticSearch 搜索自动补全</span></a></li></ol>
+    </div>
+
+      
+        <h3 id="ElasticSearch安装"><a href="#ElasticSearch安装" class="headerlink" title="ElasticSearch安装"></a>ElasticSearch安装</h3><p>全文搜索引擎，还有其他的，solr， sphinx，lucene。</p>
+<p>Elastic是构建在lucene之上的，分布式搜索引擎。lucence不支持分布式。</p>
+<ol>
+<li><p>安装elasticsearch-rtf（包含插件的发行版），<a href="https://github.com/medcl/elasticsearch-rtf" target="_blank" rel="external">github下载</a>。RTF是Ready To Fly的缩写。</p>
+</li>
+<li><p>安装<a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="external">head插件</a></p>
+<p>需要安装npm，然后使用<a href="https://cnpmjs.org/" target="_blank" rel="external">cnpm</a>代替npm命令，使用淘宝镜像解决国外源速度慢。使用<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code>，然后<code>cnpm install package</code>，运行<code>cnpm run start</code></p>
+</li>
+<li><p><a href="https://www.elastic.co/downloads/past-releases" target="_blank" rel="external">kibana</a>的安装</p>
+<p>选择与elastic对应的版本，下载解压运行。</p>
+</li>
+</ol>
+<h3 id="Elastic增删改查"><a href="#Elastic增删改查" class="headerlink" title="Elastic增删改查"></a>Elastic增删改查</h3><ul>
+<li><p>创建index</p>
+<p>可以在head里操作，或kibana的Dev Tools执行，</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">PUT lagou</div><div class="line">&#123;</div><div class="line">  <span class="attr">"settings"</span>: &#123;</div><div class="line">    <span class="attr">"index"</span>: &#123;</div><div class="line">      "number_of_shards":5,   # 分片数量，创建后不能改</div><div class="line">      "number_of_replicas":1  # 备份数量， 后期可以修改</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取索引信息</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 获取索引信息</div><div class="line">GET _all</div><div class="line">GET lagou</div><div class="line"># 获取settings</div><div class="line">GET lagou/_settings</div><div class="line">GET _settings</div><div class="line">GET _all/_settings</div><div class="line">GET .kibana,lagou/_settings</div><div class="line"># 修改settings</div><div class="line">PUT lagou/_settings</div><div class="line">&#123;</div><div class="line">  <span class="attr">"number_of_replicas"</span>: <span class="number">2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>文档操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 增</span></div><div class="line"><span class="comment"># POST index/type/id &#123;data&#125;  不指明id的话，elastIC会自动生成一个UUID</span></div><div class="line">POST lagou/job/<span class="number">1</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"title"</span>: <span class="string">"Python工程师"</span>,</div><div class="line">  <span class="string">"salary"</span>: <span class="number">2000</span>,</div><div class="line">  <span class="string">"city"</span>: <span class="string">"上海"</span>,</div><div class="line">  <span class="string">"company"</span>:&#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"百度"</span>,</div><div class="line">    <span class="string">"addr"</span>: <span class="string">"Beijing"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"publish_date"</span>: <span class="string">"2017-4-16"</span></div><div class="line">&#125;</div><div class="line"><span class="comment"># 查</span></div><div class="line"><span class="comment"># GET index/type/id</span></div><div class="line">GET lagou/job/AVwUS8vZV9kMw3dUQB3s</div><div class="line"><span class="comment"># 结果</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"_index"</span>: <span class="string">"lagou"</span>,</div><div class="line">  <span class="string">"_type"</span>: <span class="string">"job"</span>,</div><div class="line">  <span class="string">"_id"</span>: <span class="string">"AVwUS8vZV9kMw3dUQB3s"</span>,</div><div class="line">  <span class="string">"_version"</span>: <span class="number">1</span>,</div><div class="line">  <span class="string">"found"</span>: true,</div><div class="line">  <span class="string">"_source"</span>: &#123;</div><div class="line">    <span class="string">"title"</span>: <span class="string">"Python工程师"</span>,</div><div class="line">    <span class="string">"salary"</span>: <span class="number">2000</span>,</div><div class="line">    <span class="string">"city"</span>: <span class="string">"上海"</span>,</div><div class="line">    <span class="string">"company"</span>: &#123;</div><div class="line">      <span class="string">"name"</span>: <span class="string">"百度"</span>,</div><div class="line">      <span class="string">"addr"</span>: <span class="string">"Beijing"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="string">"publish_date"</span>: <span class="string">"2017-4-16"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">GET lagou/job/AVwUS8vZV9kMw3dUQB3s?_source</div><div class="line">GET lagou/job/AVwUS8vZV9kMw3dUQB3s?_source=publish_date</div><div class="line"></div><div class="line"><span class="comment"># 修改，PUT完全覆盖；POST增量修改，没有的field会创建</span></div><div class="line">PUT lagou/job/<span class="number">1</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"title"</span>: <span class="string">"Python工程师"</span>,</div><div class="line">  <span class="string">"salary"</span>: <span class="number">2000</span>,</div><div class="line">  <span class="string">"city"</span>: <span class="string">"上海"</span>,</div><div class="line">  <span class="string">"company"</span>:&#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"百度"</span>,</div><div class="line">    <span class="string">"addr"</span>: <span class="string">"Beijing"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"publish_date"</span>: <span class="string">"2017-4-16"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">POST lagou/job/AVwUS8vZV9kMw3dUQB3s/_update</div><div class="line">&#123;</div><div class="line">  <span class="string">"doc"</span>: &#123;</div><div class="line">    <span class="string">"comments"</span>:<span class="number">20</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># 删除文档</span></div><div class="line">DELETE lagou/job/AVwUS8vZV9kMw3dUQB3s</div><div class="line"><span class="comment"># 删除index</span></div><div class="line">DELETE lagou</div></pre></td></tr></table></figure>
+</li>
+<li><p>批量操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"># -------批量获取 ----------</div><div class="line"># 指明不同的index、type和id</div><div class="line">GET _mget&#123;</div><div class="line">  <span class="string">"docs"</span>:[</div><div class="line">     &#123;<span class="string">"_index"</span>: <span class="string">"lagou"</span>,</div><div class="line">      <span class="string">"_type"</span>: <span class="string">"job"</span>,</div><div class="line">       <span class="string">"_id"</span> : <span class="number">1</span></div><div class="line">     &#125;,</div><div class="line">      &#123;<span class="string">"_index"</span>: <span class="string">"meituan"</span>,</div><div class="line">      <span class="string">"_type"</span>: <span class="string">"job"</span>,</div><div class="line">       <span class="string">"_id"</span> : <span class="number">2</span></div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div><div class="line"># 当index 、type相同时,多个id的文档</div><div class="line">GET lagou/job/_mget&#123;</div><div class="line">  <span class="string">"ids"</span>: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">&#125;</div><div class="line">GET lagou/_mget&#123;</div><div class="line">  <span class="string">"docs"</span>: [</div><div class="line">     &#123;<span class="string">"_type"</span>: <span class="string">"job"</span>,</div><div class="line">       <span class="string">"_id"</span> : <span class="number">1</span></div><div class="line">     &#125;,</div><div class="line">      &#123;<span class="string">"_type"</span>: <span class="string">"job"</span>,</div><div class="line">       <span class="string">"_id"</span> : <span class="number">2</span></div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div><div class="line"></div><div class="line"># -------bulk批量操作 ----------</div><div class="line"># 批量导入可以合并多个操作，index，delete，update，create</div><div class="line"># bulk语句2行模式,第一行action，第二行指明data；delete操作只用一行</div><div class="line">POST _bulk</div><div class="line">&#123;<span class="string">"index"</span>: &#123;<span class="string">"_index"</span>: <span class="string">"lagou"</span>, <span class="string">"_type"</span>:<span class="string">"job"</span>, <span class="string">"_id"</span>: <span class="string">"1"</span>&#125;&#125;</div><div class="line">&#123;<span class="string">"title"</span>: <span class="string">"python web 开发"</span>, <span class="string">"salary"</span>:<span class="number">20000</span>, <span class="string">"city"</span>: <span class="string">" 成都"</span>, <span class="string">"company"</span>: &#123;<span class="string">"name"</span>:<span class="string">"阿里巴巴"</span>, <span class="string">"addr"</span>: <span class="string">"beijing"</span>&#125;&#125;</div><div class="line">&#123;<span class="string">"index"</span>: &#123;<span class="string">"_index"</span>: <span class="string">"lagou"</span>, <span class="string">"_type"</span>:<span class="string">"job"</span>, <span class="string">"_id"</span>: <span class="string">"2"</span>&#125;&#125;</div><div class="line">&#123;<span class="string">"title"</span>: <span class="string">"python web 开发2"</span>, <span class="string">"salary"</span>:<span class="number">20000</span>, <span class="string">"city"</span>: <span class="string">" 成都"</span>, <span class="string">"company"</span>: &#123;<span class="string">"name"</span>:<span class="string">"阿里巴巴"</span>, <span class="string">"addr"</span>: <span class="string">"beijing"</span>&#125;&#125;</div><div class="line">&#123;<span class="string">"update"</span>: &#123;<span class="string">"_index"</span>: <span class="string">"lagou"</span>, <span class="string">"_type"</span>:<span class="string">"job"</span>, <span class="string">"_id"</span>: <span class="string">"1"</span>&#125;&#125;</div><div class="line">&#123;<span class="string">"doc"</span>: &#123;<span class="string">"comments"</span>: <span class="number">20</span>&#125;&#125;</div><div class="line">&#123;<span class="string">"delete"</span>: &#123;<span class="string">"_index"</span>: <span class="string">"lagou"</span>, <span class="string">"_type"</span>:<span class="string">"job2"</span>, <span class="string">"_id"</span>: <span class="string">"2"</span>&#125;&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="映射-mapping"><a href="#映射-mapping" class="headerlink" title="映射(mapping)"></a>映射(mapping)</h3><p>  创建索引index时，可以预先定义字段的类型及相关属性。让索引建立的更加细致和完善。如text可以分词</p>
+<p>  默认会根据传递的json数据猜测数据类型。</p>
+<p>  内置类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">1. string：text，keyword(不会倒排索引，只能全字匹配)</div><div class="line">2. 数字类型：long integer short byte double float</div><div class="line">3. 日期： date</div><div class="line">4. bool： boolean</div><div class="line">5. binary： binary</div><div class="line">6. 复杂类型： object (比如dict)      nested (比如数组)</div><div class="line">7. geo类型：geo-point geo-shape</div><div class="line">8. 专业类型：ip competion</div></pre></td></tr></table></figure>
+<p>  属性：</p>
+<p>  <img src="http://img.shuaiyy.cn/17-5-17/67291429-file_1495007851369_10d5f.png" alt=""></p>
+<p>  如果传入的数据field和预设的mapping类型不一样，先尝试自动转化，无法转换，则会操作失败。</p>
+<p>  字段类型设置完后，无法修改。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">PUT lagou</div><div class="line">&#123; <span class="attr">"mappings"</span>: &#123;</div><div class="line">         <span class="attr">"job"</span>: &#123;</div><div class="line">            <span class="attr">"properties"</span>: &#123;</div><div class="line">               <span class="attr">"publish_date"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"date"</span>,</div><div class="line">                  <span class="attr">"format"</span>: <span class="string">"strict_date_optional_time||epoch_millis"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"city"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"keyword"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"comments"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"integer"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"salary"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"integer"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"name"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"text"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"company"</span>: &#123;</div><div class="line">                  <span class="attr">"properties"</span>: &#123;</div><div class="line">                    <span class="attr">"addr"</span>: &#123;<span class="attr">"type"</span>: <span class="string">"text"</span>&#125;,</div><div class="line">                    <span class="attr">"name"</span>: &#123;<span class="attr">"type"</span>: <span class="string">"text"</span>&#125;,</div><div class="line">                    <span class="attr">"employee_count"</span>: &#123;<span class="attr">"type"</span>: <span class="string">"integer"</span>&#125;</div><div class="line">                  &#125;</div><div class="line">               &#125;</div><div class="line">            &#125;</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line">   &#125;</div><div class="line"># 传入数据</div><div class="line">PUT lagou/job/1</div><div class="line">&#123;</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"Python工程师"</span>,</div><div class="line">  "salary": "2000", # "2000"可以转换成integer， 如果传abc就会失败</div><div class="line">  "city": "上海",</div><div class="line">  "company":&#123;</div><div class="line">    "name": "百度",</div><div class="line">    "addr": "Beijing"</div><div class="line">  &#125;,</div><div class="line">  "publish_date": "2017-04-16"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>测试用数据</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line">PUT test</div><div class="line">&#123;  <span class="attr">"mappings"</span>: &#123;</div><div class="line">         <span class="attr">"job"</span>: &#123;</div><div class="line">            <span class="attr">"properties"</span>: &#123;</div><div class="line">              <span class="attr">"title"</span>: &#123;</div><div class="line">                  <span class="attr">"store"</span>: <span class="literal">true</span>,</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"text"</span>,</div><div class="line">                  <span class="attr">"analyzer"</span>: <span class="string">"ik_max_word"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"publish_date"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"date"</span>,</div><div class="line">                  <span class="attr">"format"</span>: <span class="string">"yyyy-MM-dd"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"city"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"keyword"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"comments"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"integer"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"name"</span>: &#123;</div><div class="line">                  <span class="attr">"type"</span>: <span class="string">"text"</span></div><div class="line">               &#125;,</div><div class="line">               <span class="attr">"salary"</span>:&#123;<span class="attr">"type"</span>:<span class="string">"integer"</span>&#125;,</div><div class="line">               <span class="attr">"company"</span>: &#123;</div><div class="line">                  <span class="attr">"properties"</span>: &#123;</div><div class="line">                    <span class="attr">"addr"</span>: &#123;<span class="attr">"store"</span>: <span class="literal">true</span>,</div><div class="line">                              <span class="attr">"type"</span>: <span class="string">"text"</span>,</div><div class="line">                              <span class="attr">"analyzer"</span>: <span class="string">"ik_max_word"</span>&#125;,</div><div class="line">                    <span class="attr">"name"</span>: &#123;<span class="attr">"store"</span>: <span class="literal">true</span>,</div><div class="line">                              <span class="attr">"type"</span>: <span class="string">"text"</span>,</div><div class="line">                              <span class="attr">"analyzer"</span>: <span class="string">"ik_max_word"</span>&#125;,</div><div class="line">                    <span class="attr">"employee_count"</span>: &#123;<span class="attr">"type"</span>: <span class="string">"integer"</span>&#125;</div><div class="line">                  &#125;</div><div class="line">               &#125;</div><div class="line">            &#125;</div><div class="line">         &#125;</div><div class="line">      &#125;</div><div class="line"> PUT test/job/<span class="number">1</span></div><div class="line">&#123;</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"Django 开发"</span>,</div><div class="line">  <span class="attr">"salary"</span>: <span class="string">"2000"</span>,</div><div class="line">  <span class="attr">"city"</span>: <span class="string">"北京"</span>,</div><div class="line">  <span class="attr">"comments"</span>: <span class="number">10</span>,</div><div class="line">  <span class="attr">"company"</span>:&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"百度"</span>,</div><div class="line">    <span class="attr">"addr"</span>: <span class="string">"Beijing"</span>,</div><div class="line">    <span class="attr">"employee_count"</span>: <span class="number">200</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"publish_date"</span>: <span class="string">"2017-04-16"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">PUT test/job/<span class="number">2</span></div><div class="line">&#123;</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"python 爬虫工程师"</span>,</div><div class="line">  <span class="attr">"salary"</span>: <span class="string">"3000"</span>,</div><div class="line">  <span class="attr">"city"</span>: <span class="string">"上海"</span>,</div><div class="line">  <span class="attr">"comments"</span>: <span class="number">10</span>,</div><div class="line">  <span class="attr">"company"</span>:&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"阿里"</span>,</div><div class="line">    <span class="attr">"addr"</span>: <span class="string">"Shanghai"</span>,</div><div class="line">    <span class="attr">"employee_count"</span>: <span class="number">300</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"publish_date"</span>: <span class="string">"2017-02-16"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">PUT test/job/<span class="number">3</span></div><div class="line">&#123;</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"Python 工程师"</span>,</div><div class="line">  <span class="attr">"salary"</span>: <span class="string">"1000"</span>,</div><div class="line">  <span class="attr">"city"</span>: <span class="string">"北京"</span>,</div><div class="line">  <span class="attr">"comments"</span>: <span class="number">110</span>,</div><div class="line">  <span class="attr">"company"</span>:&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"百度"</span>,</div><div class="line">    <span class="attr">"addr"</span>: <span class="string">"Beijing"</span>,</div><div class="line">    <span class="attr">"employee_count"</span>: <span class="number">100</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"publish_date"</span>: <span class="string">"2016-04-16"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">PUT test/job/<span class="number">4</span></div><div class="line">&#123;</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"Python 测试工程师"</span>,</div><div class="line">  <span class="attr">"salary"</span>: <span class="string">"12000"</span>,</div><div class="line">  <span class="attr">"city"</span>: <span class="string">"北京"</span>,</div><div class="line">  <span class="attr">"comments"</span>: <span class="number">5</span>,</div><div class="line">  <span class="attr">"company"</span>:&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"百度"</span>,</div><div class="line">    <span class="attr">"addr"</span>: <span class="string">"Beijing"</span>,</div><div class="line">    <span class="attr">"employee_count"</span>: <span class="number">20</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"publish_date"</span>: <span class="string">"2017-03-16"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"># stored_fields : ['', ''] 返回指定的字段。只有mapping属性里设置store为true的字段。</div><div class="line"># sort [&#123;field:&#123;order:desc&#125;&#125;] 将结果按指定的字段排序</div><div class="line"># query 查询</div><div class="line">## from x 从第x个结果开始</div><div class="line">## size y 返回y个结果</div><div class="line">## match match_all match_phrase mutil_match term terms range wildcard</div><div class="line"></div><div class="line"># ---match查询，由于使用了ik分词器，包含python或测试的都会匹配"analyzer": "ik_max_word"</div><div class="line"># 如果field类型为keyword，match只有完全匹配才行</div><div class="line">GET  test/job/_search</div><div class="line">&#123; <span class="attr">"stored_fields"</span>: [<span class="string">"title"</span>, 'company.name'], </div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"match"</span>: &#123;</div><div class="line">      <span class="attr">"title"</span>: <span class="string">"python测试"</span>  </div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"from"</span>:<span class="number">1</span>,</div><div class="line">    <span class="attr">"size"</span>:<span class="number">3</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"sort"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"comments"</span>: &#123;</div><div class="line">        <span class="attr">"order"</span>: <span class="string">"desc"</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div><div class="line"># ----match_phrase，将查询字符串分词，匹配满足所有词条的结果，slop指定不同词条间的最大距离</div><div class="line">GET  test/job/_search</div><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"match_phrase"</span>: &#123;</div><div class="line">      <span class="attr">"title"</span>: &#123;<span class="attr">"query"</span>: <span class="string">"python开发"</span>,</div><div class="line">        <span class="attr">"slop"</span>: <span class="number">6</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># ---match_all 返回所有</div><div class="line">GET  test/job/_search</div><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"match_all"</span>: &#123;&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># ----multi_match 搜索多个字段</div><div class="line">GET  test/job/_search</div><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"multi_match"</span>: &#123;</div><div class="line">      <span class="attr">"query"</span>: <span class="string">"python"</span>,</div><div class="line">      <span class="attr">"fields"</span>: [<span class="string">"title^3"</span>, <span class="string">"city"</span>] # title的权重为<span class="number">3</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># ---term查询，比如传入的值“web开发”，则全量匹配包含“web开发”的数据</div><div class="line">GET  test/job/_search</div><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"term"</span>: &#123;</div><div class="line">      <span class="attr">"title"</span>: <span class="string">"python测试"</span>  </div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># terms查询，可以传入列表</div><div class="line">GET  test/job/_search</div><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"terms"</span>: &#123;</div><div class="line">      <span class="attr">"title"</span>: [<span class="string">"python测试"</span>, <span class="string">"网站"</span>, <span class="string">"测试"</span>]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># ---range数值范围查询</div><div class="line">GET  test/job/_search</div><div class="line">&#123;  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"range"</span>: &#123;<span class="attr">"comments"</span>: &#123;</div><div class="line">        	<span class="attr">"gte"</span>: <span class="number">10</span>,</div><div class="line">        	<span class="attr">"lte"</span>: <span class="number">5000</span>,</div><div class="line">        	<span class="attr">"boost"</span>: <span class="number">3.0</span> # 该字段权重</div><div class="line">    &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">GET  test/job/_search</div><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"range"</span>: &#123;</div><div class="line">      <span class="attr">"publish_date"</span>: &#123;</div><div class="line">        <span class="attr">"gte"</span>: <span class="string">"2016-01-01"</span>,</div><div class="line">        <span class="attr">"lte"</span>: <span class="string">"now"</span> # 当前时间</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># ----wildcard通配符查询</div><div class="line">GET  test/job/_search</div><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"wildcard"</span>: &#123;</div><div class="line">      <span class="attr">"title"</span>: &#123;</div><div class="line">        <span class="attr">"value"</span>: <span class="string">"测*"</span>,</div><div class="line">        <span class="attr">"boost"</span>: <span class="number">2.0</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="过滤查询和组合查询"><a href="#过滤查询和组合查询" class="headerlink" title="过滤查询和组合查询"></a>过滤查询和组合查询</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"># --- bool查询，老版本中是filter</div><div class="line"># bool接收参数有 must(满足全部条件) should(满足一个即可) must_not filter(过滤字段，不参与打分)</div><div class="line"># 测试数据</div><div class="line">POST lagou/test/_bulk</div><div class="line">&#123;<span class="attr">"index"</span>: &#123;<span class="attr">"_id"</span>: <span class="number">1</span>&#125;&#125;</div><div class="line">&#123;<span class="attr">"salary"</span>: <span class="number">10</span>, <span class="attr">"title"</span>: <span class="string">"python爬虫"</span>&#125;</div><div class="line">&#123;<span class="attr">"index"</span>: &#123;<span class="attr">"_id"</span>: <span class="number">2</span>&#125;&#125;</div><div class="line">&#123;<span class="attr">"salary"</span>: <span class="number">20</span>, <span class="attr">"title"</span>: <span class="string">"python WEB 开发"</span>&#125;</div><div class="line">&#123;<span class="attr">"index"</span>: &#123;<span class="attr">"_id"</span>: <span class="number">3</span>&#125;&#125;</div><div class="line">&#123;<span class="attr">"salary"</span>: <span class="number">30</span>, <span class="attr">"title"</span>: <span class="string">"python 工程师"</span>&#125;</div><div class="line">&#123;<span class="attr">"index"</span>: &#123;<span class="attr">"_id"</span>: <span class="number">4</span>&#125;&#125;</div><div class="line">&#123;<span class="attr">"salary"</span>: <span class="number">40</span>, <span class="attr">"title"</span>: <span class="string">"java工程师"</span>&#125;</div><div class="line">&#123;<span class="attr">"index"</span>: &#123;<span class="attr">"_id"</span>: <span class="number">5</span>&#125;&#125;</div><div class="line">&#123;<span class="attr">"salary"</span>: <span class="number">50</span>, <span class="attr">"title"</span>: <span class="string">"C++工程师"</span>&#125;</div><div class="line"></div><div class="line"># filter，查询"salary": [10, 20]的所有结果</div><div class="line">GET  lagou/test/_search</div><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"bool"</span>: &#123;</div><div class="line">      <span class="attr">"must"</span>: [</div><div class="line">        &#123;<span class="attr">"match_all"</span>: &#123;&#125;&#125;</div><div class="line">      ],</div><div class="line">      <span class="attr">"filter"</span>: &#123;<span class="attr">"terms"</span>: &#123;</div><div class="line">        <span class="attr">"salary"</span>: [<span class="number">10</span>, <span class="number">20</span>] # 多值查询</div><div class="line">      &#125;&#125;</div><div class="line">    &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"># "filter": &#123;"term": &#123;"title":Python"&#125;&#125; 查不到结果，因为分词器将title字段转换为小写并分词建立索引；可以用match替换term，或term的值全部小写。</div><div class="line"># 查看分析器对字段的处理</div><div class="line">GET  _analyze</div><div class="line">&#123;</div><div class="line">  <span class="attr">"analyzer"</span>:<span class="string">"ik_smart"</span>,</div><div class="line">  <span class="attr">"text"</span>: <span class="string">"Python网络工程师"</span></div><div class="line">&#125;</div><div class="line"># 查询salary20或title含python， 且salary不为10 30</div><div class="line">GET  lagou/test/_search</div><div class="line">&#123; </div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"bool"</span>: &#123;</div><div class="line">      <span class="attr">"should"</span>: [</div><div class="line">        &#123;<span class="attr">"match"</span>: &#123;<span class="attr">"salary"</span>: <span class="number">20</span>&#125;&#125;,</div><div class="line">        &#123;<span class="attr">"term"</span>: &#123;<span class="attr">"title"</span>: <span class="string">"python"</span>&#125;&#125;</div><div class="line">      ],</div><div class="line">      <span class="attr">"must_not"</span>: &#123;</div><div class="line">        <span class="attr">"terms"</span>: &#123;<span class="attr">"salary"</span>: [<span class="number">10</span>, <span class="number">30</span>]&#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"># 嵌套查询 title为python或（title为django 且salary为2000）,使用2次bool</div><div class="line">GET  lagou/test/_search</div><div class="line">&#123; <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"bool"</span>: &#123;</div><div class="line">      <span class="attr">"should"</span>: [</div><div class="line">        &#123;<span class="attr">"term"</span>: &#123;<span class="attr">"title"</span>: <span class="string">"python"</span>&#125;&#125;,</div><div class="line">        &#123;<span class="attr">"bool"</span>: &#123;<span class="attr">"must"</span>: [</div><div class="line">          &#123;<span class="attr">"term"</span>: &#123;<span class="attr">"title"</span>: <span class="string">"django"</span>&#125;&#125;,</div><div class="line">          &#123;<span class="attr">"term"</span>: &#123;<span class="attr">"salary"</span>: <span class="number">2000</span>&#125;&#125;</div><div class="line">        ]&#125;&#125;</div><div class="line">      ]&#125;</div><div class="line">    &#125;&#125;</div><div class="line"># exists处理空值，查询不存在city字段的数据</div><div class="line">GET  lagou/test/_search</div><div class="line">&#123; <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"bool"</span>: &#123;<span class="attr">"must_not"</span>: &#123;<span class="attr">"exists"</span>: &#123;<span class="attr">"field"</span>: <span class="string">"city"</span>&#125;&#125;&#125;</div><div class="line">  &#125;&#125;</div></pre></td></tr></table></figure>
+<h3 id="将数据写入elastic"><a href="#将数据写入elastic" class="headerlink" title="将数据写入elastic"></a>将数据写入elastic</h3><p><a href="http://elasticsearch-dsl.readthedocs.io/en/latest/" target="_blank" rel="external">elasticsearch-dsl-py</a></p>
+<p><code>pip install elasticsearch-py</code></p>
+<p>首先定义DocType，方便往elasticsearch中插入数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">from</span> elasticsearch_dsl <span class="keyword">import</span> DocType, Date, Nested, Boolean, \</div><div class="line">    analyzer, InnerObjectWrapper, Completion, Keyword, Text, Integer</div><div class="line"></div><div class="line"><span class="keyword">from</span> elasticsearch_dsl.analysis <span class="keyword">import</span> CustomAnalyzer <span class="keyword">as</span> _CustomAnalyzer</div><div class="line"></div><div class="line"><span class="keyword">from</span> elasticsearch_dsl.connections <span class="keyword">import</span> connections</div><div class="line">connections.create_connection(hosts=[<span class="string">"localhost"</span>])</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomAnalyzer</span><span class="params">(_CustomAnalyzer)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_analysis_definition</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> &#123;&#125;</div><div class="line"></div><div class="line"></div><div class="line">ik_analyzer = CustomAnalyzer(<span class="string">"ik_max_word"</span>, filter=[<span class="string">"lowercase"</span>])</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticleType</span><span class="params">(DocType)</span>:</span></div><div class="line">    <span class="comment">#伯乐在线文章类型</span></div><div class="line">    suggest = Completion(analyzer=ik_analyzer)  <span class="comment"># 直接使用默认的会报错，bug，因此使用变通的方法，自定义分析器，并调用ik</span></div><div class="line">    title = Text(analyzer=<span class="string">"ik_max_word"</span>)</div><div class="line">    create_date = Date()</div><div class="line">    url = Keyword()</div><div class="line">    url_object_id = Keyword()</div><div class="line">    front_image_url = Keyword()</div><div class="line">    front_image_path = Keyword()</div><div class="line">    praise_nums = Integer()</div><div class="line">    comment_nums = Integer()</div><div class="line">    fav_nums = Integer()</div><div class="line">    tags = Text(analyzer=<span class="string">"ik_max_word"</span>)</div><div class="line">    content = Text(analyzer=<span class="string">"ik_max_word"</span>)</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></div><div class="line">        index = <span class="string">"jobbole"</span></div><div class="line">        doc_type = <span class="string">"article"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    ArticleType.init() <span class="comment"># 自动生成mapping映射</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ---scrapy pipeline中可以这么写</span></div><div class="line"><span class="keyword">from</span> w3lib.html <span class="keyword">import</span> remove_tags</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span></span></div><div class="line">	post = ArticleType()</div><div class="line">	post.title = item[<span class="string">'title'</span>]</div><div class="line">	post.content = remove_tags(item[<span class="string">'content'</span>])</div><div class="line">    post.suggest = gen_suggests(ArticleType._doc_type.index, ((article.title,<span class="number">10</span>),(article.tags, <span class="number">7</span>)))</div><div class="line">	post.save()</div></pre></td></tr></table></figure>
+<h3 id="ElasticSearch-搜索自动补全"><a href="#ElasticSearch-搜索自动补全" class="headerlink" title="ElasticSearch 搜索自动补全"></a>ElasticSearch 搜索自动补全</h3><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.1/search-suggesters-completion.html" target="_blank" rel="external">Search API</a> 参考文档</p>
+<p>首先自动补全的field要在mapping中设置”type” 为”completion”的字段suggest。</p>
+<p>使用doctype建立映射时，定义<code>suggest = Completion(analyzer=custom_defined_analyzer)</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"># 定义mapping</div><div class="line">PUT music</div><div class="line">&#123;</div><div class="line">    <span class="attr">"mappings"</span>: &#123;</div><div class="line">        <span class="attr">"song"</span> : &#123;</div><div class="line">            <span class="attr">"properties"</span> : &#123;</div><div class="line">                <span class="attr">"suggest"</span> : &#123;</div><div class="line">                    <span class="attr">"type"</span> : <span class="string">"completion"</span></div><div class="line">                &#125;,</div><div class="line">                <span class="attr">"title"</span> : &#123;</div><div class="line">                    <span class="attr">"type"</span>: <span class="string">"keyword"</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;&#125;&#125;</div><div class="line"># 插入数据时，生成搜索建议词,及相应的权重</div><div class="line">PUT music/song/1?refresh</div><div class="line">&#123;</div><div class="line">    <span class="attr">"suggest"</span> : &#123;</div><div class="line">        <span class="attr">"input"</span>: [ <span class="string">"Nevermind"</span>, <span class="string">"Nirvana"</span> ],</div><div class="line">        <span class="attr">"weight"</span> : <span class="number">34</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">PUT music/song/2?refresh</div><div class="line">&#123;   # suggest的值可以是一个数组</div><div class="line">    "suggest" : [</div><div class="line">      &#123; <span class="attr">"input"</span>: [ <span class="string">"Nevermind"</span>, <span class="string">"Nirvana"</span> ],</div><div class="line">        "weight" : 12&#125;,</div><div class="line">      &#123; <span class="attr">"input"</span>: [ <span class="string">"Nevercare"</span>, <span class="string">"Norvana"</span> ],</div><div class="line">        "weight" : 34&#125;,</div><div class="line">      &#123; <span class="attr">"input"</span>: [ <span class="string">"Notcare"</span>, <span class="string">"Nocare"</span> ],</div><div class="line">        "weight" : 7&#125;,</div><div class="line">                ]</div><div class="line">&#125;</div><div class="line"># 模糊搜索</div><div class="line">POST music/_search</div><div class="line">&#123;</div><div class="line">  <span class="attr">"query"</span>:&#123;</div><div class="line">    <span class="attr">"fuzzy"</span>: &#123;<span class="attr">"title"</span>:&#123;<span class="attr">"value"</span>: <span class="string">"linux"</span>,</div><div class="line">                      "fuzziness": 2,  # 最小编辑距离</div><div class="line">                      "prefix_length": 2 #前2个字符li不变&#125;&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"># 补全建议的搜索</div><div class="line">POST music/_suggest?pretty</div><div class="line">&#123;</div><div class="line">    <span class="attr">"my_suggest"</span> : &#123;</div><div class="line">        <span class="attr">"text"</span> : <span class="string">"linux"</span>,</div><div class="line">        <span class="attr">"completion"</span> : &#123;</div><div class="line">            <span class="attr">"field"</span> : <span class="string">"suggest"</span>,</div><div class="line">            <span class="attr">"fuzzy"</span> : &#123;</div><div class="line">                <span class="attr">"fuzziness"</span> : <span class="number">2</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 调用ik分词器，生成搜索建议词，然后填充到suggest域的input</span></div><div class="line"><span class="keyword">from</span> elasticsearch_dsl.connections <span class="keyword">import</span> connections</div><div class="line">es = connections.create_connection(ArticleType._doc_type.using)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_suggests</span><span class="params">(index, info_tuple)</span>:</span></div><div class="line">    <span class="comment"># info_tuple为((string, weight),) 使用ik分词器对string分词，然后生成suggest需要的值</span></div><div class="line">    <span class="comment"># suggest: [&#123;"input":list_of_words, "weight":weight&#125;]</span></div><div class="line">    <span class="comment">#根据字符串生成搜索建议数组</span></div><div class="line">    used_words = set()</div><div class="line">    suggests = []</div><div class="line">    <span class="keyword">for</span> text, weight <span class="keyword">in</span> info_tuple:</div><div class="line">        <span class="keyword">if</span> text:</div><div class="line">            <span class="comment">#调用es的analyze接口分析字符串</span></div><div class="line">            words = es.indices.analyze(index=index, analyzer=<span class="string">"ik_max_word"</span>, params=&#123;<span class="string">'filter'</span>:[<span class="string">"lowercase"</span>]&#125;, body=text)</div><div class="line">            anylyzed_words = set([r[<span class="string">"token"</span>] <span class="keyword">for</span> r <span class="keyword">in</span> words[<span class="string">"tokens"</span>] <span class="keyword">if</span> len(r[<span class="string">"token"</span>])&gt;<span class="number">1</span>])</div><div class="line">            new_words = anylyzed_words - used_words <span class="comment"># 过滤掉处理过得words</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            new_words = set()</div><div class="line">            </div><div class="line">        <span class="keyword">if</span> new_words:</div><div class="line">            suggests.append(&#123;<span class="string">"input"</span>:list(new_words), <span class="string">"weight"</span>:weight&#125;)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> suggests</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/技术/">技术</a>, <a href="/categories/技术/数据库/">数据库</a>, <a href="/categories/技术/数据库/ElasticSearch/">ElasticSearch</a>
+  </div>
+
+        
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ElasticSearch/" style="font-size: 13px; color: #90f">ElasticSearch</a>
+    </div>
+
+
+
+
+<!-- 打赏按钮开始 -->
+
+    <br>
+<br>
+<div id="donate"></div>
+
+<script src="https://unpkg.com/vdonate"></script>
+<script type="text/javascript">
+new Donate({
+  title: '如果我的博客帮助了您，请随意打赏。感谢支持!', // 可选参数，打赏标题
+  btnText: '打赏作者', // 可选参数，打赏按钮文字
+  el: document.getElementById('donate'), // 可选参数，打赏按钮的容器
+  wechatImage: 'http://img.shuaiyy.cn/blog/171004/9h7fIfcILJ.png',
+  alipayImage: 'http://img.shuaiyy.cn/blog/171004/KLLJdiLg9c.jpg'
+});
+</script>
+
+<script>
+window.onload = function(){
+ var oTop = document.getElementById("donate");
+ var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+ var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+ oTop.style.left = screenw - oTop.offsetWidth +"px";
+ oTop.style.top = screenh - oTop.offsetHeight + "px";
+ window.onscroll = function(){
+  var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+  oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
+ }
+ oTop.onclick = function(){
+  document.documentElement.scrollTop = document.body.scrollTop =0;
+ }
+} 
+</script>
+
+
+
+
+<!-- 打赏结束 -->
+<!-- Baidu Button BEGIN -->
+
+    
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+<!--
+<div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+-->
+
+<!-- Baidu Button END -->      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+ <nav id="pagination" >
+    
+    <a href="/2017/11/01/技术/Gevent学习笔记/" class="alignleft prev" >上一页</a>
+    
+    
+    <a href="/2017/10/28/学习/机器学习/机器学习综述/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ0NS82MDEz"></div>
+
+<script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+</script>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  
+<div>
+<a href="javascript:;" class="popup-trigger">      
+      <i class="menu-item-icon fa fa-search fa-fw"></i>        
+   搜索
+</a>
+</div>
+
+
+<div class="site-search">
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+     
+  var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var str='<ul class=\"search-result-list\">';
+                var str1=str                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+                if (this.value.trim().length <= 0) {
+                    return;
+                }
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+					else { isMatch=false; } //更新此处
+					
+					//更新此处
+					
+                    // show search results
+                    if (isMatch) {
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 30;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 10;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substr(start, end); 
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
+                            })
+							//console.log(match_content)
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                    }
+                })
+                //修改
+				if (str1==str){
+					str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';
+					}
+				
+				$resultContent.innerHTML = str;
+            })
+        }
+    })
+}
+    // search function;
+ </script>
+<script>
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+	  proceedsearch();
+	  //添加的
+	  document.getElementById("local-search-result").innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>';
+     
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+  
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+     	search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+</script>
+
+
+
+
+
+  
+<div class="widget tag">
+  <h3 class="title" id="categories">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/">ѧϰ</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/д��/">д��</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ѧϰ/д��/�K�/">�Ķ�</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/">学习</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/Matlab/">Matlab</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/">写作</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Doc/">Doc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/写作/Markdown/">Markdown</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/">机器学习</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/TensorFlow/">TensorFlow</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/机器学习/推荐系统/">推荐系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/">求职</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/基础知识/">基础知识</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/算法/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/经历/">经历</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习/求职/面试/">面试</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/IDEA/">IDEA</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/">软件</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/MacOS/">MacOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/软件/Windows/">Windows</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">98</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Go/">Go</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Go/标准库/">标准库</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/">Java</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Hibernate/">Hibernate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Maven/">Maven</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Mybatis/">Mybatis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Java/标准库/">标准库</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/Server/">Server</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/日志监控/">日志监控</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/">MacOS</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/latex/">latex</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/">Python</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/CGI编程/">CGI编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/PyQt5/">PyQt5</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/数据库连接/">数据库连接</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python/标准库/">标准库</a><span class="category-list-count">17</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/">Web</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Bootstrap/">Bootstrap</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Django/">Django</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/Flask/">Flask</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Web/JavaScript/">JavaScript</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/">并发编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/并发编程/Gevent/">Gevent</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/">数据分析</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/IPython/">IPython</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Matplotlib/">Matplotlib</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Numpy/">Numpy</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/Pandas/">Pandas</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据分析/词云/">词云</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MongoDB/">MongoDB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/Redis/">Redis</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/">爬虫</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/爬虫/Scrapy/">Scrapy</a><span class="category-list-count">8</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/">网络编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/网络编程/Socket/">Socket</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/">折腾</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/手机/">手机</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/折腾/路由器/">路由器</a><span class="category-list-count">1</span></li></ul></li></ul> 
+</div>
+ 
+
+  <div class="widget tag">
+<h3 class="title">简介</h3>
+<ul class="entry">
+<li>博主：帅羊羊</li>
+<li>现状：武大CS在读研究生</li>
+<li>Theme: <a href="https://github.com/shuaiyy/lightum">Lightum</a>
+<!-- <li>想交友的朋友请<a href="http://zipperary.com/about">联系我</a>！</li> -->
+<li>QQ 号：2Ol896963</li>
+<li>博客: 记录个人生活学习的点滴</li>
+<!-- <font color="red">Hexo 交流群：287306637</font> -->
+</ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=2946363961&verifier=371067b2&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">打赏</h3>
+<ul class="entry">
+<li>支付宝扫一扫，捐助支持，谢谢！</li>
+<li><a href="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png" title="" class="fancybox" rel="gallery3"><img width="100%" src="http://img.shuaiyy.cn/blog/171004/LikDAfKDg0.png"></a></li>
+</ul>
+</div>
+
+  <!--  旧的标签
+
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>1</small></li>
+  
+    <li><a href="/tags/Bootstrap/">Bootstrap</a><small>1</small></li>
+  
+    <li><a href="/tags/CentOS/">CentOS</a><small>1</small></li>
+  
+    <li><a href="/tags/Django/">Django</a><small>6</small></li>
+  
+    <li><a href="/tags/Docset/">Docset</a><small>1</small></li>
+  
+    <li><a href="/tags/ElasticSearch/">ElasticSearch</a><small>1</small></li>
+  
+    <li><a href="/tags/Enjoy/">Enjoy</a><small>0</small></li>
+  
+    <li><a href="/tags/Exam/">Exam</a><small>0</small></li>
+  
+    <li><a href="/tags/Flask/">Flask</a><small>19</small></li>
+  
+    <li><a href="/tags/Gevent/">Gevent</a><small>3</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>4</small></li>
+  
+    <li><a href="/tags/Gitbook/">Gitbook</a><small>1</small></li>
+  
+    <li><a href="/tags/Go/">Go</a><small>1</small></li>
+  
+    <li><a href="/tags/HTML/">HTML</a><small>1</small></li>
+  
+    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/Hibernate/">Hibernate</a><small>1</small></li>
+  
+    <li><a href="/tags/Html/">Html</a><small>2</small></li>
+  
+    <li><a href="/tags/IDEA/">IDEA</a><small>3</small></li>
+  
+    <li><a href="/tags/IPython/">IPython</a><small>1</small></li>
+  
+    <li><a href="/tags/Ipython/">Ipython</a><small>0</small></li>
+  
+    <li><a href="/tags/JQuery/">JQuery</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>11</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>3</small></li>
+  
+    <li><a href="/tags/LaTeX/">LaTeX</a><small>3</small></li>
+  
+    <li><a href="/tags/LeetCode/">LeetCode</a><small>2</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>11</small></li>
+  
+    <li><a href="/tags/Mac/">Mac</a><small>2</small></li>
+  
+    <li><a href="/tags/MachineLearning/">MachineLearning</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/Math/">Math</a><small>6</small></li>
+  
+    <li><a href="/tags/Matlab/">Matlab</a><small>1</small></li>
+  
+    <li><a href="/tags/Matplotlib/">Matplotlib</a><small>1</small></li>
+  
+    <li><a href="/tags/Maven/">Maven</a><small>1</small></li>
+  
+    <li><a href="/tags/MongoDB/">MongoDB</a><small>1</small></li>
+  
+    <li><a href="/tags/Mongodb/">Mongodb</a><small>0</small></li>
+  
+    <li><a href="/tags/MyBatis/">MyBatis</a><small>1</small></li>
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/Notebook/">Notebook</a><small>1</small></li>
+  
+    <li><a href="/tags/Numpy/">Numpy</a><small>2</small></li>
+  
+    <li><a href="/tags/ORM/">ORM</a><small>2</small></li>
+  
+    <li><a href="/tags/Openwrt/">Openwrt</a><small>1</small></li>
+  
+    <li><a href="/tags/Optimization/">Optimization</a><small>8</small></li>
+  
+    <li><a href="/tags/Pandas/">Pandas</a><small>1</small></li>
+  
+    <li><a href="/tags/Phantomjs/">Phantomjs</a><small>1</small></li>
+  
+    <li><a href="/tags/Pip/">Pip</a><small>1</small></li>
+  
+    <li><a href="/tags/PyQt5/">PyQt5</a><small>4</small></li>
+  
+    <li><a href="/tags/Pycharm/">Pycharm</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>32</small></li>
+  
+    <li><a href="/tags/RESTful/">RESTful</a><small>1</small></li>
+  
+    <li><a href="/tags/Redis/">Redis</a><small>3</small></li>
+  
+    <li><a href="/tags/Scrapy/">Scrapy</a><small>8</small></li>
+  
+    <li><a href="/tags/Selenium/">Selenium</a><small>1</small></li>
+  
+    <li><a href="/tags/Service/">Service</a><small>1</small></li>
+  
+    <li><a href="/tags/Socket/">Socket</a><small>2</small></li>
+  
+    <li><a href="/tags/Spring/">Spring</a><small>1</small></li>
+  
+    <li><a href="/tags/SpringBoot/">SpringBoot</a><small>1</small></li>
+  
+    <li><a href="/tags/Tensorflow/">Tensorflow</a><small>1</small></li>
+  
+    <li><a href="/tags/Web/">Web</a><small>19</small></li>
+  
+    <li><a href="/tags/WordCloud/">WordCloud</a><small>1</small></li>
+  
+    <li><a href="/tags/Zabbix/">Zabbix</a><small>1</small></li>
+  
+    <li><a href="/tags/Zeal/">Zeal</a><small>1</small></li>
+  
+    <li><a href="/tags/flask/">flask</a><small>0</small></li>
+  
+    <li><a href="/tags/gevent/">gevent</a><small>0</small></li>
+  
+    <li><a href="/tags/git/">git</a><small>0</small></li>
+  
+    <li><a href="/tags/gitbook/">gitbook</a><small>0</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>0</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>0</small></li>
+  
+    <li><a href="/tags/restful/">restful</a><small>0</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>0</small></li>
+  
+    <li><a href="/tags/tensorflow/">tensorflow</a><small>0</small></li>
+  
+    <li><a href="/tags/刷题/">刷题</a><small>2</small></li>
+  
+    <li><a href="/tags/推荐系统/">推荐系统</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>2</small></li>
+  
+    <li><a href="/tags/机器学习/">机器学习</a><small>3</small></li>
+  
+    <li><a href="/tags/框架/">框架</a><small>1</small></li>
+  
+    <li><a href="/tags/求职/">求职</a><small>6</small></li>
+  
+    <li><a href="/tags/测试/">测试</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>9</small></li>
+  
+    <li><a href="/tags/经历/">经历</a><small>1</small></li>
+  
+    <li><a href="/tags/词云/">词云</a><small>1</small></li>
+  
+    <li><a href="/tags/面试/">面试</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+-->
+
+<!-- 使用hexo-tag-cloud 生成的-->
+
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/PyQt5/" style="font-size: 16.33px; color: #b0a">PyQt5</a> <a href="/tags/Hexo/" style="font-size: 13px; color: #90f">Hexo</a> <a href="/tags/Math/" style="font-size: 17.44px; color: #c6008e">Math</a> <a href="/tags/Optimization/" style="font-size: 18.56px; color: #d20071">Optimization</a> <a href="/tags/Matlab/" style="font-size: 13px; color: #90f">Matlab</a> <a href="/tags/MachineLearning/" style="font-size: 13px; color: #90f">MachineLearning</a> <a href="/tags/Bootstrap/" style="font-size: 13px; color: #90f">Bootstrap</a> <a href="/tags/Linux/" style="font-size: 20.78px; color: #e80039">Linux</a> <a href="/tags/CentOS/" style="font-size: 13px; color: #90f">CentOS</a> <a href="/tags/Django/" style="font-size: 17.44px; color: #c6008e">Django</a> <a href="/tags/Flask/" style="font-size: 21.89px; color: #f4001c">Flask</a> <a href="/tags/Web/" style="font-size: 21.89px; color: #f4001c">Web</a> <a href="/tags/测试/" style="font-size: 13px; color: #90f">测试</a> <a href="/tags/Git/" style="font-size: 16.33px; color: #b0a">Git</a> <a href="/tags/HTML/" style="font-size: 13px; color: #90f">HTML</a> <a href="/tags/Java/" style="font-size: 20.78px; color: #e80039">Java</a> <a href="/tags/IDEA/" style="font-size: 15.22px; color: #b000c6">IDEA</a> <a href="/tags/ORM/" style="font-size: 14.11px; color: #a400e3">ORM</a> <a href="/tags/Hibernate/" style="font-size: 13px; color: #90f">Hibernate</a> <a href="/tags/Html/" style="font-size: 14.11px; color: #a400e3">Html</a> <a href="/tags/JavaScript/" style="font-size: 15.22px; color: #b000c6">JavaScript</a> <a href="/tags/Python/" style="font-size: 23px; color: #f00">Python</a> <a href="/tags/Notebook/" style="font-size: 13px; color: #90f">Notebook</a> <a href="/tags/Service/" style="font-size: 13px; color: #90f">Service</a> <a href="/tags/LaTeX/" style="font-size: 15.22px; color: #b000c6">LaTeX</a> <a href="/tags/Mac/" style="font-size: 14.11px; color: #a400e3">Mac</a> <a href="/tags/Markdown/" style="font-size: 13px; color: #90f">Markdown</a> <a href="/tags/Matplotlib/" style="font-size: 13px; color: #90f">Matplotlib</a> <a href="/tags/Maven/" style="font-size: 13px; color: #90f">Maven</a> <a href="/tags/MySQL/" style="font-size: 13px; color: #90f">MySQL</a> <a href="/tags/数据库/" style="font-size: 14.11px; color: #a400e3">数据库</a> <a href="/tags/MyBatis/" style="font-size: 13px; color: #90f">MyBatis</a> <a href="/tags/Numpy/" style="font-size: 14.11px; color: #a400e3">Numpy</a> <a href="/tags/Pandas/" style="font-size: 13px; color: #90f">Pandas</a> <a href="/tags/Android/" style="font-size: 13px; color: #90f">Android</a> <a href="/tags/框架/" style="font-size: 13px; color: #90f">框架</a> <a href="/tags/爬虫/" style="font-size: 19.67px; color: #d05">爬虫</a> <a href="/tags/Selenium/" style="font-size: 13px; color: #90f">Selenium</a> <a href="/tags/Phantomjs/" style="font-size: 13px; color: #90f">Phantomjs</a> <a href="/tags/WordCloud/" style="font-size: 13px; color: #90f">WordCloud</a> <a href="/tags/词云/" style="font-size: 13px; color: #90f">词云</a> <a href="/tags/Pip/" style="font-size: 13px; color: #90f">Pip</a> <a href="/tags/Redis/" style="font-size: 15.22px; color: #b000c6">Redis</a> <a href="/tags/Scrapy/" style="font-size: 18.56px; color: #d20071">Scrapy</a> <a href="/tags/SpringBoot/" style="font-size: 13px; color: #90f">SpringBoot</a> <a href="/tags/机器学习/" style="font-size: 15.22px; color: #b000c6">机器学习</a> <a href="/tags/Spring/" style="font-size: 13px; color: #90f">Spring</a> <a href="/tags/Zabbix/" style="font-size: 13px; color: #90f">Zabbix</a> <a href="/tags/Zeal/" style="font-size: 13px; color: #90f">Zeal</a> <a href="/tags/Gevent/" style="font-size: 15.22px; color: #b000c6">Gevent</a> <a href="/tags/IPython/" style="font-size: 13px; color: #90f">IPython</a> <a href="/tags/MongoDB/" style="font-size: 13px; color: #90f">MongoDB</a> <a href="/tags/Socket/" style="font-size: 14.11px; color: #a400e3">Socket</a> <a href="/tags/RESTful/" style="font-size: 13px; color: #90f">RESTful</a> <a href="/tags/Gitbook/" style="font-size: 13px; color: #90f">Gitbook</a> <a href="/tags/Docset/" style="font-size: 13px; color: #90f">Docset</a> <a href="/tags/Tensorflow/" style="font-size: 13px; color: #90f">Tensorflow</a> <a href="/tags/Pycharm/" style="font-size: 13px; color: #90f">Pycharm</a> <a href="/tags/JQuery/" style="font-size: 13px; color: #90f">JQuery</a> <a href="/tags/求职/" style="font-size: 17.44px; color: #c6008e">求职</a> <a href="/tags/Openwrt/" style="font-size: 13px; color: #90f">Openwrt</a> <a href="/tags/推荐系统/" style="font-size: 13px; color: #90f">推荐系统</a> <a href="/tags/ElasticSearch/" style="font-size: 13px; color: #90f">ElasticSearch</a> <a href="/tags/刷题/" style="font-size: 14.11px; color: #a400e3">刷题</a> <a href="/tags/LeetCode/" style="font-size: 14.11px; color: #a400e3">LeetCode</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+  <div class="widget tag">
+    <h3 class="title">归档</h3>
+	<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">2018年11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">2018年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">2018年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">2018年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">2018年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">2018年04月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年02月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年01月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">2017年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年11月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">2017年10月</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">2017年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">2016年12月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">2016年11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">2016年10月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">2016年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">2016年08月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年05月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2015年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年11月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner">
+<section>
+<div class="copyright">
+		
+		  
+		  &copy;2014&mdash; <span itemprop="copyrightYear">2018</span>
+		  
+  <span class="with-love">
+    <i class="fa fa-heart" style="color:red"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuaiyy</span>
+</div>
+主题 - <a href="https://github.com/shuaiyy/lightum">Lightum</a>, Improved from <a href="https://github.com/hexojs/hexo-theme-light">Light</a>, by <a href="/">shuaiyy</a> 
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</section>
+<div class="clearfix"></div>
+</footer>
+  <script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+
+
+<!-- 返回顶部 -->
+<div id="toTop">
+	<a href="#">▲</a>
+	<a href="#footer">▼</a>
+</div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>
+
+
+<a href="https://github.com/shuaiyy" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/imgs/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
